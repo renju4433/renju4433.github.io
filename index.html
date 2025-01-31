@@ -24,8 +24,8 @@
         .board {
             position: relative;
             display: grid;
-            grid-template-columns: repeat(9, 35px);
-            grid-template-rows: repeat(9, 35px);
+            grid-template-columns: repeat(15, 35px);
+            grid-template-rows: repeat(15, 35px);
             gap: 0px;
             background-color: #dcb35c;
             padding: 20px;
@@ -95,7 +95,14 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         button {
@@ -118,18 +125,43 @@
             cursor: not-allowed;
         }
 
-        .rule-toggle {
-            margin-top: 10px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+        .rule-select {
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
 
-        .rule-toggle label {
-            font-size: 16px;
-            color: #333;
+        .analysis-container {
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .analysis-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .analysis-table th,
+        .analysis-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .analysis-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        .analysis-table tr:hover {
+            background-color: #f8f8f8;
         }
     </style>
 </head>
@@ -138,17 +170,37 @@
     <div class="game-container">
         <div class="board" id="board"></div>
         <div class="controls">
-            <button id="undoBtn">回退</button>
-            <button id="resetBtn">新局</button>
-            <button id="calcBtn">计算</button>
-            <div class="rule-toggle">
-                <label>
-                    <input type="checkbox" id="renjuToggle"> 启用禁手规则
-                </label>
+            <select id="ruleSelect" class="rule-select">
+                <option value="gomoku">无禁手</option>
+                <option value="renju">有禁手（有bug）</option>
+            </select>
+            <select id="timeSelect" class="rule-select">
+                <option value="1000">1s</option>
+                <option value="3000">3s</option>
+                <option value="5000" selected>5s</option>
+                <option value="10000">10s</option>
+            </select>
+            <div class="button-group">
+                <button id="undoBtn">回退</button>
+                <button id="resetBtn">新局</button>
+                <button id="calcBtn">计算</button>
             </div>
         </div>
+        <div class="analysis-container">
+            <table class="analysis-table">
+                <thead>
+                    <tr>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;深&nbsp;度&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;分&nbsp;数&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;路&nbsp;线&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;用&nbsp;时&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody id="analysisBody">
+                </tbody>
+            </table>
+        </div>
     </div>
-
     <script>
         class GomokuGame {
             constructor() {
@@ -156,21 +208,28 @@
                 this.undoBtn = document.getElementById('undoBtn');
                 this.resetBtn = document.getElementById('resetBtn');
                 this.calcBtn = document.getElementById('calcBtn');
-                this.renjuToggle = document.getElementById('renjuToggle');
+                this.ruleSelect = document.getElementById('ruleSelect');
+                this.timeSelect = document.getElementById('timeSelect');
+                this.undoBtn.disabled = true;
                 this.currentPlayer = 'black';
+                this.timeThink = 3000;
                 this.moveCount = 0;
                 this.moves = [];
-                this.gameState = Array(9).fill().map(() => Array(9).fill(null));
+                this.gameState = Array(15).fill().map(() => Array(15).fill(null));
                 this.ai = new GomokuAI();
-                this.ai.RENJU = false; // Default to no Renju rules
+                this.updateRuleType();
                 this.initializeBoard();
                 this.setupEventListeners();
             }
 
+            updateRuleType() {
+                this.ai.RENJU = this.ruleSelect.value === 'renju';
+            }
+
             initializeBoard() {
                 this.board.innerHTML = '';
-                for (let i = 0; i < 9; i++) {
-                    for (let j = 0; j < 9; j++) {
+                for (let i = 0; i < 15; i++) {
+                    for (let j = 0; j < 15; j++) {
                         const cell = document.createElement('div');
                         cell.className = 'cell';
                         cell.dataset.row = i;
@@ -193,11 +252,16 @@
                 this.undoBtn.addEventListener('click', () => this.undoMove());
                 this.resetBtn.addEventListener('click', () => this.resetGame());
                 this.calcBtn.addEventListener('click', () => this.calcGame());
-                
-                // Add Renju rules toggle event listener
-                this.renjuToggle.addEventListener('change', (e) => {
-                    this.ai.RENJU = e.target.checked;
-                    this.resetGame(); // Reset the game when rules are changed
+                this.ruleSelect.addEventListener('change', () => {
+                    this.updateRuleType();
+                    let moves = this.moves;
+                    this.resetGame();
+                    for (let move of moves) {
+                        this.makeMove(move.row, move.col);
+                    }
+                });
+                this.timeSelect.addEventListener('change', () => {
+                    this.timeThink = Number(this.timeSelect.value);
                 });
             }
 
@@ -209,12 +273,12 @@
                 stone.className = `stone ${this.currentPlayer}`;
                 stone.textContent = this.moveCount;
 
-                const cell = this.board.children[row * 9 + col];
+                const cell = this.board.children[row * 15 + col];
                 cell.appendChild(stone);
 
                 this.gameState[row][col] = this.currentPlayer;
                 this.moves.push({ row, col, player: this.currentPlayer });
-                this.ai.makeMove(row, col);
+                this.ai.makeMove(row, col, this.currentPlayer == 'black' ? 1 : 2);
                 this.currentPlayer = this.currentPlayer === 'black' ? 'white' : 'black';
                 this.undoBtn.disabled = false;
             }
@@ -223,13 +287,13 @@
                 if (this.moves.length === 0) return;
 
                 const lastMove = this.moves.pop();
-                const cell = this.board.children[lastMove.row * 9 + lastMove.col];
+                const cell = this.board.children[lastMove.row * 15 + lastMove.col];
                 cell.removeChild(cell.lastChild);
 
                 this.gameState[lastMove.row][lastMove.col] = null;
                 this.currentPlayer = lastMove.player;
                 this.moveCount--;
-                this.ai.undoMove(lastMove.row, lastMove.col);
+                this.ai.undoMove(lastMove.row, lastMove.col)
                 if (this.moves.length === 0) {
                     this.undoBtn.disabled = true;
                 }
@@ -239,15 +303,15 @@
                 this.currentPlayer = 'black';
                 this.moveCount = 0;
                 this.moves = [];
-                this.gameState = Array(9).fill().map(() => Array(9).fill(null));
+                this.gameState = Array(15).fill().map(() => Array(15).fill(null));
                 this.initializeBoard();
                 this.undoBtn.disabled = true;
                 this.ai = new GomokuAI();
-                this.ai.RENJU = this.renjuToggle.checked; // Maintain the current rule setting
+                this.updateRuleType();
             }
 
-            calcGame() {
-                const result = this.ai.getBestMove(this.currentPlayer === 'black' ? 1 : 2, 2000);
+            async calcGame() {
+                const result = await this.ai.getBestMove(this.currentPlayer === 'black' ? 1 : 2, this.timeThink);
                 this.makeMove(result.move[0], result.move[1]);
             }
         }
