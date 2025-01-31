@@ -351,6 +351,12 @@ class GomokuAI {
         return score;
     }
     getValidMoves(player) {
+        const cnt2d = {
+            0: 'horizontal',
+            1: 'vertical',
+            2: 'diagonal1',
+            3: 'diagonal2',
+        }
         const moves = [];
         let dis5 = [];
         let makeFlex4 = [];
@@ -368,6 +374,7 @@ class GomokuAI {
                     let flexFour = false;
                     let four = 0;
                     let three = 0;
+                    let q3 = false;
                     for (const direction of Object.values(this.patterns[player])) {
                         const pattern = direction[i][j];
                         if (pattern === this.PATTERN.LONG) long = true;
@@ -380,11 +387,14 @@ class GomokuAI {
                             four += 2;
                         }
                         if (pattern === this.PATTERN.BLOCK4) four++;
-                        if (pattern === this.PATTERN.FLEX3) three++;
+                        if (pattern === this.PATTERN.FLEX3) {
+                            three++;
+                        }
                         score += 2 * this.weights[pattern];
                         if (pattern >= this.PATTERN.BLOCK2) ok = true;
                     }
                     let temp = false;
+                    let cnt = 0;
                     for (const direction of Object.values(this.patterns[3 - player])) {
                         const pattern = direction[i][j];
                         if (pattern === this.PATTERN.LONG) continue;
@@ -398,20 +408,25 @@ class GomokuAI {
                         if (pattern === this.PATTERN.FLEX4) {
                             temp = true;
                             disFlex4 = true;
+                            q3 = true;
                         }
                         if (pattern === this.PATTERN.BLOCK4) {
-                            temp = true;
+                            if (this.isDis3(i, j, cnt2d[cnt], player)) {
+                                temp = true;
+                                q3 = true;
+                            }
                         }
                         score += this.weights[pattern];
                         if (pattern >= this.PATTERN.FLEX2) ok = true;
+                        cnt++;
                     }
                     if (this.RENJU && player === this.BLACK && (four >= 2 || three >= 2 || long)) continue;
                     fullMoves.push({ p: [i, j], s: 0 });
                     if (flexFour) makeFlex4.push({ p: [i, j], s: 8000 });
                     if (four >= 2) make44.push({ p: [i, j], s: 7500 });
-                    if (temp) dis4.push({ p: [i, j], s: score });
+                    if (temp) dis4.push({ p: [i, j], s: score, q3 });
                     if (four === 1) make4.push({ p: [i, j], s: score });
-                    if (ok) moves.push({ p: [i, j], s: score });
+                    if (ok) moves.push({ p: [i, j], s: score, q3 });
                 }
             }
         }
@@ -424,15 +439,34 @@ class GomokuAI {
         if (moves.length === 0) return fullMoves;
         return moves.sort((a, b) => b.s - a.s);
     }
-
+    isDis3(x, y, direction, player) {
+        const directions = {
+            horizontal: [0, 1],
+            vertical: [1, 0],
+            diagonal1: [1, 1],
+            diagonal2: [1, -1]
+        };
+        if (this.isOnBoard(x + directions[direction][0], y + directions[direction][1]) &&
+            this.patterns[3 - player][direction][x + directions[direction][0]][y + directions[direction][1]] === this.PATTERN.FLEX3) return true;
+        if (this.isOnBoard(x - directions[direction][0], y - directions[direction][0]) &&
+            this.patterns[3 - player][direction][x - directions[direction][0]][y - directions[direction][1]] === this.PATTERN.FLEX3) return true;
+        if (this.isOnBoard(x + directions[direction][0] * 6, y + directions[direction][1] * 6)) {
+            if (this.patterns[3 - player][direction][x + directions[direction][0] * 2][y + directions[direction][1] * 2] === this.PATTERN.FLEX3 &&
+                this.board[x + directions[direction][0] * 6][y + directions[direction][1] * 6] === player) return true;
+        }
+        if (this.isOnBoard(x - directions[direction][0] * 6, y - directions[direction][1] * 6)) {
+            if (this.patterns[3 - player][direction][x - directions[direction][0] * 2][y - directions[direction][1] * 2] === this.PATTERN.FLEX3 &&
+                this.board[x - directions[direction][0] * 6][y - directions[direction][1] * 6] === player) return true;
+        }
+        return false;
+    }
     // 使用negamax算法搜索最佳着法
     negamax(depth, alpha, beta, player, path = []) {
         // 基础情况：到达叶子节点
         if (depth <= 0) {
-            const result = this.quiesce(6, alpha, beta, player, path);
             return {
-                score: result.score,
-                path: result.path
+                score: this.evaluatePosition(player),
+                path: path
             };
         }
         // 让对手走一步,深度减少3
@@ -482,7 +516,7 @@ class GomokuAI {
                 if (bestScore > -10000) {
                     // 第一个节点,使用完整窗口
                     const result = this.negamax(
-                        depth - 1,
+                        moves.s === 8500 || move.q3 ? depth : depth - 1,
                         -beta,
                         -alpha,
                         3 - player,
@@ -495,7 +529,7 @@ class GomokuAI {
                 } else {
                     // 其他节点先进行零窗口搜索
                     const result = this.negamax(
-                        depth - 1,
+                        moves.s === 8500 || move.q3 ? depth : depth - 1,
                         -alpha - 1,
                         -alpha,
                         3 - player,
@@ -506,7 +540,7 @@ class GomokuAI {
                     // 如果零窗口搜索失败,需要重新完整搜索
                     if (score > alpha && score < beta) {
                         const result = this.negamax(
-                            depth - 1,
+                            moves.s === 8500 || move.q3 ? depth : depth - 1,
                             -beta,
                             -alpha,
                             3 - player,
@@ -526,80 +560,6 @@ class GomokuAI {
                 }
 
                 alpha = Math.max(alpha, score);
-                if (alpha >= beta) {
-                    break;
-                }
-            }
-        }
-
-        return {
-            score: bestScore,
-            path: bestPath
-        };
-    }
-
-    quiesce(depth, alpha, beta, player, path = []) {
-        let score = this.evaluatePosition(player);
-        // 基础情况：到达叶子节点
-        if (depth <= 0 || score >= beta) {
-            return {
-                score: score,
-                path: path
-            };
-        }
-
-        let bestScore = score;
-        alpha = Math.max(score, alpha);
-        let bestPath = [...path];
-        const moves = this.getValidMoves(player);
-        if (moves.length === 0) {
-            return {
-                score: 0,
-                path: path
-            };
-        }
-        // 对每个可能的着法进行搜索
-        for (const move of moves) {
-            if (move.s < 2 * 800 / 4) {
-                continue;
-            }
-            let x = move.p[0];
-            let y = move.p[1];
-            if (move.s === 10000) {
-                return {
-                    score: 10000 - path.length - 1,
-                    path: [...path, [x, y]]
-                };
-            }
-            if (move.s === 9000 || move.s === -1) {
-                return {
-                    score: -10000 + path.length + 2,
-                    path: [...path, [x, y]]
-                };
-            }
-            if (move.s === 7500 || move.s === 8000) {
-                return {
-                    score: 10000 - path.length - 3,
-                    path: [...path, [x, y]]
-                };
-            }
-            if (this.makeMove(x, y, player)) {
-                const result = this.quiesce(
-                    depth - 1,
-                    -beta,
-                    -alpha,
-                    3 - player,
-                    [...path, [x, y]]
-                );
-
-                this.undoMove(x, y);
-                const score = -result.score;
-                if (score > bestScore) {
-                    bestScore = score;
-                    bestPath = result.path;
-                }
-                alpha = Math.max(alpha, score);
-
                 if (alpha >= beta) {
                     break;
                 }
@@ -638,7 +598,6 @@ class GomokuAI {
                 setTimeout(resolve, 0);
             });
         };
-
         const iterativeDeepening = async () => {
             for (let depth = 1; new Date() - t <= time; depth++) {
                 result = this.negamax(depth, -10000, 10000, player);
