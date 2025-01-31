@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<script src="main.js"> </script>
+
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .game-container {
+            background: #e3c397;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .board {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(9, 35px);
+            grid-template-rows: repeat(9, 35px);
+            gap: 0px;
+            background-color: #dcb35c;
+            padding: 20px;
+            border: 2px solid #8b4513;
+        }
+
+        .cell {
+            width: 35px;
+            height: 35px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cell::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: #000;
+            top: 50%;
+        }
+
+        .cell::after {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 1px;
+            background: #000;
+            left: 50%;
+        }
+
+        .stone {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .stone:hover {
+            transform: scale(1.1);
+        }
+
+        .stone.black {
+            background: radial-gradient(circle at 30% 30%, #666, #000);
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .stone.white {
+            background: radial-gradient(circle at 30% 30%, #fff, #ccc);
+            color: #000;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #4a90e2;
+            color: white;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #357abd;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .rule-toggle {
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rule-toggle label {
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game-container">
+        <div class="board" id="board"></div>
+        <div class="controls">
+            <button id="undoBtn">回退</button>
+            <button id="resetBtn">新局</button>
+            <button id="calcBtn">计算</button>
+            <div class="rule-toggle">
+                <label>
+                    <input type="checkbox" id="renjuToggle"> 启用禁手规则
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class GomokuGame {
+            constructor() {
+                this.board = document.getElementById('board');
+                this.undoBtn = document.getElementById('undoBtn');
+                this.resetBtn = document.getElementById('resetBtn');
+                this.calcBtn = document.getElementById('calcBtn');
+                this.renjuToggle = document.getElementById('renjuToggle');
+                this.currentPlayer = 'black';
+                this.moveCount = 0;
+                this.moves = [];
+                this.gameState = Array(9).fill().map(() => Array(9).fill(null));
+                this.ai = new GomokuAI();
+                this.ai.RENJU = false; // Default to no Renju rules
+                this.initializeBoard();
+                this.setupEventListeners();
+            }
+
+            initializeBoard() {
+                this.board.innerHTML = '';
+                for (let i = 0; i < 9; i++) {
+                    for (let j = 0; j < 9; j++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'cell';
+                        cell.dataset.row = i;
+                        cell.dataset.col = j;
+                        this.board.appendChild(cell);
+                    }
+                }
+            }
+
+            setupEventListeners() {
+                this.board.addEventListener('click', (e) => {
+                    const cell = e.target.closest('.cell');
+                    if (!cell || cell.querySelector('.stone')) return;
+
+                    const row = parseInt(cell.dataset.row);
+                    const col = parseInt(cell.dataset.col);
+                    this.makeMove(row, col);
+                });
+
+                this.undoBtn.addEventListener('click', () => this.undoMove());
+                this.resetBtn.addEventListener('click', () => this.resetGame());
+                this.calcBtn.addEventListener('click', () => this.calcGame());
+                
+                // Add Renju rules toggle event listener
+                this.renjuToggle.addEventListener('change', (e) => {
+                    this.ai.RENJU = e.target.checked;
+                    this.resetGame(); // Reset the game when rules are changed
+                });
+            }
+
+            makeMove(row, col) {
+                if (this.gameState[row][col]) return;
+
+                this.moveCount++;
+                const stone = document.createElement('div');
+                stone.className = `stone ${this.currentPlayer}`;
+                stone.textContent = this.moveCount;
+
+                const cell = this.board.children[row * 9 + col];
+                cell.appendChild(stone);
+
+                this.gameState[row][col] = this.currentPlayer;
+                this.moves.push({ row, col, player: this.currentPlayer });
+                this.ai.makeMove(row, col);
+                this.currentPlayer = this.currentPlayer === 'black' ? 'white' : 'black';
+                this.undoBtn.disabled = false;
+            }
+
+            undoMove() {
+                if (this.moves.length === 0) return;
+
+                const lastMove = this.moves.pop();
+                const cell = this.board.children[lastMove.row * 9 + lastMove.col];
+                cell.removeChild(cell.lastChild);
+
+                this.gameState[lastMove.row][lastMove.col] = null;
+                this.currentPlayer = lastMove.player;
+                this.moveCount--;
+                this.ai.undoMove(lastMove.row, lastMove.col);
+                if (this.moves.length === 0) {
+                    this.undoBtn.disabled = true;
+                }
+            }
+
+            resetGame() {
+                this.currentPlayer = 'black';
+                this.moveCount = 0;
+                this.moves = [];
+                this.gameState = Array(9).fill().map(() => Array(9).fill(null));
+                this.initializeBoard();
+                this.undoBtn.disabled = true;
+                this.ai = new GomokuAI();
+                this.ai.RENJU = this.renjuToggle.checked; // Maintain the current rule setting
+            }
+
+            calcGame() {
+                const result = this.ai.getBestMove(this.currentPlayer === 'black' ? 1 : 2, 2000);
+                this.makeMove(result.move[0], result.move[1]);
+            }
+        }
+
+        // Initialize the game
+        const game = new GomokuGame();
+    </script>
+</body>
+
+</html>
