@@ -750,7 +750,7 @@ class GomokuAI {
             for (let depth = 1; new Date() - t <= time; depth++) {
                 // Clear all previous highlights
                 this.clearHighlights();
-                let killDepth = depth;
+                let killDepth = 6;
                 result = await this.negamax(depth, -10000, 10000, player, killDepth);
                 const timeSpent = new Date() - t;
                 await updateAnalysis(depth, killDepth, result.score, result.path, timeSpent);
