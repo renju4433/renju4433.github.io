@@ -9,6 +9,13 @@ function formatPath(path) {
 }
 class GomokuAI {
     constructor() {
+        this.highlights = {
+            calculating: new Set(),
+            best: new Set(),
+            losing: new Set(),
+            calculated: new Set() // Add new state for calculated moves
+        };
+        this.node = 0;
         this.EMPTY = 0;
         this.BLACK = 1;
         this.WHITE = 2;
@@ -21,14 +28,18 @@ class GomokuAI {
             FLEX4: 7,
             FOURFOUR: 6.5,
             BLOCK4: 6,
+            FLEX3A: 5.5,
             FLEX3: 5,
             BLOCK3: 4,
+            FLEX2B: 3.5,
+            FLEX2A: 3.25,
             FLEX2: 3,
             BLOCK2: 2,
             FLEX1: 1,
             NONE: 0
         };
-
+        // Add history table
+        this.historyTable;
         // Initialize board and pattern storage
         this.board = Array(this.BOARD_SIZE).fill().map(() => Array(this.BOARD_SIZE).fill(this.EMPTY));
         this.patterns = {
@@ -49,9 +60,12 @@ class GomokuAI {
             [this.PATTERN.WIN]: 10000 / 5,
             [this.PATTERN.FLEX4]: 1200 / 4,
             [this.PATTERN.BLOCK4]: 800 / 4,
-            [this.PATTERN.FLEX3]: 144 / 3,
+            [this.PATTERN.FLEX3A]: 144 / 3,
+            [this.PATTERN.FLEX3]: 132 / 3,
             [this.PATTERN.BLOCK3]: 96 / 3,
-            [this.PATTERN.FLEX2]: 18 / 2,
+            [this.PATTERN.FLEX2B]: 36 / 2,
+            [this.PATTERN.FLEX2A]: 28 / 2,
+            [this.PATTERN.FLEX2]: 20 / 2,
             [this.PATTERN.BLOCK2]: 12 / 2,
             [this.PATTERN.FLEX1]: 2 / 1,
             [this.PATTERN.NONE]: 0,
@@ -62,6 +76,55 @@ class GomokuAI {
         // Store initial board hash
         this.zobristTable = this.initializeZobristTable();
         this.currentHash = 0n;
+    }
+    // Add method to update history table
+    updateHistory(x, y, player, depth) {
+        this.historyTable[x][y][player] += depth ** 2;
+    }
+    // Add new methods for visualization
+    addHighlight(x, y, type) {
+        const cell = document.querySelector(`[data-row="${x}"][data-col="${y}"]`);
+        if (!cell) return;
+
+        // Remove any existing highlights of this type
+        this.removeHighlight(x, y, type);
+
+        // Add new highlight
+        const highlight = document.createElement('div');
+        highlight.className = `highlight ${type}`;
+        cell.appendChild(highlight);
+        this.highlights[type].add(`${x},${y}`);
+    }
+
+    removeHighlight(x, y, type) {
+        const cell = document.querySelector(`[data-row="${x}"][data-col="${y}"]`);
+        if (!cell) return;
+
+        const highlight = cell.querySelector(`.highlight.${type}`);
+        if (highlight) {
+            highlight.remove();
+            this.highlights[type].delete(`${x},${y}`);
+        }
+    }
+
+    clearHighlights() {
+        ['calculating', 'best', 'losing', 'calculated'].forEach(type => {
+            Array.from(this.highlights[type]).forEach(coord => {
+                const [x, y] = coord.split(',');
+                this.removeHighlight(parseInt(x), parseInt(y), type);
+            });
+            this.highlights[type].clear();
+        });
+    }
+    clearBest() {
+        ['best'].forEach(type => {
+            Array.from(this.highlights[type]).forEach(coord => {
+                const [x, y] = coord.split(',');
+                this.removeHighlight(parseInt(x), parseInt(y), type);
+                this.addHighlight(parseInt(x), parseInt(y), 'calculated');
+            });
+            this.highlights[type].clear();
+        });
     }
     // Initialize Zobrist hashing table
     initializeZobristTable() {
@@ -144,7 +207,7 @@ class GomokuAI {
                     let block = 0;
                     if (line[i - 1] === 2 || line[i - 1] === -1 || line[i - 2] === 1) block++;
                     if (line[i + 4] === 2 || line[i + 4] === -1 || line[i + 5] === 1) block++;
-                    if (block === 0) return this.PATTERN.FLEX3;
+                    if (block === 0) return this.PATTERN.FLEX3A;
                     if (block === 1) return this.PATTERN.BLOCK3;
                     return this.PATTERN.NONE;
                 }
@@ -152,7 +215,7 @@ class GomokuAI {
                     let block = 0;
                     if (line[i - 1] === 2 || line[i - 1] === -1 || line[i - 2] === 1) block++;
                     if (line[i + 4] === 2 || line[i + 4] === -1 || line[i + 5] === 1) block++;
-                    if (block === 0) return this.PATTERN.FLEX3;
+                    if (block === 0) return this.PATTERN.FLEX3A;
                     if (block === 1) return this.PATTERN.BLOCK3;
                     return this.PATTERN.NONE;
                 }
@@ -256,8 +319,8 @@ class GomokuAI {
             if (len > 5 && len2 < 5 && block === 0) {
                 switch (count) {
                     case 1: return this.PATTERN.FLEX1;
-                    case 2: return this.PATTERN.FLEX2;
-                    case 3: return this.PATTERN.FLEX3;
+                    case 2: return this.PATTERN.FLEX2 + 0.5 - (len2 - 2) * 0.25;
+                    case 3: return this.PATTERN.FLEX3 + 0.5 - (len2 - 3) * 0.5;
                     case 4: return this.PATTERN.FLEX4;
                 }
             } else {
@@ -334,20 +397,46 @@ class GomokuAI {
     }
 
     // Evaluate position for a player
-    evaluatePosition(player) {
+    evaluatePosition(player, pathlength) {
         let score = 0;
-
+        let my4 = false;
+        let myFlex3 = false;
+        let opFlex4 = false;
+        let opBlock4 = false;
+        let opFlex3 = false;
         // Count patterns for the player
         for (let i = 0; i < this.BOARD_SIZE; i++) {
             for (let j = 0; j < this.BOARD_SIZE; j++) {
                 if (this.board[i][j] !== this.EMPTY) {
+                    let four = 0;
                     for (const direction of Object.values(this.patterns[this.board[i][j]])) {
                         const pattern = direction[i][j];
                         score += (this.board[i][j] === player ? 2 : -1) * this.weights[pattern];
+                        if (this.board[i][j] === player) {
+                            if (pattern === this.PATTERN.WIN) return 10000 - pathlength;
+                            if (pattern === this.PATTERN.FLEX4 || pattern === this.PATTERN.BLOCK4 || pattern === this.PATTERN.FOURFOUR) my4 = true;
+                            if (pattern === this.PATTERN.FLEX3 || pattern === this.PATTERN.FLEX3A) myFlex3 = true;
+                        }
+                        else {
+                            if (pattern === this.PATTERN.WIN) return -10000 + pathlength;
+                            if (pattern === this.PATTERN.FLEX4 || pattern === this.PATTERN.FOURFOUR) opFlex4 = true;
+                            if (pattern === this.PATTERN.BLOCK4) {
+                                opBlock4 = true;
+                                four++;
+                            }
+                            // if (pattern === this.PATTERN.FLEX3 || pattern === this.PATTERN.FLEX3A) opFlex3 = true;
+                        }
+                    }
+                    if (four >= 2) {
+                        opFlex4 = true;
                     }
                 }
             }
         }
+        if (my4) return 9999 - pathlength;
+        if (opFlex4) return -9998 + pathlength;
+        if (myFlex3 && !opBlock4) return 9997 - pathlength;
+        if (opBlock4 || opFlex3) return score - 1;
         return score;
     }
     getValidMoves(player) {
@@ -364,6 +453,7 @@ class GomokuAI {
         let make4 = [];
         let dis4 = [];
         let disFlex4 = false;
+        let zhuajin = false;
         let fullMoves = [];
         for (let i = 0; i < this.BOARD_SIZE; i++) {
             for (let j = 0; j < this.BOARD_SIZE; j++) {
@@ -374,11 +464,11 @@ class GomokuAI {
                     let flexFour = false;
                     let four = 0;
                     let three = 0;
-                    let q3 = false;
+                    let attack = false;
                     for (const direction of Object.values(this.patterns[player])) {
                         const pattern = direction[i][j];
                         if (pattern === this.PATTERN.LONG) long = true;
-                        if (pattern === this.PATTERN.WIN) return [{ p: [i, j], s: 10000 }];
+                        if (pattern === this.PATTERN.WIN) return [{ p: [i, j], s: 0, attack: true }];
                         if (pattern === this.PATTERN.FLEX4) {
                             flexFour = true;
                             four++;
@@ -386,52 +476,56 @@ class GomokuAI {
                         if (pattern === this.PATTERN.FOURFOUR) {
                             four += 2;
                         }
-                        if (pattern === this.PATTERN.BLOCK4) four++;
-                        if (pattern === this.PATTERN.FLEX3) {
+                        if (pattern === this.PATTERN.BLOCK4) {
+                            four++;
+                            attack = true;
+                        }
+                        if (pattern === this.PATTERN.FLEX3 || pattern === this.PATTERN.FLEX3A) {
                             three++;
+                            // attack = true;
                         }
                         score += 2 * this.weights[pattern];
-                        if (pattern >= this.PATTERN.BLOCK2) ok = true;
+                        if (pattern >= this.PATTERN.FLEX2B) ok = true;
                     }
                     let temp = false;
                     let cnt = 0;
+
                     for (const direction of Object.values(this.patterns[3 - player])) {
                         const pattern = direction[i][j];
                         if (pattern === this.PATTERN.LONG) continue;
                         if (pattern === this.PATTERN.WIN) {
                             if (this.RENJU && player === this.BLACK && (four >= 2 || three >= 2 || long)) {
-                                dis5.push({ p: [i, j], s: -1 });
+                                zhuajin = true;
                             } else {
-                                dis5.push({ p: [i, j], s: 8500 });
+                                dis5.push({ p: [i, j], s: 0, attack });
                             }
                         }
                         if (pattern === this.PATTERN.FLEX4) {
                             temp = true;
                             disFlex4 = true;
-                            q3 = true;
                         }
                         if (pattern === this.PATTERN.BLOCK4) {
                             if (this.isDis3(i, j, cnt2d[cnt], player)) {
                                 temp = true;
-                                q3 = true;
                             }
                         }
                         score += this.weights[pattern];
-                        if (pattern >= this.PATTERN.FLEX2) ok = true;
+                        if (pattern >= this.PATTERN.FLEX2A) ok = true;
                         cnt++;
                     }
+                    score += this.historyTable[i][j][player] * 1000;
                     if (this.RENJU && player === this.BLACK && (four >= 2 || three >= 2 || long)) continue;
                     fullMoves.push({ p: [i, j], s: 0 });
-                    if (flexFour) makeFlex4.push({ p: [i, j], s: 8000 });
-                    if (four >= 2) make44.push({ p: [i, j], s: 7500 });
-                    if (temp) dis4.push({ p: [i, j], s: score, q3 });
-                    if (four === 1) make4.push({ p: [i, j], s: score });
-                    if (ok) moves.push({ p: [i, j], s: score, q3 });
+                    if (flexFour) makeFlex4.push({ p: [i, j], s: 0 });
+                    if (four >= 2) make44.push({ p: [i, j], s: 0 });
+                    if (temp) dis4.push({ p: [i, j], s: score, attack });
+                    if (four === 1) make4.push({ p: [i, j], s: score, attack });
+                    if (ok) moves.push({ p: [i, j], s: score, attack });
                 }
             }
         }
-        if (fullMoves.length === this.BOARD_SIZE ** 2) return [{ p: [Math.floor(this.BOARD_SIZE / 2), Math.floor(this.BOARD_SIZE / 2)], s: 0 }];
-        if (dis5.length > 1) return [{ p: dis5[0].p, s: 9000 }];
+        if (fullMoves.length === this.BOARD_SIZE ** 2) return [{ p: [Math.floor(this.BOARD_SIZE / 2), Math.floor(this.BOARD_SIZE / 2)], s: 0, dis4: false, attack: false, dis5: false }];
+        if (zhuajin) return [fullMoves[0]];
         if (dis5.length > 0) return [dis5[0]];
         if (makeFlex4.length > 0) return [makeFlex4[0]];
         if (make44.length > 0) return [make44[0]];
@@ -447,166 +541,224 @@ class GomokuAI {
             diagonal2: [1, -1]
         };
         if (this.isOnBoard(x + directions[direction][0], y + directions[direction][1]) &&
-            this.patterns[3 - player][direction][x + directions[direction][0]][y + directions[direction][1]] === this.PATTERN.FLEX3) return true;
+            (this.patterns[3 - player][direction][x + directions[direction][0]][y + directions[direction][1]] === this.PATTERN.FLEX3 ||
+                this.patterns[3 - player][direction][x + directions[direction][0]][y + directions[direction][1]] === this.PATTERN.FLEX3A)) return true;
         if (this.isOnBoard(x - directions[direction][0], y - directions[direction][0]) &&
-            this.patterns[3 - player][direction][x - directions[direction][0]][y - directions[direction][1]] === this.PATTERN.FLEX3) return true;
+            (this.patterns[3 - player][direction][x - directions[direction][0]][y - directions[direction][1]] === this.PATTERN.FLEX3 ||
+                this.patterns[3 - player][direction][x - directions[direction][0]][y - directions[direction][1]] === this.PATTERN.FLEX3A)) return true;
         if (this.isOnBoard(x + directions[direction][0] * 6, y + directions[direction][1] * 6)) {
-            if (this.patterns[3 - player][direction][x + directions[direction][0] * 2][y + directions[direction][1] * 2] === this.PATTERN.FLEX3 &&
+            if (this.patterns[3 - player][direction][x + directions[direction][0] * 2][y + directions[direction][1] * 2] === this.PATTERN.FLEX3A &&
                 this.board[x + directions[direction][0] * 6][y + directions[direction][1] * 6] === player) return true;
         }
         if (this.isOnBoard(x - directions[direction][0] * 6, y - directions[direction][1] * 6)) {
-            if (this.patterns[3 - player][direction][x - directions[direction][0] * 2][y - directions[direction][1] * 2] === this.PATTERN.FLEX3 &&
+            if (this.patterns[3 - player][direction][x - directions[direction][0] * 2][y - directions[direction][1] * 2] === this.PATTERN.FLEX3A &&
                 this.board[x - directions[direction][0] * 6][y - directions[direction][1] * 6] === player) return true;
         }
         return false;
     }
-    // 使用negamax算法搜索最佳着法
-    negamax(depth, alpha, beta, player, path = []) {
-        // 基础情况：到达叶子节点
-        if (depth <= 0) {
+    // Modify negamax to include visualization
+    async negamax(depth, alpha, beta, player, killDepth, isNullMove, path = []) {
+
+        const result = await this.quiesce(killDepth, alpha, beta, player, true, path);
+        if (depth <= 0 || result.score + path.length === 10000 || result.score - path.length === -10000) {
             return {
-                score: this.evaluatePosition(player),
-                path: path
+                score: result.score,
+                path: result.path
             };
         }
-        // 让对手走一步,深度减少3
-        const nullMoveResult = this.negamax(depth - 3, -beta, -beta + 1, 3 - player, path);
+
+        const nullMoveResult = await this.negamax(depth - 3, -beta, -beta + 1, 3 - player, killDepth, true, path);
         const nullScore = -nullMoveResult.score;
-        // 如果空着之后分数仍然很高,说明当前局面已经很好,可以直接返回beta截断
         if (nullScore >= beta) {
             return {
                 score: beta,
                 path: path
             };
         }
+
         let bestScore = -10000;
         let bestPath = [...path];
+        let bestMove = null;
+        let newDepth = this.isChong(result.score) ? depth : depth - 1;
         const moves = this.getValidMoves(player);
-        if (moves.length === 0) {
-            return {
-                score: 0,
-                path: path
-            };
-        }
-        let score;
-        // 对每个可能的着法进行搜索
+
         for (const move of moves) {
-            let x = move.p[0];
-            let y = move.p[1];
-            if (move.s === 10000) {
-                return {
-                    score: 10000 - path.length - 1,
-                    path: [...path, [x, y]]
-                };
+            const [x, y] = move.p;
+
+            // Add calculating highlight
+            if (path.length === 0 && !isNullMove) {
+                this.addHighlight(x, y, 'calculating');
             }
-            if (move.s === 9000 || move.s === -1) {
-                return {
-                    score: -10000 + path.length + 2,
-                    path: [...path, [x, y]]
-                };
-            }
-            if (move.s === 7500 || move.s === 8000) {
-                return {
-                    score: 10000 - path.length - 3,
-                    path: [...path, [x, y]]
-                };
-            }
-            if (this.makeMove(x, y, player)) {
-                // PVS搜索
-                if (bestScore > -10000) {
-                    // 第一个节点,使用完整窗口
-                    const result = this.negamax(
-                        move.s === 8500 || move.q3 ? depth : depth - 1,
-                        -beta,
-                        -alpha,
-                        3 - player,
-                        [...path, [x, y]],
-                    );
+
+            this.makeMove(x, y, player);
+            let score;
+            if (bestScore > -10000) {
+                const result = await this.negamax(newDepth, -beta, -alpha, 3 - player, killDepth, false, [...path, [x, y]]);
+                score = -result.score;
+                if (score > bestScore) {
+                    bestPath = result.path;
+                    if (path.length === 0 && !isNullMove) {
+                        this.clearBest();
+                        if (score > -9000) this.addHighlight(x, y, 'best');
+                    }
+                }
+            } else {
+                const result = await this.negamax(newDepth, -alpha - 1, -alpha, 3 - player, killDepth, false, [...path, [x, y]]);
+                score = -result.score;
+
+                if (score > alpha && score < beta) {
+                    const result = await this.negamax(newDepth, -beta, -alpha, 3 - player, killDepth, false, [...path, [x, y]]);
                     score = -result.score;
                     if (score > bestScore) {
                         bestPath = result.path;
-                    }
-                } else {
-                    // 其他节点先进行零窗口搜索
-                    const result = this.negamax(
-                        move.s === 8500 || move.q3 ? depth : depth - 1,
-                        -alpha - 1,
-                        -alpha,
-                        3 - player,
-                        [...path, [x, y]],
-                    );
-                    score = -result.score;
-
-                    // 如果零窗口搜索失败,需要重新完整搜索
-                    if (score > alpha && score < beta) {
-                        const result = this.negamax(
-                            move.s === 8500 || move.q3 ? depth : depth - 1,
-                            -beta,
-                            -alpha,
-                            3 - player,
-                            [...path, [x, y]],
-                        );
-                        score = -result.score;
-                        if (score > bestScore) {
-                            bestPath = result.path;
+                        if (path.length === 0 && !isNullMove) {
+                            this.clearBest();
+                            if (score > -9000) this.addHighlight(x, y, 'best');
                         }
                     }
                 }
+            }
 
-                this.undoMove(x, y);
-
-                if (score > bestScore) {
-                    bestScore = score;
+            this.undoMove(x, y);
+            if (path.length === 0 && !isNullMove) {
+                if (score <= -9000) {
+                    this.removeHighlight(x, y, 'calculating');
+                    this.addHighlight(x, y, 'losing');
                 }
-
-                alpha = Math.max(alpha, score);
-                if (alpha >= beta) {
-                    break;
+                else {
+                    this.removeHighlight(x, y, 'calculating');
+                    this.addHighlight(x, y, 'calculated');
                 }
             }
-        }
 
+            if (score > bestScore) {
+                bestScore = score;
+                bestMove = [x, y];
+                if (path.length === 0 && !isNullMove) {
+                    this.clearBest();
+                    if (score > -9000) this.addHighlight(x, y, 'best');
+                }
+            }
+
+            alpha = Math.max(alpha, score);
+            if (alpha >= beta) {
+                break;
+            }
+        }
+        if (bestMove) {
+            const [bx, by] = bestMove;
+            this.updateHistory(bx, by, 3 - player, depth);
+        }
         return {
             score: bestScore,
             path: bestPath
         };
     }
 
-    getBestMove(player, time) {
+    isChong(score) {
+        return score % 2 !== 0 && score <= 9000 && score >= -9000;
+    }
+    async quiesce(depth, alpha, beta, player, isAttack, path = []) {
+        let score = this.evaluatePosition(player, path.length);
+        this.node++;
+        if (this.node % 1000 === 0) await new Promise(resolve => setTimeout(resolve, 0)); // Small delay for visualization
+        // 基础情况：到达叶子节点
+        if (depth <= 0 && !this.isChong(score)) {
+            return {
+                score: score,
+                path: path
+            };
+        }
+        let bestScore = -10000;
+        if (!this.isChong(score)) {
+            if (score >= beta) {
+                return {
+                    score: score,
+                    path: path
+                };
+            }
+            bestScore = score;
+            alpha = Math.max(score, alpha);
+        }
+        let bestPath = [...path];
+        const moves = this.getValidMoves(player);
+        // 对每个可能的着法进行搜索
+        for (const move of moves) {
+            if (!this.isChong(score)) {
+                if (!move.attack) continue;
+            }
+            let x = move.p[0];
+            let y = move.p[1];
+            this.makeMove(x, y, player)
+            const result = await this.quiesce(
+                depth - 1,
+                -beta,
+                -alpha,
+                3 - player,
+                !isAttack,
+                [...path, [x, y]]
+            );
+            this.undoMove(x, y);
+            score = -result.score;
+            if (score > bestScore) {
+                bestScore = score;
+                bestPath = result.path;
+            }
+            alpha = Math.max(alpha, score);
+
+            if (alpha >= beta) {
+                break;
+            }
+        }
+        return {
+            score: bestScore,
+            path: bestPath
+        };
+    }
+    async getBestMove(player, time) {
+
         let result;
         let t = new Date();
         const analysisBody = document.getElementById('analysisBody');
-
-        // Clear previous analysis
         analysisBody.innerHTML = '';
 
-        const updateAnalysis = (depth, score, path, timeSpent) => {
+        const updateAnalysis = (depth, killDepth, score, path, timeSpent) => {
             return new Promise((resolve) => {
-                // Create single row and reuse it
                 if (!analysisBody.firstChild) {
                     const row = document.createElement('tr');
                     analysisBody.appendChild(row);
                 }
 
                 analysisBody.firstChild.innerHTML = `
-                <td>${depth} 层</td>
-                <td>${score} 分</td>
-                <td>${formatPath(path)}</td>
-                <td>${timeSpent} 毫秒</td>
-            `;
-                // Small delay to allow UI update
+                    <td>${depth}-${killDepth} 层</td>
+                    <td>${score} 分</td>
+                    <td>${formatPath(path)}</td>
+                    <td>${timeSpent} 毫秒</td>
+                `;
                 setTimeout(resolve, 0);
             });
         };
+
         const iterativeDeepening = async () => {
+            // Add history table
+            this.historyTable = Array(this.BOARD_SIZE).fill().map(() =>
+                Array(this.BOARD_SIZE).fill().map(() => ({
+                    [this.BLACK]: 0,
+                    [this.WHITE]: 0
+                }))
+            );
             for (let depth = 1; new Date() - t <= time; depth++) {
-                result = this.negamax(depth, -10000, 10000, player);
+                // Clear all previous highlights
+                this.clearHighlights();
+                let killDepth = depth;
+                result = await this.negamax(depth, -10000, 10000, player, killDepth);
                 const timeSpent = new Date() - t;
-                await updateAnalysis(depth, result.score, result.path, timeSpent);
+                await updateAnalysis(depth, killDepth, result.score, result.path, timeSpent);
             }
+            // Clear all previous highlights
+            this.clearHighlights();
             return result;
         };
-
         return iterativeDeepening().then(() => ({
             move: result.path[0],
             score: result.score,

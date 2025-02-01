@@ -163,6 +163,51 @@
         .analysis-table tr:hover {
             background-color: #f8f8f8;
         }
+
+        .stone.calculating {
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #ff6b6b);
+            box-shadow: 2px 2px 4px #ff6b6b;
+        }
+
+        .stone.calculated {
+            background: radial-gradient(circle at 30% 30%, #6c757d, #6c757d);
+            box-shadow: 2px 2px 4px #6c757d;
+        }
+
+        .stone.best {
+            background: radial-gradient(circle at 30% 30%, #28a745, #28a745);
+            box-shadow: 2px 2px 4px #28a745;
+        }
+
+        .stone.losing {
+            background: radial-gradient(circle at 30% 30%, #f9fafb, #f9fafb);
+            box-shadow: 2px 2px 4px #f9fafb;
+        }
+
+        .highlight {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .highlight.calculating {
+            background-color: #dc3545;
+        }
+
+        .highlight.best {
+            background-color: #28a745;
+        }
+
+        .highlight.losing {
+            background-color: #f9fafb;
+        }
+
+        .highlight.calculated {
+            background-color: #6c757d;
+        }
     </style>
 </head>
 
@@ -190,10 +235,11 @@
             <table class="analysis-table">
                 <thead>
                     <tr>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;深&nbsp;度&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;分&nbsp;数&nbsp;&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;路&nbsp;线&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;用&nbsp;时&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;深&nbsp;度&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分&nbsp;数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;路&nbsp;线&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用&nbsp;时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody id="analysisBody">
