@@ -516,7 +516,7 @@ class GomokuAI {
                 if (bestScore > -10000) {
                     // 第一个节点,使用完整窗口
                     const result = this.negamax(
-                        moves.s === 8500 || move.q3 ? depth : depth - 1,
+                        move.s === 8500 || move.q3 ? depth : depth - 1,
                         -beta,
                         -alpha,
                         3 - player,
@@ -529,7 +529,7 @@ class GomokuAI {
                 } else {
                     // 其他节点先进行零窗口搜索
                     const result = this.negamax(
-                        moves.s === 8500 || move.q3 ? depth : depth - 1,
+                        move.s === 8500 || move.q3 ? depth : depth - 1,
                         -alpha - 1,
                         -alpha,
                         3 - player,
@@ -540,7 +540,7 @@ class GomokuAI {
                     // 如果零窗口搜索失败,需要重新完整搜索
                     if (score > alpha && score < beta) {
                         const result = this.negamax(
-                            moves.s === 8500 || move.q3 ? depth : depth - 1,
+                            move.s === 8500 || move.q3 ? depth : depth - 1,
                             -beta,
                             -alpha,
                             3 - player,
