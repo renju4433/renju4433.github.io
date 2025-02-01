@@ -212,7 +212,7 @@
                 this.timeSelect = document.getElementById('timeSelect');
                 this.undoBtn.disabled = true;
                 this.currentPlayer = 'black';
-                this.timeThink = 3000;
+                this.timeThink = Number(this.timeSelect.value);
                 this.moveCount = 0;
                 this.moves = [];
                 this.gameState = Array(15).fill().map(() => Array(15).fill(null));
