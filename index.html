@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<script src="main.js"> </script>
+<script src="engine.js"> </script>
 
 <head>
     <style>
@@ -16,7 +16,7 @@
 
         .game-container {
             background: #e3c397;
-            padding: 40px;
+            padding: 45px;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
@@ -24,8 +24,8 @@
         .board {
             position: relative;
             display: grid;
-            grid-template-columns: repeat(15, 35px);
-            grid-template-rows: repeat(15, 35px);
+            grid-template-columns: repeat(15, 40px);
+            grid-template-rows: repeat(15, 40px);
             gap: 0px;
             background-color: #dcb35c;
             padding: 20px;
@@ -33,8 +33,8 @@
         }
 
         .cell {
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             position: relative;
             display: flex;
             justify-content: center;
@@ -60,8 +60,8 @@
         }
 
         .stone {
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             position: absolute;
             z-index: 1;
@@ -69,7 +69,7 @@
             justify-content: center;
             align-items: center;
             color: #fff;
-            font-size: 12px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             transition: transform 0.2s;
@@ -107,7 +107,7 @@
 
         button {
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 18px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -145,7 +145,7 @@
         .analysis-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 14px;
+            font-size: 10px;
         }
 
         .analysis-table th,
@@ -215,15 +215,12 @@
     <div class="game-container">
         <div class="board" id="board"></div>
         <div class="controls">
-            <select id="ruleSelect" class="rule-select">
-                <option value="gomoku">无禁手</option>
-                <option value="renju">有禁手（有bug）</option>
-            </select>
             <select id="timeSelect" class="rule-select">
                 <option value="1000">1s</option>
                 <option value="3000">3s</option>
-                <option value="5000" selected>5s</option>
-                <option value="10000">10s</option>
+                <option value="5000">5s</option>
+                <option value="10000" selected>10s</option>
+                <option value="20000">20s</option>
             </select>
             <div class="button-group">
                 <button id="undoBtn">回退</button>
@@ -235,11 +232,13 @@
             <table class="analysis-table">
                 <thead>
                     <tr>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;深&nbsp;度&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分&nbsp;数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;深&nbsp;度&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分&nbsp;数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                         <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;路&nbsp;线&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用&nbsp;时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;节&nbsp;点&nbsp;数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;速&nbsp;度&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用&nbsp;时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody id="analysisBody">
@@ -262,14 +261,9 @@
                 this.moveCount = 0;
                 this.moves = [];
                 this.gameState = Array(15).fill().map(() => Array(15).fill(null));
-                this.ai = new GomokuAI();
-                this.updateRuleType();
+                this.ai = new Gomoku();
                 this.initializeBoard();
                 this.setupEventListeners();
-            }
-
-            updateRuleType() {
-                this.ai.RENJU = this.ruleSelect.value === 'renju';
             }
 
             initializeBoard() {
@@ -298,14 +292,6 @@
                 this.undoBtn.addEventListener('click', () => this.undoMove());
                 this.resetBtn.addEventListener('click', () => this.resetGame());
                 this.calcBtn.addEventListener('click', () => this.calcGame());
-                this.ruleSelect.addEventListener('change', () => {
-                    this.updateRuleType();
-                    let moves = this.moves;
-                    this.resetGame();
-                    for (let move of moves) {
-                        this.makeMove(move.row, move.col);
-                    }
-                });
                 this.timeSelect.addEventListener('change', () => {
                     this.timeThink = Number(this.timeSelect.value);
                 });
@@ -339,7 +325,7 @@
                 this.gameState[lastMove.row][lastMove.col] = null;
                 this.currentPlayer = lastMove.player;
                 this.moveCount--;
-                this.ai.undoMove(lastMove.row, lastMove.col)
+                this.ai.makeMove(lastMove.row, lastMove.col, 0)
                 if (this.moves.length === 0) {
                     this.undoBtn.disabled = true;
                 }
@@ -352,8 +338,7 @@
                 this.gameState = Array(15).fill().map(() => Array(15).fill(null));
                 this.initializeBoard();
                 this.undoBtn.disabled = true;
-                this.ai = new GomokuAI();
-                this.updateRuleType();
+                this.ai = new Gomoku();
             }
 
             async calcGame() {
