@@ -167,6 +167,15 @@ class Gomoku {
             }
         }
     }
+    hasChange(x, y, X, Y) {
+        var o = this.board[x][y];
+        var o1 = this.checkForbiddenMove(X, Y);
+        this.board[x][y] = NULL;
+        var o2 = this.checkForbiddenMove(X, Y);
+        this.board[x][y] = o;
+        if (o1 == o2) return false;
+        return true;
+    }
     updatePatterns(x, y, depth = 0) {
         // Update horizontal pattern
         for (let i = Math.max(0, y - 5); i <= Math.min(BOARD_SIZE - 1, y + 5); i++) {
@@ -174,7 +183,7 @@ class Gomoku {
                 this.map[0][x][i] = true;
                 if (this.board[x][i] == BLACK && depth <= 1) this.pattern[0][x][i] = this.countPatterns(x, i, 0);
                 else if (this.board[x][i] == WHITE && depth == 0) this.patternw[0][x][i] = this.countPatternsw(x, i, 0);
-                else if (this.board[x][i] == NULL && this.checkForbiddenMove(x, i) && depth == 0) {
+                else if (this.board[x][i] == NULL && this.hasChange(x, y, x, i) && depth == 0) {
                     this.updatePatterns(x, i, depth + 1);
                 }
             }
@@ -185,7 +194,7 @@ class Gomoku {
                 this.map[1][i][y] = true;
                 if (this.board[i][y] == BLACK && depth <= 1) this.pattern[1][i][y] = this.countPatterns(i, y, 1);
                 else if (this.board[i][y] == WHITE && depth == 0) this.patternw[1][i][y] = this.countPatternsw(i, y, 1);
-                else if (this.board[i][y] == NULL && this.checkForbiddenMove(i, y) && depth == 0) {
+                else if (this.board[i][y] == NULL && this.hasChange(x, y, i, y) && depth == 0) {
                     this.updatePatterns(i, y, depth + 1);
                 }
             }
@@ -200,7 +209,7 @@ class Gomoku {
                     this.map[2][dx][dy] = true;
                     if (this.board[dx][dy] == BLACK && depth <= 1) this.pattern[2][dx][dy] = this.countPatterns(dx, dy, 2);
                     else if (this.board[dx][dy] == WHITE && depth == 0) this.patternw[2][dx][dy] = this.countPatternsw(dx, dy, 2);
-                    else if (this.board[dx][dy] == NULL && this.checkForbiddenMove(dx, dy) && depth == 0) {
+                    else if (this.board[dx][dy] == NULL && this.hasChange(x, y, dx, dy) && depth == 0) {
                         this.updatePatterns(dx, dy, depth + 1);
                     }
                 }
@@ -212,7 +221,7 @@ class Gomoku {
                     this.map[3][dx][dy2] = true;
                     if (this.board[dx][dy2] == BLACK && depth <= 1) this.pattern[3][dx][dy2] = this.countPatterns(dx, dy2, 3);
                     else if (this.board[dx][dy2] == WHITE && depth == 0) this.patternw[3][dx][dy2] = this.countPatternsw(dx, dy2, 3);
-                    else if (this.board[dx][dy2] == NULL && this.checkForbiddenMove(dx, dy2) && depth == 0) {
+                    else if (this.board[dx][dy2] == NULL && this.hasChange(x, y, dx, dy2) && depth == 0) {
                         this.updatePatterns(dx, dy2, depth + 1);
                     }
                 }
