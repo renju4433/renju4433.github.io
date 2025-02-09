@@ -385,7 +385,7 @@
     async function computerMove() {
 
       const startTime = Date.now();
-      const result = await searchEngine.searchMain(225, 5000);
+      const result = await searchEngine.searchMain(225, 10000);
 
       if (result.path && result.path.length > 0) {
         bestMovePath = result.path;
