@@ -1,355 +1,436 @@
 <!DOCTYPE html>
 <html>
-<script src="engine.js"> </script>
+<script src="position.js"></script>
+<script src="search.js"></script>
 
 <head>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            font-family: 'Arial', sans-serif;
-        }
+  <title>五子棋游戏</title>
+  <style>
+    body {
+      font-family: "Microsoft YaHei", sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f0f0f0;
+      color: #333;
+    }
 
-        .game-container {
-            background: #e3c397;
-            padding: 45px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        .board {
-            position: relative;
-            display: grid;
-            grid-template-columns: repeat(15, 40px);
-            grid-template-rows: repeat(15, 40px);
-            gap: 0px;
-            background-color: #dcb35c;
-            padding: 20px;
-            border: 2px solid #8b4513;
-        }
+    .header h1 {
+      color: #2c3e50;
+      margin: 0;
+    }
 
-        .cell {
-            width: 40px;
-            height: 40px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    .container {
+      display: flex;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      justify-content: center;
+    }
 
-        .cell::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            background: #000;
-            top: 50%;
-        }
+    .board-container {
+      position: relative;
+      background: #DEB887;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
 
-        .cell::after {
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 1px;
-            background: #000;
-            left: 50%;
-        }
+    .board {
+      position: relative;
+      width: 600px;
+      height: 600px;
+      background: #DEB887;
+    }
 
-        .stone {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            position: absolute;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+    /* Grid lines */
+    .grid-line {
+      position: absolute;
+      background: #000;
+      pointer-events: none;
+      /* 添加这一行 */
+    }
 
-        .stone:hover {
-            transform: scale(1.1);
-        }
+    .vertical {
+      width: 1px;
+      height: 100%;
+    }
 
-        .stone.black {
-            background: radial-gradient(circle at 30% 30%, #666, #000);
-            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-        }
+    .horizontal {
+      width: 100%;
+      height: 1px;
+    }
 
-        .stone.white {
-            background: radial-gradient(circle at 30% 30%, #fff, #ccc);
-            color: #000;
-            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
+    /* Coordinates */
+    .coordinate {
+      position: absolute;
+      font-size: 14px;
+      color: #000;
+      font-weight: bold;
+    }
 
-        .controls {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-direction: column;
-            align-items: center;
-        }
+    .col-coordinate {
+      bottom: -25px;
+      transform: translateX(-50%);
+    }
 
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
+    .row-coordinate {
+      right: -25px;
+      transform: translateY(-50%);
+    }
 
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background: #4a90e2;
-            color: white;
-            transition: background 0.2s;
-        }
+    /* Stone styles */
+    .stone {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+      z-index: 2;
+    }
 
-        button:hover {
-            background: #357abd;
-        }
+    .black {
+      background: radial-gradient(circle at 30% 30%, #666, #000);
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
 
-        button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
+    .white {
+      background: radial-gradient(circle at 30% 30%, #fff, #ddd);
+      color: #000;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-        .rule-select {
-            padding: 8px;
-            font-size: 14px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
+    /* Info panel */
+    .info-panel {
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      min-width: 300px;
+    }
 
-        .analysis-container {
-            margin-top: 20px;
-            max-height: 200px;
-            overflow-y: auto;
-            background: white;
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    .info-panel h2 {
+      color: #2c3e50;
+      margin-top: 0;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #eee;
+    }
 
-        .analysis-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 10px;
-        }
+    .info-item {
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+      background: #f8f9fa;
+      border-radius: 4px;
+    }
 
-        .analysis-table th,
-        .analysis-table td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
+    .info-label {
+      color: #666;
+    }
 
-        .analysis-table th {
-            background-color: #f5f5f5;
-            font-weight: bold;
-        }
+    .info-value {
+      font-weight: bold;
+      color: #2c3e50;
+    }
 
-        .analysis-table tr:hover {
-            background-color: #f8f8f8;
-        }
+    /* Controls */
+    .controls {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
 
-        .stone.calculating {
-            background: radial-gradient(circle at 30% 30%, #ff6b6b, #ff6b6b);
-            box-shadow: 2px 2px 4px #ff6b6b;
-        }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      background: #3498db;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
 
-        .stone.calculated {
-            background: radial-gradient(circle at 30% 30%, #6c757d, #6c757d);
-            box-shadow: 2px 2px 4px #6c757d;
-        }
+    button:hover {
+      background: #2980b9;
+      transform: translateY(-1px);
+    }
 
-        .stone.best {
-            background: radial-gradient(circle at 30% 30%, #28a745, #28a745);
-            box-shadow: 2px 2px 4px #28a745;
-        }
+    button:active {
+      transform: translateY(1px);
+    }
 
-        .stone.losing {
-            background: radial-gradient(circle at 30% 30%, #f9fafb, #f9fafb);
-            box-shadow: 2px 2px 4px #f9fafb;
-        }
+    .btn-primary {
+      background: #2ecc71;
+    }
 
-        .highlight {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            opacity: 0.5;
-            pointer-events: none;
-        }
+    .btn-primary:hover {
+      background: #27ae60;
+    }
 
-        .highlight.calculating {
-            background-color: #dc3545;
-        }
+    .btn-secondary {
+      background: #e74c3c;
+    }
 
-        .highlight.best {
-            background-color: #28a745;
-        }
-
-        .highlight.losing {
-            background-color: #f9fafb;
-        }
-
-        .highlight.calculated {
-            background-color: #6c757d;
-        }
-    </style>
+    .btn-secondary:hover {
+      background: #c0392b;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="game-container">
-        <div class="board" id="board"></div>
-        <div class="controls">
-            <select id="timeSelect" class="rule-select">
-                <option value="1000">1s</option>
-                <option value="3000">3s</option>
-                <option value="5000">5s</option>
-                <option value="10000" selected>10s</option>
-                <option value="20000">20s</option>
-            </select>
-            <div class="button-group">
-                <button id="undoBtn">回退</button>
-                <button id="resetBtn">新局</button>
-                <button id="calcBtn">计算</button>
-            </div>
-        </div>
-        <div class="analysis-container">
-            <table class="analysis-table">
-                <thead>
-                    <tr>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;深&nbsp;度&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分&nbsp;数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;路&nbsp;线&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;节&nbsp;点&nbsp;数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;速&nbsp;度&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用&nbsp;时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                    </tr>
-                </thead>
-                <tbody id="analysisBody">
-                </tbody>
-            </table>
-        </div>
+  <div class="header">
+    <h1>五子棋分析器</h1>
+  </div>
+
+  <div class="container">
+    <div class="board-container">
+      <div class="board" id="board">
+        <div class="move-preview" id="movePreview"></div>
+      </div>
     </div>
-    <script>
-        class GomokuGame {
-            constructor() {
-                this.board = document.getElementById('board');
-                this.undoBtn = document.getElementById('undoBtn');
-                this.resetBtn = document.getElementById('resetBtn');
-                this.calcBtn = document.getElementById('calcBtn');
-                this.ruleSelect = document.getElementById('ruleSelect');
-                this.timeSelect = document.getElementById('timeSelect');
-                this.undoBtn.disabled = true;
-                this.currentPlayer = 'black';
-                this.timeThink = Number(this.timeSelect.value);
-                this.moveCount = 0;
-                this.moves = [];
-                this.gameState = Array(15).fill().map(() => Array(15).fill(null));
-                this.ai = new Gomoku();
-                this.initializeBoard();
-                this.setupEventListeners();
-            }
 
-            initializeBoard() {
-                this.board.innerHTML = '';
-                for (let i = 0; i < 15; i++) {
-                    for (let j = 0; j < 15; j++) {
-                        const cell = document.createElement('div');
-                        cell.className = 'cell';
-                        cell.dataset.row = i;
-                        cell.dataset.col = j;
-                        this.board.appendChild(cell);
-                    }
-                }
-            }
+    <div class="info-panel">
+      <h2>游戏信息</h2>
+      <div class="info-item">
+        <span class="info-label">搜索深度：</span>
+        <span class="info-value" id="depth">0</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">局面评估：</span>
+        <span class="info-value" id="value">0</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">计算速度：</span>
+        <span class="info-value" id="speed">0 nps</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">节点数：</span>
+        <span class="info-value" id="nodes">0</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">用时：</span>
+        <span class="info-value" id="time">0 ms</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">路线：</span>
+        <span class="info-value" id="line"></span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress" id="searchProgress"></div>
+      </div>
 
-            setupEventListeners() {
-                this.board.addEventListener('click', (e) => {
-                    const cell = e.target.closest('.cell');
-                    if (!cell || cell.querySelector('.stone')) return;
+      <div class="best-moves">
+        <h3>最佳路线</h3>
+        <div id="bestMoves"></div>
+      </div>
 
-                    const row = parseInt(cell.dataset.row);
-                    const col = parseInt(cell.dataset.col);
-                    this.makeMove(row, col);
-                });
+      <div class="controls">
+        <button class="btn-primary" onclick="resetGame()">新游戏</button>
+        <button onclick="computerMove()">AI走子</button>
+        <button onclick="undoMove()">悔棋</button>
+      </div>
+    </div>
+  </div>
 
-                this.undoBtn.addEventListener('click', () => this.undoMove());
-                this.resetBtn.addEventListener('click', () => this.resetGame());
-                this.calcBtn.addEventListener('click', () => this.calcGame());
-                this.timeSelect.addEventListener('change', () => {
-                    this.timeThink = Number(this.timeSelect.value);
-                });
-            }
+  <script>
 
-            makeMove(row, col) {
-                if (this.gameState[row][col]) return;
+    const BOARD_SIZE = 15;
+    const CELL_SIZE = 38;
+    const BOARD_MARGIN = 30;
 
-                this.moveCount++;
-                const stone = document.createElement('div');
-                stone.className = `stone ${this.currentPlayer}`;
-                stone.textContent = this.moveCount;
+    let gamePosition = new Position();
+    let searchEngine = new Search(gamePosition);
+    let moveStack = [];
+    let currentPlayer = 1;
+    let bestMovePath = [];
+    // 更新最佳路线显示
+    function updateBestMoves(path) {
+      const bestMovesDiv = document.getElementById('bestMoves');
+      bestMovesDiv.innerHTML = '';
 
-                const cell = this.board.children[row * 15 + col];
-                cell.appendChild(stone);
+      if (!path || path.length === 0) return;
 
-                this.gameState[row][col] = this.currentPlayer;
-                this.moves.push({ row, col, player: this.currentPlayer });
-                this.ai.makeMove(row, col, this.currentPlayer == 'black' ? 1 : 2);
-                this.currentPlayer = this.currentPlayer === 'black' ? 'white' : 'black';
-                this.undoBtn.disabled = false;
-            }
+      path.forEach((move, index) => {
+        const moveDiv = document.createElement('div');
+        moveDiv.className = 'move-item';
+        const col = String.fromCharCode(65 + ((move - 17) & 15));
+        const row = BOARD_SIZE - ((move - 17) >> 4);
+        moveDiv.textContent = `${col}${row}`;
+        moveDiv.dataset.move = move;
+        moveDiv.onmouseover = () => previewMove(move);
+        moveDiv.onmouseout = () => hidePreview();
+        moveDiv.onclick = () => jumpToPosition(index);
+        bestMovesDiv.appendChild(moveDiv);
+      });
+    }
+    function c(path) {
+      let str = '';
+      for (let move of path) {
+        const col = String.fromCharCode(65 + ((move - 17) & 15));
+        const row = BOARD_SIZE - ((move - 17) >> 4);
+        str += col + row + ' ';
+      }
+      return str;
+    }
+    // 预览移动
+    function previewMove(move) {
+      const preview = document.getElementById('movePreview');
+      const col = (move - 17) & 15;
+      const row = (move - 17) >> 4;
+      preview.style.left = `${BOARD_MARGIN + col * CELL_SIZE}px`;
+      preview.style.top = `${BOARD_MARGIN + row * CELL_SIZE}px`;
+      preview.style.display = 'block';
+    }
 
-            undoMove() {
-                if (this.moves.length === 0) return;
+    function hidePreview() {
+      document.getElementById('movePreview').style.display = 'none';
+    }
 
-                const lastMove = this.moves.pop();
-                const cell = this.board.children[lastMove.row * 15 + lastMove.col];
-                cell.removeChild(cell.lastChild);
+    // 跳转到指定局面
+    function jumpToPosition(moveIndex) {
+      // 重放到指定位置
+      for (let i = 0; i <= moveIndex; i++) {
+        makeMove(bestMovePath[i]);
+      }
+    }
+    function initBoard() {
+      const board = document.getElementById('board');
 
-                this.gameState[lastMove.row][lastMove.col] = null;
-                this.currentPlayer = lastMove.player;
-                this.moveCount--;
-                this.ai.makeMove(lastMove.row, lastMove.col, 0)
-                if (this.moves.length === 0) {
-                    this.undoBtn.disabled = true;
-                }
-            }
+      // 创建网格线
+      for (let i = 0; i < BOARD_SIZE; i++) {
+        // 垂直线
+        const vLine = document.createElement('div');
+        vLine.className = 'grid-line vertical';
+        vLine.style.left = `${BOARD_MARGIN + i * CELL_SIZE}px`;
+        vLine.style.top = `${BOARD_MARGIN}px`;
+        vLine.style.height = `${(BOARD_SIZE - 1) * CELL_SIZE}px`;
+        board.appendChild(vLine);
 
-            resetGame() {
-                this.currentPlayer = 'black';
-                this.moveCount = 0;
-                this.moves = [];
-                this.gameState = Array(15).fill().map(() => Array(15).fill(null));
-                this.initializeBoard();
-                this.undoBtn.disabled = true;
-                this.ai = new Gomoku();
-            }
+        // 水平线
+        const hLine = document.createElement('div');
+        hLine.className = 'grid-line horizontal';
+        hLine.style.top = `${BOARD_MARGIN + i * CELL_SIZE}px`;
+        hLine.style.left = `${BOARD_MARGIN}px`;
+        hLine.style.width = `${(BOARD_SIZE - 1) * CELL_SIZE}px`;
+        board.appendChild(hLine);
 
-            async calcGame() {
-                const result = await this.ai.getBestMove(this.currentPlayer === 'black' ? 1 : 2, this.timeThink);
-                this.makeMove(result.move[0], result.move[1]);
-            }
+        // 列坐标 (A-O)
+        const colCoord = document.createElement('div');
+        colCoord.className = 'coordinate col-coordinate';
+        colCoord.textContent = String.fromCharCode(65 + i);
+        colCoord.style.left = `${BOARD_MARGIN + i * CELL_SIZE}px`;
+        colCoord.style.bottom = '5px';
+        board.appendChild(colCoord);
+
+        // 行坐标 (1-15)
+        const rowCoord = document.createElement('div');
+        rowCoord.className = 'coordinate row-coordinate';
+        rowCoord.textContent = BOARD_SIZE - i;
+        rowCoord.style.top = `${BOARD_MARGIN + i * CELL_SIZE}px`;
+        rowCoord.style.right = '5px';
+        board.appendChild(rowCoord);
+      }
+
+      board.addEventListener('click', handleBoardClick);
+    }
+    function handleBoardClick(e) {
+      const rect = e.target.getBoundingClientRect();
+      const x = e.clientX - rect.left - BOARD_MARGIN;
+      const y = e.clientY - rect.top - BOARD_MARGIN;
+      const col = Math.round(x / CELL_SIZE);
+      const row = Math.round(y / CELL_SIZE);
+
+      if (col >= 0 && col < BOARD_SIZE && row >= 0 && row < BOARD_SIZE) {
+        const pos = (row + 1) * 16 + (col + 1);
+        if (gamePosition.squares[pos] === 0) {
+          makeMove(pos);
         }
+      }
+    }
 
-        // Initialize the game
-        const game = new GomokuGame();
-    </script>
+    function makeMove(pos) {
+      if (gamePosition.squares[pos] === 0) {
+        const stone = document.createElement('div');
+        stone.className = `stone ${currentPlayer === 1 ? 'black' : 'white'}`;
+        stone.textContent = moveStack.length + 1;
+
+        const col = (pos - 17) & 15;
+        const row = (pos - 17) >> 4;
+        stone.style.left = `${BOARD_MARGIN + col * CELL_SIZE}px`;
+        stone.style.top = `${BOARD_MARGIN + row * CELL_SIZE}px`;
+        document.getElementById('board').appendChild(stone);
+
+        moveStack.push({ pos, stone });
+        gamePosition.makeMove(pos);
+        currentPlayer = 3 - currentPlayer;
+
+      }
+    }
+
+    async function computerMove() {
+
+      const startTime = Date.now();
+      const result = await searchEngine.searchMain(225, 5000);
+
+      if (result.path && result.path.length > 0) {
+        bestMovePath = result.path;
+        updateBestMoves(result.path);
+        makeMove(result.path[0]);
+      }
+    }
+
+    function undoMove() {
+      if (moveStack.length > 0) {
+        const lastMove = moveStack.pop();
+        lastMove.stone.remove();
+        gamePosition.undoMakeMove();
+        currentPlayer = 3 - currentPlayer;
+      }
+    }
+
+    async function updateInfoPanel(depth, value, speed, nodes, time, line) {
+      return new Promise((resolve) => {
+        document.getElementById('depth').textContent = depth;
+        document.getElementById('value').textContent = value;
+        document.getElementById('nodes').textContent = nodes;
+        document.getElementById('speed').textContent = speed.toFixed(0) + ' nps';
+        document.getElementById('time').textContent = time + ' ms';
+        document.getElementById('line').textContent = c(line);
+        setTimeout(resolve, 0);
+      });
+    }
+
+    function resetGame() {
+      while (moveStack.length > 0) {
+        const move = moveStack.pop();
+        move.stone.remove();
+      }
+      gamePosition = new Position();
+      searchEngine = new Search(gamePosition, 16);
+      currentPlayer = 1;
+    }
+
+    // 初始化游戏
+    window.onload = function () {
+      initBoard();
+      resetGame();
+    };
+  </script>
 </body>
 
 </html>
