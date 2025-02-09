@@ -169,17 +169,18 @@ Search.prototype.searchMain = async function (depth, millis) {
   this.allMillis = Date.now();
 
   this.result = null;
-  for (let i = 1; i <= depth; i++) {
+  this.path = null;
+  this.vl = null;
+  for (let i = 1; i <= depth && new Date() - this.allMillis <= this.maxTime; i++) {
     this.result = await this.searchFull(-MATE_VALUE, MATE_VALUE, i);
     if (!this.out) {
-      await updateInfoPanel(`${i}-${this.result.path.length}`, this.result.vl, this.nodes / (Date.now() - this.allMillis) * 1000, this.nodes, Date.now() - this.allMillis, this.result.path);
-    }
-    if (Date.now() - this.allMillis > this.maxTime) {
-      break;
+      this.path = this.result.path;
+      this.vl = this.result.vl;
+      await updateInfoPanel(`${i}-${this.path.length}`, this.vl, this.nodes / (Date.now() - this.allMillis) * 1000, this.nodes, Date.now() - this.allMillis, this.path);
     }
   }
 
-  return this.result;
+  return {vl:this.vl,path:this.path};
 }
 
 // 修改后的searchFull方法
