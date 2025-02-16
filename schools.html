@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>猜校 Wordle</title>
+  <style>
+    #game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    #map {
+      border: 1px solid #000;
+      margin: 20px;
+    }
+
+    .input-group {
+      margin: 10px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 5px 10px;
+    }
+
+    #score {
+      font-size: 20px;
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="game-container">
+    <div id="score">得分: 0</div>
+    <canvas id="map" width="800" height="600"></canvas>
+
+    <div class="input-group">
+      <input type="text" id="answer-input" placeholder="输入答案（用逗号分隔）" size="64px">
+      <button onclick="submitAnswer()">提交答案</button>
+      <button onclick="showRules()">游戏规则</button>
+    </div>
+  </div>
+
+  <script>
+    const schools = [
+      { '名': '北京市第五十六中学', '位': [39.936211, 116.336060] },
+      { '名': '北京市宣武外国语实验学校', '位': [39.891681, 116.328465] },
+      { '名': '北京教育学院附属中学', '位': [39.943595, 116.368274] },
+      { '名': '北京市第四十三中学', '位': [39.894075, 116.382006] },
+      { '名': '北京市回民学校', '位': [39.890645, 116.365937] },
+      { '名': '北京市第七中学', '位': [39.952228, 116.383987] },
+      { '名': '北京市鲁迅中学', '位': [39.904671, 116.370886] },
+      { '名': '北京市第三十九中学', '位': [39.926652, 116.378072] },
+      { '名': '北京市第六十六中学', '位': [39.884031, 116.355611] },
+      { '名': '北京市第三十一中学', '位': [39.904695, 116.379685] },
+      { '名': '北京市育才学校', '位': [39.877660, 116.393730] },
+      { '名': '北京市第四十四中学', '位': [39.912317, 116.340667] },
+      { '名': '北京市西城外国语学校', '位': [39.929177, 116.342022] },
+      { '名': '北京市第一五九中学', '位': [39.922054, 116.361270] },
+      { '名': '北京市第三中学', '位': [39.931676, 116.366851] },
+      { '名': '北京市第一五六中学', '位': [39.931110, 116.374360] },
+      { '名': '北京市第十四中学', '位': [39.891507, 116.338429] },
+      { '名': '北京市铁路第二中学', '位': [39.915816, 116.348743] },
+      { '名': '北京市第十五中学', '位': [39.877045, 116.375879] },
+      { '名': '北京市第十三中学', '位': [39.937290, 116.383172] },
+      { '名': '北京市第三十五中学', '位': [39.918050, 116.339132] },
+      { '名': '北京市第一六一中学', '位': [39.881777, 116.367142] },
+      { '名': '北京师范大学附属中学', '位': [39.898019, 116.382580] },
+      { '名': '北京师范大学第二附属中学', '位': [39.960068, 116.371900] },
+      { '名': '北京市第八中学', '位': [39.911139, 116.362033] },
+      { '名': '北京师范大学附属实验中学', '位': [39.911237, 116.369011] },
+      { '名': '北京市第四中学', '位': [39.932262, 116.385713] },
+    ];
+
+    let targetSchools = [];
+    let guessedSchools = [];
+    let score = 0;
+    const color = ['gray', 'yellow', 'green']
+    const canvas = document.getElementById('map');
+    const ctx = canvas.getContext('2d');
+
+    // 坐标转换参数
+    const minLon = Math.min(...schools.map(s => s.位[1])) - 0.01;
+    const maxLon = Math.max(...schools.map(s => s.位[1])) + 0.01;
+    const minLat = Math.min(...schools.map(s => s.位[0])) - 0.01;
+    const maxLat = Math.max(...schools.map(s => s.位[0])) + 0.01;
+
+    function initGame() {
+      // 确保选择两个不同坐标的学校
+      do {
+        const index1 = Math.floor(Math.random() * schools.length);
+        let index2 = Math.floor(Math.random() * schools.length);
+        while (index1 === index2) index2 = Math.floor(Math.random() * schools.length);
+        targetSchools = [schools[index1], schools[index2]];
+      } while (areSchoolsSame(targetSchools[0], targetSchools[1]));
+
+      guessedSchools = [];
+      score = 0;
+      updateScoreDisplay();
+      draw();
+    }
+
+    function getCanvasPos(coords) {
+      const x = ((coords[1] - minLon) / (maxLon - minLon)) * canvas.width;
+      const y = (1 - (coords[0] - minLat) / (maxLat - minLat)) * canvas.height;
+      return { x, y };
+    }
+
+    function areSchoolsSame(a, b) {
+      return a.位[0] === b.位[0] && a.位[1] === b.位[1];
+    }
+
+    function checkLinesIntersect(line1, line2) {
+      // 线段相交检测算法
+      const ccw = (A, B, C) => (B.x - A.x) * (C.y - A.y) - (B.y - A.y) * (C.x - A.x);
+
+      const [A, B] = line1;
+      const [C, D] = line2;
+
+      const ccw1 = ccw(A, B, C);
+      const ccw2 = ccw(A, B, D);
+      const ccw3 = ccw(C, D, A);
+      const ccw4 = ccw(C, D, B);
+
+      if ((ccw1 * ccw2 < 0) && (ccw3 * ccw4 < 0)) return 1;
+
+      // 处理共线情况
+      const onSegment = (A, B, C) =>
+        Math.min(A.x, B.x) <= C.x && C.x <= Math.max(A.x, B.x) &&
+        Math.min(A.y, B.y) <= C.y && C.y <= Math.max(A.y, B.y);
+
+      if (
+        (ccw1 === 0 && onSegment(A, B, C)) ||
+        (ccw2 === 0 && onSegment(A, B, D)) ||
+        (ccw3 === 0 && onSegment(C, D, A)) ||
+        (ccw4 === 0 && onSegment(C, D, B))
+      ) return 2;
+      return 0;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 绘制所有学校
+      schools.forEach(school => {
+        const pos = getCanvasPos(school.位);
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = guessedSchools.some(s => s.名 === school.名) ? 'blue' : '#ccc';
+        ctx.fill();
+
+        ctx.fillStyle = 'black';
+        ctx.font = '12px Arial';
+        ctx.fillText(school.名, pos.x + 5, pos.y - 5);
+      });
+
+      // 绘制已猜测连线
+      const targetLine = targetSchools.map(s => getCanvasPos(s.位));
+      for (let i = 0; i < guessedSchools.length; i++) {
+        const line = [
+          getCanvasPos(guessedSchools[i][0].位),
+          getCanvasPos(guessedSchools[i][1].位)
+        ];
+        const isIntersect = checkLinesIntersect(targetLine, line);
+
+        ctx.beginPath();
+        ctx.moveTo(line[0].x, line[0].y);
+        ctx.lineTo(line[1].x, line[1].y);
+        ctx.strokeStyle = color[isIntersect];
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+    }
+
+    function submitAnswer() {
+      const input = document.getElementById('answer-input').value.trim();
+      const answers = input.split(/[,，]/).map(s => s.trim());
+      const school1 = schools.find(s => s.名 === answers[0]);
+      const school2 = schools.find(s => s.名 === answers[1]);
+      if (answers.length !== 2) {
+        alert('请输入两个学校名，用逗号分隔');
+        return;
+      }
+
+      const answered = [];
+      for (const name of answers) {
+        const school = schools.find(s => s.名 === name);
+        if (!school) {
+          alert(`"${name}"不存在`);
+          return;
+        }
+        answered.push(school);
+      }
+
+      if (answers[0] === answers[1]) {
+        alert('有重复的学校名');
+        return;
+      }
+
+      guessedSchools.push([school1, school2]);
+      score++;
+      updateScoreDisplay();
+      draw();
+      let errorCount = 0;
+      const remaining = [...targetSchools];
+
+      answered.forEach(school => {
+        const index = remaining.findIndex(s => areSchoolsSame(s, school));
+        if (index === -1) errorCount++;
+        else remaining.splice(index, 1);
+      });
+
+      errorCount += remaining.length;
+
+      if (errorCount === 0) {
+        alert('恭喜！答案正确！');
+      }
+    }
+
+    function updateScoreDisplay() {
+      document.getElementById('score').textContent = `得分: ${score}`;
+    }
+
+    function showRules() {
+      alert(`游戏规则：
+1. 随机生成两个目标学校（无序）
+2. 每次猜测两个学校，给出这两个学校的连线是否与两个目标学校的连线相交
+3. 每次猜测分数+1，分数越少越好
+4. 输入答案格式：用逗号分隔两个学校名`);
+    }
+
+    // 初始化游戏
+    initGame();
+  </script>
+</body>
+
+</html>
