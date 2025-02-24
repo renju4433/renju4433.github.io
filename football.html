@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>填赛足球</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+            width: 100%;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+            min-width: 120px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .correct { background-color: #d4edda; }
+        .wrong { background-color: #f8d7da; }
+        .message {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+        .stats-column { min-width: 100px; }
+        .score-input {
+            width: 35px;
+            margin: 0 2px;
+            padding: 5px;
+        }
+        .score-separator {
+            font-size: 18px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>填赛足球</h1>
+    <p>请填写每场比赛的比分（0-3球），胜3分，平1分，负0分，答案可能不唯一</p>
+    <div id="gameTable"></div>
+    <div class="message"></div>
+
+    <script>
+        const teams = ['A队', 'B队', 'C队', 'D队'];
+        let correctResults = [];
+        let userResults = [];
+
+        function generateRandomScore() {
+            return Math.floor(Math.random() * 4); // 0-3的随机整数
+        }
+
+        function generateRandomResults() {
+            const results = [];
+            for (let i = 0; i < teams.length; i++) {
+                results[i] = new Array(teams.length).fill(null);
+            }
+
+            for (let i = 0; i < teams.length; i++) {
+                for (let j = i + 1; j < teams.length; j++) {
+                    const homeScore = generateRandomScore();
+                    const awayScore = generateRandomScore();
+                    results[i][j] = [homeScore, awayScore];
+                    results[j][i] = [awayScore, homeScore];
+                }
+            }
+            return results;
+        }
+
+        function calculateStats(results) {
+            const stats = [];
+            for (let i = 0; i < teams.length; i++) {
+                let points = 0;
+                let goalDiff = 0;
+                let goalsFor = 0;
+                let wins = 0;
+                let draws = 0;
+                let losses = 0;
+
+                for (let j = 0; j < teams.length; j++) {
+                    if (i === j) continue;
+                    if (results[i][j]) {
+                        const [homeScore, awayScore] = results[i][j];
+                        goalsFor += homeScore;
+                        goalDiff += (homeScore - awayScore);
+                        
+                        if (homeScore > awayScore) {
+                            points += 3;
+                            wins++;
+                        } else if (homeScore === awayScore) {
+                            points += 1;
+                            draws++;
+                        } else {
+                            losses++;
+                        }
+                    }
+                }
+                stats.push({ points, goalDiff, goalsFor, wins, draws, losses });
+            }
+            return stats;
+        }
+
+        function createTable() {
+            const table = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+
+            // 创建表头
+            const headerRow = document.createElement('tr');
+            headerRow.appendChild(document.createElement('th'));
+            teams.forEach(team => {
+                const th = document.createElement('th');
+                th.textContent = team;
+                headerRow.appendChild(th);
+            });
+            ['积分', '净胜球', '进球数'].forEach(title => {
+                const th = document.createElement('th');
+                th.textContent = title;
+                th.className = 'stats-column';
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+
+            // 初始化userResults
+            userResults = Array(teams.length).fill().map(() => Array(teams.length).fill(null));
+
+            teams.forEach((team, i) => {
+                const row = document.createElement('tr');
+                const th = document.createElement('th');
+                th.textContent = team;
+                row.appendChild(th);
+
+                teams.forEach((_, j) => {
+                    const td = document.createElement('td');
+                    if (i === j) {
+                        td.textContent = '-';
+                    } else {
+                        const homeInput = document.createElement('input');
+                        const awayInput = document.createElement('input');
+                        homeInput.type = 'number';
+                        awayInput.type = 'number';
+                        homeInput.min = '0';
+                        awayInput.min = '0';
+                        homeInput.max = '3';
+                        awayInput.max = '3';
+                        homeInput.className = 'score-input';
+                        awayInput.className = 'score-input';
+                        
+                        homeInput.dataset.row = i;
+                        homeInput.dataset.col = j;
+                        homeInput.dataset.type = 'home';
+                        awayInput.dataset.row = i;
+                        awayInput.dataset.col = j;
+                        awayInput.dataset.type = 'away';
+                        
+                        homeInput.value = '0';
+                        awayInput.value = '0';
+                        userResults[i][j] = [0, 0];
+
+                        homeInput.addEventListener('input', handleInput);
+                        awayInput.addEventListener('input', handleInput);
+                        
+                        td.appendChild(homeInput);
+                        const separator = document.createElement('span');
+                        separator.textContent = ':';
+                        separator.className = 'score-separator';
+                        td.appendChild(separator);
+                        td.appendChild(awayInput);
+                    }
+                    row.appendChild(td);
+                });
+
+                const correctStats = calculateStats(correctResults)[i];
+                ['points', 'goalDiff', 'goalsFor'].forEach((stat, idx) => {
+                    const td = document.createElement('td');
+                    td.className = 'stats-column';
+                    td.textContent = `0/${correctStats[stat]}`;
+                    row.appendChild(td);
+                });
+
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(thead);
+            table.appendChild(tbody);
+
+            const gameTableDiv = document.getElementById('gameTable');
+            gameTableDiv.innerHTML = '';
+            gameTableDiv.appendChild(table);
+
+            updateStats();
+        }
+
+        function handleInput(event) {
+            const input = event.target;
+            const value = parseInt(input.value);
+            
+            if (isNaN(value) || value < 0 || value > 3) {
+                showMessage('只能输入0-3的整数');
+                input.value = '0';
+                return;
+            }
+
+            const row = parseInt(input.dataset.row);
+            const col = parseInt(input.dataset.col);
+            const isHome = input.dataset.type === 'home';
+            
+            // 更新当前比分
+            if (!userResults[row][col]) {
+                userResults[row][col] = [0, 0];
+            }
+            
+            if (isHome) {
+                userResults[row][col][0] = value;
+                // 更新对应的客场比分
+                userResults[col][row][1] = value;
+                // 更新对应的输入框
+                const oppositeInput = document.querySelector(
+                    `input[data-row="${col}"][data-col="${row}"][data-type="away"]`
+                );
+                if (oppositeInput) {
+                    oppositeInput.value = value;
+                }
+            } else {
+                userResults[row][col][1] = value;
+                // 更新对应的主场比分
+                userResults[col][row][0] = value;
+                // 更新对应的输入框
+                const oppositeInput = document.querySelector(
+                    `input[data-row="${col}"][data-col="${row}"][data-type="home"]`
+                );
+                if (oppositeInput) {
+                    oppositeInput.value = value;
+                }
+            }
+
+            updateStats();
+        }
+
+        function updateStats() {
+            const userStats = calculateStats(userResults);
+            const correctStats = calculateStats(correctResults);
+            const table = document.querySelector('table');
+
+            teams.forEach((_, i) => {
+                const row = table.querySelector(`tbody tr:nth-child(${i + 1})`);
+                const cells = row.querySelectorAll('td');
+                const statsStart = teams.length;
+                
+                cells[statsStart].textContent = `${userStats[i].points}/${correctStats[i].points}`;
+                cells[statsStart + 1].textContent = `${userStats[i].goalDiff}/${correctStats[i].goalDiff}`;
+                cells[statsStart + 2].textContent = `${userStats[i].goalsFor}/${correctStats[i].goalsFor}`;
+
+                cells[statsStart].className = 
+                    `stats-column ${userStats[i].points === correctStats[i].points ? 'correct' : 'wrong'}`;
+                cells[statsStart + 1].className = 
+                    `stats-column ${userStats[i].goalDiff === correctStats[i].goalDiff ? 'correct' : 'wrong'}`;
+                cells[statsStart + 2].className = 
+                    `stats-column ${userStats[i].goalsFor === correctStats[i].goalsFor ? 'correct' : 'wrong'}`;
+            });
+
+            const allCorrect = userStats.every((stat, i) =>
+                stat.points === correctStats[i].points &&
+                stat.goalDiff === correctStats[i].goalDiff &&
+                stat.goalsFor === correctStats[i].goalsFor
+            );
+
+            if (allCorrect) {
+                showMessage('恭喜你答对了！', 3000);
+            }
+        }
+
+        function showMessage(text, duration = 2000) {
+            const message = document.querySelector('.message');
+            message.textContent = text;
+            message.style.display = 'block';
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, duration);
+        }
+
+        function initGame() {
+            correctResults = generateRandomResults();
+            createTable();
+        }
+
+        initGame();
+    </script>
+</body>
+</html>
