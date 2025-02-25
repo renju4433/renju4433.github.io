@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>颜色Wordle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        .game-board {
+            display: grid;
+            grid-template-rows: repeat(8, 1fr);
+            gap: 5px;
+            width: 330px;
+            margin: 20px auto;
+        }
+        .row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+        }
+        .cell {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #d3d6da;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            position: relative;
+            background-color: white;
+        }
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px auto;
+        }
+        .color-btn {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .color-btn:hover {
+            transform: scale(1.1);
+        }
+        .control-btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d3d6da;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .control-btn:hover {
+            background-color: #bbbcbe;
+        }
+        .message {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+        .shake {
+            animation: shake 0.5s;
+        }
+        .correct-mark {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .current-row .cell {
+            border-color: #999;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .color-name {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        .game-info {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .pop {
+            animation: pop 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <h1>猜色</h1>
+    <p>猜测5个颜色的组合，并得到提示。</p>
+    
+    <div class="game-board"></div>
+    
+    <div class="color-palette">
+        <div>
+            <button class="color-btn" style="background-color: #FF0000;" data-color="红"></button>
+            <div class="color-name">红</div>
+        </div>
+        <div>
+            <button class="color-btn" style="background-color: #FFFF00;" data-color="黄"></button>
+            <div class="color-name">黄</div>
+        </div>
+        <div>
+            <button class="color-btn" style="background-color: #00FF00;" data-color="绿"></button>
+            <div class="color-name">绿</div>
+        </div>
+        <div>
+            <button class="color-btn" style="background-color: #0000FF;" data-color="蓝"></button>
+            <div class="color-name">蓝</div>
+        </div>
+        <div>
+            <button class="color-btn" style="background-color: #800080;" data-color="紫"></button>
+            <div class="color-name">紫</div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button id="submit-btn" class="control-btn">提交</button>
+        <button id="clear-btn" class="control-btn">清除</button>
+        <button id="new-game-btn" class="control-btn">新游戏</button>
+    </div>
+    
+    <div class="game-info">
+        <p>游戏规则：</p>
+        <p>1. 猜测由红、黄、绿、蓝、紫五种颜色组成的5位颜色组合</p>
+        <p>2. 提交后，如果某位颜色在这一位之前（包括这一位）出现的次数等于答案中该颜色在这一位之前（包括这一位）出现的次数，则会标记为正确（显示✓）</p>
+    </div>
+    
+    <div class="message"></div>
+
+    <script>
+        const COLORS = ["红", "黄", "绿", "蓝", "紫"];
+        const COLOR_MAP = {
+            "红": "#FF0000",
+            "黄": "#FFFF00",
+            "绿": "#00FF00",
+            "蓝": "#0000FF",
+            "紫": "#800080"
+        };
+        const WORD_LENGTH = 5;
+        const ATTEMPTS = 8;
+        
+        let secretCode = [];
+        let currentRow = 0;
+        let currentCol = 0;
+        let gameOver = false;
+        let currentGuess = [];
+        
+        function showMessage(text, duration = 2000) {
+            const message = document.querySelector('.message');
+            message.textContent = text;
+            message.style.display = 'block';
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, duration);
+        }
+
+        function shakeRow(row) {
+            row.classList.add('shake');
+            setTimeout(() => {
+                row.classList.remove('shake');
+            }, 500);
+        }
+
+        function generateSecretCode() {
+            const code = [];
+            for (let i = 0; i < WORD_LENGTH; i++) {
+                const randomIndex = Math.floor(Math.random() * COLORS.length);
+                code.push(COLORS[randomIndex]);
+            }
+            return code;
+        }
+
+        function initializeGame() {
+            secretCode = generateSecretCode();
+            createGameBoard();
+            setupColorButtons();
+            setupControlButtons();
+            updateCurrentRow();
+        }
+
+        function createGameBoard() {
+            const gameBoard = document.querySelector('.game-board');
+            gameBoard.innerHTML = '';
+            
+            for (let i = 0; i < ATTEMPTS; i++) {
+                const row = document.createElement('div');
+                row.className = 'row';
+                for (let j = 0; j < WORD_LENGTH; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    row.appendChild(cell);
+                }
+                gameBoard.appendChild(row);
+            }
+        }
+
+        function setupColorButtons() {
+            const colorButtons = document.querySelectorAll('.color-btn');
+            colorButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    if (gameOver) return;
+                    if (currentCol < WORD_LENGTH) {
+                        const cells = document.querySelectorAll('.row')[currentRow].children;
+                        const color = button.getAttribute('data-color');
+                        cells[currentCol].style.backgroundColor = COLOR_MAP[color];
+                        cells[currentCol].setAttribute('data-color', color);
+                        cells[currentCol].classList.add('pop');
+                        setTimeout(() => {
+                            cells[currentCol].classList.remove('pop');
+                        }, 300);
+                        currentGuess[currentCol] = color;
+                        currentCol++;
+                    }
+                });
+            });
+        }
+
+        function setupControlButtons() {
+            document.getElementById('submit-btn').addEventListener('click', () => {
+                if (gameOver) return;
+                if (currentCol < WORD_LENGTH) {
+                    showMessage('请选择5种颜色');
+                    const currentRowElement = document.querySelectorAll('.row')[currentRow];
+                    shakeRow(currentRowElement);
+                } else {
+                    checkGuess();
+                }
+            });
+
+            document.getElementById('clear-btn').addEventListener('click', () => {
+                if (gameOver) return;
+                clearCurrentRow();
+            });
+
+            document.getElementById('new-game-btn').addEventListener('click', () => {
+                resetGame();
+            });
+        }
+
+        function clearCurrentRow() {
+            const cells = document.querySelectorAll('.row')[currentRow].children;
+            for (let i = 0; i < WORD_LENGTH; i++) {
+                cells[i].style.backgroundColor = 'white';
+                cells[i].removeAttribute('data-color');
+                if (cells[i].querySelector('.correct-mark')) {
+                    cells[i].removeChild(cells[i].querySelector('.correct-mark'));
+                }
+            }
+            currentCol = 0;
+            currentGuess = [];
+        }
+
+        function checkGuess() {
+            const row = document.querySelectorAll('.row')[currentRow];
+            const cells = row.children;
+            
+            // 用于存储答案中每种颜色出现的次数
+            const answerColorCounts = {};
+            
+            // 用于跟踪到目前为止的正确标记
+            const correctMarks = [];
+            
+            // 检查每个位置
+            let allCorrect = true;
+            
+            for (let i = 0; i < WORD_LENGTH; i++) {
+                const guessColor = currentGuess[i];
+                
+                // 统计答案中当前位置及之前每种颜色出现的次数
+                const answerColorCountSoFar = {};
+                for (let j = 0; j <= i; j++) {
+                    const color = secretCode[j];
+                    answerColorCountSoFar[color] = (answerColorCountSoFar[color] || 0) + 1;
+                }
+                
+                // 统计猜测中当前位置及之前每种颜色出现的次数
+                const guessColorCountSoFar = {};
+                for (let j = 0; j <= i; j++) {
+                    const color = currentGuess[j];
+                    guessColorCountSoFar[color] = (guessColorCountSoFar[color] || 0) + 1;
+                }
+                
+                // 检查是否达到正确的数量
+                if (guessColor in answerColorCountSoFar && 
+                    guessColorCountSoFar[guessColor] <= answerColorCountSoFar[guessColor]) {
+                    // 添加正确标记
+                    const mark = document.createElement('div');
+                    mark.className = 'correct-mark';
+                    mark.textContent = '✓';
+                    cells[i].appendChild(mark);
+                    correctMarks.push(true);
+                } else {
+                    correctMarks.push(false);
+                    allCorrect = false;
+                }
+            }
+            
+            if (allCorrect && correctMarks.every(mark => mark === true)) {
+                gameOver = true;
+                showMessage('恭喜你猜对了！', 3000);
+            } else if (currentRow === ATTEMPTS - 1) {
+                gameOver = true;
+                let answerDisplay = secretCode.map(color => 
+                    `<span style="color:${COLOR_MAP[color]}">■</span>`).join(' ');
+                showMessage(`游戏结束！正确答案是: ${answerDisplay}`, 5000);
+            } else {
+                currentRow++;
+                currentCol = 0;
+                currentGuess = [];
+                updateCurrentRow();
+            }
+        }
+
+        function resetGame() {
+            secretCode = generateSecretCode();
+            currentRow = 0;
+            currentCol = 0;
+            gameOver = false;
+            currentGuess = [];
+            
+            const rows = document.querySelectorAll('.row');
+            rows.forEach(row => {
+                const cells = row.children;
+                for (let i = 0; i < cells.length; i++) {
+                    cells[i].style.backgroundColor = 'white';
+                    cells[i].removeAttribute('data-color');
+                    if (cells[i].querySelector('.correct-mark')) {
+                        cells[i].removeChild(cells[i].querySelector('.correct-mark'));
+                    }
+                }
+            });
+            
+            updateCurrentRow();
+            showMessage('已开始新游戏！');
+        }
+
+        function updateCurrentRow() {
+            document.querySelectorAll('.row').forEach((row, index) => {
+                row.classList.toggle('current-row', index === currentRow);
+            });
+        }
+
+        // 初始化游戏
+        initializeGame();
+    </script>
+</body>
+</html>
