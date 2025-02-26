@@ -24,7 +24,7 @@
         }
         .row {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(7, 1fr);
             gap: 5px;
         }
         .cell {
@@ -137,7 +137,7 @@
 </head>
 <body>
     <h1>猜色</h1>
-    <p>猜测5个颜色的组合，并得到提示。</p>
+    <p>猜测7个颜色的组合，并得到提示。</p>
     
     <div class="game-board"></div>
     
@@ -172,7 +172,7 @@
     
     <div class="game-info">
         <p>游戏规则：</p>
-        <p>1. 猜测由红、黄、绿、蓝、紫五种颜色组成的5位颜色组合</p>
+        <p>1. 猜测由红、黄、绿、蓝、紫五种颜色组成的7位颜色组合</p>
         <p>2. 提交后，如果某位颜色在这一位之前（包括这一位）出现的次数等于答案中该颜色在这一位之前（包括这一位）出现的次数，则会标记为正确（显示✓）</p>
     </div>
     
@@ -187,8 +187,8 @@
             "蓝": "#0000FF",
             "紫": "#800080"
         };
-        const WORD_LENGTH = 5;
-        const ATTEMPTS = 8;
+        const WORD_LENGTH = 7;
+        const ATTEMPTS = 10;
         
         let secretCode = [];
         let currentRow = 0;
@@ -333,7 +333,7 @@
                 
                 // 检查是否达到正确的数量
                 if (guessColor in answerColorCountSoFar && 
-                    guessColorCountSoFar[guessColor] <= answerColorCountSoFar[guessColor]) {
+                    guessColorCountSoFar[guessColor] === answerColorCountSoFar[guessColor]) {
                     // 添加正确标记
                     const mark = document.createElement('div');
                     mark.className = 'correct-mark';
