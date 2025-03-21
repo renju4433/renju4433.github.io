@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+#generateSection, #guessSection {
+    margin-bottom: 20px;
+}
+
+p {
+    margin: 0 0 10px 0;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px;
+    width: 200px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#generatedUrl {
+    margin-top: 10px;
+    font-size: 14px;
+    word-break: break-all;
+    color: #555;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+#history {
+    text-align: left;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+#history h3 {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+#historyList {
+    list-style-type: none;
+    padding: 0;
+    font-size: 16px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+#historyList li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.char {
+    padding: 5px;
+    margin: 2px;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.correct { background-color: #28a745; color: white; } /* 绿色：正确 */
+.present { background-color: #ffc107; color: black; } /* 黄色：存在但位置错误 */
+.correct-pinyin { background-color: #6f42c1; color: white; } /* 紫色：读音正确 */
+.present-pinyin { background-color: #17a2b8; color: white; } /* 蓝色：存在读音但位置错误 */
+.tone-only-correct { border: 2px solid #6f42c1; } /* 紫框：仅音调不同正确 */
+.tone-only-present { border: 2px solid #17a2b8; } /* 蓝框：存在仅音调不同 */
+.radical-correct { background-color: #dc3545; color: white; } /* 红色：偏旁正确 */
+.radical-present { background-color: #fd7e14; color: white; } /* 橙色：存在偏旁但位置错误 */
