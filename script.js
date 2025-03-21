@@ -156,7 +156,6 @@ function checkGuess(guess, target) {
             }
         }
     }
-    console.log(guessRadicals,targetRadicals)
     // 第七步：标记偏旁正确（位置正确）
     const usedRadical = Array(target.length).fill(false);
     for (let i = 0; i < target.length; i++) {
