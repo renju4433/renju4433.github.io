@@ -161,7 +161,7 @@ function checkGuess(guess, target) {
     for (let i = 0; i < target.length; i++) {
         if (feedback[i].status) continue;
         if (guessRadicals[i] === targetRadicals[i]) {
-            feedback[i].status = "radical-correct";
+            feedback[i] = { char: guessChars[i], status: "radical-correct" };
             usedRadical[i] = true;
         }
     }
