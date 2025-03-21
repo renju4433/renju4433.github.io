@@ -1,53 +1,84 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
     background-color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .container {
     text-align: center;
     background: white;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
     max-width: 600px;
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 h1 {
     color: #333;
-    margin: 0 0 10px 0;
+    font-size: 1.5em;
+    margin: 10px 0;
 }
 
 #generateSection, #guessSection {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+}
+
+.rules {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.rules h3 {
+    margin: 0 0 5px 0;
+    font-size: 1em;
+    color: #333;
+}
+
+.rules ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.rules li {
+    margin: 3px 0;
 }
 
 p {
-    margin: 0 0 10px 0;
+    margin: 0 0 8px 0;
+    font-size: 0.9em;
 }
 
 input {
-    padding: 10px;
-    font-size: 16px;
+    padding: 8px;
+    font-size: 1em;
     margin: 5px;
-    width: 200px;
+    width: 70%;
+    max-width: 200px;
+    box-sizing: border-box;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 8px 15px;
+    font-size: 1em;
     background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin: 5px;
 }
 
 button:hover {
@@ -55,49 +86,54 @@ button:hover {
 }
 
 #generatedUrl {
-    margin-top: 10px;
-    font-size: 14px;
+    margin-top: 8px;
+    font-size: 0.8em;
     word-break: break-all;
     color: #555;
 }
 
 #result {
-    margin-top: 20px;
-    font-size: 18px;
+    margin-top: 10px;
+    font-size: 1em;
     color: #333;
+    word-break: break-word;
 }
 
 #history {
     text-align: left;
     flex-grow: 1;
     overflow: hidden;
+    margin-top: 10px;
 }
 
 #history h3 {
     color: #555;
-    margin-bottom: 10px;
+    font-size: 1em;
+    margin-bottom: 5px;
 }
 
 #historyList {
     list-style-type: none;
     padding: 0;
-    font-size: 16px;
+    font-size: 0.9em;
     max-height: 200px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    margin: 0;
 }
 
 #historyList li {
-    margin: 10px 0;
-    padding: 10px;
+    margin: 5px 0;
+    padding: 8px;
     background-color: #f9f9f9;
     border-radius: 5px;
 }
 
 .char {
-    padding: 5px;
-    margin: 2px;
+    padding: 4px;
+    margin: 1px;
     display: inline-block;
     border-radius: 3px;
+    font-size: 0.9em;
 }
 
 .correct { background-color: #28a745; color: white; } /* 绿色：正确 */
@@ -108,3 +144,61 @@ button:hover {
 .tone-only-present { border: 2px solid #17a2b8; } /* 蓝框：存在仅音调不同 */
 .radical-correct { background-color: #dc3545; color: white; } /* 红色：偏旁正确 */
 .radical-present { background-color: #fd7e14; color: white; } /* 橙色：存在偏旁但位置错误 */
+
+/* 响应式调整 */
+@media (max-width: 600px) {
+    .container {
+        padding: 8px;
+        width: 95%;
+        min-height: 90vh;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    .rules {
+        font-size: 0.8em;
+    }
+
+    .rules h3 {
+        font-size: 0.9em;
+    }
+
+    p {
+        font-size: 0.8em;
+    }
+
+    input {
+        width: 80%;
+        font-size: 0.9em;
+    }
+
+    button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    #generatedUrl {
+        font-size: 0.7em;
+    }
+
+    #result {
+        font-size: 0.9em;
+    }
+
+    #history h3 {
+        font-size: 0.9em;
+    }
+
+    #historyList {
+        font-size: 0.8em;
+        max-height: 150px;
+    }
+
+    .char {
+        padding: 3px;
+        margin: 1px;
+        font-size: 0.8em;
+    }
+}
