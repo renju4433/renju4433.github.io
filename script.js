@@ -128,7 +128,7 @@ function checkGuess(guess, target) {
     for (let i = 0; i < target.length; i++) {
         if (feedback[i].status) continue;
         for (let j = 0; j < target.length; j++) {
-            if (!usedPinyin[j] && guessPinyin[i] === targetPinyin[j]) {
+            if (!usedTarget[j] && !usedPinyin[j] && guessPinyin[i] === targetPinyin[j]) {
                 feedback[i] = { char: guessChars[i], status: "present-pinyin" };
                 usedPinyin[j] = true;
                 break;
@@ -149,7 +149,7 @@ function checkGuess(guess, target) {
     for (let i = 0; i < target.length; i++) {
         if (feedback[i].status) continue;
         for (let j = 0; j < target.length; j++) {
-            if (!usedToneOnly[j] && guessPinyin2[i] === targetPinyin2[j]) {
+            if (!usedTarget[j] && !usedPinyin[j] && !usedToneOnly[j] && guessPinyin2[i] === targetPinyin2[j]) {
                 feedback[i] = { char: guessChars[i], status: "tone-only-present" };
                 usedToneOnly[j] = true;
                 break;
@@ -170,7 +170,7 @@ function checkGuess(guess, target) {
     for (let i = 0; i < target.length; i++) {
         if (feedback[i].status) continue;
         for (let j = 0; j < target.length; j++) {
-            if (!usedRadical[j] && guessRadicals[i] === targetRadicals[j]) {
+            if (!usedTarget[j] && !usedPinyin[j] && !usedToneOnly[j] && !usedRadical[j] && guessRadicals[i] === targetRadicals[j]) {
                 feedback[i] = { char: guessChars[i], status: "radical-present" };
                 usedRadical[j] = true;
                 break;
