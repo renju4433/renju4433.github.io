@@ -160,7 +160,7 @@ function checkGuess(guess, target) {
     const usedRadical = Array(target.length).fill(false);
     for (let i = 0; i < target.length; i++) {
         if (feedback[i].status) continue;
-        if (guessRadicals[i] === targetRadicals[i] && feedback[i].status === "correct") {
+        if (guessRadicals[i] === targetRadicals[i]) {
             feedback[i].status = "radical-correct";
             usedRadical[i] = true;
         }
