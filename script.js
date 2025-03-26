@@ -1472,7 +1472,7 @@ function checkGuess(selectedPlayer) {
     const toneResult = wordleCompare(targetPinyin.map(p => p.tone), guessPinyin.map(p => p.tone));
 
     // 存储猜测结果
-    guessHistory.push({
+    guessHistory.unshift({
         player: selectedPlayer,
         regionDisplay,
         ratingDisplay,
@@ -1488,7 +1488,7 @@ function checkGuess(selectedPlayer) {
     const guessHistoryDiv = document.getElementById("guess-history");
     guessHistoryDiv.innerHTML = '';
 
-    guessHistory.reverse().forEach((guess, index) => {
+    guessHistory.forEach((guess, index) => {
         const guessRow = document.createElement("div");
         guessRow.classList.add("guess-row");
 
