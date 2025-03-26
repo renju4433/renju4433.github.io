@@ -3,58 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>猜答案游戏 (Wordle 玩法)</title>
+    <title>猜棋手游戏</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- 引入 cnchar 和 cnchar-poly -->
-    <script src="https://fastly.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
-    <script src="https://fastly.jsdelivr.net/npm/cnchar-radical/cnchar.radical.min.js"> </script>
+    <!-- 引入 pinyin-pro 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/pinyin-pro"></script>
 </head>
 <body>
     <div class="container">
-        <h1>猜答案游戏 (Wordle 玩法)</h1>
-        <div id="generateSection">
-            <div class="rules">
-                <h3>游戏规则</h3>
-                <ul>
-                    <li><span class="char correct">绿色</span>：字符和位置完全正确</li>
-                    <li><span class="char present">黄色</span>：字符存在但位置错误</li>
-                    <li><span class="char correct-pinyin">紫色</span>：读音和位置完全正确</li>
-                    <li><span class="char present-pinyin">蓝色</span>：读音存在但位置错误</li>
-                    <li><span class="char tone-only-correct">紫框</span>：仅音调不同且位置正确</li>
-                    <li><span class="char tone-only-present">蓝框</span>：仅音调不同但位置错误</li>
-                    <li><span class="char radical-correct">红色</span>：偏旁和位置正确</li>
-                    <li><span class="char radical-present">橙色</span>：偏旁存在但位置错误</li>
-                </ul>
-            </div>
-            <p>输入目标答案并生成 URL 给别人猜：</p>
-            <input type="text" id="targetInput" placeholder="输入目标答案">
-            <button onclick="generateUrl()">生成 URL</button>
-            <div id="generatedUrl"></div>
+        <div class="header">
+            <h1>猜棋手游戏 （数据截止2025-3-23）<button id="tutorial-btn" class="tutorial-btn">?</button></h1>
         </div>
-        <div id="guessSection">
-            <div class="rules">
-                <h3>游戏规则</h3>
-                <ul>
-                    <li><span class="char correct">绿色</span>：字符和位置完全正确</li>
-                    <li><span class="char present">黄色</span>：字符存在但位置错误</li>
-                    <li><span class="char correct-pinyin">紫色</span>：读音和位置完全正确</li>
-                    <li><span class="char present-pinyin">蓝色</span>：读音存在但位置错误</li>
-                    <li><span class="char tone-only-correct">紫框</span>：仅音调不同且位置正确</li>
-                    <li><span class="char tone-only-present">蓝框</span>：仅音调不同但位置错误</li>
-                    <li><span class="char radical-correct">红色</span>：偏旁和位置正确</li>
-                    <li><span class="char radical-present">橙色</span>：偏旁存在但位置错误</li>
-                </ul>
+        <div class="mode-selection">
+            <h2>选择难度</h2>
+            <div class="slider-container">
+                <input type="range" id="difficulty-slider" min="0" max="2" value="0" step="1">
+                <div class="difficulty-labels">
+                    <span>简单<br>等级分≥2250</span>
+                    <span>中等<br>等级分≥2000</span>
+                    <span>困难<br>所有</span>
+                </div>
+                <p>可选棋手数量：<span id="player-count">0</span></p>
             </div>
-            <p id="guessPrompt">目标答案已加密在 URL 中，请输入你的猜测！</p>
-            <input type="text" id="guessInput" placeholder="输入一个答案">
-            <button onclick="submitGuess()">提交猜测</button>
-            <div id="result"></div>
         </div>
-        <div id="history">
-            <h3>猜测历史</h3>
-            <ul id="historyList"></ul>
+        <div class="game-area">
+            <!-- 教程弹窗 -->
+            <div id="tutorial-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span id="close-tutorial" class="close">×</span>
+                    <h2>游戏教程</h2>
+                    <p>你有多次机会猜测一个中国棋手（包含港澳台）。每次猜测需要输入棋手名字，并从候选列表中选择一个棋手。</p>
+                    <p>每次猜测后，系统会显示以下信息：</p>
+                    <ul>
+                        <li><strong>地区</strong>：如果地区正确，显示绿色；否则显示灰色。</li>
+                        <li><strong>等级分</strong>：如果等级分正确，显示绿色；如果偏高，显示向下箭头（↓）；如果偏低，显示向上箭头（↑）。</li>
+                        <li><strong>名字</strong>：名字会进行四次 Wordle 判断，分别针对汉字、声母、韵母和声调：
+                            <ul>
+                                <li><span class="color-box correct">绿色</span>：该位置完全正确。</li>
+                                <li><span class="color-box present">黄色</span>：该字符/声母/韵母/声调在名字中存在，但位置不对。</li>
+                                <li><span class="color-box absent">灰色</span>：该字符/声母/韵母/声调完全错误。</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>如果猜对了棋手名字，游戏结束，显示答案。点击“重新开始”可以开始新游戏！</p>
+                </div>
+            </div>
+
+            <!-- 棋手名字输入 -->
+            <div class="input-section">
+                <label>输入棋手名字：</label>
+                <input type="text" id="name-input">
+                <div id="candidate-list" class="candidate-list"></div>
+            </div>
+
+            <!-- 猜测记录 -->
+            <div id="guess-history" class="guess-history"></div>
+
+            <!-- 答案区域 -->
+            <div id="answer" class="answer hidden">
+                <h2>答案</h2>
+                <p>棋手姓名：<span id="answer-name"></span></p>
+                <p>地区：<span id="answer-region"></span></p>
+                <p>等级分：<span id="answer-rating"></span></p>
+            </div>
+
+            <!-- 重新开始按钮 -->
+            <button id="restart-btn" class="hidden">重新开始</button>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

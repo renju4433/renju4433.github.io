@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
     background-color: #f0f0f0;
+    margin: 0;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -9,196 +9,274 @@ body {
 }
 
 .container {
-    text-align: center;
-    background: white;
-    padding: 10px;
-    border-radius: 8px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 600px;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    margin: 20px;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
+    padding-bottom: 10px;
 }
 
 h1 {
     color: #333;
-    font-size: 1.5em;
-    margin: 10px 0;
-}
-
-#generateSection, #guessSection {
-    margin-bottom: 15px;
-}
-
-.rules {
-    margin-bottom: 10px;
-    font-size: 0.9em;
-    color: #555;
-}
-
-.rules h3 {
-    margin: 0 0 5px 0;
-    font-size: 1em;
-    color: #333;
-}
-
-.rules ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: left;
-    display: inline-block;
-    margin: 0 auto;
-}
-
-.rules li {
-    margin: 3px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 p {
-    margin: 0 0 8px 0;
-    font-size: 0.9em;
+    color: #666;
+}
+
+.game-area {
+    margin: 20px 0;
+}
+
+.input-section {
+    margin: 10px 0;
+    position: sticky;
+    top: 100px; /* 根据 header 高度调整 */
+    background-color: white;
+    z-index: 10;
+    padding-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 input {
-    padding: 8px;
-    font-size: 1em;
-    margin: 5px;
-    width: 70%;
-    max-width: 200px;
-    box-sizing: border-box;
-}
-
-button {
-    padding: 8px 15px;
-    font-size: 1em;
-    background-color: #007BFF;
-    color: white;
-    border: none;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    cursor: pointer;
-    margin: 5px;
+    width: 200px;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
-
-#generatedUrl {
-    margin-top: 8px;
-    font-size: 0.8em;
-    word-break: break-all;
-    color: #555;
-}
-
-#result {
+.candidate-list {
     margin-top: 10px;
-    font-size: 1em;
-    color: #333;
-    word-break: break-word;
-}
-
-#history {
-    text-align: left;
-    flex-grow: 1;
-    overflow: hidden;
-    margin-top: 10px;
-}
-
-#history h3 {
-    color: #555;
-    font-size: 1em;
-    margin-bottom: 5px;
-}
-
-#historyList {
-    list-style-type: none;
-    padding: 0;
-    font-size: 0.9em;
-    max-height: 200px;
+    max-height: 150px;
     overflow-y: auto;
-    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }
 
-#historyList li {
-    margin: 5px 0;
-    padding: 8px;
+.candidate-item {
+    padding: 5px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.candidate-item:hover {
+    background-color: #e0e0e0;
+}
+
+.guess-history {
+    margin: 20px 0;
+    max-height: 400px; /* 限制高度 */
+    overflow-y: auto; /* 只有 guessHistory 滚动 */
+}
+
+.guess-row {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
     background-color: #f9f9f9;
     border-radius: 5px;
 }
 
-.char {
-    padding: 4px;
-    margin: 1px;
-    display: inline-block;
-    border-radius: 3px;
-    font-size: 0.9em;
+.guess-info {
+    flex: 1;
+    text-align: left;
 }
 
-.correct { background-color: #28a745; color: white; } /* 绿色：正确 */
-.present { background-color: #ffc107; color: black; } /* 黄色：存在但位置错误 */
-.correct-pinyin { background-color: #6f42c1; color: white; } /* 紫色：读音正确 */
-.present-pinyin { background-color: #17a2b8; color: white; } /* 蓝色：存在读音但位置错误 */
-.tone-only-correct { border: 2px solid #6f42c1; } /* 紫框：仅音调不同正确 */
-.tone-only-present { border: 2px solid #17a2b8; } /* 蓝框：存在仅音调不同 */
-.radical-correct { background-color: #dc3545; color: white; } /* 红色：偏旁正确 */
-.radical-present { background-color: #fd7e14; color: white; } /* 橙色：存在偏旁但位置错误 */
+.name-analysis {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
-/* 响应式调整 */
-@media (max-width: 600px) {
-    .container {
-        padding: 8px;
-        width: 95%;
-        min-height: 90vh;
-    }
+.name-row {
+    display: flex;
+    gap: 5px;
+}
 
-    h1 {
-        font-size: 1.2em;
-    }
+.name-box {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 18px;
+}
 
-    .rules {
-        font-size: 0.8em;
-    }
+.correct {
+    background-color: #6aaa64; /* 绿色 */
+    color: white;
+}
 
-    .rules h3 {
-        font-size: 0.9em;
-    }
+.present {
+    background-color: #c9b458; /* 橙色 */
+    color: white;
+}
 
-    p {
-        font-size: 0.8em;
-    }
+.absent {
+    background-color: #787c7e; /* 灰色 */
+    color: white;
+}
 
-    input {
-        width: 80%;
-        font-size: 0.9em;
-    }
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
 
-    button {
-        padding: 6px 12px;
-        font-size: 0.9em;
-    }
+button:hover {
+    background-color: #45a049;
+}
 
-    #generatedUrl {
-        font-size: 0.7em;
-    }
+.tutorial-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
 
-    #result {
-        font-size: 0.9em;
-    }
+.tutorial-btn:hover {
+    background-color: #bbb;
+}
 
-    #history h3 {
-        font-size: 0.9em;
-    }
+.hidden {
+    display: none !important; /* 确保一开始隐藏 */
+}
 
-    #historyList {
-        font-size: 0.8em;
-        max-height: 150px;
-    }
+.answer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
 
-    .char {
-        padding: 3px;
-        margin: 1px;
-        font-size: 0.8em;
-    }
+/* 教程弹窗样式 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #f00;
+}
+
+.color-box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.tutorial-image {
+    max-width: 100%;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}、
+.mode-selection {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.slider-container {
+    margin: 10px 0;
+}
+
+#difficulty-slider {
+    width: 300px;
+    margin: 10px auto;
+    -webkit-appearance: none;
+    height: 8px;
+    background: #ddd;
+    border-radius: 4px;
+    outline: none;
+}
+
+#difficulty-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#difficulty-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.difficulty-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin: 0 auto;
+    color: #666;
+}
+
+.difficulty-labels span {
+    flex: 1;
+    text-align: center;
 }
