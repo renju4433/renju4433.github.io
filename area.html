@@ -424,8 +424,15 @@
                 if (result[i].status === null) {
                     const char = result[i].char;
                     if (targetCharCount[char] && targetCharCount[char] > 0) {
-                        result[i].status = 'present';
-                        targetCharCount[char]--;
+                        // Find an unmatched position in target with this char
+                        for (let j = 0; j < targetChars.length; j++) {
+                            if (targetChars[j] === char && !matchedTargetPositions.has(j)) {
+                                result[i].status = 'present';
+                                targetCharCount[char]--;
+                                matchedTargetPositions.add(j);
+                                break;
+                            }
+                        }
                     }
                 }
             }
@@ -497,7 +504,7 @@
                 if (result[i].status === null) {
                     const guessInitial = guessInitials[i];
                     if (guessInitial === targetInitials[i] &&
-                        guessPinyinsWithTone[i] !== targetPinyinsWithTone[i] &&
+                        guessPinyinsNoTone[i] !== targetPinyinsNoTone[i] &&
                         !matchedTargetPositions.has(i) &&
                         !matchedPinyinPositions.has(i) &&
                         !matchedDiffTonePositions.has(i)) {
@@ -512,7 +519,7 @@
                     let found = false;
                     for (let j = 0; j < targetInitials.length; j++) {
                         if (guessInitial === targetInitials[j] &&
-                            guessPinyinsWithTone[i] !== targetPinyinsWithTone[j] &&
+                            guessPinyinsNoTone[i] !== targetPinyinsNoTone[j] &&
                             !matchedTargetPositions.has(j) &&
                             !matchedPinyinPositions.has(j) &&
                             !matchedDiffTonePositions.has(j) &&
