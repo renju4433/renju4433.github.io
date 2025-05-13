@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>七轮比赛猜结果游戏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .game-description {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f0f8ff;
+            border-radius: 5px;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .game-board {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .game-row {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .grid-cell {
+            aspect-ratio: 1/1;
+            border: 2px solid #d3d6da;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            font-weight: bold;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .grid-cell.active {
+            border-color: #878a8c;
+            border-width: 2px;
+        }
+
+        .grid-cell.correct {
+            color: #6aaa64;
+            border-color: #6aaa64;
+        }
+
+        .grid-cell.correct .round-number,
+        .grid-cell.correct .secondary-score {
+            color: #6aaa64;
+        }
+
+        .grid-cell.filled {
+            background-color: white;
+        }
+
+        .round-number {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 10px;
+            color: #878a8c;
+        }
+
+        .secondary-score {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            font-size: 12px;
+            color: #878a8c;
+        }
+
+        .keyboard {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .key {
+            padding: 15px 10px;
+            background-color: #d3d6da;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .key:hover {
+            background-color: #c1c4c8;
+        }
+
+        .key.wide {
+            min-width: 65px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .action-button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn {
+            background-color: #6aaa64;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: #5c9658;
+        }
+
+        .reset-btn {
+            background-color: #878a8c;
+            color: white;
+        }
+
+        .reset-btn:hover {
+            background-color: #6e7072;
+        }
+
+        .delete-btn {
+            background-color: #d3d6da;
+            color: #333;
+        }
+
+        .delete-btn:hover {
+            background-color: #c1c4c8;
+        }
+
+        .result-area {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .toggle-label {
+            font-size: 14px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #6aaa64;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        @media (max-width: 600px) {
+            .game-row {
+                gap: 4px;
+            }
+
+            .grid-cell {
+                font-size: 18px;
+            }
+
+            .key {
+                padding: 10px 8px;
+                font-size: 14px;
+                min-width: 30px;
+            }
+
+            .key.wide {
+                min-width: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>七轮比赛猜结果游戏</h1>
+
+        <div class="game-description">
+            <p>游戏规则：</p>
+            <p>1. 系统已随机生成七轮比赛的结果（胜=1分，负=0分，平=½分）</p>
+            <p>2. 使用下方键盘输入每轮比赛的结果</p>
+            <p>3. 提交后，系统会检查每轮的累计总分，正确则标绿</p>
+            <p>4. 你有6次猜测机会，全部猜对则胜利</p>
+            <p>5. 若6次未猜对，游戏结束并显示答案</p>
+        </div>
+
+        <div class="game-board" id="game-board">
+            <!-- Game rows will be generated by JavaScript -->
+        </div>
+
+        <div class="keyboard">
+            <div class="keyboard-row">
+                <button class="key" data-value="1">胜</button>
+                <button class="key" data-value="0.5">平</button>
+                <button class="key" data-value="0">负</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key wide" id="submit-btn">提交</button>
+                <button class="key wide" id="delete-btn">删除</button>
+                <button class="key wide" id="reset-btn">重置</button>
+            </div>
+        </div>
+
+        <div class="result-area" id="result-message"></div>
+
+        <button id="show-answer" class="action-button hidden">显示答案</button>
+    </div>
+
+    <script>
+        // 生成随机比赛结果
+        function generateRandomResults() {
+            const results = [];
+            const possibleValues = [0, 0.5, 1];
+
+            for (let i = 0; i < 7; i++) {
+                const randomIndex = Math.floor(Math.random() * 3);
+                results.push(possibleValues[randomIndex]);
+            }
+
+            return results;
+        }
+
+        // 计算累计总分
+        function calculateTotals(results) {
+            const totals = [];
+            let sum = 0;
+
+            for (let i = 0; i < results.length; i++) {
+                if (results[i] !== null) {
+                    sum += parseFloat(results[i]);
+                    totals.push(sum);
+                } else {
+                    totals.push(sum);
+                }
+            }
+
+            return totals;
+        }
+
+        // 格式化分数显示
+        function formatScore(score) {
+            return score % 1 === 0 ? score : score.toString();
+        }
+
+        // 创建新的游戏行
+        function createGameRow(rowNumber) {
+            const gameRow = document.createElement('div');
+            gameRow.className = 'game-row';
+            gameRow.id = `game-row-${rowNumber}`;
+
+            for (let i = 0; i < 7; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'grid-cell';
+                if (rowNumber === 1 && i === 0) cell.classList.add('active');
+
+                const roundNumber = document.createElement('span');
+                roundNumber.className = 'round-number';
+                roundNumber.textContent = i + 1;
+
+                const secondaryScore = document.createElement('span');
+                secondaryScore.className = 'secondary-score';
+                secondaryScore.textContent = '';
+
+                cell.appendChild(roundNumber);
+                cell.appendChild(document.createTextNode(''));
+                cell.appendChild(secondaryScore);
+
+                gameRow.appendChild(cell);
+            }
+
+            return gameRow;
+        }
+
+        // 初始化游戏
+        const correctResults = generateRandomResults();
+        const correctTotals = calculateTotals(correctResults);
+        const maxGuesses = 6;
+        let currentGuessRow = 1;
+        let currentRound = 0;
+        let currentGuess = Array(7).fill(null);
+        let gameWon = false;
+        let gameOver = false;
+
+        // 创建游戏面板
+        const gameBoard = document.getElementById('game-board');
+
+        // 初始化6行
+        for (let i = 1; i <= maxGuesses; i++) {
+            gameBoard.appendChild(createGameRow(i));
+        }
+
+        // 获取DOM元素
+        const submitBtn = document.getElementById('submit-btn');
+        const deleteBtn = document.getElementById('delete-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const showAnswerBtn = document.getElementById('show-answer');
+        const resultMessage = document.getElementById('result-message');
+        const keys = document.querySelectorAll('.key');
+        const displayToggle = document.getElementById('display-toggle');
+
+        // 键盘输入处理
+        keys.forEach(key => {
+            if (key.id !== 'submit-btn' && key.id !== 'delete-btn' && key.id !== 'reset-btn') {
+                key.addEventListener('click', function () {
+                    if (gameWon || gameOver) return;
+
+                    if (currentRound < 7) {
+                        const value = parseFloat(this.getAttribute('data-value'));
+                        currentGuess[currentRound] = value;
+
+                        // 获取当前活跃行
+                        const currentRow = document.getElementById(`game-row-${currentGuessRow}`);
+                        const cells = currentRow.querySelectorAll('.grid-cell');
+
+                        // 更新当前单元格
+                        const cell = cells[currentRound];
+
+                        // 清除之前的内容，保留轮次编号和次要分数
+                        const roundNumber = cell.querySelector('.round-number');
+                        const secondaryScore = cell.querySelector('.secondary-score');
+                        cell.innerHTML = '';
+                        cell.appendChild(roundNumber);
+
+                        // 计算当前累计总分
+                        const partialGuess = currentGuess.slice(0, currentRound + 1);
+                        const partialTotals = calculateTotals(partialGuess);
+
+                        // 添加得分显示
+                        let displayValue = value === 1 ? '1' : (value === 0.5 ? '½' : '0');
+
+                        secondaryScore.textContent = formatScore(partialTotals[currentRound]);
+
+                        cell.appendChild(document.createTextNode(displayValue));
+                        cell.appendChild(secondaryScore);
+
+                        cell.classList.add('filled');
+
+                        // 移动到下一轮
+                        if (currentRound < 6) {
+                            cell.classList.remove('active');
+                            cells[currentRound + 1].classList.add('active');
+                        }
+
+                        currentRound++;
+                    }
+                });
+            }
+        });
+
+        // 删除按钮处理
+        deleteBtn.addEventListener('click', function () {
+            if (gameWon || gameOver || currentRound === 0) return;
+
+            // 回退到前一轮
+            currentRound--;
+            currentGuess[currentRound] = null;
+
+            // 获取当前活跃行
+            const currentRow = document.getElementById(`game-row-${currentGuessRow}`);
+            const cells = currentRow.querySelectorAll('.grid-cell');
+            const cell = cells[currentRound];
+
+            // 清除当前单元格内容
+            const roundNumber = cell.querySelector('.round-number');
+            const secondaryScore = cell.querySelector('.secondary-score');
+            cell.innerHTML = '';
+            cell.appendChild(roundNumber);
+            cell.appendChild(document.createTextNode(''));
+            cell.appendChild(secondaryScore);
+
+            cell.classList.remove('filled');
+            cell.classList.add('active');
+
+            // 移除前一单元格的活跃状态（如果存在）
+            if (currentRound < 6) {
+                cells[currentRound + 1].classList.remove('active');
+            }
+        });
+
+        // 重置游戏
+        resetBtn.addEventListener('click', function () {
+            // 清空游戏面板
+            gameBoard.innerHTML = '';
+
+            // 重置游戏状态
+            currentRound = 0;
+            currentGuess = Array(7).fill(null);
+            currentGuessRow = 1;
+            gameWon = false;
+            gameOver = false;
+
+            // 生成新的正确答案
+            const newCorrectResults = generateRandomResults();
+            for (let i = 0; i < 7; i++) {
+                correctResults[i] = newCorrectResults[i];
+            }
+            const newCorrectTotals = calculateTotals(correctResults);
+            for (let i = 0; i < 7; i++) {
+                correctTotals[i] = newCorrectTotals[i];
+            }
+
+            // 初始化6行
+            for (let i = 1; i <= maxGuesses; i++) {
+                gameBoard.appendChild(createGameRow(i));
+            }
+
+            // 重置消息区域
+            resultMessage.innerHTML = '';
+            showAnswerBtn.classList.add('hidden');
+            showAnswerBtn.disabled = false;
+
+            // 启用所有按钮
+            keys.forEach(key => key.disabled = false);
+            submitBtn.disabled = false;
+            deleteBtn.disabled = false;
+            displayToggle.disabled = false;
+        });
+
+        // 提交猜测
+        submitBtn.addEventListener('click', function () {
+            if (gameWon || gameOver) return;
+
+            // 检查是否所有轮次都已输入
+            if (currentGuess.includes(null) || currentRound < 7) {
+                resultMessage.innerHTML = '<p style="color: red;">请输入所有轮次的结果！</p>';
+                return;
+            }
+
+            // 计算猜测的累计总分
+            const guessTotals = calculateTotals(currentGuess);
+
+            // 获取当前活跃行
+            const currentRow = document.getElementById(`game-row-${currentGuessRow}`);
+            const cells = currentRow.querySelectorAll('.grid-cell');
+
+            // 更新网格单元格（仅标绿）
+            let correctCount = 0;
+
+            cells.forEach((cell, index) => {
+                // 检查累计总分是否正确
+                if (guessTotals[index] === correctTotals[index]) {
+                    cell.classList.add('correct');
+                    correctCount++;
+                }
+
+                // 移除活跃状态
+                cell.classList.remove('active');
+            });
+
+            // 检查是否全部猜对
+            if (correctCount === 7) {
+                resultMessage.innerHTML = `<p style="color: green; font-weight: bold;">恭喜！你已经全部猜对了！共猜测了 ${currentGuessRow} 次。</p>`;
+                showAnswerBtn.classList.remove('hidden');
+                gameWon = true;
+                gameOver = true;
+            } else if (currentGuessRow >= maxGuesses) {
+                // 达到最大猜测次数
+                resultMessage.innerHTML = `<p style="color: red; font-weight: bold;">游戏结束！你未能在 ${maxGuesses} 次内猜对。</p>`;
+                showAnswerBtn.classList.remove('hidden');
+                gameOver = true;
+
+                // 禁用输入
+                keys.forEach(key => key.disabled = true);
+                submitBtn.disabled = true;
+                deleteBtn.disabled = true;
+                displayToggle.disabled = true;
+            } else {
+                // 准备下一次猜测
+                currentGuessRow++;
+                currentRound = 0;
+                currentGuess = Array(7).fill(null);
+
+                // 激活下一行的第一个单元格
+                if (currentGuessRow <= maxGuesses) {
+                    const nextRow = document.getElementById(`game-row-${currentGuessRow}`);
+                    const cells = nextRow.querySelectorAll('.grid-cell');
+                    cells[0].classList.add('active');
+                }
+
+                // 滚动到底部
+                gameBoard.scrollTop = gameBoard.scrollHeight;
+            }
+        });
+
+        // 显示答案
+        showAnswerBtn.addEventListener('click', function () {
+            let answerDisplay = '';
+
+            answerDisplay = `<p>正确答案：${correctResults.map(r => r === 1 ? '胜(1)' : (r === 0.5 ? '平(½)' : '负(0)')).join(', ')}</p>`;
+            answerDisplay += `<p>累计分数：${correctTotals.map(formatScore).join(', ')}</p>`;
+
+            resultMessage.innerHTML += answerDisplay;
+            this.disabled = true;
+        });
+    </script>
+</body>
+
+</html>
