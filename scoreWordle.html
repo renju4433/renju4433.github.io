@@ -472,6 +472,7 @@
             cell.appendChild(roundNumber);
             cell.appendChild(document.createTextNode(''));
             cell.appendChild(secondaryScore);
+            secondaryScore.textContent = ''; // 明确清空累计总分
 
             cell.classList.remove('filled');
             cell.classList.add('active');
