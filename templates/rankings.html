@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ tournament.name }} - 名次表{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{{ tournament.name }} - 名次表</h2>
+    <a href="{{ url_for('tournament_dashboard', tournament_id=tournament.id) }}" class="btn btn-primary">返回</a>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">选手排名</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>名次</th>
+                        <th>编号</th>
+                        <th>姓名</th>
+                        <th>团队</th>
+                        <th>积分</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rank, player, points in rankings %}
+                    <tr>
+                        <td>{{ rank }}</td>
+                        <td>{{ player.id }}</td>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.team }}</td>
+                        <td>{{ points }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

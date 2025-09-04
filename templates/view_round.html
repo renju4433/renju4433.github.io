@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block title %}{{ tournament.name }} - 第{{ round.number }}轮{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{{ tournament.name }} - 第{{ round.number }}轮</h2>
+    <div>
+        {% if round.number > 1 %}
+        <a href="{{ url_for('view_round', tournament_id=tournament.id, round_number=round.number-1) }}"
+            class="btn btn-outline-secondary me-2">上一轮</a>
+        {% endif %}
+        {% if round.number < tournament.rounds|length %} <a
+            href="{{ url_for('view_round', tournament_id=tournament.id, round_number=round.number+1) }}"
+            class="btn btn-outline-secondary me-2">下一轮</a>
+            {% endif %}
+            <a href="{{ url_for('tournament_dashboard', tournament_id=tournament.id) }}" class="btn btn-primary">返回</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5>第{{ round.number }}轮对阵表</h5>
+            <span>共{{ round.pairings|length }}台</span>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>台号</th>
+                        <th>黑方</th>
+                        <th>上轮积分</th>
+                        <th>结果</th>
+                        <th>上轮积分</th>
+                        <th>白方</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in pairing_data %}
+                    <tr class="pairing-row" data-pairing-id="{{ data.pairing.id }}">
+                        <td>{{ data.pairing.table_number }}</td>
+                        <td class="player-left">[{{ data.pairing.player1.id }}] {{ data.pairing.player1.name }}（{{
+                            data.pairing.player1.team }}）</td>
+                        <td>{{ data.p1_points }}</td>
+                        <td class="result-cell">{{ data.result_str }}</td>
+                        <td>{% if data.pairing.player2 %}{{ data.p2_points }}{% endif %}</td>
+                        <td class="player-right">{% if data.pairing.player2 %}[{{ data.pairing.player2.id }}] {{
+                            data.pairing.player2.name }}（{{ data.pairing.player2.team }}）{% else %}轮空{% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .pairing-row {
+        cursor: pointer;
+    }
+
+    .player-left,
+    .player-right,
+    .result-cell {
+        transition: background-color 0.2s;
+    }
+
+    .player-left:hover {
+        background-color: rgba(40, 167, 69, 0.1);
+    }
+
+    .player-right:hover {
+        background-color: rgba(40, 167, 69, 0.1);
+    }
+
+    .result-cell:hover {
+        background-color: rgba(255, 193, 7, 0.1);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const pairings = document.querySelectorAll('.pairing-row');
+
+        pairings.forEach(row => {
+            const pairingId = row.dataset.pairingId;
+            const leftPlayer = row.querySelector('.player-left');
+            const rightPlayer = row.querySelector('.player-right');
+            const resultCell = row.querySelector('.result-cell');
+            const isBye = false;
+            // 双击左侧设为左胜 (1:0)
+            leftPlayer.addEventListener('dblclick', function () {
+                submitResult(pairingId, isBye ? '-1.5' : '1');
+            });
+
+            // 双击右侧设为右胜 (0:1)
+            rightPlayer.addEventListener('dblclick', function () {
+                submitResult(pairingId, isBye ? '-1.5' : '0');
+            });
+
+            // 双击中间设为平局 (0.5:0.5)
+            resultCell.addEventListener('dblclick', function () {
+                submitResult(pairingId, isBye ? '-1.5' : '0.5');
+            });
+        });
+
+        function submitResult(pairingId, result) {
+            const formData = new FormData();
+            formData.append('result', result);
+
+            fetch(`/tournament/{{ tournament.id }}/round/{{ round.number }}/pairing/${pairingId}/set_result`, {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                    }
+                });
+        }
+    });
+</script>
+{% endblock %}

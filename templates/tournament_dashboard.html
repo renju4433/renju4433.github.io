@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{{ tournament.name }}{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{{ tournament.name }}</h2>
+    <div>
+        {{tournament.created_at.strftime('%Y-%m-%d %H:%M') }}创建
+        <span class="badge bg-primary me-2">{{ tournament.players|length }}位选手</span>
+        <span class="badge bg-success">{{ tournament.rounds|length }}轮</span>
+    </div>
+</div>
+<div class="card mb-4">
+    <div class="card-header">
+        <h5>比赛管理</h5>
+    </div>
+    <div class="card-body">
+        <a href="{{ url_for('manage_players', tournament_id=tournament.id) }}"
+            class="btn btn-outline-primary w-100 mb-2">管理选手</a>
+        {% if tournament.rounds|length > 0 %}
+        <a href="{{ url_for('view_round', tournament_id=tournament.id, round_number=tournament.rounds[-1].number) }}"
+            class="btn btn-outline-primary w-100 mb-2">查看当前轮</a>
+        <a href="{{ url_for('view_rankings', tournament_id=tournament.id) }}"
+            class="btn btn-outline-primary w-100 mb-2">查看名次表</a>
+        {% endif %}
+        {% if tournament.players|length >= 2 %}
+        <a href="{{ url_for('create_next_round', tournament_id=tournament.id) }}"
+            class="btn btn-success w-100 mb-2">创建下一轮</a>
+        {% endif %}
+        {% if tournament.rounds|length > 0 %}
+        <a href="{{ url_for('delete_last_round', tournament_id=tournament.id) }}" class="btn btn-danger w-100">删除上一轮</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="tiebreak-settings">
+    <h3>破同分规则设置</h3>
+    <form action="{{ url_for('set_tiebreak_rules', tournament_id=tournament.id) }}" method="POST">
+        <div class="form-group">
+            <label>破同分顺序:</label>
+            <div class="tiebreak-order">
+                <select name="tiebreak1" class="form-control">
+                    <option value="" {% if tiebreak_rules[0]=="" %}selected{% endif %}>无</option>
+                    <option value="对手分" {% if tiebreak_rules[0]=="对手分" %}selected{% endif %}>对手分</option>
+                    <option value="小分" {% if tiebreak_rules[0]=="小分" %}selected{% endif %}>小分</option>
+                </select>
+                <select name="tiebreak2" class="form-control">
+                    <option value="" {% if tiebreak_rules[1]=="" %}selected{% endif %}>无</option>
+                    <option value="对手分" {% if tiebreak_rules[1]=="对手分" %}selected{% endif %}>对手分</option>
+                    <option value="小分" {% if tiebreak_rules[1]=="小分" %}selected{% endif %}>小分</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">保存设置</button>
+    </form>
+
+</div>
+{% endblock %}

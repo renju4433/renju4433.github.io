@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}我的比赛{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>我的比赛</h2>
+        {% if tournaments %}
+            <div class="list-group">
+                {% for tournament in tournaments %}
+                <a href="{{ url_for('tournament_dashboard', tournament_id=tournament.id) }}" 
+                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    {{ tournament.name }}
+                    <span class="badge bg-primary rounded-pill">
+                        {{ tournament.players|length }}位选手 / {{ tournament.rounds|length }}轮
+                    </span>
+                </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info">您还没有创建任何比赛，点击右上角"新建比赛"开始</div>
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">快速操作</h5>
+                <a href="{{ url_for('new_tournament') }}" class="btn btn-primary w-100 mb-2">新建比赛</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-outline-secondary w-100">退出登录</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

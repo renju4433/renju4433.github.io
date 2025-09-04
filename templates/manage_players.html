@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}{{ tournament.name }} - 管理选手{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{{ tournament.name }} - 管理选手</h2>
+    <a href="{{ url_for('tournament_dashboard', tournament_id=tournament.id) }}" class="btn btn-outline-secondary">返回</a>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header"><h5>添加选手</h5></div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('manage_players', tournament_id=tournament.id) }}">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="name" placeholder="选手姓名" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="team" placeholder="团队(可选)" value="个人">
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" name="add" class="btn btn-primary w-100">添加</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header"><h5>选手列表</h5></div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr><th>编号</th><th>姓名</th><th>团队</th><th>操作</th></tr>
+                </thead>
+                <tbody>
+                    {% for player in tournament.players %}
+                    <tr>
+                        <td>{{ player.id }}</td>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.team }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('manage_players', tournament_id=tournament.id) }}" class="d-inline">
+                                <input type="hidden" name="delete" value="{{ player.id }}">
+                                <button type="submit" class="btn btn-sm btn-danger">删除</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
