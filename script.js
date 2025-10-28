@@ -294,6 +294,12 @@ function makeGuess() {
         }
     }
     
+    // 清除所有积分格子的颜色状态
+    for (let i = 0; i < playerCount; i++) {
+        const scoreCell = document.getElementById(`score-${i}`);
+        scoreCell.classList.remove('correct', 'present', 'absent');
+    }
+    
     const currentScores = calculateCurrentScores();
     let allCorrect = true;
     
