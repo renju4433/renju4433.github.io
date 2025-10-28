@@ -125,9 +125,9 @@ function createTable() {
 
 // 切换单元格状态
 function toggleCell(cell, row, col) {
-    if (gameState.correctPlayers[row]) {
-        return; // 如果该选手已完全正确，不允许修改
-    }
+    // 当修改对局时，重置相关选手的正确状态
+    gameState.correctPlayers[row] = false;
+    gameState.correctPlayers[col] = false;
     
     if (cell.textContent === '') {
         cell.textContent = '1';
