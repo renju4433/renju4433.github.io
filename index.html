@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单循环赛Wordle</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .game-container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            color: #212121;
+            border-bottom: 1px solid #d3d6da;
+            padding-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #787c7e;
+            margin-bottom: 20px;
+        }
+        
+        .player-selector {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #f6f7f8;
+            border-radius: 8px;
+            border: 1px solid #d3d6da;
+        }
+        
+        .player-selector label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #212121;
+            margin-right: 10px;
+        }
+        
+        .player-selector select {
+            font-size: 16px;
+            padding: 8px 12px;
+            border: 2px solid #d3d6da;
+            border-radius: 4px;
+            background-color: white;
+            color: #212121;
+            cursor: pointer;
+        }
+        
+        .player-selector select:focus {
+            outline: none;
+            border-color: #6aaa64;
+        }
+        
+        .match-table {
+            margin: 30px 0;
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .match-table th,
+        .match-table td {
+            border: 2px solid #d3d6da;
+            padding: 12px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .match-table th {
+            background-color: #f6f7f8;
+            color: #212121;
+            font-size: 16px;
+        }
+        
+        .match-cell {
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            user-select: none;
+            min-width: 50px;
+            height: 50px;
+        }
+        
+        .match-cell:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .match-cell.filled {
+            background-color: #e8e8e8;
+        }
+        
+        .match-cell.correct {
+            background-color: #6aaa64;
+            color: white;
+            border-color: #6aaa64;
+        }
+        
+        .diagonal-cell {
+            background-color: #d3d6da;
+            color: #787c7e;
+        }
+        
+        .score-cell {
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #f6f7f8;
+            white-space: pre-line;
+            vertical-align: top;
+            padding: 8px;
+            line-height: 1.2;
+            min-width: 80px;
+        }
+        
+        .score-cell.present {
+            background-color: #c9b458;
+            color: white;
+            border-color: #c9b458;
+        }
+        
+        .score-cell.correct {
+            background-color: #6aaa64;
+            color: white;
+            border-color: #6aaa64;
+        }
+        
+        .score-cell.absent {
+            background-color: #787c7e;
+            color: white;
+            border-color: #787c7e;
+        }
+        
+        .controls {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #6aaa64;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #5a9a54;
+        }
+        
+        .reset-btn {
+            background-color: #787c7e;
+        }
+        
+        .reset-btn:hover {
+            background-color: #686c6e;
+        }
+        
+        .stats-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f6f7f8;
+            border-radius: 8px;
+            text-align: left;
+        }
+        
+        .excluded-section {
+            margin-bottom: 20px;
+        }
+        
+        .excluded-section h3 {
+            font-size: 16px;
+            margin: 0 0 10px 0;
+            color: #212121;
+        }
+        
+        .excluded-item {
+            font-size: 14px;
+            color: #787c7e;
+            margin: 5px 0;
+            padding: 8px;
+            background-color: white;
+            border-radius: 4px;
+            border-left: 3px solid #d3d6da;
+        }
+        
+        .legend {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #787c7e;
+        }
+        
+        .legend-item {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .legend-color {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>单循环赛Wordle</h1>
+        <div class="subtitle">猜测选手的单循环赛结果 • 胜=1分，负=0分</div>
+        
+        <div class="player-selector">
+            <label for="playerCount">选手数量：</label>
+            <select id="playerCount" onchange="changePlayerCount()">
+                <option value="3">3名选手</option>
+                <option value="4" selected>4名选手</option>
+                <option value="5">5名选手</option>
+                <option value="6">6名选手</option>
+                <option value="7">7名选手</option>
+                <option value="8">8名选手</option>
+            </select>
+        </div>
+        
+        <table class="match-table" id="matchTable">
+            <thead id="tableHead">
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: #c9b458;"></span>
+                积分正确
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: #6aaa64;"></span>
+                完全正确
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: #787c7e;"></span>
+                已排除
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="makeGuess()">提交猜测</button>
+            <button class="reset-btn" onclick="resetGame()">重新开始</button>
+        </div>
+        
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
