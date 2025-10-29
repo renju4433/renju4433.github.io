@@ -33,7 +33,10 @@ function initializeGameState() {
         excludedScores: Array(playerCount).fill(null).map(() => []), // 每个选手已排除的积分
         confirmedScores: Array(playerCount).fill(null), // 每个选手已确定的积分
         excludedCombinations: [], // 已排除的胜负组合
-        correctPlayers: Array(playerCount).fill(false) // 完全正确的选手
+        correctPlayers: Array(playerCount).fill(false), // 完全正确的选手
+        guessCount: 0, // 猜测次数
+        hasGuessed: false, // 是否已经进行过猜测
+        guessHistory: [] // 猜测历史记录
     };
 }
 
@@ -129,6 +132,14 @@ function toggleCell(cell, row, col) {
     gameState.correctPlayers[row] = false;
     gameState.correctPlayers[col] = false;
     
+    // 如果已经进行过猜测，清除所有积分格子的颜色状态
+    if (gameState.hasGuessed) {
+        for (let i = 0; i < playerCount; i++) {
+            const scoreCell = document.getElementById(`score-${i}`);
+            scoreCell.classList.remove('correct', 'present', 'absent');
+        }
+    }
+    
     if (cell.textContent === '') {
         cell.textContent = '1';
         cell.classList.add('filled');
@@ -206,24 +217,6 @@ function updateScores() {
         
         if (filledCount === playerCount - 1) {
             displayText = scores[i].toString();
-            
-            // 根据积分格子的颜色状态显示不同信息
-            if (scoreCell.classList.contains('correct')) {
-                // 绿色：显示战胜的对手
-                const wins = getPlayerWins(i);
-                if (wins.length > 0) {
-                    displayText += '\n战胜: ' + wins.map(n => n + '号').join(', ');
-                }
-            } else if (scoreCell.classList.contains('present')) {
-                // 黄色：显示已排除的胜选手组合
-                const excludedWins = getExcludedWinCombinations(i);
-                if (excludedWins.length > 0) {
-                    displayText += '\n排除胜: ' + excludedWins.join(', ');
-                }
-            } else if (scoreCell.classList.contains('absent') && gameState.excludedScores[i].length > 0) {
-                // 灰色：显示已排除的积分
-                displayText += '\n排除分: ' + gameState.excludedScores[i].join(',');
-            }
         } else {
             displayText = '-';
             // 只在没有填满时移除颜色状态
@@ -294,6 +287,10 @@ function makeGuess() {
         }
     }
     
+    // 记录猜测
+    gameState.guessCount++;
+    gameState.hasGuessed = true;
+    
     // 清除所有积分格子的颜色状态
     for (let i = 0; i < playerCount; i++) {
         const scoreCell = document.getElementById(`score-${i}`);
@@ -346,7 +343,32 @@ function makeGuess() {
         gameState.excludedCombinations.push(combinationStr);
     }
     
+    // 保存当前猜测到历史记录
+    const currentGuessData = {
+        guess: gameState.currentGuess.map(row => [...row]), // 深拷贝
+        scores: [...currentScores], // 深拷贝
+        playerStates: [] // 记录每个选手的状态
+    };
+    
+    // 记录每个选手的颜色状态
+    for (let i = 0; i < playerCount; i++) {
+        const scoreCell = document.getElementById(`score-${i}`);
+        if (scoreCell.classList.contains('correct')) {
+            currentGuessData.playerStates[i] = 'correct';
+        } else if (scoreCell.classList.contains('present')) {
+            currentGuessData.playerStates[i] = 'present';
+        } else if (scoreCell.classList.contains('absent')) {
+            currentGuessData.playerStates[i] = 'absent';
+        } else {
+            currentGuessData.playerStates[i] = 'none';
+        }
+    }
+    
+    gameState.guessHistory.push(currentGuessData);
+    
     if (allCorrect) {
+        // 更新猜测历史显示
+        updateGuessHistory();
         setTimeout(() => {
             alert('🎉 恭喜你猜对了！所有选手的积分和对战结果都正确！');
         }, 500);
@@ -355,6 +377,9 @@ function makeGuess() {
     
     // 更新积分显示（包含排除信息）
     updateScores();
+    
+    // 更新猜测历史显示
+    updateGuessHistory();
 }
 
 // 获取选手战胜的对手列表
@@ -386,6 +411,110 @@ function formatCurrentCombination() {
     return result;
 }
 
+function createGuessHistoryTable(guessData, guessNumber) {
+    const table = document.createElement('table');
+    table.className = 'guess-table';
+    
+    // 创建表头
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    
+    // 添加空白角落
+    const cornerCell = document.createElement('th');
+    cornerCell.textContent = `第${guessNumber}次`;
+    headerRow.appendChild(cornerCell);
+    
+    // 添加选手列标题
+    for (let i = 0; i < playerCount; i++) {
+        const th = document.createElement('th');
+        th.textContent = `${i + 1}号`;
+        headerRow.appendChild(th);
+    }
+    
+    // 添加积分列标题
+    const scoreHeader = document.createElement('th');
+    scoreHeader.textContent = '积分';
+    headerRow.appendChild(scoreHeader);
+    
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+    
+    // 创建表体
+    const tbody = document.createElement('tbody');
+    
+    for (let i = 0; i < playerCount; i++) {
+        const row = document.createElement('tr');
+        
+        // 选手行标题
+        const rowHeader = document.createElement('th');
+        rowHeader.textContent = `${i + 1}号`;
+        row.appendChild(rowHeader);
+        
+        // 对战结果
+        for (let j = 0; j < playerCount; j++) {
+            const cell = document.createElement('td');
+            
+            if (i === j) {
+                cell.className = 'guess-diagonal-cell';
+                cell.textContent = '-';
+            } else {
+                cell.className = 'guess-match-cell';
+                const result = guessData.guess[i][j];
+                cell.textContent = result === 1 ? '1' : '0';
+            }
+            
+            row.appendChild(cell);
+        }
+        
+        // 积分
+        const scoreCell = document.createElement('td');
+        scoreCell.className = 'guess-score-cell';
+        scoreCell.textContent = guessData.scores[i];
+        
+        // 添加颜色状态
+        if (guessData.playerStates[i] === 'correct') {
+            scoreCell.classList.add('correct');
+        } else if (guessData.playerStates[i] === 'present') {
+            scoreCell.classList.add('present');
+        } else if (guessData.playerStates[i] === 'absent') {
+            scoreCell.classList.add('absent');
+        }
+        
+        row.appendChild(scoreCell);
+        tbody.appendChild(row);
+    }
+    
+    table.appendChild(tbody);
+    return table;
+}
+
+function updateGuessHistory() {
+    const historyContainer = document.getElementById('guessHistory');
+    const historyContent = document.getElementById('guessHistoryContent');
+    
+    if (gameState.guessHistory.length === 0) {
+        historyContainer.style.display = 'none';
+        return;
+    }
+    
+    historyContainer.style.display = 'block';
+    historyContent.innerHTML = '';
+    
+    // 显示所有猜测记录，最新的在上面
+    for (let i = gameState.guessHistory.length - 1; i >= 0; i--) {
+        const guessData = gameState.guessHistory[i];
+        const table = createGuessHistoryTable(guessData, i + 1);
+        historyContent.appendChild(table);
+        
+        // 在表格之间添加间距
+        if (i > 0) {
+            const spacer = document.createElement('div');
+            spacer.style.height = '20px';
+            historyContent.appendChild(spacer);
+        }
+    }
+}
+
 
 
 // 重置游戏
@@ -396,11 +525,17 @@ function resetGame() {
         excludedScores: Array(playerCount).fill(null).map(() => []),
         confirmedScores: Array(playerCount).fill(null),
         excludedCombinations: [],
-        correctPlayers: Array(playerCount).fill(false)
+        correctPlayers: Array(playerCount).fill(false),
+        guessCount: 0,
+        hasGuessed: false,
+        guessHistory: []
     };
     
     // 重新创建表格
     createTable();
+    
+    // 隐藏猜测历史
+    updateGuessHistory();
     
     console.log('新的真实结果:', gameState.trueResults); // 调试用
 }
@@ -413,7 +548,6 @@ function changePlayerCount() {
     
     // 重新初始化游戏状态
     gameState = initializeGameState();
-    gameState.trueResults = generateTrueResults();
     
     // 重新创建表格
     createTable();

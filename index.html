@@ -124,7 +124,8 @@
             font-weight: bold;
             background-color: #f6f7f8;
             white-space: pre-line;
-            vertical-align: top;
+            vertical-align: middle;
+            text-align: center;
             padding: 8px;
             line-height: 1.2;
             min-width: 80px;
@@ -227,6 +228,80 @@
             margin-right: 5px;
             vertical-align: middle;
         }
+        
+        .guess-history {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f6f7f8;
+            border-radius: 8px;
+            border: 1px solid #d3d6da;
+        }
+        
+        .guess-history h3 {
+            font-size: 18px;
+            margin: 0 0 15px 0;
+            color: #212121;
+            text-align: center;
+        }
+        
+        .guess-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        .guess-table th,
+        .guess-table td {
+            border: 2px solid #d3d6da;
+            text-align: center;
+            padding: 8px;
+            min-width: 40px;
+            height: 40px;
+        }
+        
+        .guess-table th {
+            background-color: #e8e8e8;
+            font-weight: bold;
+            color: #212121;
+        }
+        
+        .guess-table .guess-match-cell {
+            font-size: 14px;
+            font-weight: bold;
+            cursor: default;
+        }
+        
+        .guess-table .guess-score-cell {
+            font-size: 14px;
+            font-weight: bold;
+            background-color: #f6f7f8;
+            vertical-align: middle;
+            text-align: center;
+        }
+        
+        .guess-table .guess-score-cell.present {
+            background-color: #c9b458;
+            color: white;
+            border-color: #c9b458;
+        }
+        
+        .guess-table .guess-score-cell.correct {
+            background-color: #6aaa64;
+            color: white;
+            border-color: #6aaa64;
+        }
+        
+        .guess-table .guess-score-cell.absent {
+            background-color: #787c7e;
+            color: white;
+            border-color: #787c7e;
+        }
+        
+        .guess-table .guess-diagonal-cell {
+            background-color: #d3d6da;
+            color: #787c7e;
+        }
     </style>
 </head>
 <body>
@@ -273,6 +348,10 @@
             <button class="reset-btn" onclick="resetGame()">重新开始</button>
         </div>
         
+        <div class="guess-history" id="guessHistory" style="display: none;">
+            <h3>猜测记录</h3>
+            <div id="guessHistoryContent"></div>
+        </div>
 
     </div>
     <script src="script.js"></script>
