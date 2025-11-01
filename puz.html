@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>循环赛谜题求解器</title>
+</head>
+<body>
+    <h1>循环赛谜题求解器</h1>
+    
+    <div>
+        <label>参赛人数: </label>
+        <input type="number" id="playerCount" value="4" min="2" max="10">
+        <button onclick="initTable()">生成表格</button>
+    </div>
+    
+    <br>
+    
+    <div id="tableContainer"></div>
+    
+    <br>
+    
+    <button onclick="solve()">求解</button>
+    <button onclick="clearAll()">清除</button>
+    
+    <div id="result"></div>
+
+    <script>
+        let playerCount = 4;
+        let players = [];
+
+        function initTable() {
+            playerCount = parseInt(document.getElementById('playerCount').value);
+            players = [];
+            for (let i = 0; i < playerCount; i++) {
+                players.push('选手' + (i + 1));
+            }
+            
+            let html = '<table border="1" cellpadding="3" cellspacing="0">';
+            html += '<tr><th width="50">对阵</th>';
+            for (let i = 0; i < playerCount; i++) {
+                html += '<th width="50">' + players[i] + '</th>';
+            }
+            html += '<th width="50">胜</th><th width="50">平</th><th width="50">负</th><th width="50">积分</th></tr>';
+            
+            for (let i = 0; i < playerCount; i++) {
+                html += '<tr>';
+                html += '<th width="50">' + players[i] + '</th>';
+                for (let j = 0; j < playerCount; j++) {
+                    if (i === j) {
+                        html += '<td width="50">-</td>';
+                    } else {
+                        html += '<td width="50"><input type="text" id="match_' + i + '_' + j + '" style="width:40px" placeholder="空"></td>';
+                    }
+                }
+                html += '<td width="50"><input type="number" id="win_' + i + '" style="width:40px" placeholder="空"></td>';
+                html += '<td width="50"><input type="number" id="draw_' + i + '" style="width:40px" placeholder="空"></td>';
+                html += '<td width="50"><input type="number" id="loss_' + i + '" style="width:40px" placeholder="空"></td>';
+                html += '<td width="50"><input type="number" id="points_' + i + '" style="width:40px" step="0.5" placeholder="空"></td>';
+                html += '</tr>';
+            }
+            html += '</table>';
+            html += '<p>说明：对局结果填1(胜)、0.5(平)、0(负)，留空表示任意。胜平负、积分列填期望的值，留空表示任意。积分计算：胜1分，平0.5分，负0分。</p>';
+            
+            document.getElementById('tableContainer').innerHTML = html;
+            document.getElementById('result').innerHTML = '';
+        }
+
+        function solve() {
+            // 读取约束条件
+            let constraints = {
+                matches: [],
+                stats: []
+            };
+            
+            for (let i = 0; i < playerCount; i++) {
+                constraints.matches[i] = [];
+                for (let j = 0; j < playerCount; j++) {
+                    if (i !== j) {
+                        let val = document.getElementById('match_' + i + '_' + j).value.trim();
+                        constraints.matches[i][j] = val === '' ? null : parseFloat(val);
+                    }
+                }
+                
+                let win = document.getElementById('win_' + i).value;
+                let draw = document.getElementById('draw_' + i).value;
+                let loss = document.getElementById('loss_' + i).value;
+                let points = document.getElementById('points_' + i).value;
+                
+                constraints.stats[i] = {
+                    win: win === '' ? null : parseInt(win),
+                    draw: draw === '' ? null : parseInt(draw),
+                    loss: loss === '' ? null : parseInt(loss),
+                    points: points === '' ? null : parseFloat(points)
+                };
+            }
+            
+            // 求解所有解
+            let solutions = [];
+            findAllSolutions(constraints, [], solutions);
+            
+            displayAllSolutions(solutions);
+        }
+
+        function findAllSolutions(constraints, assignments, solutions) {
+            // 找到下一个未分配的对局
+            let nextMatch = null;
+            for (let i = 0; i < playerCount; i++) {
+                for (let j = i + 1; j < playerCount; j++) {
+                    let found = false;
+                    for (let a of assignments) {
+                        if ((a.i === i && a.j === j) || (a.i === j && a.j === i)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        nextMatch = {i: i, j: j};
+                        break;
+                    }
+                }
+                if (nextMatch) break;
+            }
+            
+            // 所有对局已分配
+            if (!nextMatch) {
+                if (checkSolution(constraints, assignments)) {
+                    solutions.push([...assignments]);
+                }
+                return;
+            }
+            
+            // 尝试可能的结果
+            let possibleResults = getPossibleResults(constraints, nextMatch.i, nextMatch.j);
+            
+            for (let result of possibleResults) {
+                let newAssignments = [...assignments, {i: nextMatch.i, j: nextMatch.j, result: result}];
+                
+                if (isConsistent(constraints, newAssignments)) {
+                    findAllSolutions(constraints, newAssignments, solutions);
+                }
+            }
+        }
+
+        function getPossibleResults(constraints, i, j) {
+            let results = [];
+            let constraint_i = constraints.matches[i][j];
+            let constraint_j = constraints.matches[j][i];
+            
+            // 检查1(胜)
+            if ((constraint_i === null || constraint_i === 1) && 
+                (constraint_j === null || constraint_j === 0)) {
+                results.push(1);
+            }
+            // 检查0.5(平)
+            if ((constraint_i === null || constraint_i === 0.5) && 
+                (constraint_j === null || constraint_j === 0.5)) {
+                results.push(0.5);
+            }
+            // 检查0(负)
+            if ((constraint_i === null || constraint_i === 0) && 
+                (constraint_j === null || constraint_j === 1)) {
+                results.push(0);
+            }
+            
+            return results;
+        }
+
+        function calculateStats(assignments) {
+            let stats = [];
+            for (let i = 0; i < playerCount; i++) {
+                stats[i] = {win: 0, draw: 0, loss: 0, points: 0};
+            }
+            
+            for (let a of assignments) {
+                if (a.result === 1) {
+                    stats[a.i].win++;
+                    stats[a.i].points += 1;
+                    stats[a.j].loss++;
+                } else if (a.result === 0.5) {
+                    stats[a.i].draw++;
+                    stats[a.i].points += 0.5;
+                    stats[a.j].draw++;
+                    stats[a.j].points += 0.5;
+                } else if (a.result === 0) {
+                    stats[a.i].loss++;
+                    stats[a.j].win++;
+                    stats[a.j].points += 1;
+                }
+            }
+            
+            return stats;
+        }
+
+        function isConsistent(constraints, assignments) {
+            let stats = calculateStats(assignments);
+            
+            // 检查是否超出约束
+            for (let i = 0; i < playerCount; i++) {
+                if (constraints.stats[i].win !== null && stats[i].win > constraints.stats[i].win) return false;
+                if (constraints.stats[i].draw !== null && stats[i].draw > constraints.stats[i].draw) return false;
+                if (constraints.stats[i].loss !== null && stats[i].loss > constraints.stats[i].loss) return false;
+                if (constraints.stats[i].points !== null && stats[i].points > constraints.stats[i].points) return false;
+            }
+            
+            return true;
+        }
+
+        function checkSolution(constraints, assignments) {
+            let stats = calculateStats(assignments);
+            
+            for (let i = 0; i < playerCount; i++) {
+                if (constraints.stats[i].win !== null && stats[i].win !== constraints.stats[i].win) return false;
+                if (constraints.stats[i].draw !== null && stats[i].draw !== constraints.stats[i].draw) return false;
+                if (constraints.stats[i].loss !== null && stats[i].loss !== constraints.stats[i].loss) return false;
+                if (constraints.stats[i].points !== null && Math.abs(stats[i].points - constraints.stats[i].points) > 0.001) return false;
+            }
+            
+            return true;
+        }
+
+        function displayAllSolutions(solutions) {
+            let html = '<h2>找到 ' + solutions.length + ' 个解</h2>';
+            
+            if (solutions.length === 0) {
+                html += '<p>无解！请检查约束条件。</p>';
+            } else {
+                for (let s = 0; s < solutions.length; s++) {
+                    html += '<h3>解 ' + (s + 1) + '</h3>';
+                    html += '<table border="1" cellpadding="3" cellspacing="0">';
+                    html += '<tr><th width="50">对阵</th>';
+                    for (let i = 0; i < playerCount; i++) {
+                        html += '<th width="50">' + players[i] + '</th>';
+                    }
+                    html += '<th width="50">胜</th><th width="50">平</th><th width="50">负</th><th width="50">积分</th></tr>';
+                    
+                    // 构建结果矩阵
+                    let matrix = [];
+                    for (let i = 0; i < playerCount; i++) {
+                        matrix[i] = [];
+                        for (let j = 0; j < playerCount; j++) {
+                            matrix[i][j] = null;
+                        }
+                    }
+                    
+                    for (let a of solutions[s]) {
+                        if (a.result === 1) {
+                            matrix[a.i][a.j] = 1;
+                            matrix[a.j][a.i] = 0;
+                        } else if (a.result === 0.5) {
+                            matrix[a.i][a.j] = 0.5;
+                            matrix[a.j][a.i] = 0.5;
+                        } else if (a.result === 0) {
+                            matrix[a.i][a.j] = 0;
+                            matrix[a.j][a.i] = 1;
+                        }
+                    }
+                    
+                    // 计算统计
+                    let stats = calculateStats(solutions[s]);
+                    
+                    // 显示表格
+                    for (let i = 0; i < playerCount; i++) {
+                        html += '<tr>';
+                        html += '<th width="50">' + players[i] + '</th>';
+                        for (let j = 0; j < playerCount; j++) {
+                            if (i === j) {
+                                html += '<td width="50">-</td>';
+                            } else {
+                                html += '<td width="50">' + matrix[i][j] + '</td>';
+                            }
+                        }
+                        html += '<td width="50">' + stats[i].win + '</td>';
+                        html += '<td width="50">' + stats[i].draw + '</td>';
+                        html += '<td width="50">' + stats[i].loss + '</td>';
+                        html += '<td width="50">' + stats[i].points + '</td>';
+                        html += '</tr>';
+                    }
+                    html += '</table><br>';
+                }
+            }
+            
+            document.getElementById('result').innerHTML = html;
+        }
+
+        function clearAll() {
+            for (let i = 0; i < playerCount; i++) {
+                for (let j = 0; j < playerCount; j++) {
+                    if (i !== j) {
+                        let elem = document.getElementById('match_' + i + '_' + j);
+                        if (elem) elem.value = '';
+                    }
+                }
+                document.getElementById('win_' + i).value = '';
+                document.getElementById('draw_' + i).value = '';
+                document.getElementById('loss_' + i).value = '';
+                document.getElementById('points_' + i).value = '';
+            }
+            document.getElementById('result').innerHTML = '';
+        }
+
+        // 初始化
+        window.onload = function() {
+            initTable();
+        };
+    </script>
+</body>
+</html>
