@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Othello分析面板</title>
+</head>
+<body>
+    <h1>Othello分析面板</h1>
+    
+    <div>
+        <label>FEN码: <input type="text" id="fenInput" size="80" placeholder="输入FEN码或留空使用默认局面"></label>
+        <br>
+        <button onclick="loadPosition()">加载局面</button>
+        <button onclick="resetToInitial()">初始局面</button>
+        <button onclick="undoMove()">回退</button>
+        <button onclick="redoMove()">前进</button>
+        <button onclick="startAnalysis()">开始分析</button>
+        <button onclick="stopAnalysis()">停止分析</button>
+    </div>
+    
+    <div id="board"></div>
+    
+    <div id="status">等待开始...</div>
+    
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>深度</th>
+                <th>最佳着法</th>
+                <th>评分</th>
+                <th>节点数</th>
+                <th>时间(ms)</th>
+                <th>速度(nodes/s)</th>
+                <th>主要变化</th>
+            </tr>
+        </thead>
+        <tbody id="analysisTable">
+            <tr><td colspan="7">暂无数据</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        let worker = null;
+        let currentFEN = '';
+        let currentBoard = null;
+        let currentPlayer = null;
+        let bestMove = null;
+        let historyStack = [];
+        let redoStack = [];
+        let rootBest = null;
+        let rootBestScore = -Infinity;
+        let rootCurrent = null;
+        let rootSearched = new Set();
+        let rootLosing = new Set();
+        let rootDepth = 0;
+        
+        const defaultFEN = '......../......./......./...WB.../...BW.../......../......../........ B';
+        
+        function fenToBoard(fen) {
+            const parts = fen.split(' ');
+            const rows = parts[0].split('/');
+            const board = [];
+            for (let r = 0; r < 8; r++) {
+                board[r] = [];
+                for (let c = 0; c < 8; c++) {
+                    const ch = rows[r][c];
+                    board[r][c] = ch === 'B' ? 1 : ch === 'W' ? -1 : 0;
+                }
+            }
+            const player = parts[1] === 'W' ? -1 : 1;
+            return { board, player };
+        }
+        
+        function boardToFen(board, player) {
+            const rows = [];
+            for (let r = 0; r < 8; r++) {
+                let row = '';
+                for (let c = 0; c < 8; c++) {
+                    const v = board[r][c];
+                    row += v === 1 ? 'B' : v === -1 ? 'W' : '.';
+                }
+                rows.push(row);
+            }
+            return rows.join('/') + ' ' + (player === 1 ? 'B' : 'W');
+        }
+        
+        function getMovesMain(board, player) {
+            const moves = [];
+            const opponent = -player;
+            for (let r = 0; r < 8; r++) {
+                for (let c = 0; c < 8; c++) {
+                    if (board[r][c] !== 0) continue;
+                    let valid = false;
+                    const DIRS = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+                    for (const [dr, dc] of DIRS) {
+                        let nr = r + dr, nc = c + dc;
+                        let hasOpponent = false;
+                        while (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
+                            if (board[nr][nc] === 0) break;
+                            if (board[nr][nc] === opponent) {
+                                hasOpponent = true;
+                                nr += dr;
+                                nc += dc;
+                            } else if (board[nr][nc] === player && hasOpponent) {
+                                valid = true;
+                                break;
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                    if (valid) moves.push([r, c]);
+                }
+            }
+            return moves;
+        }
+        
+        function makeMoveMain(board, r, c, player) {
+            const newBoard = board.map(row => [...row]);
+            newBoard[r][c] = player;
+            const opponent = -player;
+            const DIRS = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+            for (const [dr, dc] of DIRS) {
+                let nr = r + dr, nc = c + dc;
+                const toFlip = [];
+                while (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
+                    if (newBoard[nr][nc] === 0) break;
+                    if (newBoard[nr][nc] === opponent) {
+                        toFlip.push([nr, nc]);
+                        nr += dr;
+                        nc += dc;
+                    } else if (newBoard[nr][nc] === player) {
+                        for (const [fr, fc] of toFlip) {
+                            newBoard[fr][fc] = player;
+                        }
+                        break;
+                    } else {
+                        break;
+                    }
+                }
+            }
+            return newBoard;
+        }
+        
+        function renderBoard(board, player) {
+            const boardDiv = document.getElementById('board');
+            let html = '';
+            html += '<div style="display:inline-block">';
+            html += '<div style="display:flex;height:20px">';
+            html += '<span style="display:inline-block;width:24px"></span>';
+            for (let c = 0; c < 8; c++) {
+                const file = String.fromCharCode(97 + c);
+                html += `<span style="display:inline-block;width:40px;height:20px;line-height:20px;text-align:center;color:#c00;font-size:14px">${file}</span>`;
+            }
+            html += '<span style="display:inline-block;width:24px"></span>';
+            html += '</div>';
+            html += '<div style="display:flex">';
+            html += '<div style="display:flex;flex-direction:column">';
+            for (let r = 0; r < 8; r++) {
+                const rank = 8 - r;
+                html += `<span style="display:inline-block;width:24px;height:40px;line-height:40px;text-align:center;color:#c00;font-size:14px">${rank}</span>`;
+            }
+            html += '</div>';
+            html += '<div style="display:inline-block;border:2px solid black">';
+            for (let r = 0; r < 8; r++) {
+                html += '<div style="height:40px">';
+                for (let c = 0; c < 8; c++) {
+                    const cell = board[r][c];
+                    let bg = (r + c) % 2 === 0 ? '#4a7c59' : '#5d9b6f';
+                    let piece = cell === 1 ? '⚫' : cell === -1 ? '⚪' : '';
+                    if (piece === '') {
+                        let overlay = '';
+                        if (rootBest && rootBest[0] === r && rootBest[1] === c) {
+                            overlay = '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff0000;margin-top:14px;box-shadow:0 0 0 2px #000"></span>';
+                        } else if (rootCurrent && rootCurrent[0] === r && rootCurrent[1] === c) {
+                            overlay = '<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#00ff00;margin-top:13px;box-shadow:0 0 0 2px #000"></span>';
+                        } else if (rootSearched && rootSearched.has(r + "," + c)) {
+                            overlay = '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ffd700;margin-top:14px;box-shadow:0 0 0 1px #000"></span>';
+                        } else if (rootLosing && rootLosing.has(r + "," + c)) {
+                            overlay = '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ffffff;margin-top:14px;box-shadow:0 0 0 1px #000"></span>';
+                        }
+                        piece = overlay;
+                    }
+                    const onclickAttr = cell === 0 ? ` onclick="onCellClick(${r},${c})"` : '';
+                    const cursor = cell === 0 ? 'cursor:pointer;' : '';
+                    html += `<span${onclickAttr} style="display:inline-block;width:40px;height:40px;background:${bg};text-align:center;line-height:40px;font-size:28px;vertical-align:top;${cursor}">${piece}</span>`;
+                }
+                html += '</div>';
+            }
+            html += '</div>';
+            html += '<div style="display:flex;flex-direction:column">';
+            for (let r = 0; r < 8; r++) {
+                const rank = 8 - r;
+                html += `<span style="display:inline-block;width:24px;height:40px;line-height:40px;text-align:center;color:#c00;font-size:14px">${rank}</span>`;
+            }
+            html += '</div>';
+            html += '</div>';
+            html += '<div style="display:flex;height:20px">';
+            html += '<span style="display:inline-block;width:24px"></span>';
+            for (let c = 0; c < 8; c++) {
+                const file = String.fromCharCode(97 + c);
+                html += `<span style="display:inline-block;width:40px;height:20px;line-height:20px;text-align:center;color:#c00;font-size:14px">${file}</span>`;
+            }
+            html += '<span style="display:inline-block;width:24px"></span>';
+            html += '</div>';
+            html += '</div>';
+            html += `<div>当前玩家: ${player === 1 ? '⚫黑棋' : '⚪白棋'}</div>`;
+            boardDiv.innerHTML = html;
+        }
+        
+        function updateFENFromState() {
+            currentFEN = boardToFen(currentBoard, currentPlayer);
+            document.getElementById('fenInput').value = currentFEN;
+        }
+
+        function snapshotState() {
+            return { board: currentBoard.map(row => [...row]), player: currentPlayer };
+        }
+        
+        function pushHistory() {
+            historyStack.push(snapshotState());
+            redoStack = [];
+        }
+        
+        function applyState(state) {
+            currentBoard = state.board.map(row => [...row]);
+            currentPlayer = state.player;
+            updateFENFromState();
+            renderBoard(currentBoard, currentPlayer);
+            startAnalysis();
+        }
+        
+        function undoMove() {
+            if (historyStack.length <= 1) return;
+            const last = historyStack.pop();
+            redoStack.push(last);
+            const prev = historyStack[historyStack.length - 1];
+            applyState(prev);
+        }
+        
+        function redoMove() {
+            if (redoStack.length === 0) return;
+            const next = redoStack.pop();
+            historyStack.push(next);
+            applyState(next);
+        }
+        
+        function onCellClick(r, c) {
+            if (!currentBoard) return;
+            if (currentBoard[r][c] !== 0) return;
+            const moves = getMovesMain(currentBoard, currentPlayer);
+            let legal = false;
+            for (const m of moves) {
+                if (m[0] === r && m[1] === c) { legal = true; break; }
+            }
+            if (!legal) return;
+            currentBoard = makeMoveMain(currentBoard, r, c, currentPlayer);
+            currentPlayer = -currentPlayer;
+            const oppMoves = getMovesMain(currentBoard, currentPlayer);
+            const myMoves = getMovesMain(currentBoard, -currentPlayer);
+            if (oppMoves.length === 0 && myMoves.length > 0) {
+                currentPlayer = -currentPlayer;
+            }
+            updateFENFromState();
+            renderBoard(currentBoard, currentPlayer);
+            window.history.pushState({}, '', '#' + encodeURIComponent(currentFEN));
+            pushHistory();
+            startAnalysis();
+        }
+        
+        function loadPosition() {
+            let fen = document.getElementById('fenInput').value.trim();
+            if (!fen) fen = defaultFEN;
+            currentFEN = fen;
+            const pos = fenToBoard(fen);
+            currentBoard = pos.board;
+            currentPlayer = pos.player;
+            renderBoard(currentBoard, currentPlayer);
+            window.history.pushState({}, '', '#' + encodeURIComponent(fen));
+            document.getElementById('status').textContent = '局面已加载';
+            document.getElementById('analysisTable').innerHTML = '<tr><td colspan="7">暂无数据</td></tr>';
+            historyStack = [snapshotState()];
+            redoStack = [];
+            startAnalysis();
+        }
+
+        function resetToInitial() {
+            const fen = defaultFEN;
+            document.getElementById('fenInput').value = fen;
+            currentFEN = fen;
+            const pos = fenToBoard(fen);
+            currentBoard = pos.board;
+            currentPlayer = pos.player;
+            renderBoard(currentBoard, currentPlayer);
+            window.history.pushState({}, '', '#' + encodeURIComponent(fen));
+            document.getElementById('status').textContent = '初始局面已加载';
+            document.getElementById('analysisTable').innerHTML = '<tr><td colspan="7">暂无数据</td></tr>';
+            if (worker) { worker.terminate(); worker = null; }
+            historyStack = [snapshotState()];
+            redoStack = [];
+            startAnalysis();
+        }
+        
+        function startAnalysis() {
+            if (!currentFEN) {
+                loadPosition();
+            }
+            
+            if (worker) {
+                worker.terminate();
+            }
+            
+            document.getElementById('status').textContent = '分析中...';
+            document.getElementById('analysisTable').innerHTML = '<tr><td colspan="7">计算中...</td></tr>';
+            bestMove = null;
+            rootBest = null;
+            rootBestScore = -Infinity;
+            rootCurrent = null;
+            rootSearched = new Set();
+            rootLosing = new Set();
+            rootDepth = 0;
+            
+            const workerCode = `
+                const DIRS = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+                
+                const VMAP = [
+                    [500,-25,10,5,5,10,-25,500],
+                    [-25,-45,1,1,1,1,-45,-25],
+                    [10,1,3,2,2,3,1,10],
+                    [5,1,2,1,1,2,1,5],
+                    [5,1,2,1,1,2,1,5],
+                    [10,1,3,2,2,3,1,10],
+                    [-25,-45,1,1,1,1,-45,-25],
+                    [500,-25,10,5,5,10,-25,500]
+                ];
+                let prevBest = null;
+                let prevScores = {};
+                
+                function fenToBoard(fen) {
+                    const parts = fen.split(' ');
+                    const rows = parts[0].split('/');
+                    const board = [];
+                    for (let r = 0; r < 8; r++) {
+                        board[r] = [];
+                        for (let c = 0; c < 8; c++) {
+                            const ch = rows[r][c];
+                            board[r][c] = ch === 'B' ? 1 : ch === 'W' ? -1 : 0;
+                        }
+                    }
+                    const player = parts[1] === 'W' ? -1 : 1;
+                    return { board, player };
+                }
+                
+                function getMoves(board, player) {
+                    const moves = [];
+                    const opponent = -player;
+                    
+                    for (let r = 0; r < 8; r++) {
+                        for (let c = 0; c < 8; c++) {
+                            if (board[r][c] !== 0) continue;
+                            
+                            let valid = false;
+                            for (const [dr, dc] of DIRS) {
+                                let nr = r + dr, nc = c + dc;
+                                let hasOpponent = false;
+                                
+                                while (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
+                                    if (board[nr][nc] === 0) break;
+                                    if (board[nr][nc] === opponent) {
+                                        hasOpponent = true;
+                                        nr += dr;
+                                        nc += dc;
+                                    } else if (board[nr][nc] === player && hasOpponent) {
+                                        valid = true;
+                                        break;
+                                    } else {
+                                        break;
+                                    }
+                                }
+                            }
+                            
+                            if (valid) moves.push([r, c]);
+                        }
+                    }
+                    return moves;
+                }
+                
+                function makeMove(board, r, c, player) {
+                    const newBoard = board.map(row => [...row]);
+                    newBoard[r][c] = player;
+                    const opponent = -player;
+                    
+                    for (const [dr, dc] of DIRS) {
+                        let nr = r + dr, nc = c + dc;
+                        const toFlip = [];
+                        
+                        while (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
+                            if (newBoard[nr][nc] === 0) break;
+                            if (newBoard[nr][nc] === opponent) {
+                                toFlip.push([nr, nc]);
+                                nr += dr;
+                                nc += dc;
+                            } else if (newBoard[nr][nc] === player) {
+                                for (const [fr, fc] of toFlip) {
+                                    newBoard[fr][fc] = player;
+                                }
+                                break;
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                    return newBoard;
+                }
+                
+                function axisState(board, r, c, color, dr, dc) {
+                    let nr = r + dr, nc = c + dc;
+                    if (nr < 0 || nr >= 8 || nc < 0 || nc >= 8) return 2;
+                    const opp = -color;
+                    if (board[nr][nc] === color) {
+                        while (nr >= 0 && nr < 8 && nc >= 0 && nc < 8 && board[nr][nc] === color) {
+                            nr += dr; nc += dc;
+                        }
+                        if (nr < 0 || nr >= 8 || nc < 0 || nc >= 8) return 2;
+                        if (board[nr][nc] === 0) return 1;
+                        if (board[nr][nc] === opp) {
+                            while (nr >= 0 && nr < 8 && nc >= 0 && nc < 8 && board[nr][nc] === opp) {
+                                nr += dr; nc += dc;
+                            }
+                            if (nr < 0 || nr >= 8 || nc < 0 || nc >= 8) return 1;
+                            return board[nr][nc] === color ? 0 : 1;
+                        }
+                        return 1;
+                    } else if (board[nr][nc] === 0) {
+                        return 1;
+                    } else {
+                        while (nr >= 0 && nr < 8 && nc >= 0 && nc < 8 && board[nr][nc] === opp) {
+                            nr += dr; nc += dc;
+                        }
+                        if (nr < 0 || nr >= 8 || nc < 0 || nc >= 8) return 1;
+                        return board[nr][nc] === color ? 0 : 1;
+                    }
+                }
+                function isStableApprox(board, r, c, color) {
+                    if (board[r][c] !== color) return false;
+                    const sL = axisState(board, r, c, color, 0, -1);
+                    const sR = axisState(board, r, c, color, 0, 1);
+                    const sU = axisState(board, r, c, color, -1, 0);
+                    const sD = axisState(board, r, c, color, 1, 0);
+                    const sUL = axisState(board, r, c, color, -1, -1);
+                    const sDR = axisState(board, r, c, color, 1, 1);
+                    const sUR = axisState(board, r, c, color, -1, 1);
+                    const sDL = axisState(board, r, c, color, 1, -1);
+                    const ok = (a, b) => (a === 2 || b === 2) || (a >= 1 && b >= 1);
+                    return ok(sL, sR) && ok(sU, sD) && ok(sUL, sDR) && ok(sUR, sDL);
+                }
+                function getStable(board, color) {
+                    let stable = 0;
+                    const corners = [[0,0],[0,7],[7,0],[7,7]];
+                    const edgeDirs = [
+                        [[0,1],[1,0]], [[0,-1],[1,0]], [[0,1],[-1,0]], [[0,-1],[-1,0]]
+                    ];
+                    for (let i = 0; i < 4; i++) {
+                        const [r, c] = corners[i];
+                        if (board[r][c] === color) {
+                            stable += 10;
+                            for (const [dr, dc] of edgeDirs[i]) {
+                                let nr = r + dr, nc = c + dc;
+                                while (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
+                                    if (board[nr][nc] !== color) break;
+                                    stable += 10;
+                                    nr += dr;
+                                    nc += dc;
+                                }
+                            }
+                        }
+                    }
+                    for (let r = 1; r <= 6; r++) {
+                        for (let c = 1; c <= 6; c++) {
+                            if (board[r][c] !== color) continue;
+                            if (isStableApprox(board, r, c, color)) stable += 10;
+                        }
+                    }
+                    return stable;
+                }
+                
+                function evaluate(board, player) {
+                    let mapScore = 0;
+                    for (let r = 0; r < 8; r++) {
+                        for (let c = 0; c < 8; c++) {
+                            mapScore += board[r][c] * VMAP[r][c];
+                        }
+                    }
+                    mapScore *= player;
+                    
+                    const myMoves = getMoves(board, player);
+                    const oppMoves = getMoves(board, -player);
+                    const mobility = (myMoves.length - oppMoves.length) * 15;
+                    
+                    const stable = getStable(board, player);
+                    
+                    return mapScore + mobility + stable;
+                }
+                
+                function negamax(board, player, depth, alpha, beta, nodes) {
+                    nodes.count++;
+                    if (depth === 0) {
+                        return { score: evaluate(board, player), pv: [] };
+                    }
+                    const moves = getMoves(board, player);
+                    if (moves.length === 0) {
+                        const opponentMoves = getMoves(board, -player);
+                        if (opponentMoves.length === 0) {
+                            let finalScore = 0;
+                            for (let r = 0; r < 8; r++) {
+                                for (let c = 0; c < 8; c++) {
+                                    finalScore += board[r][c];
+                                }
+                            }
+                            return { score: finalScore * player * 10000, pv: [] };
+                        }
+                        const passRes = negamax(board, -player, depth - 1, -beta, -alpha, nodes);
+                        return { score: -passRes.score, pv: passRes.pv };
+                    }
+                    let bestPV = [];
+                    let bestScore = -Infinity;
+                    for (const [r, c] of moves) {
+                        const newBoard = makeMove(board, r, c, player);
+                        const child = negamax(newBoard, -player, depth - 1, -beta, -alpha, nodes);
+                        const score = -child.score;
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestPV = [[r, c], ...child.pv];
+                        }
+                        if (bestScore > alpha) alpha = bestScore;
+                        if (alpha >= beta) break;
+                    }
+                    return { score: bestScore, pv: bestPV };
+                }
+                function orderRootMoves(moves, prevBestMove, prevScoreMap) {
+                    const keyOf = (m) => m[0] + ',' + m[1];
+                    return moves.slice().sort((a, b) => {
+                        const aBest = prevBestMove && a[0] === prevBestMove[0] && a[1] === prevBestMove[1];
+                        const bBest = prevBestMove && b[0] === prevBestMove[0] && b[1] === prevBestMove[1];
+                        if (aBest && !bBest) return -1;
+                        if (bBest && !aBest) return 1;
+                        const sa = prevScoreMap[keyOf(a)] ?? -Infinity;
+                        const sb = prevScoreMap[keyOf(b)] ?? -Infinity;
+                        if (sa !== sb) return sb - sa; // desc by previous depth score
+                        // tie-break: prefer central moves
+                        const ca = Math.abs(3.5 - a[0]) + Math.abs(3.5 - a[1]);
+                        const cb = Math.abs(3.5 - b[0]) + Math.abs(3.5 - b[1]);
+                        return ca - cb;
+                    });
+                }
+                function negamaxRoot(board, player, depth, alpha, beta, nodes) {
+                    const moves = getMoves(board, player);
+                    if (moves.length === 0) {
+                        const opponentMoves = getMoves(board, -player);
+                        if (opponentMoves.length === 0) {
+                            let finalScore = 0;
+                            for (let r = 0; r < 8; r++) {
+                                for (let c = 0; c < 8; c++) {
+                                    finalScore += board[r][c];
+                                }
+                            }
+                            return { score: finalScore * player * 10000, pv: [], best: null, scores: {} };
+                        }
+                        const passRes = negamax(board, -player, depth - 1, -beta, -alpha, nodes);
+                        return { score: -passRes.score, pv: passRes.pv, best: null, scores: {} };
+                    }
+                    let bestPV = [];
+                    let bestScore = -Infinity;
+                    let best = null;
+                    const ordered = orderRootMoves(moves, prevBest, prevScores);
+                    const currentScores = {};
+                    for (const [r, c] of ordered) {
+                        self.postMessage({ type: 'rootStart', move: [r, c], depth });
+                        const newBoard = makeMove(board, r, c, player);
+                        const child = negamax(newBoard, -player, depth - 1, -beta, -alpha, nodes);
+                        const score = -child.score;
+                        currentScores[r + ',' + c] = score;
+                        self.postMessage({ type: 'rootDone', move: [r, c], depth, score });
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestPV = [[r, c], ...child.pv];
+                            best = [r, c];
+                        }
+                        if (bestScore > alpha) alpha = bestScore;
+                        if (alpha >= beta) break;
+                    }
+                    return { score: bestScore, pv: bestPV, best, scores: currentScores };
+                }
+                
+                self.onmessage = function(e) {
+                    const { fen, maxDepth } = e.data;
+                    const { board, player } = fenToBoard(fen);
+                    
+                    for (let depth = 1; depth <= maxDepth; depth++) {
+                        const startTime = Date.now();
+                        const nodes = { count: 0 };
+                        const result = negamaxRoot(board, player, depth, -Infinity, Infinity, nodes);
+                        const elapsed = Date.now() - startTime;
+                        const pvStr = result.pv.map(([r,c]) => String.fromCharCode(97 + c) + (8 - r)).join(' ');
+                        const move = result.best ?
+                            String.fromCharCode(97 + result.best[1]) + (8 - result.best[0]) :
+                            'none';
+                        self.postMessage({
+                            type: 'depthDone',
+                            depth,
+                            move,
+                            score: result.score,
+                            nodes: nodes.count,
+                            time: elapsed,
+                            pv: pvStr,
+                            best: result.best
+                        });
+                        prevBest = result.best;
+                        prevScores = result.scores;
+                    }
+                    
+                    self.postMessage({ done: true });
+                };
+            `;
+            
+            const blob = new Blob([workerCode], { type: 'application/javascript' });
+            worker = new Worker(URL.createObjectURL(blob));
+            
+            worker.onmessage = function(e) {
+                const data = e.data;
+                if (data.done) {
+                    document.getElementById('status').textContent = '分析完成';
+                    return;
+                }
+                if (data.type === 'rootStart') {
+                    if (data.depth !== rootDepth) {
+                        rootDepth = data.depth;
+                        rootBest = null;
+                        rootBestScore = -Infinity;
+                        rootCurrent = null;
+                        rootSearched.clear();
+                    }
+                    rootCurrent = [data.move[0], data.move[1]];
+                    document.getElementById('status').textContent = '正在分析深度 ' + data.depth + '，根着法 ' + String.fromCharCode(97 + data.move[1]) + (8 - data.move[0]) + '...';
+                    renderBoard(currentBoard, currentPlayer);
+                    return;
+                }
+                if (data.type === 'rootDone') {
+                    const key = data.move[0] + ',' + data.move[1];
+                    rootCurrent = null;
+                    rootSearched.add(key);
+                    if (data.score <= -9999) {
+                        rootLosing.add(key);
+                    }
+                    if (data.score > rootBestScore) {
+                        rootBestScore = data.score;
+                        rootBest = [data.move[0], data.move[1]];
+                    }
+                    renderBoard(currentBoard, currentPlayer);
+                    return;
+                }
+                if (data.type === 'depthDone') {
+                    const nps = data.time > 0 ? Math.round(data.nodes / data.time * 1000) : 0;
+                    if (data.best) {
+                        rootBest = [data.best[0], data.best[1]];
+                        bestMove = [data.best[0], data.best[1]];
+                    } else {
+                        rootBest = null;
+                        bestMove = null;
+                    }
+                    const diffAbs = Math.abs(data.score) >= 10000 ? Math.round(Math.abs(data.score) / 10000) : null;
+                    const scoreStr = diffAbs !== null ? (data.score > 0 ? ('胜' + diffAbs + '子') : ('负' + diffAbs + '子')) : ((data.score > 0 ? '+' : '') + data.score);
+                    const table = document.getElementById('analysisTable');
+                    table.innerHTML = `
+                        <tr>
+                            <td>${data.depth}</td>
+                            <td><b>${data.move}</b></td>
+                            <td>${scoreStr}</td>
+                            <td>${data.nodes.toLocaleString()}</td>
+                            <td>${data.time}</td>
+                            <td>${nps.toLocaleString()}</td>
+                            <td>${data.pv}</td>
+                        </tr>
+                    `;
+                    document.getElementById('status').textContent = '深度 ' + data.depth + ' 完成';
+                    renderBoard(currentBoard, currentPlayer);
+                    return;
+                }
+            };
+            
+            worker.postMessage({ fen: currentFEN, maxDepth: 64 });
+        }
+        
+        function stopAnalysis() {
+            if (worker) {
+                worker.terminate();
+                worker = null;
+                document.getElementById('status').textContent = '分析已停止';
+            }
+        }
+        
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                const fen = decodeURIComponent(hash);
+                document.getElementById('fenInput').value = fen;
+                loadPosition();
+            } else {
+                loadPosition();
+            }
+        });
+        
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                const fen = decodeURIComponent(hash);
+                document.getElementById('fenInput').value = fen;
+                loadPosition();
+            }
+        });
+    </script>
+</body>
+</html>
