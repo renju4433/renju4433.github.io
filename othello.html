@@ -15,10 +15,7 @@
         <button onclick="resetToInitial()">初始局面</button>
         <button onclick="undoMove()">回退</button>
         <button onclick="redoMove()">前进</button>
-        <span style="margin-left:8px;">选点数</span>
-        <button onclick="decreaseNBest()">-</button>
-        <span id="nbestLabel">1</span>
-        <button onclick="increaseNBest()">+</button>
+        <label style="margin-left:8px;"><input type="checkbox" id="fullScanCheckbox" onchange="toggleFullScan()"> 全盘分析</label>
     </div>
     
     <div id="board"></div>
@@ -59,6 +56,7 @@
         let nbestCount = 1;
         let bestScoresMap = {};
         let rootBestList = [];
+        let fullScanEnabled = false;
         
         const defaultFEN = '......../......./......./...WB.../...BW.../......../......../........ B';
         
@@ -181,27 +179,27 @@
                         const label = hasScore ? formatScoreText(bestScoresMap[key]) : '';
                         if (rootBest && rootBest[0] === r && rootBest[1] === c) {
                             overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
-                                + (hasScore ? '<span style="color:#f00;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + (hasScore ? '<span style="color:#00f;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
                                 + '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff0000;margin-top:6px;box-shadow:0 0 0 2px #000"></span>'
                                 + '</span>';
                         } else if (rootCurrent && rootCurrent[0] === r && rootCurrent[1] === c) {
                             overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
-                                + (hasScore ? '<span style="color:#0a0;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + (hasScore ? '<span style="color:#00f;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
                                 + '<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#00ff00;margin-top:4px;box-shadow:0 0 0 2px #000"></span>'
                                 + '</span>';
                         } else if (rootSearched && rootSearched.has(key)) {
                             overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
-                                + (hasScore ? '<span style="color:#b58900;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + (hasScore ? '<span style="color:#00f;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
                                 + '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ffd700;margin-top:6px;box-shadow:0 0 0 1px #000"></span>'
                                 + '</span>';
                         } else if (rootLosing && rootLosing.has(key)) {
                             overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
-                                + (hasScore ? '<span style="color:#666;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + (hasScore ? '<span style="color:#00f;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
                                 + '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ffffff;margin-top:6px;box-shadow:0 0 0 1px #000"></span>'
                                 + '</span>';
                         } else if (hasScore) {
                             overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
-                                + '<span style="color:#555;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>'
+                                + '<span style="color:#00f;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>'
                                 + '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888;margin-top:8px;box-shadow:0 0 0 1px #000"></span>'
                                 + '</span>';
                         }
@@ -239,18 +237,14 @@
             document.getElementById('fenInput').value = currentFEN;
         }
 
-        function updateNBestLabel() {
-            const el = document.getElementById('nbestLabel');
-            if (el) el.textContent = String(nbestCount);
+        function computeRootMoveCount() {
+            if (!currentBoard) return 0;
+            const moves = getMovesMain(currentBoard, currentPlayer);
+            return moves.length;
         }
-        function increaseNBest() {
-            nbestCount = Math.min(64, nbestCount + 1);
-            updateNBestLabel();
-            startAnalysis();
-        }
-        function decreaseNBest() {
-            nbestCount = Math.max(1, nbestCount - 1);
-            updateNBestLabel();
+        function toggleFullScan() {
+            const el = document.getElementById('fullScanCheckbox');
+            fullScanEnabled = !!(el && el.checked);
             startAnalysis();
         }
         function formatScoreText(s) {
@@ -369,6 +363,7 @@
             rootDepth = 0;
             bestScoresMap = {};
             rootBestList = [];
+            nbestCount = computeRootMoveCount();
             
             const workerCode = `
                 const DIRS = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
@@ -639,7 +634,7 @@
                 }
                 
                 self.onmessage = function(e) {
-                    const { fen, maxDepth, nbest } = e.data;
+                    const { fen, maxDepth, nbest, fullScan } = e.data;
                     const { board, player } = fenToBoard(fen);
                     
                     for (let depth = 1; depth <= maxDepth; depth++) {
@@ -651,22 +646,34 @@
                         const move = result.best ?
                             String.fromCharCode(97 + result.best[1]) + (8 - result.best[0]) :
                             'none';
-                        const top = [];
-                        const allMoves = getMoves(board, player);
-                        const ordered = orderRootMoves(allMoves, prevBest, prevScores);
-                        const currentScores = {};
-                        for (const [r,c] of ordered) {
-                            const child = negamax(makeMove(board, r, c, player), -player, depth - 1, -Infinity, Infinity, nodes);
-                            const sc = -child.score;
-                            currentScores[r + ',' + c] = sc;
-                            top.push({ r, c, score: sc, pv: child.pv });
+                        let bestList = [];
+                        let currentScores = {};
+                        if (fullScan) {
+                            const top = [];
+                            const allMoves = getMoves(board, player);
+                            const ordered = orderRootMoves(allMoves, prevBest, prevScores);
+                            currentScores = {};
+                            for (const [r,c] of ordered) {
+                                const child = negamax(makeMove(board, r, c, player), -player, depth - 1, -Infinity, Infinity, nodes);
+                                const sc = -child.score;
+                                currentScores[r + ',' + c] = sc;
+                                top.push({ r, c, score: sc, pv: child.pv });
+                            }
+                            top.sort((a,b) => b.score - a.score);
+                            bestList = top.map(item => ({
+                                move: [item.r, item.c],
+                                score: item.score,
+                                pv: [[item.r, item.c], ...item.pv].map(([rr,cc]) => String.fromCharCode(97 + cc) + (8 - rr)).join(' ')
+                            }));
+                        } else {
+                            if (result.best) {
+                                bestList = [{
+                                    move: [result.best[0], result.best[1]],
+                                    score: result.score,
+                                    pv: result.pv.map(([rr,cc]) => String.fromCharCode(97 + cc) + (8 - rr)).join(' ')
+                                }];
+                            }
                         }
-                        top.sort((a,b) => b.score - a.score);
-                        const bestList = top.slice(0, nbest).map(item => ({
-                            move: [item.r, item.c],
-                            score: item.score,
-                            pv: [[item.r, item.c], ...item.pv].map(([rr,cc]) => String.fromCharCode(97 + cc) + (8 - rr)).join(' ')
-                        }));
                         self.postMessage({
                             type: 'depthDone',
                             depth,
@@ -679,7 +686,7 @@
                             bestList
                         });
                         prevBest = result.best;
-                        prevScores = currentScores;
+                        prevScores = fullScan ? currentScores : result.scores;
                     }
                     
                     self.postMessage({ done: true });
@@ -764,7 +771,7 @@
                 }
             };
             
-            worker.postMessage({ fen: currentFEN, maxDepth: 64, nbest: nbestCount });
+            worker.postMessage({ fen: currentFEN, maxDepth: 64, nbest: nbestCount, fullScan: fullScanEnabled });
         }
         
         window.addEventListener('load', function() {
