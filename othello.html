@@ -15,8 +15,10 @@
         <button onclick="resetToInitial()">初始局面</button>
         <button onclick="undoMove()">回退</button>
         <button onclick="redoMove()">前进</button>
-        <button onclick="startAnalysis()">开始分析</button>
-        <button onclick="stopAnalysis()">停止分析</button>
+        <span style="margin-left:8px;">选点数</span>
+        <button onclick="decreaseNBest()">-</button>
+        <span id="nbestLabel">1</span>
+        <button onclick="increaseNBest()">+</button>
     </div>
     
     <div id="board"></div>
@@ -54,6 +56,9 @@
         let rootSearched = new Set();
         let rootLosing = new Set();
         let rootDepth = 0;
+        let nbestCount = 1;
+        let bestScoresMap = {};
+        let rootBestList = [];
         
         const defaultFEN = '......../......./......./...WB.../...BW.../......../......../........ B';
         
@@ -171,14 +176,34 @@
                     let piece = cell === 1 ? '⚫' : cell === -1 ? '⚪' : '';
                     if (piece === '') {
                         let overlay = '';
+                        const key = r + ',' + c;
+                        const hasScore = bestScoresMap.hasOwnProperty(key);
+                        const label = hasScore ? formatScoreText(bestScoresMap[key]) : '';
                         if (rootBest && rootBest[0] === r && rootBest[1] === c) {
-                            overlay = '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff0000;margin-top:14px;box-shadow:0 0 0 2px #000"></span>';
+                            overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
+                                + (hasScore ? '<span style="color:#f00;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff0000;margin-top:6px;box-shadow:0 0 0 2px #000"></span>'
+                                + '</span>';
                         } else if (rootCurrent && rootCurrent[0] === r && rootCurrent[1] === c) {
-                            overlay = '<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#00ff00;margin-top:13px;box-shadow:0 0 0 2px #000"></span>';
-                        } else if (rootSearched && rootSearched.has(r + "," + c)) {
-                            overlay = '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ffd700;margin-top:14px;box-shadow:0 0 0 1px #000"></span>';
-                        } else if (rootLosing && rootLosing.has(r + "," + c)) {
-                            overlay = '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ffffff;margin-top:14px;box-shadow:0 0 0 1px #000"></span>';
+                            overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
+                                + (hasScore ? '<span style="color:#0a0;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + '<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#00ff00;margin-top:4px;box-shadow:0 0 0 2px #000"></span>'
+                                + '</span>';
+                        } else if (rootSearched && rootSearched.has(key)) {
+                            overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
+                                + (hasScore ? '<span style="color:#b58900;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ffd700;margin-top:6px;box-shadow:0 0 0 1px #000"></span>'
+                                + '</span>';
+                        } else if (rootLosing && rootLosing.has(key)) {
+                            overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
+                                + (hasScore ? '<span style="color:#666;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ffffff;margin-top:6px;box-shadow:0 0 0 1px #000"></span>'
+                                + '</span>';
+                        } else if (hasScore) {
+                            overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
+                                + '<span style="color:#555;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>'
+                                + '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888;margin-top:8px;box-shadow:0 0 0 1px #000"></span>'
+                                + '</span>';
                         }
                         piece = overlay;
                     }
@@ -212,6 +237,28 @@
         function updateFENFromState() {
             currentFEN = boardToFen(currentBoard, currentPlayer);
             document.getElementById('fenInput').value = currentFEN;
+        }
+
+        function updateNBestLabel() {
+            const el = document.getElementById('nbestLabel');
+            if (el) el.textContent = String(nbestCount);
+        }
+        function increaseNBest() {
+            nbestCount = Math.min(64, nbestCount + 1);
+            updateNBestLabel();
+            startAnalysis();
+        }
+        function decreaseNBest() {
+            nbestCount = Math.max(1, nbestCount - 1);
+            updateNBestLabel();
+            startAnalysis();
+        }
+        function formatScoreText(s) {
+            if (Math.abs(s) >= 10000) {
+                const n = Math.round(Math.abs(s) / 10000);
+                return (s > 0 ? '胜' : '负') + n + '子';
+            }
+            return (s > 0 ? '+' : '') + s;
         }
 
         function snapshotState() {
@@ -320,19 +367,21 @@
             rootSearched = new Set();
             rootLosing = new Set();
             rootDepth = 0;
+            bestScoresMap = {};
+            rootBestList = [];
             
             const workerCode = `
                 const DIRS = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
                 
                 const VMAP = [
-                    [500,-25,10,5,5,10,-25,500],
-                    [-25,-45,1,1,1,1,-45,-25],
-                    [10,1,3,2,2,3,1,10],
-                    [5,1,2,1,1,2,1,5],
-                    [5,1,2,1,1,2,1,5],
-                    [10,1,3,2,2,3,1,10],
-                    [-25,-45,1,1,1,1,-45,-25],
-                    [500,-25,10,5,5,10,-25,500]
+                    [100, -20, 10, 5, 5, 10, -20, 100],
+                    [-20, -50, -2, -2, -2, -2, -50, -20],
+                    [10, -2, 5, 1, 1, 5, -2, 10],
+                    [5, -2, 1, 0, 0, 1, -2, 5],
+                    [5, -2, 1, 0, 0, 1, -2, 5],
+                    [10, -2, 5, 1, 1, 5, -2, 10],
+                    [-20, -50, -2, -2, -2, -2, -50, -20],
+                    [100, -20, 10, 5, 5, 10, -20, 100]
                 ];
                 let prevBest = null;
                 let prevScores = {};
@@ -496,7 +545,7 @@
                     
                     const myMoves = getMoves(board, player);
                     const oppMoves = getMoves(board, -player);
-                    const mobility = (myMoves.length - oppMoves.length) * 15;
+                    const mobility = (myMoves.length - oppMoves.length) * 10;
                     
                     const stable = getStable(board, player);
                     
@@ -547,11 +596,7 @@
                         if (bBest && !aBest) return 1;
                         const sa = prevScoreMap[keyOf(a)] ?? -Infinity;
                         const sb = prevScoreMap[keyOf(b)] ?? -Infinity;
-                        if (sa !== sb) return sb - sa; // desc by previous depth score
-                        // tie-break: prefer central moves
-                        const ca = Math.abs(3.5 - a[0]) + Math.abs(3.5 - a[1]);
-                        const cb = Math.abs(3.5 - b[0]) + Math.abs(3.5 - b[1]);
-                        return ca - cb;
+                        return sb - sa; // desc by previous depth score
                     });
                 }
                 function negamaxRoot(board, player, depth, alpha, beta, nodes) {
@@ -594,7 +639,7 @@
                 }
                 
                 self.onmessage = function(e) {
-                    const { fen, maxDepth } = e.data;
+                    const { fen, maxDepth, nbest } = e.data;
                     const { board, player } = fenToBoard(fen);
                     
                     for (let depth = 1; depth <= maxDepth; depth++) {
@@ -606,6 +651,22 @@
                         const move = result.best ?
                             String.fromCharCode(97 + result.best[1]) + (8 - result.best[0]) :
                             'none';
+                        const top = [];
+                        const allMoves = getMoves(board, player);
+                        const ordered = orderRootMoves(allMoves, prevBest, prevScores);
+                        const currentScores = {};
+                        for (const [r,c] of ordered) {
+                            const child = negamax(makeMove(board, r, c, player), -player, depth - 1, -Infinity, Infinity, nodes);
+                            const sc = -child.score;
+                            currentScores[r + ',' + c] = sc;
+                            top.push({ r, c, score: sc, pv: child.pv });
+                        }
+                        top.sort((a,b) => b.score - a.score);
+                        const bestList = top.slice(0, nbest).map(item => ({
+                            move: [item.r, item.c],
+                            score: item.score,
+                            pv: [[item.r, item.c], ...item.pv].map(([rr,cc]) => String.fromCharCode(97 + cc) + (8 - rr)).join(' ')
+                        }));
                         self.postMessage({
                             type: 'depthDone',
                             depth,
@@ -614,10 +675,11 @@
                             nodes: nodes.count,
                             time: elapsed,
                             pv: pvStr,
-                            best: result.best
+                            best: result.best,
+                            bestList
                         });
                         prevBest = result.best;
-                        prevScores = result.scores;
+                        prevScores = currentScores;
                     }
                     
                     self.postMessage({ done: true });
@@ -665,39 +727,44 @@
                     if (data.best) {
                         rootBest = [data.best[0], data.best[1]];
                         bestMove = [data.best[0], data.best[1]];
+                        rootBestScore = data.bestList && data.bestList.length > 0 ? data.bestList[0].score : data.score;
                     } else {
                         rootBest = null;
                         bestMove = null;
+                        rootBestScore = -Infinity;
                     }
-                    const diffAbs = Math.abs(data.score) >= 10000 ? Math.round(Math.abs(data.score) / 10000) : null;
-                    const scoreStr = diffAbs !== null ? (data.score > 0 ? ('胜' + diffAbs + '子') : ('负' + diffAbs + '子')) : ((data.score > 0 ? '+' : '') + data.score);
+                    bestScoresMap = {};
+                    rootBestList = [];
+                    const rows = [];
+                    for (let i = 0; i < (data.bestList ? data.bestList.length : 0); i++) {
+                        const item = data.bestList[i];
+                        const key = item.move[0] + ',' + item.move[1];
+                        bestScoresMap[key] = item.score;
+                        rootBestList.push(item.move);
+                        const diffAbs = Math.abs(item.score) >= 10000 ? Math.round(Math.abs(item.score) / 10000) : null;
+                        const scoreStr = diffAbs !== null ? (item.score > 0 ? ('胜' + diffAbs + '子') : ('负' + diffAbs + '子')) : ((item.score > 0 ? '+' : '') + item.score);
+                        const moveStr = String.fromCharCode(97 + item.move[1]) + (8 - item.move[0]);
+                        rows.push(`
+                            <tr>
+                                <td>${data.depth}</td>
+                                <td><b>${moveStr}</b></td>
+                                <td>${scoreStr}</td>
+                                <td>${data.nodes.toLocaleString()}</td>
+                                <td>${data.time}</td>
+                                <td>${nps.toLocaleString()}</td>
+                                <td>${item.pv}</td>
+                            </tr>
+                        `);
+                    }
                     const table = document.getElementById('analysisTable');
-                    table.innerHTML = `
-                        <tr>
-                            <td>${data.depth}</td>
-                            <td><b>${data.move}</b></td>
-                            <td>${scoreStr}</td>
-                            <td>${data.nodes.toLocaleString()}</td>
-                            <td>${data.time}</td>
-                            <td>${nps.toLocaleString()}</td>
-                            <td>${data.pv}</td>
-                        </tr>
-                    `;
+                    table.innerHTML = rows.join('');
                     document.getElementById('status').textContent = '深度 ' + data.depth + ' 完成';
                     renderBoard(currentBoard, currentPlayer);
                     return;
                 }
             };
             
-            worker.postMessage({ fen: currentFEN, maxDepth: 64 });
-        }
-        
-        function stopAnalysis() {
-            if (worker) {
-                worker.terminate();
-                worker = null;
-                document.getElementById('status').textContent = '分析已停止';
-            }
+            worker.postMessage({ fen: currentFEN, maxDepth: 64, nbest: nbestCount });
         }
         
         window.addEventListener('load', function() {
