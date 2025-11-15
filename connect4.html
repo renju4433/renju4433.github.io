@@ -34,7 +34,7 @@
             <tr><td colspan="7">暂无数据</td></tr>
         </tbody>
     </table>
-    <script src="connect4_engine.js"></script>
+    <script src="connect4.js"></script>
     <script>
         let worker = null;
         let wasm = null;
@@ -61,7 +61,6 @@
         let neighbors = Array.from({length: HEIGHT}, () => Array(WIDTH).fill(0));
         let defaultFEN = '...........' + '/' + '...........' + '/' + '...........' + '/' + '...........' + ' B';
         function recomputeDefaultFEN(){ const row = '.'.repeat(WIDTH); const rows = []; for(let r=0;r<HEIGHT;r++){ rows.push(row);} defaultFEN = rows.join('/') + ' B'; }
-        function initWasm(){ if (typeof Connect4Module !== 'function'){ console.error('connect4_engine.js 未加载'); return; } const promise = Connect4Module(); promise.then(Module => { wasm = Module; engine = new Module.ConnectFourEngine(); wasmReady = true; const eb = engine.getBoard(); if (eb && eb.length>0){ HEIGHT = eb.length; WIDTH = eb[0].length; neighbors = Array.from({length: HEIGHT}, () => Array(WIDTH).fill(0)); recomputeDefaultFEN(); } startAnalysis(); }); }
         function fenToBoard(fen) {
             const parts = fen.split(' ');
             const rows = parts[0].split('/');
@@ -238,17 +237,15 @@
             document.getElementById('status').textContent = '分析中...';
             document.getElementById('analysisTable').innerHTML = '<tr><td colspan="7">计算中...</td></tr>';
             bestMove = null; rootBest = null; rootBestScore = -Infinity; rootCurrent = null; rootSearched = new Set(); rootLosing = new Set(); rootDepth = 0; bestScoresMap = {};
-            const scriptUrl = new URL('connect4_engine.js', window.location.href).href;
-            const wasmUrl = new URL('connect4_engine.wasm', window.location.href).href;
+            const scriptUrl = new URL('connect4.js', window.location.href).href;
             const code = `
                 self.importScripts('${scriptUrl}');
-                let Module = null; let engine = null;
+                let engine = null;
                 function applyFENToEngine(fen, H, W){ engine.reset(); const parts = fen.split(' '); const rows = parts[0].split('/'); const blacks=[]; const whites=[]; for (let r=0; r<Math.min(H, rows.length); r++){ for (let c=0; c<Math.min(W, rows[r].length); c++){ const ch = rows[r][c]; if (ch==='B'){ blacks.push({x:r,y:c}); } else if (ch==='W'){ whites.push({x:r,y:c}); } } } let bi=0, wi=0; while (bi<blacks.length || wi<whites.length){ if (bi<blacks.length){ const p = blacks[bi++]; engine.makeMove({x:p.x, y:p.y}); } if (wi<whites.length){ const p = whites[wi++]; engine.makeMove({x:p.x, y:p.y}); } } }
-                function vecToArray(vec){ if (!vec) return []; if (typeof vec.size === 'function' && typeof vec.get === 'function'){ const n = vec.size(); const arr = new Array(n); for (let i=0;i<n;i++){ arr[i] = vec.get(i); } return arr; } if (Array.isArray(vec)) return vec; return []; }
-                self.onmessage = function(e){ const {fen, maxDepth, H, W} = e.data; Connect4Module({ locateFile: function(path){ return (path.endsWith('.wasm') ? '${wasmUrl}' : path); } }).then(M => { Module = M; engine = new Module.ConnectFourEngine(); applyFENToEngine(fen, H, W); for (let depth=1; depth<=maxDepth; depth++){ const result = engine.getBestMove(depth); const nodes = Number(result.nodes); const time = Number(result.time); const score = Number(result.score); const depthN = Number(result.depth); const best = result.bestMove; const pvArr = vecToArray(result.pv); const moveStr = best && Number(best.x)>=0 ? (String.fromCharCode(97 + Number(best.y)) + (H - Number(best.x))) : 'none'; const pvStr = pvArr.map(p=> String.fromCharCode(97 + Number(p.y)) + (H - Number(p.x))).join(' '); self.postMessage({ type:'depthDone', depth: depthN, move: moveStr, score, nodes, time, pv: pvStr, best: best && Number(best.x)>=0 ? [Number(best.x), Number(best.y)] : null }); } self.postMessage({done:true}); }); }`;
+                self.onmessage = function(e){ const {fen, maxDepth, H, W} = e.data; engine = new ConnectFourEngine(); applyFENToEngine(fen, H, W); engine.setProgressCallback(function(depth, score, nodes, time, bestMove, pv){ try { const pvStr = (pv||[]).map(function(p){ return String.fromCharCode(97 + Number(p.y)) + (H - Number(p.x)); }).join(' '); const best = (bestMove && Number(bestMove.x)>=0) ? [Number(bestMove.x), Number(bestMove.y)] : null; const moveStr = best ? (String.fromCharCode(97 + best[1]) + (H - best[0])) : 'none'; self.postMessage({ type:'depthDone', depth: Number(depth), move: moveStr, score: Number(score), nodes: Number(nodes), time: Number(time), pv: pvStr, best }); } catch(err){} }); const result = engine.getBestMove(maxDepth); self.postMessage({ type:'final', depth: Number(result.depth) }); self.postMessage({done:true}); }`;
             const blob = new Blob([code], { type: 'application/javascript' });
             worker = new Worker(URL.createObjectURL(blob));
-            worker.onmessage = function(e){ const data = e.data; if (data.done){ document.getElementById('status').textContent = '分析完成'; return; } const nps = data.time>0 ? Math.round((data.nodes||0) / data.time * 1000) : 0; if (data.best) { rootBest = [data.best[0], data.best[1]]; bestMove = [data.best[0], data.best[1]]; rootBestScore = data.score; } else { rootBest = null; bestMove = null; rootBestScore = -Infinity; } const rows = []; bestScoresMap = {}; const moveStr = data.best ? (String.fromCharCode(97 + data.best[1]) + (HEIGHT - data.best[0])) : (data.move || 'none'); if (data.best) { bestScoresMap[data.best[0] + ',' + data.best[1]] = data.score; } rows.push('<tr>' +
+            worker.onmessage = function(e){ const data = e.data; if (data.done){ document.getElementById('status').textContent = '分析完成'; return; } const table = document.getElementById('analysisTable'); if (data.type === 'depthDone'){ const nps = data.time>0 ? Math.round((data.nodes||0) / data.time * 1000) : 0; if (data.best) { rootBest = [data.best[0], data.best[1]]; bestMove = [data.best[0], data.best[1]]; rootBestScore = data.score; bestScoresMap = {}; bestScoresMap[data.best[0] + ',' + data.best[1]] = data.score; } else { rootBest = null; bestMove = null; rootBestScore = -Infinity; bestScoresMap = {}; } const moveStr = data.best ? (String.fromCharCode(97 + data.best[1]) + (HEIGHT - data.best[0])) : (data.move || 'none'); const row = '<tr>' +
                 '<td>' + data.depth + '</td>' +
                 '<td><b>' + moveStr + '</b></td>' +
                 '<td>' + ((data.score>0?'+':'')) + data.score + '</td>' +
@@ -256,12 +253,11 @@
                 '<td>' + data.time + '</td>' +
                 '<td>' + nps.toLocaleString() + '</td>' +
                 '<td>' + data.pv + '</td>' +
-            '</tr>');
-            const table = document.getElementById('analysisTable'); table.innerHTML = rows.join(''); document.getElementById('status').textContent = '深度 ' + data.depth + ' 完成'; renderBoard(currentBoard, currentPlayer); };
+            '</tr>'; table.innerHTML = row; document.getElementById('status').textContent = '深度 ' + data.depth + ' 完成'; } else if (data.type === 'final'){ /* 保持最后一层显示，不再批量展开 */ document.getElementById('status').textContent = '分析完成'; } renderBoard(currentBoard, currentPlayer); };
             worker.postMessage({ fen: currentFEN, maxDepth: 44, H: HEIGHT, W: WIDTH });
         }
         function stopAnalysis() { if (worker) { worker.terminate(); worker = null; document.getElementById('status').textContent = '分析已停止'; } }
-        window.addEventListener('load', function() { initWasm(); const hash = window.location.hash.substring(1); if (hash) { const fen = decodeURIComponent(hash); document.getElementById('fenInput').value = fen; loadPosition(); } else { loadPosition(); } });
+        window.addEventListener('load', function() { const hash = window.location.hash.substring(1); if (hash) { const fen = decodeURIComponent(hash); document.getElementById('fenInput').value = fen; loadPosition(); } else { loadPosition(); } });
         window.addEventListener('hashchange', function() { const hash = window.location.hash.substring(1); if (hash) { const fen = decodeURIComponent(hash); document.getElementById('fenInput').value = fen; loadPosition(); } });
     </script>
 </body>
