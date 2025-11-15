@@ -3,7 +3,7 @@ class ConnectFourEngine {
     this.BOARD_PADDING = 4;
     this.DIRECTIONS = [[0,1],[1,0],[1,1],[1,-1]];
     this.EVAL_SCORES = [0,1,1,9,9,27,27,81];
-    this.size = { width: 11, height: 4 };
+    this.size = { width: 15, height: 4 };
     this.board = [];
     this.zobristTable = [];
     this.patternTable = [];
@@ -200,7 +200,7 @@ class ConnectFourEngine {
     for (let i=1;i<8;i++){ blackScore += blackTypes[i]*this.EVAL_SCORES[i]; whiteScore += whiteTypes[i]*this.EVAL_SCORES[i]; }
     let extension = 0;
     if (blackTypes[7] > 0 || whiteTypes[7] > 0) extension = 1;
-    else if (blackTypes[6] > 0 || whiteTypes[6] > 0) extension = 1;
+    else if (blackTypes[6] > 0 || whiteTypes[6] > 0) extension = 0.5;
     const result = (color===1) ? blackScore - whiteScore + 54 : whiteScore - blackScore + 54;
     return [result, extension];
   }
@@ -328,7 +328,7 @@ class ConnectFourEngine {
       bestResult.pv = r[1];
       bestResult.nodes = this.searchNodes;
       bestResult.time = elapsed;
-      this.addLayerInfo(depth, r[0], this.searchNodes - layerStartNodes, layerTime, bestResult.bestMove, bestResult.pv);
+      this.addLayerInfo(depth, r[0], this.searchNodes, elapsed, bestResult.bestMove, bestResult.pv);
     }
     bestResult.layerInfo = this.searchLayerInfo.slice();
     return bestResult;
