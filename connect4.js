@@ -200,6 +200,7 @@ class ConnectFourEngine {
     for (let i=1;i<8;i++){ blackScore += blackTypes[i]*this.EVAL_SCORES[i]; whiteScore += whiteTypes[i]*this.EVAL_SCORES[i]; }
     let extension = 0;
     if (blackTypes[7] > 0 || whiteTypes[7] > 0) extension = 1;
+    else if (blackTypes[6] > 0 || whiteTypes[6] > 0) extension = 1;
     const result = (color===1) ? blackScore - whiteScore + 54 : whiteScore - blackScore + 54;
     return [result, extension];
   }
