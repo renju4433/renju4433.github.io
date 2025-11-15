@@ -190,17 +190,19 @@ class ConnectFourEngine {
         }
       }
     }
-    if (color===1 && blackTypes[7]>0) return [9999,false];
-    if (color===0 && whiteTypes[7]>0) return [9999,false];
-    if (color===1 && whiteTypes[7]>1) return [-9998,false];
-    if (color===0 && blackTypes[7]>1) return [-9998,false];
-    if (color===1 && blackTypes[6]>0 && whiteTypes[7]===0) return [9997,false];
-    if (color===0 && whiteTypes[6]>0 && blackTypes[7]===0) return [9997,false];
+    if (color===1 && blackTypes[7]>0) return [9999, 1];
+    if (color===0 && whiteTypes[7]>0) return [9999, 1];
+    if (color===1 && whiteTypes[7]>1) return [-9998, 1];
+    if (color===0 && blackTypes[7]>1) return [-9998, 1];
+    if (color===1 && blackTypes[6]>0 && whiteTypes[7]===0) return [9997, 0.5];
+    if (color===0 && whiteTypes[6]>0 && blackTypes[7]===0) return [9997, 0.5];
     let blackScore=0, whiteScore=0;
     for (let i=1;i<8;i++){ blackScore += blackTypes[i]*this.EVAL_SCORES[i]; whiteScore += whiteTypes[i]*this.EVAL_SCORES[i]; }
-    const expand = (color===1) ? (whiteTypes[7]===1 || whiteTypes[6]>=1) : (blackTypes[7]===1 || blackTypes[6]>=1);
+    let extension = 0;
+    if (blackTypes[7] > 0 || whiteTypes[7] > 0) extension = 1;
+    else if (blackTypes[6] > 0 || whiteTypes[6] > 0) extension = 0.5;
     const result = (color===1) ? blackScore - whiteScore + 54 : whiteScore - blackScore + 54;
-    return [result, expand];
+    return [result, extension];
   }
   generateAllMoves(){
     const moves=[];
@@ -266,7 +268,7 @@ class ConnectFourEngine {
       }
     }
     const ev = this.evaluate(this.currentPlayer===this.PieceType.Black?1:0);
-    let score = ev[0], expand = ev[1];
+    let score = ev[0], extension = ev[1];
     if (score >= 9997) score -= this.ply;
     if (score <= -9997) score += this.ply;
     if (depth <= 0 || (this.ply > 0 && (score + this.ply >= 9997 || score - this.ply <= -9998))){ return [score, []]; }
@@ -278,12 +280,12 @@ class ConnectFourEngine {
       this.makeMove(move);
       let currentScore, currentPV;
       if (moveCount === 0){
-        const r = this.negamax(expand ? depth : depth - 1, -beta, -alpha, []);
+        const r = this.negamax(depth - 1 + extension, -beta, -alpha, []);
         currentScore = -r[0]; currentPV = r[1];
       } else {
-        const r = this.negamax(expand ? depth : depth - 1, -alpha-1, -alpha, []);
+        const r = this.negamax(depth - 1 + extension, -alpha-1, -alpha, []);
         currentScore = -r[0]; currentPV = r[1];
-        if (currentScore > alpha && currentScore < beta){ const fr = this.negamax(expand ? depth : depth - 1, -beta, -alpha, []); currentScore = -fr[0]; currentPV = fr[1]; }
+        if (currentScore > alpha && currentScore < beta){ const fr = this.negamax(depth - 1 + extension, -beta, -alpha, []); currentScore = -fr[0]; currentPV = fr[1]; }
       }
       this.undoMove(); moveCount++;
       if (currentScore > bestScore){ bestScore = currentScore; bestPV = [move].concat(currentPV); }
