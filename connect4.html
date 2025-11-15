@@ -254,7 +254,7 @@
                 '<td>' + nps.toLocaleString() + '</td>' +
                 '<td>' + data.pv + '</td>' +
             '</tr>'; table.innerHTML = row; document.getElementById('status').textContent = '深度 ' + data.depth + ' 完成'; } else if (data.type === 'final'){ /* 保持最后一层显示，不再批量展开 */ document.getElementById('status').textContent = '分析完成'; } renderBoard(currentBoard, currentPlayer); };
-            worker.postMessage({ fen: currentFEN, maxDepth: 44, H: HEIGHT, W: WIDTH });
+            worker.postMessage({ fen: currentFEN, maxDepth: 60, H: HEIGHT, W: WIDTH });
         }
         function stopAnalysis() { if (worker) { worker.terminate(); worker = null; document.getElementById('status').textContent = '分析已停止'; } }
         window.addEventListener('load', function() { const hash = window.location.hash.substring(1); if (hash) { const fen = decodeURIComponent(hash); document.getElementById('fenInput').value = fen; loadPosition(); } else { loadPosition(); } });

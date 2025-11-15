@@ -200,11 +200,11 @@ class ConnectFourEngine {
     for (let i=1;i<8;i++){ blackScore += blackTypes[i]*this.EVAL_SCORES[i]; whiteScore += whiteTypes[i]*this.EVAL_SCORES[i]; }
     let extension = 0;
     if (color === 1) {
-      if (whiteTypes[7] > 0) extension = 0.99;
-      else if (whiteTypes[6] > 0) extension = 0.49;
+      if (whiteTypes[7] > 0) extension = 1;
+      else if (whiteTypes[6] > 0) extension = 0.5;
     } else {
-      if (blackTypes[7] > 0) extension = 0.99;
-      else if (blackTypes[6] > 0) extension = 0.49;
+      if (blackTypes[7] > 0) extension = 1;
+      else if (blackTypes[6] > 0) extension = 0.5;
     }
     const result = (color===1) ? blackScore - whiteScore + 54 : whiteScore - blackScore + 54;
     return [result, extension];
@@ -225,9 +225,15 @@ class ConnectFourEngine {
         if (this.hashTable.has(this.zobristKey)){
           const entry = this.hashTable.get(this.zobristKey);
           if (entry.key === this.zobristKey && entry.bestMove && entry.bestMove.x !== -1){
-            moveList.hashMove = entry.bestMove;
-            moveList.hasHashMove = true;
-            return entry.bestMove;
+            const hx = entry.bestMove.x, hy = entry.bestMove.y;
+            const empty = this.board[hx + this.BOARD_PADDING][hy + this.BOARD_PADDING].piece === this.PieceType.Empty;
+            if (empty){
+              moveList.hashMove = entry.bestMove;
+              moveList.hasHashMove = true;
+              return entry.bestMove;
+            } else {
+              moveList.hasHashMove = false;
+            }
           }
         }
         break;
