@@ -199,8 +199,13 @@ class ConnectFourEngine {
     let blackScore=0, whiteScore=0;
     for (let i=1;i<8;i++){ blackScore += blackTypes[i]*this.EVAL_SCORES[i]; whiteScore += whiteTypes[i]*this.EVAL_SCORES[i]; }
     let extension = 0;
-    if (blackTypes[7] > 0 || whiteTypes[7] > 0) extension = 1;
-    else if (blackTypes[6] > 0 || whiteTypes[6] > 0) extension = 0.5;
+    if (color === 1) {
+      if (whiteTypes[7] > 0) extension = 0.99;
+      else if (whiteTypes[6] > 0) extension = 0.49;
+    } else {
+      if (blackTypes[7] > 0) extension = 0.99;
+      else if (blackTypes[6] > 0) extension = 0.49;
+    }
     const result = (color===1) ? blackScore - whiteScore + 54 : whiteScore - blackScore + 54;
     return [result, extension];
   }
