@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect4分析面板</title>
+</head>
+<body>
+    <h1>Connect4分析面板</h1>
+    <div>
+        <label>FEN码: <input type="text" id="fenInput" size="80" placeholder="输入FEN码或留空使用默认局面"></label>
+        <br>
+        <button onclick="loadPosition()">加载局面</button>
+        <button onclick="resetToInitial()">初始局面</button>
+        <button onclick="undoMove()">回退</button>
+        <button onclick="redoMove()">前进</button>
+        <label style="margin-left:8px;"><input type="checkbox" id="fullScanCheckbox" onchange="toggleFullScan()"> 全盘分析</label>
+    </div>
+    <div id="board"></div>
+    <div id="status">等待开始...</div>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>深度</th>
+                <th>最佳着法</th>
+                <th>评分</th>
+                <th>节点数</th>
+                <th>时间(ms)</th>
+                <th>速度(nodes/s)</th>
+                <th>主要变化</th>
+            </tr>
+        </thead>
+        <tbody id="analysisTable">
+            <tr><td colspan="7">暂无数据</td></tr>
+        </tbody>
+    </table>
+    <script src="connect4_engine.js"></script>
+    <script>
+        let worker = null;
+        let wasm = null;
+        let engine = null;
+        let wasmReady = false;
+        let currentFEN = '';
+        let currentBoard = null;
+        let currentPlayer = null;
+        let bestMove = null;
+        let historyStack = [];
+        let redoStack = [];
+        let moveHistory = [];
+        let redoMoves = [];
+        let rootBest = null;
+        let rootBestScore = -Infinity;
+        let rootCurrent = null;
+        let rootSearched = new Set();
+        let rootLosing = new Set();
+        let rootDepth = 0;
+        let bestScoresMap = {};
+        let fullScanEnabled = false;
+        let WIDTH = 11;
+        let HEIGHT = 4;
+        let neighbors = Array.from({length: HEIGHT}, () => Array(WIDTH).fill(0));
+        let defaultFEN = '...........' + '/' + '...........' + '/' + '...........' + '/' + '...........' + ' B';
+        function recomputeDefaultFEN(){ const row = '.'.repeat(WIDTH); const rows = []; for(let r=0;r<HEIGHT;r++){ rows.push(row);} defaultFEN = rows.join('/') + ' B'; }
+        function initWasm(){ if (typeof Connect4Module !== 'function'){ console.error('connect4_engine.js 未加载'); return; } const promise = Connect4Module(); promise.then(Module => { wasm = Module; engine = new Module.ConnectFourEngine(); wasmReady = true; const eb = engine.getBoard(); if (eb && eb.length>0){ HEIGHT = eb.length; WIDTH = eb[0].length; neighbors = Array.from({length: HEIGHT}, () => Array(WIDTH).fill(0)); recomputeDefaultFEN(); } startAnalysis(); }); }
+        function fenToBoard(fen) {
+            const parts = fen.split(' ');
+            const rows = parts[0].split('/');
+            const board = [];
+            for (let r = 0; r < HEIGHT; r++) {
+                board[r] = [];
+                for (let c = 0; c < WIDTH; c++) {
+                    const ch = rows[r][c];
+                    board[r][c] = ch === 'B' ? 1 : ch === 'W' ? -1 : 0;
+                }
+            }
+            const player = parts[1] === 'W' ? -1 : 1;
+            return { board, player };
+        }
+        function boardToFen(board, player) {
+            const rows = [];
+            for (let r = 0; r < HEIGHT; r++) {
+                let row = '';
+                for (let c = 0; c < WIDTH; c++) {
+                    const v = board[r][c];
+                    row += v === 1 ? 'B' : v === -1 ? 'W' : '.';
+                }
+                rows.push(row);
+            }
+            return rows.join('/') + ' ' + (player === 1 ? 'B' : 'W');
+        }
+        function formatScoreText(s) {
+            return (s > 0 ? '+' : '') + s;
+        }
+        function renderBoard(board, player) {
+            const boardDiv = document.getElementById('board');
+            let html = '';
+            html += '<div style="display:inline-block">';
+            html += '<div style="display:flex;height:20px">';
+            html += '<span style="display:inline-block;width:24px"></span>';
+            for (let c = 0; c < WIDTH; c++) {
+                const file = String.fromCharCode(97 + c);
+                html += `<span style="display:inline-block;width:40px;height:20px;line-height:20px;text-align:center;color:#c00;font-size:14px">${file}</span>`;
+            }
+            html += '<span style="display:inline-block;width:24px"></span>';
+            html += '</div>';
+            html += '<div style="display:flex">';
+            html += '<div style="display:flex;flex-direction:column">';
+            for (let r = 0; r < HEIGHT; r++) {
+                const rank = HEIGHT - r;
+                html += `<span style="display:inline-block;width:24px;height:40px;line-height:40px;text-align:center;color:#c00;font-size:14px">${rank}</span>`;
+            }
+            html += '</div>';
+            html += '<div style="display:inline-block;border:2px solid black">';
+            for (let r = 0; r < HEIGHT; r++) {
+                html += '<div style="height:40px">';
+                for (let c = 0; c < WIDTH; c++) {
+                    const cell = board[r][c];
+                    let bg = (r + c) % 2 === 0 ? '#e0e0e0' : '#d0d0d0';
+                    let piece = cell === 1 ? '⚫' : cell === -1 ? '⚪' : '';
+                    if (piece === '') {
+                        let overlay = '';
+                        const key = r + ',' + c;
+                        const hasScore = bestScoresMap.hasOwnProperty(key);
+                        const label = hasScore ? formatScoreText(bestScoresMap[key]) : ((rootBest && rootBest[0] === r && rootBest[1] === c) ? formatScoreText(rootBestScore) : '');
+                        if (rootBest && rootBest[0] === r && rootBest[1] === c) {
+                            overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
+                                + (label ? '<span style="color:#00f;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff0000;margin-top:6px;box-shadow:0 0 0 2px #000"></span>'
+                                + '</span>';
+                        } else if (rootCurrent && rootCurrent[0] === r && rootCurrent[1] === c) {
+                            overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
+                                + (label ? '<span style="color:#00f;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + '<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#00ff00;margin-top:4px;box-shadow:0 0 0 2px #000"></span>'
+                                + '</span>';
+                        } else if (rootSearched && rootSearched.has(key)) {
+                            overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
+                                + (label ? '<span style="color:#00f;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ffd700;margin-top:6px;box-shadow:0 0 0 1px #000"></span>'
+                                + '</span>';
+                        } else if (rootLosing && rootLosing.has(key)) {
+                            overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
+                                + (label ? '<span style="color:#00f;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ffffff;margin-top:6px;box-shadow:0 0 0 1px #000"></span>'
+                                + '</span>';
+                        } else if (hasScore) {
+                            overlay = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:40px;width:40px;">'
+                                + (label ? '<span style="color:#00f;font-size:12px;margin-top:2px;line-height:12px;">' + label + '</span>' : '<span style="height:12px"></span>')
+                                + '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#888;margin-top:8px;box-shadow:0 0 0 1px #000"></span>'
+                                + '</span>';
+                        }
+                        piece = overlay;
+                    }
+                    const onclickAttr = cell === 0 ? ` onclick="onCellClick(${r},${c})"` : '';
+                    const cursor = cell === 0 ? 'cursor:pointer;' : '';
+                    html += `<span${onclickAttr} style="display:inline-block;width:40px;height:40px;background:${bg};text-align:center;line-height:40px;font-size:28px;vertical-align:top;${cursor}">${piece}</span>`;
+                }
+                html += '</div>';
+            }
+            html += '</div>';
+            html += '<div style="display:flex;flex-direction:column">';
+            for (let r = 0; r < HEIGHT; r++) {
+                const rank = HEIGHT - r;
+                html += `<span style="display:inline-block;width:24px;height:40px;line-height:40px;text-align:center;color:#c00;font-size:14px">${rank}</span>`;
+            }
+            html += '</div>';
+            html += '</div>';
+            html += '<div style="display:flex;height:20px">';
+            html += '<span style="display:inline-block;width:24px"></span>';
+            for (let c = 0; c < WIDTH; c++) {
+                const file = String.fromCharCode(97 + c);
+                html += `<span style="display:inline-block;width:40px;height:20px;line-height:20px;text-align:center;color:#c00;font-size:14px">${file}</span>`;
+            }
+            html += '<span style="display:inline-block;width:24px"></span>';
+            html += '</div>';
+            html += '</div>';
+            html += `<div>当前玩家: ${player === 1 ? '⚫黑棋' : '⚪白棋'}</div>`;
+            boardDiv.innerHTML = html;
+        }
+        function updateFENFromState() {
+            currentFEN = boardToFen(currentBoard, currentPlayer);
+            document.getElementById('fenInput').value = currentFEN;
+        }
+        function snapshotState() { return { board: currentBoard.map(row => [...row]), player: currentPlayer }; }
+        function pushHistory() { historyStack.push(snapshotState()); redoStack = []; }
+        function applyState(state) { currentBoard = state.board.map(row => [...row]); currentPlayer = state.player; updateFENFromState(); renderBoard(currentBoard, currentPlayer); startAnalysis(); }
+        function resetNeighbors() { neighbors = Array.from({length: HEIGHT}, () => Array(WIDTH).fill(0)); }
+        function updateNeighbors(r, c, delta) { const rays = [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]]; for (let t=0;t<rays.length;t++){ const dr=rays[t][0], dc=rays[t][1]; for (let k=1;k<=3;k++){ const nr=r+dr*k, nc=c+dc*k; if (nr>=0&&nr<HEIGHT&&nc>=0&&nc<WIDTH) neighbors[nr][nc]+=delta; } } const knights = [[1,2],[2,1],[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1],[-1,2]]; for (let i=0;i<knights.length;i++){ const nr=r+knights[i][0], nc=c+knights[i][1]; if (nr>=0&&nr<HEIGHT&&nc>=0&&nc<WIDTH) neighbors[nr][nc]+=delta; } }
+        function rebuildNeighborsFromBoard() { resetNeighbors(); for (let r=0;r<HEIGHT;r++){ for (let c=0;c<WIDTH;c++){ if (currentBoard[r][c]!==0) updateNeighbors(r,c,1); } } }
+        function undoMove() { if (historyStack.length <= 1) return; const last = historyStack.pop(); redoStack.push(last); const prev = historyStack[historyStack.length - 1]; if (moveHistory.length>0){ const mv = moveHistory.pop(); updateNeighbors(mv[0], mv[1], -1); redoMoves.push(mv); } applyState(prev); }
+        function redoMove() { if (redoStack.length === 0) return; const next = redoStack.pop(); historyStack.push(next); if (redoMoves.length>0){ const mv = redoMoves.pop(); updateNeighbors(mv[0], mv[1], 1); moveHistory.push(mv); } applyState(next); }
+        function onCellClick(r, c) {
+            if (!currentBoard) return;
+            if (currentBoard[r][c] !== 0) return;
+            currentBoard[r][c] = currentPlayer;
+            currentPlayer = currentPlayer === 1 ? -1 : 1;
+            updateFENFromState();
+            renderBoard(currentBoard, currentPlayer);
+            window.history.pushState({}, '', '#' + encodeURIComponent(currentFEN));
+            pushHistory();
+            moveHistory.push([r,c]);
+            updateNeighbors(r,c,1);
+            startAnalysis();
+        }
+        function loadPosition() {
+            let fen = document.getElementById('fenInput').value.trim();
+            if (!fen) fen = defaultFEN;
+            currentFEN = fen;
+            const pos = fenToBoard(fen);
+            currentBoard = pos.board;
+            currentPlayer = pos.player;
+            renderBoard(currentBoard, currentPlayer);
+            window.history.pushState({}, '', '#' + encodeURIComponent(fen));
+            document.getElementById('status').textContent = '局面已加载';
+            document.getElementById('analysisTable').innerHTML = '<tr><td colspan="7">暂无数据</td></tr>';
+            historyStack = [snapshotState()]; redoStack = []; moveHistory = []; redoMoves = []; rebuildNeighborsFromBoard();
+            startAnalysis();
+        }
+        function resetToInitial() {
+            const fen = defaultFEN;
+            document.getElementById('fenInput').value = fen;
+            currentFEN = fen;
+            const pos = fenToBoard(fen);
+            currentBoard = pos.board;
+            currentPlayer = pos.player;
+            renderBoard(currentBoard, currentPlayer);
+            window.history.pushState({}, '', '#' + encodeURIComponent(fen));
+            document.getElementById('status').textContent = '初始局面已加载';
+            document.getElementById('analysisTable').innerHTML = '<tr><td colspan="7">暂无数据</td></tr>';
+            if (worker) { worker.terminate(); worker = null; }
+            historyStack = [snapshotState()]; redoStack = []; moveHistory = []; redoMoves = []; rebuildNeighborsFromBoard();
+            startAnalysis();
+        }
+        function toggleFullScan() { const el = document.getElementById('fullScanCheckbox'); fullScanEnabled = !!(el && el.checked); startAnalysis(); }
+        function applyFENToEngine(fen){ if (!engine || !wasm) return; engine.reset(); const parts = fen.split(' '); const rows = parts[0].split('/'); const blacks=[]; const whites=[]; for (let r=0; r<Math.min(HEIGHT, rows.length); r++){ for (let c=0; c<Math.min(WIDTH, rows[r].length); c++){ const ch = rows[r][c]; if (ch==='B'){ blacks.push({x:r,y:c}); } else if (ch==='W'){ whites.push({x:r,y:c}); } } } let bi=0, wi=0; while (bi<blacks.length || wi<whites.length){ if (bi<blacks.length){ const p = blacks[bi++]; engine.makeMove({x:p.x, y:p.y}); } if (wi<whites.length){ const p = whites[wi++]; engine.makeMove({x:p.x, y:p.y}); } } const eb = engine.getBoard(); if (eb && eb.length>0){ HEIGHT = eb.length; WIDTH = eb[0].length; currentBoard = []; for (let r=0; r<HEIGHT; r++){ currentBoard[r] = []; for (let c=0; c<WIDTH; c++){ const piece = eb[r][c]; currentBoard[r][c] = (piece===wasm.PieceType.Black?1:(piece===wasm.PieceType.White?-1:0)); } } } const ep = engine.getCurrentPlayer(); currentPlayer = (ep===wasm.PieceType.Black ? 1 : -1); }
+        function startAnalysis() {
+            if (!currentFEN) { loadPosition(); }
+            if (worker) { worker.terminate(); }
+            document.getElementById('status').textContent = '分析中...';
+            document.getElementById('analysisTable').innerHTML = '<tr><td colspan="7">计算中...</td></tr>';
+            bestMove = null; rootBest = null; rootBestScore = -Infinity; rootCurrent = null; rootSearched = new Set(); rootLosing = new Set(); rootDepth = 0; bestScoresMap = {};
+            const scriptUrl = new URL('connect4_engine.js', window.location.href).href;
+            const wasmUrl = new URL('connect4_engine.wasm', window.location.href).href;
+            const code = `
+                self.importScripts('${scriptUrl}');
+                let Module = null; let engine = null;
+                function applyFENToEngine(fen, H, W){ engine.reset(); const parts = fen.split(' '); const rows = parts[0].split('/'); const blacks=[]; const whites=[]; for (let r=0; r<Math.min(H, rows.length); r++){ for (let c=0; c<Math.min(W, rows[r].length); c++){ const ch = rows[r][c]; if (ch==='B'){ blacks.push({x:r,y:c}); } else if (ch==='W'){ whites.push({x:r,y:c}); } } } let bi=0, wi=0; while (bi<blacks.length || wi<whites.length){ if (bi<blacks.length){ const p = blacks[bi++]; engine.makeMove({x:p.x, y:p.y}); } if (wi<whites.length){ const p = whites[wi++]; engine.makeMove({x:p.x, y:p.y}); } } }
+                function vecToArray(vec){ if (!vec) return []; if (typeof vec.size === 'function' && typeof vec.get === 'function'){ const n = vec.size(); const arr = new Array(n); for (let i=0;i<n;i++){ arr[i] = vec.get(i); } return arr; } if (Array.isArray(vec)) return vec; return []; }
+                self.onmessage = function(e){ const {fen, maxDepth, fullScan, H, W} = e.data; Connect4Module({ locateFile: function(path){ return (path.endsWith('.wasm') ? '${wasmUrl}' : path); } }).then(M => { Module = M; engine = new Module.ConnectFourEngine(); applyFENToEngine(fen, H, W); for (let depth=1; depth<=maxDepth; depth++){ const result = engine.getBestMove(depth); const nodes = Number(result.nodes); const time = Number(result.time); const score = Number(result.score); const depthN = Number(result.depth); const best = result.bestMove; const pvArr = vecToArray(result.pv); const moveStr = best && Number(best.x)>=0 ? (String.fromCharCode(97 + Number(best.y)) + (H - Number(best.x))) : 'none'; const pvStr = pvArr.map(p=> String.fromCharCode(97 + Number(p.y)) + (H - Number(p.x))).join(' '); let bestList = []; if (fullScan && result.moveScores){ const ms = vecToArray(result.moveScores); bestList = ms.map(sm => ({ move: [Number(sm.pos.x), Number(sm.pos.y)], score: Number(sm.score), pv: '' })); } self.postMessage({ type:'depthDone', depth: depthN, move: moveStr, score, nodes, time, pv: pvStr, best: best && Number(best.x)>=0 ? [Number(best.x), Number(best.y)] : null, bestList }); } self.postMessage({done:true}); }); }`;
+            const blob = new Blob([code], { type: 'application/javascript' });
+            worker = new Worker(URL.createObjectURL(blob));
+            worker.onmessage = function(e){ const data = e.data; if (data.done){ document.getElementById('status').textContent = '分析完成'; return; } const nps = data.time>0 ? Math.round((data.nodes||0) / data.time * 1000) : 0; if (data.best) { rootBest = [data.best[0], data.best[1]]; bestMove = [data.best[0], data.best[1]]; rootBestScore = data.bestList && data.bestList.length>0 ? data.bestList[0].score : data.score; } else { rootBest = null; bestMove = null; rootBestScore = -Infinity; } const rows = []; bestScoresMap = {}; if (data.bestList && data.bestList.length>0){ for (let i=0; i<data.bestList.length; i++){ const item = data.bestList[i]; const key = item.move[0] + ',' + item.move[1]; bestScoresMap[key] = item.score; const moveStr = String.fromCharCode(97 + item.move[1]) + (HEIGHT - item.move[0]); rows.push('<tr>' +
+                '<td>' + data.depth + '</td>' +
+                '<td><b>' + moveStr + '</b></td>' +
+                '<td>' + ((item.score>0?'+':'')) + item.score + '</td>' +
+                '<td>' + (data.nodes||0).toLocaleString() + '</td>' +
+                '<td>' + data.time + '</td>' +
+                '<td>' + nps.toLocaleString() + '</td>' +
+                '<td>' + data.pv + '</td>' +
+            '</tr>'); } } else { const moveStr = data.best ? (String.fromCharCode(97 + data.best[1]) + (HEIGHT - data.best[0])) : (data.move || 'none'); if (data.best) { bestScoresMap[data.best[0] + ',' + data.best[1]] = data.score; } rows.push('<tr>' +
+                '<td>' + data.depth + '</td>' +
+                '<td><b>' + moveStr + '</b></td>' +
+                '<td>' + ((data.score>0?'+':'')) + data.score + '</td>' +
+                '<td>' + (data.nodes||0).toLocaleString() + '</td>' +
+                '<td>' + data.time + '</td>' +
+                '<td>' + nps.toLocaleString() + '</td>' +
+                '<td>' + data.pv + '</td>' +
+            '</tr>'); }
+            const table = document.getElementById('analysisTable'); table.innerHTML = rows.join(''); document.getElementById('status').textContent = '深度 ' + data.depth + ' 完成'; renderBoard(currentBoard, currentPlayer); };
+            worker.postMessage({ fen: currentFEN, maxDepth: 44, fullScan: fullScanEnabled, H: HEIGHT, W: WIDTH });
+        }
+        function stopAnalysis() { if (worker) { worker.terminate(); worker = null; document.getElementById('status').textContent = '分析已停止'; } }
+        window.addEventListener('load', function() { initWasm(); const hash = window.location.hash.substring(1); if (hash) { const fen = decodeURIComponent(hash); document.getElementById('fenInput').value = fen; loadPosition(); } else { loadPosition(); } });
+        window.addEventListener('hashchange', function() { const hash = window.location.hash.substring(1); if (hash) { const fen = decodeURIComponent(hash); document.getElementById('fenInput').value = fen; loadPosition(); } });
+    </script>
+</body>
+</html>
