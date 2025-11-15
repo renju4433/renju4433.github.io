@@ -14,7 +14,7 @@
         <button onclick="resetToInitial()">初始局面</button>
         <button onclick="undoMove()">回退</button>
         <button onclick="redoMove()">前进</button>
-        <label style="margin-left:8px;"><input type="checkbox" id="fullScanCheckbox" onchange="toggleFullScan()"> 全盘分析</label>
+        
     </div>
     <div id="board"></div>
     <div id="status">等待开始...</div>
@@ -55,7 +55,7 @@
         let rootLosing = new Set();
         let rootDepth = 0;
         let bestScoresMap = {};
-        let fullScanEnabled = false;
+        
         let WIDTH = 11;
         let HEIGHT = 4;
         let neighbors = Array.from({length: HEIGHT}, () => Array(WIDTH).fill(0));
@@ -230,7 +230,7 @@
             historyStack = [snapshotState()]; redoStack = []; moveHistory = []; redoMoves = []; rebuildNeighborsFromBoard();
             startAnalysis();
         }
-        function toggleFullScan() { const el = document.getElementById('fullScanCheckbox'); fullScanEnabled = !!(el && el.checked); startAnalysis(); }
+        
         function applyFENToEngine(fen){ if (!engine || !wasm) return; engine.reset(); const parts = fen.split(' '); const rows = parts[0].split('/'); const blacks=[]; const whites=[]; for (let r=0; r<Math.min(HEIGHT, rows.length); r++){ for (let c=0; c<Math.min(WIDTH, rows[r].length); c++){ const ch = rows[r][c]; if (ch==='B'){ blacks.push({x:r,y:c}); } else if (ch==='W'){ whites.push({x:r,y:c}); } } } let bi=0, wi=0; while (bi<blacks.length || wi<whites.length){ if (bi<blacks.length){ const p = blacks[bi++]; engine.makeMove({x:p.x, y:p.y}); } if (wi<whites.length){ const p = whites[wi++]; engine.makeMove({x:p.x, y:p.y}); } } const eb = engine.getBoard(); if (eb && eb.length>0){ HEIGHT = eb.length; WIDTH = eb[0].length; currentBoard = []; for (let r=0; r<HEIGHT; r++){ currentBoard[r] = []; for (let c=0; c<WIDTH; c++){ const piece = eb[r][c]; currentBoard[r][c] = (piece===wasm.PieceType.Black?1:(piece===wasm.PieceType.White?-1:0)); } } } const ep = engine.getCurrentPlayer(); currentPlayer = (ep===wasm.PieceType.Black ? 1 : -1); }
         function startAnalysis() {
             if (!currentFEN) { loadPosition(); }
@@ -245,18 +245,10 @@
                 let Module = null; let engine = null;
                 function applyFENToEngine(fen, H, W){ engine.reset(); const parts = fen.split(' '); const rows = parts[0].split('/'); const blacks=[]; const whites=[]; for (let r=0; r<Math.min(H, rows.length); r++){ for (let c=0; c<Math.min(W, rows[r].length); c++){ const ch = rows[r][c]; if (ch==='B'){ blacks.push({x:r,y:c}); } else if (ch==='W'){ whites.push({x:r,y:c}); } } } let bi=0, wi=0; while (bi<blacks.length || wi<whites.length){ if (bi<blacks.length){ const p = blacks[bi++]; engine.makeMove({x:p.x, y:p.y}); } if (wi<whites.length){ const p = whites[wi++]; engine.makeMove({x:p.x, y:p.y}); } } }
                 function vecToArray(vec){ if (!vec) return []; if (typeof vec.size === 'function' && typeof vec.get === 'function'){ const n = vec.size(); const arr = new Array(n); for (let i=0;i<n;i++){ arr[i] = vec.get(i); } return arr; } if (Array.isArray(vec)) return vec; return []; }
-                self.onmessage = function(e){ const {fen, maxDepth, fullScan, H, W} = e.data; Connect4Module({ locateFile: function(path){ return (path.endsWith('.wasm') ? '${wasmUrl}' : path); } }).then(M => { Module = M; engine = new Module.ConnectFourEngine(); applyFENToEngine(fen, H, W); for (let depth=1; depth<=maxDepth; depth++){ const result = engine.getBestMove(depth); const nodes = Number(result.nodes); const time = Number(result.time); const score = Number(result.score); const depthN = Number(result.depth); const best = result.bestMove; const pvArr = vecToArray(result.pv); const moveStr = best && Number(best.x)>=0 ? (String.fromCharCode(97 + Number(best.y)) + (H - Number(best.x))) : 'none'; const pvStr = pvArr.map(p=> String.fromCharCode(97 + Number(p.y)) + (H - Number(p.x))).join(' '); let bestList = []; if (fullScan && result.moveScores){ const ms = vecToArray(result.moveScores); bestList = ms.map(sm => ({ move: [Number(sm.pos.x), Number(sm.pos.y)], score: Number(sm.score), pv: '' })); } self.postMessage({ type:'depthDone', depth: depthN, move: moveStr, score, nodes, time, pv: pvStr, best: best && Number(best.x)>=0 ? [Number(best.x), Number(best.y)] : null, bestList }); } self.postMessage({done:true}); }); }`;
+                self.onmessage = function(e){ const {fen, maxDepth, H, W} = e.data; Connect4Module({ locateFile: function(path){ return (path.endsWith('.wasm') ? '${wasmUrl}' : path); } }).then(M => { Module = M; engine = new Module.ConnectFourEngine(); applyFENToEngine(fen, H, W); for (let depth=1; depth<=maxDepth; depth++){ const result = engine.getBestMove(depth); const nodes = Number(result.nodes); const time = Number(result.time); const score = Number(result.score); const depthN = Number(result.depth); const best = result.bestMove; const pvArr = vecToArray(result.pv); const moveStr = best && Number(best.x)>=0 ? (String.fromCharCode(97 + Number(best.y)) + (H - Number(best.x))) : 'none'; const pvStr = pvArr.map(p=> String.fromCharCode(97 + Number(p.y)) + (H - Number(p.x))).join(' '); self.postMessage({ type:'depthDone', depth: depthN, move: moveStr, score, nodes, time, pv: pvStr, best: best && Number(best.x)>=0 ? [Number(best.x), Number(best.y)] : null }); } self.postMessage({done:true}); }); }`;
             const blob = new Blob([code], { type: 'application/javascript' });
             worker = new Worker(URL.createObjectURL(blob));
-            worker.onmessage = function(e){ const data = e.data; if (data.done){ document.getElementById('status').textContent = '分析完成'; return; } const nps = data.time>0 ? Math.round((data.nodes||0) / data.time * 1000) : 0; if (data.best) { rootBest = [data.best[0], data.best[1]]; bestMove = [data.best[0], data.best[1]]; rootBestScore = data.bestList && data.bestList.length>0 ? data.bestList[0].score : data.score; } else { rootBest = null; bestMove = null; rootBestScore = -Infinity; } const rows = []; bestScoresMap = {}; if (data.bestList && data.bestList.length>0){ for (let i=0; i<data.bestList.length; i++){ const item = data.bestList[i]; const key = item.move[0] + ',' + item.move[1]; bestScoresMap[key] = item.score; const moveStr = String.fromCharCode(97 + item.move[1]) + (HEIGHT - item.move[0]); rows.push('<tr>' +
-                '<td>' + data.depth + '</td>' +
-                '<td><b>' + moveStr + '</b></td>' +
-                '<td>' + ((item.score>0?'+':'')) + item.score + '</td>' +
-                '<td>' + (data.nodes||0).toLocaleString() + '</td>' +
-                '<td>' + data.time + '</td>' +
-                '<td>' + nps.toLocaleString() + '</td>' +
-                '<td>' + data.pv + '</td>' +
-            '</tr>'); } } else { const moveStr = data.best ? (String.fromCharCode(97 + data.best[1]) + (HEIGHT - data.best[0])) : (data.move || 'none'); if (data.best) { bestScoresMap[data.best[0] + ',' + data.best[1]] = data.score; } rows.push('<tr>' +
+            worker.onmessage = function(e){ const data = e.data; if (data.done){ document.getElementById('status').textContent = '分析完成'; return; } const nps = data.time>0 ? Math.round((data.nodes||0) / data.time * 1000) : 0; if (data.best) { rootBest = [data.best[0], data.best[1]]; bestMove = [data.best[0], data.best[1]]; rootBestScore = data.score; } else { rootBest = null; bestMove = null; rootBestScore = -Infinity; } const rows = []; bestScoresMap = {}; const moveStr = data.best ? (String.fromCharCode(97 + data.best[1]) + (HEIGHT - data.best[0])) : (data.move || 'none'); if (data.best) { bestScoresMap[data.best[0] + ',' + data.best[1]] = data.score; } rows.push('<tr>' +
                 '<td>' + data.depth + '</td>' +
                 '<td><b>' + moveStr + '</b></td>' +
                 '<td>' + ((data.score>0?'+':'')) + data.score + '</td>' +
@@ -264,9 +256,9 @@
                 '<td>' + data.time + '</td>' +
                 '<td>' + nps.toLocaleString() + '</td>' +
                 '<td>' + data.pv + '</td>' +
-            '</tr>'); }
+            '</tr>');
             const table = document.getElementById('analysisTable'); table.innerHTML = rows.join(''); document.getElementById('status').textContent = '深度 ' + data.depth + ' 完成'; renderBoard(currentBoard, currentPlayer); };
-            worker.postMessage({ fen: currentFEN, maxDepth: 44, fullScan: fullScanEnabled, H: HEIGHT, W: WIDTH });
+            worker.postMessage({ fen: currentFEN, maxDepth: 44, H: HEIGHT, W: WIDTH });
         }
         function stopAnalysis() { if (worker) { worker.terminate(); worker = null; document.getElementById('status').textContent = '分析已停止'; } }
         window.addEventListener('load', function() { initWasm(); const hash = window.location.hash.substring(1); if (hash) { const fen = decodeURIComponent(hash); document.getElementById('fenInput').value = fen; loadPosition(); } else { loadPosition(); } });
