@@ -190,17 +190,16 @@ class ConnectFourEngine {
         }
       }
     }
-    if (color===1 && blackTypes[7]>0) return [9999, 1];
-    if (color===0 && whiteTypes[7]>0) return [9999, 1];
-    if (color===1 && whiteTypes[7]>1) return [-9998, 1];
-    if (color===0 && blackTypes[7]>1) return [-9998, 1];
-    if (color===1 && blackTypes[6]>0 && whiteTypes[7]===0) return [9997, 0.5];
-    if (color===0 && whiteTypes[6]>0 && blackTypes[7]===0) return [9997, 0.5];
+    if (color===1 && blackTypes[7]>0) return [9999, 0];
+    if (color===0 && whiteTypes[7]>0) return [9999, 0];
+    if (color===1 && whiteTypes[7]>1) return [-9998, 0];
+    if (color===0 && blackTypes[7]>1) return [-9998, 0];
+    if (color===1 && blackTypes[6]>0 && whiteTypes[7]===0) return [9997, 0];
+    if (color===0 && whiteTypes[6]>0 && blackTypes[7]===0) return [9997, 0];
     let blackScore=0, whiteScore=0;
     for (let i=1;i<8;i++){ blackScore += blackTypes[i]*this.EVAL_SCORES[i]; whiteScore += whiteTypes[i]*this.EVAL_SCORES[i]; }
     let extension = 0;
     if (blackTypes[7] > 0 || whiteTypes[7] > 0) extension = 1;
-    else if (blackTypes[6] > 0 || whiteTypes[6] > 0) extension = 0.5;
     const result = (color===1) ? blackScore - whiteScore + 54 : whiteScore - blackScore + 54;
     return [result, extension];
   }
