@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gomoku分析面板</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #board span.cell { display:inline-block; width:28px; height:28px; background:#e0c08e; border:1px solid #b09060; line-height:28px; text-align:center; font-size:20px; vertical-align:top; box-sizing:border-box; }
+    .coord-file { display:inline-block; width:28px; height:18px; line-height:18px; text-align:center; color:#c00; font-size:12px; box-sizing:border-box; }
+    .coord-rank { display:inline-block; width:18px; height:28px; line-height:28px; text-align:center; color:#c00; font-size:12px; box-sizing:border-box; }
+  </style>
+</head>
+<body>
+  <h1>Gomoku分析面板</h1>
+  <div>
+    <label>序列: <input type="text" id="fenInput" size="80"></label>
+    <button onclick="loadPosition()">加载局面</button>
+    <button onclick="resetToInitial()">初始局面</button>
+    <button onclick="undoMove()">回退</button>
+    <button onclick="redoMove()">前进</button>
+  </div>
+  <div id="board"></div>
+  <div id="status">等待开始...</div>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>深度</th>
+        <th>最佳着法</th>
+        <th>评分</th>
+        <th>节点数</th>
+        <th>时间(ms)</th>
+        <th>速度(nodes/s)</th>
+        <th>主要变化</th>
+      </tr>
+    </thead>
+    <tbody id="analysisTable"><tr><td colspan="7">暂无数据</td></tr></tbody>
+  </table>
+  <script>
+    let worker=null; let currentFEN=''; let currentBoard=null; let currentPlayer=1; let WIDTH=15; let HEIGHT=15; let moveHistory=[]; let redoStack=[];
+    let rootBest=null; let rootBestScore=-Infinity; let bestScoresMap={};
+    function parseSeqToBoard(seq){ const board=[]; for(let r=0;r<HEIGHT;r++){ board[r]=Array(WIDTH).fill(0);} moveHistory=[]; const tokens = (seq.match(/([a-oA-O]\d{1,2})/g) || []); let player=1; for(let i=0;i<tokens.length;i++){ const t=tokens[i]; const m = /^([a-oA-O])(\d{1,2})$/.exec(t); if(!m) continue; const file=m[1].toLowerCase().charCodeAt(0)-97; const rank=parseInt(m[2],10); if(file<0||file>=WIDTH||rank<1||rank>HEIGHT) continue; const row = HEIGHT - rank; const col = file; if(board[row][col]!==0) continue; board[row][col] = player; moveHistory.push([row,col]); player = -player; }
+      return {board, player}; }
+    function boardToSeq(){ const tokens=[]; for(let i=0;i<moveHistory.length;i++){ const r=moveHistory[i][0], c=moveHistory[i][1]; const file = String.fromCharCode(97+c); const rank = HEIGHT - r; tokens.push(file+String(rank)); } return tokens.join(''); }
+    function renderBoard(board, player){ const div=document.getElementById('board'); let html='';
+      // 顶部坐标
+      html += '<div style="display:flex;height:18px"><span style="display:inline-block;width:20px"></span>';
+      for(let c=0;c<WIDTH;c++){ const file=String.fromCharCode(97+c); html += '<span class="coord-file">'+file+'</span>'; }
+      html += '<span style="display:inline-block;width:20px"></span></div>';
+      // 中间棋盘
+      html += '<div style="display:flex">';
+      html += '<div style="display:flex;flex-direction:column">';
+      for(let r=0;r<HEIGHT;r++){ const rank = HEIGHT - r; html += '<span class="coord-rank">'+rank+'</span>'; }
+      html += '</div>';
+      html += '<div style="display:inline-block;border:2px solid #000">';
+      for(let r=0;r<HEIGHT;r++){
+        html += '<div style="height:28px">';
+        for(let c=0;c<WIDTH;c++){
+          const v=board[r][c]; const piece = v===1?'⚫':(v===-1?'⚪':'');
+          let content = piece||'';
+          if(v===0){
+            const isBest = (rootBest && rootBest[0]===r && rootBest[1]===c);
+            if(isBest){ const label = (rootBestScore>0?'+':'')+rootBestScore; content = '<span style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:28px;width:28px;">'+
+              (label?('<span style="color:#00f;font-size:12px;margin-top:2px;line-height:12px;">'+label+'</span>'):'<span style="height:12px"></span>')+
+              '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ff0000;margin-top:4px;box-shadow:0 0 0 1px #000"></span>'+
+            '</span>'; }
+          }
+          html += '<span class="cell"'+(v===0?' onclick="onCellClick('+r+','+c+')"':'')+'>' + content + '</span>';
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+      html += '<div style="display:flex;flex-direction:column">';
+      for(let r=0;r<HEIGHT;r++){ const rank = HEIGHT - r; html += '<span class="coord-rank">'+rank+'</span>'; }
+      html += '</div>';
+      html += '</div>';
+      // 底部坐标
+      html += '<div style="display:flex;height:18px"><span style="display:inline-block;width:20px"></span>';
+      for(let c=0;c<WIDTH;c++){ const file=String.fromCharCode(97+c); html += '<span class="coord-file">'+file+'</span>'; }
+      html += '<span style="display:inline-block;width:20px"></span></div>';
+      html += '<div>当前玩家: '+(player===1?'⚫黑棋':'⚪白棋')+'</div>';
+      div.innerHTML=html; }
+    function loadPosition(){ let seq=document.getElementById('fenInput').value.trim(); const fromHash = decodeURIComponent((window.location.hash||'').slice(1)); if(!seq && fromHash){ seq = fromHash; document.getElementById('fenInput').value = seq; } currentFEN=seq; window.location.hash = encodeURIComponent(seq); const pos=parseSeqToBoard(seq); currentBoard=pos.board; currentPlayer=pos.player; redoStack=[]; renderBoard(currentBoard,currentPlayer); startAnalysis(); }
+    function resetToInitial(){ currentBoard = Array.from({length:HEIGHT},()=>Array(WIDTH).fill(0)); currentPlayer = 1; moveHistory=[]; redoStack=[]; currentFEN=''; document.getElementById('fenInput').value=''; window.location.hash=''; renderBoard(currentBoard,currentPlayer); startAnalysis(); }
+    function onCellClick(r,c){ if(currentBoard[r][c]!==0) return; currentBoard[r][c]=currentPlayer; currentPlayer = currentPlayer===1?-1:1; moveHistory.push([r,c]); redoStack=[]; const seq = boardToSeq(); document.getElementById('fenInput').value = seq; window.location.hash = encodeURIComponent(seq); renderBoard(currentBoard,currentPlayer); startAnalysis(); }
+    function undoMove(){ if(moveHistory.length===0) return; const last = moveHistory.pop(); const r=last[0], c=last[1]; currentBoard[r][c] = 0; currentPlayer = currentPlayer===1?-1:1; redoStack.push([r,c]); const seq = boardToSeq(); document.getElementById('fenInput').value = seq; window.location.hash = encodeURIComponent(seq); renderBoard(currentBoard,currentPlayer); startAnalysis(); }
+    function redoMove(){ if(redoStack.length===0) return; const mv = redoStack.pop(); const r=mv[0], c=mv[1]; if(currentBoard[r][c]!==0) return; currentBoard[r][c] = currentPlayer; currentPlayer = currentPlayer===1?-1:1; moveHistory.push([r,c]); const seq = boardToSeq(); document.getElementById('fenInput').value = seq; window.location.hash = encodeURIComponent(seq); renderBoard(currentBoard,currentPlayer); startAnalysis(); }
+    function startAnalysis(){ if(worker) worker.terminate(); document.getElementById('status').textContent='分析中...'; document.getElementById('analysisTable').innerHTML='<tr><td colspan="7">计算中...</td></tr>'; rootBest=null; rootBestScore=-Infinity; bestScoresMap={};
+      var scriptUrl = (window.location.protocol==='file:' ? 'http://localhost:8000/gomoku_cmd.js' : new URL('gomoku_cmd.js', window.location.href).href);
+      var wasmUrl = (window.location.protocol==='file:' ? 'http://localhost:8000/gomoku_cmd.wasm' : new URL('gomoku_cmd.wasm', window.location.href).href);
+      const codeLines = [];
+      codeLines.push("self.importScripts('"+scriptUrl+"');");
+      codeLines.push("var Module=null; var startTs=0; var lastDepth=0; var lastScore=0;");
+      codeLines.push("function parseMsg(text,H){ try{ if(text.indexOf('MESSAGE')!==0) return; var t=text.slice(7).trim(); if(t.indexOf('depth=')===0){ var m=t.match(/depth=(\\d+)\\s+nodes=(\\d+)(?:\\s+val=(\\-?\\d+))?/); if(m){ var depth=Number(m[1]); var nodes=Number(m[2]); var score = m[3]!==undefined ? Number(m[3]) : lastScore; lastDepth=depth; lastScore=score; var time=Date.now()-startTs; var best=null; var pvStr=''; var mvAll = t.match(/bestLine:\\s*(.*)$/); if(mvAll && mvAll[1]){ var coords = mvAll[1].match(/\\[(\\-?\\d+)\\s*,\\s*(\\-?\\d+)\\]/g) || []; for(var i=0;i<coords.length;i++){ var mm = coords[i].match(/\\[(\\-?\\d+)\\s*,\\s*(\\-?\\d+)\\]/); if(!mm) continue; var x=Number(mm[1]); var y=Number(mm[2]); if(i===0){ best=[x,y]; } var token = String.fromCharCode(97 + y) + (H - x); pvStr += (i?(' '):'') + token; } } var moveStr = (best? (String.fromCharCode(97 + best[1]) + (H - best[0])) : ''); self.postMessage({ type:'depthDone', depth:depth, move:moveStr, score:score, nodes:nodes, time:time, pv:pvStr, best:best }); } } else if(t.indexOf('best:')===0){ var m=t.match(/best:\\s*\\[(\\-?\\d+)\\s*,\\s*(\\-?\\d+)\\]\\s*val=(\\-?\\d+)/); if(m){ var x=Number(m[1]); var y=Number(m[2]); var score=Number(m[3]); lastScore=score; var best=[x,y]; var moveStr = String.fromCharCode(97 + y) + (H - x); self.postMessage({ type:'depthDone', depth:lastDepth, move:moveStr, score:score, nodes:0, time:Date.now()-startTs, pv:'', best:best }); } } else if(t.indexOf('bestLine:')===0){ var coords = t.match(/\\[(\\-?\\d+)\\s*,\\s*(\\-?\\d+)\\]/g) || []; var pvStr=''; var best=null; for(var i=0;i<coords.length;i++){ var mm = coords[i].match(/\\[(\\-?\\d+)\\s*,\\s*(\\-?\\d+)\\]/); if(!mm) continue; var x=Number(mm[1]); var y=Number(mm[2]); if(i===0){ best=[x,y]; } var token = String.fromCharCode(97 + y) + (H - x); pvStr += (i?(' '):'') + token; } var moveStr = (best? (String.fromCharCode(97 + best[1]) + (H - best[0])) : ''); self.postMessage({ type:'depthDone', depth:lastDepth, move:moveStr, score:lastScore, nodes:0, time:Date.now()-startTs, pv:pvStr, best:best }); } }catch(e){} }");
+      codeLines.push("self.onmessage = function(e){ var seq=e.data.seq; var H=e.data.H; var W=e.data.W; GomokuModule({ locateFile: function(path){ return (path.endsWith('.wasm') ? '"+wasmUrl+"' : path); }, print: function(txt){ parseMsg(txt,H); }, printErr: function(err){ self.postMessage({ type:'error', error:String(err)}); } }).then(function(M){ Module=M; startTs=Date.now(); Module.ccall('gomocup_init', null, [], []); var cmd = Module.cwrap('gomocup_command','string',['string']); cmd('START '+String(H)); var boardCmd='BOARD\\n'; var tokens = (seq && seq.match(/([a-oA-O]\\d{1,2})/g)) || []; for(var i=0;i<tokens.length;i++){ var t=tokens[i]; var mm=t.match(/^([a-oA-O])(\\d{1,2})$/); if(!mm) continue; var file=mm[1].toLowerCase().charCodeAt(0)-97; var rank=parseInt(mm[2],10); if(file<0||file>=W||rank<1||rank>H) continue; var x = H - rank; var y = file; var c = 1; boardCmd += (x+','+y+','+c+'\\n'); } boardCmd += 'DONE'; var result = cmd(boardCmd); self.postMessage({ type:'final', depth:lastDepth }); self.postMessage({ done:true }); }).catch(function(err){ self.postMessage({ type:'error', error:String(err)}); }); };");
+      const code = codeLines.join('\n');
+    const blob = new Blob([code],{type:'application/javascript'});
+    worker = new Worker(URL.createObjectURL(blob));
+    worker.onmessage = function(e){ const data=e.data; if(data.done){ document.getElementById('status').textContent='分析完成'; return; } if(data.type==='error'){ document.getElementById('status').textContent='错误: '+data.error; return; } const table=document.getElementById('analysisTable'); if(data.type==='depthDone'){ const nps = data.time>0 ? Math.round((data.nodes||0)/data.time*1000) : 0; if(data.best){ rootBest=[data.best[0],data.best[1]]; rootBestScore=data.score; bestScoresMap={}; bestScoresMap[data.best[0]+','+data.best[1]]=data.score; } else { rootBest=null; rootBestScore=-Infinity; bestScoresMap={}; } const moveStr = data.best ? (String.fromCharCode(97+data.best[1])+(HEIGHT-data.best[0])) : (data.move||'none'); const row = '<tr>'+
+      '<td>'+data.depth+'</td>'+
+      '<td><b>'+moveStr+'</b></td>'+
+      '<td>'+((data.score>0?'+':''))+data.score+'</td>'+
+      '<td>'+(data.nodes||0).toLocaleString()+'</td>'+
+      '<td>'+data.time+'</td>'+
+      '<td>'+nps.toLocaleString()+'</td>'+
+      '<td>'+data.pv+'</td>'+
+    '</tr>'; table.innerHTML=row; document.getElementById('status').textContent='深度 '+data.depth+' 完成'; }
+      renderBoard(currentBoard,currentPlayer);
+    };
+    worker.postMessage({ seq: currentFEN||'', maxDepth: 20, H: HEIGHT, W: WIDTH });
+  }
+  window.addEventListener('load', function(){ const fromHash = decodeURIComponent((window.location.hash||'').slice(1)); if(fromHash){ document.getElementById('fenInput').value = fromHash; } loadPosition(); });
+  window.addEventListener('hashchange', function(){ const seq = decodeURIComponent((window.location.hash||'').slice(1)); if(seq){ document.getElementById('fenInput').value = seq; loadPosition(); } });
+  </script>
+</body>
+</html>
