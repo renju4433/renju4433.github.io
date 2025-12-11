@@ -1,0 +1,148 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #c0c0c0;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    user-select: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.workarea {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.controls {
+    background-color: #c0c0c0;
+    padding: 10px;
+    border: 2px solid white;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+input[type="number"] {
+    width: 50px;
+}
+
+button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.board {
+    border: 3px solid #808080;
+    border-left-color: white;
+    border-top-color: white;
+    background-color: #c0c0c0;
+    display: grid;
+    /* grid-template-columns will be set via JS */
+}
+
+.picker {
+    display: grid;
+    grid-template-columns: repeat(5, 25px);
+    gap: 6px;
+}
+
+.picker-cell {
+    width: 25px;
+    height: 25px;
+    border: 2px solid white;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: #c0c0c0;
+    user-select: none;
+}
+
+.picker-cell.selected {
+    outline: 2px solid #000;
+}
+
+.cell {
+    width: 25px;
+    height: 25px;
+    border: 2px solid white;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: crosshair;
+    box-sizing: border-box;
+    background-color: #c0c0c0;
+}
+
+.cell:hover {
+    background-color: #dbdbdb;
+}
+
+/* Cell States */
+.cell.unknown {
+    /* Default state */
+}
+
+.cell.revealed {
+    border: 1px solid #808080;
+    border-right: none;
+    border-bottom: none;
+    /* border: none; typically revealed cells are flatter or have different border */
+    border: 1px solid #777; /* Simplified flat look */
+    background-color: #c0c0c0;
+}
+
+/* Colors for numbers */
+.val-1 { color: blue; }
+.val-2 { color: green; }
+.val-3 { color: red; }
+.val-4 { color: darkblue; }
+.val-5 { color: darkred; }
+.val-6 { color: teal; }
+.val-7 { color: black; }
+.val-8 { color: gray; }
+
+/* Solver visual indicators */
+.cell.is-mine {
+    background-color: #ff4d4d !important; /* Red background for mines */
+}
+
+.cell.is-safe {
+    background-color: #4dff4d !important; /* Green background for safe */
+}
+
+.tooltip {
+    position: fixed;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    font-size: 12px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 9999;
+    white-space: nowrap;
+}
