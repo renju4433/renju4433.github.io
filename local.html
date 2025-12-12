@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gomocup 本地演示</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; padding: 16px; }
+    .status { display: flex; gap: 16px; align-items: center; margin-bottom: 12px; }
+    .status span { font-size: 14px; }
+    .board { border: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <div class="status">
+    <span>深度: <b id="depth">-</b></span>
+    <span>估值: <b id="eval">-</b></span>
+    <span>节点: <b id="nodes">-</b></span>
+    <span>路线: <span id="route">-</span></span>
+    <span>棋局路由: <span id="route-game">-</span></span>
+  </div>
+  <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
+    <button id="btn-back">后退</button>
+    <button id="btn-forward">前进</button>
+    <button id="btn-new">新局</button>
+  </div>
+  <svg id="board" class="board" width="600" height="600"></svg>
+
+  <script src="/wasm-engine/gomocup.js"></script>
+  <script>
+    let Module = null;
+    let ready = false;
+    let lastEval = 0;
+    let bestMove = null;
+    let moves = [];
+    let pollTimer = null;
+    let depth = 0;
+    let nodes = 0;
+    let pvPoints = [];
+    let cursor = 0; // 当前棋局指针（0..moves.length）
+
+    const N = 15;
+    const W = 600;
+    const M = 24;
+    const S = (W - 2 * M) / (N - 1);
+    const board = document.getElementById('board');
+    const depthEl = document.getElementById('depth');
+    const evalEl = document.getElementById('eval');
+    const nodesEl = document.getElementById('nodes');
+    const routeEl = document.getElementById('route');
+    const routeGameEl = document.getElementById('route-game');
+    const btnBack = document.getElementById('btn-back');
+    const btnForward = document.getElementById('btn-forward');
+    const btnNew = document.getElementById('btn-new');
+
+    function cx(x) { return M + x * S; }
+    function cy(y) { return M + y * S; }
+
+    function drawGrid() {
+      while (board.firstChild) board.removeChild(board.firstChild);
+      const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+      for (let i = 0; i < N; i++) {
+        const h = document.createElementNS('http://www.w3.org/2000/svg','line');
+        h.setAttribute('x1', cx(0));
+        h.setAttribute('y1', cy(i));
+        h.setAttribute('x2', cx(N-1));
+        h.setAttribute('y2', cy(i));
+        h.setAttribute('stroke', '#bbb');
+        g.appendChild(h);
+        const v = document.createElementNS('http://www.w3.org/2000/svg','line');
+        v.setAttribute('x1', cx(i));
+        v.setAttribute('y1', cy(0));
+        v.setAttribute('x2', cx(i));
+        v.setAttribute('y2', cy(N-1));
+        v.setAttribute('stroke', '#bbb');
+        g.appendChild(v);
+      }
+      const labels = document.createElementNS('http://www.w3.org/2000/svg','g');
+      for (let i = 0; i < N; i++) {
+        const tx = document.createElementNS('http://www.w3.org/2000/svg','text');
+        tx.setAttribute('x', cx(i));
+        tx.setAttribute('y', M - 8);
+        tx.setAttribute('text-anchor', 'middle');
+        tx.setAttribute('font-size', '12');
+        tx.setAttribute('fill', '#666');
+        tx.textContent = String.fromCharCode('A'.charCodeAt(0) + i);
+        labels.appendChild(tx);
+        const ty = document.createElementNS('http://www.w3.org/2000/svg','text');
+        ty.setAttribute('x', M - 12);
+        ty.setAttribute('y', cy(i) + 4);
+        ty.setAttribute('text-anchor', 'end');
+        ty.setAttribute('font-size', '12');
+        ty.setAttribute('fill', '#666');
+        ty.textContent = String(N - i);
+        labels.appendChild(ty);
+      }
+      board.appendChild(labels);
+      board.appendChild(g);
+    }
+
+    function drawStones() {
+      const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+      const visible = moves.slice(0, cursor);
+      visible.forEach((m,i) => {
+        const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('cx', cx(m.x));
+        c.setAttribute('cy', cy(m.y));
+        c.setAttribute('r', 16);
+        const isBlack = i % 2 === 0;
+        c.setAttribute('fill', isBlack ? '#222' : '#eee');
+        c.setAttribute('stroke', '#333');
+        g.appendChild(c);
+        const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+        t.setAttribute('x', cx(m.x));
+        t.setAttribute('y', cy(m.y));
+        t.setAttribute('text-anchor', 'middle');
+        t.setAttribute('dominant-baseline', 'central');
+        t.setAttribute('font-size', '14');
+        t.setAttribute('font-family', 'Roboto, Arial');
+        t.setAttribute('fill', isBlack ? '#fff' : '#000');
+        t.textContent = String(i + 1);
+        g.appendChild(t);
+      });
+      board.appendChild(g);
+    }
+
+    function drawBest() {
+      if (!bestMove) return;
+      const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+      const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x', cx(bestMove.x));
+      t.setAttribute('y', cy(bestMove.y));
+      t.setAttribute('text-anchor', 'middle');
+      t.setAttribute('dominant-baseline', 'central');
+      t.setAttribute('font-size', '18');
+      t.setAttribute('font-family', 'Roboto, Arial');
+      t.setAttribute('fill', bestMove.score >= 0 ? 'darkblue' : 'darkred');
+      t.textContent = String(bestMove.score);
+      g.appendChild(t);
+      board.appendChild(g);
+    }
+
+
+    function draw() {
+      drawGrid();
+      drawStones();
+      drawBest();
+    }
+
+    function handleLog(text) {
+      if (!text || typeof text !== 'string') return;
+      if (text.startsWith('MESSAGE')) {
+        const mDepth = /depth=(\d+)/.exec(text);
+        const mNodes = /nodes=(\d+)/.exec(text);
+        const mVal = /val=(-?\d+)/.exec(text);
+        depth = mDepth ? parseInt(mDepth[1], 10) : depth;
+        nodes = mNodes ? parseInt(mNodes[1], 10) : nodes;
+        lastEval = mVal ? parseInt(mVal[1], 10) : lastEval;
+        const pvMatches = Array.from(text.matchAll(/\[(\d+),(\d+)\]/g));
+        pvPoints = pvMatches.map(m => ({ x: parseInt(m[1], 10), y: parseInt(m[2], 10) }));
+        if (pvPoints.length > 0) {
+          bestMove = { x: pvPoints[0].x, y: pvPoints[0].y, score: lastEval };
+        }
+        depthEl.textContent = String(depth);
+        evalEl.textContent = lastEval >= 0 ? '+' + lastEval : String(lastEval);
+        nodesEl.textContent = String(nodes);
+        routeEl.textContent = pvPoints.length ? pvPoints.map(p => `${String.fromCharCode('A'.charCodeAt(0)+p.x)}${N - p.y}`).join(' ') : '-';
+        draw();
+      }
+    }
+
+    function encodeMove(m) {
+      const col = String.fromCharCode('a'.charCodeAt(0) + m.x);
+      const row = (N - m.y).toString();
+      return col + row;
+    }
+    function encodeRoute(list) {
+      return list.map(encodeMove).join('');
+    }
+    function decodeRoute(str) {
+      const res = [];
+      let i = 0;
+      while (i < str.length) {
+        const ch = str[i];
+        if (ch < 'a' || ch > 'o') break;
+        const x = ch.charCodeAt(0) - 'a'.charCodeAt(0);
+        i++;
+        let num = '';
+        while (i < str.length && str[i] >= '0' && str[i] <= '9') {
+          num += str[i];
+          i++;
+        }
+        if (num.length === 0) break;
+        const row = parseInt(num, 10);
+        if (row < 1 || row > N) continue;
+        const y = N - row;
+        res.push({ x, y });
+      }
+      return res;
+    }
+    function updateHash() {
+      const visible = moves.slice(0, cursor);
+      const r = encodeRoute(visible);
+      if (r.length > 0) {
+        location.hash = r;
+        routeGameEl.textContent = r;
+      } else {
+        location.hash = '';
+        routeGameEl.textContent = '-';
+      }
+    }
+
+    async function loadModule() {
+      if (Module) return Module;
+      window.Module = window.Module || {};
+      const factory = window.GomocupModule;
+      Module = await factory({
+        locateFile: (p) => `/wasm-engine/${p}`,
+        mainScriptUrlOrBlob: '/wasm-engine/gomocup.js',
+        print: (text) => handleLog(text),
+        onAbort: (msg) => console.error(msg),
+      });
+      const init = Module.cwrap('gomocup_init', null, []);
+      init();
+      ready = true;
+      return Module;
+    }
+
+    function send(cmd) {
+      const command = Module.cwrap('gomocup_command', 'string', ['string']);
+      return command(cmd);
+    }
+
+    async function beginAnalysis() {
+      await loadModule();
+      try { send('YXSTOP'); } catch (e) {}
+      const visible = moves.slice(0, cursor);
+      if (visible.length === 0) {
+        send('BEGIN');
+      } else {
+        const lines = visible.map((p,i) => {
+          const black = i % 2 === 0;
+          const c = black ? 1 : 2;
+          return `${p.x},${p.y},${c}`;
+        });
+        const payload = `BOARD\n${lines.join('\n')}\nDONE`;
+        send(payload);
+      }
+      if (pollTimer) clearInterval(pollTimer);
+      pollTimer = setInterval(() => {
+        const resp = send('POLL');
+        if (resp && resp !== 'WAIT') {
+          const [sx, sy] = resp.split(',');
+          bestMove = { x: parseInt(sx,10), y: parseInt(sy,10), score: lastEval };
+          draw();
+          clearInterval(pollTimer);
+          pollTimer = null;
+        }
+      }, 200);
+      updateHash();
+    }
+
+    function clearBoard() {
+      moves = [];
+      bestMove = null;
+      lastEval = 0;
+      pvPoints = [];
+      depth = 0;
+      nodes = 0;
+      cursor = 0;
+      depthEl.textContent = '-';
+      evalEl.textContent = '-';
+      nodesEl.textContent = '-';
+      routeEl.textContent = '-';
+      draw();
+      beginAnalysis();
+    }
+
+    function handleClick(evt) {
+      const pt = board.createSVGPoint();
+      pt.x = evt.clientX; pt.y = evt.clientY;
+      const ctm = board.getScreenCTM();
+      const loc = pt.matrixTransform(ctm.inverse());
+      const gx = Math.round((loc.x - M) / S);
+      const gy = Math.round((loc.y - M) / S);
+      if (gx < 0 || gx >= N || gy < 0 || gy >= N) return;
+      // 在当前指针处落子：截断未来着法，避免重复
+      moves = moves.slice(0, cursor);
+      if (moves.some(m => m.x === gx && m.y === gy)) return;
+      moves.push({ x: gx, y: gy });
+      cursor = moves.length;
+      draw();
+      beginAnalysis();
+    }
+
+    board.addEventListener('click', handleClick);
+    btnBack.onclick = () => { if (cursor > 0) { cursor--; draw(); beginAnalysis(); } };
+    btnForward.onclick = () => { if (cursor < moves.length) { cursor++; draw(); beginAnalysis(); } };
+    btnNew.onclick = () => clearBoard();
+
+    const initRoute = location.hash ? location.hash.slice(1) : '';
+    if (initRoute) {
+      const r = decodeRoute(initRoute);
+      moves = r;
+      cursor = moves.length;
+      routeGameEl.textContent = initRoute;
+    }
+    draw();
+    beginAnalysis();
+  </script>
+</body>
+</html>
