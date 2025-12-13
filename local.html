@@ -26,7 +26,7 @@
   </div>
   <svg id="board" class="board" width="600" height="600"></svg>
 
-  <script src="/wasm-engine/gomocup.js"></script>
+  <script src="/gomocup.js"></script>
   <script>
     let Module = null;
     let ready = false;
@@ -211,12 +211,15 @@
     }
 
     async function loadModule() {
+      if (!window.crossOriginIsolated) {
+        alert('当前页面未处于跨源隔离（crossOriginIsolated）状态，无法使用 SharedArrayBuffer。请通过开发服务器访问：例如 http://localhost:3000/local.html，或确保服务器返回 COOP/COEP 头。');
+      }
       if (Module) return Module;
       window.Module = window.Module || {};
       const factory = window.GomocupModule;
       Module = await factory({
-        locateFile: (p) => `/wasm-engine/${p}`,
-        mainScriptUrlOrBlob: '/wasm-engine/gomocup.js',
+        locateFile: (p) => `/${p}`,
+        mainScriptUrlOrBlob: '/gomocup.js',
         print: (text) => handleLog(text),
         onAbort: (msg) => console.error(msg),
       });
