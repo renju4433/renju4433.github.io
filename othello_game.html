@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑白棋分析面板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #000;
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        .main-panel {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .board-section {
+            background: #000;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #4CAF50;
+            text-align: center;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 2px;
+            background: #000;
+            padding: 2px;
+            margin-bottom: 10px;
+            width: 90vw;
+            height: 90vw;
+            max-width: 400px;
+            max-height: 400px;
+        }
+        .cell {
+            background: #27ae60;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            font-size: 11px;
+            user-select: none;
+            width: 100%;
+            height: 100%;
+        }
+        @media (max-width: 600px) {
+            .cell {
+                font-size: 9px;
+            }
+            .eval-value {
+                font-size: 10px;
+            }
+            .container {
+                padding: 5px;
+            }
+            h1 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            .section-title {
+                display: none;
+            }
+        }
+
+        .cell:hover {
+            background: #2ecc71;
+        }
+        .piece {
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .piece.black {
+            background: #000;
+            border: 2px solid #333;
+        }
+        .piece.white {
+            background: #fff;
+            border: 2px solid #ddd;
+        }
+        .eval-value {
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .eval-value.positive {
+            color: #4CAF50;
+        }
+        .eval-value.negative {
+            color: #f44336;
+        }
+        .info-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            padding: 8px 24px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 50px;
+            margin: 0 auto 15px auto;
+            width: fit-content;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .info-item {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #4CAF50;
+            color: white;
+            font-weight: bold;
+            font-family: inherit;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+        #stopAnalyze {
+            background: #e74c3c;
+        }
+        #stopAnalyze:hover {
+            background: #c0392b;
+        }
+        .status {
+            text-align: center;
+            padding: 15px;
+            background: #333;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .analysis-info {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .depth-info {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .best-move {
+            color: #FFC107;
+            font-weight: bold;
+        }
+        .loading {
+            display: inline-block;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>黑白棋分析面板</h1>
+        
+        <div class="controls">
+            <button id="undoBtn">悔棋</button>
+            <button id="autoAnalyze">自动分析: 开</button>
+            <!-- Stop button removed -->
+        </div>
+
+        <div class="status" id="status">黑方回合</div>
+
+        <div class="main-panel">
+            <div class="board-section">
+                <div class="info-bar">
+                    <div class="info-item">⚫ <span id="blackScore">2</span></div>
+                    <div class="info-item">⚪ <span id="whiteScore">2</span></div>
+                    <!-- <div class="info-item">空: <span id="emptyCount">60</span></div> -->
+                </div>
+                <div class="board" id="currentBoard"></div>
+            </div>
+        </div>
+
+        <div class="analysis-info" id="analysisInfo" style="display: none;">
+            正在加载 WASM 引擎...
+        </div>
+    </div>
+
+    <script type="module">
+        const BLACK = 1n;
+        const WHITE = 2n;
+        
+        // 位棋盘类
+        class BitBoard {
+            constructor() {
+                this.black = 0x0000000810000000n; // 初始黑子
+                this.white = 0x0000001008000000n; // 初始白子
+            }
+
+            get(row, col) {
+                const pos = BigInt(row * 8 + col);
+                const mask = 1n << pos;
+                if (this.black & mask) return BLACK;
+                if (this.white & mask) return WHITE;
+                return 0n;
+            }
+
+            set(row, col, value) {
+                const pos = BigInt(row * 8 + col);
+                const mask = 1n << pos;
+                this.black &= ~mask;
+                this.white &= ~mask;
+                if (value === BLACK) this.black |= mask;
+                else if (value === WHITE) this.white |= mask;
+            }
+
+            copy() {
+                const newBoard = new BitBoard();
+                newBoard.black = this.black;
+                newBoard.white = this.white;
+                return newBoard;
+            }
+
+            count(player) {
+                const bits = player === BLACK ? this.black : this.white;
+                let count = 0;
+                let n = bits;
+                while (n) {
+                    count++;
+                    n &= n - 1n;
+                }
+                return count;
+            }
+        }
+
+        const DIRS = [
+            [-1, -1], [-1, 0], [-1, 1],
+            [0, -1],           [0, 1],
+            [1, -1],  [1, 0],  [1, 1]
+        ];
+
+        class Game {
+            constructor() {
+                this.board = new BitBoard();
+                this.currentPlayer = BLACK;
+                this.history = [];
+                this.moveStrHistory = []; // Stores algebraic notation like ['d3', 'c5']
+                this.autoAnalyze = true;
+                this.analyzing = false;
+                this.worker = null;
+                this.initWorker();
+                
+                // Init from URL if present
+                this.loadFromUrl();
+            }
+
+            // ... (rest of methods)
+
+            coordToAlg(row, col) {
+                const c = String.fromCharCode('a'.charCodeAt(0) + col);
+                const r = String(row + 1);
+                return c + r;
+            }
+
+            algToCoord(alg) {
+                if (!alg || alg.length < 2) return null;
+                const c = alg.charCodeAt(0) - 'a'.charCodeAt(0);
+                const r = parseInt(alg.slice(1)) - 1;
+                if (c >= 0 && c < 8 && r >= 0 && r < 8) return [r, c];
+                return null;
+            }
+
+            updateUrl() {
+                const hash = this.moveStrHistory.join('');
+                window.location.hash = hash;
+            }
+
+            loadFromUrl() {
+                const hash = window.location.hash.substring(1); // Remove #
+                if (!hash) return;
+                
+                // Parse moves: 2 chars each (e.g. d3c5...)
+                // Standard notation usually doesn't separate.
+                // But row can be >9? No, Othello is 8x8.
+                // So it's always letter+digit.
+                
+                // Reset board first (already done in constructor)
+                
+                for (let i = 0; i < hash.length; i += 2) {
+                    const moveStr = hash.substring(i, i+2);
+                    const coords = this.algToCoord(moveStr);
+                    if (coords) {
+                        const [r, c] = coords;
+                        // We need to check if it's a valid move for current player
+                        // Or if current player must pass?
+                        // Simple replayer: try to make move. If not valid, try pass then move?
+                        // Standard Othello transcript implies turns.
+                        
+                        if (this.isValid(r, c, this.currentPlayer)) {
+                             this.makeMove(r, c, this.currentPlayer, false); // false = don't update URL yet
+                        } else {
+                            // Maybe pass?
+                            // Check if current player has moves
+                            const moves = this.getValidMoves(this.currentPlayer);
+                            if (moves.length === 0) {
+                                // Pass
+                                this.currentPlayer = (this.currentPlayer === BLACK ? WHITE : BLACK);
+                                // Try again
+                                if (this.isValid(r, c, this.currentPlayer)) {
+                                    this.makeMove(r, c, this.currentPlayer, false);
+                                } else {
+                                    console.error("Invalid move in URL replay:", moveStr);
+                                    break;
+                                }
+                            } else {
+                                console.error("Invalid move in URL replay:", moveStr);
+                                break;
+                            }
+                        }
+                    }
+                }
+                // Update URL to clean/normalized version
+                this.updateUrl();
+            }
+
+            initWorker() {
+                if (this.worker) this.worker.terminate();
+                // Add random query param to bust cache
+                this.worker = new Worker('worker.js', { type: 'module' });
+                this.worker.onmessage = (e) => this.handleWorkerMessage(e);
+            }
+
+            handleWorkerMessage(e) {
+                const { type, results, depth, message } = e.data;
+                if (type === 'ready') {
+                    console.log('WASM Worker ready');
+                    // document.getElementById('analysisInfo').textContent = 'WASM 引擎就绪，等待落子...';
+                    if (this.autoAnalyze) {
+                        this.startAnalysis();
+                    }
+                } else if (type === 'progress') {
+                    // Update UI with partial results
+                    if (!lastAnalysis) lastAnalysis = {};
+                    
+                    results.forEach(r => {
+                         // Key by row-col-player to support dual analysis (though currently single)
+                         const key = `${r.row},${r.col},${r.player}`;
+                         lastAnalysis[key] = {
+                             ...r,
+                             depth: depth
+                         };
+                         
+                         // Update specific cell UI if possible, or full re-render
+                         // Full re-render is safer to clear old numbers
+                    });
+                    
+                    renderBoards(lastAnalysis);
+                    
+                    // Update info panel
+                    const moves = Object.values(lastAnalysis);
+                    if (moves.length > 0) {
+                        const best = moves.reduce((a, b) => a.score > b.score ? a : b);
+                        
+                        document.getElementById('currentEval').textContent = best.score.toFixed(2);
+                        
+                        /*
+                        let info = `<div><span class="loading">分析中...</span> 深度: <span class="depth-info">${depth}</span></div>`;
+                        info += `<div>最佳着法: <span class="best-move">(${best.row}, ${best.col})</span> `;
+                        info += `估值: <span class="${best.score > 0 ? 'positive' : 'negative'}">${best.score.toFixed(2)}</span>`;
+                        info += `</div>`;
+                        info += `<div>可选着法: ${moves.length} 个</div>`;
+                        document.getElementById('analysisInfo').innerHTML = info;
+                        */
+                    }
+                } else if (type === 'done') {
+                    this.analyzing = false;
+                    /*
+                    const stopBtn = document.getElementById('stopAnalyze');
+                    if (stopBtn) stopBtn.style.display = 'none';
+                    if (document.getElementById('analysisInfo').innerHTML.includes('分析中')) {
+                         document.getElementById('analysisInfo').innerHTML = document.getElementById('analysisInfo').innerHTML.replace('分析中...', '分析完成');
+                         document.getElementById('analysisInfo').innerHTML = document.getElementById('analysisInfo').innerHTML.replace('loading', '');
+                    }
+                    */
+                } else if (type === 'error') {
+                    console.error('Worker error:', message);
+                    this.analyzing = false;
+                    /*
+                    const stopBtn = document.getElementById('stopAnalyze');
+                    if (stopBtn) stopBtn.style.display = 'none';
+                    */
+                }
+            }
+
+
+            isValid(row, col, player) {
+                if (this.board.get(row, col) !== 0n) return false;
+                const opponent = player === BLACK ? WHITE : BLACK;
+                for (let [dr, dc] of DIRS) {
+                    let r = row + dr, c = col + dc, count = 0;
+                    while (r >= 0 && r < 8 && c >= 0 && c < 8 && this.board.get(r, c) === opponent) {
+                        r += dr; c += dc; count++;
+                    }
+                    if (count > 0 && r >= 0 && r < 8 && c >= 0 && c < 8 && this.board.get(r, c) === player) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            getValidMoves(player) {
+                const moves = [];
+                for (let i = 0; i < 8; i++) {
+                    for (let j = 0; j < 8; j++) {
+                        if (this.isValid(i, j, player)) moves.push([i, j]);
+                    }
+                }
+                return moves;
+            }
+
+            makeMove(row, col, player, updateUrl = true) {
+                // Record move string before changing state
+                if (updateUrl) {
+                    const moveStr = this.coordToAlg(row, col);
+                    this.moveStrHistory.push(moveStr);
+                } else {
+                     // During replay, we still need to populate moveStrHistory to match
+                     const moveStr = this.coordToAlg(row, col);
+                     this.moveStrHistory.push(moveStr);
+                }
+
+                this.history.push({black: this.board.black, white: this.board.white, player: this.currentPlayer});
+                this.board.set(row, col, player);
+                const opponent = player === BLACK ? WHITE : BLACK;
+                for (let [dr, dc] of DIRS) {
+                    let r = row + dr, c = col + dc;
+                    const toFlip = [];
+                    while (r >= 0 && r < 8 && c >= 0 && c < 8 && this.board.get(r, c) === opponent) {
+                        toFlip.push([r, c]);
+                        r += dr; c += dc;
+                    }
+                    if (r >= 0 && r < 8 && c >= 0 && c < 8 && this.board.get(r, c) === player && toFlip.length > 0) {
+                        for (let [fr, fc] of toFlip) this.board.set(fr, fc, player);
+                    }
+                }
+                this.currentPlayer = opponent;
+                
+                // Auto-pass if opponent has no moves
+                if (this.getValidMoves(this.currentPlayer).length === 0) {
+                    const originalPlayer = player;
+                    // Check if original player has moves
+                    if (this.getValidMoves(originalPlayer).length > 0) {
+                        this.currentPlayer = originalPlayer;
+                    }
+                    // If neither has moves, logic falls through to Game Over check in updateInfo
+                }
+
+                if (updateUrl) this.updateUrl();
+            }
+
+            undo() {
+                if (this.history.length > 0) {
+                    const state = this.history.pop();
+                    this.moveStrHistory.pop(); // Remove last move
+                    this.board.black = state.black;
+                    this.board.white = state.white;
+                    this.currentPlayer = state.player;
+                    this.stopAnalysis();
+                    this.updateUrl();
+                    return true;
+                }
+                return false;
+            }
+
+            stopAnalysis() {
+                if (this.analyzing) {
+                    this.worker.terminate();
+                    this.analyzing = false;
+                    const stopBtn = document.getElementById('stopAnalyze');
+                if (stopBtn) stopBtn.style.display = 'none';
+                    document.getElementById('analysisInfo').innerHTML += ' <div>(已停止)</div>';
+                    // Re-init worker for next time
+                    this.initWorker();
+                }
+            }
+
+            startAnalysis() {
+                if (this.analyzing) this.stopAnalysis();
+                
+                // Clear old analysis results on new start
+                lastAnalysis = {};
+                renderBoards(lastAnalysis);
+
+                const validMoves = this.getValidMoves(this.currentPlayer);
+                if (validMoves.length === 0) return;
+
+                this.analyzing = true;
+                const stopBtn = document.getElementById('stopAnalyze');
+                if (stopBtn) stopBtn.style.display = 'inline-block';
+                // document.getElementById('analysisInfo').innerHTML = '<span class="loading">正在启动 C++ 引擎...</span>';
+                
+                this.worker.postMessage({
+                    type: 'analyze',
+                    black: this.board.black.toString(),
+                    white: this.board.white.toString(),
+                    player: this.currentPlayer === BLACK ? 1 : 2,
+                    maxTime: 5000 // 5 seconds max
+                });
+            }
+        }
+
+        let game = new Game();
+        let lastAnalysis = null;
+        renderBoards(null);
+        // Auto start analysis
+        // if (game.autoAnalyze) game.startAnalysis();
+
+        function renderBoards(analysis) {
+            if (!game) return;
+            const currentBoard = document.getElementById('currentBoard');
+            currentBoard.innerHTML = '';
+            
+            const validMoves = game.getValidMoves(game.currentPlayer);
+            
+            for (let i = 0; i < 8; i++) {
+                for (let j = 0; j < 8; j++) {
+                    // Combine board and analysis
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    const piece = game.board.get(i, j);
+                    
+                    if (piece === BLACK) {
+                        const p = document.createElement('div');
+                        p.className = 'piece black';
+                        cell.appendChild(p);
+                    } else if (piece === WHITE) {
+                        const p = document.createElement('div');
+                        p.className = 'piece white';
+                        cell.appendChild(p);
+                    } else {
+                        // Empty cell
+                        const isValid = validMoves.some(([r, c]) => r === i && c === j);
+                        if (isValid) {
+                            cell.style.background = '#3498db';
+                        }
+                        
+                // Show analysis score if available
+                        if (analysis) {
+                            // Find score for this cell AND this piece color?
+                            // No, analysis has row/col/player.
+                            // We need to match row/col.
+                            // There might be TWO scores for one cell (Black can move here AND White can move here?)
+                            
+                            // Let's filter analysis results for this cell
+                            const cellResults = Object.values(analysis).filter(r => r.row === i && r.col === j);
+                            
+                            // Sort so Black is always top/left, White is bottom/right
+                            cellResults.sort((a, b) => a.player - b.player);
+
+                            cellResults.forEach(res => {
+                                // Container for score and depth
+                                const container = document.createElement('div');
+                                container.style.position = 'absolute';
+                                container.style.top = '0';
+                                container.style.left = '0';
+                                container.style.width = '100%';
+                                container.style.height = '100%';
+                                container.style.display = 'flex';
+                                container.style.flexDirection = 'column';
+                                container.style.justifyContent = 'center';
+                                container.style.alignItems = 'center';
+                                container.style.zIndex = '10';
+                                container.style.lineHeight = '1';
+                                container.style.pointerEvents = 'none';
+
+                                const evalSpan = document.createElement('div');
+                                evalSpan.className = 'eval-value';
+                                evalSpan.textContent = res.score.toFixed(2);
+                                evalSpan.style.fontWeight = 'bold';
+                                evalSpan.style.fontSize = '12px';
+
+                                const depthSpan = document.createElement('div');
+                                depthSpan.textContent = res.depth ? res.depth : '';
+                                depthSpan.style.fontSize = '9px';
+                                depthSpan.style.marginTop = '0px';
+
+                                if (res.player === 1) { // Black
+                                    evalSpan.style.color = '#000';
+                                    evalSpan.style.textShadow = '0px 0px 3px #fff'; // Stronger halo
+                                    depthSpan.style.color = '#000';
+                                    depthSpan.style.textShadow = '0px 0px 2px #fff';
+                                    
+                                    if (cellResults.length > 1) {
+                                        container.style.position = 'absolute';
+                                        container.style.top = '2px';
+                                        // evalSpan.style.left = '2px';
+                                    }
+                                } else { // White
+                                    evalSpan.style.color = '#fff';
+                                    evalSpan.style.textShadow = '0px 0px 3px #000'; // Stronger halo
+                                    depthSpan.style.color = '#fff';
+                                    depthSpan.style.textShadow = '0px 0px 2px #000';
+                                    
+                                    if (cellResults.length > 1) {
+                                        container.style.position = 'absolute';
+                                        container.style.bottom = '2px';
+                                        // evalSpan.style.right = '2px';
+                                    }
+                                }
+                                container.appendChild(evalSpan);
+                                container.appendChild(depthSpan);
+                                cell.appendChild(container);
+                            });
+                        }
+                    }
+                    
+                    cell.onclick = () => handleMove(i, j);
+                    currentBoard.appendChild(cell);
+                }
+            }
+            
+            updateInfo(analysis);
+        }
+
+        function updateInfo(analysis) {
+            if (!game) return;
+            const blackCount = game.board.count(BLACK);
+            const whiteCount = game.board.count(WHITE);
+            const emptyCount = 64 - blackCount - whiteCount;
+            
+            document.getElementById('blackScore').textContent = blackCount;
+            document.getElementById('whiteScore').textContent = whiteCount;
+            const emptyEl = document.getElementById('emptyCount');
+            if (emptyEl) emptyEl.textContent = emptyCount;
+            
+            const validMoves = game.getValidMoves(game.currentPlayer);
+            if (validMoves.length === 0 && game.getValidMoves(game.currentPlayer === BLACK ? WHITE : BLACK).length === 0) {
+                document.getElementById('status').textContent = 
+                    `游戏结束！${blackCount > whiteCount ? '⚫黑方' : blackCount < whiteCount ? '⚪白方' : '平局'} (${blackCount}-${whiteCount})`;
+                
+                // Auto restart after 3 seconds
+                setTimeout(() => {
+                    game = new Game();
+                    lastAnalysis = null;
+                    renderBoards(null);
+                    if (game.autoAnalyze) game.startAnalysis();
+                }, 3000);
+                
+            } else {
+                document.getElementById('status').textContent = 
+                    `${game.currentPlayer === BLACK ? '⚫黑方' : '⚪白方'}回合`;
+            }
+        }
+
+        async function handleMove(row, col) {
+            if (!game) return;
+            // Removed analyzing check to allow moves during analysis (auto restart)
+            if (game.isValid(row, col, game.currentPlayer)) {
+                game.makeMove(row, col, game.currentPlayer);
+                renderBoards(null);
+                
+                if (game.autoAnalyze) {
+                    game.startAnalysis();
+                } else {
+                    lastAnalysis = null;
+                }
+            }
+        }
+
+        // Bind global events manually since we are in a module
+        window.handleMove = handleMove;
+
+        // New Game button removed
+
+        document.getElementById('undoBtn').onclick = () => {
+            if (!game) return;
+            if (game.undo()) {
+                lastAnalysis = null;
+                renderBoards(null);
+                document.getElementById('analysisInfo').textContent = '已悔棋';
+                if (game.autoAnalyze) game.startAnalysis();
+            }
+        };
+
+        document.getElementById('autoAnalyze').onclick = function() {
+            if (!game) return;
+            game.autoAnalyze = !game.autoAnalyze;
+            this.textContent = '自动分析: ' + (game.autoAnalyze ? '开' : '关');
+            if (game.autoAnalyze) {
+                game.startAnalysis();
+            } else {
+                game.stopAnalysis();
+            }
+        };
+
+        // Stop listener removed
+
+    </script>
+</body>
+</html>
