@@ -598,15 +598,6 @@
                                             class="weight-slider" oninput="updateWeightsUI()">
                                     </div>
                                 </div>
-
-                                <div
-                                    class="text-[10px] text-stone-400 leading-tight mt-3 pt-2 border-t border-stone-200">
-                                    <strong>V2.5 Strategy Profile:</strong><br>
-                                    > 26 empty: Strategic + <span class="text-pink-600 font-bold">IID + LMR</span><br>
-                                    19-26 empty: <span class="text-purple-600 font-bold">Deep (Depth 15)</span><br>
-                                    17-18 empty: <span class="text-green-600 font-bold">Smart Sort + Exact</span><br>
-                                    <= 16 empty: <span class="text-red-500 font-bold">Direct Solver</span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -768,7 +759,6 @@
 
             startAnalysis: function (board2D, player, validMoves, onComplete = null) {
                 if (this.workers.length === 0) this.init();
-
                 this.targetStepIndex = currentStepIndex;
                 this.currentAnalysisId++;
                 const reqId = this.currentAnalysisId;
@@ -1584,13 +1574,13 @@
                 let styleClass = "score-normal";
                 let shouldRender = false;
                 if (mode === 'perfect_solver' || mode === 'endgame_sniper' || mode === 'endgame') {
-                    const diff = Math.round(r.val / 1000);
+                    const diff = r.val;
                     text = diff > 0 ? `胜${diff}` : (diff < 0 ? `负${-diff}` : `平局`);
                     styleClass = (rankIndex === 0) ? "score-best" : "score-normal";
                     shouldRender = true;
                 } else if (mode === 'unified') {
                     if (r.is_endgame) {
-                        const diff = Math.round(r.val / 1000);
+                        const diff = r.val;
                         text = diff > 0 ? `胜${diff}` : (diff < 0 ? `负${-diff}` : `平局`);
                     } else {
                         let v = r.val.toFixed(2);
@@ -1614,11 +1604,11 @@
                 let coord = coordToString(r.x, r.y);
                 let valStr = "";
                 if (mode.includes('perfect_solver') || mode.includes('endgame')) {
-                    const diff = Math.round(r.val / 1000);
+                    const diff = Math.round(r.val);
                     valStr = diff > 0 ? `胜${diff}` : (diff < 0 ? `负${-diff}` : `平局`);
                 } else if (mode === 'unified') {
                     if (r.is_endgame) {
-                        const diff = Math.round(r.val / 1000);
+                        const diff = Math.round(r.val);
                         valStr = diff > 0 ? `胜${diff}` : (diff < 0 ? `负${-diff}` : `平局`);
                     } else {
                         let v = r.val.toFixed(2);

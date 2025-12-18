@@ -325,7 +325,7 @@ static double solve_endgame(int8_t* board, int player, double alpha, double beta
   int moveCount = populate_valid_moves(board, player, bufferOffset);
   if(moveCount==0){
     int oppv = opp(player);
-    if(populate_valid_moves(board, oppv, 60*64)==0) return (double)eval_disc(board, player) * 1000.0;
+    if(populate_valid_moves(board, oppv, 60*64)==0) return (double)eval_disc(board, player);
     return -solve_endgame(board, oppv, -beta, -alpha, emptyCount, hash);
   }
   int ttMove = (TT_MOVE[ttIndex]!=255) ? TT_MOVE[ttIndex] : -1;
@@ -465,6 +465,11 @@ static double negamax_hybrid(int8_t* board, int player, int depth, double alpha,
   int moveCount = populate_pruned_moves(board, player, bufferOffset);
   if(moveCount==0){
     int oppv = opp(player);
+    if(populate_pruned_moves(board, oppv, 62*64)==0){
+      double rv = (double)eval_disc(board, player);
+      currentSearchLevel--;
+      return rv;
+    }
     double rv = -negamax_hybrid(board, oppv, depth-1, -beta, -alpha, -1, 0, hash);
     currentSearchLevel--;
     return rv;
@@ -548,13 +553,14 @@ static double calc_score(int8_t* board, int player, int moveIdx, int depth, doub
   int stackOffset = 4000;
   ApplyRes res = apply_move(board, moveIdx, player, stackOffset, rootHash);
   int eCountAfterMove = count_empty(board);
-  int oppv = opp(player);
-  if(eCountAfterMove<=14){
-    double val = -solve_endgame(board, oppv, -beta, -alpha, eCountAfterMove, res.hash);
+  if(eCountAfterMove<=15){
+    int nextPlayer = opp(player);
+    double valEnd = -solve_endgame(board, nextPlayer, -INFINITY, -alpha, eCountAfterMove, res.hash);
     undo_move(board, moveIdx, res.count, stackOffset, player);
     lastWasEndgame = 1;
-    return val;
+    return valEnd;
   }
+  int oppv = opp(player);
   double val = -negamax_hybrid(board, oppv, depth-1, -beta, -alpha, moveIdx, res.count, res.hash);
   if(useHardConstraints){
     int opCount = populate_valid_moves(board, oppv, 61*64);
