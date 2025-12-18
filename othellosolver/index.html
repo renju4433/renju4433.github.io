@@ -1,0 +1,2328 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Othello Analyst V2.5 (IID + ClosedParity)</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: #f5f5f4;
+            touch-action: manipulation;
+        }
+
+        /* --- Textures & Board --- */
+        .wood-texture {
+            background-color: #e5ccab;
+            background-image: 
+                linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.05) 100%),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+            box-shadow: inset 2px 2px 5px rgba(255,255,255,0.3), inset -2px -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .cell {
+            background-color: #5c8d73;
+            box-shadow: inset 1px 1px 3px rgba(0,0,0,0.2);
+            transition: background-color 0.2s;
+            position: relative;
+        }
+        
+        .board-grid {
+            background-color: #2f4f3e;
+            padding: 2px;
+            border-radius: 2px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Discs --- */
+        .disc {
+            width: 85%; height: 85%;
+            border-radius: 50%;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 12px; font-weight: 700;
+            user-select: none; z-index: 10;
+            pointer-events: none;
+        }
+
+        .disc.black {
+            background: radial-gradient(circle at 35% 35%, #555, #1a1a1a, #000);
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.6), inset 1px 1px 2px rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.9);
+        }
+
+        .disc.white {
+            background: radial-gradient(circle at 35% 35%, #fff, #f0f0f0, #d1d1d1);
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.4), inset -1px -1px 2px rgba(0,0,0,0.1);
+            color: #333;
+        }
+
+        .last-move-marker {
+            position: absolute; width: 8px; height: 8px;
+            background-color: #ef4444; border-radius: 50%;
+            box-shadow: 0 0 4px rgba(239, 68, 68, 0.8);
+            z-index: 20; pointer-events: none;
+        }
+
+        .legal-move-hint {
+            width: 25%; height: 25%;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 0 2px rgba(0,0,0,0.2);
+            z-index: 5; pointer-events: none;
+        }
+        .cell:hover .legal-move-hint {
+            background-color: rgba(0, 0, 0, 0.4);
+            transform: scale(1.2); transition: all 0.2s;
+        }
+        
+        /* --- Analysis Scores --- */
+        .eval-score {
+            position: absolute; z-index: 30;
+            font-weight: 800; font-size: 1.1rem;
+            text-shadow: -1px -1px 0 rgba(0,0,0,0.6), 1px -1px 0 rgba(0,0,0,0.6), -1px 1px 0 rgba(0,0,0,0.6), 1px 1px 0 rgba(0,0,0,0.6);
+            pointer-events: none; transition: all 0.2s;
+            font-family: 'Inter', monospace;
+        }
+        
+        .score-best { color: #3b82f6; z-index: 31; transform: scale(1.2); text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; }
+        .score-normal { color: #fbbf24; }
+        
+        @media (min-width: 768px) { .eval-score { font-size: 1.3rem; } }
+
+        /* --- UI Elements --- */
+        input[type=range].depth-slider {
+            -webkit-appearance: none; width: 100%; background: transparent;
+        }
+        input[type=range].depth-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 16px; width: 16px;
+            border-radius: 50%; background: #78350f;
+            cursor: pointer; margin-top: -6px;
+        }
+        input[type=range].depth-slider::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer;
+            background: #e7e5e4; border-radius: 2px;
+        }
+        
+        /* Weight Sliders */
+        input[type=range].weight-slider {
+            -webkit-appearance: none; width: 100%; background: transparent;
+        }
+        input[type=range].weight-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 14px; width: 14px;
+            border-radius: 50%; background: #4f46e5;
+            cursor: pointer; margin-top: -5px; box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        input[type=range].weight-slider::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer;
+            background: #e0e7ff; border-radius: 2px;
+        }
+
+        /* Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #4f46e5;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #4f46e5;
+        }
+        
+        .active-move { background-color: #e5e7eb; border-left: 4px solid #4b5563; font-weight: 700; }
+
+        .analyzing-pulse { animation: pulse-purple 2s infinite; }
+        @keyframes pulse-purple {
+            0% { box-shadow: 0 0 0 0 rgba(126, 34, 206, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(126, 34, 206, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(126, 34, 206, 0); }
+        }
+        
+        .edit-overlay { opacity: 0.5; pointer-events: none; filter: grayscale(1); }
+        .brush-active { ring: 2px solid #3b82f6; transform: scale(1.1); }
+        
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 100;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .modal-overlay.hidden { display: none !important; }
+        
+        .modal-content {
+            background: white; padding: 24px; border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            max-width: 90%; width: 320px; text-align: center;
+        }
+        
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 2px; }
+        
+        /* Status Bar Animation */
+        .status-pill { transition: all 0.3s ease; }
+        .status-idle { background-color: #e7e5e4; color: #57534e; }
+        .status-working { background-color: #fef3c7; color: #92400e; animation: pulse-yellow 2s infinite; }
+        .status-done { background-color: #dcfce7; color: #166534; }
+        @keyframes pulse-yellow { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
+        
+        /* Dev Mode Animations */
+        #dev-chevron.rotate-180 { transform: rotate(180deg); }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="min-h-screen flex flex-col items-center py-6 md:py-10 px-4 text-stone-800">
+
+    <div class="w-full max-w-6xl flex flex-col lg:flex-row gap-8 items-start justify-center">
+        
+        <!-- Left: Board -->
+        <div class="flex-1 flex flex-col items-center w-full max-w-[600px] mx-auto lg:mx-0">
+            <!-- Header -->
+            <div class="w-full flex justify-between items-end mb-4">
+                <div>
+                    <h1 class="text-3xl font-bold tracking-tight text-stone-800 flex items-center gap-2">
+                        <i class="ph ph-lightning text-teal-600"></i> Othello Analyst
+                        <span class="px-2 py-0.5 rounded text-[12px] font-bold bg-stone-800 text-white border border-stone-600 uppercase tracking-wide">V2.5 IID</span>
+                    </h1>
+                </div>
+                
+                <div class="flex gap-4 text-sm font-medium text-stone-600">
+                    <label class="flex items-center gap-2 cursor-pointer hover:text-stone-900 transition">
+                        <input type="checkbox" id="show-numbers" class="accent-stone-700" onchange="uiRenderCurrentState()">
+                        <span>#</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer hover:text-stone-900 transition">
+                        <input type="checkbox" id="show-legal" class="accent-stone-700" checked onchange="uiRenderCurrentState()">
+                        <span>Legal</span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Editor Toolbar -->
+            <div id="editor-toolbar" class="hidden w-full bg-white p-3 rounded-xl shadow-sm border border-orange-200 mb-4 flex items-center justify-between animate-in fade-in slide-in-from-top-2">
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold text-orange-600 uppercase mr-2">Edit Mode</span>
+                    <button onclick="setBrush(BLACK)" id="brush-black" class="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center hover:bg-stone-200 transition border border-stone-300">
+                        <div class="w-6 h-6 rounded-full bg-black shadow-sm"></div>
+                    </button>
+                    <button onclick="setBrush(WHITE)" id="brush-white" class="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center hover:bg-stone-200 transition border border-stone-300">
+                        <div class="w-6 h-6 rounded-full bg-white border border-stone-300 shadow-sm"></div>
+                    </button>
+                    <button onclick="setBrush(EMPTY)" id="brush-empty" class="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center hover:bg-stone-200 transition border border-stone-300 text-stone-500" title="Eraser">
+                        <i class="ph ph-eraser text-xl"></i>
+                    </button>
+                </div>
+                <button onclick="finishEditing()" class="px-4 py-2 bg-stone-800 text-white text-sm font-bold rounded-lg hover:bg-stone-700 shadow-sm">
+                    Done
+                </button>
+            </div>
+            
+            <!-- Board Area -->
+            <div class="relative p-3 rounded-lg shadow-2xl wood-texture select-none touch-none">
+                <!-- Coords -->
+                <div class="absolute top-0 left-8 right-3 h-6 flex justify-between items-end text-xs font-bold opacity-60 pointer-events-none">
+                    <div class="flex-1 text-center">a</div><div class="flex-1 text-center">b</div>
+                    <div class="flex-1 text-center">c</div><div class="flex-1 text-center">d</div>
+                    <div class="flex-1 text-center">e</div><div class="flex-1 text-center">f</div>
+                    <div class="flex-1 text-center">g</div><div class="flex-1 text-center">h</div>
+                </div>
+                <div class="absolute top-3 bottom-3 left-0 w-6 flex flex-col justify-between items-center text-xs font-bold opacity-60 pointer-events-none pt-1.5 pb-1.5">
+                    <div class="flex-1 flex items-center">1</div><div class="flex-1 flex items-center">2</div>
+                    <div class="flex-1 flex items-center">3</div><div class="flex-1 flex items-center">4</div>
+                    <div class="flex-1 flex items-center">5</div><div class="flex-1 flex items-center">6</div>
+                    <div class="flex-1 flex items-center">7</div><div class="flex-1 flex items-center">8</div>
+                </div>
+
+                <div id="board" 
+                     class="board-grid grid grid-cols-8 grid-rows-8 w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] gap-0.5 ml-5 mt-4"
+                     onmousedown="handleBoardMouseDown(event)"
+                     onmouseup="handleBoardMouseUp(event)"
+                     onmouseleave="handleBoardMouseUp(event)"
+                     ontouchstart="handleBoardTouchStart(event)"
+                     ontouchend="handleBoardTouchEnd(event)">
+                </div>
+                
+                <!-- Game Result Message -->
+                <div id="game-result-msg" class="absolute inset-0 flex items-center justify-center pointer-events-none hidden z-40">
+                    <div class="bg-stone-900/90 text-white px-6 py-4 rounded-xl shadow-2xl backdrop-blur-sm transform scale-110 animate-in fade-in zoom-in duration-300">
+                        <div class="text-2xl font-bold text-center mb-1" id="result-title">Black Wins!</div>
+                        <div class="text-sm text-stone-300 font-mono text-center" id="result-score">40 - 24</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Bar below board -->
+            <div class="mt-4 w-full flex items-center justify-center">
+                 <div id="status-bar-pill" class="status-pill status-idle px-5 py-2 rounded-full text-xs font-bold flex items-center gap-2 shadow-sm border border-stone-200">
+                      <i id="status-icon" class="ph ph-check-circle text-lg"></i> 
+                      <span id="status-msg">Ready</span>
+                 </div>
+            </div>
+
+            <!-- Player Info -->
+            <div class="mt-4 flex justify-between items-center w-full px-2">
+                <div class="flex items-center gap-4 transition-opacity duration-300" id="black-panel">
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-full bg-black shadow-lg flex items-center justify-center border-2 border-transparent" id="black-indicator">
+                            <span class="text-white font-bold text-lg" id="black-count">2</span>
+                        </div>
+                        <div id="black-turn-dot" class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2 h-2 bg-stone-800 rounded-full opacity-0 transition-opacity"></div>
+                    </div>
+                    <div class="font-bold text-stone-700 hidden sm:block">Black</div>
+                </div>
+
+                <div class="text-center">
+                     <div id="status-text" class="text-lg font-bold text-stone-800">Ready</div>
+                     <div id="move-text" class="text-xs text-stone-500 font-mono mt-1">-</div>
+                     <div id="engine-type" class="text-[10px] uppercase font-bold text-stone-400 mt-1">Engine: Standby</div>
+                </div>
+
+                <div class="flex items-center gap-4 transition-opacity duration-300 flex-row-reverse" id="white-panel">
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center border-2 border-stone-200" id="white-indicator">
+                            <span class="text-stone-800 font-bold text-lg" id="white-count">2</span>
+                        </div>
+                        <div id="white-turn-dot" class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2 h-2 bg-stone-800 rounded-full opacity-0 transition-opacity"></div>
+                    </div>
+                    <div class="font-bold text-stone-700 hidden sm:block">White</div>
+                </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div id="nav-controls" class="mt-6 w-full bg-white p-4 rounded-xl shadow-sm border border-stone-200 flex flex-col gap-3 transition-opacity">
+                <input type="range" id="history-slider" min="0" max="0" value="0" class="w-full accent-stone-700 cursor-pointer" oninput="jumpToStep(parseInt(this.value))">
+                <div class="flex justify-center gap-4">
+                    <button onclick="jumpToStep(0)" class="p-2 text-stone-600 hover:text-stone-900 hover:bg-stone-100 rounded-lg transition" title="Start">
+                        <i class="ph ph-skip-back-circle text-2xl"></i>
+                    </button>
+                    <button onclick="step(-1)" class="p-2 text-stone-600 hover:text-stone-900 hover:bg-stone-100 rounded-lg transition" title="Previous (Left Arrow)">
+                        <i class="ph ph-arrow-circle-left text-2xl"></i>
+                    </button>
+                    <button onclick="step(1)" class="p-2 text-stone-600 hover:text-stone-900 hover:bg-stone-100 rounded-lg transition" title="Next (Right Arrow)">
+                        <i class="ph ph-arrow-circle-right text-2xl"></i>
+                    </button>
+                    <button onclick="jumpToEnd()" class="p-2 text-stone-600 hover:text-stone-900 hover:bg-stone-100 rounded-lg transition" title="End">
+                        <i class="ph ph-skip-forward-circle text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- EDIT BUTTON -->
+            <button id="btn-edit-toggle" onclick="toggleEditMode()" class="mt-4 w-full bg-white border border-stone-300 text-stone-600 font-bold py-2 px-4 rounded-lg hover:bg-stone-50 transition text-sm flex items-center justify-center gap-2">
+                 <i class="ph ph-pencil-simple"></i> Edit Board
+            </button>
+        </div>
+
+        <!-- Right: Input & History -->
+        <div id="sidebar-panel" class="w-full lg:w-80 flex flex-col gap-4 h-full transition-opacity duration-300">
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-stone-200">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="text-sm font-bold text-stone-800 uppercase tracking-wide">Input Moves</h2>
+                    <div class="flex gap-2">
+                        <button onclick="copyInput()" class="text-xs text-blue-600 hover:text-blue-800 transition flex items-center gap-1" title="Copy to Clipboard">
+                            <i class="ph ph-copy"></i> Copy
+                        </button>
+                        <button onclick="clearInput()" class="text-xs text-stone-400 hover:text-red-500 transition">Clear</button>
+                    </div>
+                </div>
+                <textarea id="move-input" class="w-full h-24 p-3 border border-stone-200 rounded-lg font-mono text-xs focus:ring-2 focus:ring-stone-400 focus:outline-none resize-none text-stone-600 bg-stone-50" placeholder="e.g. f5d6c3..."></textarea>
+                
+                <div class="flex flex-col gap-3 mt-3">
+                    <button onclick="parseAndLoad()" class="w-full bg-stone-800 hover:bg-stone-700 text-white font-bold py-2 px-4 rounded-lg transition text-sm flex items-center justify-center gap-2">
+                        <i class="ph ph-upload-simple"></i> Load Game
+                    </button>
+                    
+                    <button id="btn-analyze" onclick="toggleAnalysisMode()" class="w-full bg-stone-200 hover:bg-stone-300 text-stone-700 font-bold py-2 px-4 rounded-lg transition text-sm flex items-center justify-center gap-2 shadow-sm">
+                        <i id="icon-analyze" class="ph ph-brain"></i> <span id="text-analyze">Analysis: OFF</span>
+                    </button>
+                    
+                    <!-- NEW: Collapsible Developer Mode -->
+                    <div class="border border-stone-200 rounded-lg overflow-hidden bg-stone-50">
+                        <button onclick="toggleDevSettings()" class="w-full bg-stone-100 p-3 text-xs font-bold text-stone-600 flex justify-between items-center hover:bg-stone-200 transition">
+                            <span class="flex items-center gap-2"><i class="ph ph-code"></i> Developer Mode</span>
+                            <i id="dev-chevron" class="ph ph-caret-down transition-transform"></i>
+                        </button>
+                        
+                        <!-- Settings Panel (Hidden by default) -->
+                        <div id="dev-settings-panel" class="hidden p-3 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2">
+                            <div>
+                                <div class="flex justify-between items-center text-xs font-bold text-stone-500 mb-2">
+                                    <span>Engine Weights & Rules</span>
+                                    <button onclick="resetWeights()" class="text-[10px] text-blue-600 hover:underline">Reset Defaults</button>
+                                </div>
+                                
+                                <!-- Hard Constraints Toggle -->
+                                <div class="flex items-center justify-between mb-3 px-1">
+                                    <span class="text-[10px] text-stone-700 font-bold">Hard Rules (Pos/Div/Star)</span>
+                                    <div class="relative inline-block w-8 h-4 align-middle select-none transition duration-200 ease-in">
+                                        <!-- Changed default to unchecked (OFF) -->
+                                        <input type="checkbox" name="toggle" id="toggle-hard" class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-2 border-stone-300 appearance-none cursor-pointer" checked onchange="updateWeightsUI()"/>
+                                        <label for="toggle-hard" class="toggle-label block overflow-hidden h-4 rounded-full bg-stone-300 cursor-pointer"></label>
+                                    </div>
+                                </div>
+
+                                <!-- Sliders -->
+                                <div class="space-y-3">
+                                    <!-- Regional Parity (New V2.5) -->
+                                    <div>
+                                        <div class="flex justify-between text-[10px] text-stone-600 font-semibold mb-1">
+                                            <span class="text-pink-600">Closed Parity (FloodFill)</span>
+                                            <span id="val-parity" class="font-bold text-pink-600">12</span>
+                                        </div>
+                                        <input type="range" id="slider-parity" min="0" max="60" value="12" class="weight-slider accent-pink-600" oninput="updateWeightsUI()">
+                                    </div>
+
+                                    <!-- Divergence -->
+                                    <div>
+                                        <div class="flex justify-between text-[10px] text-stone-600 font-semibold mb-1">
+                                            <span>Divergence (Frontier)</span>
+                                            <span id="val-div">28</span>
+                                        </div>
+                                        <input type="range" id="slider-div" min="0" max="60" value="28" class="weight-slider" oninput="updateWeightsUI()">
+                                    </div>
+                                    
+                                    <!-- Mobility -->
+                                    <div>
+                                        <div class="flex justify-between text-[10px] text-stone-600 font-semibold mb-1">
+                                            <span>Mobility (Moves)</span>
+                                            <span id="val-mob">24</span>
+                                        </div>
+                                        <input type="range" id="slider-mob" min="0" max="60" value="24" class="weight-slider" oninput="updateWeightsUI()">
+                                    </div>
+                                    
+                                    <!-- Stable -->
+                                    <div>
+                                        <div class="flex justify-between text-[10px] text-stone-600 font-semibold mb-1">
+                                            <span>Stability (Safe Discs)</span>
+                                            <span id="val-stable" class="text-indigo-600 font-bold">32</span>
+                                        </div>
+                                        <input type="range" id="slider-stable" min="0" max="60" value="32" class="weight-slider" oninput="updateWeightsUI()">
+                                    </div>
+                                    
+                                    <!-- Flip Count -->
+                                    <div>
+                                        <div class="flex justify-between text-[10px] text-stone-600 font-semibold mb-1">
+                                            <span>Flip Count (Forced)</span>
+                                            <span id="val-flip">22</span>
+                                        </div>
+                                        <input type="range" id="slider-flip" min="0" max="60" value="22" class="weight-slider" oninput="updateWeightsUI()">
+                                    </div>
+                                </div>
+                                
+                                <div class="text-[10px] text-stone-400 leading-tight mt-3 pt-2 border-t border-stone-200">
+                                    <strong>V2.5 Strategy Profile:</strong><br>
+                                    > 26 empty: Strategic + <span class="text-pink-600 font-bold">IID + LMR</span><br>
+                                    19-26 empty: <span class="text-purple-600 font-bold">Deep (Depth 15)</span><br>
+                                    17-18 empty: <span class="text-green-600 font-bold">Smart Sort + Exact</span><br>
+                                    <= 16 empty: <span class="text-red-500 font-bold">Direct Solver</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Play with AI Button -->
+                    <button id="btn-ai-play" onclick="handleAiButton()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition text-sm flex items-center justify-center gap-2 shadow-md">
+                        <i class="ph ph-robot"></i> Play with AI
+                    </button>
+                    
+                    <!-- Raw Values List -->
+                    <div id="analysis-details-panel" class="hidden animate-in fade-in slide-in-from-top-1">
+                         <div class="text-[10px] font-bold text-stone-400 uppercase tracking-wide mb-1 flex justify-between">
+                             <span>Evaluation Details</span>
+                             <span class="text-stone-300">Raw Values</span>
+                         </div>
+                         <div id="analysis-results-text" class="custom-scroll w-full p-2 bg-stone-50 border border-stone-200 rounded font-mono text-[10px] text-stone-600 h-28 overflow-y-auto leading-relaxed whitespace-pre-wrap">
+                             Waiting for analysis...
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 flex-1 flex flex-col overflow-hidden h-[400px] lg:h-[500px]">
+                <div class="p-4 border-b border-stone-100 bg-stone-50">
+                    <h2 class="text-sm font-bold text-stone-800 uppercase tracking-wide">Transcript</h2>
+                </div>
+                <div id="move-history-list" class="flex-1 overflow-y-auto p-0 relative">
+                    <!-- List -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Credits Footer -->
+    <div id="credits-footer" class="fixed bottom-2 right-2 md:bottom-2 md:right-4 text-[10px] text-stone-400 cursor-pointer hover:text-stone-600 transition-colors select-none font-medium opacity-80 z-50 bg-stone-100/50 px-2 py-1 rounded backdrop-blur-sm" onclick="editCredits()">
+        Rain Optimized V2.5 | IID & ClosedParity
+    </div>
+    
+    <!-- Turn Selection Modal -->
+    <div id="turn-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3 class="text-lg font-bold text-stone-800 mb-2">Whose Turn?</h3>
+            <p class="text-sm text-stone-500 mb-6">Both players have valid moves.</p>
+            <div class="flex gap-4 justify-center">
+                <button onclick="selectTurn(BLACK)" class="flex-1 py-3 bg-stone-800 text-white rounded-lg hover:bg-stone-700 transition font-bold flex flex-col items-center gap-1">
+                    <div class="w-4 h-4 rounded-full bg-black border border-stone-600"></div> Black
+                </button>
+                <button onclick="selectTurn(WHITE)" class="flex-1 py-3 bg-white border border-stone-200 text-stone-800 rounded-lg hover:bg-stone-50 transition font-bold flex flex-col items-center gap-1">
+                    <div class="w-4 h-4 rounded-full bg-white border border-stone-400"></div> White
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AI Selection Modal -->
+    <div id="ai-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3 class="text-lg font-bold text-stone-800 mb-2">Play with AI</h3>
+            <p class="text-sm text-stone-500 mb-6">Choose your side. (Rain V2.5)</p>
+            <div class="flex flex-col gap-3">
+                <button onclick="startAiGame(WHITE)" class="w-full py-3 bg-stone-800 text-white rounded-lg hover:bg-stone-700 transition font-bold flex items-center justify-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-white"></div> You as Black
+                </button>
+                <button onclick="startAiGame(BLACK)" class="w-full py-3 bg-white border border-stone-200 text-stone-800 rounded-lg hover:bg-stone-50 transition font-bold flex items-center justify-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-black"></div> You as White
+                </button>
+                <button onclick="startAiGame('BOTH')" class="w-full py-3 bg-indigo-100 text-indigo-700 border border-indigo-200 rounded-lg hover:bg-indigo-200 transition font-bold flex items-center justify-center gap-2">
+                    <i class="ph ph-robot"></i> AI Selfplay
+                </button>
+            </div>
+            <button onclick="document.getElementById('ai-modal').classList.add('hidden')" class="mt-4 text-xs text-stone-400 hover:text-stone-600">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        const EMPTY = 0;
+        const BLACK = 1;
+        const WHITE = 2;
+        const SIZE = 8;
+        
+        let gameHistory = []; 
+        let currentStepIndex = 0; 
+        
+        // Analysis Vars
+        let isAnalysisMode = false;
+        
+        // AI Vars
+        let aiSide = null; 
+        let isAiThinking = false;
+        
+        // Edit Mode Vars
+        let isEditMode = false;
+        let editBrush = BLACK;
+        let isDragging = false;
+        
+        // Weight Vars (V2.5: Parity Default 20)
+        let engineWeights = {
+            div: 28,
+            mob: 24,
+            stable: 32,
+            flip: 22,
+            parity: 12
+        };
+        // DEFAULT TO TRUE
+        let useHardConstraints = true;
+
+        const DEFAULT_GAME = "";
+
+        // --- Worker Script (V2.5 Optimized - IID + ClosedParity) ---
+        const workerScript = `
+            const BLACK = 1;
+            const WHITE = 2;
+            const EMPTY = 0;
+            const MAX_DEPTH_BUFFER = 64;
+            
+            // --- OPTIMIZATION: ZERO GC BUFFERS ---
+            const GLOBAL_MOVES = new Int8Array(MAX_DEPTH_BUFFER * 64);
+            const GLOBAL_SORT_SCORES = new Float32Array(MAX_DEPTH_BUFFER * 64);
+            
+            // --- Killer Moves Buffer ---
+            const KILLER_MOVES = new Int32Array(MAX_DEPTH_BUFFER * 2);
+            KILLER_MOVES.fill(-1);
+
+            // --- History Heuristic Table ---
+            const HISTORY_TABLE = new Int32Array(2 * 64);
+            let currentReqId = -1;
+
+            const DIR_R = new Int8Array([-1, -1, -1, 0, 0, 1, 1, 1]);
+            const DIR_C = new Int8Array([-1, 0, 1, -1, 1, -1, 0, 1]);
+            
+            const GLOBAL_FLIP_STACK = new Int32Array(5000); 
+            const GLOBAL_STABLE_MAP = new Uint8Array(64);
+            
+            // Stack for Flood Fill (Parity)
+            const GLOBAL_REGION_STACK = new Int32Array(64);
+            
+            // Buffers for Bridge Penalty In-place Modification
+            const GLOBAL_MOD_STACK = new Int32Array(20);
+            const GLOBAL_MOD_VALS = new Int32Array(20);
+
+            const WEIGHT_MAP = new Int8Array([
+                100, -20, 10,  5,  5, 10, -20, 100,
+                -20, -50, -2, -2, -2, -2, -50, -20,
+                 10,  -2,  1,  1,  1,  1,  -2,  10,
+                  5,  -2,  1,  2,  2,  1,  -2,   5,
+                  5,  -2,  1,  2,  2,  1,  -2,   5,
+                 10,  -2,  1,  1,  1,  1,  -2,  10,
+                -20, -50, -2, -2, -2, -2, -50, -20,
+                100, -20, 10,  5,  5, 10, -20, 100
+            ]);
+
+            const ZOBRIST = new BigUint64Array(2 * 64);
+            const ZOBRIST_SIDE = 0xABCDABCDABCDABCDn;
+
+            if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+                crypto.getRandomValues(ZOBRIST);
+            } else {
+                for(let i=0; i<128; i++) {
+                     const h = BigInt(Math.floor(Math.random() * 0xFFFFFFFF));
+                     const l = BigInt(Math.floor(Math.random() * 0xFFFFFFFF));
+                     ZOBRIST[i] = (h << 32n) | l;
+                }
+            }
+
+            // TT SIZE: 8M entries
+            const TT_SIZE = 0x800000;
+            const TT_MASK = BigInt(TT_SIZE - 1);
+            const TT_KEY = new BigUint64Array(TT_SIZE);
+            const TT_VAL = new Float64Array(TT_SIZE); 
+            const TT_DEPTH = new Int8Array(TT_SIZE); 
+            const TT_FLAG = new Uint8Array(TT_SIZE); 
+            const TT_MOVE = new Uint8Array(TT_SIZE); 
+            TT_MOVE.fill(255);
+            
+            const FLAG_EMPTY = 0;
+            const FLAG_EXACT = 1;
+            const FLAG_LOWER = 2;
+            const FLAG_UPPER = 3;
+
+            const Solver = {
+                rootPlayer: 0,
+                weights: { div: 28, mob: 24, stable: 32, flip: 22, parity: 12 }, // V2.5 Default
+                useHardConstraints: false, 
+
+                countEmpty: function(board) {
+                    let c = 0;
+                    for(let i=0; i<64; i++) if(board[i] === EMPTY) c++;
+                    return c;
+                },
+
+                // --- OPTIMIZATION: Fast Move Existence Check ---
+                fastIsValidMove: function(board, idx, player) {
+                    if(board[idx] !== EMPTY) return false;
+                    let opp = (player===BLACK)?WHITE:BLACK;
+                    const r = idx >> 3;
+                    const c = idx & 7;
+
+                    for(let d=0; d<8; d++) {
+                        let dr = DIR_R[d], dc = DIR_C[d];
+                        let nr = r + dr, nc = c + dc;
+                        let hasOpp = false;
+                        
+                        while(nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
+                            let nIdx = (nr << 3) | nc;
+                            let v = board[nIdx];
+                            if(v === opp) { 
+                                hasOpp = true; 
+                                nr += dr; 
+                                nc += dc; 
+                            } 
+                            else if(v === player) { 
+                                if(hasOpp) return true; 
+                                break; 
+                            } 
+                            else break;
+                        }
+                    }
+                    return false;
+                },
+
+                populateValidMoves: function(board, player, bufferOffset) {
+                    let count = 0;
+                    for(let i=0; i<64; i++) {
+                        if (this.canMoveAt(board, i, player)) {
+                            GLOBAL_MOVES[bufferOffset + count] = i;
+                            count++;
+                        }
+                    }
+                    return count;
+                },
+                
+                getMoveCount: function(board, player) {
+                    let count = 0;
+                    for(let i=0; i<64; i++) {
+                         if (this.useHardConstraints) {
+                             if (i===9 || i===14 || i===49 || i===54) continue;
+                         }
+                         if (this.fastIsValidMove(board, i, player)) count++;
+                    }
+                    return count;
+                },
+                
+                populatePrunedMoves: function(board, player, bufferOffset) {
+                    let count = 0;
+                    for(let i=0; i<64; i++) {
+                        if (this.useHardConstraints) {
+                            if (i===9 || i===14 || i===49 || i===54) continue;
+                        }
+                        if (this.canMoveAt(board, i, player)) {
+                            GLOBAL_MOVES[bufferOffset + count] = i;
+                            count++;
+                        }
+                    }
+                    return count;
+                },
+
+                canMoveAt: function(board, idx, player) {
+                    if(board[idx] !== EMPTY) return false;
+                    let opp = (player===BLACK)?WHITE:BLACK;
+                    const r = idx >> 3;
+                    const c = idx & 7;
+
+                    for(let d=0; d<8; d++) {
+                        let dr = DIR_R[d], dc = DIR_C[d];
+                        let nr = r + dr, nc = c + dc;
+                        let hasOpp = false;
+                        
+                        while(nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
+                            let nIdx = (nr << 3) | nc;
+                            let v = board[nIdx];
+                            if(v === opp) { 
+                                hasOpp = true; 
+                                nr += dr; 
+                                nc += dc; 
+                            } 
+                            else if(v === player) { 
+                                if(hasOpp) return true; 
+                                break; 
+                            } 
+                            else break;
+                        }
+                    }
+                    return false;
+                },
+
+                applyMove: function(board, idx, player, stackOffset, currentHash) {
+                    let flipCount = 0;
+                    board[idx] = player;
+                    const rStart = idx >> 3;
+                    const cStart = idx & 7;
+                    let nextHash = currentHash ^ ZOBRIST[(player===BLACK?0:64) + idx];
+                    let opp = (player===BLACK)?WHITE:BLACK;
+                    let oppOffset = (opp===BLACK?0:64);
+                    let myOffset = (player===BLACK?0:64);
+
+                    for(let d=0; d<8; d++) {
+                        let dr = DIR_R[d], dc = DIR_C[d];
+                        let nr = rStart + dr, nc = cStart + dc;
+                        let potentialCount = 0;
+                        while(nr >= 0 && nr < 8 && nc >= 0 && nc < 8 && board[(nr<<3)|nc] === opp) {
+                            potentialCount++; 
+                            nr += dr; 
+                            nc += dc;
+                        }
+                        if(nr >= 0 && nr < 8 && nc >= 0 && nc < 8 && board[(nr<<3)|nc] === player && potentialCount > 0) {
+                             let rFlip = rStart + dr;
+                             let cFlip = cStart + dc;
+                             for(let i=0; i<potentialCount; i++) {
+                                 let pos = (rFlip<<3) | cFlip;
+                                 board[pos] = player;
+                                 GLOBAL_FLIP_STACK[stackOffset + flipCount] = pos;
+                                 flipCount++;
+                                 nextHash ^= ZOBRIST[oppOffset + pos];
+                                 nextHash ^= ZOBRIST[myOffset + pos];
+                                 rFlip += dr; cFlip += dc;
+                             }
+                        }
+                    }
+                    return { count: flipCount, hash: nextHash };
+                },
+
+                undoMove: function(board, idx, count, stackOffset, player) {
+                    board[idx] = EMPTY;
+                    let opp = (player===BLACK)?WHITE:BLACK;
+                    for(let i=0; i<count; i++) {
+                        let pos = GLOBAL_FLIP_STACK[stackOffset + i];
+                        board[pos] = opp;
+                    }
+                },
+                
+                calcLocalDiv: function(board, idx) {
+                    const r = idx >> 3, c = idx & 7;
+                    let d = 0;
+                    for(let k=0; k<8; k++) {
+                        let nr = r + DIR_R[k], nc = c + DIR_C[k];
+                        if (nr>=0 && nr<8 && nc>=0 && nc<8) {
+                            if (board[(nr<<3)|nc] === EMPTY) d++;
+                        }
+                    }
+                    return d;
+                },
+                
+                calcTotalDiv: function(board, player, exclIdx) {
+                    let t=0;
+                    for(let i=0; i<64; i++) {
+                        if(board[i]===player) {
+                            if(exclIdx !== -1 && i===exclIdx) continue;
+                            t += this.calcLocalDiv(board, i);
+                        }
+                    }
+                    return t;
+                },
+
+                // --- V2.5: True Closed Region Parity (Flood Fill) ---
+                calcClosedParity: function(board) {
+                    let visited = 0n;
+                    let score = 0;
+                    
+                    for (let i = 0; i < 64; i++) {
+                        if (board[i] === EMPTY) {
+                            if ((visited & (1n << BigInt(i))) !== 0n) continue;
+
+                            let count = 0;
+                            let stackPtr = 0;
+                            let hasBlack = false;
+                            let hasWhite = false;
+                            
+                            GLOBAL_REGION_STACK[stackPtr++] = i;
+                            visited |= (1n << BigInt(i));
+                            count++;
+
+                            while(stackPtr > 0) {
+                                let curr = GLOBAL_REGION_STACK[--stackPtr];
+                                let r = curr >> 3;
+                                let c = curr & 7;
+                                
+                                // Check 4 neighbors
+                                // Up
+                                if (r > 0) {
+                                    let idx = ((r - 1) << 3) | c;
+                                    let val = board[idx];
+                                    if (val === EMPTY) {
+                                        if ((visited & (1n << BigInt(idx))) === 0n) {
+                                            visited |= (1n << BigInt(idx));
+                                            GLOBAL_REGION_STACK[stackPtr++] = idx;
+                                            count++;
+                                        }
+                                    } else if (val === BLACK) hasBlack = true;
+                                    else if (val === WHITE) hasWhite = true;
+                                }
+                                // Down
+                                if (r < 7) {
+                                    let idx = ((r + 1) << 3) | c;
+                                    let val = board[idx];
+                                    if (val === EMPTY) {
+                                        if ((visited & (1n << BigInt(idx))) === 0n) {
+                                            visited |= (1n << BigInt(idx));
+                                            GLOBAL_REGION_STACK[stackPtr++] = idx;
+                                            count++;
+                                        }
+                                    } else if (val === BLACK) hasBlack = true;
+                                    else if (val === WHITE) hasWhite = true;
+                                }
+                                // Left
+                                if (c > 0) {
+                                    let idx = (r << 3) | (c - 1);
+                                    let val = board[idx];
+                                    if (val === EMPTY) {
+                                        if ((visited & (1n << BigInt(idx))) === 0n) {
+                                            visited |= (1n << BigInt(idx));
+                                            GLOBAL_REGION_STACK[stackPtr++] = idx;
+                                            count++;
+                                        }
+                                    } else if (val === BLACK) hasBlack = true;
+                                    else if (val === WHITE) hasWhite = true;
+                                }
+                                // Right
+                                if (c < 7) {
+                                    let idx = (r << 3) | (c + 1);
+                                    let val = board[idx];
+                                    if (val === EMPTY) {
+                                        if ((visited & (1n << BigInt(idx))) === 0n) {
+                                            visited |= (1n << BigInt(idx));
+                                            GLOBAL_REGION_STACK[stackPtr++] = idx;
+                                            count++;
+                                        }
+                                    } else if (val === BLACK) hasBlack = true;
+                                    else if (val === WHITE) hasWhite = true;
+                                }
+                            }
+                            
+                            // Parity Logic: Only score if boundary has BOTH players (Contested)
+                            if (hasBlack && hasWhite) {
+                                score += (count & 1) ? 1 : -1;
+                            }
+                        }
+                    }
+                    return score;
+                },
+                
+                getStableCount: function(board, player, forcedCorners) {
+                    GLOBAL_STABLE_MAP.fill(0);
+                    let total = 0;
+                    const corners = [0, 7, 56, 63];
+                    const dirs = [[1, 8], [-1, 8], [1, -8], [-1, -8]];
+                    for (let i=0; i<4; i++) {
+                        let cIdx = corners[i];
+                        let p = board[cIdx];
+                        if (forcedCorners && forcedCorners[cIdx] !== undefined) p = forcedCorners[cIdx];
+                        if(p !== player) continue;
+                        if (GLOBAL_STABLE_MAP[cIdx] === 0) { GLOBAL_STABLE_MAP[cIdx] = 1; total++; }
+                        let d1 = dirs[i][0]; 
+                        let d2 = dirs[i][1];
+                        let curr = cIdx + d1;
+                        for(let k=0; k<7; k++) {
+                            if (board[curr] === player && GLOBAL_STABLE_MAP[curr] === 0) {
+                                GLOBAL_STABLE_MAP[curr] = 1; total++;
+                            } else break;
+                            curr += d1;
+                        }
+                        curr = cIdx + d2;
+                        for(let k=0; k<7; k++) {
+                            if (board[curr] === player && GLOBAL_STABLE_MAP[curr] === 0) {
+                                GLOBAL_STABLE_MAP[curr] = 1; total++;
+                            } else break;
+                            curr += d2;
+                        }
+                    }
+                    return total;
+                },
+
+                evalDisc: function(board, player) {
+                    let m=0, o=0, opp=(player===BLACK)?WHITE:BLACK;
+                    for(let i=0; i<64; i++) { 
+                        let v = board[i];
+                        if(v===player) m++; else if(v===opp) o++; 
+                    }
+                    return m-o;
+                },
+                
+                solveEndgame: function(board, player, alpha, beta, emptyCount, hash) {
+                     const ttKey = hash ^ (player === WHITE ? ZOBRIST_SIDE : 0n);
+                     const ttIndex = Number(ttKey & TT_MASK);
+                     
+                     if (TT_KEY[ttIndex] === ttKey && TT_DEPTH[ttIndex] === emptyCount) {
+                         if (TT_FLAG[ttIndex] === FLAG_EXACT) return TT_VAL[ttIndex];
+                         if (TT_FLAG[ttIndex] === FLAG_LOWER) { if (TT_VAL[ttIndex] > alpha) alpha = TT_VAL[ttIndex]; }
+                         else if (TT_FLAG[ttIndex] === FLAG_UPPER) { if (TT_VAL[ttIndex] < beta) beta = TT_VAL[ttIndex]; }
+                         if (alpha >= beta) return TT_VAL[ttIndex];
+                     }
+
+                     const bufferOffset = emptyCount * 64; 
+                     const moveCount = this.populateValidMoves(board, player, bufferOffset);
+                     
+                     if(moveCount===0) {
+                        let opp = (player===BLACK)?WHITE:BLACK;
+                        if(this.populateValidMoves(board, opp, 60*64)===0) return this.evalDisc(board, player);
+                        return -this.solveEndgame(board, opp, -beta, -alpha, emptyCount, hash);
+                     }
+
+                     let ttMove = (TT_MOVE[ttIndex] !== 255) ? TT_MOVE[ttIndex] : -1;
+                     
+                     for(let i=0; i<moveCount; i++) {
+                         let m = GLOBAL_MOVES[bufferOffset + i];
+                         let s = WEIGHT_MAP[m];
+                         if (m === ttMove) s += 10000;
+                         GLOBAL_SORT_SCORES[bufferOffset + i] = s;
+                     }
+                     
+                     for(let i=0; i<moveCount-1; i++) {
+                         for(let j=0; j<moveCount-i-1; j++) {
+                             let idx1 = bufferOffset + j;
+                             let idx2 = bufferOffset + j + 1;
+                             if(GLOBAL_SORT_SCORES[idx1] < GLOBAL_SORT_SCORES[idx2]) {
+                                 let tS = GLOBAL_SORT_SCORES[idx1]; GLOBAL_SORT_SCORES[idx1] = GLOBAL_SORT_SCORES[idx2]; GLOBAL_SORT_SCORES[idx2] = tS;
+                                 let tM = GLOBAL_MOVES[idx1]; GLOBAL_MOVES[idx1] = GLOBAL_MOVES[idx2]; GLOBAL_MOVES[idx2] = tM;
+                             }
+                         }
+                     }
+
+                     let alphaOrig = alpha;
+                     let best = -Infinity;
+                     let bestMove = -1;
+                     const stackOffset = emptyCount * 30;
+
+                     for(let i=0; i<moveCount; i++) {
+                        let m = GLOBAL_MOVES[bufferOffset + i];
+                        let res = this.applyMove(board, m, player, stackOffset, hash);
+                        let val = -this.solveEndgame(board, (player===BLACK)?WHITE:BLACK, -beta, -alpha, emptyCount - 1, res.hash);
+                        this.undoMove(board, m, res.count, stackOffset, player);
+                        
+                        if(val > best) { best = val; bestMove = m; }
+                        if(val > alpha) alpha = val;
+                        if(alpha >= beta) break;
+                     }
+
+                     if (TT_KEY[ttIndex] !== ttKey || emptyCount >= TT_DEPTH[ttIndex]) {
+                         TT_KEY[ttIndex] = ttKey;
+                         TT_VAL[ttIndex] = best;
+                         TT_DEPTH[ttIndex] = emptyCount;
+                         if (bestMove !== -1) TT_MOVE[ttIndex] = bestMove;
+                         if (best <= alphaOrig) TT_FLAG[ttIndex] = FLAG_UPPER;
+                         else if (best >= beta) TT_FLAG[ttIndex] = FLAG_LOWER;
+                         else TT_FLAG[ttIndex] = FLAG_EXACT;
+                     }
+                     return best;
+                },
+                
+                searchRoot: function(board, player, moveIdx, maxDepth, timeBudget, rootHash) {
+                    let bestVal = -Infinity;
+                    for (let d = 1; d <= maxDepth; d++) {
+                        if (d >= 3 && Math.abs(bestVal) < 10000) {
+                             const window = 25; 
+                             let alpha = bestVal - window;
+                             let beta = bestVal + window;
+                             let val = this.calcScore(board, player, moveIdx, d, alpha, beta, rootHash);
+                             if (val <= alpha) val = this.calcScore(board, player, moveIdx, d, -Infinity, alpha, rootHash);
+                             else if (val >= beta) val = this.calcScore(board, player, moveIdx, d, beta, Infinity, rootHash);
+                             bestVal = val;
+                        } else {
+                             bestVal = this.calcScore(board, player, moveIdx, d, -Infinity, Infinity, rootHash);
+                        }
+                    }
+                    return bestVal;
+                },
+                
+                calcScore: function(board, player, moveIdx, depth, alpha, beta, rootHash) {
+                    const stackOffset = 4000;
+                    let res = this.applyMove(board, moveIdx, player, stackOffset, rootHash);
+                    let opp = (player===BLACK)?WHITE:BLACK;
+                    
+                    let val = -this.negamaxHybrid(board, opp, depth-1, -beta, -alpha, moveIdx, res.count, res.hash);
+                    
+                    if (this.useHardConstraints) {
+                        let opCount = this.populateValidMoves(board, opp, 61*64); 
+                        let opBufferOffset = 61*64;
+                        for(let i=0; i<opCount; i++) {
+                            if(this.calcLocalDiv(board, GLOBAL_MOVES[opBufferOffset+i]) === 1) {
+                                if(val > 0) val *= 0.78; else if(val < 0) val /= 0.78; 
+                                break; 
+                            }
+                        }
+
+                        let hitStar = false;
+                        for(let i=0; i<res.count; i++) {
+                            let pos = GLOBAL_FLIP_STACK[stackOffset + i];
+                            if(pos === 9 || pos === 14 || pos === 49 || pos === 54) {
+                                hitStar = true; break;
+                            }
+                        }
+                        if(hitStar) {
+                            if(val > 0) val *= 0.75; else if(val < 0) val /= 0.75; else val -= 200; 
+                        }
+                    }
+                    
+                    this.undoMove(board, moveIdx, res.count, stackOffset, player);
+                    
+                    if (this.useHardConstraints) {
+                         let r = moveIdx>>3, c = moveIdx&7;
+                         if ((r===1 && c===1) || (r===6 && c===1) || (r===1 && c===6) || (r===6 && c===6)) {
+                             let eCount = this.countEmpty(board);
+                             let factor = (eCount > 18 && eCount <= 26) ? 0.86 : 0.56;
+
+                             if(val>0) val *= factor; 
+                             else if(val<0) val /= factor;
+                         }
+                    }
+                    
+                    return val;
+                },
+
+                negamaxHybrid: function(board, player, depth, alpha, beta, lastMoveIdx, lastCount, hash) {
+                    const ttKey = hash ^ (player === WHITE ? ZOBRIST_SIDE : 0n);
+                    const ttIndex = Number(ttKey & TT_MASK);
+                    
+                    if (TT_KEY[ttIndex] === ttKey && TT_DEPTH[ttIndex] >= depth) {
+                         if (TT_FLAG[ttIndex] === FLAG_EXACT) return TT_VAL[ttIndex];
+                         if (TT_FLAG[ttIndex] === FLAG_LOWER) { if (TT_VAL[ttIndex] > alpha) alpha = TT_VAL[ttIndex]; }
+                         else if (TT_FLAG[ttIndex] === FLAG_UPPER) { if (TT_VAL[ttIndex] < beta) beta = TT_VAL[ttIndex]; }
+                         if (alpha >= beta) return TT_VAL[ttIndex];
+                    }
+                    
+                    if(depth===0) return this.evalHybrid(board, player, lastMoveIdx, lastCount);
+                    
+                    let ttMove = (TT_MOVE[ttIndex] !== 255) ? TT_MOVE[ttIndex] : -1;
+
+                    // --- V2.5: IID (Internal Iterative Deepening) ---
+                    // If no move in TT and depth is high, do a shallow search to fill TT
+                    if (ttMove === -1 && depth >= 6) {
+                        let iidDepth = depth - 4;
+                        this.negamaxHybrid(board, player, iidDepth, -beta, -alpha, lastMoveIdx, lastCount, hash);
+                        ttMove = (TT_MOVE[ttIndex] !== 255) ? TT_MOVE[ttIndex] : -1;
+                    }
+
+                    const bufferOffset = depth * 64; 
+                    const moveCount = this.populatePrunedMoves(board, player, bufferOffset);
+
+                    if(moveCount===0) {
+                        let opp = (player===BLACK)?WHITE:BLACK;
+                        if(this.fastIsValidMove(board, -1, opp)) { 
+                             if (this.populatePrunedMoves(board, opp, 62*64) === 0) return this.evalDisc(board, player)*1000;
+                        } else {
+                             if (this.populatePrunedMoves(board, opp, 62*64) === 0) return this.evalDisc(board, player)*1000;
+                        }
+                        return -this.negamaxHybrid(board, opp, depth-1, -beta, -alpha, -1, 0, hash);
+                    }
+                    
+                    let k1 = KILLER_MOVES[depth * 2];
+                    let k2 = KILLER_MOVES[depth * 2 + 1];
+                    const pOffset = (player === BLACK ? 0 : 64);
+
+                    for(let i=0; i<moveCount; i++) {
+                         let m = GLOBAL_MOVES[bufferOffset + i];
+                         let s = WEIGHT_MAP[m];
+                         if (m === ttMove) s += 10000;
+                         else if (m === k1 || m === k2) s += 5000; 
+                         else s += HISTORY_TABLE[pOffset + m]; 
+                         GLOBAL_SORT_SCORES[bufferOffset + i] = s;
+                    }
+                    
+                    for(let i=0; i<moveCount-1; i++) {
+                         for(let j=0; j<moveCount-i-1; j++) {
+                             let idx1 = bufferOffset + j;
+                             let idx2 = bufferOffset + j + 1;
+                             if(GLOBAL_SORT_SCORES[idx1] < GLOBAL_SORT_SCORES[idx2]) {
+                                 let tS = GLOBAL_SORT_SCORES[idx1]; GLOBAL_SORT_SCORES[idx1] = GLOBAL_SORT_SCORES[idx2]; GLOBAL_SORT_SCORES[idx2] = tS;
+                                 let tM = GLOBAL_MOVES[idx1]; GLOBAL_MOVES[idx1] = GLOBAL_MOVES[idx2]; GLOBAL_MOVES[idx2] = tM;
+                             }
+                         }
+                    }
+
+                    let alphaOrig = alpha;
+                    let best = -Infinity;
+                    let bestMove = -1;
+                    const stackOffset = depth * 64; 
+
+                    for(let i=0; i<moveCount; i++) {
+                        let m = GLOBAL_MOVES[bufferOffset + i];
+                        let res = this.applyMove(board, m, player, stackOffset, hash);
+                        
+                        let val;
+                        let needsFullSearch = true;
+
+                        // LMR (Late Move Reduction)
+                        if (depth >= 3 && i >= 6) {
+                             let R = 2;
+                             val = -this.negamaxHybrid(board, (player===BLACK)?WHITE:BLACK, depth - 1 - R, -alpha-1, -alpha, m, res.count, res.hash);
+                             if (val <= alpha) needsFullSearch = false;
+                        }
+
+                        if (needsFullSearch) {
+                            if (i === 0) {
+                                val = -this.negamaxHybrid(board, (player===BLACK)?WHITE:BLACK, depth-1, -beta, -alpha, m, res.count, res.hash);
+                            } else {
+                                val = -this.negamaxHybrid(board, (player===BLACK)?WHITE:BLACK, depth-1, -alpha-1, -alpha, m, res.count, res.hash);
+                                if (val > alpha && val < beta) {
+                                    val = -this.negamaxHybrid(board, (player===BLACK)?WHITE:BLACK, depth-1, -beta, -alpha, m, res.count, res.hash);
+                                }
+                            }
+                        }
+
+                        this.undoMove(board, m, res.count, stackOffset, player);
+                        
+                        if(val > best) { best = val; bestMove = m; }
+                        if(val > alpha) alpha = val;
+                        
+                        if(alpha >= beta) {
+                            let kIdx = depth * 2;
+                            if (KILLER_MOVES[kIdx] !== m) {
+                                KILLER_MOVES[kIdx+1] = KILLER_MOVES[kIdx]; 
+                                KILLER_MOVES[kIdx] = m; 
+                            }
+                            HISTORY_TABLE[pOffset + m] += depth * depth;
+                            if (HISTORY_TABLE[pOffset + m] > 2000000) {
+                                for(let k=0; k<128; k++) HISTORY_TABLE[k] >>= 1;
+                            }
+                            break; 
+                        }
+                    }
+
+                    if (TT_KEY[ttIndex] !== ttKey || depth >= TT_DEPTH[ttIndex]) {
+                        TT_KEY[ttIndex] = ttKey;
+                        TT_VAL[ttIndex] = best;
+                        TT_DEPTH[ttIndex] = depth;
+                        if (bestMove !== -1) TT_MOVE[ttIndex] = bestMove;
+                        if (best <= alphaOrig) TT_FLAG[ttIndex] = FLAG_UPPER;
+                        else if (best >= beta) TT_FLAG[ttIndex] = FLAG_LOWER;
+                        else TT_FLAG[ttIndex] = FLAG_EXACT;
+                    }
+                    return best;
+                },
+                
+                evalHybrid: function(board, player, lastMoveIdx, lastCount) {
+                    let opp = (player===BLACK)?WHITE:BLACK;
+                    let forcedCorners = {};
+                    if (lastMoveIdx !== -1 && lastMoveIdx !== null) {
+                         if (lastMoveIdx === 9) forcedCorners[0] = player; 
+                         else if (lastMoveIdx === 14) forcedCorners[7] = player; 
+                         else if (lastMoveIdx === 49) forcedCorners[56] = player; 
+                         else if (lastMoveIdx === 54) forcedCorners[63] = player; 
+                    }
+                    
+                    let myDiv = this.calcTotalDiv(board, player, lastMoveIdx);
+                    let oppDiv = this.calcTotalDiv(board, opp, lastMoveIdx);
+                    let scoreDiv = (oppDiv - myDiv);
+                    
+                    let myMob = this.getMoveCount(board, player);
+                    let oppMob = this.getMoveCount(board, opp);
+                    let scoreMob = (myMob - oppMob);
+
+                    // --- Midgame C-Move Bridge Penalty ---
+                    let modCount = 0;
+                    if (lastMoveIdx !== -1 && lastMoveIdx !== null) {
+                        let cCorner = -1;
+                        let dr = 0, dc = 0;
+                        if      (lastMoveIdx === 1)  { cCorner=0; dr=0; dc=1; }
+                        else if (lastMoveIdx === 8)  { cCorner=0; dr=1; dc=0; }
+                        else if (lastMoveIdx === 6)  { cCorner=7; dr=0; dc=-1; }
+                        else if (lastMoveIdx === 15) { cCorner=7; dr=1; dc=0; }
+                        else if (lastMoveIdx === 48) { cCorner=56; dr=-1; dc=0; }
+                        else if (lastMoveIdx === 57) { cCorner=56; dr=0; dc=1; }
+                        else if (lastMoveIdx === 55) { cCorner=63; dr=0; dc=-1; }
+                        else if (lastMoveIdx === 62) { cCorner=63; dr=-1; dc=0; }
+
+                        if (cCorner !== -1 && board[cCorner] === EMPTY) {
+                            let r = lastMoveIdx >> 3;
+                            let c = lastMoveIdx & 7;
+                            let nr = r + dr, nc = c + dc;
+                            let connected = false;
+
+                            while(nr>=0 && nr<8 && nc>=0 && nc<8) {
+                                let idx = (nr<<3)|nc;
+                                if (board[idx] === EMPTY) break; 
+                                if (board[idx] === opp) { connected = true; break; } 
+                                nr += dr; nc += dc;
+                            }
+
+                            if (connected) {
+                                GLOBAL_MOD_STACK[modCount] = cCorner; 
+                                GLOBAL_MOD_VALS[modCount] = board[cCorner]; 
+                                board[cCorner] = opp; 
+                                modCount++;
+
+                                nr = lastMoveIdx >> 3;
+                                nc = lastMoveIdx & 7;
+                                while(nr>=0 && nr<8 && nc>=0 && nc<8) {
+                                     let idx = (nr<<3)|nc;
+                                     if (board[idx] === opp) break; 
+                                     GLOBAL_MOD_STACK[modCount] = idx; 
+                                     GLOBAL_MOD_VALS[modCount] = board[idx]; 
+                                     board[idx] = opp; 
+                                     modCount++;
+                                     nr += dr; nc += dc;
+                                }
+                            }
+                        }
+                    }
+                    
+                    let myStable = this.getStableCount(board, player, forcedCorners);
+                    let oppStable = this.getStableCount(board, opp, forcedCorners);
+                    
+                    while(modCount > 0) {
+                        modCount--;
+                        board[GLOBAL_MOD_STACK[modCount]] = GLOBAL_MOD_VALS[modCount];
+                    }
+
+                    let scoreStable = (myStable - oppStable) * 4.0;
+                    
+                    // V2.5: Use ClosedParity (Flood Fill)
+                    let scoreParity = this.calcClosedParity(board);
+                    
+                    let forcedFlips = lastCount || 0;
+                    const w = this.weights;
+                    
+                    // Parity scaled by 10 as in V2.4
+                    return (scoreDiv * (w.div/100)) + 
+                           (forcedFlips * (w.flip/100)) + 
+                           (scoreStable * (w.stable/100)) + 
+                           (scoreMob * (w.mob/100)) +
+                           (scoreParity * (w.parity/100) * 10); 
+                }
+            };
+
+            self.onmessage = function(e) {
+                const { type, board, player, move, mode, depth, moves, alpha, reqId, weights, hardConstraints } = e.data;
+                
+                if (reqId !== currentReqId) {
+                    currentReqId = reqId;
+                    HISTORY_TABLE.fill(0);
+                    KILLER_MOVES.fill(-1);
+                }
+
+                if (weights) Solver.weights = weights;
+                if (hardConstraints !== undefined) Solver.useHardConstraints = hardConstraints;
+                if (!Solver.rootPlayer) Solver.rootPlayer = player;
+                
+                let rootHash = 0n;
+                for(let i=0; i<64; i++) {
+                     let p = board[i];
+                     if(p === BLACK) rootHash ^= ZOBRIST[i];
+                     else if(p === WHITE) rootHash ^= ZOBRIST[64+i];
+                }
+                
+                if(type === 'sort_moves') { 
+                    const scored = moves.map(m => ({ x:m>>3, y:m&7, score: Solver.calcScore(board, player, m, 2, -Infinity, Infinity, rootHash) })); 
+                    scored.sort((a,b) => b.score - a.score);
+                    self.postMessage({ type: 'sorted_moves', moves: scored, board, player, reqId });
+                    return;
+                }
+                
+                let val;
+                
+                if(mode === 'perfect_solver' || mode === 'endgame') {
+                    const stackOffset = 4500;
+                    let res = Solver.applyMove(board, move, player, stackOffset, rootHash);
+                    const eCount = Solver.countEmpty(board);
+                    const nextPlayer = (player===BLACK)?WHITE:BLACK;
+                    let alphaParam = (typeof alpha === 'number') ? alpha : -Infinity;
+                    val = -Solver.solveEndgame(board, nextPlayer, -Infinity, -alphaParam, eCount, res.hash);
+                    Solver.undoMove(board, move, res.count, stackOffset, player);
+                } 
+                else {
+                    val = Solver.searchRoot(board, player, move, depth, 2000, rootHash);
+                }
+                
+                self.postMessage({ type: 'result', x: move>>3, y: move&7, val: val, reqId: reqId });
+            };
+        `;
+
+        // --- Analysis Manager (V2.5 RAIN UPDATE) ---
+        const AnalysisManager = {
+            workers: [],
+            maxWorkers: navigator.hardwareConcurrency || 4,
+            results: [],
+            queue: [],
+            isBusy: false,
+            currentPhase: 'IDLE',
+            targetStepIndex: -1, 
+            currentAnalysisId: 0, 
+            
+            allMoves: [],
+            preScanResults: [],
+            top4Results: [],
+            
+            board: null,
+            player: null,
+            fullDepth: 9, 
+            halfDepth: 4,
+            mode: 'hybrid', 
+            
+            init: function() {
+                this.terminate();
+                for(let i=0; i<this.maxWorkers; i++) {
+                    const w = new Worker('./solver_worker.js');
+                    w.onmessage = (e) => this.handleWorkerMessage(e.data);
+                    this.workers.push(w);
+                }
+            },
+            
+            terminate: function() {
+                this.workers.forEach(w => w.terminate());
+                this.workers = [];
+                this.isBusy = false;
+                this.currentPhase = 'IDLE';
+                updateStatusUI('IDLE');
+            },
+            
+            startAnalysis: function(board2D, player, validMoves, onComplete = null) {
+                if (this.workers.length === 0) this.init();
+                
+                this.targetStepIndex = currentStepIndex;
+                this.currentAnalysisId++; 
+                const reqId = this.currentAnalysisId;
+                
+                this.isBusy = true;
+                this.player = player;
+                this.allMoves = validMoves;
+                this.onAnalysisComplete = onComplete;
+                this.results = []; 
+                this.preScanResults = [];
+                this.top4Results = [];
+                this.queue = [];
+                
+                const flatBoard = new Int8Array(64);
+                for(let r=0; r<8; r++) for(let c=0; c<8; c++) flatBoard[r*8+c] = board2D[r][c];
+                this.board = flatBoard; 
+
+                const emptyCount = countEmptySquares(board2D);
+                const currentWeights = { ...engineWeights };
+                const hardMode = document.getElementById('toggle-hard').checked; 
+                useHardConstraints = hardMode;
+
+                const intMoves = validMoves.map(m => (m.x << 3) | m.y);
+
+                // --- V2.5 LOGIC PROFILES ---
+                
+                // Case 1: <= 16 empty (Brute Force Direct)
+                if (emptyCount <= 16) { 
+                    this.mode = 'perfect_solver';
+                    updateEngineText(`V2.5: Perfect Solver (Exact)`, 'text-red-600 animate-pulse');
+                    updateStatusUI('WORKING', `Solving ${emptyCount} Empty (Exact)...`);
+                    intMoves.forEach(m => {
+                        this.queue.push({ 
+                            board: flatBoard, player, move: m, reqId,
+                            mode: 'perfect_solver', depth: emptyCount, alpha: -Infinity,
+                            weights: currentWeights, hardConstraints: hardMode
+                        });
+                    });
+                    this.currentPhase = 'ENDGAME_FULL'; 
+                    this.dispatch();
+                } 
+                // Case 2: 17-18 Empty (Smart Exact)
+                else if (emptyCount >= 17 && emptyCount <= 18) {
+                    this.mode = 'hybrid'; 
+                    this.halfDepth = 7; 
+                    
+                    updateEngineText(`V2.5: Smart Exact (${emptyCount}E)`, 'text-green-600');
+                    updateStatusUI('WORKING', `Ordering Moves (Depth 6)...`);
+                    
+                    intMoves.forEach(m => {
+                        this.queue.push({ 
+                            board: flatBoard, player, move: m, reqId,
+                            mode: 'hybrid', depth: this.halfDepth, alpha: -Infinity,
+                            weights: currentWeights, hardConstraints: hardMode
+                        });
+                    });
+                    this.currentPhase = 'ENDGAME_PRESCAN'; 
+                    this.dispatch();
+                }
+                // Case 3 & 4 Merged: 19-26 Empty (Deep Analysis: Depth 14)
+                else if (emptyCount >= 19 && emptyCount <= 26) { 
+                    this.mode = 'hybrid';
+                    this.fullDepth = (emptyCount <= 20) ? 15 : 13; 
+                    this.halfDepth = 7;
+                    updateEngineText(`V2.5: Deep Analysis (${emptyCount}E)`, 'text-purple-600');
+                    updateStatusUI('WORKING', `Calculating (Depth ${this.fullDepth} IID)...`);
+                    intMoves.forEach(m => {
+                        this.queue.push({ 
+                            board: flatBoard, player, move: m, reqId,
+                            mode: 'hybrid', depth: this.halfDepth, alpha: -Infinity,
+                            weights: currentWeights, hardConstraints: hardMode
+                        });
+                    });
+                    this.currentPhase = 'PRESCAN';
+                    this.dispatch();
+                } 
+                // Case 5: > 26 Empty (Strategic)
+                else {
+                    this.mode = 'hybrid';
+                    if (emptyCount >= 28) { this.fullDepth = 11; this.halfDepth = 5; } 
+                    else { this.fullDepth = 13; this.halfDepth = 7; }
+                    
+                    updateEngineText(`V2.5: Strategic Mode`, 'text-indigo-600');
+                    updateStatusUI('WORKING', `Calculating (Depth ${this.fullDepth} IID+LMR)...`);
+                    
+                    intMoves.forEach(m => {
+                        this.queue.push({ 
+                            board: flatBoard, player, move: m, reqId,
+                            mode: 'hybrid', depth: this.halfDepth, alpha: -Infinity,
+                            weights: currentWeights, hardConstraints: hardMode
+                        });
+                    });
+                    this.currentPhase = 'PRESCAN';
+                    this.dispatch();
+                }
+                
+                updateStopButton(true);
+            },
+            
+            dispatch: function() {
+                while(this.queue.length > 0) {
+                    const task = this.queue.shift();
+                    const workerIndex = this.queue.length % this.workers.length; 
+                    this.workers[workerIndex].postMessage(task);
+                }
+            },
+            
+            handleWorkerMessage: function(data) {
+                if (this.targetStepIndex !== currentStepIndex) return;
+                if (data.reqId !== this.currentAnalysisId) return; 
+
+                if (data.type === 'result') {
+                    if (this.currentPhase === 'PRESCAN') {
+                        this.preScanResults.push(data);
+                        if (this.preScanResults.length === this.allMoves.length) this.transitionToTop4();
+                    } 
+                    else if (this.currentPhase === 'ENDGAME_PRESCAN') {
+                        this.preScanResults.push(data);
+                        if (this.preScanResults.length === this.allMoves.length) this.transitionToEndgameExact();
+                    }
+                    else if (this.currentPhase === 'TOP4') {
+                        this.top4Results.push(data);
+                        this.results.push(data);
+                        updateAnalysisUI(this.results, this.mode); 
+                        updateAnalysisText(this.results, this.mode);
+                        if (this.top4Results.length === Math.min(4, this.allMoves.length)) this.transitionToRest();
+                    }
+                    else if (this.currentPhase === 'REST' || this.currentPhase === 'ENDGAME_FULL') {
+                        this.results.push(data);
+                        updateAnalysisUI(this.results, this.mode);
+                        updateAnalysisText(this.results, this.mode);
+                        if (this.results.length === this.allMoves.length) this.finishAnalysis();
+                    }
+                }
+            },
+            
+            transitionToEndgameExact: function() {
+                if (this.targetStepIndex !== currentStepIndex) return;
+                
+                this.preScanResults.sort((a,b) => b.val - a.val);
+                this.mode = 'perfect_solver';
+                const emptyCount = countEmptySquares(gameHistory[currentStepIndex].board);
+                
+                updateStatusUI('WORKING', `Solving ${emptyCount} Empty (Sorted)...`);
+                updateAnalysisText([], 'perfect_solver'); // Clear text
+                clearEvaluationScores();
+
+                this.results = [];
+                this.queue = [];
+                const w = { ...engineWeights };
+                const hardMode = document.getElementById('toggle-hard').checked;
+                
+                this.preScanResults.forEach(r => {
+                    this.queue.push({
+                        board: this.board, player: this.player,
+                        move: (r.x << 3) | r.y,
+                        mode: 'perfect_solver', depth: emptyCount, alpha: -Infinity, reqId: this.currentAnalysisId, 
+                        weights: w, hardConstraints: hardMode
+                    });
+                });
+                
+                this.currentPhase = 'ENDGAME_FULL';
+                this.dispatch();
+            },
+            
+            transitionToTop4: function() {
+                if (this.targetStepIndex !== currentStepIndex) return;
+                
+                updateStatusUI('WORKING', `Calculating (Depth ${this.fullDepth} Top 4)...`);
+                this.preScanResults.sort((a,b) => b.val - a.val);
+                const top4 = this.preScanResults.slice(0, 4);
+                this.top4Results = [];
+                this.queue = [];
+                const w = { ...engineWeights };
+                const hardMode = document.getElementById('toggle-hard').checked;
+                top4.forEach(r => {
+                    this.queue.push({
+                        board: this.board, player: this.player,
+                        move: (r.x << 3) | r.y, 
+                        mode: 'hybrid', depth: this.fullDepth, alpha: -Infinity, reqId: this.currentAnalysisId, 
+                        weights: w, hardConstraints: hardMode
+                    });
+                });
+                this.currentPhase = 'TOP4';
+                this.dispatch();
+            },
+            
+            transitionToRest: function() {
+                if (this.targetStepIndex !== currentStepIndex) return;
+                
+                if (this.allMoves.length <= 4) {
+                    this.finishAnalysis();
+                    return;
+                }
+                updateStatusUI('WORKING', `Calculating (Depth ${this.fullDepth} Rest)...`);
+                let sortedTop4 = [...this.top4Results].sort((a,b) => b.val - a.val);
+                let threshold = sortedTop4[sortedTop4.length-1].val; 
+                const restCandidates = this.preScanResults.slice(4);
+                this.queue = [];
+                const w = { ...engineWeights };
+                const hardMode = document.getElementById('toggle-hard').checked;
+                restCandidates.forEach(r => {
+                    this.queue.push({
+                        board: this.board, player: this.player,
+                        move: (r.x << 3) | r.y, 
+                        mode: 'hybrid', depth: this.fullDepth, 
+                        alpha: threshold, reqId: this.currentAnalysisId, 
+                        weights: w, hardConstraints: hardMode
+                    });
+                });
+                this.currentPhase = 'REST';
+                this.dispatch();
+            },
+            
+            finishAnalysis: function() {
+                if (this.targetStepIndex !== currentStepIndex) return;
+                this.isBusy = false;
+                this.currentPhase = 'IDLE';
+                updateStatusUI('DONE', 'Finished Calculation');
+                updateStopButton(false);
+                if (this.onAnalysisComplete) this.onAnalysisComplete(this.results);
+            }
+        };
+
+        // --- UI Helper Functions ---
+        function updateStatusUI(state, text) {
+            const pill = document.getElementById('status-bar-pill');
+            const icon = document.getElementById('status-icon');
+            const msg = document.getElementById('status-msg');
+            pill.className = 'status-pill px-5 py-2 rounded-full text-xs font-bold flex items-center gap-2 shadow-sm border border-stone-200';
+            if (state === 'IDLE') {
+                pill.classList.add('status-idle');
+                icon.className = 'ph ph-check-circle text-lg';
+                msg.textContent = text || 'Ready';
+            } else if (state === 'WORKING') {
+                pill.classList.add('status-working');
+                icon.className = 'ph ph-spinner animate-spin text-lg';
+                msg.textContent = text || 'Calculating...';
+            } else if (state === 'DONE') {
+                pill.classList.add('status-done');
+                icon.className = 'ph ph-check-circle text-lg';
+                msg.textContent = 'Finished Calculation';
+            }
+        }
+        
+        function updateStopButton(isCalculating) {
+            const analyzeBtn = document.getElementById('btn-analyze');
+            const aiBtn = document.getElementById('btn-ai-play');
+            
+            if (isAnalysisMode) {
+                if (isCalculating) {
+                    analyzeBtn.classList.replace('bg-stone-200', 'bg-red-500');
+                    analyzeBtn.classList.replace('hover:bg-stone-300', 'hover:bg-red-600');
+                    analyzeBtn.classList.replace('text-stone-700', 'text-white');
+                    analyzeBtn.innerHTML = '<i class="ph ph-stop-circle text-lg"></i> Stop Calculating';
+                    analyzeBtn.onclick = stopAnalysis;
+                } else {
+                    analyzeBtn.classList.replace('bg-red-500', 'bg-stone-200');
+                    analyzeBtn.classList.replace('hover:bg-red-600', 'hover:bg-stone-300');
+                    analyzeBtn.classList.replace('text-white', 'text-stone-700');
+                    analyzeBtn.innerHTML = '<i class="ph ph-brain"></i> Analysis: ON';
+                    analyzeBtn.onclick = toggleAnalysisMode;
+                }
+            } else {
+                 analyzeBtn.classList.replace('bg-red-500', 'bg-stone-200');
+                 analyzeBtn.classList.replace('hover:bg-red-600', 'hover:bg-stone-300');
+                 analyzeBtn.classList.replace('text-white', 'text-stone-700');
+                 analyzeBtn.innerHTML = '<i class="ph ph-brain"></i> Analysis: OFF';
+            }
+            
+            if (aiSide) {
+                if (isCalculating) {
+                    aiBtn.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
+                    aiBtn.classList.add('bg-red-600', 'hover:bg-red-700');
+                    aiBtn.innerHTML = '<i class="ph ph-stop-circle"></i> Stop Calculating';
+                } else {
+                    aiBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
+                    aiBtn.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+                    aiBtn.innerHTML = '<i class="ph ph-robot"></i> Play with AI';
+                }
+            }
+        }
+        
+        function updateEngineText(text, colorClass) {
+            const el = document.getElementById('engine-type');
+            el.textContent = text;
+            el.className = "text-[10px] uppercase font-bold mt-1 " + colorClass;
+        }
+
+        // --- DEV MODE TOGGLE ---
+        function toggleDevSettings() {
+            const panel = document.getElementById('dev-settings-panel');
+            const chevron = document.getElementById('dev-chevron');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                chevron.classList.add('rotate-180');
+            } else {
+                panel.classList.add('hidden');
+                chevron.classList.remove('rotate-180');
+            }
+        }
+        
+        // Weight Control Functions
+        function updateWeightsUI() {
+            const d = parseInt(document.getElementById('slider-div').value);
+            const m = parseInt(document.getElementById('slider-mob').value);
+            const s = parseInt(document.getElementById('slider-stable').value);
+            const f = parseInt(document.getElementById('slider-flip').value);
+            const p = parseInt(document.getElementById('slider-parity').value); 
+            const h = document.getElementById('toggle-hard').checked;
+
+            engineWeights = { div: d, mob: m, stable: s, flip: f, parity: p };
+            useHardConstraints = h;
+            
+            document.getElementById('val-div').textContent = d;
+            document.getElementById('val-mob').textContent = m;
+            document.getElementById('val-stable').textContent = s;
+            document.getElementById('val-flip').textContent = f;
+            document.getElementById('val-parity').textContent = p; 
+            
+            if (isAnalysisMode && !isAiThinking) {
+                 const e = countEmptySquares(gameHistory[currentStepIndex].board);
+                 if (e > 16) triggerAnalysisManager();
+            }
+        }
+        
+        function resetWeights() {
+            document.getElementById('slider-div').value = 28;
+            document.getElementById('slider-mob').value = 24;
+            document.getElementById('slider-stable').value = 32;
+            document.getElementById('slider-flip').value = 22;
+            document.getElementById('slider-parity').value = 12;
+            document.getElementById('toggle-hard').checked = true;
+            updateWeightsUI();
+        }
+        
+        function editCredits() {
+            const currentText = document.getElementById('credits-footer').innerText;
+            const pass = prompt("请输入密码以修改署名:"); 
+            if (pass === "090202chuan") { 
+                const newText = prompt("请输入新的署名:", currentText);
+                if (newText) {
+                    document.getElementById('credits-footer').innerText = newText;
+                    localStorage.setItem('rain_custom_credits', newText);
+                }
+            } else if (pass !== null) {
+                alert("密码错误，权限不足。");
+            }
+        }
+
+        window.onload = () => {
+            const savedCredits = localStorage.getItem('rain_custom_credits');
+            if (savedCredits) document.getElementById('credits-footer').innerText = savedCredits;
+
+            document.getElementById('move-input').value = DEFAULT_GAME;
+            parseAndLoad();
+
+            document.addEventListener('keydown', (e) => {
+                if (document.activeElement.tagName === 'TEXTAREA') return;
+                if (isEditMode) return; 
+                if (e.key === 'ArrowLeft') step(-1);
+                else if (e.key === 'ArrowRight') step(1);
+                else if (e.key === 'Home') jumpToStep(0);
+                else if (e.key === 'End') jumpToEnd();
+            });
+            updateBrushUI();
+            document.addEventListener('mouseup', () => isDragging = false);
+            updateWeightsUI(); 
+        };
+        
+        function handleAiButton() {
+            if (AnalysisManager.isBusy && aiSide) stopAnalysis();
+            else if (aiSide) stopAiGame();
+            else showAiModal();
+        }
+        
+        function stopAnalysis() {
+            AnalysisManager.terminate();
+            if (aiSide) {
+                isAiThinking = false;
+                updateStatusUI('IDLE', 'Calculation Stopped');
+            } else {
+                updateStatusUI('IDLE', 'Analysis Stopped');
+            }
+            updateStopButton(false);
+        }
+
+        function createInitialBoard() {
+            let b = Array(SIZE).fill().map(() => Array(SIZE).fill(EMPTY));
+            b[3][3] = WHITE; b[4][3] = BLACK; b[3][4] = BLACK; b[4][4] = WHITE;
+            return b;
+        }
+        function copyBoard(b) { return b.map(r => [...r]); }
+        function getOpponent(p) { return p===BLACK?WHITE:BLACK; }
+        function isValidBounds(x,y) { return x>=0&&x<SIZE&&y>=0&&y<SIZE; }
+        
+        function getFlippableDiscs(board, x, y, player) {
+            if (board[x][y] !== EMPTY) return [];
+            let opponent = getOpponent(player);
+            let directions = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+            let flips = [];
+            for (let [dx, dy] of directions) {
+                let r = x + dx, c = y + dy, potential = [];
+                while (isValidBounds(r, c) && board[r][c] === opponent) {
+                    potential.push({x: r, y: c});
+                    r += dx; c += dy;
+                }
+                if (isValidBounds(r, c) && board[r][c] === player && potential.length > 0) {
+                    flips.push(...potential);
+                }
+            }
+            return flips;
+        }
+        
+        function canMove(board, player) {
+            for(let x=0; x<SIZE; x++) for(let y=0; y<SIZE; y++)
+                if(getFlippableDiscs(board, x, y, player).length > 0) return true;
+            return false;
+        }
+        function stringToCoord(s) {
+            if (!s || s.length < 2) return null;
+            const cols = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5,'g':6,'h':7};
+            let x = cols[s[0].toLowerCase()];
+            let y = parseInt(s[1]) - 1;
+            if (x === undefined || isNaN(y)) return null;
+            return {x, y};
+        }
+        function coordToString(x, y) { return "abcdefgh"[x] + (y+1); }
+        function countDiscs(board) {
+            let b = 0, w = 0;
+            board.forEach(row => row.forEach(c => { if (c === BLACK) b++; else if (c === WHITE) w++; }));
+            return {b, w};
+        }
+        function countEmptySquares(b) {
+            let count = 0;
+            for(let r=0; r<SIZE; r++) for(let c=0; c<SIZE; c++) if (b[r][c] === EMPTY) count++;
+            return count;
+        }
+
+        function parseAndLoad() {
+            const inputStr = document.getElementById('move-input').value.trim();
+            const moveStrings = inputStr.match(/.{1,2}/g) || [];
+            gameHistory = [];
+            let currentBoard = createInitialBoard();
+            let currentPlayer = BLACK;
+            gameHistory.push({ board: copyBoard(currentBoard), player: currentPlayer, lastMove: null, moveStr: "Start", moveIndex: 0, counts: countDiscs(currentBoard) });
+            let moveIdx = 0;
+            let parseIdx = 0;
+            while (parseIdx < moveStrings.length) {
+                if (!canMove(currentBoard, currentPlayer)) {
+                    currentPlayer = getOpponent(currentPlayer);
+                    gameHistory.push({ board: copyBoard(currentBoard), player: currentPlayer, lastMove: {x: -1, y: -1}, moveStr: "Pass", moveIndex: ++moveIdx, counts: countDiscs(currentBoard) });
+                    if (!canMove(currentBoard, currentPlayer)) break;
+                    continue; 
+                }
+                let mStr = moveStrings[parseIdx];
+                let coord = stringToCoord(mStr);
+                if (coord && isValidBounds(coord.x, coord.y)) {
+                    let flips = getFlippableDiscs(currentBoard, coord.x, coord.y, currentPlayer);
+                    if (flips.length > 0) {
+                        currentBoard[coord.x][coord.y] = currentPlayer;
+                        flips.forEach(p => currentBoard[p.x][p.y] = currentPlayer);
+                        currentPlayer = getOpponent(currentPlayer);
+                        parseIdx++; 
+                        gameHistory.push({ board: copyBoard(currentBoard), player: currentPlayer, lastMove: coord, moveStr: mStr.toLowerCase(), moveIndex: ++moveIdx, counts: countDiscs(currentBoard) });
+                    } else { parseIdx++; }
+                } else { parseIdx++; }
+            }
+            document.getElementById('history-slider').max = gameHistory.length - 1;
+            renderHistoryList();
+            jumpToEnd(); 
+        }
+
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            if(aiSide) stopAiGame();
+            const sidebar = document.getElementById('sidebar-panel');
+            const nav = document.getElementById('nav-controls');
+            const editBar = document.getElementById('editor-toolbar');
+            const btn = document.getElementById('btn-edit-toggle');
+            if (isEditMode) {
+                stopAnalysis(); 
+                sidebar.classList.add('edit-overlay');
+                nav.classList.add('edit-overlay');
+                editBar.classList.remove('hidden');
+                btn.classList.add('hidden');
+                uiRenderCurrentState(); 
+            } else {
+                finishEditing();
+            }
+        }
+        function setBrush(type) { editBrush = type; updateBrushUI(); }
+        function updateBrushUI() {
+            document.getElementById('brush-black').classList.remove('brush-active');
+            document.getElementById('brush-white').classList.remove('brush-active');
+            document.getElementById('brush-empty').classList.remove('brush-active');
+            if(editBrush === BLACK) document.getElementById('brush-black').classList.add('brush-active');
+            else if(editBrush === WHITE) document.getElementById('brush-white').classList.add('brush-active');
+            else document.getElementById('brush-empty').classList.add('brush-active');
+        }
+        function handleBoardMouseDown(e) {
+            if (!isEditMode) return;
+            isDragging = true;
+            const cell = e.target.closest('.cell');
+            if (cell) {
+                const [_, x, y] = cell.id.split('-');
+                applyEdit(parseInt(x), parseInt(y));
+            }
+            document.addEventListener('mousemove', handleBoardMouseMove);
+        }
+        function handleBoardMouseUp(e) {
+             if (!isEditMode) return;
+             isDragging = false;
+             document.removeEventListener('mousemove', handleBoardMouseMove);
+        }
+        function handleBoardMouseMove(e) {
+            if (!isEditMode || !isDragging) return;
+            const el = document.elementFromPoint(e.clientX, e.clientY);
+            if (el) {
+                const cell = el.closest('.cell');
+                if (cell) {
+                    const [_, x, y] = cell.id.split('-');
+                    applyEdit(parseInt(x), parseInt(y));
+                }
+            }
+        }
+        function handleBoardTouchStart(e) {
+            if (!isEditMode) return;
+            e.preventDefault(); 
+            isDragging = true;
+            const touch = e.touches[0];
+            const el = document.elementFromPoint(touch.clientX, touch.clientY);
+            if (el) {
+                const cell = el.closest('.cell');
+                if(cell) {
+                     const [_, x, y] = cell.id.split('-');
+                     applyEdit(parseInt(x), parseInt(y));
+                }
+            }
+        }
+        function handleBoardTouchEnd(e) { isDragging = false; }
+        document.getElementById('board').addEventListener('touchmove', function(e) {
+             if (!isEditMode || !isDragging) return;
+             e.preventDefault();
+             const touch = e.touches[0];
+             const el = document.elementFromPoint(touch.clientX, touch.clientY);
+             if (el) {
+                 const cell = el.closest('.cell');
+                 if(cell) {
+                      const [_, x, y] = cell.id.split('-');
+                      applyEdit(parseInt(x), parseInt(y));
+                 }
+             }
+        }, {passive: false});
+
+        function applyEdit(x, y) {
+            let state = gameHistory[currentStepIndex];
+            if (state.board[x][y] !== editBrush) {
+                state.board[x][y] = editBrush;
+                state.counts = countDiscs(state.board); 
+                uiRenderCurrentState();
+            }
+        }
+        function finishEditing() {
+            const state = gameHistory[currentStepIndex];
+            const board = state.board;
+            const bCanMove = canMove(board, BLACK);
+            const wCanMove = canMove(board, WHITE);
+            if (bCanMove && wCanMove) document.getElementById('turn-modal').classList.remove('hidden');
+            else if (bCanMove) finalizeEdit(BLACK);
+            else if (wCanMove) finalizeEdit(WHITE);
+            else finalizeEdit(BLACK); 
+        }
+        function selectTurn(player) {
+            document.getElementById('turn-modal').classList.add('hidden');
+            finalizeEdit(player);
+        }
+        function finalizeEdit(nextPlayer) {
+            isEditMode = false;
+            document.getElementById('sidebar-panel').classList.remove('edit-overlay');
+            document.getElementById('nav-controls').classList.remove('edit-overlay');
+            document.getElementById('editor-toolbar').classList.add('hidden');
+            document.getElementById('btn-edit-toggle').classList.remove('hidden');
+            const state = gameHistory[currentStepIndex];
+            const newBoard = copyBoard(state.board);
+            gameHistory = [];
+            gameHistory.push({ board: newBoard, player: nextPlayer, lastMove: null, moveStr: "Setup", moveIndex: 0, counts: countDiscs(newBoard) });
+            currentStepIndex = 0;
+            document.getElementById('move-input').value = "";
+            document.getElementById('history-slider').max = 0;
+            document.getElementById('history-slider').value = 0;
+            renderHistoryList();
+            uiRenderCurrentState();
+            if (isAnalysisMode) triggerAnalysisManager();
+        }
+
+        function showAiModal() {
+            if(isEditMode) return;
+            document.getElementById('ai-modal').classList.remove('hidden');
+        }
+        function startAiGame(side) {
+            aiSide = side; 
+            document.getElementById('ai-modal').classList.add('hidden');
+            document.getElementById('game-result-msg').classList.add('hidden');
+            document.getElementById('analysis-details-panel').classList.remove('hidden');
+            updateStopButton(false); 
+            triggerAiTurn();
+        }
+        function stopAiGame() {
+            aiSide = null;
+            isAiThinking = false;
+            stopAnalysis();
+            uiRenderCurrentState(); 
+        }
+        
+        function triggerAiTurn() {
+            if (!aiSide) return;
+            const state = gameHistory[currentStepIndex];
+            const player = state.player;
+            if (!canMove(state.board, BLACK) && !canMove(state.board, WHITE)) {
+                showGameResult(state.counts);
+                stopAiGame(); 
+                return;
+            }
+            const isAiTurn = (aiSide === 'BOTH') || (aiSide === BLACK && player === BLACK) || (aiSide === WHITE && player === WHITE);
+            if (isAiTurn) {
+                clearEvaluationScores();
+                let validMoves = [];
+                for(let x=0; x<SIZE; x++) for(let y=0; y<SIZE; y++)
+                     if(getFlippableDiscs(state.board, x, y, state.player).length > 0) validMoves.push({x,y});
+                
+                if (validMoves.length === 0) {
+                    makeMove(-1, -1); 
+                } else if (validMoves.length === 1) {
+                    isAiThinking = true;
+                    updateStatusUI('WORKING', 'Forced Move...');
+                    setTimeout(() => makeMove(validMoves[0].x, validMoves[0].y), 500);
+                } else {
+                    isAiThinking = true;
+                    AnalysisManager.startAnalysis(state.board, state.player, validMoves, (results) => {
+                        let best = results[0];
+                        for(let r of results) { if(r.val > best.val) best = r; }
+                        makeMove(best.x, best.y);
+                    });
+                }
+            } else {
+                updateStatusUI('IDLE', 'Your Turn');
+                let validMoves = [];
+                for(let x=0; x<SIZE; x++) for(let y=0; y<SIZE; y++)
+                     if(getFlippableDiscs(state.board, x, y, state.player).length > 0) validMoves.push({x,y});
+                if (validMoves.length === 0) setTimeout(() => makeMove(-1, -1), 800);
+            }
+        }
+        
+        function makeMove(x, y) {
+            isAiThinking = false;
+            const currentState = gameHistory[currentStepIndex];
+            const board = currentState.board;
+            const player = currentState.player;
+            let newBoard = copyBoard(board);
+            let nextPlayer = getOpponent(player);
+            let moveStr = "";
+            if (x === -1) {
+                moveStr = "Pass";
+            } else {
+                const flips = getFlippableDiscs(board, x, y, player);
+                if (flips.length === 0) return; 
+                newBoard[x][y] = player;
+                flips.forEach(p => newBoard[p.x][p.y] = player);
+                moveStr = coordToString(x, y);
+            }
+            gameHistory = gameHistory.slice(0, currentStepIndex + 1);
+            gameHistory.push({ board: newBoard, player: nextPlayer, lastMove: {x, y}, moveStr: moveStr, moveIndex: currentState.moveIndex + 1, counts: countDiscs(newBoard) });
+            updateInputFromHistory();
+            currentStepIndex++;
+            document.getElementById('history-slider').max = gameHistory.length - 1;
+            document.getElementById('history-slider').value = currentStepIndex;
+            renderHistoryList();
+            uiRenderCurrentState();
+            uiScrollHistory();
+            if(aiSide) triggerAiTurn();
+            else if(isAnalysisMode) triggerAnalysisManager();
+        }
+
+        function showGameResult(counts) {
+            const el = document.getElementById('game-result-msg');
+            const title = document.getElementById('result-title');
+            const score = document.getElementById('result-score');
+            el.classList.remove('hidden');
+            score.textContent = `Black: ${counts.b} - White: ${counts.w}`;
+            if (counts.b > counts.w) {
+                title.textContent = "Black Wins!";
+                title.className = "text-2xl font-bold text-center mb-1 text-white";
+            } else if (counts.w > counts.b) {
+                title.textContent = "White Wins!";
+                title.className = "text-2xl font-bold text-center mb-1 text-white";
+            } else {
+                title.textContent = "Draw!";
+                title.className = "text-2xl font-bold text-center mb-1 text-gray-300";
+            }
+            setTimeout(() => el.classList.add('hidden'), 5000);
+        }
+
+        function handleBoardClick(x, y) {
+            if (isEditMode) return; 
+            const state = gameHistory[currentStepIndex];
+            if (aiSide === 'BOTH') return;
+            if ((aiSide === BLACK && state.player === BLACK) || (aiSide === WHITE && state.player === WHITE)) return;
+            isAiThinking = false; 
+            makeMove(x, y);
+        }
+        function updateInputFromHistory() {
+            let str = "";
+            for (let i = 1; i < gameHistory.length; i++) {
+                let h = gameHistory[i];
+                if (h.lastMove && h.lastMove.x !== -1) str += h.moveStr;
+            }
+            document.getElementById('move-input').value = str;
+        }
+        function jumpToStep(idx) {
+            if (idx < 0) idx = 0;
+            if (idx >= gameHistory.length) idx = gameHistory.length - 1;
+            if (aiSide) stopAiGame();
+            currentStepIndex = idx;
+            document.getElementById('history-slider').value = idx;
+            stopAnalysis(); 
+            uiRenderCurrentState();
+            uiScrollHistory();
+            if (isAnalysisMode && !aiSide) triggerAnalysisManager();
+        }
+        function jumpToEnd() { jumpToStep(gameHistory.length - 1); }
+        function step(delta) { jumpToStep(currentStepIndex + delta); }
+        function clearInput() {
+            if (isEditMode) return;
+            if (aiSide) stopAiGame();
+            document.getElementById('move-input').value = "";
+            document.getElementById('move-input').focus();
+        }
+        function copyInput() {
+            if (isEditMode) return;
+            const copyText = document.getElementById("move-input");
+            copyText.select();
+            document.execCommand("copy");
+            const btn = document.querySelector('button[title="Copy to Clipboard"]');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="ph ph-check"></i> Copied';
+            setTimeout(() => { btn.innerHTML = originalHTML; }, 1000);
+        }
+
+        function renderHistoryList() {
+            const list = document.getElementById('move-history-list');
+            list.innerHTML = '';
+            let startDiv = document.createElement('div');
+            startDiv.className = `px-4 py-2 border-b border-stone-100 cursor-pointer hover:bg-stone-100 text-xs font-mono flex justify-between ${currentStepIndex === 0 ? 'active-move' : ''}`;
+            startDiv.innerHTML = `<span>0. Start</span><span>-</span>`;
+            startDiv.onclick = () => jumpToStep(0);
+            startDiv.id = `hist-item-0`;
+            list.appendChild(startDiv);
+            for (let i = 1; i < gameHistory.length; i++) {
+                let state = gameHistory[i];
+                let isBlackMove = (gameHistory[i-1].player === BLACK); 
+                let moveNum = state.moveIndex;
+                let div = document.createElement('div');
+                div.id = `hist-item-${i}`;
+                div.className = `px-4 py-2 border-b border-stone-100 cursor-pointer hover:bg-stone-100 text-xs font-mono flex justify-between transition-colors ${i === currentStepIndex ? 'active-move' : ''}`;
+                div.onclick = () => jumpToStep(i);
+                div.innerHTML = `
+                    <span class="text-stone-500 w-6 text-right mr-2">${moveNum}.</span>
+                    <span class="${isBlackMove ? 'text-black font-bold' : 'text-stone-600 font-bold'}">${isBlackMove ? '●' : '○'} ${state.moveStr}</span>
+                    <span class="text-stone-400 text-[10px]">${state.counts.b}-${state.counts.w}</span>
+                `;
+                list.appendChild(div);
+            }
+        }
+        function uiScrollHistory() {
+            document.querySelectorAll('#move-history-list > div').forEach(el => el.classList.remove('active-move'));
+            let activeItem = document.getElementById(`hist-item-${currentStepIndex}`);
+            if (activeItem) {
+                activeItem.classList.add('active-move');
+                const container = document.getElementById('move-history-list');
+                const itemTop = activeItem.offsetTop;
+                const itemHeight = activeItem.offsetHeight;
+                const containerHeight = container.offsetHeight;
+                container.scrollTop = itemTop - (containerHeight / 2) + (itemHeight / 2);
+            }
+        }
+
+        function uiRenderCurrentState() {
+            const state = gameHistory[currentStepIndex];
+            if (!state) return;
+            
+            clearEvaluationScores();
+            
+            const board = state.board;
+            const lastMove = state.lastMove;
+            const counts = state.counts;
+            const nextPlayer = state.player;
+            const showNumbers = document.getElementById('show-numbers').checked;
+            const showLegal = document.getElementById('show-legal').checked;
+            
+            const boardEl = document.getElementById('board');
+            boardEl.innerHTML = '';
+            
+            let legalMoves = [];
+            if (!isEditMode) {
+                for(let x=0; x<SIZE; x++)
+                    for(let y=0; y<SIZE; y++)
+                        if(getFlippableDiscs(board, x, y, nextPlayer).length > 0) legalMoves.push(`${x},${y}`);
+            }
+            
+            if (!isEditMode && !isAiThinking && currentStepIndex === gameHistory.length - 1) {
+                const canCurrent = legalMoves.length > 0;
+                const canOpponent = canMove(board, getOpponent(nextPlayer));
+                const isGameOver = !canCurrent && !canOpponent;
+                if (!canCurrent && !isGameOver && !aiSide) {
+                     updateStatusUI('WORKING', `No moves for ${nextPlayer===BLACK?'Black':'White'}. Auto Passing...`);
+                     setTimeout(() => { if (currentStepIndex === gameHistory.length - 1) { makeMove(-1, -1); } }, 800);
+                }
+            }
+            
+            for (let y = 0; y < SIZE; y++) {
+                for (let x = 0; x < SIZE; x++) {
+                    let cell = document.createElement('div');
+                    cell.className = 'cell relative flex justify-center items-center cursor-pointer';
+                    cell.id = `cell-${x}-${y}`;
+                    if(!isEditMode) cell.onclick = () => handleBoardClick(x, y);
+                    if (board[x][y] !== EMPTY) {
+                        let disc = document.createElement('div');
+                        disc.className = `disc ${board[x][y] === BLACK ? 'black' : 'white'}`;
+                        if (showNumbers && lastMove && lastMove.x === x && lastMove.y === y && !isEditMode) {
+                            disc.innerText = state.moveIndex;
+                            disc.style.color = board[x][y] === BLACK ? 'white' : 'black';
+                        }
+                        cell.appendChild(disc);
+                    }
+                    if (lastMove && lastMove.x === x && lastMove.y === y && !showNumbers && !isEditMode) {
+                        let marker = document.createElement('div');
+                        marker.className = 'last-move-marker';
+                        cell.appendChild(marker);
+                    }
+                    if (showLegal && legalMoves.includes(`${x},${y}`) && !isEditMode && !aiSide) {
+                        let hint = document.createElement('div');
+                        hint.className = 'legal-move-hint';
+                        cell.appendChild(hint);
+                    }
+                    boardEl.appendChild(cell);
+                }
+            }
+            document.getElementById('black-count').textContent = counts.b;
+            document.getElementById('white-count').textContent = counts.w;
+            
+            const blackDot = document.getElementById('black-turn-dot');
+            const whiteDot = document.getElementById('white-turn-dot');
+            const blackInd = document.getElementById('black-indicator');
+            const whiteInd = document.getElementById('white-indicator');
+            
+            if (isEditMode) {
+                updateStatusUI('IDLE', 'Editing...');
+                blackDot.style.opacity = '0'; whiteDot.style.opacity = '0';
+                blackInd.style.borderColor = 'transparent'; whiteInd.style.borderColor = 'transparent';
+                document.getElementById('move-text').textContent = "Place discs freely";
+                return;
+            }
+            
+            if (nextPlayer === BLACK) {
+                blackDot.style.opacity = '1'; whiteDot.style.opacity = '0';
+                blackInd.style.borderColor = '#444'; whiteInd.style.borderColor = 'transparent';
+                document.getElementById('status-text').textContent = "Black's Turn";
+            } else {
+                blackDot.style.opacity = '0'; whiteDot.style.opacity = '1';
+                blackInd.style.borderColor = 'transparent'; whiteInd.style.borderColor = '#d6d3d1';
+                document.getElementById('status-text').textContent = "White's Turn";
+            }
+            
+            if (!canMove(board, BLACK) && !canMove(board, WHITE)) {
+                updateStatusUI('DONE', 'Game Over');
+                if (counts.b > counts.w) document.getElementById('status-text').textContent += " (Black)";
+                else if (counts.w > counts.b) document.getElementById('status-text').textContent += " (White)";
+                else document.getElementById('status-text').textContent += " (Draw)";
+            } else if (!isAiThinking && !AnalysisManager.isBusy) {
+                 if (legalMoves.length > 0) updateStatusUI('IDLE', 'Ready');
+            }
+
+            if (lastMove) {
+                let pName = (state.player === BLACK) ? "White" : "Black"; 
+                let mText = lastMove.x === -1 ? "Passed" : coordToString(lastMove.x, lastMove.y);
+                document.getElementById('move-text').textContent = `Last: ${pName} to ${mText}`;
+            } else {
+                 document.getElementById('move-text').textContent = "Start";
+            }
+        }
+        
+        function toggleAnalysisMode() {
+            if (isEditMode) return; 
+            if (aiSide) return; 
+            
+            if (isAnalysisMode && AnalysisManager.isBusy) {
+                stopAnalysis();
+                isAnalysisMode = false;
+                return;
+            }
+            
+            isAnalysisMode = !isAnalysisMode;
+            
+            if (isAnalysisMode) {
+                document.getElementById('analysis-details-panel').classList.remove('hidden');
+                triggerAnalysisManager();
+            } else {
+                document.getElementById('analysis-details-panel').classList.add('hidden');
+                stopAnalysis();
+                updateEngineText("Engine: Standby", "text-stone-400");
+            }
+        }
+        
+        function clearEvaluationScores() { document.querySelectorAll('.eval-score').forEach(el => el.remove()); }
+
+        function triggerAnalysisManager() {
+            if (isEditMode) return;
+            const state = gameHistory[currentStepIndex];
+            if (!state) return;
+            let moves = [];
+            for(let x=0; x<SIZE; x++)
+                for(let y=0; y<SIZE; y++)
+                     if(getFlippableDiscs(state.board, x, y, state.player).length > 0) moves.push({x,y});
+            if (moves.length === 0) return;
+            AnalysisManager.startAnalysis(state.board, state.player, moves);
+        }
+        
+        function updateAnalysisUI(results, mode) {
+            if(isAiThinking && aiSide) return;
+            if (results.length === 0) return;
+            clearEvaluationScores(); 
+            let sorted = [...results].sort((a, b) => b.val - a.val);
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            sorted.forEach((r, rankIndex) => {
+                let text = "";
+                let styleClass = "score-normal";
+                let shouldRender = false;
+                if (mode === 'perfect_solver' || mode === 'endgame_sniper' || mode === 'endgame') {
+                     if (rankIndex < 4) {
+                         let v = r.val;
+                         if (mode.includes('perfect_solver') || mode.includes('endgame')) v = Math.round(v);
+                         else v = v.toFixed(2);
+                         text = (v > 0 ? "+" + v : v);
+                         styleClass = (rankIndex === 0) ? "score-best" : "score-normal";
+                         shouldRender = true;
+                     }
+                } else {
+                    if (rankIndex < 4) {
+                        text = alphabet[rankIndex];
+                        styleClass = (rankIndex === 0) ? "score-best" : "score-normal";
+                        shouldRender = true;
+                    }
+                }
+                if (shouldRender) renderSingleScore(r.x, r.y, text, styleClass);
+            });
+        }
+        
+        function updateAnalysisText(results, mode) {
+            const container = document.getElementById('analysis-results-text');
+            let sorted = [...results].sort((a, b) => b.val - a.val);
+            let html = sorted.map((r, i) => {
+                 let coord = coordToString(r.x, r.y);
+                 let valStr = "";
+                 if (mode.includes('perfect_solver') || mode.includes('endgame')) {
+                     let v = Math.round(r.val);
+                     valStr = (v > 0 ? "+" + v : v); 
+                 } else {
+                     let v = r.val.toFixed(2);
+                     valStr = (r.val > 0 ? "+" + v : v);
+                 }
+                 let isTop4 = (i < 4);
+                 if (mode === 'endgame_sniper' && !isTop4) return ''; 
+                 let prefix = (isTop4 && !mode.includes('perfect_solver') && !mode.includes('endgame')) ? `<span class="font-bold text-stone-800">[${"ABCD"[i]}]</span> ` : `<span class="text-stone-400">#${i+1}</span> `;
+                 return `${prefix}${coord}: ${valStr}`;
+            }).filter(s => s !== '').join('\n');
+            container.innerHTML = html;
+        }
+        
+        function renderSingleScore(x, y, text, styleClass) {
+             const cell = document.getElementById(`cell-${x}-${y}`);
+             if (!cell) return;
+             if (cell.querySelector('.disc')) return;
+             const currentState = gameHistory[currentStepIndex];
+             if (currentState && currentState.board[x][y] !== EMPTY) return;
+             const existing = cell.querySelector('.eval-score');
+             if(existing) existing.remove();
+             let span = document.createElement('span');
+             span.className = `eval-score ${styleClass}`;
+             span.textContent = text;
+             cell.appendChild(span);
+        }
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
