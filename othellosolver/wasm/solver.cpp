@@ -55,6 +55,9 @@ static Weights weights = {28,24,32,22,12};
 static bool useHardConstraints = false;
 static int currentReqId = -1;
 static int rootPlayer = 0;
+static volatile int shouldStop = 0;
+static int currentSearchLevel = 0;
+static int lastWasEndgame = 0;
 
 static inline int opp(int p){ return p==BLACK?WHITE:BLACK; }
 
@@ -84,6 +87,13 @@ void solver_reset(int reqId) {
     std::fill(HISTORY_TABLE.begin(), HISTORY_TABLE.end(), 0);
     std::fill(KILLER_MOVES.begin(), KILLER_MOVES.end(), -1);
   }
+  shouldStop = 0;
+  lastWasEndgame = 0;
+}
+
+EMSCRIPTEN_KEEPALIVE
+void solver_stop() {
+  shouldStop = 1;
 }
 }
 
@@ -315,7 +325,7 @@ static double solve_endgame(int8_t* board, int player, double alpha, double beta
   int moveCount = populate_valid_moves(board, player, bufferOffset);
   if(moveCount==0){
     int oppv = opp(player);
-    if(populate_valid_moves(board, oppv, 60*64)==0) return (double)eval_disc(board, player);
+    if(populate_valid_moves(board, oppv, 60*64)==0) return (double)eval_disc(board, player) * 1000.0;
     return -solve_endgame(board, oppv, -beta, -alpha, emptyCount, hash);
   }
   int ttMove = (TT_MOVE[ttIndex]!=255) ? TT_MOVE[ttIndex] : -1;
@@ -431,6 +441,7 @@ static double eval_hybrid(int8_t* board, int player, int lastMoveIdx, int lastCo
 }
 
 static double negamax_hybrid(int8_t* board, int player, int depth, double alpha, double beta, int lastMoveIdx, int lastCount, uint64_t hash){
+  currentSearchLevel++;
   uint64_t ttKey = hash ^ (player==WHITE ? ZOBRIST_SIDE : 0ULL);
   size_t ttIndex = (size_t)(ttKey & TT_MASK);
   if(TT_KEY[ttIndex]==ttKey && TT_DEPTH[ttIndex]>=depth){
@@ -439,7 +450,11 @@ static double negamax_hybrid(int8_t* board, int player, int depth, double alpha,
     else if(TT_FLAG[ttIndex]==FLAG_UPPER){ if(TT_VAL[ttIndex]<beta) beta = TT_VAL[ttIndex]; }
     if(alpha>=beta) return TT_VAL[ttIndex];
   }
-  if(depth==0) return eval_hybrid(board, player, lastMoveIdx, lastCount);
+  if(depth==0){
+    double rv = eval_hybrid(board, player, lastMoveIdx, lastCount);
+    currentSearchLevel--;
+    return rv;
+  }
   int ttMove = (TT_MOVE[ttIndex]!=255) ? TT_MOVE[ttIndex] : -1;
   if(ttMove==-1 && depth>=6){
     int iidDepth = depth - 4;
@@ -450,8 +465,9 @@ static double negamax_hybrid(int8_t* board, int player, int depth, double alpha,
   int moveCount = populate_pruned_moves(board, player, bufferOffset);
   if(moveCount==0){
     int oppv = opp(player);
-    if(populate_pruned_moves(board, oppv, 62*64)==0) return (double)eval_disc(board, player)*1000.0;
-    return -negamax_hybrid(board, oppv, depth-1, -beta, -alpha, -1, 0, hash);
+    double rv = -negamax_hybrid(board, oppv, depth-1, -beta, -alpha, -1, 0, hash);
+    currentSearchLevel--;
+    return rv;
   }
   int k1 = KILLER_MOVES[depth*2];
   int k2 = KILLER_MOVES[depth*2+1];
@@ -522,13 +538,23 @@ static double negamax_hybrid(int8_t* board, int player, int depth, double alpha,
     else if(best>=beta) TT_FLAG[ttIndex]=FLAG_LOWER;
     else TT_FLAG[ttIndex]=FLAG_EXACT;
   }
+  currentSearchLevel--;
   return best;
 }
 
 static double calc_score(int8_t* board, int player, int moveIdx, int depth, double alpha, double beta, uint64_t rootHash){
+  currentSearchLevel = 0;
+  lastWasEndgame = 0;
   int stackOffset = 4000;
   ApplyRes res = apply_move(board, moveIdx, player, stackOffset, rootHash);
+  int eCountAfterMove = count_empty(board);
   int oppv = opp(player);
+  if(eCountAfterMove<=14){
+    double val = -solve_endgame(board, oppv, -beta, -alpha, eCountAfterMove, res.hash);
+    undo_move(board, moveIdx, res.count, stackOffset, player);
+    lastWasEndgame = 1;
+    return val;
+  }
   double val = -negamax_hybrid(board, oppv, depth-1, -beta, -alpha, moveIdx, res.count, res.hash);
   if(useHardConstraints){
     int opCount = populate_valid_moves(board, oppv, 61*64);
@@ -551,6 +577,7 @@ static double calc_score(int8_t* board, int player, int moveIdx, int depth, doub
     }
   }
   undo_move(board, moveIdx, res.count, stackOffset, player);
+  if(eCountAfterMove==0){ lastWasEndgame = 1; }
   if(useHardConstraints){
     int r=moveIdx>>3, c=moveIdx&7;
     if((r==1&&c==1)||(r==6&&c==1)||(r==1&&c==6)||(r==6&&c==6)){
@@ -577,6 +604,10 @@ static double search_root(int8_t* board, int player, int moveIdx, int maxDepth, 
     } else {
       bestVal = calc_score(board, player, moveIdx, d, -INFINITY, INFINITY, rootHash);
     }
+    EM_ASM({
+      postMessage({ type: 'result_depth', x: $0, y: $1, val: $2, depth: $3, reqId: $4, is_endgame: $5 });
+    }, (moveIdx>>3), (moveIdx&7), bestVal, d, currentReqId, lastWasEndgame);
+    if (shouldStop) break;
   }
   return bestVal;
 }
@@ -609,6 +640,11 @@ double solver_search_root(int board_ptr, int player, int moveIdx, int maxDepth){
 }
 
 EMSCRIPTEN_KEEPALIVE
+int solver_last_is_endgame(){
+  return lastWasEndgame;
+}
+
+EMSCRIPTEN_KEEPALIVE
 double solver_endgame_after_move(int board_ptr, int player, int moveIdx, double alpha){
   init_zobrist();
   int8_t* board = (int8_t*)board_ptr;
@@ -623,4 +659,3 @@ double solver_endgame_after_move(int board_ptr, int player, int moveIdx, double 
   return val;
 }
 }
-

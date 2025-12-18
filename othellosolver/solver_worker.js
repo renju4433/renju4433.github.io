@@ -11,6 +11,10 @@ function boot() {
 boot();
 function handle(data) {
   if (!ready) { pending.push(data); return; }
+  if (data.type === 'stop') {
+    try { ModuleInstance?._solver_stop(); } catch {}
+    return;
+  }
   const board = new Int8Array(data.board);
   const player = data.player;
   const move = data.move;
@@ -36,13 +40,16 @@ function handle(data) {
     return;
   }
   let val;
+  let is_endgame = 0;
   if (data.mode === 'perfect_solver' || data.mode === 'endgame') {
     const a = typeof data.alpha === 'number' ? data.alpha : -Infinity;
     val = ModuleInstance._solver_endgame_after_move(ptr, player, move, a);
+    is_endgame = 1;
   } else {
     val = ModuleInstance._solver_search_root(ptr, player, move, depth);
+    try { is_endgame = ModuleInstance._solver_last_is_endgame() ? 1 : 0; } catch { is_endgame = 0; }
   }
   ModuleInstance._free(ptr);
-  postMessage({ type: 'result', x: (move>>3), y: (move&7), val: val, reqId: reqId });
+  postMessage({ type: 'result', x: (move>>3), y: (move&7), val: val, reqId: reqId, is_endgame: is_endgame });
 }
 onmessage = function(e){ handle(e.data); };
