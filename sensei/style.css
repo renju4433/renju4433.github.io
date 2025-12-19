@@ -1,0 +1,231 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #1a1a1a;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #2e4e2e;
+    color: white;
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.header-icons .icon-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.board-wrapper {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    background-color: #1a1a1a;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #000;
+    gap: 1px;
+    border: 5px solid #2e4e2e;
+}
+
+.cell {
+    background-color: #2e5e2e;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.cell.last-move::after {
+    content: '';
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    background-color: #ff0000;
+    border-radius: 50%;
+    z-index: 5;
+}
+
+.disc {
+    width: 85%;
+    height: 85%;
+    border-radius: 50%;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    z-index: 2;
+}
+
+.disc.black { background-color: #111; }
+.disc.white { background-color: #fff; }
+
+.cell-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #e6c200; 
+    text-shadow: 0 0 3px #000;
+    pointer-events: none;
+    z-index: 10;
+    line-height: 1.1;
+}
+
+.eval-score {
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.eval-depth {
+    font-size: 0.6rem;
+    color: #aaa;
+    margin-top: 1px;
+}
+
+/* Panel styles */
+.panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+    background-color: #1a1a1a;
+    min-height: 0;
+}
+
+.score-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.player-score {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.disc-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.disc-icon.black { 
+    background-color: #222; 
+    border: 2px solid #2e4e2e;
+    color: #fff;
+}
+.disc-icon.white { 
+    background-color: #fff; 
+    color: #000;
+}
+
+.score-text {
+    font-size: 2.2rem;
+    font-weight: 300;
+}
+
+.eval-display {
+    text-align: center;
+}
+.eval-number {
+    font-size: 1.8rem;
+    color: #e0e0e0;
+}
+.eval-label {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.chart-container {
+    flex: 1;
+    position: relative;
+    border-top: 1px dotted #444;
+    border-bottom: 1px dotted #444;
+    margin: 10px 0;
+    min-height: 50px;
+    background: linear-gradient(to bottom, transparent 49%, #444 50%, transparent 51%);
+    background-size: 100% 100%;
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 0.85rem;
+    color: #aaa;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.text-right { text-align: right; }
+
+.nav-bar {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 5px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1rem;
+    padding: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-btn.active {
+    color: #fff;
+    border-bottom: 3px solid #6b8c6b;
+}
+
+.legal-move-marker {
+    width: 20%;
+    height: 20%;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 50%;
+}
