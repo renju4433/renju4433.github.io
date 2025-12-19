@@ -234,7 +234,7 @@ function updateOverlay() {
 function updateStats(count, depth) {
     const now = Date.now();
     const time = (now - analysisStartTime) / 1000;
-    statTimeEl.textContent = time.toFixed(1) + " sec";
+    statTimeEl.textContent = time.toFixed(2) + " sec";
     statNodesEl.textContent = "Depth " + depth; // Using nodes field for depth for now
     // statNpsEl.textContent = ...
 }

@@ -16,14 +16,14 @@ const uint64_t WHITE = 2;
 // Corner ~ 4 discs
 // X-square ~ -2 discs
 const double WEIGHTS[8][8] = {
-    { 4.0, -2.0,  2.0,  1.0,  1.0,  2.0, -2.0,  4.0},
-    {-2.0, -3.0, -0.5, -0.5, -0.5, -0.5, -3.0, -2.0},
-    { 2.0, -0.5,  1.0,  0.5,  0.5,  1.0, -0.5,  2.0},
-    { 1.0, -0.5,  0.5,  0.0,  0.0,  0.5, -0.5,  1.0},
-    { 1.0, -0.5,  0.5,  0.0,  0.0,  0.5, -0.5,  1.0},
-    { 2.0, -0.5,  1.0,  0.5,  0.5,  1.0, -0.5,  2.0},
-    {-2.0, -3.0, -0.5, -0.5, -0.5, -0.5, -3.0, -2.0},
-    { 4.0, -2.0,  2.0,  1.0,  1.0,  2.0, -2.0,  4.0}
+    { 4.0, -3.0,  2.0,  2.0,  2.0,  2.0, -3.0,  4.0},
+    {-3.0, -4.0, -1.0, -1.0, -1.0, -1.0, -4.0, -3.0},
+    { 2.0, -1.0,  1.0,  0.0,  0.0,  1.0, -1.0,  2.0},
+    { 2.0, -1.0,  0.0,  1.0,  1.0,  0.0, -1.0,  2.0},
+    { 2.0, -1.0,  0.0,  1.0,  1.0,  0.0, -1.0,  2.0},
+    { 2.0, -1.0,  1.0,  0.0,  0.0,  1.0, -1.0,  2.0},
+    {-3.0, -4.0, -1.0, -1.0, -1.0, -1.0, -4.0, -3.0},
+    { 4.0, -3.0,  2.0,  2.0,  2.0,  2.0, -3.0,  4.0}
 };
 
 struct MoveEval {
@@ -161,7 +161,8 @@ bool isStableDirection(int r, int c, int dr, int dc, const bool stableMap[8][8],
 double evaluate(const BitBoard& board, uint64_t player) {
     int blackCount = board.count(BLACK);
     int whiteCount = board.count(WHITE);
-    int empty = 64 - blackCount - whiteCount;
+    int filled = blackCount + whiteCount;
+    int empty = 64 - filled;
 
     // Terminal state: return exact disc difference
     if (empty == 0 || (getValidMoves(board, BLACK).empty() && getValidMoves(board, WHITE).empty())) {
@@ -207,13 +208,13 @@ double evaluate(const BitBoard& board, uint64_t player) {
             }
         }
     }
-    /*
+    
     int playerMoves = getValidMoves(board, player).size();
     int oppMoves = getValidMoves(board, opponent).size();
-
+    
     // Mobility value
     double mobility = (double)(playerMoves - oppMoves);
-
+    
     // Positional weights
     double positional = 0.0;
     for (int i = 0; i < 8; i++) {
@@ -224,11 +225,55 @@ double evaluate(const BitBoard& board, uint64_t player) {
         }
     }
     
+    // Corner Difference
+    // Corners: (0,0), (0,7), (7,0), (7,7)
+    int myCorners = 0;
+    int oppCorners = 0;
+    int cornerCoords[4][2] = {{0,0}, {0,7}, {7,0}, {7,7}};
+    for(auto& c : cornerCoords) {
+        if (board.get(c[0], c[1]) == player) myCorners++;
+        else if (board.get(c[0], c[1]) == opponent) oppCorners++;
+    }
+    double cornerDiff = (double)(myCorners - oppCorners);
+
+    // X-Square Difference
+    // X-Squares: (1,1), (1,6), (6,1), (6,6)
+    int myXSquares = 0;
+    int oppXSquares = 0;
+    int xCoords[4][2] = {{1,1}, {1,6}, {6,1}, {6,6}};
+    for(auto& x : xCoords) {
+        if (board.get(x[0], x[1]) == player) myXSquares++;
+        else if (board.get(x[0], x[1]) == opponent) oppXSquares++;
+    }
+    double xSquareDiff = (double)(myXSquares - oppXSquares);
+
     double myDiscDiff = (double)(board.count(player) - board.count(opponent));
-    */
     double stableDiff = (double)(myStable - oppStable);
-    double finalScore = stableDiff * 1.0;
+    double phase = (double)filled / 64.0;
     
+    // Weights based on user formula
+    // Eval = 
+    // + 1.00 * stable_diff 
+    // + 3.00 * corner_diff 
+    // + pos_weight * position_diff 
+    // + mob_weight * mobility_diff 
+    // + disc_weight * disc_diff 
+    // - 0.20 * x_square_diff
+
+    double pos_weight = 0.45 * (1.0 - phase) * (1.0 - phase);
+    double mob_weight = 0.25 * (1.0 - phase);
+    double disc_weight = 0.60 * phase * phase * phase;
+
+    double finalScore = 
+          1.00 * stableDiff 
+        + 3.00 * cornerDiff 
+        + pos_weight * positional 
+        + mob_weight * mobility 
+        + disc_weight * myDiscDiff 
+        - 0.20 * xSquareDiff + 0.5;
+    if(finalScore > 64.0) finalScore = 64.0;
+    else if(finalScore < -64.0) finalScore = -64.0;
+
     return finalScore;
 }
 
