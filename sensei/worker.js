@@ -39,7 +39,7 @@ self.onmessage = function(e) {
                 player, 
                 maxTime, 
                 callback,
-                stopFlag
+                stopFlag || new Int32Array(1)
             );
             
             postMessage({ type: 'analysis_complete', id: id });

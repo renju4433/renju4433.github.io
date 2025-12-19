@@ -15,9 +15,23 @@ let boardBlack = (1n << 28n) | (1n << 35n);
 let boardWhite = (1n << 27n) | (1n << 36n);
 let currentPlayer = BLACK; // Black moves first
 
-let worker = new Worker('worker.js', { type: 'module' });
+let worker = null;
 let isWorkerReady = false;
-let stopFlag = new Int32Array(new SharedArrayBuffer(4)); // 0 = run, 1 = stop
+
+// SharedArrayBuffer support check
+let stopFlag = null;
+let useSAB = false;
+try {
+    if (typeof SharedArrayBuffer !== 'undefined') {
+        stopFlag = new Int32Array(new SharedArrayBuffer(4));
+        useSAB = true;
+    } else {
+        console.log("SharedArrayBuffer not supported, falling back to worker termination.");
+    }
+} catch (e) {
+    console.log("SharedArrayBuffer error:", e);
+}
+
 let isAnalyzing = false;
 let pendingAnalysis = null;
 let currentAnalysisId = 0;
@@ -52,13 +66,22 @@ btnPrev.onclick = () => goToMove(historyIndex - 1);
 btnNext.onclick = () => goToMove(historyIndex + 1);
 btnLast.onclick = () => goToMove(moveHistory.length - 1);
 
-worker.onmessage = (e) => {
+function initWorker() {
+    if (worker) worker.terminate();
+    worker = new Worker('worker.js', { type: 'module' });
+    worker.onmessage = handleWorkerMessage;
+    isWorkerReady = false;
+}
+
+const handleWorkerMessage = (e) => {
     const data = e.data;
     if (data.type === 'ready') {
         isWorkerReady = true;
         console.log("Worker ready");
-        // Send SAB
-        worker.postMessage({ type: 'init', sab: stopFlag.buffer });
+        // Send SAB if available
+        if (useSAB && stopFlag) {
+            worker.postMessage({ type: 'init', sab: stopFlag.buffer });
+        }
         triggerAnalysis();
     } else if (data.type === 'analysis_update') {
         if (data.id !== currentAnalysisId) return;
@@ -293,7 +316,18 @@ function goToMove(index) {
 }
 
 function triggerAnalysis() {
-    if (!isWorkerReady) return;
+    if (!worker) initWorker();
+    
+    // If worker not ready, we can't send yet.
+    // If using terminate strategy, we might have just recreated it.
+    if (!isWorkerReady) {
+        // If we are here, it means we probably just called initWorker().
+        // We don't need to do anything, because 'ready' handler calls triggerAnalysis().
+        // But we need to make sure we don't loop infinitely.
+        // triggerAnalysis() constructs the message from *current* state.
+        // So just returning is fine, provided 'ready' calls us back.
+        return;
+    }
     
     currentAnalysisId++;
     analysisStartTime = Date.now();
@@ -303,17 +337,31 @@ function triggerAnalysis() {
         black: boardBlack.toString(),
         white: boardWhite.toString(),
         player: (currentPlayer === BLACK) ? 1 : 2,
-        maxTime: 86400000 // 2 seconds
+        maxTime: 2000 // 2 seconds
     };
 
-    if (isAnalyzing) {
-        // Signal stop
-        Atomics.store(stopFlag, 0, 1);
-        pendingAnalysis = msg;
+    if (useSAB) {
+        if (isAnalyzing) {
+            // Signal stop
+            Atomics.store(stopFlag, 0, 1);
+            pendingAnalysis = msg;
+        } else {
+            Atomics.store(stopFlag, 0, 0);
+            worker.postMessage(msg);
+            isAnalyzing = true;
+        }
     } else {
-        Atomics.store(stopFlag, 0, 0);
-        worker.postMessage(msg);
-        isAnalyzing = true;
+        // Fallback: Terminate and restart if busy
+        if (isAnalyzing) {
+            console.log("Terminating worker for restart...");
+            initWorker(); // This sets isWorkerReady = false
+            // The new worker will send 'ready', which will call triggerAnalysis()
+            // picking up the latest state.
+            isAnalyzing = false;
+        } else {
+            worker.postMessage(msg);
+            isAnalyzing = true;
+        }
     }
 }
 
@@ -402,3 +450,4 @@ function makeMove(own, opp, r, c, player) {
 }
 
 initBoard();
+initWorker();
