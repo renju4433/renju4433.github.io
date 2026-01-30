@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五子棋瑞士制计算器</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: normal;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* 规则说明区域 */
+        .rules-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px 20px;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+
+        .rules-box ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .rules-box li {
+            margin-bottom: 6px;
+        }
+
+        /* 输入区域 */
+        .input-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        label {
+            width: 130px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        input[type="number"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 90px;
+            font-size: 14px;
+        }
+
+        .input-hint {
+            color: #888;
+            font-size: 12px;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+
+        .range-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /* 按钮 */
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 结果输出区域 */
+        #result-area {
+            margin-top: 25px;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: none;
+        }
+
+        .result-main {
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .result-details {
+            font-size: 14px;
+            color: #666;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th { background-color: #f1f1f1; }
+        
+        /* 分数高亮 */
+        .score-cell {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>五子棋瑞士制计算器</h1>
+
+    <div class="rules-box">
+        <ol>
+            <li><strong>计分规则：</strong>胜 1 分，平 0.5 分，负 0 分。</li>
+            <li><strong>赛场模型：</strong>系统通过“赛场平均和棋率”构建对手的分数分布模型（假设除去平局外，赛场胜负概率均等）。</li>
+            <li><strong>个人模型：</strong>输入您个人的“胜率”与“和棋率”，负率将自动计算（100% - 胜 - 和）。</li>
+            <li><strong>小分说明：</strong>同分情况下，系统假设您的排名在同分区间内为均匀随机分布。</li>
+        </ol>
+    </div>
+
+    <div class="input-section">
+        <div class="input-group">
+            <label>参赛人数：</label>
+            <input type="number" id="numPlayers" value="64" min="4">
+            <span class="input-hint">总人数</span>
+        </div>
+
+        <div class="input-group">
+            <label>比赛轮数：</label>
+            <input type="number" id="numRounds" value="7" min="1">
+            <span class="input-hint">推荐: 64人/7轮</span>
+        </div>
+
+        <div class="input-group">
+            <label>我的胜率(%)：</label>
+            <input type="number" id="myWinRate" value="50" min="0" max="100">
+            <span class="input-hint">进攻性如何？</span>
+        </div>
+
+        <div class="input-group">
+            <label>我的和率(%)：</label>
+            <input type="number" id="myDrawRate" value="20" min="0" max="100">
+            <span class="input-hint">稳健度如何？</span>
+        </div>
+        
+        <div class="input-group">
+            <label>赛场平均和率(%)：</label>
+            <input type="number" id="fieldDrawRate" value="15" min="0" max="100">
+            <span class="input-hint">全场大致平局比例</span>
+        </div>
+
+        <div class="input-group">
+            <label>目标名次：</label>
+            <div class="range-container">
+                <input type="number" id="rankStart" value="1" style="width: 60px;">
+                <span style="margin: 0 10px;">-</span>
+                <input type="number" id="rankEnd" value="8" style="width: 60px;">
+            </div>
+            <span class="input-hint">例如：前 8 名</span>
+        </div>
+
+        <button onclick="calculateProbability()">计算概率</button>
+    </div>
+
+    <div id="result-area">
+        <div class="result-main" id="main-output"></div>
+        <div class="result-details" id="detail-output"></div>
+    </div>
+
+    <script>
+        // 阶乘缓存
+        const factorials = [1];
+        function getFactorial(n) {
+            if (factorials[n]) return factorials[n];
+            for (let i = factorials.length; i <= n; i++) {
+                factorials[i] = factorials[i - 1] * i;
+            }
+            return factorials[n];
+        }
+
+        // 多项分布概率 PMF
+        // R:总轮数, w:胜, d:平, l:负, pw:胜率, pd:和率, pl:负率
+        function multinomialProb(R, w, d, l, pw, pd, pl) {
+            // 系数 = R! / (w! * d! * l!)
+            const coeff = getFactorial(R) / (getFactorial(w) * getFactorial(d) * getFactorial(l));
+            return coeff * Math.pow(pw, w) * Math.pow(pd, d) * Math.pow(pl, l);
+        }
+
+        // 生成某种概率模型下的分数分布
+        // 返回 map: score(乘2后的整数) -> probability
+        function generateScoreDist(R, pw, pd, pl) {
+            let dist = new Map(); // key: score*2, val: prob
+            
+            // 遍历所有可能的 (w, d) 组合
+            for (let w = 0; w <= R; w++) {
+                for (let d = 0; d <= R - w; d++) {
+                    let l = R - w - d;
+                    
+                    let prob = multinomialProb(R, w, d, l, pw, pd, pl);
+                    
+                    // 分数 = w + 0.5d -> 为了用作key，存 w*2 + d
+                    let scoreKey = w * 2 + d; 
+                    
+                    let currentVal = dist.get(scoreKey) || 0;
+                    dist.set(scoreKey, currentVal + prob);
+                }
+            }
+            return dist;
+        }
+
+        function calculateProbability() {
+            // 1. 获取输入
+            const N = parseInt(document.getElementById('numPlayers').value);
+            const R = parseInt(document.getElementById('numRounds').value);
+            
+            const myWinP = parseFloat(document.getElementById('myWinRate').value) / 100;
+            const myDrawP = parseFloat(document.getElementById('myDrawRate').value) / 100;
+            const myLossP = 1 - myWinP - myDrawP;
+
+            const fieldDrawP = parseFloat(document.getElementById('fieldDrawRate').value) / 100;
+            // 赛场模型：假设除去平局，胜负各半
+            const fieldWinP = (1 - fieldDrawP) / 2;
+            const fieldLossP = (1 - fieldDrawP) / 2;
+
+            const targetStart = parseInt(document.getElementById('rankStart').value);
+            const targetEnd = parseInt(document.getElementById('rankEnd').value);
+
+            if (isNaN(N) || isNaN(R) || myLossP < -0.001) {
+                alert("输入无效，请检查胜率和率之和是否超过100%");
+                return;
+            }
+
+            // 2. 生成分布
+            // 我的得分概率分布
+            let myDist = generateScoreDist(R, myWinP, myDrawP, myLossP);
+            // 赛场单人得分概率分布
+            let fieldUnitDist = generateScoreDist(R, fieldWinP, fieldDrawP, fieldLossP);
+
+            // 转换赛场分布为“人数预期”
+            // fieldCounts[scoreKey] = 拥有该分数的人数（不含我）
+            let fieldCounts = new Map();
+            fieldUnitDist.forEach((prob, scoreKey) => {
+                fieldCounts.set(scoreKey, prob * (N - 1));
+            });
+
+            // 3. 计算排名概率
+            let totalSuccessProb = 0;
+            let resultRows = [];
+
+            // 将我的分布按分数从高到低排序
+            let mySortedScores = Array.from(myDist.keys()).sort((a, b) => b - a);
+
+            for (let sKey of mySortedScores) {
+                let myProb = myDist.get(sKey);
+
+                let myScore = sKey / 2.0;
+
+                // 计算比我分高的人数 (Better)
+                let betterCount = 0;
+                fieldCounts.forEach((count, key) => {
+                    if (key > sKey) betterCount += count;
+                });
+
+                // 同分人数 (Same) -> 包括我自己 (fieldCounts里是N-1，加上我是 +1)
+                let sameCount = (fieldCounts.get(sKey) || 0) + 1;
+
+                // 排名范围
+                let bestRank = Math.floor(betterCount) + 1;
+                let worstRank = Math.floor(betterCount + sameCount);
+
+                // 计算在该分数段下，进目标的条件概率
+                let overlapStart = Math.max(bestRank, targetStart);
+                let overlapEnd = Math.min(worstRank, targetEnd);
+                
+                let overlapCount = 0;
+                if (overlapEnd >= overlapStart) {
+                    overlapCount = overlapEnd - overlapStart + 1;
+                }
+
+                let span = worstRank - bestRank + 1;
+                let conditionProb = overlapCount / span;
+
+                totalSuccessProb += (myProb * conditionProb);
+
+                // 记录数据用于显示
+                resultRows.push({
+                    score: myScore,
+                    range: `${bestRank} - ${worstRank}`,
+                    prob: (myProb * 100).toFixed(1) + "%",
+                    cond: (conditionProb * 100).toFixed(0) + "%",
+                    rawCond: conditionProb // 用于排序或样式
+                });
+            }
+
+            // 4. 构建表格 HTML
+            let breakdownHtml = "<table><tr><th>积分</th><th>预期排名区间</th></tr>";
+            
+            resultRows.forEach(row => {
+                let rowStyle = "";
+                if (row.rawCond > 0.999) rowStyle = "background:#e6fffa; color:#006644;";
+                else if (row.rawCond < 0.001) rowStyle = "color:#999;";
+                else rowStyle = "background:#fffbf0;";
+
+                breakdownHtml += `<tr style="${rowStyle}">
+                    <td class="score-cell">${row.score}</td>
+                    <td>${row.range}</td>
+                </tr>`;
+            });
+            breakdownHtml += "</table>";
+
+            // 5. 输出
+            const resultArea = document.getElementById('result-area');
+            const mainOut = document.getElementById('main-output');
+            const detailOut = document.getElementById('detail-output');
+
+            resultArea.style.display = 'block';
+            mainOut.innerHTML = `进入第 ${targetStart}-${targetEnd} 名的概率为：${(totalSuccessProb * 100).toFixed(2)}%`;
+            detailOut.innerHTML = `
+                <p>基于 <strong>${N}人 ${R}轮</strong> 赛制模拟：</p>
+                <p style="font-size:13px; color:#555; margin-top:-10px;">
+                   赛场环境 (和${(fieldDrawP*100).toFixed(0)}%)
+                </p>
+                ${breakdownHtml}
+            `;
+        }
+    </script>
+</body>
+</html>
