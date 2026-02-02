@@ -11,11 +11,11 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("workbox-v4.3.1/workbox-sw.js");
-workbox.setConfig({modulePathPrefix: "workbox-v4.3.1"});
+importScripts("/workbox-v4.3.1/workbox-sw.js");
+workbox.setConfig({modulePathPrefix: "/workbox-v4.3.1"});
 
 importScripts(
-  "precache-manifest.e3eeb76fe600aa2fca96bc85fbdfe254.js"
+  "/precache-manifest.b9e276fd5dee04e4fbbe6e2bf5780ca9.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "gomoku-calculator"});
