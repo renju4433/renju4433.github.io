@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.aef890e3dfbcef7f3429ef62491f2414.js"
+  "precache-manifest.7f79400bcbeb64f5cc9ed73d3f58db0e.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "gomoku-calculator"});
