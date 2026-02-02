@@ -11,16 +11,19 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("workbox-v4.3.1/workbox-sw.js");
-workbox.setConfig({modulePathPrefix: "workbox-v4.3.1"});
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.ac736347141960f839716316f72c59eb.js"
+  "precache-manifest.aef890e3dfbcef7f3429ef62491f2414.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "gomoku-calculator"});
 
-workbox.core.skipWaiting();
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
@@ -29,10 +32,3 @@ workbox.core.skipWaiting();
  */
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
-
-workbox.precaching.cleanupOutdatedCaches();
-
-workbox.routing.registerRoute(/^(?!.*\.html$).*$/, new workbox.strategies.CacheFirst({ "cacheName":"all-resources-cache", plugins: [new workbox.expiration.Plugin({ maxEntries: 500, maxAgeSeconds: 1296000, purgeOnQuotaError: true }), new workbox.cacheableResponse.Plugin({ statuses: [ 0, 200 ] })] }), 'GET');
-workbox.routing.registerRoute(/\.html$/, new workbox.strategies.StaleWhileRevalidate({ "cacheName":"html-cache", plugins: [new workbox.cacheableResponse.Plugin({ statuses: [ 0, 200 ] })] }), 'GET');
-
-workbox.googleAnalytics.initialize({});
