@@ -693,6 +693,40 @@ static ComputeResult compute_go_value(const std::vector<int>& board_flat, int si
   return res;
 }
 
+static ComputeResult compute_go_value_subset(const std::vector<int>& board_flat, int size, const std::vector<int>& selected_ids) {
+  std::vector<std::vector<int>> s(size, std::vector<int>(size, 0));
+  for (int y = 0; y < size; y++) for (int x = 0; x < size; x++) s[y][x] = board_flat[y*size + x];
+  std::vector<Region> regions = build_regions(s);
+  std::unordered_set<int> sel;
+  for (size_t i = 0; i < selected_ids.size(); i++) sel.insert(selected_ids[i]);
+  if (sel.empty()) {
+    return compute_go_value(board_flat, size);
+  }
+  int sum = IDX_ZERO;
+  std::vector<RegionItem> items;
+  for (const auto& r : regions) {
+    if (sel.find(r.id) == sel.end()) continue;
+    std::unordered_set<std::string> visited;
+    visited.insert(key_of(s) + std::string("|R:") + std::to_string(r.id));
+    int gi = position_to_region_game(s, r, visited);
+    sum = plus_idx(sum, gi);
+    MeanTemp mt = game_mean_temp(gi);
+    std::string meanStr = mt.mean_ok ? dy_to_string(mt.mean) : std::string("");
+    RegionItem it;
+    it.id = r.id;
+    it.idx = gi;
+    it.empties = (int)r.cells.size();
+    it.value_str = display_str(gi);
+    it.mean_str = meanStr;
+    items.push_back(it);
+  }
+  ComputeResult res;
+  res.sum_idx = sum;
+  res.sum_str = display_str(sum);
+  res.items = items;
+  return res;
+}
+
 static void init_standard() {
   if (IDX_ZERO != -1) return;
   std::vector<int> empty;
@@ -730,7 +764,7 @@ EMSCRIPTEN_BINDINGS(cgt_module) {
   function("init_standard", &init_standard);
   function("ready", &ready);
   function("compute_go_value", &compute_go_value);
+  function("compute_go_value_subset", &compute_go_value_subset);
   function("display_str", &display_str);
   function("game_mean_temp", &game_mean_temp);
 }
-

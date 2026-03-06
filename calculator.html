@@ -53,7 +53,7 @@
        window.CGT_READY = new Promise(function(resolve) {
          try {
            if (typeof Module === 'function') {
-             var inst = Module();
+             var inst = Module({ INITIAL_MEMORY: 268435456 });
              if (inst && typeof inst.then === 'function') {
                inst.then(function(m){ if (m.init_standard) m.init_standard(); resolve(m); });
              } else if (inst && typeof inst.onRuntimeInitialized === 'function') {

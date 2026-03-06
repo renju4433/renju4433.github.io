@@ -421,32 +421,45 @@ function computeCgtValue() {
   if (CGT) {
     const vec = new CGT.VectorInt();
     for (let y = 0; y < goSize; y++) for (let x = 0; x < goSize; x++) vec.push_back(boardState[y][x]);
-    const res = CGT.compute_go_value(vec, goSize);
+    const useSubset = selectedRegions && selectedRegions.size > 0;
+    let res = null;
+    if (useSubset && typeof CGT.compute_go_value_subset === 'function') {
+      const sel = new CGT.VectorInt();
+      selectedRegions.forEach(id => sel.push_back(id));
+      res = CGT.compute_go_value_subset(vec, goSize, sel);
+      sel.delete();
+    } else if (useSubset) {
+      res = CGT.compute_go_value(vec, goSize);
+    } else {
+      res = CGT.compute_go_value(vec, goSize);
+    }
     vec.delete();
     const items = [];
     const getSize = typeof res.items.size === 'function' ? res.items.size() : (Array.isArray(res.items) ? res.items.length : 0);
     let selectedSumIdx = namesToValues["0"];
-    const useSubset = selectedRegions && selectedRegions.size > 0;
     for (let i = 0; i < getSize; i++) {
       const it = typeof res.items.get === 'function' ? res.items.get(i) : res.items[i];
       if (!useSubset || selectedRegions.has(it.id)) {
         items.push({ id: it.id, valueStr: it.value_str, meanStr: it.mean_str, idx: it.idx });
-        try {
-          const parsed = parse(lex(it.value_str));
-          if (parsed && parsed[0]) {
-            const gi = toGame(parsed[1]);
-            selectedSumIdx = plus(selectedSumIdx, gi);
-          }
-        } catch (_) {}
+        if (useSubset) {
+          try {
+            const parsed = parse(lex(it.value_str));
+            if (parsed && parsed[0]) {
+              const gi = toGame(parsed[1]);
+              selectedSumIdx = plus(selectedSumIdx, gi);
+            }
+          } catch (_) {}
+        }
       }
     }
     const sumStr = useSubset ? display(selectedSumIdx) : res.sum_str;
     return { sumStr, items };
   }
+  const useSubset = selectedRegions && selectedRegions.size > 0;
   let sum = namesToValues["0"];
   const items = [];
   for (const r of regions) {
-    if (selectedRegions && selectedRegions.size > 0 && !selectedRegions.has(r.id)) continue;
+    if (useSubset && !selectedRegions.has(r.id)) continue;
     const visited = new Set();
     visited.add(keyOf(boardState) + '|R:' + r.id);
     const gi = positionToRegionGame(boardState, r, visited);
