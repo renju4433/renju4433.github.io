@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>Combinatorial Game Theory Calculator</title>
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+ 
+     <h2>围棋官子计算</h2>
+    <div class="go-panel">
+      <div class="tool-buttons">
+        <button id="goBtnBlack" class="tool-btn tool-icon active" title="黑棋">⚫</button>
+        <button id="goBtnWhite" class="tool-btn tool-icon" title="白棋">⚪</button>
+        <button id="goBtnErase" class="tool-btn tool-icon" title="擦除">🗑</button>
+      </div>
+      <button id="goClearBtn" class="tool-btn">清空</button>
+      <button id="goCalcBtn" class="tool-btn">计算官子值</button>
+      <label>棋盘尺寸：
+        <select id="goSize">
+          
+        </select>
+      </label>
+    </div>
+ 
+     <div id="goBoard"></div>
+     <div id="goResult"></div>
+     <div id="goBreakdown"></div>
+     <div id="goRegionSel"></div>
+     <div id="resultModal" class="modal">
+       <div class="modal-content">
+         <div class="modal-header">
+           <div class="modal-title">计算结果</div>
+           <button id="modalClose" class="modal-close">关闭</button>
+         </div>
+         <div class="modal-body">
+           <div id="modalBoard" class="modal-board"></div>
+           <div id="modalBreakdown" class="modal-table"></div>
+         </div>
+       </div>
+     </div>
+ 
+    <script type="text/javascript" src="cgt.js"></script>    
+    <script type="text/javascript" src="parser.js"></script>    
+     <script src="https://cdn.jsdelivr.net/npm/jgoboard@5/dist/jgoboard.umd.min.js"></script>
+     <script>
+       window.MathJax = {
+         tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+         startup: { typeset: false }
+       };
+     </script>
+     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+     <script type="text/javascript" src="cgt_wasm.js"></script>
+     <script>
+       window.CGT_READY = new Promise(function(resolve) {
+         try {
+           if (typeof Module === 'function') {
+             var inst = Module();
+             if (inst && typeof inst.then === 'function') {
+               inst.then(function(m){ if (m.init_standard) m.init_standard(); resolve(m); });
+             } else if (inst && typeof inst.onRuntimeInitialized === 'function') {
+               inst.onRuntimeInitialized = function(){ if (inst.init_standard) inst.init_standard(); resolve(inst); };
+             } else {
+               if (inst && inst.init_standard) inst.init_standard();
+               resolve(inst || null);
+             }
+           } else {
+             resolve(null);
+           }
+         } catch (e) {
+           console.warn('WASM init failed:', e);
+           resolve(null);
+         }
+       });
+     </script>
+     <script type="text/javascript" src="go_endgame.js"></script>
+  </body>
+</html>
