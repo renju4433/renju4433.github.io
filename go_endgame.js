@@ -419,7 +419,6 @@ function positionToGame(s, justPassed, visited) {
 }
 function computeCgtValue() {
   const regions = buildRegions(boardState);
-  for (const r of regions) if (r.cells.length > MAX_EMPTY) { goResult.textContent = '存在过大的独立区域（空点＞8），请缩小到小官子后再试。'; return null; }
   if (CGT) {
     const vec = new CGT.VectorInt();
     for (let y = 0; y < goSize; y++) for (let x = 0; x < goSize; x++) vec.push_back(boardState[y][x]);
