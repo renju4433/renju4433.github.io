@@ -33,7 +33,6 @@ let goSize = parseInt(goSizeSel.value);
 let goBoard = JGO.createBoard({ size: goSize });
 let goRenderer = JGO.createRenderer('#goBoard', { board: goBoard, theme: 'kaya-medium', interactions: { enabled: true } });
 let boardState = Array.from({ length: goSize }, () => Array(goSize).fill(0));
-const MAX_EMPTY = 8;
 let currentTool = 'black';
 let selectedRegions = new Set();
 function makeEmptyState(n) {

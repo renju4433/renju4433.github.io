@@ -669,16 +669,6 @@ static ComputeResult compute_go_value(const std::vector<int>& board_flat, int si
   std::vector<std::vector<int>> s(size, std::vector<int>(size, 0));
   for (int y = 0; y < size; y++) for (int x = 0; x < size; x++) s[y][x] = board_flat[y*size + x];
   std::vector<Region> regions = build_regions(s);
-  int MAX_EMPTY = 8;
-  for (const auto& r : regions) {
-    if ((int)r.cells.size() > MAX_EMPTY) {
-      ComputeResult bad;
-      bad.sum_idx = IDX_ZERO;
-      bad.sum_str = std::string("");
-      bad.items.clear();
-      return bad;
-    }
-  }
   int sum = IDX_ZERO;
   std::vector<RegionItem> items;
   for (const auto& r : regions) {
