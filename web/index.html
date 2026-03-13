@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Domineering 分析</title>
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+  <style>
+    :root { --n: 8; --cell: 52px; --gap: 2px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; margin: 24px; color: #1f2328; }
+    h1 { font-size: 18px; margin: 0 0 12px; }
+    .status { font-size: 14px; color: #57606a; }
+    .board { display: grid; grid-template-columns: repeat(var(--n), var(--cell)); grid-template-rows: repeat(var(--n), var(--cell)); gap: var(--gap); width: calc(var(--n) * var(--cell) + (var(--n) - 1) * var(--gap)); user-select: none; }
+    .cell { display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 12px; }
+    .cell.light { background: #f0f6ff; }
+    .cell.dark { background: #d6e5ff; }
+    .cell.occ { background: #0a5; color: #fff; }
+    .cell.best { outline: 3px solid #ff7b00; outline-offset: -3px; }
+    .legend { margin-top: 12px; font-size: 13px; color: #57606a; }
+    .value { font-weight: 600; color: #0a3069; }
+    .modebar { margin-top: 12px; font-size: 14px; display: flex; align-items: center; gap: 12px; }
+    .modebar input { margin-right: 4px; }
+    .bottom { margin-top: 14px; display: flex; align-items: center; gap: 8px; }
+    .bottom button { padding: 6px 12px; border: 1px solid #d0d7de; background: #f6f8fa; border-radius: 6px; cursor: pointer; }
+    .bottom button:disabled { opacity: .6; cursor: not-allowed; }
+    #turnLabel.editable { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Domineering 分析</h1>
+  <div id="board" class="board" aria-label="棋盘"></div>
+  <div class="legend">
+    <span id="turnLabel">当前执手：垂直</span>
+    <span style="margin-left: 16px;">最佳着法：<span id="bestMove">-</span></span>
+    <span style="margin-left: 16px;">胜率：<span class="value" id="winRate">-</span></span>
+    <span style="margin-left: 16px;">目差：<span class="value" id="marginOut">-</span></span>
+    <span style="margin-left: 16px;">已模拟：<span class="value" id="simCount">0</span></span>
+  </div>
+  <div class="modebar">
+    <label><input type="radio" name="mode" value="edit" id="modeEdit">编辑模式</label>
+    <label><input type="radio" name="mode" value="play" id="modePlay" checked>对弈模式</label>
+    <span class="status" id="modelStatus">模型加载中…</span>
+  </div>
+  <div class="bottom">
+    <button id="btnNew">新局</button>
+    <button id="btnFirst">&lt;&lt;</button>
+    <button id="btnPrev">&lt;</button>
+    <button id="toggleBtn">开始</button>
+    <button id="btnNext">&gt;</button>
+    <button id="btnLast">&gt;&gt;</button>
+  </div>
+
+  <script>
+    const H = 8, W = 8;
+    const HORIZ_COUNT = H * (W - 1);
+    const VERT_COUNT = (H - 1) * W;
+    const PASS_INDEX = HORIZ_COUNT + VERT_COUNT;
+    const boardEl = document.getElementById('board');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const btnFirst = document.getElementById('btnFirst');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const btnLast = document.getElementById('btnLast');
+    const btnNew = document.getElementById('btnNew');
+    const modeEdit = document.getElementById('modeEdit');
+    const modePlay = document.getElementById('modePlay');
+    const modelStatus = document.getElementById('modelStatus');
+    const turnLabel = document.getElementById('turnLabel');
+    const bestMoveEl = document.getElementById('bestMove');
+    const winRateEl = document.getElementById('winRate');
+    const simCountEl = document.getElementById('simCount');
+    const marginOutEl = document.getElementById('marginOut');
+    document.documentElement.style.setProperty('--n', String(H));
+    let occ = Array.from({ length: H }, () => Array.from({ length: W }, () => 0));
+    let turn = -1;
+    let mode = 'play';
+    let history = [];
+    let historyIndex = 0;
+    let worker;
+    let searching = false;
+    let searchToken = null;
+    let paused = false;
+    let simCounter = 0;
+    function rcToIndex(r, c) { return r * W + c; }
+    function updateTurnClickable() {
+      if (mode === 'edit') turnLabel.classList.add('editable'); else turnLabel.classList.remove('editable');
+    }
+    function getCellSizeAndGap() {
+      const cellRect = boardEl.children[0].getBoundingClientRect();
+      const s = cellRect.width;
+      const cs = getComputedStyle(boardEl);
+      let g = 0;
+      if (cs.gap) g = parseFloat(cs.gap.split(' ')[0]);
+      else if (cs.columnGap) g = parseFloat(cs.columnGap);
+      return { s, g };
+    }
+    function findNearestGap(x, y) {
+      const { s, g } = getCellSizeAndGap();
+      let best = null;
+      let bestD = Infinity;
+      for (let r = 0; r < H; r++) {
+        const cy = r * s + r * g + s / 2;
+        for (let c = 0; c < W - 1; c++) {
+          const cx = c * s + c * g + s + g / 2;
+          const dx = x - cx, dy = y - cy;
+          const d = dx * dx + dy * dy;
+          if (d < bestD) { bestD = d; best = { kind: 'h', r, c }; }
+        }
+      }
+      for (let r = 0; r < H - 1; r++) {
+        const cy = r * s + r * g + s + g / 2;
+        for (let c = 0; c < W; c++) {
+          const cx = c * s + c * g + s / 2;
+          const dx = x - cx, dy = y - cy;
+          const d = dx * dx + dy * dy;
+          if (d < bestD) { bestD = d; best = { kind: 'v', r, c }; }
+        }
+      }
+      return best;
+    }
+    function buildBoard() {
+      boardEl.innerHTML = '';
+      for (let r = 0; r < H; r++) {
+        for (let c = 0; c < W; c++) {
+          const div = document.createElement('div');
+          div.className = 'cell ' + ((r + c) % 2 === 0 ? 'light' : 'dark') + (occ[r][c] ? ' occ' : '');
+          div.dataset.r = String(r);
+          div.dataset.c = String(c);
+          boardEl.appendChild(div);
+        }
+      }
+    }
+    function snapshot() {
+      return { occ: occ.map(row => row.slice()), turn: turn };
+    }
+    function applyState(s) {
+      occ = s.occ.map(row => row.slice());
+      turn = s.turn;
+      buildBoard();
+      updateTurnLabel();
+      updateBoardHighlights(null);
+    }
+    function initHistory() {
+      history = [snapshot()];
+      historyIndex = 0;
+      updateNavButtons();
+    }
+    function pushHistory() {
+      if (historyIndex < history.length - 1) history = history.slice(0, historyIndex + 1);
+      history.push(snapshot());
+      historyIndex = history.length - 1;
+      updateNavButtons();
+    }
+    function updateNavButtons() {
+      const atStart = historyIndex <= 0;
+      const atEnd = historyIndex >= history.length - 1;
+      btnFirst.disabled = atStart || mode !== 'play';
+      btnPrev.disabled = atStart || mode !== 'play';
+      btnNext.disabled = atEnd || mode !== 'play';
+      btnLast.disabled = atEnd || mode !== 'play';
+    }
+    function updateBoardHighlights(best) {
+      for (const el of boardEl.children) el.classList.remove('best');
+      if (!best) return;
+      const { r1, c1, r2, c2 } = best;
+      const idx1 = rcToIndex(r1, c1), idx2 = rcToIndex(r2, c2);
+      boardEl.children[idx1].classList.add('best');
+      boardEl.children[idx2].classList.add('best');
+    }
+    function updateTurnLabel() {
+      turnLabel.textContent = '当前执手：' + (turn === 1 ? '水平' : '垂直');
+    }
+    function placeIfLegal(r, c) {
+      if (turn === 1) {
+        if (c + 1 < W && !occ[r][c] && !occ[r][c + 1]) { occ[r][c] = 1; occ[r][c + 1] = 1; turn = -1; return true; }
+        if (c - 1 >= 0 && !occ[r][c] && !occ[r][c - 1]) { occ[r][c] = 1; occ[r][c - 1] = 1; turn = -1; return true; }
+      } else {
+        if (r + 1 < H && !occ[r][c] && !occ[r + 1][c]) { occ[r][c] = 1; occ[r + 1][c] = 1; turn = 1; return true; }
+        if (r - 1 >= 0 && !occ[r][c] && !occ[r - 1][c]) { occ[r][c] = 1; occ[r - 1][c] = 1; turn = 1; return true; }
+      }
+      return false;
+    }
+    function placeGapIfLegal(kind, r, c) {
+      if (kind === 'h') {
+        if (turn !== 1) return false;
+        if (!occ[r][c] && !occ[r][c + 1]) { occ[r][c] = 1; occ[r][c + 1] = 1; turn = -1; return true; }
+        return false;
+      } else {
+        if (turn !== -1) return false;
+        if (!occ[r][c] && !occ[r + 1][c]) { occ[r][c] = 1; occ[r + 1][c] = 1; turn = 1; return true; }
+        return false;
+      }
+    }
+    function getValidMask() {
+      const valids = new Float32Array(PASS_INDEX + 1);
+      if (turn === 1) {
+        let has = false;
+        for (let r = 0; r < H; r++) {
+          for (let c = 0; c < W - 1; c++) {
+            const k = r * (W - 1) + c;
+            if (!occ[r][c] && !occ[r][c + 1]) { valids[k] = 1; has = true; }
+          }
+        }
+        if (!has) valids[PASS_INDEX] = 1;
+      } else {
+        let has = false;
+        for (let r = 0; r < H - 1; r++) {
+          for (let c = 0; c < W; c++) {
+            const k = HORIZ_COUNT + r * W + c;
+            if (!occ[r][c] && !occ[r + 1][c]) { valids[k] = 1; has = true; }
+          }
+        }
+        if (!has) valids[PASS_INDEX] = 1;
+      }
+      return valids;
+    }
+    function actionToCells(a) {
+      if (a < HORIZ_COUNT) { const r = Math.floor(a / (W - 1)); const c = a % (W - 1); return { r1: r, c1: c, r2: r, c2: c + 1 }; }
+      const k = a - HORIZ_COUNT; const r = Math.floor(k / W); const c = k % W; return { r1: r, c1: c, r2: r + 1, c2: c };
+    }
+    function cellsToAction(r1, c1, r2, c2) {
+      if (r1 === r2) { const r = r1; const c = c1 < c2 ? c1 : c2; return r * (W - 1) + c; }
+      const r = r1 < r2 ? r1 : r2; const c = c1 === c2 ? c1 : c2; return HORIZ_COUNT + r * W + c;
+    }
+    function transformCoord(r, c, k, fl) {
+      let r1, c1, h1 = H, w1 = W;
+      if (k === 0) { r1 = r; c1 = c; }
+      else if (k === 1) { r1 = H - 1 - c; c1 = r; h1 = W; w1 = H; }
+      else if (k === 2) { r1 = H - 1 - r; c1 = W - 1 - c; }
+      else { r1 = c; c1 = W - 1 - r; h1 = W; w1 = H; }
+      if (fl) c1 = (w1 - 1) - c1;
+      return { r: r1, c: c1, h: h1, w: w1 };
+    }
+    function rotateFlip(arr2d, k, fl) {
+      let b = arr2d;
+      for (let i = 0; i < k; i++) {
+        const nr = b[0].length, nc = b.length;
+        const nb = Array.from({ length: nr }, () => Array.from({ length: nc }, () => 0));
+        for (let r = 0; r < b.length; r++) for (let c = 0; c < b[0].length; c++) nb[nr - 1 - c][r] = b[r][c];
+        b = nb;
+      }
+      if (fl) b = b.map(row => row.slice().reverse());
+      return b;
+    }
+    function canonicalize(boardOcc, boardTurn) {
+      const h = boardOcc.length, w = boardOcc[0].length;
+      const groupA = [{k:0,fl:false},{k:2,fl:false},{k:0,fl:true},{k:2,fl:true}];
+      const groupB = (h === w) ? [{k:1,fl:false},{k:3,fl:false},{k:1,fl:true},{k:3,fl:true}] : [];
+      let bestA = null, bestAKey = null;
+      for (const g of groupA) {
+        const o = rotateFlip(boardOcc, g.k, g.fl);
+        const key = new Uint8Array(o.flat()).toString();
+        if (bestAKey === null || key < bestAKey) { bestAKey = key; bestA = {k:g.k,fl:g.fl,occ:o,turn: rotateFlip(boardTurn, g.k, g.fl)}; }
+      }
+      let bestB = null, bestBKey = null;
+      for (const g of groupB) {
+        const o = rotateFlip(boardOcc, g.k, g.fl);
+        const key = new Uint8Array(o.flat()).toString();
+        if (bestBKey === null || key < bestBKey) { bestBKey = key; bestB = {k:g.k,fl:g.fl,occ:o,turn: rotateFlip(boardTurn, g.k, g.fl)}; }
+      }
+      let negate = false, k = bestA.k, fl = bestA.fl, occ_t = bestA.occ, turn_t = bestA.turn;
+      if (bestBKey !== null && bestBKey < bestAKey) { negate = true; k = bestB.k; fl = bestB.fl; occ_t = bestB.occ; turn_t = bestB.turn; }
+      return { occ_t, turn_t, k, fl, negate };
+    }
+    function inverseMapPi(pi, k, fl) {
+      const A = HORIZ_COUNT + VERT_COUNT;
+      const src = pi.slice(0, A);
+      const dst = new Float64Array(A);
+      for (let a = 0; a < A; a++) {
+        if (src[a] === 0) continue;
+        const { r1, c1, r2, c2 } = actionToCells(a);
+        const inv_k = (4 - (k % 4)) % 4;
+        const t1 = transformCoord(r1, c1, inv_k, fl);
+        const t2 = transformCoord(r2, c2, inv_k, fl);
+        const a2 = cellsToAction(t1.r, t1.c, t2.r, t2.c);
+        dst[a2] = src[a];
+      }
+      return Array.from(dst).concat([pi[pi.length - 1]]);
+    }
+    function startSearch() {
+      if (!worker) return;
+      searching = true;
+      paused = false;
+      toggleBtn.textContent = '暂停';
+      modelStatus.textContent = '搜索中… 0';
+      winRateEl.textContent = '-';
+      bestMoveEl.textContent = '-';
+      marginOutEl.textContent = '-';
+      simCounter = 0;
+      simCountEl.textContent = '0';
+      updateBoardHighlights(null);
+      searchToken = Date.now().toString();
+      worker.postMessage({ type: 'start', H, W, occ, turn, c_puct: 1.5, progressInterval: 16, batchSize: 16, token: searchToken });
+    }
+    function toggleSearch() {
+      if (!worker) return;
+      if (!searching) {
+        startSearch();
+      } else if (!paused) {
+        paused = true;
+        worker.postMessage({ type: 'pause' });
+        toggleBtn.textContent = '继续';
+      } else {
+        paused = false;
+        toggleBtn.textContent = '暂停';
+        modelStatus.textContent = '搜索中… ' + simCounter;
+        worker.postMessage({ type: 'resume', occ, turn, token: searchToken });
+      }
+    }
+    function resetSimCounter() {
+      simCounter = 0;
+      simCountEl.textContent = '0';
+    }
+    function onBoardChange() {
+      resetSimCounter();
+      if (worker) {
+        const newTok = (searching && !paused) ? Date.now().toString() : searchToken;
+        if (searching && !paused) {
+          worker.postMessage({ type: 'pause' });
+          searchToken = newTok;
+          toggleBtn.textContent = '暂停';
+          modelStatus.textContent = '搜索中… 0';
+          winRateEl.textContent = '-';
+          bestMoveEl.textContent = '-';
+          marginOutEl.textContent = '-';
+        }
+        worker.postMessage({ type: 'setPosition', occ, turn, token: newTok, autoStart: searching && !paused });
+      }
+    }
+    function newGame() {
+      occ = Array.from({ length: H }, () => Array.from({ length: W }, () => 0));
+      turn = -1;
+      mode = 'play';
+      if (modePlay) modePlay.checked = true;
+      if (modeEdit) modeEdit.checked = false;
+      winRateEl.textContent = '-';
+      bestMoveEl.textContent = '-';
+      simCounter = 0;
+      simCountEl.textContent = '0';
+      if (marginOutEl) marginOutEl.textContent = '-';
+      buildBoard();
+      updateTurnLabel();
+      updateBoardHighlights(null);
+      initHistory();
+      updateNavButtons();
+      updateTurnClickable();
+      
+      // Stop search if running
+      if (worker && searching) {
+          worker.postMessage({ type: 'pause' });
+      }
+      searchToken = null;
+      searching = false;
+      paused = false;
+      toggleBtn.textContent = '开始';
+      modelStatus.textContent = '就绪';
+    }
+    boardEl.addEventListener('click', e => {
+      const rect = boardEl.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      if (mode === 'edit') {
+        const { s, g } = getCellSizeAndGap();
+        const c = Math.min(W - 1, Math.max(0, Math.floor((x) / (s + g))));
+        const r = Math.min(H - 1, Math.max(0, Math.floor((y) / (s + g))));
+        occ[r][c] = occ[r][c] ? 0 : 1;
+        buildBoard();
+        updateBoardHighlights(null);
+        onBoardChange();
+      } else {
+        const gap = findNearestGap(x, y);
+        if (!gap) return;
+        if (placeGapIfLegal(gap.kind, gap.r, gap.c)) {
+          buildBoard();
+          updateTurnLabel();
+          updateBoardHighlights(null);
+          pushHistory();
+          onBoardChange();
+        }
+      }
+    });
+    toggleBtn.addEventListener('click', toggleSearch);
+    btnNew.addEventListener('click', newGame);
+    btnFirst.addEventListener('click', () => { if (mode !== 'play') return; historyIndex = 0; applyState(history[historyIndex]); updateNavButtons(); onBoardChange(); });
+    btnPrev.addEventListener('click', () => { if (mode !== 'play') return; if (historyIndex > 0) { historyIndex--; applyState(history[historyIndex]); updateNavButtons(); onBoardChange(); } });
+    btnNext.addEventListener('click', () => { if (mode !== 'play') return; if (historyIndex < history.length - 1) { historyIndex++; applyState(history[historyIndex]); updateNavButtons(); onBoardChange(); } });
+    btnLast.addEventListener('click', () => { if (mode !== 'play') return; historyIndex = history.length - 1; applyState(history[historyIndex]); updateNavButtons(); onBoardChange(); });
+    modeEdit.addEventListener('change', () => {
+      if (modeEdit.checked) { mode = 'edit'; updateNavButtons(); updateTurnClickable(); }
+    });
+    modePlay.addEventListener('change', () => {
+      if (modePlay.checked) {
+        mode = 'play';
+        bestMoveEl.textContent = '-';
+        initHistory();
+        updateTurnClickable();
+      }
+    });
+    turnLabel.addEventListener('click', () => { if (mode === 'edit') { turn = -turn; updateTurnLabel(); onBoardChange(); } });
+    worker = new Worker('mcts_worker.js');
+    worker.onmessage = (e) => {
+      const msg = e.data;
+      if (msg.type === 'ready') {
+        toggleBtn.disabled = false;
+        modelStatus.textContent = '模型已加载';
+      } else if (msg.type === 'progress') {
+        if (msg.token && searchToken && msg.token !== searchToken) return;
+        const a = msg.bestAction;
+        const cells = actionToCells(a);
+        updateBoardHighlights(cells);
+        winRateEl.textContent = (msg.winRate * 100).toFixed(1) + '%';
+        simCounter = msg.sims || simCounter;
+        simCountEl.textContent = String(simCounter);
+        bestMoveEl.textContent = `(${cells.r1},${cells.c1}) (${cells.r2},${cells.c2})`;
+        if (typeof msg.score === 'number') marginOutEl.textContent = msg.score.toFixed(2);
+        modelStatus.textContent = '搜索中… ' + simCounter;
+      } else if (msg.type === 'error') {
+        modelStatus.textContent = '搜索失败：' + msg.error;
+        searching = false;
+        paused = false;
+        toggleBtn.textContent = '开始';
+        toggleBtn.disabled = false;
+      }
+    };
+    worker.postMessage({ type: 'init', modelUrl: 'domineering.onnx', H, W, c_puct: 1.5, wasmPaths: 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/', progressInterval: 16, batchSize: 16, marginInterval: 64, marginRollouts: 1 });
+    buildBoard();
+    updateTurnLabel();
+    initHistory();
+    updateNavButtons();
+    updateTurnClickable();
+  </script>
+</body>
+</html>
