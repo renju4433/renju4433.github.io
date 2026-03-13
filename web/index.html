@@ -11,24 +11,35 @@
     .container { width: 100%; max-width: 600px; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; }
     h1 { font-size: 20px; margin: 0 0 16px; align-self: flex-start; }
     .status { font-size: 14px; color: #57606a; }
-    .board-wrapper { width: 100%; display: flex; justify-content: center; margin-bottom: 16px; }
-    .board { display: grid; grid-template-columns: repeat(var(--n), 1fr); grid-template-rows: repeat(var(--n), 1fr); gap: var(--gap); width: 100%; aspect-ratio: 1; user-select: none; max-width: calc(var(--n) * 52px); }
+    .board-wrapper { width: 100%; display: flex; justify-content: center; margin-bottom: 16px; position: relative; }
+    .board { position: relative; display: grid; grid-template-columns: repeat(var(--n), 1fr); grid-template-rows: repeat(var(--n), 1fr); gap: var(--gap); width: 100%; aspect-ratio: 1; user-select: none; max-width: calc(var(--n) * 52px); }
     .cell { display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 12px; position: relative; }
     .cell.light { background: #f0f6ff; }
     .cell.dark { background: #d6e5ff; }
     .cell.occ { background: #0a5; color: #fff; }
-    .cell.best { outline: 3px solid #ff7b00; outline-offset: -3px; z-index: 1; }
+    .cell.best { outline: none; }
+    .coord-left { position: absolute; left: 3px; top: 3px; font-size: 10px; color: #57606a; }
+    .coord-bottom { position: absolute; right: 3px; bottom: 3px; font-size: 10px; color: #57606a; }
     .legend { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 16px; font-size: 14px; color: #57606a; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 16px; }
     .legend span { white-space: nowrap; }
     .value { font-weight: 600; color: #0a3069; }
     .modebar { width: 100%; margin-bottom: 16px; font-size: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
     .modebar label { display: flex; align-items: center; cursor: pointer; }
     .modebar input { margin-right: 6px; }
+    .topmoves { width: 100%; margin-bottom: 12px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .topmoves h2 { margin: 0 0 8px; font-size: 14px; color: #24292f; }
+    .topmoves .row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
+    .topmoves .row:last-child { border-bottom: none; }
     .bottom { width: 100%; display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
     .bottom button { padding: 10px 0; border: 1px solid #d0d7de; background: #fff; border-radius: 6px; cursor: pointer; font-size: 14px; color: #24292f; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: background 0.1s; }
     .bottom button:active { background: #f3f4f6; }
     .bottom button:disabled { opacity: .5; cursor: not-allowed; background: #f6f8fa; }
     #turnLabel.editable { cursor: pointer; color: #0969da; text-decoration: underline; }
+    .move-badge { position: absolute; top: 2px; left: 2px; background: rgba(0,0,0,0.6); color: #fff; font-size: 10px; line-height: 1.2; padding: 2px 4px; border-radius: 4px; pointer-events: none; }
+    .overlay { position: absolute; inset: 0; pointer-events: none; }
+    .move-mark { position: absolute; display: flex; align-items: center; justify-content: center; text-align: center; width: 46px; height: 46px; border: 2px solid #d73a49; border-radius: 50%; background: rgba(255,255,255,0.85); transform: translate(-50%, -50%); color: #24292f; font-size: 10px; line-height: 1.1; white-space: pre-line; padding: 2px; }
+    .move-text { display: none; }
+    .move-rank { position: absolute; top: -8px; right: -8px; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 2px solid #d73a49; color: #24292f; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
     
     @media (max-width: 480px) {
         :root { --gap: 1px; }
@@ -62,6 +73,10 @@
       </div>
       <span class="status" id="modelStatus">模型加载中…</span>
     </div>
+    <div class="topmoves">
+      <h2>Top 5</h2>
+      <div id="topList"></div>
+    </div>
     <div class="bottom">
       <button id="btnNew">新局</button>
       <button id="btnFirst">&lt;&lt;</button>
@@ -92,6 +107,7 @@
     const winRateEl = document.getElementById('winRate');
     const simCountEl = document.getElementById('simCount');
     const marginOutEl = document.getElementById('marginOut');
+    const topListEl = document.getElementById('topList');
     document.documentElement.style.setProperty('--n', String(H));
     let occ = Array.from({ length: H }, () => Array.from({ length: W }, () => 0));
     let turn = -1;
@@ -143,6 +159,23 @@
       }
       return best;
     }
+    function fileLabel(c) {
+      let s = '';
+      let x = c;
+      while (true) {
+        s = String.fromCharCode(65 + (x % 26)) + s;
+        x = Math.floor(x / 26) - 1;
+        if (x < 0) break;
+      }
+      return s;
+    }
+    function rankLabel(r) {
+      return String(H - r);
+    }
+    function coordLabel(r, c) {
+      return fileLabel(c) + rankLabel(r);
+    }
+    let overlayEl = null;
     function buildBoard() {
       boardEl.innerHTML = '';
       for (let r = 0; r < H; r++) {
@@ -151,9 +184,25 @@
           div.className = 'cell ' + ((r + c) % 2 === 0 ? 'light' : 'dark') + (occ[r][c] ? ' occ' : '');
           div.dataset.r = String(r);
           div.dataset.c = String(c);
+          if (c === 0) {
+            const lab = document.createElement('div');
+            lab.className = 'coord-left';
+            lab.textContent = rankLabel(r);
+            div.appendChild(lab);
+          }
+          if (r === H - 1) {
+            const lab2 = document.createElement('div');
+            lab2.className = 'coord-bottom';
+            lab2.textContent = fileLabel(c);
+            div.appendChild(lab2);
+          }
           boardEl.appendChild(div);
         }
       }
+      overlayEl = document.createElement('div');
+      overlayEl.className = 'overlay';
+      overlayEl.id = 'overlay';
+      boardEl.appendChild(overlayEl);
     }
     function snapshot() {
       return { occ: occ.map(row => row.slice()), turn: turn };
@@ -185,12 +234,86 @@
       btnLast.disabled = atEnd || mode !== 'play';
     }
     function updateBoardHighlights(best) {
-      for (const el of boardEl.children) el.classList.remove('best');
+      for (const el of boardEl.children) {
+        el.classList.remove('best');
+        const badge = el.querySelector('.move-badge');
+        if (badge) el.removeChild(badge);
+      }
       if (!best) return;
       const { r1, c1, r2, c2 } = best;
       const idx1 = rcToIndex(r1, c1), idx2 = rcToIndex(r2, c2);
       boardEl.children[idx1].classList.add('best');
       boardEl.children[idx2].classList.add('best');
+    }
+    function showTopMoves(top) {
+      if (!topListEl) return;
+      topListEl.innerHTML = '';
+      if (!top || top.length === 0) return;
+      // panel list
+      top.forEach((item, idx) => {
+        const cells = actionToCells(item.a);
+        const row = document.createElement('div');
+        row.className = 'row';
+        const left = document.createElement('div');
+        left.textContent = `${idx + 1}. ${coordLabel(cells.r1, cells.c1)}-${coordLabel(cells.r2, cells.c2)}`;
+        const right = document.createElement('div');
+        const wr = (item.winRate * 100).toFixed(1) + '%';
+        const sc = (item.s >= 0 ? '+' : '') + item.s.toFixed(2);
+        right.textContent = `胜率 ${wr} | 目差 ${sc} | 计算量${item.n}`;
+        row.appendChild(left);
+        row.appendChild(right);
+        topListEl.appendChild(row);
+      });
+      // board overlay: ring at domino center with text inside (wr, score, visits)
+      if (!overlayEl) return;
+      overlayEl.innerHTML = '';
+      const colors = ['#d73a49', '#ff9800', '#ffd33d', '#28a745', '#0366d6'];
+      const { s, g } = getCellSizeAndGap();
+      top.forEach((item, idx) => {
+        const cells = actionToCells(item.a);
+        const horizontal = (cells.r1 === cells.r2);
+        let r = Math.min(cells.r1, cells.r2);
+        let c = Math.min(cells.c1, cells.c2);
+        let cx, cy;
+        if (horizontal) {
+          cy = r * s + r * g + s / 2;
+          cx = c * s + c * g + s + g / 2;
+        } else {
+          cy = r * s + r * g + s + g / 2;
+          cx = c * s + c * g + s / 2;
+        }
+        const mark = document.createElement('div');
+        mark.className = 'move-mark';
+        // dynamic size based on cell size
+        const d = Math.max(40, Math.min(0.8 * s, 64));
+        mark.style.width = `${d}px`;
+        mark.style.height = `${d}px`;
+        mark.style.left = `${cx}px`;
+        mark.style.top = `${cy}px`;
+        const color = colors[idx % colors.length];
+        mark.style.borderColor = color;
+        const wr = (item.winRate * 100).toFixed(1) + '%';
+        const sc = (item.s >= 0 ? '+' : '') + item.s.toFixed(2);
+        const nline = String(item.n);
+        mark.textContent = `${wr}\n${sc}\n${nline}`;
+        const rank = document.createElement('div');
+        rank.className = 'move-rank';
+        rank.textContent = String(idx + 1);
+        rank.style.borderColor = color;
+        rank.style.color = color;
+        mark.appendChild(rank);
+        overlayEl.appendChild(mark);
+      });
+    }
+    function renderTopPlaceholders() {
+      if (!topListEl) return;
+      topListEl.innerHTML = '';
+      for (let i = 0; i < 5; i++) {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = '&nbsp;';
+        topListEl.appendChild(row);
+      }
     }
     function updateTurnLabel() {
       turnLabel.textContent = '当前执手：' + (turn === 1 ? '水平' : '垂直');
@@ -302,6 +425,47 @@
       }
       return Array.from(dst).concat([pi[pi.length - 1]]);
     }
+    let _updatingHash = false;
+    function stateToHash() {
+      const pref = (turn === 1) ? 'H' : 'V';
+      const bits = occ.flat().join('');
+      return '#' + pref + '|' + bits;
+    }
+    function applyHashIfAny() {
+      const h = window.location.hash;
+      if (!h || h.length < 2) return;
+      const s = h.substring(1);
+      const parts = s.split('|');
+      if (parts.length !== 2) return;
+      const pref = parts[0];
+      const bits = parts[1];
+      if (bits.length !== H * W) return;
+      let idx = 0;
+      for (let r = 0; r < H; r++) {
+        for (let c = 0; c < W; c++) {
+          occ[r][c] = (bits[idx++] === '1') ? 1 : 0;
+        }
+      }
+      turn = (pref === 'H') ? 1 : -1;
+    }
+    function updateHash() {
+      const newHash = stateToHash();
+      if (window.location.hash !== newHash) {
+        _updatingHash = true;
+        window.location.hash = newHash;
+        setTimeout(() => { _updatingHash = false; }, 0);
+      }
+    }
+    window.addEventListener('hashchange', () => {
+      if (_updatingHash) return;
+      applyHashIfAny();
+      buildBoard();
+      updateTurnLabel();
+      updateBoardHighlights(null);
+      initHistory();
+      updateNavButtons();
+      onBoardChange();
+    });
     function startSearch() {
       if (!worker) return;
       searching = true;
@@ -338,6 +502,9 @@
     }
     function onBoardChange() {
       resetSimCounter();
+      updateHash();
+      if (topListEl) renderTopPlaceholders();
+      if (overlayEl) overlayEl.innerHTML = '';
       if (worker) {
         const newTok = (searching && !paused) ? Date.now().toString() : searchToken;
         if (searching && !paused) {
@@ -369,16 +536,7 @@
       initHistory();
       updateNavButtons();
       updateTurnClickable();
-      
-      // Stop search if running
-      if (worker && searching) {
-          worker.postMessage({ type: 'pause' });
-      }
-      searchToken = null;
-      searching = false;
-      paused = false;
-      toggleBtn.textContent = '开始';
-      modelStatus.textContent = '就绪';
+      onBoardChange();
     }
     boardEl.addEventListener('click', e => {
       const rect = boardEl.getBoundingClientRect();
@@ -438,8 +596,9 @@
         winRateEl.textContent = (msg.winRate * 100).toFixed(1) + '%';
         simCounter = msg.sims || simCounter;
         simCountEl.textContent = String(simCounter);
-        bestMoveEl.textContent = `(${cells.r1},${cells.c1}) (${cells.r2},${cells.c2})`;
+        bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}-${coordLabel(cells.r2, cells.c2)}`;
         if (typeof msg.score === 'number') marginOutEl.textContent = msg.score.toFixed(2);
+        if (Array.isArray(msg.top)) showTopMoves(msg.top);
         modelStatus.textContent = '搜索中… ' + simCounter;
       } else if (msg.type === 'error') {
         modelStatus.textContent = '搜索失败：' + msg.error;
@@ -450,7 +609,9 @@
       }
     };
     worker.postMessage({ type: 'init', modelUrl: 'domineering.onnx', H, W, c_puct: 1.5, wasmPaths: 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/', progressInterval: 16, batchSize: 16, marginInterval: 64, marginRollouts: 1 });
+    applyHashIfAny();
     buildBoard();
+    renderTopPlaceholders();
     updateTurnLabel();
     initHistory();
     updateNavButtons();

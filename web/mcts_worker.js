@@ -3,6 +3,7 @@ let H = 8, W = 8;
 let HORIZ_COUNT = 0, VERT_COUNT = 0, PASS_INDEX = 0;
 let session = null;
 let c_puct = 1.5;
+let score_weight = 0.25;
 let progressInterval = 16;
 let activeToken = null;
 let running = false;
@@ -178,12 +179,15 @@ async function searchOnce(occCur, turnCur) {
   let sumN = 0;
   for (const a of validsList) sumN += getN(k + ':' + a);
   const sqrtSum = Math.sqrt(sumN + 1);
+  const scoreNorm = Math.max(HORIZ_COUNT, VERT_COUNT) || 1;
   for (const a of validsList) {
     const sa = k + ':' + a;
     const q = getQ(sa);
     const u = c_puct * piStored[a] * sqrtSum / (1 + getN(sa));
-    const score = q + u;
-    if (score > best) { best = score; bestA = a; }
+    const sAvg = getS(sa) || 0;
+    const sNorm = sAvg / scoreNorm;
+    const totalScore = q + u + (score_weight * Math.abs(q)) * sNorm;
+    if (totalScore > best) { best = totalScore; bestA = a; }
   }
   const next = applyAction(occCur, turnCur, bestA);
   const resChild = await searchOnce(next.occ, next.turn);
@@ -222,7 +226,18 @@ function bestActionAndWinRate(occ, turn) {
   const qBest = getQ(k + ':' + bestA) || 0;
   const sBest = getS(k + ':' + bestA) || 0;
   const winRate = (qBest + 1) / 2;
-  return { bestAction: bestA, winRate, qBest, totalSims, score: sBest };
+  const all = [];
+  for (let a = 0; a < A; a++) {
+    const n = visits[a];
+    if (n <= 0) continue;
+    const q = getQ(k + ':' + a) || 0;
+    const s = getS(k + ':' + a) || 0;
+    const wr = (q + 1) / 2;
+    all.push({ a, n, q, s, winRate: wr });
+  }
+  all.sort((x, y) => y.n - x.n);
+  const top = all.slice(0, 5);
+  return { bestAction: bestA, winRate, qBest, totalSims, score: sBest, top };
 }
 async function runLoop(occ, turn, myToken) {
   while (running && activeToken && activeToken === myToken) {
@@ -232,7 +247,7 @@ async function runLoop(occ, turn, myToken) {
       totalSims++;
     }
     const summary = bestActionAndWinRate(occ, turn);
-    postMessage({ type: 'progress', sims: totalSims, bestAction: summary.bestAction, winRate: summary.winRate, v: summary.qBest, score: summary.score, token: activeToken });
+    postMessage({ type: 'progress', sims: totalSims, bestAction: summary.bestAction, winRate: summary.winRate, v: summary.qBest, score: summary.score, top: summary.top, token: activeToken });
     
     // 使用 setTimeout 强制将控制权交还给事件循环，以便处理 pause 消息
     await new Promise(resolve => setTimeout(resolve, 0)); 
@@ -247,6 +262,7 @@ onmessage = async (e) => {
     VERT_COUNT = (H - 1) * W;
     PASS_INDEX = HORIZ_COUNT + VERT_COUNT;
     c_puct = msg.c_puct || c_puct;
+    score_weight = (typeof msg.score_weight === 'number') ? msg.score_weight : score_weight;
     progressInterval = msg.progressInterval || progressInterval;
     batchSize = msg.batchSize || batchSize;
     try {
@@ -265,6 +281,7 @@ onmessage = async (e) => {
     VERT_COUNT = (H - 1) * W;
     PASS_INDEX = HORIZ_COUNT + VERT_COUNT;
     c_puct = msg.c_puct || c_puct;
+    score_weight = (typeof msg.score_weight === 'number') ? msg.score_weight : score_weight;
     progressInterval = msg.progressInterval || progressInterval;
     batchSize = msg.batchSize || batchSize;
     activeToken = msg.token || null;
@@ -280,6 +297,7 @@ onmessage = async (e) => {
     const occ = msg.occ;
     const turn = msg.turn;
     activeToken = msg.token || activeToken;
+    score_weight = (typeof msg.score_weight === 'number') ? msg.score_weight : score_weight;
     running = true;
     runLoop(occ, turn, activeToken);
   } else if (msg.type === 'setPosition') {
