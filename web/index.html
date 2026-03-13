@@ -96,6 +96,8 @@
     const VERT_COUNT = (H - 1) * W;
     const PASS_INDEX = HORIZ_COUNT + VERT_COUNT;
     const boardEl = document.getElementById('board');
+    const containerEl = document.querySelector('.container');
+    const boardWrapperEl = document.querySelector('.board-wrapper');
     const toggleBtn = document.getElementById('toggleBtn');
     const btnFirst = document.getElementById('btnFirst');
     const btnPrev = document.getElementById('btnPrev');
@@ -106,6 +108,11 @@
     const modePlay = document.getElementById('modePlay');
     const modelStatus = document.getElementById('modelStatus');
     const turnLabel = document.getElementById('turnLabel');
+    const titleEl = document.querySelector('h1');
+    const legendEl = document.querySelector('.legend');
+    const modebarEl = document.querySelector('.modebar');
+    const topPanelEl = document.querySelector('.topmoves');
+    const bottomEl = document.querySelector('.bottom');
     const bestMoveEl = document.getElementById('bestMove');
     const winRateEl = document.getElementById('winRate');
     const simCountEl = document.getElementById('simCount');
@@ -136,6 +143,25 @@
       if (cs.gap) g = parseFloat(cs.gap.split(' ')[0]);
       else if (cs.columnGap) g = parseFloat(cs.columnGap);
       return { s, g };
+    }
+    function layoutForViewport() {
+      const vh = window.innerHeight || document.documentElement.clientHeight || 0;
+      const cp = getComputedStyle(containerEl);
+      const pt = parseFloat(cp.paddingTop) || 0;
+      const pb = parseFloat(cp.paddingBottom) || 0;
+      const bwc = getComputedStyle(boardWrapperEl);
+      const mt = parseFloat(bwc.marginTop) || 0;
+      const mb = parseFloat(bwc.marginBottom) || 0;
+      const tH = titleEl ? titleEl.offsetHeight : 0;
+      const lH = legendEl ? legendEl.offsetHeight : 0;
+      const mH = modebarEl ? modebarEl.offsetHeight : 0;
+      const topH = topPanelEl ? topPanelEl.offsetHeight : 0;
+      const bH = bottomEl ? bottomEl.offsetHeight : 0;
+      const reserved = pt + pb + mt + mb + tH + lH + mH + topH + bH + 8;
+      const avail = Math.max(140, vh - reserved);
+      const wrapW = boardWrapperEl.clientWidth || boardEl.parentElement.clientWidth || window.innerWidth || 0;
+      const side = Math.min(wrapW, avail);
+      boardEl.style.width = side + 'px';
     }
     function findNearestGap(x, y) {
       const { s, g } = getCellSizeAndGap();
@@ -206,6 +232,7 @@
       overlayEl.className = 'overlay';
       overlayEl.id = 'overlay';
       boardEl.appendChild(overlayEl);
+      layoutForViewport();
     }
     function snapshot() {
       return { occ: occ.map(row => row.slice()), turn: turn };
@@ -314,6 +341,7 @@
         mark.appendChild(rank);
         overlayEl.appendChild(mark);
       });
+      layoutForViewport();
     }
     function renderTopPlaceholders() {
       if (!topListEl) return;
@@ -324,6 +352,7 @@
         row.innerHTML = '&nbsp;';
         topListEl.appendChild(row);
       }
+      layoutForViewport();
     }
     function updateTurnLabel() {
       turnLabel.textContent = '当前执手：' + (turn === 1 ? '水平' : '垂直');
@@ -515,6 +544,7 @@
       updateHash();
       if (topListEl) renderTopPlaceholders();
       if (overlayEl) overlayEl.innerHTML = '';
+      layoutForViewport();
       if (worker) {
         const newTok = (searching && !paused) ? Date.now().toString() : searchToken;
         if (searching && !paused) {
@@ -626,6 +656,8 @@
     initHistory();
     updateNavButtons();
     updateTurnClickable();
+    window.addEventListener('resize', layoutForViewport);
+    window.addEventListener('orientationchange', layoutForViewport);
   </script>
 </body>
 </html>
