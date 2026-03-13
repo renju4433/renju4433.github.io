@@ -46,10 +46,13 @@
         body { margin: 0; }
         .container { padding: 12px; }
         h1 { font-size: 18px; margin-bottom: 12px; }
+        .board { width: min(100%, calc(100vh - 260px)); }
         .cell { border-radius: 2px; }
-        .legend { font-size: 13px; gap: 6px 12px; padding: 10px; }
-        .modebar { padding: 10px; }
-        .bottom button { font-size: 13px; padding: 12px 0; }
+        .legend { font-size: 12px; gap: 6px 8px; padding: 8px; }
+        .modebar { padding: 8px; }
+        .topmoves { padding: 8px; }
+        .topmoves .row { font-size: 12px; padding: 2px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .bottom button { font-size: 13px; padding: 10px 0; }
     }
   </style>
 </head>
@@ -248,9 +251,9 @@
     function showTopMoves(top) {
       if (!topListEl) return;
       topListEl.innerHTML = '';
-      if (!top || top.length === 0) return;
+      const items = Array.isArray(top) ? top.slice(0, 5) : [];
       // panel list
-      top.forEach((item, idx) => {
+      items.forEach((item, idx) => {
         const cells = actionToCells(item.a);
         const row = document.createElement('div');
         row.className = 'row';
@@ -259,17 +262,25 @@
         const right = document.createElement('div');
         const wr = (item.winRate * 100).toFixed(1) + '%';
         const sc = (item.s >= 0 ? '+' : '') + item.s.toFixed(2);
-        right.textContent = `胜率 ${wr} | 目差 ${sc} | 计算量${item.n}`;
+        right.textContent = `胜率 ${wr} | 目差 ${sc} | 计算量 ${item.n}`;
         row.appendChild(left);
         row.appendChild(right);
         topListEl.appendChild(row);
       });
+      // fill placeholders to keep 5 rows
+      for (let i = items.length; i < 5; i++) {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = '&nbsp;';
+        topListEl.appendChild(row);
+      }
       // board overlay: ring at domino center with text inside (wr, score, visits)
       if (!overlayEl) return;
       overlayEl.innerHTML = '';
+      if (items.length === 0) return;
       const colors = ['#d73a49', '#ff9800', '#ffd33d', '#28a745', '#0366d6'];
       const { s, g } = getCellSizeAndGap();
-      top.forEach((item, idx) => {
+      items.forEach((item, idx) => {
         const cells = actionToCells(item.a);
         const horizontal = (cells.r1 === cells.r2);
         let r = Math.min(cells.r1, cells.r2);
@@ -284,8 +295,7 @@
         }
         const mark = document.createElement('div');
         mark.className = 'move-mark';
-        // dynamic size based on cell size
-        const d = Math.max(40, Math.min(0.8 * s, 64));
+        const d = Math.max(28, Math.min(0.8 * s, 56));
         mark.style.width = `${d}px`;
         mark.style.height = `${d}px`;
         mark.style.left = `${cx}px`;
