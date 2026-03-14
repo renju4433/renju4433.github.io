@@ -158,9 +158,9 @@ function setCountS(sa, v) { CountSsa.set(sa, v); }
 async function searchOnce(occCur, turnCur) {
   const A = HORIZ_COUNT + VERT_COUNT;
   if (ended(occCur, turnCur)) {
-    // Current player loses. Score is - (oppRemaining - 0.5)
-    // oppRemainingMinusHalf returns positive value for opponent
-    const s = -oppRemainingMinusHalf(occCur, turnCur);
+    // Current player loses. Score should be negative from loser's perspective.
+    // Ensure negativity even when oppRemainingMinusHalf < 0 (e.g., -0.5 when winner has 0 extra moves)
+    const s = -Math.abs(oppRemainingMinusHalf(occCur, turnCur));
     return { v: -1, score: s };
   }
   const k = keyOf(occCur, turnCur);
