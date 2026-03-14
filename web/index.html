@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Domineering 分析 V1.2.5</title>
+  <title>Domineering 分析 V1.2.6</title>
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
   <style>
     :root { --n: 8; --cell: 52px; --gap: 2px; }
@@ -519,7 +519,7 @@
       if (!worker) return;
       searching = true;
       paused = false;
-      toggleBtn.textContent = '暂停';
+      toggleBtn.textContent = '停止';
       bestMoveEl.textContent = '-';
       marginOutEl.textContent = '-';
       searchToken = Date.now().toString();
@@ -529,14 +529,11 @@
       if (!worker) return;
       if (!searching) {
         startSearch();
-      } else if (!paused) {
-        paused = true;
-        worker.postMessage({ type: 'pause' });
-        toggleBtn.textContent = '继续';
       } else {
+        worker.postMessage({ type: 'stop' });
+        searching = false;
         paused = false;
-        toggleBtn.textContent = '暂停';
-        worker.postMessage({ type: 'resume', occ, turn, token: searchToken });
+        toggleBtn.textContent = '开始';
       }
     }
     function resetSimCounter() {
@@ -561,20 +558,23 @@
       highlightCorridors();
       prefillFromCache();
       if (worker) {
-        const newTok = Date.now().toString();
-        if (searching) {
-          worker.postMessage({ type: 'pause' });
+        const wasRunning = searching;
+        if (wasRunning) {
           worker.postMessage({ type: 'stop' });
-          paused = false;
-          searching = false;
         }
         bestMoveEl.textContent = '-';
         marginOutEl.textContent = '-';
-        searchToken = newTok;
-        worker.postMessage({ type: 'start', H, W, occ, turn, c_puct: 1.5, progressInterval: 16, batchSize: 16, token: searchToken });
-        searching = true;
-        paused = false;
-        toggleBtn.textContent = '暂停';
+        if (wasRunning) {
+          searchToken = Date.now().toString();
+          worker.postMessage({ type: 'start', H, W, occ, turn, c_puct: 1.5, progressInterval: 16, batchSize: 16, token: searchToken });
+          searching = true;
+          paused = false;
+          toggleBtn.textContent = '停止';
+        } else {
+          searching = false;
+          paused = false;
+          toggleBtn.textContent = '开始';
+        }
       }
     }
     function newGame() {
