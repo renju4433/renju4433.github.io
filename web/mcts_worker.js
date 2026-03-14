@@ -228,8 +228,10 @@ function quickAnchorsIfAllStrips(occ, orientation) {
       visitedCount += comp.length;
       if (rows.size === 1) {
         if (orientation === 1) count += Math.floor(comp.length / 2);
+        else count -= Math.floor(comp.length / 2);
       } else if (cols.size === 1) {
         if (orientation === 0) count += Math.floor(comp.length / 2);
+        else count -= Math.floor(comp.length / 2);  
       } else {
         return { ok: false, count: 0 };
       }
