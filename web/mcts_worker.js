@@ -45,17 +45,29 @@ function legalActions(occ, turn) {
       }
     }
   }
-  const acts = [];
+  const actsGood = [];
+  const actsBad = [];
   if (turn === 1) {
     for (let r = 0; r < H; r++) for (let c = 0; c < W - 1; c++) {
-      if (!occ[r][c] && !occ[r][c + 1] && !(strip[r][c] && strip[r][c + 1])) acts.push(r * (W - 1) + c);
+      if (!occ[r][c] && !occ[r][c + 1] && !(strip[r][c] && strip[r][c + 1])) {
+        const a = r * (W - 1) + c;
+        const v1 = ((r > 0 && !occ[r - 1][c]) || (r + 1 < H && !occ[r + 1][c]));
+        const v2 = ((r > 0 && !occ[r - 1][c + 1]) || (r + 1 < H && !occ[r + 1][c + 1]));
+        if (v1 || v2) actsGood.push(a); else actsBad.push(a);
+      }
     }
   } else {
     for (let r = 0; r < H - 1; r++) for (let c = 0; c < W; c++) {
-      if (!occ[r][c] && !occ[r + 1][c] && !(strip[r][c] && strip[r + 1][c])) acts.push(H * (W - 1) + r * W + c);
+      if (!occ[r][c] && !occ[r + 1][c] && !(strip[r][c] && strip[r + 1][c])) {
+        const a = H * (W - 1) + r * W + c;
+        const h1 = ((c > 0 && !occ[r][c - 1]) || (c + 1 < W && !occ[r][c + 1]));
+        const h2 = ((c > 0 && !occ[r + 1][c - 1]) || (c + 1 < W && !occ[r + 1][c + 1]));
+        if (h1 || h2) actsGood.push(a); else actsBad.push(a);
+      }
     }
   }
-  return acts;
+  if (actsGood.length > 0) return actsGood;
+  return actsBad;
 }
 function applyAction(occ, turn, a) {
   const nocc = occ.map(row => row.slice());
@@ -164,7 +176,7 @@ async function simulate(rootOcc, rootTurn) {
       const curOri = (turn === 1) ? 1 : 0;
       const opp = 1 - curOri;
       const res = quickAnchorsIfAllStrips(occ, opp);
-      const v = res.ok ? -res.count : 0;
+      const v = res.ok ? -res.count - 0.5 : 0;
       return { path, value: v, leafTurn: turn };
     }
     const a = selectAction(node, occ, turn);

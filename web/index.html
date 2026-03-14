@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>多米诺棋 分析 V1.3.2</title>
+  <title>多米诺棋 分析 V1.4.0</title>
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
   <style>
     :root { --n: 8; --cell: 52px; --gap: 2px; }
@@ -70,7 +70,6 @@
       <div style="display:flex; gap:16px;">
         <label><input type="radio" name="mode" value="edit" id="modeEdit">编辑</label>
         <label><input type="radio" name="mode" value="play" id="modePlay" checked>对弈</label>
-        <span id="corrText" class="status" style="margin-left:12px;">-</span>
       </div>
     </div>
     <div class="topmoves">
@@ -104,7 +103,6 @@
     const turnLabel = document.getElementById('turnLabel');
     const bestMoveEl = document.getElementById('bestMove');
     const marginOutEl = document.getElementById('marginOut');
-    const corrTextEl = document.getElementById('corrText');
     const topListEl = document.getElementById('topList');
     const posCache = new Map();
     document.documentElement.style.setProperty('--n', String(H));
@@ -282,12 +280,6 @@
     }
     function highlightCorridors() {
       const { hStock, vStock } = computeCorridors();
-      if (corrTextEl) {
-        const diff = vStock - hStock;
-        const label = diff === 0 ? '和棋' : (diff > 0 ? '垂直胜' : '水平胜');
-        const absd = Math.abs(diff);
-        corrTextEl.textContent = `垂直${vStock}目 水平${hStock}目 ${label}${diff === 0 ? '' : absd + '目'}`;
-      }
     }
     function showTopMoves(top) {
       if (!topListEl) return;
