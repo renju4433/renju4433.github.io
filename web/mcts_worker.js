@@ -60,6 +60,49 @@ function oppRemainingMinusHalf(occ, turn) {
   if (turn === 1) return countMovesVertical(occ) - 0.5;
   return countMovesHorizontal(occ) - 0.5;
 }
+function analyzeCorridors(occ) {
+  const vis = Array.from({ length: H }, () => Array(W).fill(false));
+  let hStock = 0, vStock = 0;
+  const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+  for (let r0 = 0; r0 < H; r0++) {
+    for (let c0 = 0; c0 < W; c0++) {
+      if (occ[r0][c0] || vis[r0][c0]) continue;
+      // BFS one empty component
+      let q = [[r0, c0]];
+      vis[r0][c0] = true;
+      let minR = r0, maxR = r0, minC = c0, maxC = c0;
+      let cnt = 0;
+      while (q.length) {
+        const [r, c] = q.pop();
+        cnt++;
+        if (r < minR) minR = r;
+        if (r > maxR) maxR = r;
+        if (c < minC) minC = c;
+        if (c > maxC) maxC = c;
+        for (const [dr, dc] of dirs) {
+          const nr = r + dr, nc = c + dc;
+          if (nr < 0 || nr >= H || nc < 0 || nc >= W) continue;
+          if (occ[nr][nc] || vis[nr][nc]) continue;
+          vis[nr][nc] = true;
+          q.push([nr, nc]);
+        }
+      }
+      const hSpan = maxR - minR + 1;
+      const wSpan = maxC - minC + 1;
+      if (hSpan === 1 && wSpan >= 1) {
+        // 1 x n horizontal corridor: only horizontal player can play
+        hStock += Math.floor(cnt / 2);
+      } else if (wSpan === 1 && hSpan >= 1) {
+        // n x 1 vertical corridor: only vertical player can play
+        vStock += Math.floor(cnt / 2);
+      } else {
+        // Found a 2D empty region; not reducible
+        return { solvable: false };
+      }
+    }
+  }
+  return { solvable: true, h: hStock, v: vStock };
+}
 function rotateFlip(arr2d, k, fl) {
   let b = arr2d;
   for (let i = 0; i < k; i++) {
@@ -119,6 +162,33 @@ function inverseMapPi(pi, k, fl) {
   }
   return Array.from(dst);
 }
+function isActionInCorridor(occ, a) {
+  const cc = actionToCells(a);
+  const sr = cc[0], sc = cc[1];
+  if (occ[sr][sc]) return false;
+  const vis = Array.from({ length: H }, () => Array(W).fill(false));
+  const stack = [[sr, sc]];
+  vis[sr][sc] = true;
+  let minR = sr, maxR = sr, minC = sc, maxC = sc;
+  const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+  while (stack.length) {
+    const [r, c] = stack.pop();
+    if (r < minR) minR = r;
+    if (r > maxR) maxR = r;
+    if (c < minC) minC = c;
+    if (c > maxC) maxC = c;
+    for (const [dr, dc] of dirs) {
+      const nr = r + dr, nc = c + dc;
+      if (nr < 0 || nr >= H || nc < 0 || nc >= W) continue;
+      if (occ[nr][nc] || vis[nr][nc]) continue;
+      vis[nr][nc] = true;
+      stack.push([nr, nc]);
+    }
+  }
+  const hSpan = maxR - minR + 1;
+  const wSpan = maxC - minC + 1;
+  return (hSpan === 1 || wSpan === 1);
+}
 async function predict(occ, turn) {
   const turnPlane = Array.from({ length: H }, () => Array.from({ length: W }, () => (turn === 1 ? 1 : -1)));
   const { occ_t, turn_t, k, fl, negate } = canonicalize(occ, turnPlane);
@@ -163,6 +233,16 @@ async function searchOnce(occCur, turnCur) {
     const s = -Math.abs(oppRemainingMinusHalf(occCur, turnCur));
     return { v: -1, score: s };
   }
+  // Corridor solver: if all empty components are 1xn or nx1, compute exact outcome and margin
+  const cor = analyzeCorridors(occCur);
+  if (cor.solvable) {
+    const my = (turnCur === 1) ? cor.h : cor.v;
+    const opp = (turnCur === -1) ? cor.h : cor.v;
+    const raw = my - opp;
+    const scoreExact = raw - 0.5;       // subtract 0.5 advantage for side to move
+    const vExact = (scoreExact > 0) ? 1 : -1;
+    return { v: vExact, score: scoreExact };
+  }
   const k = keyOf(occCur, turnCur);
   if (!P.has(k)) {
     const pr = await predict(occCur, turnCur);
@@ -175,7 +255,12 @@ async function searchOnce(occCur, turnCur) {
     return { v: pr.v, score: pr.score };
   }
   const piStored = P.get(k);
-  const validsList = validMoves(occCur, turnCur);
+  const validsAll = validMoves(occCur, turnCur);
+  const nonCorr = [];
+  for (const a of validsAll) {
+    if (!isActionInCorridor(occCur, a)) nonCorr.push(a);
+  }
+  const validsList = nonCorr.length ? nonCorr : validsAll;
   let best = -Infinity, bestA = validsList[0];
   let sumN = 0;
   for (const a of validsList) sumN += getN(k + ':' + a);
@@ -234,7 +319,7 @@ function bestActionAndWinRate(occ, turn) {
     all.push({ a, n, q, s, winRate: wr });
   }
   all.sort((x, y) => y.n - x.n);
-  const top = all.slice(0, 5);
+  const top = all.slice(0, 6);
   const sims = RootSims.get(k) || 0;
   return { bestAction: bestA, winRate, qBest, totalSims: sims, score: sBest, top };
 }

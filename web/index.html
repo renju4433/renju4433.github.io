@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Domineering 分析 V1.0.3</title>
+  <title>Domineering 分析 V1.1.0</title>
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
   <style>
     :root { --n: 8; --cell: 52px; --gap: 2px; }
@@ -66,7 +66,6 @@
       <span>最佳着法：<span class="value" id="bestMove">-</span></span>
       <span>胜率：<span class="value" id="winRate">-</span></span>
       <span>目差：<span class="value" id="marginOut">-</span></span>
-      <span style="grid-column: span 2;">已模拟：<span class="value" id="simCount">0</span></span>
     </div>
     <div class="modebar">
       <div style="display:flex; gap:16px;">
@@ -76,7 +75,7 @@
       <span class="status" id="modelStatus">模型加载中…</span>
     </div>
     <div class="topmoves">
-      <h2>Top 5</h2>
+      <h2>Top 6</h2>
       <div id="topList"></div>
     </div>
     <div class="bottom">
@@ -107,7 +106,6 @@
     const turnLabel = document.getElementById('turnLabel');
     const bestMoveEl = document.getElementById('bestMove');
     const winRateEl = document.getElementById('winRate');
-    const simCountEl = document.getElementById('simCount');
     const marginOutEl = document.getElementById('marginOut');
     const topListEl = document.getElementById('topList');
     const posCache = new Map();
@@ -251,7 +249,7 @@
     function showTopMoves(top) {
       if (!topListEl) return;
       topListEl.innerHTML = '';
-      const items = Array.isArray(top) ? top.slice(0, 5) : [];
+      const items = Array.isArray(top) ? top : [];
       // panel list
       items.forEach((item, idx) => {
         const cells = actionToCells(item.a);
@@ -268,7 +266,7 @@
         topListEl.appendChild(row);
       });
       // fill placeholders to keep 5 rows
-      for (let i = items.length; i < 5; i++) {
+      for (let i = items.length; i < 6; i++) {
         const row = document.createElement('div');
         row.className = 'row';
         row.innerHTML = '&nbsp;';
@@ -278,7 +276,7 @@
       if (!overlayEl) return;
       overlayEl.innerHTML = '';
       if (items.length === 0) return;
-      const colors = ['#d73a49', '#ff9800', '#ffd33d', '#28a745', '#0366d6'];
+      const colors = ['#d73a49', '#ff9800', '#ffd33d', '#28a745', '#0366d6', '#6f42c1'];
       const { s, g } = getCellSizeAndGap();
       items.forEach((item, idx) => {
         const cells = actionToCells(item.a);
@@ -318,7 +316,7 @@
     function renderTopPlaceholders() {
       if (!topListEl) return;
       topListEl.innerHTML = '';
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 6; i++) {
         const row = document.createElement('div');
         row.className = 'row';
         row.innerHTML = '&nbsp;';
@@ -485,8 +483,6 @@
       winRateEl.textContent = '-';
       bestMoveEl.textContent = '-';
       marginOutEl.textContent = '-';
-      simCounter = 0;
-      simCountEl.textContent = '0';
       updateBoardHighlights(null);
       searchToken = Date.now().toString();
       worker.postMessage({ type: 'start', H, W, occ, turn, c_puct: 1.5, progressInterval: 16, batchSize: 16, token: searchToken });
@@ -508,7 +504,6 @@
     }
     function resetSimCounter() {
       simCounter = 0;
-      simCountEl.textContent = '0';
     }
     function prefillFromCache() {
       const key = stateToHash().slice(1); // remove leading '#'
@@ -521,8 +516,6 @@
       if (typeof data.score === 'number') marginOutEl.textContent = data.score.toFixed(2);
       if (Array.isArray(data.top)) showTopMoves(data.top);
       simCounter = data.sims || 0;
-      simCountEl.textContent = String(simCounter);
-      modelStatus.textContent = '已缓存结果';
     }
     function onBoardChange() {
       resetSimCounter();
@@ -553,7 +546,6 @@
       winRateEl.textContent = '-';
       bestMoveEl.textContent = '-';
       simCounter = 0;
-      simCountEl.textContent = '0';
       if (marginOutEl) marginOutEl.textContent = '-';
       buildBoard();
       updateTurnLabel();
@@ -620,7 +612,6 @@
         updateBoardHighlights(cells);
         winRateEl.textContent = (msg.winRate * 100).toFixed(1) + '%';
         simCounter = msg.sims || simCounter;
-        simCountEl.textContent = String(simCounter);
         bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}-${coordLabel(cells.r2, cells.c2)}`;
         if (typeof msg.score === 'number') marginOutEl.textContent = msg.score.toFixed(2);
         if (Array.isArray(msg.top)) showTopMoves(msg.top);
