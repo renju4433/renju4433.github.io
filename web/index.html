@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Domineering 分析 V1.2.3</title>
+  <title>Domineering 分析 V1.2.4</title>
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
   <style>
     :root { --n: 8; --cell: 52px; --gap: 2px; }
@@ -571,14 +571,10 @@
         bestMoveEl.textContent = '-';
         marginOutEl.textContent = '-';
         searchToken = newTok;
-        if (mode === 'play') {
-          worker.postMessage({ type: 'start', H, W, occ, turn, c_puct: 1.5, progressInterval: 16, batchSize: 16, token: searchToken });
-          searching = true;
-          paused = false;
-          toggleBtn.textContent = '暂停';
-        } else {
-          worker.postMessage({ type: 'setPosition', occ, turn, token: searchToken, autoStart: false });
-        }
+        worker.postMessage({ type: 'start', H, W, occ, turn, c_puct: 1.5, progressInterval: 16, batchSize: 16, token: searchToken });
+        searching = true;
+        paused = false;
+        toggleBtn.textContent = '暂停';
       }
     }
     function newGame() {
