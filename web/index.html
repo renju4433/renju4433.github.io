@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Domineering 分析 V1.1.0</title>
+  <title>Domineering 分析 V1.1.1</title>
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
   <style>
     :root { --n: 8; --cell: 52px; --gap: 2px; }
@@ -256,7 +256,7 @@
         const row = document.createElement('div');
         row.className = 'row';
         const left = document.createElement('div');
-        left.textContent = `${idx + 1}. ${coordLabel(cells.r1, cells.c1)}-${coordLabel(cells.r2, cells.c2)}`;
+        left.textContent = `${idx + 1}. ${coordLabel(cells.r1, cells.c1)}${coordLabel(cells.r2, cells.c2)}`;
         const right = document.createElement('div');
         const wr = (item.winRate * 100).toFixed(1) + '%';
         const sc = (item.s >= 0 ? '+' : '') + item.s.toFixed(2);
@@ -513,7 +513,7 @@
       updateBoardHighlights(cells);
       bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}-${coordLabel(cells.r2, cells.c2)}`;
       winRateEl.textContent = (data.winRate * 100).toFixed(1) + '%';
-      if (typeof data.score === 'number') marginOutEl.textContent = data.score.toFixed(2);
+      if (typeof data.score === 'number') marginOutEl.textContent = data.score >= 0 ? '+' + data.score.toFixed(2) : data.score.toFixed(2);
       if (Array.isArray(data.top)) showTopMoves(data.top);
       simCounter = data.sims || 0;
     }
@@ -612,8 +612,8 @@
         updateBoardHighlights(cells);
         winRateEl.textContent = (msg.winRate * 100).toFixed(1) + '%';
         simCounter = msg.sims || simCounter;
-        bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}-${coordLabel(cells.r2, cells.c2)}`;
-        if (typeof msg.score === 'number') marginOutEl.textContent = msg.score.toFixed(2);
+        bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}${coordLabel(cells.r2, cells.c2)}`;
+        if (typeof msg.score === 'number') marginOutEl.textContent = msg.score >= 0 ? '+' + msg.score.toFixed(2) : msg.score.toFixed(2);
         if (Array.isArray(msg.top)) showTopMoves(msg.top);
         // cache current position result
         posCache.set(stateToHash().slice(1), { bestAction: a, winRate: msg.winRate, sims: msg.sims, score: msg.score, top: msg.top });
