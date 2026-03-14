@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Domineering 分析 V1.1.2</title>
+  <title>Domineering 分析 V1.2.0</title>
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
   <style>
     :root { --n: 8; --cell: 52px; --gap: 2px; }
@@ -64,13 +64,13 @@
     <div class="legend">
       <span id="turnLabel">当前执手：垂直</span>
       <span>最佳着法：<span class="value" id="bestMove">-</span></span>
-      <span>胜率：<span class="value" id="winRate">-</span></span>
       <span>目差：<span class="value" id="marginOut">-</span></span>
     </div>
     <div class="modebar">
       <div style="display:flex; gap:16px;">
         <label><input type="radio" name="mode" value="edit" id="modeEdit">编辑</label>
         <label><input type="radio" name="mode" value="play" id="modePlay" checked>对弈</label>
+        <span id="corrText" class="status" style="margin-left:12px;">-</span>
       </div>
       <span class="status" id="modelStatus">模型加载中…</span>
     </div>
@@ -105,8 +105,8 @@
     const modelStatus = document.getElementById('modelStatus');
     const turnLabel = document.getElementById('turnLabel');
     const bestMoveEl = document.getElementById('bestMove');
-    const winRateEl = document.getElementById('winRate');
     const marginOutEl = document.getElementById('marginOut');
+    const corrTextEl = document.getElementById('corrText');
     const topListEl = document.getElementById('topList');
     const posCache = new Map();
     document.documentElement.style.setProperty('--n', String(H));
@@ -236,7 +236,7 @@
     }
     function updateBoardHighlights(best) {
       for (const el of boardEl.children) {
-        el.classList.remove('best');
+        el.classList.remove('best', 'corrH', 'corrV');
         const badge = el.querySelector('.move-badge');
         if (badge) el.removeChild(badge);
       }
@@ -246,10 +246,55 @@
       boardEl.children[idx1].classList.add('best');
       boardEl.children[idx2].classList.add('best');
     }
+    function computeCorridors() {
+      const vis = Array.from({ length: H }, () => Array(W).fill(false));
+      const hCells = [];
+      const vCells = [];
+      let hStock = 0, vStock = 0;
+      const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+      for (let r0 = 0; r0 < H; r0++) {
+        for (let c0 = 0; c0 < W; c0++) {
+          if (occ[r0][c0] || vis[r0][c0]) continue;
+          const q = [[r0, c0]];
+          vis[r0][c0] = true;
+          let minR = r0, maxR = r0, minC = c0, maxC = c0;
+          const comp = [[r0, c0]];
+          while (q.length) {
+            const [r, c] = q.pop();
+            if (r < minR) minR = r;
+            if (r > maxR) maxR = r;
+            if (c < minC) minC = c;
+            if (c > maxC) maxC = c;
+            for (const [dr, dc] of dirs) {
+              const nr = r + dr, nc = c + dc;
+              if (nr < 0 || nr >= H || nc < 0 || nc >= W) continue;
+              if (occ[nr][nc] || vis[nr][nc]) continue;
+              vis[nr][nc] = true;
+              q.push([nr, nc]);
+              comp.push([nr, nc]);
+            }
+          }
+          const hSpan = maxR - minR + 1;
+          const wSpan = maxC - minC + 1;
+          if (hSpan === 1 && wSpan > 1) { hStock += Math.floor(comp.length / 2); hCells.push(...comp.slice(0, comp.length - comp.length % 2)); }
+          if (wSpan === 1 && hSpan > 1)  { vStock += Math.floor(comp.length / 2); vCells.push(...comp.slice(0, comp.length - comp.length % 2)); }
+        }
+      }
+      return { hStock, vStock, hCells, vCells };
+    }
+    function highlightCorridors() {
+      const { hStock, vStock } = computeCorridors();
+      if (corrTextEl) {
+        const diff = vStock - hStock;
+        const label = diff === 0 ? '和棋' : (diff > 0 ? '垂直胜' : '水平胜');
+        const absd = Math.abs(diff);
+        corrTextEl.textContent = `垂直${vStock}目 水平${hStock}目 ${label}${diff === 0 ? '' : absd + '目'}`;
+      }
+    }
     function showTopMoves(top) {
       if (!topListEl) return;
       topListEl.innerHTML = '';
-      const items = Array.isArray(top) ? top : [];
+      const items = Array.isArray(top) ? top.filter(it => it && it.n > 0) : [];
       // panel list
       items.forEach((item, idx) => {
         const cells = actionToCells(item.a);
@@ -258,9 +303,8 @@
         const left = document.createElement('div');
         left.textContent = `${idx + 1}. ${coordLabel(cells.r1, cells.c1)}${coordLabel(cells.r2, cells.c2)}`;
         const right = document.createElement('div');
-        const wr = (item.winRate * 100).toFixed(1) + '%';
         const sc = (item.s >= 0 ? '+' : '') + item.s.toFixed(2);
-        right.textContent = `胜率 ${wr} | 目差 ${sc} | 计算量 ${item.n}`;
+        right.textContent = `目差 ${sc} | 计算量 ${item.n}`;
         row.appendChild(left);
         row.appendChild(right);
         topListEl.appendChild(row);
@@ -300,10 +344,9 @@
         mark.style.top = `${cy}px`;
         const color = colors[idx % colors.length];
         mark.style.borderColor = color;
-        const wr = (item.winRate * 100).toFixed(1) + '%';
         const sc = (item.s >= 0 ? '+' : '') + item.s.toFixed(2);
         const nline = String(item.n);
-        mark.textContent = `${wr}\n${sc}\n${nline}`;
+        mark.textContent = `${sc}\n${nline}`;
         const rank = document.createElement('div');
         rank.className = 'move-rank';
         rank.textContent = String(idx + 1);
@@ -480,10 +523,8 @@
       paused = false;
       toggleBtn.textContent = '暂停';
       modelStatus.textContent = '搜索中… 0';
-      winRateEl.textContent = '-';
       bestMoveEl.textContent = '-';
       marginOutEl.textContent = '-';
-      updateBoardHighlights(null);
       searchToken = Date.now().toString();
       worker.postMessage({ type: 'start', H, W, occ, turn, c_puct: 1.5, progressInterval: 16, batchSize: 16, token: searchToken });
     }
@@ -512,7 +553,6 @@
       const cells = actionToCells(data.bestAction);
       updateBoardHighlights(cells);
       bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}-${coordLabel(cells.r2, cells.c2)}`;
-      winRateEl.textContent = (data.winRate * 100).toFixed(1) + '%';
       if (typeof data.score === 'number') marginOutEl.textContent = data.score >= 0 ? '+' + data.score.toFixed(2) : data.score.toFixed(2);
       if (Array.isArray(data.top)) showTopMoves(data.top);
       simCounter = data.sims || 0;
@@ -522,19 +562,28 @@
       updateHash();
       if (topListEl) renderTopPlaceholders();
       if (overlayEl) overlayEl.innerHTML = '';
+      highlightCorridors();
       prefillFromCache();
       if (worker) {
-        const newTok = (searching && !paused) ? Date.now().toString() : searchToken;
-        if (searching && !paused) {
+        const newTok = Date.now().toString();
+        if (searching) {
           worker.postMessage({ type: 'pause' });
-          searchToken = newTok;
+          worker.postMessage({ type: 'stop' });
+          paused = false;
+          searching = false;
+        }
+        bestMoveEl.textContent = '-';
+        marginOutEl.textContent = '-';
+        searchToken = newTok;
+        if (mode === 'play') {
+          worker.postMessage({ type: 'start', H, W, occ, turn, c_puct: 1.5, progressInterval: 16, batchSize: 16, token: searchToken });
+          searching = true;
+          paused = false;
           toggleBtn.textContent = '暂停';
           modelStatus.textContent = '搜索中… 0';
-          winRateEl.textContent = '-';
-          bestMoveEl.textContent = '-';
-          marginOutEl.textContent = '-';
+        } else {
+          worker.postMessage({ type: 'setPosition', occ, turn, token: searchToken, autoStart: false });
         }
-        worker.postMessage({ type: 'setPosition', occ, turn, token: newTok, autoStart: searching && !paused });
       }
     }
     function newGame() {
@@ -543,7 +592,6 @@
       mode = 'play';
       if (modePlay) modePlay.checked = true;
       if (modeEdit) modeEdit.checked = false;
-      winRateEl.textContent = '-';
       bestMoveEl.textContent = '-';
       simCounter = 0;
       if (marginOutEl) marginOutEl.textContent = '-';
@@ -610,13 +658,12 @@
         const a = msg.bestAction;
         const cells = actionToCells(a);
         updateBoardHighlights(cells);
-        winRateEl.textContent = (msg.winRate * 100).toFixed(1) + '%';
         simCounter = msg.sims || simCounter;
         bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}${coordLabel(cells.r2, cells.c2)}`;
         if (typeof msg.score === 'number') marginOutEl.textContent = msg.score >= 0 ? '+' + msg.score.toFixed(2) : msg.score.toFixed(2);
         if (Array.isArray(msg.top)) showTopMoves(msg.top);
         // cache current position result
-        posCache.set(stateToHash().slice(1), { bestAction: a, winRate: msg.winRate, sims: msg.sims, score: msg.score, top: msg.top });
+        posCache.set(stateToHash().slice(1), { bestAction: a, sims: msg.sims, score: msg.score, top: msg.top });
         modelStatus.textContent = '搜索中… ' + simCounter;
       } else if (msg.type === 'error') {
         modelStatus.textContent = '搜索失败：' + msg.error;
@@ -626,9 +673,10 @@
         toggleBtn.disabled = false;
       }
     };
-    worker.postMessage({ type: 'init', modelUrl: 'domineering.onnx', H, W, c_puct: 1.5, wasmPaths: 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/', progressInterval: 16, batchSize: 16, marginInterval: 64, marginRollouts: 1 });
+    worker.postMessage({ type: 'init', modelUrl: 'net.onnx', H, W, c_puct: 1.5, wasmPaths: 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/', progressInterval: 16, batchSize: 16, marginInterval: 64, marginRollouts: 1 });
     applyHashIfAny();
     buildBoard();
+    highlightCorridors();
     renderTopPlaceholders();
     updateTurnLabel();
     initHistory();
