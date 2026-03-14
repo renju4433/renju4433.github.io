@@ -72,7 +72,6 @@
         <label><input type="radio" name="mode" value="play" id="modePlay" checked>对弈</label>
         <span id="corrText" class="status" style="margin-left:12px;">-</span>
       </div>
-      <span class="status" id="modelStatus">0</span>
     </div>
     <div class="topmoves">
       <h2>Top 6</h2>
@@ -102,7 +101,6 @@
     const btnNew = document.getElementById('btnNew');
     const modeEdit = document.getElementById('modeEdit');
     const modePlay = document.getElementById('modePlay');
-    const modelStatus = document.getElementById('modelStatus');
     const turnLabel = document.getElementById('turnLabel');
     const bestMoveEl = document.getElementById('bestMove');
     const marginOutEl = document.getElementById('marginOut');
@@ -522,7 +520,6 @@
       searching = true;
       paused = false;
       toggleBtn.textContent = '暂停';
-      modelStatus.textContent = '0';
       bestMoveEl.textContent = '-';
       marginOutEl.textContent = '-';
       searchToken = Date.now().toString();
@@ -539,7 +536,6 @@
       } else {
         paused = false;
         toggleBtn.textContent = '暂停';
-        modelStatus.textContent = simCounter;
         worker.postMessage({ type: 'resume', occ, turn, token: searchToken });
       }
     }
@@ -580,7 +576,6 @@
           searching = true;
           paused = false;
           toggleBtn.textContent = '暂停';
-          modelStatus.textContent = '0';
         } else {
           worker.postMessage({ type: 'setPosition', occ, turn, token: searchToken, autoStart: false });
         }
