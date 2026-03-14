@@ -1,1 +1,675 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta http-equiv=Cache-Control content=no-siteapp><meta name=x5-page-mode content=app><meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><meta name=mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=default><meta name=apple-mobile-web-app-title content=Gomocalc><meta name=description content="A powerful and easy-to-use online Gomoku/Renju AI"><link rel="shortcut icon" sizes=192x192 href=/icon.png><link rel=apple-touch-icon href=/icon.png><!--[if IE]><link rel="icon" type="image/png" href="/favicon.png" /><![endif]--><link rel=stylesheet href=/css/font-awesome.min.css><script src=/coi-serviceworker.js></script><title>五子棋计算器 Gomoku Calculator</title><link href=/js/about.f7687c72.js rel=prefetch><link href=/js/app.96cf4b71.js rel=preload as=script><link href=/js/chunk-vendors.17d227f4.js rel=preload as=script><link rel=icon type=image/png sizes=32x32 href=/favicon.png><link rel=icon type=image/png sizes=16x16 href=/favicon.png><link rel=manifest href=/manifest.json><meta name=theme-color content=#2E86C1><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=default><meta name=apple-mobile-web-app-title content="Gomoku Calculator"><link rel=apple-touch-icon href=/icon.png><meta name=msapplication-TileImage content=/icon.png><meta name=msapplication-TileColor content=#2E86C1></head><body><noscript><strong>We're sorry but Gomoku Calculator doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script async src=/lib/gif.js></script><script src=/js/chunk-vendors.17d227f4.js></script><script src=/js/app.96cf4b71.js></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Domineering 分析 V1.2.4</title>
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+  <style>
+    :root { --n: 8; --cell: 52px; --gap: 2px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; margin: 0; color: #1f2328; display: flex; flex-direction: column; align-items: center; min-height: 100vh; background-color: #fafafa; }
+    .container { width: 100%; max-width: 600px; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; }
+    h1 { font-size: 20px; margin: 0 0 16px; align-self: flex-start; }
+    .status { font-size: 14px; color: #57606a; }
+    .board-wrapper { width: 100%; display: flex; justify-content: center; margin-bottom: 16px; position: relative; }
+    .board { position: relative; display: grid; grid-template-columns: repeat(var(--n), 1fr); grid-template-rows: repeat(var(--n), 1fr); gap: var(--gap); width: 100%; aspect-ratio: 1; user-select: none; max-width: calc(var(--n) * 52px); }
+    .cell { display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 12px; position: relative; }
+    .cell.light { background: #f0f6ff; }
+    .cell.dark { background: #d6e5ff; }
+    .cell.occ { background: #0a5; color: #fff; }
+    .cell.best { outline: none; }
+    .coord-left { position: absolute; left: 3px; top: 3px; font-size: 10px; color: #57606a; }
+    .coord-bottom { position: absolute; right: 3px; bottom: 3px; font-size: 10px; color: #57606a; }
+    .legend { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 16px; font-size: 14px; color: #57606a; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 16px; }
+    .legend span { white-space: nowrap; }
+    .value { font-weight: 600; color: #0a3069; }
+    .modebar { width: 100%; margin-bottom: 16px; font-size: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .modebar label { display: flex; align-items: center; cursor: pointer; }
+    .modebar input { margin-right: 6px; }
+    .topmoves { width: 100%; margin-bottom: 12px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .topmoves h2 { margin: 0 0 8px; font-size: 14px; color: #24292f; }
+    .topmoves .row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
+    .topmoves .row:last-child { border-bottom: none; }
+    .bottom { width: 100%; display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+    .bottom button { padding: 10px 0; border: 1px solid #d0d7de; background: #fff; border-radius: 6px; cursor: pointer; font-size: 14px; color: #24292f; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: background 0.1s; }
+    .bottom button:active { background: #f3f4f6; }
+    .bottom button:disabled { opacity: .5; cursor: not-allowed; background: #f6f8fa; }
+    #turnLabel.editable { cursor: pointer; color: #0969da; text-decoration: underline; }
+    .move-badge { position: absolute; top: 2px; left: 2px; background: rgba(0,0,0,0.6); color: #fff; font-size: 10px; line-height: 1.2; padding: 2px 4px; border-radius: 4px; pointer-events: none; }
+    .overlay { position: absolute; inset: 0; pointer-events: none; }
+    .move-mark { position: absolute; display: flex; align-items: center; justify-content: center; text-align: center; width: 46px; height: 46px; border: 2px solid #d73a49; border-radius: 50%; background: rgba(255,255,255,0.85); transform: translate(-50%, -50%); color: #24292f; font-size: 10px; line-height: 1.1; white-space: pre-line; padding: 2px; }
+    .move-text { display: none; }
+    .move-rank { position: absolute; top: -8px; right: -8px; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 2px solid #d73a49; color: #24292f; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+    
+    @media (max-width: 480px) {
+        :root { --gap: 1px; }
+        body { margin: 0; }
+        .container { padding: 12px; }
+        h1 { font-size: 18px; margin-bottom: 12px; }
+        .board { width: min(100%, calc(100vh - 260px)); }
+        .cell { border-radius: 2px; }
+        .legend { font-size: 12px; gap: 6px 8px; padding: 8px; }
+        .modebar { padding: 8px; }
+        .topmoves { padding: 8px; }
+        .topmoves .row { font-size: 12px; padding: 2px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .bottom button { font-size: 13px; padding: 10px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="board-wrapper">
+      <div id="board" class="board" aria-label="棋盘"></div>
+    </div>
+    <div class="legend">
+      <span id="turnLabel">当前执手：垂直</span>
+      <span>最佳着法：<span class="value" id="bestMove">-</span></span>
+      <span>目差：<span class="value" id="marginOut">-</span></span>
+    </div>
+    <div class="modebar">
+      <div style="display:flex; gap:16px;">
+        <label><input type="radio" name="mode" value="edit" id="modeEdit">编辑</label>
+        <label><input type="radio" name="mode" value="play" id="modePlay" checked>对弈</label>
+        <span id="corrText" class="status" style="margin-left:12px;">-</span>
+      </div>
+    </div>
+    <div class="topmoves">
+      <h2>Top 6</h2>
+      <div id="topList"></div>
+    </div>
+    <div class="bottom">
+      <button id="btnNew">新局</button>
+      <button id="btnFirst">&lt;&lt;</button>
+      <button id="btnPrev">&lt;</button>
+      <button id="toggleBtn">开始</button>
+      <button id="btnNext">&gt;</button>
+      <button id="btnLast">&gt;&gt;</button>
+    </div>
+  </div>
+
+  <script>
+    const H = 8, W = 8;
+    const HORIZ_COUNT = H * (W - 1);
+    const VERT_COUNT = (H - 1) * W;
+    const PASS_INDEX = HORIZ_COUNT + VERT_COUNT;
+    const boardEl = document.getElementById('board');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const btnFirst = document.getElementById('btnFirst');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const btnLast = document.getElementById('btnLast');
+    const btnNew = document.getElementById('btnNew');
+    const modeEdit = document.getElementById('modeEdit');
+    const modePlay = document.getElementById('modePlay');
+    const turnLabel = document.getElementById('turnLabel');
+    const bestMoveEl = document.getElementById('bestMove');
+    const marginOutEl = document.getElementById('marginOut');
+    const corrTextEl = document.getElementById('corrText');
+    const topListEl = document.getElementById('topList');
+    const posCache = new Map();
+    document.documentElement.style.setProperty('--n', String(H));
+    let occ = Array.from({ length: H }, () => Array.from({ length: W }, () => 0));
+    let turn = -1;
+    let mode = 'play';
+    let history = [];
+    let historyIndex = 0;
+    let worker;
+    let searching = false;
+    let searchToken = null;
+    let paused = false;
+    let simCounter = 0;
+    function rcToIndex(r, c) { return r * W + c; }
+    function updateTurnClickable() {
+      if (mode === 'edit') turnLabel.classList.add('editable'); else turnLabel.classList.remove('editable');
+    }
+    function getCellSizeAndGap() {
+      const cell = boardEl.children[0];
+      if (!cell) return { s: 0, g: 0 };
+      const cellRect = cell.getBoundingClientRect();
+      const s = cellRect.width;
+      const cs = getComputedStyle(boardEl);
+      let g = 0;
+      if (cs.gap) g = parseFloat(cs.gap.split(' ')[0]);
+      else if (cs.columnGap) g = parseFloat(cs.columnGap);
+      return { s, g };
+    }
+    function findNearestGap(x, y) {
+      const { s, g } = getCellSizeAndGap();
+      if (s === 0) return null;
+      let best = null;
+      let bestD = Infinity;
+      for (let r = 0; r < H; r++) {
+        const cy = r * s + r * g + s / 2;
+        for (let c = 0; c < W - 1; c++) {
+          const cx = c * s + c * g + s + g / 2;
+          const dx = x - cx, dy = y - cy;
+          const d = dx * dx + dy * dy;
+          if (d < bestD) { bestD = d; best = { kind: 'h', r, c }; }
+        }
+      }
+      for (let r = 0; r < H - 1; r++) {
+        const cy = r * s + r * g + s + g / 2;
+        for (let c = 0; c < W; c++) {
+          const cx = c * s + c * g + s / 2;
+          const dx = x - cx, dy = y - cy;
+          const d = dx * dx + dy * dy;
+          if (d < bestD) { bestD = d; best = { kind: 'v', r, c }; }
+        }
+      }
+      return best;
+    }
+    function fileLabel(c) {
+      let s = '';
+      let x = c;
+      while (true) {
+        s = String.fromCharCode(65 + (x % 26)) + s;
+        x = Math.floor(x / 26) - 1;
+        if (x < 0) break;
+      }
+      return s;
+    }
+    function rankLabel(r) {
+      return String(H - r);
+    }
+    function coordLabel(r, c) {
+      return fileLabel(c) + rankLabel(r);
+    }
+    let overlayEl = null;
+    function buildBoard() {
+      boardEl.innerHTML = '';
+      for (let r = 0; r < H; r++) {
+        for (let c = 0; c < W; c++) {
+          const div = document.createElement('div');
+          div.className = 'cell ' + ((r + c) % 2 === 0 ? 'light' : 'dark') + (occ[r][c] ? ' occ' : '');
+          div.dataset.r = String(r);
+          div.dataset.c = String(c);
+          if (c === 0) {
+            const lab = document.createElement('div');
+            lab.className = 'coord-left';
+            lab.textContent = rankLabel(r);
+            div.appendChild(lab);
+          }
+          if (r === H - 1) {
+            const lab2 = document.createElement('div');
+            lab2.className = 'coord-bottom';
+            lab2.textContent = fileLabel(c);
+            div.appendChild(lab2);
+          }
+          boardEl.appendChild(div);
+        }
+      }
+      overlayEl = document.createElement('div');
+      overlayEl.className = 'overlay';
+      overlayEl.id = 'overlay';
+      boardEl.appendChild(overlayEl);
+    }
+    function snapshot() {
+      return { occ: occ.map(row => row.slice()), turn: turn };
+    }
+    function applyState(s) {
+      occ = s.occ.map(row => row.slice());
+      turn = s.turn;
+      buildBoard();
+      updateTurnLabel();
+      updateBoardHighlights(null);
+    }
+    function initHistory() {
+      history = [snapshot()];
+      historyIndex = 0;
+      updateNavButtons();
+    }
+    function pushHistory() {
+      if (historyIndex < history.length - 1) history = history.slice(0, historyIndex + 1);
+      history.push(snapshot());
+      historyIndex = history.length - 1;
+      updateNavButtons();
+    }
+    function updateNavButtons() {
+      const atStart = historyIndex <= 0;
+      const atEnd = historyIndex >= history.length - 1;
+      btnFirst.disabled = atStart || mode !== 'play';
+      btnPrev.disabled = atStart || mode !== 'play';
+      btnNext.disabled = atEnd || mode !== 'play';
+      btnLast.disabled = atEnd || mode !== 'play';
+    }
+    function updateBoardHighlights(best) {
+      for (const el of boardEl.children) {
+        el.classList.remove('best', 'corrH', 'corrV');
+        const badge = el.querySelector('.move-badge');
+        if (badge) el.removeChild(badge);
+      }
+      if (!best) return;
+      const { r1, c1, r2, c2 } = best;
+      const idx1 = rcToIndex(r1, c1), idx2 = rcToIndex(r2, c2);
+      boardEl.children[idx1].classList.add('best');
+      boardEl.children[idx2].classList.add('best');
+    }
+    function computeCorridors() {
+      const vis = Array.from({ length: H }, () => Array(W).fill(false));
+      const hCells = [];
+      const vCells = [];
+      let hStock = 0, vStock = 0;
+      const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+      for (let r0 = 0; r0 < H; r0++) {
+        for (let c0 = 0; c0 < W; c0++) {
+          if (occ[r0][c0] || vis[r0][c0]) continue;
+          const q = [[r0, c0]];
+          vis[r0][c0] = true;
+          let minR = r0, maxR = r0, minC = c0, maxC = c0;
+          const comp = [[r0, c0]];
+          while (q.length) {
+            const [r, c] = q.pop();
+            if (r < minR) minR = r;
+            if (r > maxR) maxR = r;
+            if (c < minC) minC = c;
+            if (c > maxC) maxC = c;
+            for (const [dr, dc] of dirs) {
+              const nr = r + dr, nc = c + dc;
+              if (nr < 0 || nr >= H || nc < 0 || nc >= W) continue;
+              if (occ[nr][nc] || vis[nr][nc]) continue;
+              vis[nr][nc] = true;
+              q.push([nr, nc]);
+              comp.push([nr, nc]);
+            }
+          }
+          const hSpan = maxR - minR + 1;
+          const wSpan = maxC - minC + 1;
+          if (hSpan === 1 && wSpan > 1) { hStock += Math.floor(comp.length / 2); hCells.push(...comp.slice(0, comp.length - comp.length % 2)); }
+          if (wSpan === 1 && hSpan > 1)  { vStock += Math.floor(comp.length / 2); vCells.push(...comp.slice(0, comp.length - comp.length % 2)); }
+        }
+      }
+      return { hStock, vStock, hCells, vCells };
+    }
+    function highlightCorridors() {
+      const { hStock, vStock } = computeCorridors();
+      if (corrTextEl) {
+        const diff = vStock - hStock;
+        const label = diff === 0 ? '和棋' : (diff > 0 ? '垂直胜' : '水平胜');
+        const absd = Math.abs(diff);
+        corrTextEl.textContent = `垂直${vStock}目 水平${hStock}目 ${label}${diff === 0 ? '' : absd + '目'}`;
+      }
+    }
+    function showTopMoves(top) {
+      if (!topListEl) return;
+      topListEl.innerHTML = '';
+      const items = Array.isArray(top) ? top.filter(it => it && it.n > 0) : [];
+      // panel list
+      items.forEach((item, idx) => {
+        const cells = actionToCells(item.a);
+        const row = document.createElement('div');
+        row.className = 'row';
+        const left = document.createElement('div');
+        left.textContent = `${idx + 1}. ${coordLabel(cells.r1, cells.c1)}${coordLabel(cells.r2, cells.c2)}`;
+        const right = document.createElement('div');
+        const sc = (item.s >= 0 ? '+' : '') + item.s.toFixed(2);
+        right.textContent = `目差 ${sc} | 计算量 ${item.n}`;
+        row.appendChild(left);
+        row.appendChild(right);
+        topListEl.appendChild(row);
+      });
+      // fill placeholders to keep 5 rows
+      for (let i = items.length; i < 6; i++) {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = '&nbsp;';
+        topListEl.appendChild(row);
+      }
+      // board overlay: ring at domino center with text inside (wr, score, visits)
+      if (!overlayEl) return;
+      overlayEl.innerHTML = '';
+      if (items.length === 0) return;
+      const colors = ['#d73a49', '#ff9800', '#ffd33d', '#28a745', '#0366d6', '#6f42c1'];
+      const { s, g } = getCellSizeAndGap();
+      items.forEach((item, idx) => {
+        const cells = actionToCells(item.a);
+        const horizontal = (cells.r1 === cells.r2);
+        let r = Math.min(cells.r1, cells.r2);
+        let c = Math.min(cells.c1, cells.c2);
+        let cx, cy;
+        if (horizontal) {
+          cy = r * s + r * g + s / 2;
+          cx = c * s + c * g + s + g / 2;
+        } else {
+          cy = r * s + r * g + s + g / 2;
+          cx = c * s + c * g + s / 2;
+        }
+        const mark = document.createElement('div');
+        mark.className = 'move-mark';
+        const d = Math.max(28, Math.min(0.8 * s, 56));
+        mark.style.width = `${d}px`;
+        mark.style.height = `${d}px`;
+        mark.style.left = `${cx}px`;
+        mark.style.top = `${cy}px`;
+        const color = colors[idx % colors.length];
+        mark.style.borderColor = color;
+        const sc = (item.s >= 0 ? '+' : '') + item.s.toFixed(2);
+        const nline = String(item.n);
+        mark.textContent = `${sc}\n${nline}`;
+        const rank = document.createElement('div');
+        rank.className = 'move-rank';
+        rank.textContent = String(idx + 1);
+        rank.style.borderColor = color;
+        rank.style.color = color;
+        mark.appendChild(rank);
+        overlayEl.appendChild(mark);
+      });
+    }
+    function renderTopPlaceholders() {
+      if (!topListEl) return;
+      topListEl.innerHTML = '';
+      for (let i = 0; i < 6; i++) {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = '&nbsp;';
+        topListEl.appendChild(row);
+      }
+    }
+    function updateTurnLabel() {
+      turnLabel.textContent = '当前执手：' + (turn === 1 ? '水平' : '垂直');
+    }
+    function placeIfLegal(r, c) {
+      if (turn === 1) {
+        if (c + 1 < W && !occ[r][c] && !occ[r][c + 1]) { occ[r][c] = 1; occ[r][c + 1] = 1; turn = -1; return true; }
+        if (c - 1 >= 0 && !occ[r][c] && !occ[r][c - 1]) { occ[r][c] = 1; occ[r][c - 1] = 1; turn = -1; return true; }
+      } else {
+        if (r + 1 < H && !occ[r][c] && !occ[r + 1][c]) { occ[r][c] = 1; occ[r + 1][c] = 1; turn = 1; return true; }
+        if (r - 1 >= 0 && !occ[r][c] && !occ[r - 1][c]) { occ[r][c] = 1; occ[r - 1][c] = 1; turn = 1; return true; }
+      }
+      return false;
+    }
+    function placeGapIfLegal(kind, r, c) {
+      if (kind === 'h') {
+        if (turn !== 1) return false;
+        if (!occ[r][c] && !occ[r][c + 1]) { occ[r][c] = 1; occ[r][c + 1] = 1; turn = -1; return true; }
+        return false;
+      } else {
+        if (turn !== -1) return false;
+        if (!occ[r][c] && !occ[r + 1][c]) { occ[r][c] = 1; occ[r + 1][c] = 1; turn = 1; return true; }
+        return false;
+      }
+    }
+    function getValidMask() {
+      const valids = new Float32Array(PASS_INDEX + 1);
+      if (turn === 1) {
+        let has = false;
+        for (let r = 0; r < H; r++) {
+          for (let c = 0; c < W - 1; c++) {
+            const k = r * (W - 1) + c;
+            if (!occ[r][c] && !occ[r][c + 1]) { valids[k] = 1; has = true; }
+          }
+        }
+        if (!has) valids[PASS_INDEX] = 1;
+      } else {
+        let has = false;
+        for (let r = 0; r < H - 1; r++) {
+          for (let c = 0; c < W; c++) {
+            const k = HORIZ_COUNT + r * W + c;
+            if (!occ[r][c] && !occ[r + 1][c]) { valids[k] = 1; has = true; }
+          }
+        }
+        if (!has) valids[PASS_INDEX] = 1;
+      }
+      return valids;
+    }
+    function actionToCells(a) {
+      if (a < HORIZ_COUNT) { const r = Math.floor(a / (W - 1)); const c = a % (W - 1); return { r1: r, c1: c, r2: r, c2: c + 1 }; }
+      const k = a - HORIZ_COUNT; const r = Math.floor(k / W); const c = k % W; return { r1: r, c1: c, r2: r + 1, c2: c };
+    }
+    function cellsToAction(r1, c1, r2, c2) {
+      if (r1 === r2) { const r = r1; const c = c1 < c2 ? c1 : c2; return r * (W - 1) + c; }
+      const r = r1 < r2 ? r1 : r2; const c = c1 === c2 ? c1 : c2; return HORIZ_COUNT + r * W + c;
+    }
+    function transformCoord(r, c, k, fl) {
+      let r1, c1, h1 = H, w1 = W;
+      if (k === 0) { r1 = r; c1 = c; }
+      else if (k === 1) { r1 = H - 1 - c; c1 = r; h1 = W; w1 = H; }
+      else if (k === 2) { r1 = H - 1 - r; c1 = W - 1 - c; }
+      else { r1 = c; c1 = W - 1 - r; h1 = W; w1 = H; }
+      if (fl) c1 = (w1 - 1) - c1;
+      return { r: r1, c: c1, h: h1, w: w1 };
+    }
+    function rotateFlip(arr2d, k, fl) {
+      let b = arr2d;
+      for (let i = 0; i < k; i++) {
+        const nr = b[0].length, nc = b.length;
+        const nb = Array.from({ length: nr }, () => Array.from({ length: nc }, () => 0));
+        for (let r = 0; r < b.length; r++) for (let c = 0; c < b[0].length; c++) nb[nr - 1 - c][r] = b[r][c];
+        b = nb;
+      }
+      if (fl) b = b.map(row => row.slice().reverse());
+      return b;
+    }
+    function canonicalize(boardOcc, boardTurn) {
+      const h = boardOcc.length, w = boardOcc[0].length;
+      const groupA = [{k:0,fl:false},{k:2,fl:false},{k:0,fl:true},{k:2,fl:true}];
+      const groupB = (h === w) ? [{k:1,fl:false},{k:3,fl:false},{k:1,fl:true},{k:3,fl:true}] : [];
+      let bestA = null, bestAKey = null;
+      for (const g of groupA) {
+        const o = rotateFlip(boardOcc, g.k, g.fl);
+        const key = new Uint8Array(o.flat()).toString();
+        if (bestAKey === null || key < bestAKey) { bestAKey = key; bestA = {k:g.k,fl:g.fl,occ:o,turn: rotateFlip(boardTurn, g.k, g.fl)}; }
+      }
+      let bestB = null, bestBKey = null;
+      for (const g of groupB) {
+        const o = rotateFlip(boardOcc, g.k, g.fl);
+        const key = new Uint8Array(o.flat()).toString();
+        if (bestBKey === null || key < bestBKey) { bestBKey = key; bestB = {k:g.k,fl:g.fl,occ:o,turn: rotateFlip(boardTurn, g.k, g.fl)}; }
+      }
+      let negate = false, k = bestA.k, fl = bestA.fl, occ_t = bestA.occ, turn_t = bestA.turn;
+      if (bestBKey !== null && bestBKey < bestAKey) { negate = true; k = bestB.k; fl = bestB.fl; occ_t = bestB.occ; turn_t = bestB.turn; }
+      return { occ_t, turn_t, k, fl, negate };
+    }
+    function inverseMapPi(pi, k, fl) {
+      const A = HORIZ_COUNT + VERT_COUNT;
+      const src = pi.slice(0, A);
+      const dst = new Float64Array(A);
+      for (let a = 0; a < A; a++) {
+        if (src[a] === 0) continue;
+        const { r1, c1, r2, c2 } = actionToCells(a);
+        const inv_k = (4 - (k % 4)) % 4;
+        const t1 = transformCoord(r1, c1, inv_k, fl);
+        const t2 = transformCoord(r2, c2, inv_k, fl);
+        const a2 = cellsToAction(t1.r, t1.c, t2.r, t2.c);
+        dst[a2] = src[a];
+      }
+      return Array.from(dst).concat([pi[pi.length - 1]]);
+    }
+    let _updatingHash = false;
+    function stateToHash() {
+      const pref = (turn === 1) ? 'H' : 'V';
+      const bits = occ.flat().join('');
+      return '#' + pref + '|' + bits;
+    }
+    function applyHashIfAny() {
+      const h = window.location.hash;
+      if (!h || h.length < 2) return;
+      const s = h.substring(1);
+      const parts = s.split('|');
+      if (parts.length !== 2) return;
+      const pref = parts[0];
+      const bits = parts[1];
+      if (bits.length !== H * W) return;
+      let idx = 0;
+      for (let r = 0; r < H; r++) {
+        for (let c = 0; c < W; c++) {
+          occ[r][c] = (bits[idx++] === '1') ? 1 : 0;
+        }
+      }
+      turn = (pref === 'H') ? 1 : -1;
+    }
+    function updateHash() {
+      const newHash = stateToHash();
+      if (window.location.hash !== newHash) {
+        _updatingHash = true;
+        window.location.hash = newHash;
+        setTimeout(() => { _updatingHash = false; }, 0);
+      }
+    }
+    window.addEventListener('hashchange', () => {
+      if (_updatingHash) return;
+      applyHashIfAny();
+      buildBoard();
+      updateTurnLabel();
+      updateBoardHighlights(null);
+      initHistory();
+      updateNavButtons();
+      onBoardChange();
+    });
+    function startSearch() {
+      if (!worker) return;
+      searching = true;
+      paused = false;
+      toggleBtn.textContent = '暂停';
+      bestMoveEl.textContent = '-';
+      marginOutEl.textContent = '-';
+      searchToken = Date.now().toString();
+      worker.postMessage({ type: 'start', H, W, occ, turn, c_puct: 1.5, progressInterval: 16, batchSize: 16, token: searchToken });
+    }
+    function toggleSearch() {
+      if (!worker) return;
+      if (!searching) {
+        startSearch();
+      } else if (!paused) {
+        paused = true;
+        worker.postMessage({ type: 'pause' });
+        toggleBtn.textContent = '继续';
+      } else {
+        paused = false;
+        toggleBtn.textContent = '暂停';
+        worker.postMessage({ type: 'resume', occ, turn, token: searchToken });
+      }
+    }
+    function resetSimCounter() {
+      simCounter = 0;
+    }
+    function prefillFromCache() {
+      const key = stateToHash().slice(1); // remove leading '#'
+      if (!posCache.has(key)) return;
+      const data = posCache.get(key);
+      const cells = actionToCells(data.bestAction);
+      updateBoardHighlights(cells);
+      bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}-${coordLabel(cells.r2, cells.c2)}`;
+      if (typeof data.score === 'number') marginOutEl.textContent = data.score >= 0 ? '+' + data.score.toFixed(2) : data.score.toFixed(2);
+      if (Array.isArray(data.top)) showTopMoves(data.top);
+      simCounter = data.sims || 0;
+    }
+    function onBoardChange() {
+      resetSimCounter();
+      updateHash();
+      if (topListEl) renderTopPlaceholders();
+      if (overlayEl) overlayEl.innerHTML = '';
+      highlightCorridors();
+      prefillFromCache();
+      if (worker) {
+        const newTok = Date.now().toString();
+        if (searching) {
+          worker.postMessage({ type: 'pause' });
+          worker.postMessage({ type: 'stop' });
+          paused = false;
+          searching = false;
+        }
+        bestMoveEl.textContent = '-';
+        marginOutEl.textContent = '-';
+        searchToken = newTok;
+        worker.postMessage({ type: 'start', H, W, occ, turn, c_puct: 1.5, progressInterval: 16, batchSize: 16, token: searchToken });
+        searching = true;
+        paused = false;
+        toggleBtn.textContent = '暂停';
+      }
+    }
+    function newGame() {
+      occ = Array.from({ length: H }, () => Array.from({ length: W }, () => 0));
+      turn = -1;
+      mode = 'play';
+      if (modePlay) modePlay.checked = true;
+      if (modeEdit) modeEdit.checked = false;
+      bestMoveEl.textContent = '-';
+      simCounter = 0;
+      if (marginOutEl) marginOutEl.textContent = '-';
+      buildBoard();
+      updateTurnLabel();
+      updateBoardHighlights(null);
+      initHistory();
+      updateNavButtons();
+      updateTurnClickable();
+      onBoardChange();
+    }
+    boardEl.addEventListener('click', e => {
+      const rect = boardEl.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const { s, g } = getCellSizeAndGap();
+      if (s === 0) return;
+      
+      if (mode === 'edit') {
+        const c = Math.min(W - 1, Math.max(0, Math.floor((x) / (s + g))));
+        const r = Math.min(H - 1, Math.max(0, Math.floor((y) / (s + g))));
+        occ[r][c] = occ[r][c] ? 0 : 1;
+        buildBoard();
+        updateBoardHighlights(null);
+        onBoardChange();
+      } else {
+        const gap = findNearestGap(x, y);
+        if (!gap) return;
+        if (placeGapIfLegal(gap.kind, gap.r, gap.c)) {
+          buildBoard();
+          updateTurnLabel();
+          updateBoardHighlights(null);
+          pushHistory();
+          onBoardChange();
+        }
+      }
+    });
+    toggleBtn.addEventListener('click', toggleSearch);
+    btnNew.addEventListener('click', newGame);
+    btnFirst.addEventListener('click', () => { if (mode !== 'play') return; historyIndex = 0; applyState(history[historyIndex]); updateNavButtons(); onBoardChange(); });
+    btnPrev.addEventListener('click', () => { if (mode !== 'play') return; if (historyIndex > 0) { historyIndex--; applyState(history[historyIndex]); updateNavButtons(); onBoardChange(); } });
+    btnNext.addEventListener('click', () => { if (mode !== 'play') return; if (historyIndex < history.length - 1) { historyIndex++; applyState(history[historyIndex]); updateNavButtons(); onBoardChange(); } });
+    btnLast.addEventListener('click', () => { if (mode !== 'play') return; historyIndex = history.length - 1; applyState(history[historyIndex]); updateNavButtons(); onBoardChange(); });
+    modeEdit.addEventListener('change', () => {
+      if (modeEdit.checked) { mode = 'edit'; updateNavButtons(); updateTurnClickable(); }
+    });
+    modePlay.addEventListener('change', () => {
+      if (modePlay.checked) {
+        mode = 'play';
+        bestMoveEl.textContent = '-';
+        initHistory();
+        updateTurnClickable();
+      }
+    });
+    turnLabel.addEventListener('click', () => { if (mode === 'edit') { turn = -turn; updateTurnLabel(); onBoardChange(); } });
+    worker = new Worker('mcts_worker.js');
+    worker.onmessage = (e) => {
+      const msg = e.data;
+      if (msg.type === 'ready') {
+        toggleBtn.disabled = false;
+      } else if (msg.type === 'progress') {
+        if (msg.token && searchToken && msg.token !== searchToken) return;
+        const a = msg.bestAction;
+        const cells = actionToCells(a);
+        updateBoardHighlights(cells);
+        simCounter = msg.sims || simCounter;
+        bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}${coordLabel(cells.r2, cells.c2)}`;
+        if (typeof msg.score === 'number') marginOutEl.textContent = msg.score >= 0 ? '+' + msg.score.toFixed(2) : msg.score.toFixed(2);
+        if (Array.isArray(msg.top)) showTopMoves(msg.top);
+        // cache current position result
+        posCache.set(stateToHash().slice(1), { bestAction: a, sims: msg.sims, score: msg.score, top: msg.top });
+      } else if (msg.type === 'error') {
+        searching = false;
+        paused = false;
+        toggleBtn.textContent = '开始';
+        toggleBtn.disabled = false;
+      }
+    };
+    worker.postMessage({ type: 'init', modelUrl: 'net.onnx', H, W, c_puct: 1.5, wasmPaths: 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/', progressInterval: 16, batchSize: 16, marginInterval: 64, marginRollouts: 1 });
+    applyHashIfAny();
+    buildBoard();
+    highlightCorridors();
+    renderTopPlaceholders();
+    updateTurnLabel();
+    initHistory();
+    updateNavButtons();
+    updateTurnClickable();
+  </script>
+</body>
+</html>
