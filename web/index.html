@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Domineering 分析 V1.0.1</title>
+  <title>Domineering 分析 V1.0.2</title>
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
   <style>
     :root { --n: 8; --cell: 52px; --gap: 2px; }
@@ -110,6 +110,7 @@
     const simCountEl = document.getElementById('simCount');
     const marginOutEl = document.getElementById('marginOut');
     const topListEl = document.getElementById('topList');
+    const posCache = new Map();
     document.documentElement.style.setProperty('--n', String(H));
     let occ = Array.from({ length: H }, () => Array.from({ length: W }, () => 0));
     let turn = -1;
@@ -509,11 +510,26 @@
       simCounter = 0;
       simCountEl.textContent = '0';
     }
+    function prefillFromCache() {
+      const key = stateToHash().slice(1); // remove leading '#'
+      if (!posCache.has(key)) return;
+      const data = posCache.get(key);
+      const cells = actionToCells(data.bestAction);
+      updateBoardHighlights(cells);
+      bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}-${coordLabel(cells.r2, cells.c2)}`;
+      winRateEl.textContent = (data.winRate * 100).toFixed(1) + '%';
+      if (typeof data.score === 'number') marginOutEl.textContent = data.score.toFixed(2);
+      if (Array.isArray(data.top)) showTopMoves(data.top);
+      simCounter = data.sims || 0;
+      simCountEl.textContent = String(simCounter);
+      modelStatus.textContent = '已缓存结果';
+    }
     function onBoardChange() {
       resetSimCounter();
       updateHash();
       if (topListEl) renderTopPlaceholders();
       if (overlayEl) overlayEl.innerHTML = '';
+      prefillFromCache();
       if (worker) {
         const newTok = (searching && !paused) ? Date.now().toString() : searchToken;
         if (searching && !paused) {
@@ -608,6 +624,8 @@
         bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}-${coordLabel(cells.r2, cells.c2)}`;
         if (typeof msg.score === 'number') marginOutEl.textContent = msg.score.toFixed(2);
         if (Array.isArray(msg.top)) showTopMoves(msg.top);
+        // cache current position result
+        posCache.set(stateToHash().slice(1), { bestAction: a, winRate: msg.winRate, sims: msg.sims, score: msg.score, top: msg.top });
         modelStatus.textContent = '搜索中… ' + simCounter;
       } else if (msg.type === 'error') {
         modelStatus.textContent = '搜索失败：' + msg.error;

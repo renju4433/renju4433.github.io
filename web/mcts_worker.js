@@ -10,6 +10,7 @@ let running = false;
 let batchSize = 16;
 let totalSims = 0;
 let posKey = null;
+const RootSims = new Map();
 const P = new Map();
 const Nsa = new Map();
 const Wsa = new Map();
@@ -211,10 +212,7 @@ function resetTree() {
 }
 function ensurePosition(occ, turn) {
   const k = keyOf(occ, turn);
-  if (posKey !== k) {
-    posKey = k;
-    resetTree();
-  }
+  posKey = k;
 }
 function bestActionAndWinRate(occ, turn) {
   const A = HORIZ_COUNT + VERT_COUNT;
@@ -237,17 +235,20 @@ function bestActionAndWinRate(occ, turn) {
   }
   all.sort((x, y) => y.n - x.n);
   const top = all.slice(0, 5);
-  return { bestAction: bestA, winRate, qBest, totalSims, score: sBest, top };
+  const sims = RootSims.get(k) || 0;
+  return { bestAction: bestA, winRate, qBest, totalSims: sims, score: sBest, top };
 }
 async function runLoop(occ, turn, myToken) {
+  const rootK = keyOf(occ, turn);
+  if (!RootSims.has(rootK)) RootSims.set(rootK, 0);
   while (running && activeToken && activeToken === myToken) {
     for (let i = 0; i < batchSize; i++) {
       if (!running || !activeToken || activeToken !== myToken) break;
       await searchOnce(occ, turn);
-      totalSims++;
+      RootSims.set(rootK, (RootSims.get(rootK) || 0) + 1);
     }
     const summary = bestActionAndWinRate(occ, turn);
-    postMessage({ type: 'progress', sims: totalSims, bestAction: summary.bestAction, winRate: summary.winRate, v: summary.qBest, score: summary.score, top: summary.top, token: activeToken });
+    postMessage({ type: 'progress', sims: summary.totalSims, bestAction: summary.bestAction, winRate: summary.winRate, v: summary.qBest, score: summary.score, top: summary.top, token: activeToken });
     
     // 使用 setTimeout 强制将控制权交还给事件循环，以便处理 pause 消息
     await new Promise(resolve => setTimeout(resolve, 0)); 
