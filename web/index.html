@@ -72,7 +72,7 @@
         <label><input type="radio" name="mode" value="play" id="modePlay" checked>对弈</label>
         <span id="corrText" class="status" style="margin-left:12px;">-</span>
       </div>
-      <span class="status" id="modelStatus">模型加载中…</span>
+      <span class="status" id="modelStatus"></span>
     </div>
     <div class="topmoves">
       <h2>Top 6</h2>
@@ -522,7 +522,7 @@
       searching = true;
       paused = false;
       toggleBtn.textContent = '暂停';
-      modelStatus.textContent = '搜索中… 0';
+      modelStatus.textContent = '0';
       bestMoveEl.textContent = '-';
       marginOutEl.textContent = '-';
       searchToken = Date.now().toString();
@@ -539,7 +539,7 @@
       } else {
         paused = false;
         toggleBtn.textContent = '暂停';
-        modelStatus.textContent = '搜索中… ' + simCounter;
+        modelStatus.textContent = simCounter;
         worker.postMessage({ type: 'resume', occ, turn, token: searchToken });
       }
     }
@@ -580,7 +580,7 @@
           searching = true;
           paused = false;
           toggleBtn.textContent = '暂停';
-          modelStatus.textContent = '搜索中… 0';
+          modelStatus.textContent = '0';
         } else {
           worker.postMessage({ type: 'setPosition', occ, turn, token: searchToken, autoStart: false });
         }
@@ -652,7 +652,6 @@
       const msg = e.data;
       if (msg.type === 'ready') {
         toggleBtn.disabled = false;
-        modelStatus.textContent = '模型已加载';
       } else if (msg.type === 'progress') {
         if (msg.token && searchToken && msg.token !== searchToken) return;
         const a = msg.bestAction;
@@ -664,9 +663,7 @@
         if (Array.isArray(msg.top)) showTopMoves(msg.top);
         // cache current position result
         posCache.set(stateToHash().slice(1), { bestAction: a, sims: msg.sims, score: msg.score, top: msg.top });
-        modelStatus.textContent = '搜索中… ' + simCounter;
       } else if (msg.type === 'error') {
-        modelStatus.textContent = '搜索失败：' + msg.error;
         searching = false;
         paused = false;
         toggleBtn.textContent = '开始';
