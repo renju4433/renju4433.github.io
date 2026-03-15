@@ -301,7 +301,7 @@ function bestActionAndWinRate(occ, turn) {
     const wr = q;
     all.push({ a, n, q, winRate: wr });
   }
-  all.sort((x, y) => y.n - x.n);
+  all.sort((x, y) => y.n - x.n || y.winRate - x.winRate);
   const top = all.slice(0, 6);
   const sims = RootSims.get(k) || 0;
   return { bestAction: bestA, winRate, qBest, totalSims: sims, top };
