@@ -9,11 +9,11 @@
     * { box-sizing: border-box; }
     :root { --n: 12; --cell: 52px; --gap: 2px; --board-size: 480px; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; margin: 0; color: #1f2328; display: flex; flex-direction: column; align-items: center; min-height: 100vh; background-color: #fafafa; }
-    .container { width: 100%; max-width: 600px; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; }
+    .container { width: 100%; max-width: 100%; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; }
     h1 { font-size: 20px; margin: 0 0 16px; align-self: flex-start; }
     .status { font-size: 14px; color: #57606a; }
     .board-wrapper { width: var(--board-size); display: flex; justify-content: center; margin-bottom: 16px; position: relative; }
-    .board { position: relative; display: grid; grid-template-columns: repeat(var(--n), 1fr); grid-template-rows: repeat(var(--n), 1fr); gap: var(--gap); width: 100%; aspect-ratio: 1; user-select: none; max-width: calc(var(--n) * 52px); }
+    .board { position: relative; display: grid; grid-template-columns: repeat(var(--n), 1fr); grid-template-rows: repeat(var(--n), 1fr); gap: var(--gap); width: 100%; aspect-ratio: 1; user-select: none; }
     .cell { display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 12px; position: relative; }
     .cell.light { background: #f0f6ff; }
     .cell.dark { background: #d6e5ff; }
@@ -27,6 +27,7 @@
     .modebar { width: 100%; margin-bottom: 16px; font-size: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
     .modebar label { display: flex; align-items: center; cursor: pointer; white-space: nowrap; }
     .modebar input { margin-right: 6px; }
+    .modebar-left { display: flex; align-items: center; gap: 16px; }
     .status { font-size: 14px; color: #57606a; white-space: nowrap; }
     .topmoves { width: 100%; margin-bottom: 12px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); max-height: 40vh; overflow-y: auto; }
     .topmoves h2 { margin: 0 0 8px; font-size: 14px; color: #24292f; }
@@ -82,9 +83,6 @@
     <div class="left-column">
       <div class="board-wrapper">
         <div id="board" class="board" aria-label="棋盘"></div>
-        <label class="analysis-toggle">
-          <input type="checkbox" id="chkAnalysis" checked> 显示分析
-        </label>
       </div>
       <div class="bottom">
         <button id="btnNew">新局</button>
@@ -102,9 +100,10 @@
         <span>目差：<span class="value" id="winRate">-</span></span>
       </div>
       <div class="modebar">
-        <div style="display:flex; gap:16px;">
+        <div class="modebar-left">
           <label><input type="radio" name="mode" value="edit" id="modeEdit">编辑</label>
           <label><input type="radio" name="mode" value="play" id="modePlay" checked>对弈</label>
+          <label><input type="checkbox" id="chkAnalysis" checked>显示分析</label>
         </div>
         <span class="status" id="modelStatus">模型加载中…</span>
       </div>
@@ -207,6 +206,12 @@
     function coordLabel(r, c) {
       return fileLabel(c) + rankLabel(r);
     }
+    function moveLabel(cells) {
+      // Always sort coordinates to be in order (e.g. C7C8 instead of C8C7)
+      const l1 = coordLabel(cells.r1, cells.c1);
+      const l2 = coordLabel(cells.r2, cells.c2);
+      return (l1 < l2) ? (l1 + l2) : (l2 + l1);
+    }
     let overlayEl = null;
     function buildBoard() {
       boardEl.innerHTML = '';
@@ -283,10 +288,10 @@
       let size;
       if (landscape) {
         const sideMin = 360;
-        const sideWidth = Math.min(Math.max(sideMin, Math.floor(vw * 0.38)), Math.floor(vw * 0.5));
+        // Increase the board width ratio in landscape mode
+        const sideWidth = Math.min(Math.max(sideMin, Math.floor(vw * 0.3)), Math.floor(vw * 0.4));
         const hBottom = bottomEl ? bottomEl.offsetHeight : 0;
-        // Left column has board + bottom buttons. Reserve space for buttons.
-        size = Math.min(vh - 24 - hBottom - 16, vw - sideWidth - 24);
+        size = Math.min(vh - 24 - hBottom - 16, vw - sideWidth - 48);
       } else {
         const hLegend = legendEl ? legendEl.offsetHeight : 0;
         const hMode = modebarEl ? modebarEl.offsetHeight : 0;
@@ -295,6 +300,7 @@
         const sideH = hLegend + hMode + hTop + hBottom + 24;
         size = Math.min(vw - 24, vh - sideH);
       }
+      // Allow board to grow larger than previous fixed limit if space permits
       size = Math.max(240, size);
       document.documentElement.style.setProperty('--board-size', `${size}px`);
     }
@@ -318,7 +324,7 @@
         const row = document.createElement('div');
         row.className = 'row';
         const left = document.createElement('div');
-        left.textContent = `${idx + 1}. ${coordLabel(cells.r1, cells.c1)}${coordLabel(cells.r2, cells.c2)}`;
+        left.textContent = `${idx + 1}. ${moveLabel(cells)}`;
         const right = document.createElement('div');
         const wr = (item.winRate >= 0 ? '+' : '') + item.winRate.toFixed(2);
         right.textContent = `目差 ${wr} | 计算量 ${item.n}`;
