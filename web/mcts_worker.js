@@ -1,5 +1,5 @@
 importScripts('https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js');
-let H = 8, W = 8;
+let H = 12, W = 12;
 let HORIZ_COUNT = 0, VERT_COUNT = 0, PASS_INDEX = 0;
 let session = null;
 let c_puct = 1.5;
@@ -220,21 +220,7 @@ async function predict(occ, turn) {
   return { pi: piMapped, v };
 }
 function keyOf(occ, turn) {
-  // emulate Python DomineeringGame.stringRepresentation:
-  // fill isolated empty cells (no empty 4-neighbors) as occupied, then prefix side
-  const filled = occ.map(row => row.slice());
-  for (let r = 0; r < H; r++) {
-    for (let c = 0; c < W; c++) {
-      if (filled[r][c]) continue;
-      let iso = true;
-      if (r > 0 && !filled[r - 1][c]) iso = false;
-      if (r + 1 < H && !filled[r + 1][c]) iso = false;
-      if (c > 0 && !filled[r][c - 1]) iso = false;
-      if (c + 1 < W && !filled[r][c + 1]) iso = false;
-      if (iso) filled[r][c] = 1;
-    }
-  }
-  return (turn === 1 ? 'H|' : 'V|') + filled.flat().join('');
+  return (turn === 1 ? 'H|' : 'V|') + occ.flat().join('');
 }
 function getN(sa) { return Nsa.get(sa) || 0; }
 function setN(sa, v) { Nsa.set(sa, v); }
@@ -316,7 +302,7 @@ function bestActionAndWinRate(occ, turn) {
     all.push({ a, n, q, winRate: wr });
   }
   all.sort((x, y) => y.n - x.n || y.winRate - x.winRate);
-  const top = all.slice(0, 6);
+  const top = all.slice(0, 10);
   const sims = RootSims.get(k) || 0;
   return { bestAction: bestA, winRate, qBest, totalSims: sims, top };
 }

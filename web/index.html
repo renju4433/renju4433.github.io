@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Domineering 分析 V1.2.7</title>
+  <title>Domineering 分析</title>
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
   <style>
-    :root { --n: 8; --cell: 52px; --gap: 2px; }
+    * { box-sizing: border-box; }
+    :root { --n: 12; --cell: 52px; --gap: 2px; --board-size: 480px; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; margin: 0; color: #1f2328; display: flex; flex-direction: column; align-items: center; min-height: 100vh; background-color: #fafafa; }
     .container { width: 100%; max-width: 600px; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; }
     h1 { font-size: 20px; margin: 0 0 16px; align-self: flex-start; }
     .status { font-size: 14px; color: #57606a; }
-    .board-wrapper { width: 100%; display: flex; justify-content: center; margin-bottom: 16px; position: relative; }
+    .board-wrapper { width: var(--board-size); display: flex; justify-content: center; margin-bottom: 16px; position: relative; }
     .board { position: relative; display: grid; grid-template-columns: repeat(var(--n), 1fr); grid-template-rows: repeat(var(--n), 1fr); gap: var(--gap); width: 100%; aspect-ratio: 1; user-select: none; max-width: calc(var(--n) * 52px); }
     .cell { display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 12px; position: relative; }
     .cell.light { background: #f0f6ff; }
@@ -20,13 +21,14 @@
     .cell.best { outline: none; }
     .coord-left { position: absolute; left: 3px; top: 3px; font-size: 10px; color: #57606a; }
     .coord-bottom { position: absolute; right: 3px; bottom: 3px; font-size: 10px; color: #57606a; }
-    .legend { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 16px; font-size: 14px; color: #57606a; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 16px; }
+    .legend { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 16px; font-size: 14px; color: #57606a; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 16px; }
     .legend span { white-space: nowrap; }
     .value { font-weight: 600; color: #0a3069; }
     .modebar { width: 100%; margin-bottom: 16px; font-size: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .modebar label { display: flex; align-items: center; cursor: pointer; }
+    .modebar label { display: flex; align-items: center; cursor: pointer; white-space: nowrap; }
     .modebar input { margin-right: 6px; }
-    .topmoves { width: 100%; margin-bottom: 12px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .status { font-size: 14px; color: #57606a; white-space: nowrap; }
+    .topmoves { width: 100%; margin-bottom: 12px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); max-height: 40vh; overflow-y: auto; }
     .topmoves h2 { margin: 0 0 8px; font-size: 14px; color: #24292f; }
     .topmoves .row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
     .topmoves .row:last-child { border-bottom: none; }
@@ -40,6 +42,11 @@
     .move-mark { position: absolute; display: flex; align-items: center; justify-content: center; text-align: center; width: 46px; height: 46px; border: 2px solid #d73a49; border-radius: 50%; background: rgba(255,255,255,0.85); transform: translate(-50%, -50%); color: #24292f; font-size: 10px; line-height: 1.1; white-space: pre-line; padding: 2px; }
     .move-text { display: none; }
     .move-rank { position: absolute; top: -8px; right: -8px; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 2px solid #d73a49; color: #24292f; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+    .left-column { width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .right-column { width: 100%; display: flex; flex-direction: column; }
+    .analysis-toggle { position: absolute; top: 4px; right: 4px; background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 4px; font-size: 12px; z-index: 100; display: flex; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.1); cursor: pointer; color: #57606a; }
+    .analysis-toggle input { margin-right: 4px; }
+    .board.hide-analysis .overlay { display: none; }
     
     @media (max-width: 480px) {
         :root { --gap: 1px; }
@@ -54,41 +61,62 @@
         .topmoves .row { font-size: 12px; padding: 2px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .bottom button { font-size: 13px; padding: 10px 0; }
     }
+    @media (orientation: landscape) {
+      body { min-height: 100vh; }
+      .container { max-width: 100%; width: 100%; padding: 12px; height: 100vh; box-sizing: border-box; display: grid; grid-template-columns: var(--board-size) 1fr; column-gap: 16px; align-items: start; grid-template-rows: 1fr; }
+      .left-column { grid-column: 1; height: 100%; justify-content: center; gap: 16px; }
+      .right-column { grid-column: 2; height: 100%; overflow: hidden; gap: 8px; }
+      .board-wrapper { margin-bottom: 0; }
+      .topmoves { flex: 1; overflow-y: auto; margin-bottom: 0; max-height: none; }
+    }
+    /* Aspect-ratio based landscape layout */
+    body.landscape .container { max-width: 100%; width: 100%; padding: 12px; height: 100vh; box-sizing: border-box; display: grid; grid-template-columns: var(--board-size) 1fr; grid-template-rows: 1fr; column-gap: 12px; align-items: start; }
+    body.landscape .left-column { grid-column: 1; height: 100%; justify-content: center; gap: 16px; }
+    body.landscape .right-column { grid-column: 2; height: 100%; overflow: hidden; gap: 8px; }
+    body.landscape .board-wrapper { margin-bottom: 0; }
+    body.landscape .topmoves { flex: 1; overflow-y: auto; margin-bottom: 0; max-height: none; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="board-wrapper">
-      <div id="board" class="board" aria-label="棋盘"></div>
-    </div>
-    <div class="legend">
-      <span id="turnLabel">当前执手：垂直</span>
-      <span>最佳着法：<span class="value" id="bestMove">-</span></span>
-      <span>目差：<span class="value" id="winRate">-</span></span>
-    </div>
-    <div class="modebar">
-      <div style="display:flex; gap:16px;">
-        <label><input type="radio" name="mode" value="edit" id="modeEdit">编辑</label>
-        <label><input type="radio" name="mode" value="play" id="modePlay" checked>对弈</label>
+    <div class="left-column">
+      <div class="board-wrapper">
+        <div id="board" class="board" aria-label="棋盘"></div>
+        <label class="analysis-toggle">
+          <input type="checkbox" id="chkAnalysis" checked> 显示分析
+        </label>
       </div>
-      <span class="status" id="modelStatus">模型加载中…</span>
+      <div class="bottom">
+        <button id="btnNew">新局</button>
+        <button id="btnFirst">&lt;&lt;</button>
+        <button id="btnPrev">&lt;</button>
+        <button id="toggleBtn">开始</button>
+        <button id="btnNext">&gt;</button>
+        <button id="btnLast">&gt;&gt;</button>
+      </div>
     </div>
-    <div class="topmoves">
-      <h2>Top 6</h2>
-      <div id="topList"></div>
-    </div>
-    <div class="bottom">
-      <button id="btnNew">新局</button>
-      <button id="btnFirst">&lt;&lt;</button>
-      <button id="btnPrev">&lt;</button>
-      <button id="toggleBtn">开始</button>
-      <button id="btnNext">&gt;</button>
-      <button id="btnLast">&gt;&gt;</button>
+    <div class="right-column">
+      <div class="legend">
+        <span id="turnLabel">当前：垂直</span>
+        <span>最佳：<span class="value" id="bestMove">-</span></span>
+        <span>目差：<span class="value" id="winRate">-</span></span>
+      </div>
+      <div class="modebar">
+        <div style="display:flex; gap:16px;">
+          <label><input type="radio" name="mode" value="edit" id="modeEdit">编辑</label>
+          <label><input type="radio" name="mode" value="play" id="modePlay" checked>对弈</label>
+        </div>
+        <span class="status" id="modelStatus">模型加载中…</span>
+      </div>
+      <div class="topmoves">
+        <h2>着法</h2>
+        <div id="topList"></div>
+      </div>
     </div>
   </div>
 
   <script>
-    const H = 8, W = 8;
+    const H = 10, W = 10;
     const HORIZ_COUNT = H * (W - 1);
     const VERT_COUNT = (H - 1) * W;
     const PASS_INDEX = HORIZ_COUNT + VERT_COUNT;
@@ -99,6 +127,7 @@
     const btnNext = document.getElementById('btnNext');
     const btnLast = document.getElementById('btnLast');
     const btnNew = document.getElementById('btnNew');
+    const chkAnalysis = document.getElementById('chkAnalysis');
     const modeEdit = document.getElementById('modeEdit');
     const modePlay = document.getElementById('modePlay');
     const modelStatus = document.getElementById('modelStatus');
@@ -107,6 +136,10 @@
     const winRateEl = document.getElementById('winRate');
     const topListEl = document.getElementById('topList');
     const posCache = new Map();
+    const legendEl = document.querySelector('.legend');
+    const modebarEl = document.querySelector('.modebar');
+    const topmovesEl = document.querySelector('.topmoves');
+    const bottomEl = document.querySelector('.bottom');
     document.documentElement.style.setProperty('--n', String(H));
     let occ = Array.from({ length: H }, () => Array.from({ length: W }, () => 0));
     let turn = -1;
@@ -244,6 +277,37 @@
       boardEl.children[idx1].classList.add('best');
       boardEl.children[idx2].classList.add('best');
     }
+    function calcBoardSize() {
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const landscape = vw >= vh;
+      let size;
+      if (landscape) {
+        const sideMin = 360;
+        const sideWidth = Math.min(Math.max(sideMin, Math.floor(vw * 0.38)), Math.floor(vw * 0.5));
+        const hBottom = bottomEl ? bottomEl.offsetHeight : 0;
+        // Left column has board + bottom buttons. Reserve space for buttons.
+        size = Math.min(vh - 24 - hBottom - 16, vw - sideWidth - 24);
+      } else {
+        const hLegend = legendEl ? legendEl.offsetHeight : 0;
+        const hMode = modebarEl ? modebarEl.offsetHeight : 0;
+        const hTop = topmovesEl ? topmovesEl.offsetHeight : 0;
+        const hBottom = bottomEl ? bottomEl.offsetHeight : 0;
+        const sideH = hLegend + hMode + hTop + hBottom + 24;
+        size = Math.min(vw - 24, vh - sideH);
+      }
+      size = Math.max(240, size);
+      document.documentElement.style.setProperty('--board-size', `${size}px`);
+    }
+    function updateLayoutClass() {
+      const ratio = window.innerWidth / window.innerHeight;
+      document.body.classList.toggle('landscape', ratio >= 1.2);
+    }
+    window.addEventListener('resize', () => { updateLayoutClass(); calcBoardSize(); });
+    if ('orientation' in screen && screen.orientation) {
+      screen.orientation.addEventListener('change', () => { updateLayoutClass(); calcBoardSize(); });
+    } else {
+      window.addEventListener('orientationchange', () => { updateLayoutClass(); calcBoardSize(); });
+    }
     function showTopMoves(top) {
       if (!topListEl) return;
       topListEl.innerHTML = '';
@@ -262,18 +326,10 @@
         row.appendChild(right);
         topListEl.appendChild(row);
       });
-      // fill placeholders to keep 5 rows
-      for (let i = items.length; i < 6; i++) {
-        const row = document.createElement('div');
-        row.className = 'row';
-        row.innerHTML = '&nbsp;';
-        topListEl.appendChild(row);
-      }
       // board overlay: ring at domino center with text inside (wr, score, visits)
       if (!overlayEl) return;
       overlayEl.innerHTML = '';
       if (items.length === 0) return;
-      const colors = ['#d73a49', '#ff9800', '#ffd33d', '#28a745', '#0366d6', '#6f42c1'];
       const { s, g } = getCellSizeAndGap();
       items.forEach((item, idx) => {
         const cells = actionToCells(item.a);
@@ -295,7 +351,7 @@
         mark.style.height = `${d}px`;
         mark.style.left = `${cx}px`;
         mark.style.top = `${cy}px`;
-        const color = colors[idx % colors.length];
+        const color = idx === 0 ? 'blue' : 'green';
         mark.style.borderColor = color;
         const wr = (item.winRate >= 0 ? '+' : '') + item.winRate.toFixed(2);
         const nline = String(item.n);
@@ -312,15 +368,13 @@
     function renderTopPlaceholders() {
       if (!topListEl) return;
       topListEl.innerHTML = '';
-      for (let i = 0; i < 6; i++) {
-        const row = document.createElement('div');
-        row.className = 'row';
-        row.innerHTML = '&nbsp;';
-        topListEl.appendChild(row);
-      }
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.innerHTML = '等待搜索...';
+      topListEl.appendChild(row);
     }
     function updateTurnLabel() {
-      turnLabel.textContent = '当前执手：' + (turn === 1 ? '水平' : '垂直');
+      turnLabel.textContent = '当前：' + (turn === 1 ? '水平' : '垂直');
     }
     function placeIfLegal(r, c) {
       if (turn === 1) {
@@ -506,7 +560,7 @@
       const data = posCache.get(key);
       const cells = actionToCells(data.bestAction);
       updateBoardHighlights(cells);
-      bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}-${coordLabel(cells.r2, cells.c2)}`;
+      bestMoveEl.textContent = `${coordLabel(cells.r1, cells.c1)}${coordLabel(cells.r2, cells.c2)}`;
       winRateEl.textContent = (data.winRate >= 0 ? '+' : '') + data.winRate.toFixed(2);
       if (Array.isArray(data.top)) showTopMoves(data.top);
       simCounter = data.sims || 0;
@@ -517,6 +571,8 @@
       if (topListEl) renderTopPlaceholders();
       if (overlayEl) overlayEl.innerHTML = '';
       prefillFromCache();
+      updateLayoutClass();
+      calcBoardSize();
       if (worker) {
         const newTok = (searching && !paused) ? Date.now().toString() : searchToken;
         if (searching && !paused) {
@@ -590,8 +646,15 @@
         updateTurnClickable();
       }
     });
+    chkAnalysis.addEventListener('change', () => {
+      if (chkAnalysis.checked) {
+        boardEl.classList.remove('hide-analysis');
+      } else {
+        boardEl.classList.add('hide-analysis');
+      }
+    });
     turnLabel.addEventListener('click', () => { if (mode === 'edit') { turn = -turn; updateTurnLabel(); onBoardChange(); } });
-    worker = new Worker('mcts_worker.js');
+    worker = new Worker('mcts_worker.js?v=' + Date.now());
     worker.onmessage = (e) => {
       const msg = e.data;
       if (msg.type === 'ready') {
@@ -617,7 +680,7 @@
         toggleBtn.disabled = false;
       }
     };
-    worker.postMessage({ type: 'init', modelUrl: 'domineering.onnx', H, W, c_puct: 1.5, wasmPaths: 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/', progressInterval: 16, batchSize: 16, marginInterval: 64, marginRollouts: 1 });
+    worker.postMessage({ type: 'init', modelUrl: 'domineering_10x10.onnx', H, W, c_puct: 1.5, wasmPaths: 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/', progressInterval: 16, batchSize: 16, marginInterval: 64, marginRollouts: 1 });
     applyHashIfAny();
     buildBoard();
     renderTopPlaceholders();
@@ -625,6 +688,7 @@
     initHistory();
     updateNavButtons();
     updateTurnClickable();
+    calcBoardSize();
   </script>
 </body>
 </html>
