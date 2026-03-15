@@ -220,7 +220,21 @@ async function predict(occ, turn) {
   return { pi: piMapped, v };
 }
 function keyOf(occ, turn) {
-  return (turn === 1 ? 'H|' : 'V|') + occ.flat().join('');
+  // emulate Python DomineeringGame.stringRepresentation:
+  // fill isolated empty cells (no empty 4-neighbors) as occupied, then prefix side
+  const filled = occ.map(row => row.slice());
+  for (let r = 0; r < H; r++) {
+    for (let c = 0; c < W; c++) {
+      if (filled[r][c]) continue;
+      let iso = true;
+      if (r > 0 && !filled[r - 1][c]) iso = false;
+      if (r + 1 < H && !filled[r + 1][c]) iso = false;
+      if (c > 0 && !filled[r][c - 1]) iso = false;
+      if (c + 1 < W && !filled[r][c + 1]) iso = false;
+      if (iso) filled[r][c] = 1;
+    }
+  }
+  return (turn === 1 ? 'H|' : 'V|') + filled.flat().join('');
 }
 function getN(sa) { return Nsa.get(sa) || 0; }
 function setN(sa, v) { Nsa.set(sa, v); }
