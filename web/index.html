@@ -517,26 +517,47 @@
     }
     let _updatingHash = false;
     function stateToHash() {
-      const pref = (turn === 1) ? 'H' : 'V';
+      // Hex encoding: turn (1 bit) + occ (100 bits)
+      // Since H=10, W=10, total cells=100.
+      // We need 101 bits. Round up to nearest 4 bits for hex.
+      // Actually let's just use bits -> int -> hex
+      // Format: H/V + hex string of occ bits
+      const pref = (turn === 1) ? '1' : '0';
       const bits = occ.flat().join('');
-      return '#' + pref + '|' + bits;
+      // Pack bits into bytes then to hex
+      let hex = '';
+      for (let i = 0; i < bits.length; i += 4) {
+        const chunk = bits.substring(i, i + 4).padEnd(4, '0');
+        hex += parseInt(chunk, 2).toString(16);
+      }
+      return '#' + pref + hex;
     }
     function applyHashIfAny() {
       const h = window.location.hash;
       if (!h || h.length < 2) return;
       const s = h.substring(1);
-      const parts = s.split('|');
-      if (parts.length !== 2) return;
-      const pref = parts[0];
-      const bits = parts[1];
-      if (bits.length !== H * W) return;
+      // Format: 1 char pref + hex string
+      if (s.length < 1) return;
+      const pref = s[0];
+      const hex = s.substring(1);
+      
+      let bits = '';
+      for (let i = 0; i < hex.length; i++) {
+        const val = parseInt(hex[i], 16);
+        if (isNaN(val)) return;
+        bits += val.toString(2).padStart(4, '0');
+      }
+      // Truncate to H*W
+      if (bits.length < H * W) return;
+      bits = bits.substring(0, H * W);
+      
       let idx = 0;
       for (let r = 0; r < H; r++) {
         for (let c = 0; c < W; c++) {
           occ[r][c] = (bits[idx++] === '1') ? 1 : 0;
         }
       }
-      turn = (pref === 'H') ? 1 : -1;
+      turn = (pref === '1') ? 1 : -1;
     }
     function updateHash() {
       const newHash = stateToHash();
