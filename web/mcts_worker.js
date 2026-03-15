@@ -3,7 +3,6 @@ let H = 8, W = 8;
 let HORIZ_COUNT = 0, VERT_COUNT = 0, PASS_INDEX = 0;
 let session = null;
 let c_puct = 1.5;
-let score_weight = 0.25;
 let progressInterval = 16;
 let activeToken = null;
 let running = false;
@@ -15,9 +14,6 @@ const P = new Map();
 const Nsa = new Map();
 const Wsa = new Map();
 const Qsa = new Map();
-const Ssa = new Map();
-const SumSsa = new Map();
-const CountSsa = new Map();
 function softmaxLog(arr) {
   const m = Math.max(...arr);
   const exps = arr.map(v => Math.exp(v - m));
@@ -65,13 +61,6 @@ function applyAction(occ, turn, a) {
   const nocc = occ.map(row => row.slice());
   if (a < HORIZ_COUNT) { const r = Math.floor(a / (W - 1)); const c = a % (W - 1); nocc[r][c] = 1; nocc[r][c + 1] = 1; return { occ: nocc, turn: -1 }; }
   const k = a - HORIZ_COUNT; const r = Math.floor(k / W); const c = k % W; nocc[r][c] = 1; nocc[r + 1][c] = 1; return { occ: nocc, turn: 1 };
-}
-function ended(occ, turn) {
-  return validMoves(occ, turn).length === 0;
-}
-function oppRemainingMinusHalf(occ, turn) {
-  if (turn === 1) return countMovesVertical(occ) - 0.5;
-  return countMovesHorizontal(occ) - 0.5;
 }
 function analyzeCorridors(occ) {
   const vis = Array.from({ length: H }, () => Array(W).fill(false));
@@ -239,29 +228,15 @@ function getW(sa) { return Wsa.get(sa) || 0; }
 function setW(sa, v) { Wsa.set(sa, v); }
 function getQ(sa) { return Qsa.get(sa) || 0; }
 function setQ(sa, v) { Qsa.set(sa, v); }
-function getS(sa) { return Ssa.get(sa) || 0; }
-function setS(sa, v) { Ssa.set(sa, v); }
-function getSumS(sa) { return SumSsa.get(sa) || 0; }
-function setSumS(sa, v) { SumSsa.set(sa, v); }
-function getCountS(sa) { return CountSsa.get(sa) || 0; }
-function setCountS(sa, v) { CountSsa.set(sa, v); }
 async function searchOnce(occCur, turnCur) {
   const A = HORIZ_COUNT + VERT_COUNT;
-  if (ended(occCur, turnCur)) {
-    // Current player loses. Score should be negative from loser's perspective.
-    // Ensure negativity even when oppRemainingMinusHalf < 0 (e.g., -0.5 when winner has 0 extra moves)
-    const s = -Math.abs(oppRemainingMinusHalf(occCur, turnCur));
-    return { v: -1, score: s };
-  }
-  // Corridor solver: if all empty components are 1xn or nx1, compute exact outcome and margin
+  // Corridor solver: if all empty components are 1xn or nx1, compute exact outcome
   const cor = analyzeCorridors(occCur);
   if (cor.solvable) {
     const my = (turnCur === 1) ? cor.h : cor.v;
     const opp = (turnCur === -1) ? cor.h : cor.v;
-    const raw = my - opp;
-    const scoreExact = raw - 0.5;       // subtract 0.5 advantage for side to move
-    const vExact = (scoreExact > 0) ? 1 : -1;
-    return { v: vExact, score: scoreExact };
+    const scoreExact = my - opp - 0.5;
+    return { v: scoreExact };
   }
   const k = keyOf(occCur, turnCur);
   if (!P.has(k)) {
@@ -272,7 +247,7 @@ async function searchOnce(occCur, turnCur) {
     const s = masked.reduce((a, b) => a + b, 0);
     const pi = s > 0 ? masked.map(x => x / s) : masked.map(() => 1e-8);
     P.set(k, pi);
-    return { v: pr.v, score: null };
+    return { v: pr.v};
   }
   const piStored = P.get(k);
   const validsAll = validMoves(occCur, turnCur);
@@ -295,21 +270,14 @@ async function searchOnce(occCur, turnCur) {
   const next = applyAction(occCur, turnCur, bestA);
   const resChild = await searchOnce(next.occ, next.turn);
   const vCurrent = -resChild.v;
-  const scoreCurrent = (resChild.score !== null && resChild.score !== undefined) ? -resChild.score : null;
   const sa = k + ':' + bestA;
   setN(sa, getN(sa) + 1);
   setW(sa, getW(sa) + vCurrent);
   setQ(sa, getW(sa) / getN(sa));
-  if (scoreCurrent !== null) {
-    setCountS(sa, getCountS(sa) + 1);
-    setSumS(sa, getSumS(sa) + scoreCurrent);
-    setS(sa, getSumS(sa) / getCountS(sa));
-  }
-  return { v: vCurrent, score: scoreCurrent };
+  return { v: vCurrent};
 }
 function resetTree() {
   P.clear(); Nsa.clear(); Wsa.clear(); Qsa.clear();
-  Ssa.clear(); SumSsa.clear(); CountSsa.clear();
   totalSims = 0;
 }
 function ensurePosition(occ, turn) {
@@ -324,21 +292,19 @@ function bestActionAndWinRate(occ, turn) {
   let bestA = 0, bestN = -1;
   for (let a = 0; a < A; a++) if (visits[a] > bestN) { bestN = visits[a]; bestA = a; }
   const qBest = getQ(k + ':' + bestA) || 0;
-  const sBest = getS(k + ':' + bestA) || 0;
-  const winRate = (qBest + 1) / 2;
+  const winRate = qBest;
   const all = [];
   for (let a = 0; a < A; a++) {
     const n = visits[a];
     if (n <= 0) continue;
     const q = getQ(k + ':' + a) || 0;
-    const s = getS(k + ':' + a) || 0;
-    const wr = (q + 1) / 2;
-    all.push({ a, n, q, s, winRate: wr });
+    const wr = q;
+    all.push({ a, n, q, winRate: wr });
   }
   all.sort((x, y) => y.n - x.n);
   const top = all.slice(0, 6);
   const sims = RootSims.get(k) || 0;
-  return { bestAction: bestA, winRate, qBest, totalSims: sims, score: sBest, top };
+  return { bestAction: bestA, winRate, qBest, totalSims: sims, top };
 }
 async function runLoop(occ, turn, myToken) {
   const rootK = keyOf(occ, turn);
@@ -350,9 +316,8 @@ async function runLoop(occ, turn, myToken) {
       RootSims.set(rootK, (RootSims.get(rootK) || 0) + 1);
     }
     const summary = bestActionAndWinRate(occ, turn);
-    postMessage({ type: 'progress', sims: summary.totalSims, bestAction: summary.bestAction, winRate: summary.winRate, v: summary.qBest, score: summary.score, top: summary.top, token: activeToken });
-    
-    // 使用 setTimeout 强制将控制权交还给事件循环，以便处理 pause 消息
+    postMessage({ type: 'progress', sims: summary.totalSims, bestAction: summary.bestAction, winRate: summary.winRate, top: summary.top, token: activeToken });
+
     await new Promise(resolve => setTimeout(resolve, 0)); 
   }
 }
@@ -365,7 +330,6 @@ onmessage = async (e) => {
     VERT_COUNT = (H - 1) * W;
     PASS_INDEX = HORIZ_COUNT + VERT_COUNT;
     c_puct = msg.c_puct || c_puct;
-    score_weight = (typeof msg.score_weight === 'number') ? msg.score_weight : score_weight;
     progressInterval = msg.progressInterval || progressInterval;
     batchSize = msg.batchSize || batchSize;
     try {
@@ -384,7 +348,6 @@ onmessage = async (e) => {
     VERT_COUNT = (H - 1) * W;
     PASS_INDEX = HORIZ_COUNT + VERT_COUNT;
     c_puct = msg.c_puct || c_puct;
-    score_weight = (typeof msg.score_weight === 'number') ? msg.score_weight : score_weight;
     progressInterval = msg.progressInterval || progressInterval;
     batchSize = msg.batchSize || batchSize;
     activeToken = msg.token || null;
@@ -400,7 +363,6 @@ onmessage = async (e) => {
     const occ = msg.occ;
     const turn = msg.turn;
     activeToken = msg.token || activeToken;
-    score_weight = (typeof msg.score_weight === 'number') ? msg.score_weight : score_weight;
     running = true;
     runLoop(occ, turn, activeToken);
   } else if (msg.type === 'setPosition') {
