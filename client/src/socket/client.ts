@@ -1,0 +1,160 @@
+import { io, Socket } from 'socket.io-client'
+import {
+    SocketEvents,
+    C2S_CreateRoom,
+    C2S_JoinRoom,
+    C2S_PickGeneral,
+    C2S_DeployGenerals,
+    C2S_ChooseActionUnit,
+    C2S_UseCard,
+    C2S_UseSkill,
+    C2S_Respond,
+    C2S_Discard,
+    C2S_YieldChoice,
+    C2S_NegateRespond,
+    C2S_AiSuggest,
+    S2C_RoomCreated,
+    S2C_RoomJoined,
+    S2C_GameStateUpdate,
+    S2C_GameOver,
+    S2C_Error,
+    S2C_AiSuggestion,
+} from 'sgs3v3-shared'
+
+// ── localStorage 会话持久化 ──────────────────────────────────
+
+const SESSION_KEY = 'sgs3v3_session'
+
+interface SavedSession {
+    playerId: string
+    roomCode: string
+}
+
+export function saveSession(playerId: string, roomCode: string): void {
+    localStorage.setItem(SESSION_KEY, JSON.stringify({ playerId, roomCode }))
+}
+
+export function loadSession(): SavedSession | null {
+    try {
+        const raw = localStorage.getItem(SESSION_KEY)
+        if (!raw) return null
+        const data = JSON.parse(raw)
+        if (data.playerId && data.roomCode) return data as SavedSession
+        return null
+    } catch {
+        return null
+    }
+}
+
+export function clearSession(): void {
+    localStorage.removeItem(SESSION_KEY)
+}
+
+// ── Socket 单例 ──────────────────────────────────────────────
+
+let socket: Socket | null = null
+
+export function getSocket(): Socket {
+    if (!socket) {
+        socket = io({ autoConnect: false })
+    }
+    return socket
+}
+
+export function connectSocket(): Socket {
+    const s = getSocket()
+    if (!s.connected) s.connect()
+    return s
+}
+
+// ── 发送事件（服务端通过 socketId 识别玩家，无需传 playerId） ──
+
+export const emit = {
+    createRoom: (data: C2S_CreateRoom) =>
+        getSocket().emit(SocketEvents.CREATE_ROOM, data),
+
+    joinRoom: (data: C2S_JoinRoom) =>
+        getSocket().emit(SocketEvents.JOIN_ROOM, data),
+
+    rejoinRoom: (data: { roomCode: string; playerId: string }) =>
+        getSocket().emit(SocketEvents.REJOIN_ROOM, data),
+
+    pickGeneral: (data: C2S_PickGeneral) =>
+        getSocket().emit(SocketEvents.PICK_GENERAL, data),
+
+    deployGenerals: (data: C2S_DeployGenerals) =>
+        getSocket().emit(SocketEvents.DEPLOY_GENERALS, data),
+
+    chooseActionUnit: (data: C2S_ChooseActionUnit) =>
+        getSocket().emit(SocketEvents.CHOOSE_ACTION_UNIT, data),
+
+    useCard: (data: C2S_UseCard) =>
+        getSocket().emit(SocketEvents.USE_CARD, data),
+
+    useSkill: (data: C2S_UseSkill) =>
+        getSocket().emit(SocketEvents.USE_SKILL, data),
+
+    respond: (data: C2S_Respond) =>
+        getSocket().emit(SocketEvents.RESPOND, data),
+
+    endTurn: () =>
+        getSocket().emit(SocketEvents.END_TURN),
+
+    discard: (data: C2S_Discard) =>
+        getSocket().emit(SocketEvents.DISCARD, data),
+
+    yieldChoice: (data: C2S_YieldChoice) =>
+        getSocket().emit(SocketEvents.YIELD_CHOICE, data),
+
+    negateRespond: (data: C2S_NegateRespond) =>
+        getSocket().emit(SocketEvents.NEGATE_RESPOND, data),
+
+    aiSuggest: (data: C2S_AiSuggest = {}) =>
+        getSocket().emit(SocketEvents.AI_SUGGEST, data),
+
+    surrender: () =>
+        getSocket().emit(SocketEvents.SURRENDER),
+
+    switchSpectateFaction: () =>
+        getSocket().emit(SocketEvents.SWITCH_SPECTATE_FACTION),
+}
+
+// ── 监听事件 ────────────────────────────────────────────────
+
+export type SocketEventHandlers = {
+    onRoomCreated?: (data: S2C_RoomCreated) => void
+    onRoomJoined?: (data: S2C_RoomJoined) => void
+    onSpectateJoin?: (data: { spectatorId: string; roomCode: string }) => void
+    onRejoinOk?: (data: { playerId: string; roomCode: string }) => void
+    onRejoinFail?: (data: { message: string }) => void
+    onGameStateUpdate?: (data: S2C_GameStateUpdate) => void
+    onGameOver?: (data: S2C_GameOver) => void
+    onAiSuggestion?: (data: S2C_AiSuggestion) => void
+    onError?: (data: S2C_Error) => void
+}
+
+export function registerSocketListeners(handlers: SocketEventHandlers) {
+    const s = getSocket()
+    if (handlers.onRoomCreated) s.on(SocketEvents.ROOM_CREATED, handlers.onRoomCreated)
+    if (handlers.onRoomJoined) s.on(SocketEvents.ROOM_JOINED, handlers.onRoomJoined)
+    if (handlers.onSpectateJoin) s.on(SocketEvents.SPECTATE_JOIN, handlers.onSpectateJoin)
+    if (handlers.onRejoinOk) s.on(SocketEvents.REJOIN_OK, handlers.onRejoinOk)
+    if (handlers.onRejoinFail) s.on(SocketEvents.REJOIN_FAIL, handlers.onRejoinFail)
+    if (handlers.onGameStateUpdate) s.on(SocketEvents.GAME_STATE_UPDATE, handlers.onGameStateUpdate)
+    if (handlers.onGameOver) s.on(SocketEvents.GAME_OVER, handlers.onGameOver)
+    if (handlers.onAiSuggestion) s.on(SocketEvents.AI_SUGGESTION, handlers.onAiSuggestion)
+    if (handlers.onError) s.on(SocketEvents.ERROR, handlers.onError)
+}
+
+export function unregisterSocketListeners(handlers: SocketEventHandlers) {
+    const s = getSocket()
+    if (handlers.onRoomCreated) s.off(SocketEvents.ROOM_CREATED, handlers.onRoomCreated)
+    if (handlers.onRoomJoined) s.off(SocketEvents.ROOM_JOINED, handlers.onRoomJoined)
+    if (handlers.onSpectateJoin) s.off(SocketEvents.SPECTATE_JOIN, handlers.onSpectateJoin)
+    if (handlers.onRejoinOk) s.off(SocketEvents.REJOIN_OK, handlers.onRejoinOk)
+    if (handlers.onRejoinFail) s.off(SocketEvents.REJOIN_FAIL, handlers.onRejoinFail)
+    if (handlers.onGameStateUpdate) s.off(SocketEvents.GAME_STATE_UPDATE, handlers.onGameStateUpdate)
+    if (handlers.onGameOver) s.off(SocketEvents.GAME_OVER, handlers.onGameOver)
+    if (handlers.onAiSuggestion) s.off(SocketEvents.AI_SUGGESTION, handlers.onAiSuggestion)
+    if (handlers.onError) s.off(SocketEvents.ERROR, handlers.onError)
+}
