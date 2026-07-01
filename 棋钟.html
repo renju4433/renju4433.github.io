@@ -16,6 +16,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             background: #ffffff;
             padding: 20px;
@@ -73,6 +74,7 @@
 
         .screen.time-up {
             background: #ff6b6b;
+            animation: alarm-flash 0.6s infinite;
         }
 
         .time {
@@ -101,6 +103,10 @@
 
         @keyframes blink {
             50% { opacity: 0; }
+        }
+
+        @keyframes alarm-flash {
+            50% { background: #ffd2d2; }
         }
 
         /* 按键区域 */
@@ -200,9 +206,69 @@
         .center-action.reset:hover {
             background: #e67700;
         }
+
+        .rotate-tip {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.96);
+            z-index: 10;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                padding: 12px;
+            }
+
+            .settings {
+                gap: 10px;
+                margin-bottom: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .device {
+                width: min(100%, 92vw);
+                padding: 16px;
+                gap: 16px;
+                margin-bottom: 0;
+            }
+
+            .screen {
+                padding: 18px 10px;
+            }
+
+            .time {
+                font-size: clamp(36px, 7vw, 56px);
+            }
+
+            .buttons-row {
+                padding: 14px;
+            }
+
+            .blue-btn {
+                width: min(18vw, 84px);
+                height: min(18vw, 84px);
+            }
+        }
+
+        @media (orientation: portrait) and (max-width: 900px) {
+            .rotate-tip {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="rotate-tip">请横屏使用</div>
+
     <!-- 设置区域 -->
     <div class="settings">
         <div>
@@ -275,6 +341,7 @@
         let currentPlayer = 0; // 0=未开始 1=左侧 2=右侧
         let timer = null; // 计时器实例
         let audioContext = null;
+        let alarmTimer = null;
         const centerMenu = document.getElementById('centerMenu');
 
         // 监听 hash 变化（如用户手动修改 URL）
@@ -320,18 +387,9 @@
             }
         }
 
-        // 时间到提醒
-        function timeUp(player) {
-            stopTimer();
-            document.getElementById(`screen${player}`).classList.add('time-up');
-            const side = player === 1 ? '左侧' : '右侧';
-            alert(`${side} 时间用尽！`);
-        }
-
-        // 播放按钟滴声
-        function playClockSound() {
+        function ensureAudioContext() {
             const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-            if (!AudioContextClass) return;
+            if (!AudioContextClass) return null;
 
             if (!audioContext) {
                 audioContext = new AudioContextClass();
@@ -341,22 +399,69 @@
                 audioContext.resume();
             }
 
-            const now = audioContext.currentTime;
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
+            return audioContext;
+        }
+
+        function playTone(startTime, frequency, duration, volume) {
+            const ctx = ensureAudioContext();
+            if (!ctx) return;
+
+            const oscillator = ctx.createOscillator();
+            const gainNode = ctx.createGain();
 
             oscillator.type = 'triangle';
-            oscillator.frequency.setValueAtTime(880, now);
-            oscillator.frequency.exponentialRampToValueAtTime(660, now + 0.08);
-
-            gainNode.gain.setValueAtTime(0.0001, now);
-            gainNode.gain.exponentialRampToValueAtTime(0.12, now + 0.01);
-            gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
+            oscillator.frequency.setValueAtTime(frequency, startTime);
+            gainNode.gain.setValueAtTime(0.0001, startTime);
+            gainNode.gain.exponentialRampToValueAtTime(volume, startTime + 0.01);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
 
             oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            oscillator.start(now);
-            oscillator.stop(now + 0.09);
+            gainNode.connect(ctx.destination);
+            oscillator.start(startTime);
+            oscillator.stop(startTime + duration + 0.02);
+        }
+
+        // 时间到提醒
+        function timeUp(player) {
+            if (alarmTimer) return;
+            stopTimer();
+            document.getElementById(`screen${player}`).classList.add('time-up');
+            startAlarm();
+        }
+
+        // 播放按钟滴声
+        function playClockSound() {
+            const ctx = ensureAudioContext();
+            if (!ctx) return;
+            playTone(ctx.currentTime, 880, 0.08, 0.12);
+        }
+
+        function startAlarm() {
+            const ctx = ensureAudioContext();
+            if (!ctx || alarmTimer) return;
+
+            const playAlarmPulse = () => {
+                const now = ctx.currentTime;
+                playTone(now, 920, 0.14, 0.16);
+                playTone(now + 0.18, 680, 0.18, 0.14);
+            };
+
+            playAlarmPulse();
+            alarmTimer = setInterval(playAlarmPulse, 900);
+
+            if (navigator.vibrate) {
+                navigator.vibrate([250, 120, 250, 300]);
+            }
+        }
+
+        function stopAlarm() {
+            if (alarmTimer) {
+                clearInterval(alarmTimer);
+                alarmTimer = null;
+            }
+            if (navigator.vibrate) {
+                navigator.vibrate(0);
+            }
         }
 
         // 中间面板菜单
@@ -426,6 +531,7 @@
 
         // 重置棋钟
         function resetClock() {
+            stopAlarm();
             stopTimer();
             initTime = parseInt(document.getElementById('initTime').value) || 60;
             addTime = parseInt(document.getElementById('addTime').value) || 30;
