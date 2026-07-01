@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>简洁棋钟</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100dvh;
+            background: #ffffff;
+            padding: 20px;
+        }
+
+        /* 棋钟主体 - 仿实物设计 */
+        .device {
+            background: linear-gradient(to bottom, #e8e8e8, #c0c0c0);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.8);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 600px;
+        }
+
+        .screens-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .screen {
+            background: #a3b899; /* 液晶屏底色 */
+            border: 5px solid #666;
+            border-radius: 8px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 15px;
+            box-shadow: inset 0 3px 8px rgba(0,0,0,0.4), 0 2px 0 rgba(255,255,255,0.5);
+            position: relative;
+            transition: background 0.2s;
+        }
+
+        .screen.time-up {
+            background: #ff6b6b;
+            animation: alarm-flash 0.6s infinite;
+        }
+
+        .time {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 64px;
+            font-weight: bold;
+            color: #111;
+            letter-spacing: 2px;
+        }
+
+        .active-indicator {
+            position: absolute;
+            bottom: 15px;
+            font-size: 24px;
+            color: #111;
+            opacity: 0;
+        }
+        
+        #screen1 .active-indicator { right: 20px; }
+        #screen2 .active-indicator { left: 20px; }
+
+        .screen.active .active-indicator {
+            opacity: 1;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @keyframes alarm-flash {
+            50% { background: #ffd2d2; }
+        }
+
+        /* 按键区域 */
+        .buttons-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #d5d5d5;
+            gap: 18px;
+            padding: 20px 28px;
+            border-radius: 10px;
+            box-shadow: inset 0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        .blue-btn {
+            width: 90px;
+            height: 90px;
+            flex: 0 0 auto;
+            background: radial-gradient(circle at 30% 30%, #5cb8ff, #0066cc);
+            border-radius: 50%;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.4), inset 0 -4px 8px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.1s;
+            border: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .blue-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.4), inset 0 -2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* 被按下的状态（跷跷板效果） */
+        .blue-btn.pressed {
+            transform: translateY(8px);
+            box-shadow: 0 0px 2px rgba(0,0,0,0.4), inset 0 -1px 2px rgba(0,0,0,0.3);
+            background: radial-gradient(circle at 30% 30%, #4a9bd6, #004c99);
+            cursor: default;
+        }
+
+        .center-panel {
+            width: 96px;
+            height: 80px;
+            border-radius: 4px;
+            position: relative;
+            overflow: visible;
+            user-select: none;
+        }
+
+        .center-face,
+        .center-menu {
+            position: absolute;
+            inset: 0;
+            border-radius: 4px;
+        }
+
+        .center-face {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #999;
+            background: #e0e0e0;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.8), 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 24px;
+            font-weight: bold;
+            color: #444;
+            cursor: pointer;
+        }
+
+        .center-menu {
+            display: none;
+            inset: auto;
+            left: 50%;
+            bottom: calc(100% + 12px);
+            transform: translateX(-50%);
+            width: 220px;
+            padding: 12px;
+            border: 2px solid #999;
+            background: #f3f3f3;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+            grid-template-columns: 1fr;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .center-menu.visible {
+            display: grid;
+        }
+
+        .menu-field {
+            display: grid;
+            grid-template-columns: 72px 1fr 24px;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .menu-field input {
+            width: 100%;
+            min-width: 0;
+            padding: 8px;
+            border: 1px solid #c8c8c8;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .menu-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .center-action {
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            background: #42b983;
+            color: white;
+            transition: background 0.2s;
+        }
+
+        .center-action:hover {
+            background: #359469;
+        }
+
+        .center-action.reset {
+            background: #ff8800;
+        }
+
+        .center-action.reset:hover {
+            background: #e67700;
+        }
+
+        .rotate-tip {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.96);
+            z-index: 10;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                padding: 12px;
+            }
+
+            .device {
+                width: min(100%, 92vw);
+                padding: 16px;
+                gap: 16px;
+            }
+
+            .screen {
+                padding: 18px 10px;
+            }
+
+            .time {
+                font-size: clamp(36px, 7vw, 56px);
+            }
+
+            .buttons-row {
+                gap: 14px;
+                padding: 14px calc(22px + env(safe-area-inset-right)) 14px calc(22px + env(safe-area-inset-left));
+            }
+
+            .blue-btn {
+                width: min(18vw, 84px);
+                height: min(18vw, 84px);
+            }
+
+            .center-menu {
+                width: min(220px, 62vw);
+                bottom: calc(100% + 10px);
+                padding: 10px;
+            }
+
+            .menu-field {
+                grid-template-columns: 60px 1fr 20px;
+                gap: 6px;
+                font-size: 13px;
+            }
+        }
+
+        @media (orientation: portrait) and (max-width: 900px) {
+            .rotate-tip {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="rotate-tip">请横屏使用</div>
+
+    <!-- 棋钟主体：仿实物样式 -->
+    <div class="device">
+        <div class="screens-row">
+            <div class="screen" id="screen1">
+                <div class="time" id="time1">05:00</div>
+                <div class="active-indicator">▶</div>
+            </div>
+            <div class="screen" id="screen2">
+                <div class="time" id="time2">05:00</div>
+                <div class="active-indicator">◀</div>
+            </div>
+        </div>
+        <div class="buttons-row">
+            <button class="blue-btn" id="btn1" type="button"></button>
+            <div class="center-panel">
+                <button class="center-face" type="button" onclick="showCenterMenu()">全棋</button>
+                <div class="center-menu" id="centerMenu">
+                    <label class="menu-field">
+                        <span>基础用时</span>
+                        <input type="number" id="initTime" value="60" min="1" onchange="updateRoute(); if(currentPlayer===0) resetClock();">
+                        <span>分</span>
+                    </label>
+                    <label class="menu-field">
+                        <span>每步加时</span>
+                        <input type="number" id="addTime" value="30" min="0" onchange="updateRoute(); if(currentPlayer===0) resetClock();">
+                        <span>秒</span>
+                    </label>
+                    <div class="menu-actions">
+                        <button class="center-action" type="button" onclick="hideCenterMenu()">返回</button>
+                        <button class="center-action reset" type="button" onclick="handleReset()">重置</button>
+                    </div>
+                </div>
+            </div>
+            <button class="blue-btn" id="btn2" type="button"></button>
+        </div>
+    </div>
+
+    <script>
+        // 路由解析与更新
+        function parseRoute() {
+            const hash = window.location.hash.substring(1);
+            if (hash && hash.includes('+')) {
+                const parts = hash.split('+');
+                const base = parseInt(parts[0]);
+                const add = parseInt(parts[1]);
+                if (!isNaN(base) && !isNaN(add)) {
+                    document.getElementById('initTime').value = base;
+                    document.getElementById('addTime').value = add;
+                }
+            } else {
+                updateRoute();
+            }
+        }
+
+        function updateRoute() {
+            const base = document.getElementById('initTime').value || 60;
+            const add = document.getElementById('addTime').value || 30;
+            const newHash = `${base}+${add}`;
+            if (window.location.hash.substring(1) !== newHash) {
+                window.location.hash = newHash;
+            }
+        }
+
+        // 初始化解析路由
+        parseRoute();
+
+        // 核心变量
+        let initTime = parseInt(document.getElementById('initTime').value) || 60; // 基础用时（分钟）
+        let addTime = parseInt(document.getElementById('addTime').value) || 30; // 每步加时（秒）
+        let time1 = initTime * 60 * 1000; // 左侧时间（毫秒）
+        let time2 = initTime * 60 * 1000; // 右侧时间（毫秒）
+        let currentPlayer = 0; // 0=未开始 1=左侧 2=右侧
+        let timer = null; // 计时器实例
+        let audioContext = null;
+        let alarmTimer = null;
+        let lastPressTs = 0;
+        let lastPressPlayer = 0;
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
+        const centerMenu = document.getElementById('centerMenu');
+
+        // 监听 hash 变化（如用户手动修改 URL）
+        window.addEventListener('hashchange', () => {
+            if (currentPlayer === 0) { // 仅在未开始时允许通过路由重置时间
+                parseRoute();
+                resetClock();
+            }
+        });
+
+        // 格式化时间：毫秒 → 分:秒（补零）
+        function formatTime(ms) {
+            const totalSec = Math.floor(ms / 1000);
+            const min = String(Math.floor(totalSec / 60)).padStart(2, '0');
+            const sec = String(totalSec % 60).padStart(2, '0');
+            return `${min}:${sec}`;
+        }
+
+        // 更新页面时间显示
+        function updateDisplay() {
+            document.getElementById('time1').textContent = formatTime(time1);
+            document.getElementById('time2').textContent = formatTime(time2);
+            
+            // 时间到判断
+            if (time1 <= 0) timeUp(1);
+            if (time2 <= 0) timeUp(2);
+        }
+
+        // 更新按钮的跷跷板状态
+        function updateButtons() {
+            if (currentPlayer === 0) {
+                btn1.classList.remove('pressed');
+                btn2.classList.remove('pressed');
+            } else if (currentPlayer === 1) {
+                btn1.classList.remove('pressed'); // 轮到1，1的按钮抬起可按
+                btn2.classList.add('pressed');    // 2的按钮处于按下状态
+            } else if (currentPlayer === 2) {
+                btn1.classList.add('pressed');    // 1的按钮处于按下状态
+                btn2.classList.remove('pressed'); // 轮到2，2的按钮抬起可按
+            }
+        }
+
+        function ensureAudioContext() {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContextClass) return null;
+
+            if (!audioContext) {
+                audioContext = new AudioContextClass();
+            }
+
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            return audioContext;
+        }
+
+        function playTone(startTime, frequency, duration, volume) {
+            const ctx = ensureAudioContext();
+            if (!ctx) return;
+
+            const oscillator = ctx.createOscillator();
+            const gainNode = ctx.createGain();
+
+            oscillator.type = 'triangle';
+            oscillator.frequency.setValueAtTime(frequency, startTime);
+            gainNode.gain.setValueAtTime(0.0001, startTime);
+            gainNode.gain.exponentialRampToValueAtTime(volume, startTime + 0.01);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(ctx.destination);
+            oscillator.start(startTime);
+            oscillator.stop(startTime + duration + 0.02);
+        }
+
+        // 时间到提醒
+        function timeUp(player) {
+            if (alarmTimer) return;
+            stopTimer();
+            document.getElementById(`screen${player}`).classList.add('time-up');
+            startAlarm();
+        }
+
+        // 播放按钟滴声
+        function playClockSound() {
+            const ctx = ensureAudioContext();
+            if (!ctx) return;
+            playTone(ctx.currentTime, 880, 0.08, 0.12);
+        }
+
+        function startAlarm() {
+            const ctx = ensureAudioContext();
+            if (!ctx || alarmTimer) return;
+
+            const playAlarmPulse = () => {
+                const now = ctx.currentTime;
+                playTone(now, 920, 0.14, 0.16);
+                playTone(now + 0.18, 680, 0.18, 0.14);
+            };
+
+            playAlarmPulse();
+            alarmTimer = setInterval(playAlarmPulse, 900);
+
+            if (navigator.vibrate) {
+                navigator.vibrate([250, 120, 250, 300]);
+            }
+        }
+
+        function stopAlarm() {
+            if (alarmTimer) {
+                clearInterval(alarmTimer);
+                alarmTimer = null;
+            }
+            if (navigator.vibrate) {
+                navigator.vibrate(0);
+            }
+        }
+
+        // 中间面板菜单
+        function showCenterMenu() {
+            centerMenu.classList.add('visible');
+        }
+
+        function hideCenterMenu() {
+            centerMenu.classList.remove('visible');
+        }
+
+        function handleReset() {
+            resetClock();
+            hideCenterMenu();
+        }
+
+        function handleClockPress(player, event) {
+            if (event && 'button' in event && event.button !== 0) return;
+            if (event) {
+                event.preventDefault();
+            }
+
+            const now = Date.now();
+            if (now - lastPressTs < 120 && lastPressPlayer === player) {
+                return;
+            }
+
+            lastPressTs = now;
+            lastPressPlayer = player;
+            switchPlayer(player);
+        }
+
+        function bindClockButton(button, player) {
+            if (window.PointerEvent) {
+                button.addEventListener('pointerdown', (event) => handleClockPress(player, event));
+            } else {
+                button.addEventListener('click', (event) => handleClockPress(player, event));
+            }
+        }
+
+        // 开始计时
+        function startTimer() {
+            if (timer || currentPlayer === 0) return;
+            timer = setInterval(() => {
+                // 倒计时
+                if (currentPlayer === 1) time1 -= 100;
+                else time2 -= 100;
+                updateDisplay();
+            }, 100);
+        }
+
+        // 停止计时
+        function stopTimer() {
+            clearInterval(timer);
+            timer = null;
+        }
+
+        // 切换玩家（点击自己这边的按钮结束回合）
+        function switchPlayer(player) {
+            // 时间已经用尽时不能切换
+            if (time1 <= 0 || time2 <= 0) return;
+
+            // 首次点击任一方按钮，视为该方完成落子并启动对方计时
+            if (currentPlayer === 0) {
+                playClockSound();
+                currentPlayer = player === 1 ? 2 : 1;
+                document.getElementById(`screen${currentPlayer}`).classList.add('active');
+                updateButtons();
+                hideCenterMenu();
+                startTimer();
+                return;
+            }
+            
+            // 必须点击当前正在计时的那一边（点自己这边的按钮），才能结束自己的回合
+            if (currentPlayer !== player) return;
+            
+            // 加时
+            playClockSound();
+            if (currentPlayer === 1) time1 += addTime * 1000;
+            else if (currentPlayer === 2) time2 += addTime * 1000;
+            
+            // 切换
+            document.getElementById(`screen${currentPlayer}`).classList.remove('active');
+            currentPlayer = currentPlayer === 1 ? 2 : 1;
+            document.getElementById(`screen${currentPlayer}`).classList.add('active');
+            
+            updateDisplay();
+            updateButtons();
+            hideCenterMenu();
+        }
+
+        // 重置棋钟
+        function resetClock() {
+            stopAlarm();
+            stopTimer();
+            initTime = parseInt(document.getElementById('initTime').value) || 60;
+            addTime = parseInt(document.getElementById('addTime').value) || 30;
+            time1 = initTime * 60 * 1000;
+            time2 = initTime * 60 * 1000;
+            currentPlayer = 0;
+            
+            document.getElementById('screen1').classList.remove('active', 'time-up');
+            document.getElementById('screen2').classList.remove('active', 'time-up');
+            
+            updateDisplay();
+            updateButtons();
+            updateRoute();
+            hideCenterMenu();
+        }
+
+        // 初始化显示
+        bindClockButton(btn1, 1);
+        bindClockButton(btn2, 2);
+        updateDisplay();
+        updateButtons();
+    </script>
+</body>
+</html>
