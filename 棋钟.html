@@ -256,8 +256,8 @@
         }
 
         function updateRoute() {
-            const base = document.getElementById('initTime').value || 5;
-            const add = document.getElementById('addTime').value || 10;
+            const base = document.getElementById('initTime').value || 60;
+            const add = document.getElementById('addTime').value || 30;
             const newHash = `${base}+${add}`;
             if (window.location.hash.substring(1) !== newHash) {
                 window.location.hash = newHash;
@@ -427,8 +427,8 @@
         // 重置棋钟
         function resetClock() {
             stopTimer();
-            initTime = parseInt(document.getElementById('initTime').value) || 5;
-            addTime = parseInt(document.getElementById('addTime').value) || 10;
+            initTime = parseInt(document.getElementById('initTime').value) || 60;
+            addTime = parseInt(document.getElementById('addTime').value) || 30;
             time1 = initTime * 60 * 1000;
             time2 = initTime * 60 * 1000;
             currentPlayer = 0;
