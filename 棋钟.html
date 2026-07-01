@@ -12,30 +12,21 @@
             font-family: "Microsoft YaHei", sans-serif;
         }
 
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            min-height: 100dvh;
             background: #ffffff;
             padding: 20px;
-        }
-
-        /* 设置区域 */
-        .settings {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .settings input {
-            width: 80px;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
         }
 
         /* 棋钟主体 - 仿实物设计 */
@@ -48,7 +39,6 @@
             flex-direction: column;
             gap: 30px;
             width: 600px;
-            margin-bottom: 20px;
         }
 
         .screens-row {
@@ -151,6 +141,7 @@
             height: 80px;
             border-radius: 4px;
             position: relative;
+            overflow: visible;
             user-select: none;
         }
 
@@ -176,12 +167,48 @@
 
         .center-menu {
             display: none;
-            grid-template-rows: 1fr 1fr;
-            gap: 6px;
+            inset: auto;
+            left: 50%;
+            bottom: calc(100% + 12px);
+            transform: translateX(-50%);
+            width: 220px;
+            padding: 12px;
+            border: 2px solid #999;
+            background: #f3f3f3;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+            grid-template-columns: 1fr;
+            gap: 10px;
+            z-index: 2;
         }
 
         .center-menu.visible {
             display: grid;
+        }
+
+        .menu-field {
+            display: grid;
+            grid-template-columns: 72px 1fr 24px;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .menu-field input {
+            width: 100%;
+            min-width: 0;
+            padding: 8px;
+            border: 1px solid #c8c8c8;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .menu-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
         }
 
         .center-action {
@@ -227,18 +254,10 @@
                 padding: 12px;
             }
 
-            .settings {
-                gap: 10px;
-                margin-bottom: 12px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
             .device {
                 width: min(100%, 92vw);
                 padding: 16px;
                 gap: 16px;
-                margin-bottom: 0;
             }
 
             .screen {
@@ -257,6 +276,18 @@
                 width: min(18vw, 84px);
                 height: min(18vw, 84px);
             }
+
+            .center-menu {
+                width: min(220px, 62vw);
+                bottom: calc(100% + 10px);
+                padding: 10px;
+            }
+
+            .menu-field {
+                grid-template-columns: 60px 1fr 20px;
+                gap: 6px;
+                font-size: 13px;
+            }
         }
 
         @media (orientation: portrait) and (max-width: 900px) {
@@ -268,16 +299,6 @@
 </head>
 <body>
     <div class="rotate-tip">请横屏使用</div>
-
-    <!-- 设置区域 -->
-    <div class="settings">
-        <div>
-            基础用时：<input type="number" id="initTime" value="5" min="1" onchange="updateRoute(); if(currentPlayer===0) resetClock();"> 分钟
-        </div>
-        <div>
-            每步加时：<input type="number" id="addTime" value="10" min="0" onchange="updateRoute(); if(currentPlayer===0) resetClock();"> 秒
-        </div>
-    </div>
 
     <!-- 棋钟主体：仿实物样式 -->
     <div class="device">
@@ -296,8 +317,20 @@
             <div class="center-panel">
                 <button class="center-face" type="button" onclick="showCenterMenu()">全棋</button>
                 <div class="center-menu" id="centerMenu">
-                    <button class="center-action" type="button" onclick="hideCenterMenu()">返回</button>
-                    <button class="center-action reset" type="button" onclick="handleReset()">重置</button>
+                    <label class="menu-field">
+                        <span>基础用时</span>
+                        <input type="number" id="initTime" value="60" min="1" onchange="updateRoute(); if(currentPlayer===0) resetClock();">
+                        <span>分</span>
+                    </label>
+                    <label class="menu-field">
+                        <span>每步加时</span>
+                        <input type="number" id="addTime" value="30" min="0" onchange="updateRoute(); if(currentPlayer===0) resetClock();">
+                        <span>秒</span>
+                    </label>
+                    <div class="menu-actions">
+                        <button class="center-action" type="button" onclick="hideCenterMenu()">返回</button>
+                        <button class="center-action reset" type="button" onclick="handleReset()">重置</button>
+                    </div>
                 </div>
             </div>
             <button class="blue-btn" id="btn2" onclick="switchPlayer(2)"></button>
