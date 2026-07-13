@@ -325,9 +325,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // 传入穷举算法
       const result = calculateWinRate(validHoles, validVillains, validBoards, deck);
       
-      elements.valWin.textContent = result.winRate.toFixed(1) + '%';
-      elements.valTie.textContent = result.tieRate.toFixed(1) + '%';
-      elements.valLose.textContent = result.loseRate.toFixed(1) + '%';
+      elements.valWin.textContent = result.winRate.toFixed(2) + '%';
+      elements.valTie.textContent = result.tieRate.toFixed(2) + '%';
+      elements.valLose.textContent = result.loseRate.toFixed(2) + '%';
       
       // 只要玩家当前处于落后状态，就显示补牌(Outs)数
       if (result.isBehind) {
@@ -345,55 +345,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderSpecificOuts(outsArray) {
     elements.specificOutsList.innerHTML = '';
     if (outsArray && outsArray.length > 0) {
-      const renderOutItem = (outItem) => {
-        const row = document.createElement('div');
-        row.className = 'out-row';
-        
-        let cardsHtml = '<div class="out-cards">';
-        outItem.cards.forEach(cardStr => {
-          const cardData = formatCard(cardStr);
-          cardsHtml += `<div class="out-card ${cardData.colorClass}"><span>${cardData.symbol}</span><span>${cardData.rank}</span></div>`;
-        });
-        cardsHtml += '</div>';
+      let cardsHtml = '<div class="out-cards" style="flex-wrap: wrap; justify-content: center; gap: 8px;">';
+      outsArray.forEach(cardStr => {
+        const cardData = formatCard(cardStr);
+        cardsHtml += `<div class="out-card ${cardData.colorClass}"><span>${cardData.symbol}</span><span>${cardData.rank}</span></div>`;
+      });
+      cardsHtml += '</div>';
 
-        const descHtml = `<div class="out-desc"><strong>${outItem.heroRank}</strong> vs <strong>${outItem.villainRank}</strong></div>`;
-
-        row.innerHTML = cardsHtml + descHtml;
-        return row;
-      };
-
-      let currentRenderedCount = 0;
-      let btnExpand = null;
-
-      const renderNextBatch = () => {
-        const nextBatch = outsArray.slice(currentRenderedCount, currentRenderedCount + 1000);
-        const fragment = document.createDocumentFragment();
-        nextBatch.forEach(outItem => {
-          fragment.appendChild(renderOutItem(outItem));
-        });
-        
-        // 如果按钮存在，把它先移除，再插入新内容，然后再把它加到最后
-        if (btnExpand && btnExpand.parentNode) {
-          btnExpand.remove();
-        }
-        
-        elements.specificOutsList.appendChild(fragment);
-        currentRenderedCount += nextBatch.length;
-
-        // 如果还没渲染完，继续显示按钮并更新文案
-        if (currentRenderedCount < outsArray.length) {
-          if (!btnExpand) {
-            btnExpand = document.createElement('button');
-            btnExpand.className = 'btn-expand-more';
-            btnExpand.onclick = renderNextBatch;
-          }
-          btnExpand.innerHTML = `... 以及其他 <strong>${outsArray.length - currentRenderedCount}</strong> 种组合，点击继续展开 ${Math.min(outsArray.length - currentRenderedCount, 1000)} 条`;
-          elements.specificOutsList.appendChild(btnExpand);
-        }
-      };
-
-      // 首次渲染
-      renderNextBatch();
+      elements.specificOutsList.innerHTML = cardsHtml;
       elements.specificOutsContainer.style.display = 'flex';
     } else {
       elements.specificOutsContainer.style.display = 'none';

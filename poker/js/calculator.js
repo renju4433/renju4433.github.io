@@ -193,12 +193,26 @@ function calculateWinRate(heroCards, villainHand, boardCards, deck) {
     isBehind = true;
   }
 
+  // 单张补牌 (Outs) 计算：仅当落后，且只需看下一张牌是否能反超
+  let simpleOuts = [];
+  if (isBehind && boardInt.length >= 3 && boardInt.length <= 4) {
+    let nextPos = 2 + boardInt.length;
+    for (let i = 0; i < remainingDeck.length; i++) {
+      let card = remainingDeck[i];
+      evalArr[nextPos] = card;
+      evalArrV[nextPos] = card;
+      let h = fastEval7Arr(evalArr, nextPos + 1);
+      let v = fastEval7Arr(evalArrV, nextPos + 1);
+      if (h > v) {
+        simpleOuts.push(intToCard(card));
+      }
+    }
+  }
+
   let wins = 0;
   let ties = 0;
   let loses = 0;
   let total = 0;
-
-  const addedCardsInt = new Int32Array(needCards);
 
   function evaluateCombinations(startIndex, addedCount) {
     if (addedCount === needCards) {
@@ -207,15 +221,6 @@ function calculateWinRate(heroCards, villainHand, boardCards, deck) {
       
       if (hScore > vScore) {
         wins++;
-        if (needCards > 0 && addedCount > 0 && isBehind) {
-          let addedStr = [];
-          for(let i=0; i<addedCount; i++) addedStr.push(intToCard(addedCardsInt[i]));
-          specificOuts.push({
-            cards: addedStr,
-            heroRank: HAND_RANK_NAMES[hScore >> 20],
-            villainRank: HAND_RANK_NAMES[vScore >> 20]
-          });
-        }
       } else if (hScore === vScore) {
         ties++;
       } else {
@@ -231,7 +236,6 @@ function calculateWinRate(heroCards, villainHand, boardCards, deck) {
       let pos = 2 + boardInt.length + addedCount;
       evalArr[pos] = card;
       evalArrV[pos] = card;
-      addedCardsInt[addedCount] = card;
       
       evaluateCombinations(i + 1, addedCount + 1);
     }
@@ -243,7 +247,7 @@ function calculateWinRate(heroCards, villainHand, boardCards, deck) {
     winRate: total > 0 ? (wins / total) * 100 : 0,
     tieRate: total > 0 ? (ties / total) * 100 : 0,
     loseRate: total > 0 ? (loses / total) * 100 : 0,
-    outs: specificOuts,
+    outs: simpleOuts,
     isBehind: isBehind
   };
 }
