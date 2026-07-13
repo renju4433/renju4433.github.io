@@ -345,7 +345,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderSpecificOuts(outsArray) {
     elements.specificOutsList.innerHTML = '';
     if (outsArray && outsArray.length > 0) {
-      const renderOutItem = (outItem) => {
+      const fragment = document.createDocumentFragment();
+      outsArray.forEach(outItem => {
         const row = document.createElement('div');
         row.className = 'out-row';
         
@@ -359,41 +360,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const descHtml = `<div class="out-desc"><strong>${outItem.heroRank}</strong> vs <strong>${outItem.villainRank}</strong></div>`;
 
         row.innerHTML = cardsHtml + descHtml;
-        return row;
-      };
+        fragment.appendChild(row);
+      });
 
-      let currentRenderedCount = 0;
-      let btnExpand = null;
-
-      const renderNextBatch = () => {
-        const nextBatch = outsArray.slice(currentRenderedCount, currentRenderedCount + 1000);
-        const fragment = document.createDocumentFragment();
-        nextBatch.forEach(outItem => {
-          fragment.appendChild(renderOutItem(outItem));
-        });
-        
-        // 如果按钮存在，把它先移除，再插入新内容，然后再把它加到最后
-        if (btnExpand && btnExpand.parentNode) {
-          btnExpand.remove();
-        }
-        
-        elements.specificOutsList.appendChild(fragment);
-        currentRenderedCount += nextBatch.length;
-
-        // 如果还没渲染完，继续显示按钮并更新文案
-        if (currentRenderedCount < outsArray.length) {
-          if (!btnExpand) {
-            btnExpand = document.createElement('button');
-            btnExpand.className = 'btn-expand-more';
-            btnExpand.onclick = renderNextBatch;
-          }
-          btnExpand.innerHTML = `... 以及其他 <strong>${outsArray.length - currentRenderedCount}</strong> 种组合，点击继续展开 ${Math.min(outsArray.length - currentRenderedCount, 1000)} 条`;
-          elements.specificOutsList.appendChild(btnExpand);
-        }
-      };
-
-      // 首次渲染
-      renderNextBatch();
+      elements.specificOutsList.appendChild(fragment);
       elements.specificOutsContainer.style.display = 'flex';
     } else {
       elements.specificOutsContainer.style.display = 'none';
