@@ -345,10 +345,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderSpecificOuts(outsArray) {
     elements.specificOutsList.innerHTML = '';
     if (outsArray && outsArray.length > 0) {
-      let cardsHtml = '<div class="out-cards" style="flex-wrap: wrap; justify-content: center; gap: 8px;">';
+      let cardsHtml = '<div class="out-cards">';
       outsArray.forEach(cardStr => {
-        const cardData = formatCard(cardStr);
-        cardsHtml += `<div class="out-card ${cardData.colorClass}"><span>${cardData.symbol}</span><span>${cardData.rank}</span></div>`;
+        cardsHtml += `<div class="out-card-wrapper">${createCardHTML(cardStr)}</div>`;
       });
       cardsHtml += '</div>';
 
