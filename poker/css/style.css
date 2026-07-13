@@ -1,0 +1,403 @@
+:root {
+  --bg-color: #ffffff;
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --border-color: #dddddd;
+  --btn-bg: #f5f5f5;
+  --btn-hover: #e0e0e0;
+  --suit-spades: #111111;
+  --suit-clubs: #111111;
+  --suit-hearts: #cc0000;
+  --suit-diamonds: #cc0000;
+  --card-bg: #ffffff;
+  --card-selected-bg: #f0f0f0;
+  --card-disabled: #f9f9f9;
+  --highlight-color: #0066cc;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.2;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  height: 100vh;
+  overflow: hidden; /* 保证一屏显示，不滚动整体 */
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+/* 扑克牌选择区 - 底部弹出键盘式 */
+.picker-section {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: 100%;
+  max-width: 600px;
+  background: var(--bg-color);
+  z-index: 100;
+  border-top: 1px solid var(--border-color);
+  border-radius: 12px 12px 0 0;
+  padding: 16px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+.picker-section.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.keyboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.keyboard-header h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.btn-close-kb {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.keyboard-row {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.keyboard-row:last-child {
+  margin-bottom: 0;
+}
+
+.keyboard-btn {
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--btn-bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.1s;
+}
+
+.keyboard-btn:hover {
+  background-color: var(--btn-hover);
+}
+
+.keyboard-btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background-color: var(--card-disabled);
+  pointer-events: none;
+}
+
+/* 花色颜色 */
+.suit-s { color: var(--suit-spades); }
+.suit-h { color: var(--suit-hearts); }
+.suit-d { color: var(--suit-diamonds); }
+.suit-c { color: var(--suit-clubs); }
+
+/* 已选牌展示区 */
+.board-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.hands-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.hand-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.hand-group h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.swap-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 18px; /* 与卡槽对齐 */
+}
+
+.btn-icon {
+  background: var(--btn-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.btn-icon:hover {
+  background: var(--btn-hover);
+  color: var(--text-primary);
+}
+
+.card-slots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.card-slot {
+  width: 45px;
+  height: 64px;
+  border: 2px dashed var(--border-color);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--bg-color);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.card-slot.active {
+  border-color: var(--highlight-color);
+  background-color: rgba(0, 102, 204, 0.05);
+}
+
+.card-slot .card-display {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.card-slot .card-remove {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.card-slot:hover .card-remove {
+  opacity: 1;
+}
+
+/* 操作面板 */
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+button.btn {
+  padding: 8px 24px;
+  border: 1px solid var(--border-color);
+  background-color: var(--btn-bg);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button.btn:hover {
+  background-color: var(--btn-hover);
+}
+
+button.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--bg-color);
+  border-color: var(--text-primary);
+  width: 60%;
+}
+
+button.btn-primary:hover:not(:disabled) {
+  background-color: #333333;
+}
+
+button.btn-primary:disabled {
+  background-color: var(--card-disabled);
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* 结果展示区 */
+.results-section {
+  border-top: 1px solid var(--border-color);
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0; /* 关键：允许内部元素收缩滚动 */
+}
+
+.result-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  text-align: center;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.result-card {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.result-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.result-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.specific-outs-container {
+  text-align: left;
+  padding: 8px;
+  background-color: var(--btn-bg);
+  border-radius: 6px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.specific-outs-container h4 {
+  margin-bottom: 6px;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.outs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto; /* 保证内部滚动 */
+  padding-right: 4px;
+}
+
+.out-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.out-cards {
+  display: flex;
+  gap: 4px;
+}
+
+.out-card {
+  padding: 2px 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-color);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.85rem;
+}
+
+.out-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.out-desc strong {
+  color: var(--highlight-color);
+}
+
+.btn-expand-more {
+  width: 100%;
+  padding: 6px 0;
+  margin-top: 4px;
+  background-color: var(--card-bg);
+  border: 1px dashed var(--border-color);
+  border-radius: 4px;
+  color: var(--highlight-color);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-expand-more:hover {
+  background-color: rgba(0, 102, 204, 0.05);
+  border-color: var(--highlight-color);
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>德州扑克补牌胜率计算器</title>
+  <link rel="stylesheet" href="css/style.css?v=4">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- 已选牌展示区 -->
+    <div class="board-section">
+      <div class="hands-container">
+        <!-- 玩家手牌 -->
+        <div class="hand-group">
+          <h3>玩家</h3>
+          <div class="card-slots hero-cards">
+            <div class="card-slot"></div>
+            <div class="card-slot"></div>
+          </div>
+        </div>
+        
+        <!-- 交换按钮 -->
+        <div class="swap-group">
+          <button class="btn-icon" id="btn-swap" title="交换手牌">⇌</button>
+        </div>
+
+        <!-- 单一对手手牌 -->
+        <div class="hand-group">
+          <h3>对手</h3>
+          <div class="card-slots villain-cards">
+            <div class="card-slot"></div>
+            <div class="card-slot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 公共牌 -->
+      <div class="hand-group board-group">
+        <h3>公共牌</h3>
+        <div class="card-slots board-cards">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 操作面板 -->
+    <div class="actions">
+      <button class="btn" id="btn-reset">重置桌面</button>
+      <button class="btn btn-primary" id="btn-calculate">开始计算</button>
+    </div>
+
+    <!-- 结果展示区 -->
+    <div class="results-section">
+      <div class="result-stats">
+        <div class="result-card">
+          <div class="result-value" id="val-win">--%</div>
+          <div class="result-label">胜率</div>
+        </div>
+        <div class="result-card">
+          <div class="result-value" id="val-tie">--%</div>
+          <div class="result-label">平率</div>
+        </div>
+        <div class="result-card">
+          <div class="result-value" id="val-lose">--%</div>
+          <div class="result-label">负率</div>
+        </div>
+        <div class="result-card">
+          <div class="result-value" id="val-outs">--</div>
+          <div class="result-label">补牌数</div>
+        </div>
+      </div>
+      
+      <!-- 具体的补牌明细展示 -->
+      <div class="specific-outs-container" id="specific-outs-container" style="display: none;">
+        <h4>具体补牌明细：</h4>
+        <div class="outs-list" id="specific-outs-list">
+          <!-- 动态插入具体的补牌行 -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 扑克牌选择区 (底部弹出键盘式 4x13) -->
+  <div class="picker-section" id="card-picker">
+    <div class="keyboard-header">
+      <h3>请选择扑克牌</h3>
+      <button class="btn-close-kb" id="btn-close-kb">&times;</button>
+    </div>
+    <div id="full-keyboard">
+      <!-- JS 动态渲染 4行13列 -->
+    </div>
+  </div>
+
+  <script src="js/cards.js?v=5"></script>
+  <script src="js/calculator.js?v=5"></script>
+  <script src="js/main.js?v=5"></script>
+</body>
+</html>
