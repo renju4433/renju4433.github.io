@@ -60,17 +60,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const isUsed = usedCards.has(cardStr);
 
         const btn = document.createElement('button');
-        // 已使用的牌添加 disabled 类，使其变暗且不可点击
+        // 已使用的牌添加 disabled 类变暗，但仍允许点击以支持移动牌的位置
         btn.className = `keyboard-btn ${cardData.colorClass} ${isUsed ? 'disabled' : ''}`;
         btn.dataset.card = cardStr;
         btn.innerHTML = `<span>${cardData.symbol}</span><span>${cardData.rank}</span>`;
         
         btn.onclick = (e) => {
           e.stopPropagation();
-          if (!isUsed) {
-            onPickCard(cardStr);
-            renderKeyboard();
-          }
+          onPickCard(cardStr);
+          renderKeyboard();
         };
         row.appendChild(btn);
       });
@@ -232,6 +230,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function onPickCard(cardStr) {
     if (!state.activeType) return;
+    
+    // 如果牌已经被使用，先将其从原来的位置移除
+    const heroIdx = state.heroCards.indexOf(cardStr);
+    if (heroIdx !== -1) state.heroCards[heroIdx] = null;
+    
+    const villainIdx = state.villainCards.indexOf(cardStr);
+    if (villainIdx !== -1) state.villainCards[villainIdx] = null;
+    
+    const boardIdx = state.boardCards.indexOf(cardStr);
+    if (boardIdx !== -1) state.boardCards[boardIdx] = null;
     
     if (state.activeType === 'hero') {
       state.heroCards[state.activeIndex] = cardStr;
