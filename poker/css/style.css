@@ -367,6 +367,22 @@ button.btn-primary:disabled {
 .out-card-wrapper {
   width: 45px;
   height: 64px;
+  position: relative;
+}
+
+.out-card-badge {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  background-color: var(--highlight-color);
+  color: #fff;
+  font-size: 0.6rem;
+  padding: 1px 4px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  white-space: nowrap;
+  z-index: 2;
+  transform: scale(0.9);
 }
 
 .out-desc {

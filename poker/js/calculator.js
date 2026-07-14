@@ -39,10 +39,6 @@ function getStraightHigh(mask) {
             return r + 4;
         }
     }
-    // A-5 (Wheel)
-    if ((mask & 0x100F) === 0x100F) {
-        return 3;
-    }
     return -1;
 }
 
@@ -204,7 +200,10 @@ function calculateWinRate(heroCards, villainHand, boardCards, deck) {
       let h = fastEval7Arr(evalArr, nextPos + 1);
       let v = fastEval7Arr(evalArrV, nextPos + 1);
       if (h > v) {
-        simpleOuts.push(intToCard(card));
+        simpleOuts.push({
+          cardStr: intToCard(card),
+          rankName: HAND_RANK_NAMES[h >> 20]
+        });
       }
     }
   }

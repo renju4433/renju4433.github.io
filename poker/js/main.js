@@ -346,8 +346,13 @@ document.addEventListener('DOMContentLoaded', () => {
     elements.specificOutsList.innerHTML = '';
     if (outsArray && outsArray.length > 0) {
       let cardsHtml = '<div class="out-cards">';
-      outsArray.forEach(cardStr => {
-        cardsHtml += `<div class="out-card-wrapper">${createCardHTML(cardStr)}</div>`;
+      outsArray.forEach(outObj => {
+        cardsHtml += `
+          <div class="out-card-wrapper">
+            ${createCardHTML(outObj.cardStr)}
+            <div class="out-card-badge">${outObj.rankName}</div>
+          </div>
+        `;
       });
       cardsHtml += '</div>';
 
