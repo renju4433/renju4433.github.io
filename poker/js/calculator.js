@@ -39,6 +39,10 @@ function getStraightHigh(mask) {
             return r + 4;
         }
     }
+    // A-5 (Wheel)
+    if ((mask & 0x100F) === 0x100F) {
+        return 3;
+    }
     return -1;
 }
 
