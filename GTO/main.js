@@ -5,6 +5,15 @@ let playersCards = [[], []];
 let communityCards = [];
 let communityCardsRevealed = 0;
 
+function speak(text) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // 停止当前正在播放的语音
+        const msg = new SpeechSynthesisUtterance(text);
+        msg.lang = 'zh-CN';
+        window.speechSynthesis.speak(msg);
+    }
+}
+
 const btnStart = document.getElementById('btn-start');
 const btnCommunity = document.getElementById('btn-community');
 const btnCalc = document.getElementById('btn-calc');
@@ -53,8 +62,11 @@ btnStart.addEventListener('click', () => {
 
 btnCommunity.addEventListener('click', () => {
     // Deal 1 community card
-    communityCards.push(deck.pop());
+    const cardVal = deck.pop();
+    communityCards.push(cardVal);
     communityCardsRevealed++;
+    
+    speak(`公共牌 ${cardVal}`);
     
     const container = document.getElementById('community-cards');
     const cardsHtml = communityCards.map(renderCard).join('') + 
@@ -98,13 +110,16 @@ btnCalc.addEventListener('click', () => {
     if (comp > 0) {
         resultBanner.textContent = '🏆 玩家 1 获胜！';
         p1Box.classList.add('winner');
+        speak('玩家1获胜');
     } else if (comp < 0) {
         resultBanner.textContent = '🏆 玩家 2 获胜！';
         p2Box.classList.add('winner');
+        speak('玩家2获胜');
     } else {
         resultBanner.textContent = '🤝 平局！';
         p1Box.classList.add('winner');
         p2Box.classList.add('winner');
+        speak('平局');
     }
     
     // Highlight used cards in player's hand
