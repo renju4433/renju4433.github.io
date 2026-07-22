@@ -1,11 +1,12 @@
 import { getBestCombo } from './game.js';
 
 function fastCompare(bestA, bestB) {
-    if(bestA.gcd !== bestB.gcd) return bestA.gcd - bestB.gcd;
-    for(let k=0; k<3; k++) {
+    if(bestA.G !== bestB.G) return bestA.G - bestB.G;
+    if(bestA.L !== bestB.L) return bestA.L - bestB.L;
+    for(let k=0; k<5; k++) {
         if(bestA.sortedCards[k] !== bestB.sortedCards[k]) {
-            // 同GCD下，数字越小越好（小者胜）
-            return bestB.sortedCards[k] - bestA.sortedCards[k];
+            // 同级别下，数字越大越好（高牌胜）
+            return bestA.sortedCards[k] - bestB.sortedCards[k];
         }
     }
     return 0;
@@ -27,9 +28,9 @@ self.onmessage = function(e) {
     
     // 1. Generate valid hands
     let hands = [];
-    for(let i=1; i<=52; i++) {
+    for(let i=2; i<=53; i++) {
         if(communityCards.includes(i)) continue;
-        for(let j=i+1; j<=52; j++) {
+        for(let j=i+1; j<=53; j++) {
             if(communityCards.includes(j)) continue;
             hands.push([i, j]);
         }

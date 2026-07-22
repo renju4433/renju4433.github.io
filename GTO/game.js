@@ -1,9 +1,9 @@
 // 扑克牌游戏核心逻辑
 
-// 1. 生成一副牌 (1-52)
+// 1. 生成一副牌 (2-53)
 export function createDeck() {
     const deck = [];
-    for (let i = 1; i <= 52; i++) {
+    for (let i = 2; i <= 53; i++) {
         deck.push(i);
     }
     return deck;
@@ -52,45 +52,70 @@ export function getCombinations(arr, k) {
     return results;
 }
 
-// 5. 比较两个 3 张牌的组合
-// 返回 > 0 表示 comboA 大于 comboB
-// 返回 < 0 表示 comboA 小于 comboB
-// 返回 0 表示完全相等
-export function compareCombos(comboA, comboB) {
-    const gcdA = gcd3(comboA[0], comboA[1], comboA[2]);
-    const gcdB = gcd3(comboB[0], comboB[1], comboB[2]);
-    
-    // 1) 先比最大公约数
-    if (gcdA !== gcdB) {
-        return gcdA - gcdB;
+// 5. 评估 5 张牌的牌型
+export function evaluate5CardHand(combo) {
+    let max_D = 1;
+    let max_L = 0;
+    for (let d = 1; d <= 17; d++) {
+        let count = 0;
+        for (let i = 0; i < 5; i++) {
+            if (combo[i] % d === 0) count++;
+        }
+        if (count >= 3) {
+            if (d > max_D || (d === max_D && count > max_L)) {
+                max_D = d;
+                max_L = count;
+            }
+        }
     }
+
+    let gcdCards = [];
+    let kickerCards = [];
+
+    for (let i = 0; i < 5; i++) {
+        if (combo[i] % max_D === 0) {
+            gcdCards.push(combo[i]);
+        } else {
+            kickerCards.push(combo[i]);
+        }
+    }
+
+    gcdCards.sort((a, b) => b - a);
+    kickerCards.sort((a, b) => b - a);
     
-    // 2) 若公约数相同，依次比较从小到大这3张牌中的数字
-    // 规则：同GCD下，数字越小越好（小者胜）
-    const sortedA = [...comboA].sort((a, b) => a - b);
-    const sortedB = [...comboB].sort((a, b) => a - b);
-    
-    for (let i = 0; i < 3; i++) {
-        if (sortedA[i] !== sortedB[i]) {
-            // A比B小，说明A更好，返回正数表示A大于B
-            return sortedB[i] - sortedA[i];
+    return {
+        cards: combo,
+        G: max_D,
+        L: max_L,
+        gcdCards: gcdCards,
+        kickerCards: kickerCards,
+        sortedCards: [...combo].sort((a, b) => b - a) // 所有牌统一按从大到小排列
+    };
+}
+
+// 6. 比较两个 5 张牌的组合 (接收 evaluate5CardHand 返回的对象)
+export function compareCombos(a, b) {
+    if (a.G !== b.G) return a.G - b.G;
+    if (a.L !== b.L) return a.L - b.L;
+
+    for (let i = 0; i < 5; i++) {
+        if (a.sortedCards[i] !== b.sortedCards[i]) {
+            // A比B大，说明A更好，返回正数表示A大于B
+            return a.sortedCards[i] - b.sortedCards[i];
         }
     }
     return 0;
 }
 
-// 6. 获取玩家的最优 3 张牌组合
+// 7. 获取玩家的最优 5 张牌组合 (从 7 张中选 5 张)
 export function getBestCombo(cards) {
-    const combos = getCombinations(cards, 3);
-    let best = combos[0];
+    const combos = getCombinations(cards, 5);
+    let best = evaluate5CardHand(combos[0]);
     for (let i = 1; i < combos.length; i++) {
-        if (compareCombos(combos[i], best) > 0) {
-            best = combos[i];
+        const current = evaluate5CardHand(combos[i]);
+        if (compareCombos(current, best) > 0) {
+            best = current;
         }
     }
-    return {
-        cards: best,
-        gcd: gcd3(best[0], best[1], best[2]),
-        sortedCards: [...best].sort((a, b) => a - b)
-    };
+    return best;
 }

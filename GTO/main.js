@@ -36,7 +36,7 @@ btnStart.addEventListener('click', () => {
     
     // Clear UI
     resultBanner.textContent = '';
-    document.getElementById('community-cards').innerHTML = renderEmptyCard().repeat(3);
+    document.getElementById('community-cards').innerHTML = renderEmptyCard().repeat(5);
     
     for (let i = 1; i <= 2; i++) {
         const pBox = document.getElementById(`player-${i}`);
@@ -55,29 +55,62 @@ btnStart.addEventListener('click', () => {
     
     // Update buttons
     btnStart.textContent = '重新开始';
-    btnCommunity.textContent = '翻第 1 张公共牌';
+    btnCommunity.textContent = '发翻牌 (3张)';
     btnCommunity.disabled = false;
     btnCalc.disabled = true;
 });
 
-btnCommunity.addEventListener('click', () => {
-    // Deal 1 community card
-    const cardVal = deck.pop();
-    communityCards.push(cardVal);
-    communityCardsRevealed++;
+btnCommunity.addEventListener('click', async () => {
+    btnCommunity.disabled = true;
     
-    speak(`公共牌 ${cardVal}`);
-    
-    const container = document.getElementById('community-cards');
-    const cardsHtml = communityCards.map(renderCard).join('') + 
-                      renderEmptyCard().repeat(3 - communityCardsRevealed);
-    container.innerHTML = cardsHtml;
-    
-    if (communityCardsRevealed < 3) {
-        btnCommunity.textContent = `翻第 ${communityCardsRevealed + 1} 张公共牌`;
-    } else {
+    if (communityCardsRevealed === 0) {
+        // Flop: Deal 3 cards
+        const flopCards = [deck.pop(), deck.pop(), deck.pop()];
+        communityCards.push(...flopCards);
+        communityCardsRevealed = 3;
+        
+        speak(`翻牌 ${flopCards.join('、')}`);
+        
+        const container = document.getElementById('community-cards');
+        // Animation delay for Flop
+        for (let i = 0; i < 3; i++) {
+            await new Promise(r => setTimeout(r, 400));
+            const cardsHtml = communityCards.slice(0, i + 1).map(renderCard).join('') + 
+                              renderEmptyCard().repeat(4 - i);
+            container.innerHTML = cardsHtml;
+        }
+        
+        btnCommunity.textContent = '发转牌 (1张)';
+        btnCommunity.disabled = false;
+        
+    } else if (communityCardsRevealed === 3) {
+        // Turn: Deal 1 card
+        const turnCard = deck.pop();
+        communityCards.push(turnCard);
+        communityCardsRevealed = 4;
+        
+        speak(`转牌 ${turnCard}`);
+        
+        const container = document.getElementById('community-cards');
+        const cardsHtml = communityCards.map(renderCard).join('') + renderEmptyCard();
+        container.innerHTML = cardsHtml;
+        
+        btnCommunity.textContent = '发河牌 (1张)';
+        btnCommunity.disabled = false;
+        
+    } else if (communityCardsRevealed === 4) {
+        // River: Deal 1 card
+        const riverCard = deck.pop();
+        communityCards.push(riverCard);
+        communityCardsRevealed = 5;
+        
+        speak(`河牌 ${riverCard}`);
+        
+        const container = document.getElementById('community-cards');
+        const cardsHtml = communityCards.map(renderCard).join('');
+        container.innerHTML = cardsHtml;
+        
         btnCommunity.textContent = '公共牌已发完';
-        btnCommunity.disabled = true;
         btnCalc.disabled = false;
     }
 });
@@ -94,15 +127,25 @@ btnCalc.addEventListener('click', () => {
     // Render best combos
     function renderBest(pIndex, best) {
         document.getElementById(`p${pIndex}-best-combo`).classList.add('visible');
-        document.getElementById(`p${pIndex}-best-cards`).innerHTML = best.cards.map(renderCard).join('');
-        document.getElementById(`p${pIndex}-status`).innerHTML = `最大公约数 (GCD): <strong>${best.gcd}</strong> <br>比低牌: ${best.sortedCards.join(' < ')}`;
+        
+        const cardsHtml = best.sortedCards.map(val => {
+            if (best.gcdCards.includes(val)) {
+                return `<div class="card highlight">${val}<span class="badge">${best.G}</span></div>`;
+            } else {
+                return `<div class="card">${val}</div>`;
+            }
+        }).join('');
+        
+        document.getElementById(`p${pIndex}-best-cards`).innerHTML = cardsHtml;
+        const typeStr = `${best.L}张公约${best.G}`;
+        document.getElementById(`p${pIndex}-status`).innerHTML = `牌型: <strong>${typeStr}</strong>`;
     }
     
     renderBest(1, p1Best);
     renderBest(2, p2Best);
     
     // Compare
-    const comp = compareCombos(p1Best.cards, p2Best.cards);
+    const comp = compareCombos(p1Best, p2Best);
     
     const p1Box = document.getElementById('player-1');
     const p2Box = document.getElementById('player-2');
@@ -121,21 +164,7 @@ btnCalc.addEventListener('click', () => {
         p2Box.classList.add('winner');
         speak('平局');
     }
-    
-    // Highlight used cards in player's hand
-    highlightCards(1, p1Best.cards, playersCards[0]);
-    highlightCards(2, p2Best.cards, playersCards[1]);
 });
-
-function highlightCards(pIndex, bestCards, handCards) {
-    const bestSet = new Set(bestCards);
-    const handEls = document.getElementById(`p${pIndex}-cards`).children;
-    handCards.forEach((val, i) => {
-        if (bestSet.has(val)) {
-            handEls[i].classList.add('highlight');
-        }
-    });
-}
 
 // ---------------- GTO Solver Logic ----------------
 
@@ -186,10 +215,10 @@ btnSolve.addEventListener('click', () => {
     const pot = parseFloat(document.getElementById('gto-pot').value) || 100;
     const bet = parseFloat(document.getElementById('gto-bet').value) || 50;
 
-    const commCards = commStr.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n) && n >= 1 && n <= 52);
+    const commCards = commStr.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n) && n >= 2 && n <= 53);
     
-    if (commCards.length !== 3) {
-        alert("请输入正好 3 张合法的公共牌 (1-52)！");
+    if (commCards.length !== 5) {
+        alert("请输入正好 5 张合法的公共牌 (2-53)！");
         return;
     }
 
@@ -220,7 +249,7 @@ btnSolve.addEventListener('click', () => {
             const html = results.map(r => `
                 <tr>
                     <td><strong>[${r.hand.join(', ')}]</strong></td>
-                    <td>GCD: ${r.bestCombo.gcd} <br> <small>${r.bestCombo.sortedCards.join('<')}</small></td>
+                    <td>${r.bestCombo.L + '张公约' + r.bestCombo.G}</td>
                     <td>${renderFreq(r.p1_root_check, 'Check', '#3498db', r.p1_root_bet, 'Bet', '#e74c3c')}</td>
                     <td>${renderFreq(r.p2_bet_fold, 'Fold', '#95a5a6', r.p2_bet_call, 'Call', '#e67e22')}</td>
                     <td>${renderFreq(r.p2_chk_check, 'Check', '#3498db', r.p2_chk_bet, 'Bet', '#e74c3c')}</td>

@@ -10,7 +10,7 @@
 
     <div class="tabs">
         <button id="tab-sim" class="active">发牌模拟器</button>
-        <button id="tab-gto">GTO 求解器 (CFR)</button>
+        <button id="tab-gto">GTO 求解器</button>
     </div>
 
     <!-- 发牌模拟器 -->
@@ -24,6 +24,8 @@
     <div class="section">
         <h2>公共牌</h2>
         <div class="card-container" id="community-cards">
+            <div class="card empty"></div>
+            <div class="card empty"></div>
             <div class="card empty"></div>
             <div class="card empty"></div>
             <div class="card empty"></div>
@@ -72,15 +74,15 @@
     <div id="view-gto" class="view" style="display: none;">
         <div class="gto-controls">
             <div class="input-group">
-                <label>公共牌 (用逗号分隔, 1-52):</label>
-                <input type="text" id="gto-community" value="10, 20, 30">
+                <label>公共牌:</label>
+                <input type="text" id="gto-community" value="10, 20, 30, 40, 50">
             </div>
             <div class="input-group">
-                <label>底池 (Pot):</label>
+                <label>底池:</label>
                 <input type="number" id="gto-pot" value="100">
             </div>
             <div class="input-group">
-                <label>下注尺度 (Bet):</label>
+                <label>下注尺度:</label>
                 <input type="number" id="gto-bet" value="50">
             </div>
             <button id="btn-solve">求解 GTO</button>
@@ -98,8 +100,8 @@
                 <thead>
                     <tr>
                         <th>底牌</th>
-                        <th>成牌GCD及排序</th>
-                        <th>P1 动作 (先手)</th>
+                        <th>牌型</th>
+                        <th>P1 动作</th>
                         <th>P2 面向 Bet</th>
                         <th>P2 面向 Check</th>
                         <th>P1 面向 Bet</th>

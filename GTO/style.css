@@ -80,6 +80,18 @@ h2 {
     user-select: none;
 }
 
+.card .badge {
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #2ecc71;
+    background-color: rgba(46, 204, 113, 0.1);
+    padding: 1px 4px;
+    border-radius: 4px;
+}
+
 .card.empty {
     border: 2px dashed #ccc;
     background-color: transparent;
@@ -131,25 +143,42 @@ h2 {
     padding-top: 16px;
     border-top: 1px dashed #eaeaea;
     display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .player-box .best-combo.visible {
-    display: block;
+    display: flex;
     animation: fadeIn 0.5s ease forwards;
 }
 
 .best-combo .card-container {
-    transform: scale(0.8);
-    transform-origin: center top;
-    min-height: 96px;
-    margin-bottom: -16px;
+    min-height: auto;
+    margin: 0;
+    flex-wrap: nowrap;
+    gap: 4px;
+}
+
+.best-combo .card {
+    width: 40px;
+    height: 60px;
+    font-size: 16px;
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+.best-combo .card.highlight {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(46, 204, 113, 0.15);
 }
 
 .best-combo h3 {
-    font-size: 16px;
-    text-align: center;
+    font-size: 14px;
     color: #666;
-    margin-bottom: 8px;
+    margin: 0;
+    white-space: nowrap;
 }
 
 /* 结果公告区 */
