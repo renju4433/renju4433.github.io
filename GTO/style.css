@@ -1,0 +1,288 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #FFFFFF;
+    color: #333333;
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* 控制区 */
+.controls {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+    justify-content: center;
+}
+
+button {
+    padding: 12px 24px;
+    background-color: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #333;
+}
+
+button:hover:not(:disabled) {
+    background-color: #e4e4e4;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 区域标题 */
+h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #111;
+    text-align: center;
+}
+
+/* 扑克牌卡片 */
+.card-container {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 120px;
+}
+
+.card {
+    width: 80px;
+    height: 120px;
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    user-select: none;
+}
+
+.card.empty {
+    border: 2px dashed #ccc;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.card.highlight {
+    border-color: #2ecc71;
+    color: #2ecc71;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(46, 204, 113, 0.15);
+}
+
+/* 区域分块 */
+.section {
+    margin-bottom: 48px;
+}
+
+/* 玩家区域 */
+.players-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.player-box {
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 24px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.player-box.winner {
+    border: 2px solid #f1c40f;
+    box-shadow: 0 0 20px rgba(241, 196, 15, 0.15);
+}
+
+.player-box .status {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    min-height: 21px;
+}
+
+.player-box .best-combo {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed #eaeaea;
+    display: none;
+}
+
+.player-box .best-combo.visible {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.best-combo .card-container {
+    transform: scale(0.8);
+    transform-origin: center top;
+    min-height: 96px;
+    margin-bottom: -16px;
+}
+
+.best-combo h3 {
+    font-size: 16px;
+    text-align: center;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+/* 结果公告区 */
+.result-banner {
+    text-align: center;
+    padding: 24px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #111;
+    min-height: 80px;
+    margin-top: 32px;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 16px;
+}
+.tabs button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #888;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.tabs button.active {
+    color: #111;
+    border-bottom: 3px solid #111;
+}
+
+/* GTO 求解器 */
+.gto-controls {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.input-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+}
+.input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 200px;
+}
+#btn-solve {
+    background-color: #111;
+    color: #fff;
+    margin-top: 24px;
+}
+
+/* 进度条 */
+#gto-progress-container {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
+}
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #eaeaea;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #2ecc71;
+    transition: width 0.1s linear;
+}
+.progress-text {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* 表格 */
+.table-container {
+    overflow-x: auto;
+    margin-top: 32px;
+    border-radius: 8px;
+    border: 1px solid #eaeaea;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+th, td {
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid #eaeaea;
+}
+th {
+    background-color: #fafafa;
+    font-weight: 600;
+    color: #333;
+    position: sticky;
+    top: 0;
+}
+tr:hover {
+    background-color: #fcfcfc;
+}
+.freq-bar {
+    display: inline-block;
+    height: 6px;
+    border-radius: 3px;
+    margin-top: 4px;
+}
+.freq-text {
+    font-size: 12px;
+    color: #777;
+    margin-left: 4px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

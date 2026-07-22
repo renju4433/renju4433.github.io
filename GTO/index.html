@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTO Solver</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="tabs">
+        <button id="tab-sim" class="active">发牌模拟器</button>
+        <button id="tab-gto">GTO 求解器 (CFR)</button>
+    </div>
+
+    <!-- 发牌模拟器 -->
+    <div id="view-sim" class="view active">
+        <div class="controls">
+        <button id="btn-start">开始发牌</button>
+        <button id="btn-community" disabled>翻公共牌</button>
+        <button id="btn-calc" disabled>计算胜负</button>
+    </div>
+
+    <div class="section">
+        <h2>公共牌</h2>
+        <div class="card-container" id="community-cards">
+            <div class="card empty"></div>
+            <div class="card empty"></div>
+            <div class="card empty"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>玩家</h2>
+        <div class="players-container" id="players">
+            <!-- 玩家 1 -->
+            <div class="player-box" id="player-1">
+                <h2>玩家 1</h2>
+                <div class="card-container" id="p1-cards">
+                    <div class="card empty"></div>
+                    <div class="card empty"></div>
+                </div>
+                <div class="status" id="p1-status"></div>
+                <div class="best-combo" id="p1-best-combo">
+                    <h3>最优组合</h3>
+                    <div class="card-container" id="p1-best-cards"></div>
+                </div>
+            </div>
+
+            <!-- 玩家 2 -->
+            <div class="player-box" id="player-2">
+                <h2>玩家 2</h2>
+                <div class="card-container" id="p2-cards">
+                    <div class="card empty"></div>
+                    <div class="card empty"></div>
+                </div>
+                <div class="status" id="p2-status"></div>
+                <div class="best-combo" id="p2-best-combo">
+                    <h3>最优组合</h3>
+                    <div class="card-container" id="p2-best-cards"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="result-banner" id="result-banner">
+        <!-- 胜负结果将在此显示 -->
+    </div>
+    </div>
+
+    <!-- GTO 求解器 -->
+    <div id="view-gto" class="view" style="display: none;">
+        <div class="gto-controls">
+            <div class="input-group">
+                <label>公共牌 (用逗号分隔, 1-52):</label>
+                <input type="text" id="gto-community" value="10, 20, 30">
+            </div>
+            <div class="input-group">
+                <label>底池 (Pot):</label>
+                <input type="number" id="gto-pot" value="100">
+            </div>
+            <div class="input-group">
+                <label>下注尺度 (Bet):</label>
+                <input type="number" id="gto-bet" value="50">
+            </div>
+            <button id="btn-solve">求解 GTO</button>
+        </div>
+
+        <div id="gto-progress-container" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="gto-progress-fill"></div>
+            </div>
+            <div class="progress-text" id="gto-progress-text">0%</div>
+        </div>
+
+        <div class="table-container">
+            <table id="gto-table">
+                <thead>
+                    <tr>
+                        <th>底牌</th>
+                        <th>成牌GCD及排序</th>
+                        <th>P1 动作 (先手)</th>
+                        <th>P2 面向 Bet</th>
+                        <th>P2 面向 Check</th>
+                        <th>P1 面向 Bet</th>
+                    </tr>
+                </thead>
+                <tbody id="gto-tbody">
+                    <!-- 结果行 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
