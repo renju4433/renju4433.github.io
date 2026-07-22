@@ -3,6 +3,7 @@ import { createDeck, shuffle, getBestCombo, compareCombos } from './game.js';
 let deck = [];
 let playersCards = [[], []];
 let communityCards = [];
+let communityCardsRevealed = 0;
 
 const btnStart = document.getElementById('btn-start');
 const btnCommunity = document.getElementById('btn-community');
@@ -22,6 +23,7 @@ btnStart.addEventListener('click', () => {
     deck = shuffle(createDeck());
     playersCards = [[], []];
     communityCards = [];
+    communityCardsRevealed = 0;
     
     // Clear UI
     resultBanner.textContent = '';
@@ -44,26 +46,28 @@ btnStart.addEventListener('click', () => {
     
     // Update buttons
     btnStart.textContent = '重新开始';
+    btnCommunity.textContent = '翻第 1 张公共牌';
     btnCommunity.disabled = false;
     btnCalc.disabled = true;
 });
 
-btnCommunity.addEventListener('click', async () => {
-    btnCommunity.disabled = true;
+btnCommunity.addEventListener('click', () => {
+    // Deal 1 community card
+    communityCards.push(deck.pop());
+    communityCardsRevealed++;
     
-    // Deal 3 community cards
-    communityCards = [deck.pop(), deck.pop(), deck.pop()];
     const container = document.getElementById('community-cards');
+    const cardsHtml = communityCards.map(renderCard).join('') + 
+                      renderEmptyCard().repeat(3 - communityCardsRevealed);
+    container.innerHTML = cardsHtml;
     
-    // Reveal one by one with animation delay
-    for (let i = 0; i < 3; i++) {
-        await new Promise(r => setTimeout(r, 600));
-        const cardsHtml = communityCards.slice(0, i + 1).map(renderCard).join('') + 
-                          renderEmptyCard().repeat(2 - i);
-        container.innerHTML = cardsHtml;
+    if (communityCardsRevealed < 3) {
+        btnCommunity.textContent = `翻第 ${communityCardsRevealed + 1} 张公共牌`;
+    } else {
+        btnCommunity.textContent = '公共牌已发完';
+        btnCommunity.disabled = true;
+        btnCalc.disabled = false;
     }
-    
-    btnCalc.disabled = false;
 });
 
 btnCalc.addEventListener('click', () => {
@@ -79,7 +83,7 @@ btnCalc.addEventListener('click', () => {
     function renderBest(pIndex, best) {
         document.getElementById(`p${pIndex}-best-combo`).classList.add('visible');
         document.getElementById(`p${pIndex}-best-cards`).innerHTML = best.cards.map(renderCard).join('');
-        document.getElementById(`p${pIndex}-status`).innerHTML = `最大公约数 (GCD): <strong>${best.gcd}</strong> <br>比牌排序: ${best.sortedCards.join(' < ')}`;
+        document.getElementById(`p${pIndex}-status`).innerHTML = `最大公约数 (GCD): <strong>${best.gcd}</strong> <br>比低牌: ${best.sortedCards.join(' < ')}`;
     }
     
     renderBest(1, p1Best);
