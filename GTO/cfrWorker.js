@@ -4,7 +4,8 @@ function fastCompare(bestA, bestB) {
     if(bestA.gcd !== bestB.gcd) return bestA.gcd - bestB.gcd;
     for(let k=0; k<3; k++) {
         if(bestA.sortedCards[k] !== bestB.sortedCards[k]) {
-            return bestA.sortedCards[k] - bestB.sortedCards[k];
+            // 同GCD下，数字越小越好（小者胜）
+            return bestB.sortedCards[k] - bestA.sortedCards[k];
         }
     }
     return 0;

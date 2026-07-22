@@ -66,12 +66,14 @@ export function compareCombos(comboA, comboB) {
     }
     
     // 2) 若公约数相同，依次比较从小到大这3张牌中的数字
+    // 规则：同GCD下，数字越小越好（小者胜）
     const sortedA = [...comboA].sort((a, b) => a - b);
     const sortedB = [...comboB].sort((a, b) => a - b);
     
     for (let i = 0; i < 3; i++) {
         if (sortedA[i] !== sortedB[i]) {
-            return sortedA[i] - sortedB[i];
+            // A比B小，说明A更好，返回正数表示A大于B
+            return sortedB[i] - sortedA[i];
         }
     }
     return 0;
