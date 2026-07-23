@@ -284,7 +284,7 @@ function renderTreeViewer(root, container) {
                     barHtml += `<div class="action-segment" style="width: ${freq * 100}%; background-color: ${color};" title="${actionNames[a]}: ${pct}">${barText}</div>`;
                 }
                 
-                html += `<td style="width: 200px;"><div class="action-bar">${barHtml}</div></td>`;
+                html += `<td style="width: 250px;"><div class="action-bar">${barHtml}</div></td>`;
                 tr.innerHTML = html;
                 tbody.appendChild(tr);
             }
