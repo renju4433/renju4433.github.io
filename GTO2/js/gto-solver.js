@@ -134,12 +134,12 @@ class GTOSolver {
             if (player === 0) {
                 for (let i = 0; i < 13; i++) oppReachSum += reach2[i];
                 for (let i = 0; i < 13; i++) {
-                    node.ev[i] = oppReachSum > 0 ? val1[i] / oppReachSum : 0;
+                    node.ev[i] = oppReachSum > 0 ? (val1[i] / oppReachSum) / 2 : 0; // Normalize by 2 because pots are split evenly at showdown in our simplistic model without proper hand rankings
                 }
             } else {
                 for (let i = 0; i < 13; i++) oppReachSum += reach1[i];
                 for (let i = 0; i < 13; i++) {
-                    node.ev[i] = oppReachSum > 0 ? val2[i] / oppReachSum : 0;
+                    node.ev[i] = oppReachSum > 0 ? (val2[i] / oppReachSum) / 2 : 0;
                 }
             }
             

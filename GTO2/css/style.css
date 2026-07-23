@@ -141,6 +141,7 @@ th {
     overflow: hidden;
     margin-top: 4px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
 .action-segment {
@@ -152,6 +153,11 @@ th {
     font-weight: 600;
     color: #fff;
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    border-right: 1px solid rgba(255,255,255,0.3);
+}
+
+.action-segment:last-child {
+    border-right: none;
 }
 
 .range-grid {
