@@ -747,19 +747,32 @@
   }
 
   // aggregate a decision node's average strategy to 13x13 hand classes
-  function aggregateStrategy(node) {
+  function aggregateStrategy(node, reachO) {
     if (!node || node.type !== 'decision') return null;
     const strat = avgStrategy(node), nA = node.nA, H = HANDS[node.player];
     
-    // Also compute EV for each hand to include in detailed view
+    if (!reachO) reachO = initReach(1 - node.player);
+
+    // Compute EV for each hand to include in detailed view
     const ev = new Float32Array(H.length);
-    const reachO = initReach(1 - node.player);
     const a0 = new Float32Array(H.length);
     const b0 = new Float32Array(H.length);
     const mark = ATOP;
     traverseBoth(node, node.player, reachO, a0, b0);
-    for(let h=0; h<H.length; h++) ev[h] = a0[h] / (NORMW || 1);
     ATOP = mark;
+
+    const opp = 1 - node.player;
+    const Ho = HANDS[opp];
+    for(let h=0; h<H.length; h++) {
+      let sumW = 0;
+      const c1 = H[h].c1, c2 = H[h].c2;
+      for(let o=0; o<Ho.length; o++) {
+         if (Ho[o].c1 !== c1 && Ho[o].c1 !== c2 && Ho[o].c2 !== c1 && Ho[o].c2 !== c2) {
+           sumW += reachO[o];
+         }
+      }
+      ev[h] = sumW > 0 ? a0[h] / sumW : 0;
+    }
 
     const classes = new Map();
     for (let h = 0; h < H.length; h++) {
@@ -779,7 +792,7 @@
     return { player: node.player, labels: node.labels.slice(), classes, children };
   }
 
-  function rootStrategy() { return aggregateStrategy(ROOT); }
+  function rootStrategy() { return aggregateStrategy(ROOT, initReach(1)); }
 
   // walk the tree along an array of action indices (decision edges only)
   function nodeByPath(path) {
@@ -790,7 +803,29 @@
     }
     return n;
   }
-  function strategyAt(path) { return aggregateStrategy(nodeByPath(path || [])); }
+
+  function strategyAt(path) {
+    path = path || [];
+    let n = ROOT;
+    let r0 = initReach(0);
+    let r1 = initReach(1);
+    for (const a of path) {
+      if (!n || n.type !== 'decision') break;
+      const strat = avgStrategy(n);
+      const nA = n.nA;
+      if (n.player === 0) {
+         const nextR = new Float32Array(r0.length);
+         for(let h=0; h<r0.length; h++) nextR[h] = r0[h] * strat[h * nA + a];
+         r0 = nextR;
+      } else {
+         const nextR = new Float32Array(r1.length);
+         for(let h=0; h<r1.length; h++) nextR[h] = r1[h] * strat[h * nA + a];
+         r1 = nextR;
+      }
+      n = n.actions[a];
+    }
+    return aggregateStrategy(n, n ? (n.player === 0 ? r1 : r0) : null);
+  }
 
   // human-readable line: who acted and what they did, for each edge in path
   function pathInfo(path) {

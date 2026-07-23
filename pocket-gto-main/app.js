@@ -424,7 +424,7 @@
           let a = Math.max(r, c);
           let b = Math.min(r, c);
           let cl = a + ' ' + b;
-          lab.textContent = cl;
+          lab.innerHTML = a + '<br>' + b;
           const fill = document.createElement('div'); fill.className = 'fill';
           const e = rs.classes.get(cl);
           if (e) {
