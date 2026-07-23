@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Pocket GTO</title>
+<style>
+  :root{
+    --bg:#ffffff; --panel:#f8f9fa; --panel2:#ffffff; --line:#e0e0e0;
+    --txt:#333333; --muted:#888888; --accent:#0066cc; --good:#28a745; --bad:#dc3545;
+    --check:#17a2b8; --bet1:#ffc107; --bet2:#fd7e14; --bet3:#dc3545; --allin:#6c757d; --fold:#6c757d;
+    --radius:8px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-text-size-adjust:100%}
+  body{padding:env(safe-area-inset-top) 12px calc(12px + env(safe-area-inset-bottom)) 12px;max-width:960px;margin:0 auto}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:12px}
+  label{display:block;font-size:12px;color:var(--muted);margin:0 0 4px}
+  textarea,input,select{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--txt);
+    border-radius:6px;padding:8px 10px;font-size:14px;font-family:inherit;outline:none}
+  textarea{resize:vertical;min-height:46px;line-height:1.35}
+  textarea:focus,input:focus,select:focus{border-color:var(--accent)}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .row>div{flex:1 1 130px;min-width:0}
+  .row3>div{flex:1 1 90px}
+  .btnrow{display:flex;gap:10px;margin-top:4px}
+  button{flex:1;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:12px;
+    font-size:15px;font-weight:600;cursor:pointer}
+  button.sec{background:var(--panel2);color:var(--txt);border:1px solid var(--line)}
+  button:disabled{opacity:.5;cursor:default}
+  .bar{height:7px;background:var(--panel2);border-radius:6px;overflow:hidden;margin:12px 0 8px}
+  .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--good));transition:width .15s}
+  .stats{display:flex;gap:10px;flex-wrap:wrap}
+  .stat{flex:1 1 90px;background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+  .stat b{display:block;font-size:18px;margin-top:2px}
+  .stat span{font-size:11px;color:var(--muted)}
+  .mono{font-variant-numeric:tabular-nums}
+  /* grid */
+  #gridWrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  #grid{display:grid;grid-template-columns:repeat(52,1fr);gap:1px;min-width:600px;aspect-ratio:1/1}
+  .cell{position:relative;border-radius:1px;overflow:hidden;background:#eef0f2;
+    display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .cell .lab{position:relative;z-index:2;font-size:6px;font-weight:600;color:#333;
+    pointer-events:none}
+  .cell .fill{position:absolute;inset:0;z-index:1;display:flex}
+  .cell .fill>i{height:100%}
+  .cell.empty{opacity:.3}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;font-size:11px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+  #nav{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 10px;font-size:12px;color:var(--muted)}
+  #nav .crumb{color:var(--txt)}
+  #nav .navbtn{background:var(--panel2);border:1px solid var(--line);color:var(--txt);
+    border-radius:4px;padding:4px 9px;font-size:12px;font-weight:600;cursor:pointer;flex:0 0 auto}
+  #drill{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  #drill .dlabel{flex:1 0 100%;font-size:12px;color:var(--muted);margin-bottom:-2px}
+  #drill .drillbtn{background:var(--panel2);border:1px solid var(--accent);color:var(--txt);
+    border-radius:4px;padding:7px 11px;font-size:13px;cursor:pointer;flex:0 0 auto}
+  #drill .drillbtn:active{transform:scale(.97)}
+  #detail{font-size:13px;color:var(--muted);margin-top:10px;min-height:18px}
+  .setup-note{font-size:12px;color:var(--good);margin:2px 0;line-height:1.45}
+  .err{color:var(--bad);font-size:12px;margin-top:6px}
+  #detail b{color:var(--txt)}
+</style>
+</head>
+<body>
+  <div class="panel" style="margin-top: 12px;">
+    <div class="row">
+      <div>
+        <label>OOP range</label>
+        <textarea id="oop">53-2</textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>IP range</label>
+        <textarea id="ip">53-2</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <label>Board (0 to 3 cards)</label>
+    <input id="board" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <div class="row row3" style="margin-top:10px">
+      <div><label>Pot</label><input id="pot" type="number" value="60" inputmode="numeric"></div>
+      <div><label>Eff. stack</label><input id="stack" type="number" value="100" inputmode="numeric"></div>
+      <div><label>Max iterations</label><input id="iters" type="number" value="250" inputmode="numeric"></div>
+      <div><label>Stop at expl. %</label><input id="target" type="number" value="0" step="0.1" min="0" inputmode="decimal"></div>
+    </div>
+    <div class="row row3" style="margin-top:10px">
+      <div><label>Bet sizes (×pot)</label><input id="bets" value="0.5, 1.0"></div>
+      <div><label>Raise sizes (×pot)</label><input id="raises" value="1.0"></div>
+      <div><label>Max raises</label><input id="maxr" type="number" value="1" inputmode="numeric"></div>
+    </div>
+    <div class="row" style="margin-top:10px;align-items:center;gap:16px">
+      <div style="flex:0 0 auto"><label style="margin:0">
+        <input type="checkbox" id="allin" checked style="width:auto;margin-right:6px">Allow all-in</label></div>
+      <div style="flex:0 0 auto"><label style="margin:0">
+        <input type="checkbox" id="sampling" style="width:auto;margin-right:6px">Fast sampled (MCCFR)</label></div>
+      <div style="flex:0 0 auto"><label style="margin:0">
+        <input type="checkbox" id="himem" style="width:auto;margin-right:6px">High memory</label></div>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="setup-note" id="setupNote"></div>
+    <div class="btnrow">
+      <button id="solve">Solve</button>
+      <button id="stop" class="sec" disabled>Stop</button>
+    </div>
+    <div class="bar"><i id="progFill"></i></div>
+    <div class="stats">
+      <div class="stat"><span>OOP EV / combo</span><b class="mono" id="evoop">–</b></div>
+      <div class="stat"><span>IP EV / combo</span><b class="mono" id="evip">–</b></div>
+      <div class="stat"><span>Exploitability</span><b class="mono" id="expl">–</b></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:baseline">
+      <label style="margin:0" id="stratTitle">OOP strategy</label>
+      <span style="font-size: 11px; color: var(--muted);" id="treeInfo"></span>
+    </div>
+    <div id="nav"></div>
+    <div id="gridWrap"><div id="grid"></div></div>
+    <div class="legend" id="legend"></div>
+    <div id="drill"></div>
+    <div id="detail">Tap a hand to see its action mix.</div>
+  </div>
+
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
