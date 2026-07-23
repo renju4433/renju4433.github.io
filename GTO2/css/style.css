@@ -68,6 +68,34 @@ h2, h3 {
     flex: 1;
 }
 
+.label-with-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.label-with-action label {
+    margin-bottom: 0;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #666;
+    transition: transform 0.2s;
+    line-height: 1;
+}
+
+.icon-btn:hover {
+    transform: scale(1.1);
+    opacity: 1;
+    background: none;
+}
+
 label {
     display: block;
     margin-bottom: 8px;

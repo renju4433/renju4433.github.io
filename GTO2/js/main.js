@@ -22,6 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('ip-range-grid').addEventListener('mouseup', updateAllHashParameters);
     document.getElementById('ip-range-grid').addEventListener('touchend', updateAllHashParameters);
 
+    // Clear range buttons
+    document.getElementById('clear-oop-btn').addEventListener('click', () => {
+        setGridRange('oop-range-grid', []);
+        updateAllHashParameters();
+    });
+    document.getElementById('clear-ip-btn').addEventListener('click', () => {
+        setGridRange('ip-range-grid', []);
+        updateAllHashParameters();
+    });
 
     solveBtn.addEventListener('click', () => {
         const boardStr = document.getElementById('board-cards').value;
