@@ -254,7 +254,7 @@ btnCalcEq.addEventListener('click', () => {
             `;
             
             // 语音播报
-            speak(`计算完成。玩家1胜率 ${(res.p1Eq * 100).toFixed(1)}%，玩家2胜率 ${(res.p2Eq * 100).toFixed(1)}%。平局 ${(res.tieEq * 100).toFixed(1)}%`);
+            speak(`计算完成。玩家1胜率 ${(res.p1Eq * 100).toFixed(2)}%，玩家2胜率 ${(res.p2Eq * 100).toFixed(2)}%。`);
         }
     };
 
