@@ -245,7 +245,7 @@ function renderTreeViewer(root, container) {
             let table = document.createElement('table');
             let thead = document.createElement('thead');
             let actionNames = Object.keys(current.children);
-            let headRow = `<tr><th>手牌</th>`;
+            let headRow = `<tr><th>手牌</th><th>EV</th>`;
             actionNames.forEach(a => headRow += `<th>${a}</th>`);
             headRow += `<th>策略分布</th></tr>`;
             thead.innerHTML = headRow;
@@ -258,7 +258,8 @@ function renderTreeViewer(root, container) {
                 if (sum === 0) continue; 
                 
                 let tr = document.createElement('tr');
-                let html = `<td><strong>${RANKS[i]}</strong></td>`;
+                let evStr = current.ev && current.ev[i] !== undefined ? current.ev[i].toFixed(2) : '0.00';
+                let html = `<td><strong>${RANKS[i]}</strong></td><td>${evStr}</td>`;
                 
                 let barHtml = '';
                 for (let a = 0; a < actionNames.length; a++) {
