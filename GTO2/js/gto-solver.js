@@ -29,16 +29,8 @@ class GTOSolver {
 
     cfr(node, reach1, reach2) {
         if (node.type === 'TERMINAL') {
-            // [优化]: 预分配数组，每次进入只需清零
-            if (!node.val1) {
-                node.val1 = new Float64Array(13);
-                node.val2 = new Float64Array(13);
-            }
-            let val1 = node.val1;
-            let val2 = node.val2;
-            val1.fill(0);
-            val2.fill(0);
-            
+            let val1 = new Float64Array(13);
+            let val2 = new Float64Array(13);
             let m1 = node.matrix1;
             let m2 = node.matrix2;
             
@@ -58,22 +50,13 @@ class GTOSolver {
         }
         
         if (node.type === 'CHANCE') {
-            // [优化]: 预分配 Chance 节点的返回数组
-            if (!node.val1) {
-                node.val1 = new Float64Array(13);
-                node.val2 = new Float64Array(13);
-            }
-            let val1 = node.val1;
-            let val2 = node.val2;
-            val1.fill(0);
-            val2.fill(0);
-            
-            // 假设外部有 getCounts 和 RANKS 的定义
-            let counts = getCounts(node.board); 
+            let val1 = new Float64Array(13);
+            let val2 = new Float64Array(13);
+            let counts = getCounts(node.board);
             
             let totalWeight = 0;
             for (let c = 0; c < 13; c++) {
-                if (counts[c] <= 0) continue;
+                if (counts[c] <= 0) continue; // 如果该牌已经发完，跳过
                 let weight = counts[c];
                 totalWeight += weight;
                 
@@ -100,31 +83,13 @@ class GTOSolver {
             let numActions = Object.keys(node.children).length;
             let actionNames = Object.keys(node.children);
             
-            // [优化核心]: 只在第一次遍历到该节点时进行内存分配
             if (!node.regretSum) {
                 node.regretSum = Array.from({length: 13}, () => new Float64Array(numActions));
                 node.strategySum = Array.from({length: 13}, () => new Float64Array(numActions));
-                node.ev1 = new Float64Array(13);
-                node.ev2 = new Float64Array(13);
-                node.numIterations = 0;
-                
-                // 缓存运行时需要复用的数组
-                node.strategy = Array.from({length: 13}, () => new Float64Array(numActions));
-                node.val1 = new Float64Array(13);
-                node.val2 = new Float64Array(13);
-                node.nextReaches1 = Array.from({length: numActions}, () => new Float64Array(13));
-                node.nextReaches2 = Array.from({length: numActions}, () => new Float64Array(13));
-                node.actionVals1 = new Array(numActions); // 替代频繁的 push
-                node.actionVals2 = new Array(numActions);
             }
             
-            let strategy = node.strategy;
-            let val1 = node.val1;
-            let val2 = node.val2;
-            val1.fill(0);
-            val2.fill(0);
+            let strategy = Array.from({length: 13}, () => new Float64Array(numActions));
             
-            // 计算当前策略并累加策略和
             for (let i = 0; i < 13; i++) {
                 let sumPosRegret = 0;
                 for (let a = 0; a < numActions; a++) {
@@ -141,15 +106,12 @@ class GTOSolver {
                 }
             }
             
-            // 遍历所有动作，递归计算
+            let actionVals1 = [];
+            let actionVals2 = [];
+            
             for (let a = 0; a < numActions; a++) {
-                let nextReach1 = node.nextReaches1[a];
-                let nextReach2 = node.nextReaches2[a];
-                
-                // [优化]: 使用 .set() 进行内存级拷贝，远快于 new 数组
-                nextReach1.set(reach1);
-                nextReach2.set(reach2);
-                
+                let nextReach1 = new Float64Array(reach1);
+                let nextReach2 = new Float64Array(reach2);
                 if (player === 0) {
                     for (let i = 0; i < 13; i++) nextReach1[i] *= strategy[i][a];
                 } else {
@@ -157,38 +119,34 @@ class GTOSolver {
                 }
                 
                 let [v1, v2] = this.cfr(node.children[actionNames[a]], nextReach1, nextReach2);
-                
-                // [优化]: 保存引用，弃用 .push()
-                node.actionVals1[a] = v1;
-                node.actionVals2[a] = v2;
+                actionVals1.push(v1);
+                actionVals2.push(v2);
             }
             
-            // 累加 EV
+            let val1 = new Float64Array(13);
+            let val2 = new Float64Array(13);
+            
             for (let i = 0; i < 13; i++) {
                 for (let a = 0; a < numActions; a++) {
                     if (player === 0) {
-                        val1[i] += strategy[i][a] * node.actionVals1[a][i];
-                        val2[i] += node.actionVals2[a][i];
+                        val1[i] += strategy[i][a] * actionVals1[a][i];
+                        val2[i] += actionVals2[a][i];
                     } else {
-                        val2[i] += strategy[i][a] * node.actionVals2[a][i];
-                        val1[i] += node.actionVals1[a][i];
+                        val2[i] += strategy[i][a] * actionVals2[a][i];
+                        val1[i] += actionVals1[a][i];
                     }
                 }
             }
             
-            // 更新后悔值 (Regret)
             for (let i = 0; i < 13; i++) {
                 for (let a = 0; a < numActions; a++) {
                     if (player === 0) {
-                        node.regretSum[i][a] += node.actionVals1[a][i] - val1[i];
+                        node.regretSum[i][a] += actionVals1[a][i] - val1[i];
                     } else {
-                        node.regretSum[i][a] += node.actionVals2[a][i] - val2[i];
+                        node.regretSum[i][a] += actionVals2[a][i] - val2[i];
                     }
                 }
-                node.ev1[i] += val1[i];
-                node.ev2[i] += val2[i];
             }
-            node.numIterations++;
             
             return [val1, val2];
         }

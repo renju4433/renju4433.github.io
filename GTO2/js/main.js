@@ -247,7 +247,7 @@ function renderTreeViewer(root, container) {
             let actionNames = Object.keys(current.children);
             let headRow = `<tr><th>手牌</th>`;
             actionNames.forEach(a => headRow += `<th>${a}</th>`);
-            headRow += `<th>策略分布</th><th>EV</th></tr>`;
+            headRow += `<th>策略分布</th></tr>`;
             thead.innerHTML = headRow;
             table.appendChild(thead);
             
@@ -260,11 +260,9 @@ function renderTreeViewer(root, container) {
                 let tr = document.createElement('tr');
                 let html = `<td><strong>${RANKS[i]}</strong></td>`;
                 
-                let previousColor = null;
                 let barHtml = '';
                 for (let a = 0; a < actionNames.length; a++) {
                     let freq = current.strategySum[i][a] / sum;
-                    if (freq === 0) continue;
                     let pct = (freq * 100).toFixed(1) + '%';
                     html += `<td>${pct}</td>`;
                     
@@ -282,27 +280,10 @@ function renderTreeViewer(root, container) {
                             barText = actionNames[a][0];
                         }
                     }
-                    
-                    let borderStyle = '';
-                    if (previousColor === 'var(--action-bet)' && color === 'var(--action-bet)') {
-                        borderStyle = 'border-left: 1px dashed rgba(255,255,255,0.5); '; // Add a dashed white border for separation
-                    }
-
-                    barHtml += `<div class="action-segment" style="width: ${freq * 100}%; background-color: ${color}; ${borderStyle}" title="${actionNames[a]}: ${pct}">${barText}</div>`;
-                    previousColor = color;
+                    barHtml += `<div class="action-segment" style="width: ${freq * 100}%; background-color: ${color};" title="${actionNames[a]}: ${pct}">${barText}</div>`;
                 }
                 
                 html += `<td style="width: 200px;"><div class="action-bar">${barHtml}</div></td>`;
-                
-                let avgEV = 0;
-                if (current.numIterations > 0) {
-                    if (current.player === 0) {
-                        avgEV = current.ev1[i] / current.numIterations;
-                    } else {
-                        avgEV = current.ev2[i] / current.numIterations;
-                    }
-                }
-                html += `<td>${avgEV.toFixed(2)}</td>`;
                 tr.innerHTML = html;
                 tbody.appendChild(tr);
             }
