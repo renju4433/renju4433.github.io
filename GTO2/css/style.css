@@ -76,7 +76,7 @@ h2, h3 {
 
 .range-actions {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 6px;
 }
 
@@ -93,7 +93,7 @@ h2, h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 30px;
+    height: 36px;
     width: 36px;
     background-color: #fff;
     font-weight: bold;
