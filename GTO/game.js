@@ -93,8 +93,32 @@ export function evaluate5CardHand(combo) {
     };
 }
 
-// 6. 比较两个 5 张牌的组合 (接收 evaluate5CardHand 返回的对象)
-export function compareCombos(a, b) {
+// 6. 评估 3 张牌的牌型 (规则B: 5选3)
+export function evaluate3CardHand(combo) {
+    const gcdVal = gcd3(combo[0], combo[1], combo[2]);
+    const sorted = [...combo].sort((a, b) => b - a);
+    return {
+        cards: combo,
+        G: gcdVal,
+        L: 3,
+        gcdCards: [...combo],
+        kickerCards: [],
+        sortedCards: sorted
+    };
+}
+
+// 7. 比较两个组合 (接收 evaluate 返回的对象)
+export function compareCombos(a, b, mode = 'rule5') {
+    if (mode === 'rule3') {
+        if (a.G !== b.G) return a.G - b.G;
+        for (let i = 0; i < 3; i++) {
+            if (a.sortedCards[i] !== b.sortedCards[i]) {
+                return a.sortedCards[i] - b.sortedCards[i];
+            }
+        }
+        return 0;
+    }
+
     if (a.G !== b.G) return a.G - b.G;
     if (a.L !== b.L) return a.L - b.L;
 
@@ -107,15 +131,27 @@ export function compareCombos(a, b) {
     return 0;
 }
 
-// 7. 获取玩家的最优 5 张牌组合 (从 7 张中选 5 张)
-export function getBestCombo(cards) {
-    const combos = getCombinations(cards, 5);
-    let best = evaluate5CardHand(combos[0]);
-    for (let i = 1; i < combos.length; i++) {
-        const current = evaluate5CardHand(combos[i]);
-        if (compareCombos(current, best) > 0) {
-            best = current;
+// 8. 获取玩家的最优组合 (根据 mode 决定是 7选5 还是 5选3)
+export function getBestCombo(cards, mode = 'rule5') {
+    if (mode === 'rule3') {
+        const combos = getCombinations(cards, 3);
+        let best = evaluate3CardHand(combos[0]);
+        for (let i = 1; i < combos.length; i++) {
+            const current = evaluate3CardHand(combos[i]);
+            if (compareCombos(current, best, mode) > 0) {
+                best = current;
+            }
         }
+        return best;
+    } else {
+        const combos = getCombinations(cards, 5);
+        let best = evaluate5CardHand(combos[0]);
+        for (let i = 1; i < combos.length; i++) {
+            const current = evaluate5CardHand(combos[i]);
+            if (compareCombos(current, best, mode) > 0) {
+                best = current;
+            }
+        }
+        return best;
     }
-    return best;
 }

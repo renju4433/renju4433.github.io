@@ -11,7 +11,15 @@
     <div class="tabs">
         <button id="tab-sim" class="active">发牌模拟器</button>
         <button id="tab-equity">胜率计算器</button>
-        <button id="tab-gto">GTO 求解器</button>
+        <button id="tab-gto">GTO 求解器 (CFR)</button>
+    </div>
+
+    <div class="settings-bar" style="text-align: center; margin-bottom: 24px;">
+        <label for="rule-mode" style="font-weight: bold; color: #333; margin-right: 8px;">玩法规则：</label>
+        <select id="rule-mode" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 15px; outline: none; cursor: pointer;">
+            <option value="rule5">规则 A: 5张公共牌 (7选5, 比公约数数量和高牌)</option>
+            <option value="rule3">规则 B: 3张公共牌 (5选3, 先比GCD, 再比高牌)</option>
+        </select>
     </div>
 
     <!-- 发牌模拟器 -->
@@ -83,8 +91,8 @@
                 <input type="text" id="eq-p2" value="3, 5">
             </div>
             <div class="input-group">
-                <label>公共牌 (0-5张, 用逗号分隔):</label>
-                <input type="text" id="eq-comm" value="10, 20, 30">
+                <label>公共牌 (用逗号分隔):</label>
+                <input type="text" id="eq-comm" value="10, 20, 30" placeholder="规则A: 0-5张 / 规则B: 0-3张">
             </div>
             <button id="btn-calc-eq">计算胜率</button>
         </div>
@@ -107,8 +115,8 @@
     <div id="view-gto" class="view" style="display: none;">
         <div class="gto-controls">
             <div class="input-group">
-                <label>公共牌:</label>
-                <input type="text" id="gto-community" value="10, 20, 30, 40, 50">
+                <label>公共牌 (用逗号分隔, 2-53):</label>
+                <input type="text" id="gto-community" value="10, 20, 30" placeholder="规则A: 5张 / 规则B: 3张">
             </div>
             <div class="input-group">
                 <label>底池:</label>

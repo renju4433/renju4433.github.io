@@ -1,7 +1,7 @@
 import { getCombinations, compareCombos, getBestCombo } from './game.js';
 
 self.onmessage = function(e) {
-    const { p1, p2, comm } = e.data;
+    const { p1, p2, comm, mode } = e.data;
     
     // 生成剩余牌堆
     const used = [...p1, ...p2, ...comm];
@@ -12,14 +12,15 @@ self.onmessage = function(e) {
 
     let p1Wins = 0, p2Wins = 0, ties = 0;
     let total = 0;
-    const cardsToDraw = 5 - comm.length;
+    const totalCommunityCards = mode === 'rule3' ? 3 : 5;
+    const cardsToDraw = totalCommunityCards - comm.length;
 
     // 1. 计算胜率 (Equity)
     if (cardsToDraw === 0) {
-        // 已经发完5张公共牌，直接比较
-        const b1 = getBestCombo([...p1, ...comm]);
-        const b2 = getBestCombo([...p2, ...comm]);
-        const c = compareCombos(b1, b2);
+        // 已经发完公共牌，直接比较
+        const b1 = getBestCombo([...p1, ...comm], mode);
+        const b2 = getBestCombo([...p2, ...comm], mode);
+        const c = compareCombos(b1, b2, mode);
         if (c > 0) p1Wins++;
         else if (c < 0) p2Wins++;
         else ties++;
@@ -31,9 +32,9 @@ self.onmessage = function(e) {
 
         for (let i = 0; i < boards.length; i++) {
             const board = [...comm, ...boards[i]];
-            const b1 = getBestCombo([...p1, ...board]);
-            const b2 = getBestCombo([...p2, ...board]);
-            const c = compareCombos(b1, b2);
+            const b1 = getBestCombo([...p1, ...board], mode);
+            const b2 = getBestCombo([...p2, ...board], mode);
+            const c = compareCombos(b1, b2, mode);
             if (c > 0) p1Wins++;
             else if (c < 0) p2Wins++;
             else ties++;
@@ -45,18 +46,16 @@ self.onmessage = function(e) {
     }
 
     // 2. 计算补牌 (Outs)
-    // 仅在翻牌(3张)或转牌(4张)时计算直接补牌（即下一张能让自己获胜的牌）
+    // 仅在发牌未完成但已发部分公共牌时计算直接补牌（即下一张能让自己获胜的牌）
     let p1Outs = [];
     let p2Outs = [];
-    if (comm.length >= 3 && comm.length < 5) {
+    if (comm.length > 0 && comm.length < totalCommunityCards) {
         for (let i = 0; i < deck.length; i++) {
             const card = deck[i];
             const board = [...comm, card]; // 假设下一张发这个
-            // 此时board长度为 4 或 5。
-            // 注意：如果board只有4张，加上底牌共6张，getBestCombo依然可以从6张中选5张求最优
-            const b1 = getBestCombo([...p1, ...board]);
-            const b2 = getBestCombo([...p2, ...board]);
-            const c = compareCombos(b1, b2);
+            const b1 = getBestCombo([...p1, ...board], mode);
+            const b2 = getBestCombo([...p2, ...board], mode);
+            const c = compareCombos(b1, b2, mode);
             if (c > 0) p1Outs.push(card);
             else if (c < 0) p2Outs.push(card);
         }

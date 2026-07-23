@@ -1,16 +1,4 @@
-import { getBestCombo } from './game.js';
-
-function fastCompare(bestA, bestB) {
-    if(bestA.G !== bestB.G) return bestA.G - bestB.G;
-    if(bestA.L !== bestB.L) return bestA.L - bestB.L;
-    for(let k=0; k<5; k++) {
-        if(bestA.sortedCards[k] !== bestB.sortedCards[k]) {
-            // 同级别下，数字越大越好（高牌胜）
-            return bestA.sortedCards[k] - bestB.sortedCards[k];
-        }
-    }
-    return 0;
-}
+import { getBestCombo, compareCombos } from './game.js';
 
 function matVecMul(mat, vec, N, out) {
     for(let i=0; i<N; i++) {
@@ -24,7 +12,7 @@ function matVecMul(mat, vec, N, out) {
 }
 
 self.onmessage = function(e) {
-    const { communityCards, iterations, pot, bet } = e.data;
+    const { communityCards, iterations, pot, bet, mode } = e.data;
     
     // 1. Generate valid hands
     let hands = [];
@@ -38,7 +26,7 @@ self.onmessage = function(e) {
     const N = hands.length;
     
     // 2. Precompute best combos
-    let bestCombos = hands.map(h => getBestCombo([...h, ...communityCards]));
+    let bestCombos = hands.map(h => getBestCombo([...h, ...communityCards], mode));
     
     // 3. Build W and V_mask
     let W = new Float32Array(N * N);
@@ -52,7 +40,7 @@ self.onmessage = function(e) {
                 W[idx] = 0;
             } else {
                 V_mask[idx] = 1;
-                let comp = fastCompare(bestCombos[i], bestCombos[j]);
+                let comp = compareCombos(bestCombos[i], bestCombos[j], mode);
                 if(comp > 0) W[idx] = 1;
                 else if(comp < 0) W[idx] = -1;
                 else W[idx] = 0;
@@ -245,8 +233,8 @@ self.onmessage = function(e) {
         });
     }
 
-    // Sort results by hand strength (fastCompare)
-    results.sort((a, b) => fastCompare(b.bestCombo, a.bestCombo));
+    // Sort results by hand strength (fastCompare -> compareCombos)
+    results.sort((a, b) => compareCombos(b.bestCombo, a.bestCombo, mode));
 
     self.postMessage({ type: 'done', results });
 };

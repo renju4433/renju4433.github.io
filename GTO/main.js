@@ -4,6 +4,21 @@ let deck = [];
 let playersCards = [[], []];
 let communityCards = [];
 let communityCardsRevealed = 0;
+let currentRule = 'rule5';
+
+const ruleModeSelect = document.getElementById('rule-mode');
+ruleModeSelect.addEventListener('change', (e) => {
+    currentRule = e.target.value;
+    // Reset game state when rule changes
+    btnStart.click();
+    
+    // Update default input values based on rule
+    if (currentRule === 'rule3') {
+        document.getElementById('gto-community').value = "10, 20, 30";
+    } else {
+        document.getElementById('gto-community').value = "10, 20, 30, 40, 50";
+    }
+});
 
 function speak(text) {
     if ('speechSynthesis' in window) {
@@ -36,7 +51,8 @@ btnStart.addEventListener('click', () => {
     
     // Clear UI
     resultBanner.textContent = '';
-    document.getElementById('community-cards').innerHTML = renderEmptyCard().repeat(5);
+    const slots = currentRule === 'rule5' ? 5 : 3;
+    document.getElementById('community-cards').innerHTML = renderEmptyCard().repeat(slots);
     
     for (let i = 1; i <= 2; i++) {
         const pBox = document.getElementById(`player-${i}`);
@@ -55,7 +71,7 @@ btnStart.addEventListener('click', () => {
     
     // Update buttons
     btnStart.textContent = '重新开始';
-    btnCommunity.textContent = '发翻牌 (3张)';
+    btnCommunity.textContent = currentRule === 'rule5' ? '发翻牌 (3张)' : '翻开第 1 张公共牌';
     btnCommunity.disabled = false;
     btnCalc.disabled = true;
 });
@@ -63,55 +79,77 @@ btnStart.addEventListener('click', () => {
 btnCommunity.addEventListener('click', async () => {
     btnCommunity.disabled = true;
     
-    if (communityCardsRevealed === 0) {
-        // Flop: Deal 3 cards
-        const flopCards = [deck.pop(), deck.pop(), deck.pop()];
-        communityCards.push(...flopCards);
-        communityCardsRevealed = 3;
+    if (currentRule === 'rule3') {
+        const cardVal = deck.pop();
+        communityCards.push(cardVal);
+        communityCardsRevealed++;
         
-        speak(`翻牌 ${flopCards.join('、')}`);
+        speak(`公共牌 ${cardVal}`);
         
         const container = document.getElementById('community-cards');
-        // Animation delay for Flop
-        for (let i = 0; i < 3; i++) {
-            await new Promise(r => setTimeout(r, 400));
-            const cardsHtml = communityCards.slice(0, i + 1).map(renderCard).join('') + 
-                              renderEmptyCard().repeat(4 - i);
-            container.innerHTML = cardsHtml;
+        const cardsHtml = communityCards.map(renderCard).join('') + 
+                          renderEmptyCard().repeat(3 - communityCardsRevealed);
+        container.innerHTML = cardsHtml;
+        
+        if (communityCardsRevealed < 3) {
+            btnCommunity.textContent = `翻开第 ${communityCardsRevealed + 1} 张公共牌`;
+            btnCommunity.disabled = false;
+        } else {
+            btnCommunity.textContent = '公共牌已发完';
+            btnCalc.disabled = false;
         }
-        
-        btnCommunity.textContent = '发转牌 (1张)';
-        btnCommunity.disabled = false;
-        
-    } else if (communityCardsRevealed === 3) {
-        // Turn: Deal 1 card
-        const turnCard = deck.pop();
-        communityCards.push(turnCard);
-        communityCardsRevealed = 4;
-        
-        speak(`转牌 ${turnCard}`);
-        
-        const container = document.getElementById('community-cards');
-        const cardsHtml = communityCards.map(renderCard).join('') + renderEmptyCard();
-        container.innerHTML = cardsHtml;
-        
-        btnCommunity.textContent = '发河牌 (1张)';
-        btnCommunity.disabled = false;
-        
-    } else if (communityCardsRevealed === 4) {
-        // River: Deal 1 card
-        const riverCard = deck.pop();
-        communityCards.push(riverCard);
-        communityCardsRevealed = 5;
-        
-        speak(`河牌 ${riverCard}`);
-        
-        const container = document.getElementById('community-cards');
-        const cardsHtml = communityCards.map(renderCard).join('');
-        container.innerHTML = cardsHtml;
-        
-        btnCommunity.textContent = '公共牌已发完';
-        btnCalc.disabled = false;
+    } else {
+        // rule5 logic
+        if (communityCardsRevealed === 0) {
+            // Flop: Deal 3 cards
+            const flopCards = [deck.pop(), deck.pop(), deck.pop()];
+            communityCards.push(...flopCards);
+            communityCardsRevealed = 3;
+            
+            speak(`翻牌 ${flopCards.join('、')}`);
+            
+            const container = document.getElementById('community-cards');
+            // Animation delay for Flop
+            for (let i = 0; i < 3; i++) {
+                await new Promise(r => setTimeout(r, 400));
+                const cardsHtml = communityCards.slice(0, i + 1).map(renderCard).join('') + 
+                                  renderEmptyCard().repeat(4 - i);
+                container.innerHTML = cardsHtml;
+            }
+            
+            btnCommunity.textContent = '发转牌 (1张)';
+            btnCommunity.disabled = false;
+            
+        } else if (communityCardsRevealed === 3) {
+            // Turn: Deal 1 card
+            const turnCard = deck.pop();
+            communityCards.push(turnCard);
+            communityCardsRevealed = 4;
+            
+            speak(`转牌 ${turnCard}`);
+            
+            const container = document.getElementById('community-cards');
+            const cardsHtml = communityCards.map(renderCard).join('') + renderEmptyCard();
+            container.innerHTML = cardsHtml;
+            
+            btnCommunity.textContent = '发河牌 (1张)';
+            btnCommunity.disabled = false;
+            
+        } else if (communityCardsRevealed === 4) {
+            // River: Deal 1 card
+            const riverCard = deck.pop();
+            communityCards.push(riverCard);
+            communityCardsRevealed = 5;
+            
+            speak(`河牌 ${riverCard}`);
+            
+            const container = document.getElementById('community-cards');
+            const cardsHtml = communityCards.map(renderCard).join('');
+            container.innerHTML = cardsHtml;
+            
+            btnCommunity.textContent = '公共牌已发完';
+            btnCalc.disabled = false;
+        }
     }
 });
 
@@ -261,7 +299,8 @@ btnCalcEq.addEventListener('click', () => {
     equityWorker.postMessage({
         p1: p1Cards,
         p2: p2Cards,
-        comm: commCards
+        comm: commCards,
+        mode: currentRule
     });
 });
 
@@ -365,6 +404,7 @@ btnSolve.addEventListener('click', () => {
         communityCards: commCards,
         iterations: 1000,
         pot: pot,
-        bet: bet
+        bet: bet,
+        mode: currentRule
     });
 });
