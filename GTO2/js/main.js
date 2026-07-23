@@ -32,6 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
         updateAllHashParameters();
     });
 
+    // Fill range buttons
+    const allRanks = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
+    document.getElementById('fill-oop-btn').addEventListener('click', () => {
+        setGridRange('oop-range-grid', allRanks);
+        updateAllHashParameters();
+    });
+    document.getElementById('fill-ip-btn').addEventListener('click', () => {
+        setGridRange('ip-range-grid', allRanks);
+        updateAllHashParameters();
+    });
+
     solveBtn.addEventListener('click', () => {
         const boardStr = document.getElementById('board-cards').value;
         const startingPot = parseInt(document.getElementById('starting-pot').value);

@@ -74,12 +74,18 @@ h2, h3 {
     gap: 12px;
 }
 
+.range-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
 .icon-btn {
     background: none;
     border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 8px;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     color: #666;
     transition: all 0.2s;
@@ -87,9 +93,10 @@ h2, h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 36px;
+    height: 30px;
     width: 36px;
     background-color: #fff;
+    font-weight: bold;
 }
 
 .icon-btn:hover {
