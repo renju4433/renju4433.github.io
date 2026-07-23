@@ -21,6 +21,18 @@ onmessage = (e) => {
       result = GTO.metrics();
     } else if (op === 'view') {
       result = { strategy: GTO.strategyAt(args.path), line: GTO.pathInfo(args.path) };
+    } else if (op === 'getStrat') {
+      result = GTO.getStrat();
+    } else if (op === 'metricsCombined') {
+      const old = GTO.getStrat();
+      GTO.setStrat(args.strat);
+      result = GTO.metrics();
+      GTO.setStrat(old);
+    } else if (op === 'viewCombined') {
+      const old = GTO.getStrat();
+      GTO.setStrat(args.strat);
+      result = { strategy: GTO.strategyAt(args.path), line: GTO.pathInfo(args.path) };
+      GTO.setStrat(old);
     } else {
       throw new Error('unknown op: ' + op);
     }

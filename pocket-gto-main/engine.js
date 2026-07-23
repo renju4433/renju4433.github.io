@@ -33,7 +33,7 @@
       const n = parseInt(t[i], 10);
       if (!isNaN(n) && n >= 2 && n <= 53) {
         out.push(n - 2);
-      } else {
+      } else if (t[i]) {
         throw new Error('Board cards must be between 2 and 53.');
       }
     }
@@ -41,40 +41,38 @@
   }
 
   // ---- 7-card evaluator ----------------------------------------------
-  function gcd(a, b) {
-    while (b) {
-      let temp = b;
-      b = a % b;
-      a = temp;
+  // O(1) evaluation for max GCD of 3 elements out of 5 using fully unrolled loops
+  // and a fast bitwise-indexed lookup table (64x64 fits in CPU cache easily)
+  const gcdTable = new Int8Array(64 * 64);
+  for(let i=2; i<=53; i++) {
+    for(let j=2; j<=53; j++) {
+      let a = i, b = j;
+      while (b) { let temp = b; b = a % b; a = temp; }
+      gcdTable[(i << 6) | j] = a;
     }
-    return a;
-  }
-  function gcd3(a, b, c) {
-    return gcd(gcd(a, b), c);
   }
 
-  function score5(cards) {
-    let bestScore = -1;
-    for (let i = 0; i < 5; i++) {
-      for (let j = i + 1; j < 5; j++) {
-        for (let k = j + 1; k < 5; k++) {
-          let a = cards[i] + 2;
-          let b = cards[j] + 2;
-          let c = cards[k] + 2;
-          
-          if (a < b) { let t = a; a = b; b = t; }
-          if (a < c) { let t = a; a = c; c = t; }
-          if (b < c) { let t = b; b = c; c = t; }
-          
-          const g = gcd3(a, b, c);
-          const score = (g << 18) | (a << 12) | (b << 6) | c;
-          if (score > bestScore) {
-            bestScore = score;
-          }
-        }
-      }
-    }
-    return bestScore;
+  function score3(a, b, c) {
+    if (a < b) { let t = a; a = b; b = t; }
+    if (a < c) { let t = a; a = c; c = t; }
+    if (b < c) { let t = b; b = c; c = t; }
+    const g = gcdTable[(gcdTable[(a << 6) | b] << 6) | c];
+    return (g << 18) | (a << 12) | (b << 6) | c;
+  }
+
+  function score5(c0, c1, c2, c3, c4) {
+    c0 += 2; c1 += 2; c2 += 2; c3 += 2; c4 += 2;
+    let best = score3(c0, c1, c2);
+    let s = score3(c0, c1, c3); if (s > best) best = s;
+    s = score3(c0, c1, c4); if (s > best) best = s;
+    s = score3(c0, c2, c3); if (s > best) best = s;
+    s = score3(c0, c2, c4); if (s > best) best = s;
+    s = score3(c0, c3, c4); if (s > best) best = s;
+    s = score3(c1, c2, c3); if (s > best) best = s;
+    s = score3(c1, c2, c4); if (s > best) best = s;
+    s = score3(c1, c3, c4); if (s > best) best = s;
+    s = score3(c2, c3, c4); if (s > best) best = s;
+    return best;
   }
 
   // ---- range parsing --------------------------------------------------
@@ -377,7 +375,10 @@
     for (let h = 0; h < nH; h++) {
       const base = h * nA; let sum = 0;
       for (let a = 0; a < nA; a++) { const v = REGRET[O + base + a]; if (v > 0) sum += v; }
-      if (sum > 0) { for (let a = 0; a < nA; a++) { const v = REGRET[O + base + a]; out[base + a] = v > 0 ? v / sum : 0; } }
+      if (sum > 0) {
+        const invSum = 1 / sum;
+        for (let a = 0; a < nA; a++) { const v = REGRET[O + base + a]; out[base + a] = v > 0 ? v * invSum : 0; }
+      }
       else { const u = 1 / nA; for (let a = 0; a < nA; a++) out[base + a] = u; }
     }
   }
@@ -408,9 +409,9 @@
       e = { scores: [new Int32Array(HANDS[0].length), new Int32Array(HANDS[1].length)], order: [null, null] };
       const b = node.board;
       for (let p = 0; p < 2; p++) {
-        const H = HANDS[p], arr = e.scores[p];
-        for (let i = 0; i < H.length; i++) arr[i] = score5([b[0], b[1], b[2], H[i].c1, H[i].c2]);
-        const ord = new Int32Array(H.length);
+      const H = HANDS[p], arr = e.scores[p];
+      for (let i = 0; i < H.length; i++) arr[i] = score5(b[0], b[1], b[2], H[i].c1, H[i].c2);
+      const ord = new Int32Array(H.length);
         for (let i = 0; i < H.length; i++) ord[i] = i;
         ord.sort((x, y) => arr[x] - arr[y]);
         e.order[p] = ord;
@@ -429,6 +430,8 @@
     for (let o = 0; o < Ho.length; o++) { const r = reachO[o]; if (r) { total += r; cardTot[Ho[o].c1] += r; cardTot[Ho[o].c2] += r; } }
     let iLess = 0, iLeq = 0, lessR = 0, leqR = 0;
     const lessC = SC_LESS, leqC = SC_LEQ; lessC.fill(0); leqC.fill(0);
+    
+    // Process backwards to save some array lookups
     for (let ti = 0; ti < tord.length; ti++) {
       const h = tord[ti], sh = st[h];
       while (iLess < ord.length && so[ord[iLess]] < sh) { const o = ord[iLess]; const r = reachO[o]; lessR += r; lessC[Ho[o].c1] += r; lessC[Ho[o].c2] += r; iLess++; }
@@ -541,7 +544,10 @@
     for (let h = 0; h < nH; h++) {
       const base = h * nA; let sum = 0;
       for (let a = 0; a < nA; a++) sum += STRAT[O + base + a];
-      if (sum > 0) for (let a = 0; a < nA; a++) out[base + a] = STRAT[O + base + a] / sum;
+      if (sum > 0) {
+        const invSum = 1 / sum;
+        for (let a = 0; a < nA; a++) out[base + a] = STRAT[O + base + a] * invSum;
+      }
       else { const u = 1 / nA; for (let a = 0; a < nA; a++) out[base + a] = u; }
     }
   }
@@ -784,8 +790,9 @@
       e.w += w; e.n++;
     }
     for (const e of classes.values()) {
-      for (let a = 0; a < e.freq.length; a++) e.freq[a] /= (e.w || 1);
-      e.ev /= (e.w || 1);
+      const invW = 1 / (e.w || 1);
+      for (let a = 0; a < e.freq.length; a++) e.freq[a] *= invW;
+      e.ev *= invW;
     }
     // child node kinds so the UI knows which actions can be drilled into
     const children = node.actions.map((c, i) => ({ label: node.labels[i], type: c.type }));
@@ -841,6 +848,8 @@
   const api = {
     cardToInt, intToStr, parseCards, score5, parseRange, buildCombos, classOf, comboKey,
     setup, iterate, metrics, rootStrategy, strategyAt, pathInfo,
+    getStrat: () => STRAT,
+    setStrat: (s) => { STRAT = s; },
     get iters() { return ITERS_DONE; },
     RANKS, SUITS,
   };

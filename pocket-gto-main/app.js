@@ -221,13 +221,13 @@
   }
   function workerBackend(w) {
     const pend = new Map(); let seq = 0;
-    w.onmessage = (e) => {
+    w.addEventListener('message', (e) => {
       const d = e.data; if (!d || d.id == null) return;
       const p = pend.get(d.id); if (!p) return;
       pend.delete(d.id);
       if (d.ok) p.res(d.result); else p.rej(new Error(d.error));
-    };
-    w.onerror = () => { for (const p of pend.values()) p.rej(new Error('Solver worker crashed — reload the page.')); pend.clear(); };
+    });
+    w.addEventListener('error', () => { for (const p of pend.values()) p.rej(new Error('Solver worker crashed — reload the page.')); pend.clear(); });
     const call = (op, args) => new Promise((res, rej) => { const id = ++seq; pend.set(id, { res, rej }); w.postMessage({ id, op, args }); });
     return {
       mode: 'worker',
@@ -235,21 +235,102 @@
       iterate: (n, msBudget) => call('iterate', { n, msBudget }),
       metrics: () => call('metrics'),
       view: (p) => call('view', { path: p }),
+      call,
+      terminate: () => { w.terminate(); }
     };
   }
+
+  function multiWorkerBackend(workers) {
+    let useMulti = false;
+    return {
+      mode: 'worker',
+      numThreads: workers.length,
+      setup: (cfg) => {
+        useMulti = cfg.sampling === 'chance' && workers.length > 1;
+        if (useMulti) {
+          return Promise.all(workers.map(w => w.setup(cfg))).then(res => res[0]);
+        } else {
+          return workers[0].setup(cfg);
+        }
+      },
+      iterate: (n, msBudget) => {
+        if (useMulti) {
+          return Promise.all(workers.map(w => w.iterate(n, msBudget))).then(res => res[0]);
+        } else {
+          return workers[0].iterate(n, msBudget);
+        }
+      },
+      metrics: async () => {
+        if (useMulti) {
+          const strats = await Promise.all(workers.map(w => w.call('getStrat')));
+          if (!strats[0]) return workers[0].metrics();
+          const combined = new Float32Array(strats[0].length);
+          for (let i = 0; i < strats.length; i++) {
+            const s = strats[i];
+            for (let j = 0; j < combined.length; j++) combined[j] += s[j];
+          }
+          return workers[0].call('metricsCombined', { strat: combined });
+        } else {
+          return workers[0].metrics();
+        }
+      },
+      view: async (p) => {
+        if (useMulti) {
+          const strats = await Promise.all(workers.map(w => w.call('getStrat')));
+          if (!strats[0]) return workers[0].view(p);
+          const combined = new Float32Array(strats[0].length);
+          for (let i = 0; i < strats.length; i++) {
+            const s = strats[i];
+            for (let j = 0; j < combined.length; j++) combined[j] += s[j];
+          }
+          return workers[0].call('viewCombined', { path: p, strat: combined });
+        } else {
+          return workers[0].view(p);
+        }
+      }
+    };
+  }
+
   function createBackend() {
     return new Promise((resolve) => {
       const direct = () => resolve(directBackend());
       if (typeof Worker === 'undefined' || typeof location === 'undefined' || location.protocol === 'file:') return direct();
-      let w;
-      try { w = new Worker('worker.js'); } catch (e) { return direct(); }
+      
+      const numThreads = navigator.hardwareConcurrency || 4;
+      const workers = [];
+      let readyCount = 0;
       let settled = false;
-      const fail = () => { if (!settled) { settled = true; clearTimeout(t); try { w.terminate(); } catch (e) {} direct(); } };
-      const t = setTimeout(fail, 3000);
-      w.onerror = fail;
-      w.onmessage = (e) => {
-        if (!settled && e.data && e.data.type === 'ready') { settled = true; clearTimeout(t); resolve(workerBackend(w)); }
+
+      const fail = () => { 
+        if (!settled) { 
+          settled = true; 
+          clearTimeout(t); 
+          workers.forEach(w => w.terminate()); 
+          direct(); 
+        } 
       };
+      const t = setTimeout(fail, 3000);
+
+      for (let i = 0; i < numThreads; i++) {
+        let w;
+        try { w = new Worker('worker.js'); } catch (e) { 
+          if (i === 0) fail(); 
+          break; 
+        }
+        const wb = workerBackend(w);
+        workers.push(wb);
+        w.addEventListener('error', () => { if (i === 0) fail(); });
+        w.addEventListener('message', (e) => {
+          if (!settled && e.data && e.data.type === 'ready') {
+            readyCount++;
+            if (readyCount === workers.length) {
+              settled = true;
+              clearTimeout(t);
+              resolve(multiWorkerBackend(workers));
+            }
+          }
+        });
+      }
     });
   }
   function ensureBackend() {
@@ -258,7 +339,7 @@
         backend = b;
         const el = $('engineMode');
         if (el) el.textContent = b.mode === 'worker'
-          ? 'Solver runs in a background thread — the page stays fully responsive.'
+          ? `Solver runs in ${b.numThreads} background threads — the page stays fully responsive.`
           : 'Solver runs on the main thread in small batches (file:// mode).';
         return b;
       });
