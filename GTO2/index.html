@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GTO Solver</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>GTO Solver</h1>
+        </header>
+        
+        <main>
+            <section class="panel params-panel">
+                <div class="form-group">
+                    <label>OOP 范围</label>
+                    <div id="oop-range-grid" class="range-grid"></div>
+                </div>
+                <div class="form-group">
+                    <label>IP 范围</label>
+                    <div id="ip-range-grid" class="range-grid"></div>
+                </div>
+                <div class="form-group">
+                    <label>公共牌</label>
+                    <input type="text" id="board-cards" value="">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>初始底池</label>
+                        <input type="number" id="starting-pot" value="10">
+                    </div>
+                    <div class="form-group">
+                        <label>有效筹码</label>
+                        <input type="number" id="effective-stack" value="100">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>下注尺度</label>
+                    <input type="text" id="bet-sizes" value="33,100">
+                </div>
+                <div class="form-group">
+                    <label>加注尺度</label>
+                    <input type="text" id="raise-sizes" value="3,a">
+                </div>
+                <div class="form-group">
+                    <label>迭代次数</label>
+                    <input type="number" id="iterations" value="100">
+                </div>
+                <button id="solve-btn">开始求解</button>
+            </section>
+
+            <section class="panel results-panel" id="results-panel" style="display: none;">
+                <h2>求解结果</h2>
+                <div id="loading" style="display: none;">计算中...</div>
+                <div id="results-content">
+                    <div class="result-section">
+                        <h3>博弈树浏览</h3>
+                        <div id="tree-viewer"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/evaluator.js"></script>
+    <script src="js/game-tree.js"></script>
+    <script src="js/gto-solver.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
