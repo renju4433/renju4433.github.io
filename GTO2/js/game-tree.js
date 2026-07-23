@@ -51,6 +51,8 @@ class ActionNode {
         this.children = {};
         this.regretSum = null;
         this.strategySum = null;
+        this.ev1 = null; // Expected Value for Player 1 (OOP)
+        this.ev2 = null; // Expected Value for Player 2 (IP)
     }
 }
 

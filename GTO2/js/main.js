@@ -247,7 +247,7 @@ function renderTreeViewer(root, container) {
             let actionNames = Object.keys(current.children);
             let headRow = `<tr><th>手牌</th>`;
             actionNames.forEach(a => headRow += `<th>${a}</th>`);
-            headRow += `<th>策略分布</th></tr>`;
+            headRow += `<th>策略分布</th><th>EV</th></tr>`;
             thead.innerHTML = headRow;
             table.appendChild(thead);
             
@@ -284,6 +284,16 @@ function renderTreeViewer(root, container) {
                 }
                 
                 html += `<td style="width: 200px;"><div class="action-bar">${barHtml}</div></td>`;
+                
+                let avgEV = 0;
+                if (current.numIterations > 0) {
+                    if (current.player === 0) {
+                        avgEV = current.ev1[i] / current.numIterations;
+                    } else {
+                        avgEV = current.ev2[i] / current.numIterations;
+                    }
+                }
+                html += `<td>${avgEV.toFixed(2)}</td>`;
                 tr.innerHTML = html;
                 tbody.appendChild(tr);
             }

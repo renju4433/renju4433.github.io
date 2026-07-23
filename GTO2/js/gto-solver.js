@@ -86,6 +86,9 @@ class GTOSolver {
             if (!node.regretSum) {
                 node.regretSum = Array.from({length: 13}, () => new Float64Array(numActions));
                 node.strategySum = Array.from({length: 13}, () => new Float64Array(numActions));
+                node.ev1 = new Float64Array(13);
+                node.ev2 = new Float64Array(13);
+                node.numIterations = 0;
             }
             
             let strategy = Array.from({length: 13}, () => new Float64Array(numActions));
@@ -146,7 +149,10 @@ class GTOSolver {
                         node.regretSum[i][a] += actionVals2[a][i] - val2[i];
                     }
                 }
+                node.ev1[i] += val1[i];
+                node.ev2[i] += val2[i];
             }
+            node.numIterations++;
             
             return [val1, val2];
         }
