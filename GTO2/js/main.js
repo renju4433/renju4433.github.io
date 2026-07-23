@@ -247,7 +247,7 @@ function renderTreeViewer(root, container) {
             let actionNames = Object.keys(current.children);
             let headRow = `<tr><th>手牌</th><th>EV</th>`;
             actionNames.forEach(a => headRow += `<th>${a}</th>`);
-            headRow += `<th>策略分布</th></tr>`;
+            headRow += `<th>策略分布</th><th>RNG</th></tr>`;
             thead.innerHTML = headRow;
             table.appendChild(thead);
             
@@ -293,6 +293,41 @@ function renderTreeViewer(root, container) {
                 
                 html += `<td style="width: 250px;"><div class="action-bar">${barHtml}</div></td>`;
                 tr.innerHTML = html;
+                
+                let tdDice = document.createElement('td');
+                tdDice.style.width = '80px';
+                let diceBtn = document.createElement('button');
+                diceBtn.innerText = '🎲';
+                diceBtn.style.background = 'none';
+                diceBtn.style.border = 'none';
+                diceBtn.style.fontSize = '18px';
+                diceBtn.style.cursor = 'pointer';
+                diceBtn.style.padding = '0';
+                diceBtn.title = '根据概率随机选择行动';
+                
+                let resultSpan = document.createElement('span');
+                resultSpan.style.marginLeft = '8px';
+                resultSpan.style.fontWeight = 'bold';
+                resultSpan.style.fontSize = '12px';
+                
+                diceBtn.addEventListener('click', () => {
+                    let r = Math.random();
+                    let cumulative = 0;
+                    for (let a = 0; a < actionNames.length; a++) {
+                        let freq = current.strategySum[i][a] / sum;
+                        cumulative += freq;
+                        if (r <= cumulative) {
+                            resultSpan.innerText = actionNames[a];
+                            resultSpan.style.color = getActionColor(actionNames[a]);
+                            break;
+                        }
+                    }
+                });
+                
+                tdDice.appendChild(diceBtn);
+                tdDice.appendChild(resultSpan);
+                tr.appendChild(tdDice);
+                
                 tbody.appendChild(tr);
             }
             table.appendChild(tbody);
