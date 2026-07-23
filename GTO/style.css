@@ -98,6 +98,19 @@ h2 {
     box-shadow: none;
 }
 
+.card.mini {
+    width: 32px;
+    height: 48px;
+    font-size: 14px;
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+.mini-container {
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
 .card.highlight {
     border-color: #2ecc71;
     color: #2ecc71;

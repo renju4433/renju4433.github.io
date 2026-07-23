@@ -10,7 +10,8 @@
 
     <div class="tabs">
         <button id="tab-sim" class="active">发牌模拟器</button>
-        <button id="tab-gto">GTO 求解器</button>
+        <button id="tab-equity">胜率计算器</button>
+        <button id="tab-gto">GTO 求解器 (CFR)</button>
     </div>
 
     <!-- 发牌模拟器 -->
@@ -68,6 +69,38 @@
     <div class="result-banner" id="result-banner">
         <!-- 胜负结果将在此显示 -->
     </div>
+    </div>
+
+    <!-- 胜率计算器 -->
+    <div id="view-equity" class="view" style="display: none;">
+        <div class="gto-controls">
+            <div class="input-group">
+                <label>玩家1 手牌 (2张, 2-53):</label>
+                <input type="text" id="eq-p1" value="2, 4">
+            </div>
+            <div class="input-group">
+                <label>玩家2 手牌 (2张, 2-53):</label>
+                <input type="text" id="eq-p2" value="3, 5">
+            </div>
+            <div class="input-group">
+                <label>公共牌 (0-5张, 用逗号分隔):</label>
+                <input type="text" id="eq-comm" value="10, 20, 30">
+            </div>
+            <button id="btn-calc-eq">计算胜率</button>
+        </div>
+
+        <div id="eq-progress-container" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="eq-progress-fill"></div>
+            </div>
+            <div class="progress-text" id="eq-progress-text">0%</div>
+        </div>
+
+        <div id="eq-result" style="display: none; margin-top: 32px;">
+            <div class="players-container" id="eq-players-container">
+                <!-- 胜率和补牌结果渲染到这里 -->
+            </div>
+        </div>
     </div>
 
     <!-- GTO 求解器 -->

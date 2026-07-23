@@ -166,26 +166,126 @@ btnCalc.addEventListener('click', () => {
     }
 });
 
+// ---------------- Equity Calculator Logic ----------------
+
+const btnCalcEq = document.getElementById('btn-calc-eq');
+const eqProgressContainer = document.getElementById('eq-progress-container');
+const eqProgressFill = document.getElementById('eq-progress-fill');
+const eqProgressText = document.getElementById('eq-progress-text');
+const eqResult = document.getElementById('eq-result');
+const eqPlayersContainer = document.getElementById('eq-players-container');
+
+let equityWorker = null;
+
+function parseCards(str, expectedLen = null) {
+    if (!str.trim() && expectedLen !== null && expectedLen !== 0) return null;
+    if (!str.trim() && (expectedLen === null || expectedLen === 0)) return [];
+    
+    const cards = str.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n) && n >= 2 && n <= 53);
+    if (expectedLen !== null && cards.length !== expectedLen) return null;
+    return cards;
+}
+
+btnCalcEq.addEventListener('click', () => {
+    const p1Cards = parseCards(document.getElementById('eq-p1').value, 2);
+    const p2Cards = parseCards(document.getElementById('eq-p2').value, 2);
+    const commCards = parseCards(document.getElementById('eq-comm').value, null);
+
+    if (!p1Cards || !p2Cards) {
+        alert("请输入合法的玩家手牌 (正好2张，2-53)！");
+        return;
+    }
+    if (commCards === null || commCards.length > 5) {
+        alert("请输入合法的公共牌 (0-5张，2-53)！");
+        return;
+    }
+
+    // 检查重复牌
+    const allCards = [...p1Cards, ...p2Cards, ...commCards];
+    if (new Set(allCards).size !== allCards.length) {
+        alert("输入的牌中有重复，请检查！");
+        return;
+    }
+
+    btnCalcEq.disabled = true;
+    eqProgressContainer.style.display = 'block';
+    eqProgressFill.style.width = '0%';
+    eqProgressText.textContent = '0%';
+    eqResult.style.display = 'none';
+
+    if (equityWorker) equityWorker.terminate();
+    equityWorker = new Worker('equityWorker.js', { type: 'module' });
+
+    equityWorker.onmessage = function(e) {
+        if (e.data.type === 'progress') {
+            const p = e.data.progress.toFixed(1);
+            eqProgressFill.style.width = p + '%';
+            eqProgressText.textContent = `计算中... ${p}%`;
+        } else if (e.data.type === 'done') {
+            eqProgressFill.style.width = '100%';
+            eqProgressText.textContent = '计算完成！';
+            btnCalcEq.disabled = false;
+
+            const res = e.data;
+            eqResult.style.display = 'block';
+            
+            function renderOuts(outs) {
+                if (outs.length === 0) return `<div style="color:#999; margin-top:8px;">无补牌</div>`;
+                const cardsHtml = outs.map(val => `<div class="card mini">${val}</div>`).join('');
+                return `<div style="margin-top: 8px;">补牌 (${outs.length}张):</div>
+                        <div class="card-container mini-container" style="justify-content: flex-start; margin-top: 8px;">${cardsHtml}</div>`;
+            }
+
+            eqPlayersContainer.innerHTML = `
+                <div class="player-box">
+                    <h2>玩家 1</h2>
+                    <div style="font-size: 28px; font-weight: bold; color: #3498db; text-align: center; margin: 16px 0;">
+                        胜率: ${(res.p1Eq * 100).toFixed(2)}%
+                    </div>
+                    ${commCards.length >= 3 && commCards.length < 5 ? renderOuts(res.p1Outs) : ''}
+                </div>
+                <div class="player-box">
+                    <h2>玩家 2</h2>
+                    <div style="font-size: 28px; font-weight: bold; color: #e74c3c; text-align: center; margin: 16px 0;">
+                        胜率: ${(res.p2Eq * 100).toFixed(2)}%
+                    </div>
+                    ${commCards.length >= 3 && commCards.length < 5 ? renderOuts(res.p2Outs) : ''}
+                </div>
+            `;
+            
+            // 语音播报
+            speak(`计算完成。玩家1胜率 ${(res.p1Eq * 100).toFixed(1)}%，玩家2胜率 ${(res.p2Eq * 100).toFixed(1)}%。平局 ${(res.tieEq * 100).toFixed(1)}%`);
+        }
+    };
+
+    equityWorker.postMessage({
+        p1: p1Cards,
+        p2: p2Cards,
+        comm: commCards
+    });
+});
+
 // ---------------- GTO Solver Logic ----------------
 
 const tabSim = document.getElementById('tab-sim');
+const tabEquity = document.getElementById('tab-equity');
 const tabGto = document.getElementById('tab-gto');
+
 const viewSim = document.getElementById('view-sim');
+const viewEquity = document.getElementById('view-equity');
 const viewGto = document.getElementById('view-gto');
 
-tabSim.addEventListener('click', () => {
-    tabSim.classList.add('active');
-    tabGto.classList.remove('active');
-    viewSim.style.display = 'block';
-    viewGto.style.display = 'none';
-});
+function switchTab(activeTab, activeView) {
+    [tabSim, tabEquity, tabGto].forEach(t => t.classList.remove('active'));
+    [viewSim, viewEquity, viewGto].forEach(v => v.style.display = 'none');
+    
+    activeTab.classList.add('active');
+    activeView.style.display = 'block';
+}
 
-tabGto.addEventListener('click', () => {
-    tabGto.classList.add('active');
-    tabSim.classList.remove('active');
-    viewGto.style.display = 'block';
-    viewSim.style.display = 'none';
-});
+tabSim.addEventListener('click', () => switchTab(tabSim, viewSim));
+tabEquity.addEventListener('click', () => switchTab(tabEquity, viewEquity));
+tabGto.addEventListener('click', () => switchTab(tabGto, viewGto));
 
 const btnSolve = document.getElementById('btn-solve');
 const progressContainer = document.getElementById('gto-progress-container');
