@@ -4,42 +4,36 @@ const RANK_VALUES = {
     'J': 11, 'Q': 12, 'K': 13, 'A': 14
 };
 
-const memo = new Map();
-
 function evaluateHand(holeRank, boardRanks) {
-    let key = holeRank + '|' + boardRanks.join('');
-    if (memo.has(key)) return memo.get(key);
+    let c1 = RANK_VALUES[holeRank];
+    let len = boardRanks.length;
     
-    let cards = [holeRank, ...boardRanks].map(r => RANK_VALUES[r]).sort((a, b) => b - a);
-    
-    let pairRank = 0;
-    let kicker = 0;
-    
-    if (cards.length === 3) {
-        if (cards[0] === cards[1]) {
-            pairRank = cards[0];
-            kicker = cards[2];
-        } else if (cards[1] === cards[2]) {
-            pairRank = cards[1];
-            kicker = cards[0];
-        }
-    } else if (cards.length === 2) {
-        if (cards[0] === cards[1]) {
-            pairRank = cards[0];
-        }
+    if (len === 0) {
+        return c1 << 8;
     }
     
-    let score = 0;
-    if (pairRank > 0) {
-        score = 10000 + pairRank * 100 + kicker;
-    } else {
-        for (let i = 0; i < cards.length; i++) {
-            score += cards[i] * Math.pow(100, 2 - i);
-        }
+    if (len === 1) {
+        let c2 = RANK_VALUES[boardRanks[0]];
+        if (c1 === c2) return (1 << 20) | (c1 << 4);
+        return c1 > c2 ? (c1 << 8) | (c2 << 4) : (c2 << 8) | (c1 << 4);
     }
     
-    memo.set(key, score);
-    return score;
+    // len === 2
+    let c2 = RANK_VALUES[boardRanks[0]];
+    let c3 = RANK_VALUES[boardRanks[1]];
+    
+    let t;
+    if (c2 > c1) { t = c1; c1 = c2; c2 = t; }
+    if (c3 > c2) {
+        t = c2; c2 = c3; c3 = t;
+        if (c2 > c1) { t = c1; c1 = c2; c2 = t; }
+    }
+    
+    if (c1 === c3) return (1 << 24) | c1; // Three of a kind
+    if (c1 === c2) return (1 << 20) | (c1 << 4) | c3; // Pair
+    if (c2 === c3) return (1 << 20) | (c2 << 4) | c1; // Pair
+    
+    return (c1 << 8) | (c2 << 4) | c3; // High card
 }
 
 function compareHands(hole1, hole2, boardRanks) {
@@ -52,8 +46,8 @@ function compareHands(hole1, hole2, boardRanks) {
 
 function getCounts(boardRanks) {
     let counts = new Array(13).fill(4);
-    for (let c of boardRanks) {
-        let idx = RANKS.indexOf(c);
+    for (let i = 0; i < boardRanks.length; i++) {
+        let idx = RANKS.indexOf(boardRanks[i]);
         if (idx !== -1) counts[idx]--;
     }
     return counts;
