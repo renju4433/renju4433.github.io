@@ -37,7 +37,6 @@ function evaluateHand(holeRank, boardRanks) {
         if (c2 > c1) { t = c1; c1 = c2; c2 = t; }
     }
     
-    if (c1 === c3) return (1 << 24) | (c1 << 8); // Three of a kind
     if (c1 === c2) return (1 << 20) | (c1 << 8) | (c3 << 4); // Pair
     if (c2 === c3) return (1 << 20) | (c2 << 8) | (c1 << 4); // Pair
     
