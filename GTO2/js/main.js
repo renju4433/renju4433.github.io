@@ -277,6 +277,13 @@ function renderTreeViewer(root, container) {
                             } else {
                                 barText = 'R';
                             }
+                        } else if (actionNames[a].startsWith('Bet')) {
+                            const parts = actionNames[a].split(' ');
+                            if (parts.length > 1) {
+                                barText = 'B' + parts[1]; // e.g., "B33" or "BAll-in"
+                            } else {
+                                barText = 'B';
+                            }
                         } else {
                             barText = actionNames[a][0];
                         }
