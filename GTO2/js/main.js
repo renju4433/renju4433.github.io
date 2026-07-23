@@ -260,9 +260,11 @@ function renderTreeViewer(root, container) {
                 let tr = document.createElement('tr');
                 let html = `<td><strong>${RANKS[i]}</strong></td>`;
                 
+                let previousColor = null;
                 let barHtml = '';
                 for (let a = 0; a < actionNames.length; a++) {
                     let freq = current.strategySum[i][a] / sum;
+                    if (freq === 0) continue;
                     let pct = (freq * 100).toFixed(1) + '%';
                     html += `<td>${pct}</td>`;
                     
@@ -280,7 +282,14 @@ function renderTreeViewer(root, container) {
                             barText = actionNames[a][0];
                         }
                     }
-                    barHtml += `<div class="action-segment" style="width: ${freq * 100}%; background-color: ${color};" title="${actionNames[a]}: ${pct}">${barText}</div>`;
+                    
+                    let borderStyle = '';
+                    if (previousColor === 'var(--action-bet)' && color === 'var(--action-bet)') {
+                        borderStyle = 'border-left: 1px dashed rgba(255,255,255,0.5); '; // Add a dashed white border for separation
+                    }
+
+                    barHtml += `<div class="action-segment" style="width: ${freq * 100}%; background-color: ${color}; ${borderStyle}" title="${actionNames[a]}: ${pct}">${barText}</div>`;
+                    previousColor = color;
                 }
                 
                 html += `<td style="width: 200px;"><div class="action-bar">${barHtml}</div></td>`;
