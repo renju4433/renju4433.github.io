@@ -159,8 +159,8 @@ btnCalc.addEventListener('click', () => {
     const p1AllCards = [...playersCards[0], ...communityCards];
     const p2AllCards = [...playersCards[1], ...communityCards];
     
-    const p1Best = getBestCombo(p1AllCards);
-    const p2Best = getBestCombo(p2AllCards);
+    const p1Best = getBestCombo(p1AllCards, currentRule);
+    const p2Best = getBestCombo(p2AllCards, currentRule);
     
     // Render best combos
     function renderBest(pIndex, best) {
