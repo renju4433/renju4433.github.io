@@ -7,6 +7,12 @@ body {
   margin: 10px;
   font-family: sans-serif;
 }
+input[type="text"] {
+  width: 100%;
+  max-width: 300px;
+  padding: 5px;
+  box-sizing: border-box;
+}
 .mj-tile {
   display: inline-block;
   width: 40px;
@@ -14,7 +20,6 @@ body {
   background-image: url('./mjui.png');
   background-size: 400px 258px;
   vertical-align: middle;
-  margin-right: 2px;
 }
 .flex-row {
   display: flex;
@@ -34,7 +39,7 @@ body {
 <body>
 立直麻将牌理机<br>
 <input type="text" name="hand" id="hand">
-<br><button onclick="myFunction()">分析</button>
+<br><button onclick="myFunction()" style="margin-top: 5px;">分析</button>
 <div id="handDisplay" style="margin-top:10px; margin-bottom:10px; min-height: 65px;"></div>
 <span id="result"></span>
 <script>
@@ -43,22 +48,21 @@ window.addEventListener('resize', function() {
     myFunction();
   }
 });
-var TILE_DISPLAYS = [
-  "1m","2m","3m","4m","5m","6m","7m","8m","9m",
-  "1p","2p","3p","4p","5p","6p","7p","8p","9p",
-  "1s","2s","3s","4s","5s","6s","7s","8s","9s",
-  "东","南","西","北","白","发","中"
-];
 
-function formatTile(idx) {
-  var suit = Math.floor(idx / 9);
+function formatTile(idx, extraStyle, isAka) {
+  var suit = (Math.floor(idx / 9) + 1) % 3;
   var val = idx % 9;
+  if (isAka) {
+    val = 9;
+  }
   var isMobile = window.innerWidth <= 600;
   var w = isMobile ? 30 : 40;
   var h = isMobile ? 48.375 : 64.5;
   var x = -(val * w);
   var y = -(suit * h);
-  return '<span class="mj-tile" style="background-position: ' + x + 'px ' + y + 'px;" title="' + TILE_DISPLAYS[idx] + '"></span>';
+  var styleStr = 'background-position: ' + x + 'px ' + y + 'px;';
+  if (extraStyle) styleStr += ' ' + extraStyle;
+  return '<span class="mj-tile" style="' + styleStr + '"></span>';
 }
 
 function parseHand(str) {
@@ -66,10 +70,12 @@ function parseHand(str) {
   for(var i=0; i<34; i++) counts[i] = 0;
   var nums = [];
   var count = 0;
+  var tiles = [];
+  var akas = {};
   for (var i = 0; i < str.length; i++) {
     var c = str[i];
-    if (c >= '1' && c <= '9') {
-      nums.push(parseInt(c) - 1);
+    if (c >= '0' && c <= '9') {
+      nums.push(c === '0' ? 4 : parseInt(c) - 1);
     } else {
       var offset = -1;
       if (c === 'm') offset = 0;
@@ -80,14 +86,22 @@ function parseHand(str) {
       if (offset !== -1) {
         for (var j = 0; j < nums.length; j++) {
           if (offset === 27 && nums[j] > 6) continue;
-          counts[offset + nums[j]]++;
+          var t = offset + nums[j];
+          counts[t]++;
           count++;
+          
+          var isAka = false;
+          if (offset !== 27 && nums[j] === 4 && str[i - nums.length + j] === '0') {
+            isAka = true;
+            akas[t] = (akas[t] || 0) + 1;
+          }
+          tiles.push({ t: t, isAka: isAka });
         }
         nums = [];
       }
     }
   }
-  return { counts: counts, count: count };
+  return { counts: counts, count: count, tiles: tiles, akas: akas };
 }
 
 function getShanten(counts) {
@@ -146,29 +160,38 @@ function myFunction() {
   var parsed = parseHand(inputStr);
   var counts = parsed.counts;
   var count = parsed.count;
+  var tiles = parsed.tiles;
+  var akas = parsed.akas;
   var out = "";
   var handDisplay = document.getElementById("handDisplay");
   handDisplay.innerHTML = "";
 
+  var handHtml = "";
+  if (tiles.length > 0) {
+    var firstTiles = tiles.slice(0, tiles.length - 1);
+    firstTiles.sort(function(a, b) { 
+      if (a.t === b.t) return a.isAka ? -1 : 1;
+      return a.t - b.t; 
+    });
+    var displayTiles = firstTiles.concat([tiles[tiles.length - 1]]);
+    for(var k=0; k<displayTiles.length; k++) {
+      var extraStyle = (k === displayTiles.length - 1 && displayTiles.length > 1) ? 'margin-left: 8px;' : '';
+      handHtml += formatTile(displayTiles[k].t, extraStyle, displayTiles[k].isAka);
+    }
+  }
+  handDisplay.innerHTML = handHtml;
+
   if (count !== 13 && count !== 14) {
-    document.getElementById("result").innerHTML = "解析失败：请输入13或14张有效牌。";
+    document.getElementById("result").innerHTML = "请输入13或14张有效牌。";
     return;
   }
   
   for (var i = 0; i < 34; i++) {
     if (counts[i] > 4) {
-      document.getElementById("result").innerHTML = "解析失败：" + TILE_DISPLAYS[i] + " 超过4张！";
+      document.getElementById("result").innerHTML = "<div class='flex-row'>" + formatTile(i, '', false) + " <span style='margin-left:5px;'>超过4张！</span></div>";
       return;
     }
   }
-
-  var handHtml = "";
-  for(var i=0; i<34; i++) {
-    for(var j=0; j<counts[i]; j++) {
-      handHtml += formatTile(i);
-    }
-  }
-  handDisplay.innerHTML = handHtml;
 
   if (count === 13) {
     var s = getShanten(counts);
@@ -178,13 +201,13 @@ function myFunction() {
       if (counts[i] < 4) {
         counts[i]++;
         if (getShanten(counts) < s) {
-          uk.push(formatTile(i));
+          uk.push(formatTile(i, '', false));
           ukc += (4 - (counts[i] - 1));
         }
         counts[i]--;
       }
     }
-    out = "当前状态：" + (s === 0 ? "听牌" : s + " 向听") + "<br>";
+    out = (s === 0 ? "听牌" : s + " 向听") + "<br>";
     if (uk.length > 0) {
       out += "<div class='flex-row'><span style='flex-shrink:0;'>进张：</span>" + uk.join("") + " <span style='margin-left:10px; flex-shrink:0;'>(共 " + ukc + " 枚)</span></div>";
     } else {
@@ -193,7 +216,7 @@ function myFunction() {
   } else {
     var isAgari = getShanten(counts) === -1;
     if (isAgari) {
-      document.getElementById("result").innerHTML = "已和牌！";
+      document.getElementById("result").innerHTML = "和牌";
       return;
     }
     
@@ -215,7 +238,7 @@ function myFunction() {
             if (counts[j] < 4) {
               counts[j]++;
               if (getShanten(counts) < s) {
-                uk.push(formatTile(j));
+                uk.push(formatTile(j, '', false));
                 var orig = counts[j] - 1 + (j === i ? 1 : 0);
                 ukc += (4 - orig);
               }
@@ -223,7 +246,9 @@ function myFunction() {
             }
           }
           if (uk.length > 0) {
-            discards.push({ tile: formatTile(i), ukeire: uk.join(""), ukeireCount: ukc, s: s });
+            var hasAkaInHand = (akas[i] && akas[i] > 0);
+            var isDiscardingAka = hasAkaInHand && (counts[i] === 0 || akas[i] > counts[i]);
+            discards.push({ tile: i, isAka: isDiscardingAka, ukeire: uk.join(""), ukeireCount: ukc, s: s });
           }
         }
         counts[i]++;
@@ -236,7 +261,7 @@ function myFunction() {
     if (discards.length > 0) {
       for (var d = 0; d < discards.length; d++) {
         out += "<div class='flex-row'>";
-        out += "<span style='margin-right:10px; flex-shrink: 0;'>打</span>" + discards[d].tile;
+        out += "<span style='margin-right:10px; flex-shrink: 0;'>打</span>" + formatTile(discards[d].tile, '', discards[d].isAka);
         out += "<span style='margin-left:20px; margin-right:10px; flex-shrink: 0;'>进张:</span>" + discards[d].ukeire;
         out += "<span style='margin-left:10px; flex-shrink: 0;'>(共 " + discards[d].ukeireCount + " 枚)</span>";
         out += "</div>";
