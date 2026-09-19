@@ -38,13 +38,18 @@ input[type="text"] {
 </head>
 <body>
 立直麻将牌理机<br>
-<input type="text" name="hand" id="hand">
-<br><button onclick="myFunction()" style="margin-top: 5px;">分析</button>
+<div style="display: flex; align-items: center; gap: 5px; max-width: 300px;">
+  <input type="text" name="hand" id="hand" style="flex: 1;">
+  <select id="handType" style="padding: 5px; height: 32px; box-sizing: border-box;">
+    <option value="all">一般型</option>
+    <option value="standard">标准型</option>
+  </select>
+</div>
+<button onclick="myFunction()" style="margin-top: 5px;">分析</button>
 <div id="handDisplay" style="margin-top:10px; margin-bottom:10px; min-height: 65px;"></div>
 <span id="result"></span>
 <script src="mahjong.js"></script>
 <script>
-// 在页面加载时异步请求预先生成的表数据
 fetch('table.json')
   .then(response => response.json())
   .then(data => {
@@ -73,6 +78,7 @@ function formatTile(idx, extraStyle, isAka) {
 function myFunction() {
   var t0 = performance.now();
   var inputStr = document.getElementById("hand").value.toLowerCase();
+  var handType = document.getElementById("handType").value;
   var parsed = parseHand(inputStr);
   var counts = parsed.counts;
   var count = parsed.count;
@@ -110,13 +116,13 @@ function myFunction() {
   }
 
   if (count % 3 === 1) {
-    var s = getShanten(counts, count);
+    var s = getShanten(counts, count, handType);
     var uk = [];
     var ukc = 0;
     for (var i = 0; i < 34; i++) {
       if (counts[i] < 4) {
         counts[i]++;
-        if (getShanten(counts, count + 1) < s) {
+        if (getShanten(counts, count + 1, handType) < s) {
           uk.push(formatTile(i, '', false));
           ukc += (4 - (counts[i] - 1));
         }
@@ -132,7 +138,7 @@ function myFunction() {
       out += "无进张";
     }
   } else {
-    var isAgari = getShanten(counts, count) === -1;
+    var isAgari = getShanten(counts, count, handType) === -1;
     if (isAgari) {
       document.getElementById("result").innerHTML = "和牌";
       return;
@@ -144,7 +150,7 @@ function myFunction() {
     for (var i = 0; i < 34; i++) {
       if (counts[i] > 0) {
         counts[i]--;
-        var s = getShanten(counts, count - 1);
+        var s = getShanten(counts, count - 1, handType);
         if (s <= min_s) {
           if (s < min_s) {
             min_s = s;
@@ -155,7 +161,7 @@ function myFunction() {
           for (var j = 0; j < 34; j++) {
             if (counts[j] < 4) {
               counts[j]++;
-              if (getShanten(counts, count) < s) {
+              if (getShanten(counts, count, handType) < s) {
                 uk.push(formatTile(j, '', false));
                 var orig = counts[j] - 1 + (j === i ? 1 : 0);
                 ukc += (4 - orig);
