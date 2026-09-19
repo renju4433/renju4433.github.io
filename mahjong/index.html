@@ -44,6 +44,16 @@ input[type="text"] {
 <span id="result"></span>
 <script src="mahjong.js"></script>
 <script>
+// 在页面加载时异步请求预先生成的表数据
+fetch('table.json')
+  .then(response => response.json())
+  .then(data => {
+    initTable(data);
+  })
+  .catch(error => {
+    document.getElementById("result").innerHTML = "<span style='color:red;'>加载失败: " + error.message + "</span>";
+  });
+
 function formatTile(idx, extraStyle, isAka) {
   var suit = Math.floor(idx / 9) == 3 ? 3 : (Math.floor(idx / 9) + 1) % 3;
   var val = idx % 9;

@@ -37,8 +37,11 @@ function parseHand(str) {
   return { counts: counts, count: count, tiles: tiles, akas: akas };
 }
 
-var suitCache = new Map();
-var honorCache = new Map();
+var suitTable = null;
+
+function initTable(data) {
+  suitTable = data;
+}
 
 function getShanten(counts, count) {
   var minS = 8;
@@ -65,47 +68,49 @@ function getShanten(counts, count) {
 
   var targetMelds = Math.floor(count / 3);
 
-  function analyzeSuit(d_start, d_end, isHonor) {
+  function getSuitDp(d_start, d_end, isHonor) {
+    var dp = [ [-1,-1,-1,-1,-1], [-1,-1,-1,-1,-1] ];
     var key = 0;
     for (var i = d_start; i < d_end; i++) {
       key = key * 5 + counts[i];
     }
-    var cache = isHonor ? honorCache : suitCache;
-    if (cache.has(key)) return cache.get(key);
+    
+    if (isHonor) {
+      function dfs_honor(d, melds, blocks, pair) {
+        while (d < d_end && counts[d] === 0) d++;
+        if (d >= d_end) {
+          if (blocks > dp[pair][melds]) dp[pair][melds] = blocks;
+          return;
+        }
+        var c = counts[d];
+        if (c >= 3) { counts[d]-=3; dfs_honor(d, melds+1, blocks, pair); counts[d]+=3; }
+        if (c >= 2 && !pair) { counts[d]-=2; dfs_honor(d, melds, blocks, 1); counts[d]+=2; }
+        if (c >= 2) { counts[d]-=2; dfs_honor(d, melds, blocks+1, pair); counts[d]+=2; }
+        dfs_honor(d + 1, melds, blocks, pair);
+      }
+      dfs_honor(d_start, 0, 0, 0);
+      return dp;
+    }
 
-    var dp = [ [-1,-1,-1,-1,-1], [-1,-1,-1,-1,-1] ];
-    function dfs(d, melds, blocks, pair) {
-      while (d < d_end && counts[d] === 0) d++;
-      if (d >= d_end) {
-        if (blocks > dp[pair][melds]) dp[pair][melds] = blocks;
-        return;
-      }
-      
-      var c = counts[d];
-      if (c >= 3) { counts[d]-=3; dfs(d, melds+1, blocks, pair); counts[d]+=3; }
-      if (c >= 2 && !pair) { counts[d]-=2; dfs(d, melds, blocks, 1); counts[d]+=2; }
-      if (!isHonor && d < d_end - 2 && counts[d]>0 && counts[d+1]>0 && counts[d+2]>0) {
-        counts[d]--; counts[d+1]--; counts[d+2]--; dfs(d, melds+1, blocks, pair); counts[d]++; counts[d+1]++; counts[d+2]++;
-      }
-      if (c >= 2) { counts[d]-=2; dfs(d, melds, blocks+1, pair); counts[d]+=2; }
-      if (!isHonor && d < d_end - 1 && counts[d]>0 && counts[d+1]>0) {
-        counts[d]--; counts[d+1]--; dfs(d, melds, blocks+1, pair); counts[d]++; counts[d+1]++;
-      }
-      if (!isHonor && d < d_end - 2 && counts[d]>0 && counts[d+2]>0) {
-        counts[d]--; counts[d+2]--; dfs(d, melds, blocks+1, pair); counts[d]++; counts[d+2]++;
-      }
-      dfs(d + 1, melds, blocks, pair);
+    if (!suitTable) {
+      throw new Error("Table not loaded yet");
     }
     
-    dfs(d_start, 0, 0, 0);
-    cache.set(key, dp);
+    var val = suitTable[key] || 0;
+    for (var p = 0; p <= 1; p++) {
+      for (var m = 0; m <= 4; m++) {
+        var v = val % 6;
+        dp[p][m] = v - 1;
+        val = Math.floor(val / 6);
+      }
+    }
     return dp;
   }
   
-  var resMan = analyzeSuit(0, 9, false);
-  var resPin = analyzeSuit(9, 18, false);
-  var resSou = analyzeSuit(18, 27, false);
-  var resHon = analyzeSuit(27, 34, true);
+  var resMan = getSuitDp(0, 9, false);
+  var resPin = getSuitDp(9, 18, false);
+  var resSou = getSuitDp(18, 27, false);
+  var resHon = getSuitDp(27, 34, true);
 
   var dp = [ [-1,-1,-1,-1,-1], [-1,-1,-1,-1,-1] ];
   dp[0][0] = 0;
