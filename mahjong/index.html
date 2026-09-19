@@ -44,12 +44,6 @@ input[type="text"] {
 <span id="result"></span>
 <script src="mahjong.js"></script>
 <script>
-window.addEventListener('resize', function() {
-  if (document.getElementById("hand").value) {
-    myFunction();
-  }
-});
-
 function formatTile(idx, extraStyle, isAka) {
   var suit = Math.floor(idx / 9) == 3 ? 3 : (Math.floor(idx / 9) + 1) % 3;
   var val = idx % 9;
