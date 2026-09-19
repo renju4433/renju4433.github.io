@@ -1,0 +1,253 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style>
+body {
+  background-color: #dfdfdf;
+  margin: 10px;
+  font-family: sans-serif;
+}
+.mj-tile {
+  display: inline-block;
+  width: 40px;
+  height: 64.5px;
+  background-image: url('./mjui.png');
+  background-size: 400px 258px;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+.flex-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+  .mj-tile {
+    width: 30px;
+    height: 48.375px;
+    background-size: 300px 193.5px;
+  }
+}
+</style>
+</head>
+<body>
+立直麻将牌理机<br>
+<input type="text" name="hand" id="hand">
+<br><button onclick="myFunction()">分析</button>
+<div id="handDisplay" style="margin-top:10px; margin-bottom:10px; min-height: 65px;"></div>
+<span id="result"></span>
+<script>
+window.addEventListener('resize', function() {
+  if (document.getElementById("hand").value) {
+    myFunction();
+  }
+});
+var TILE_DISPLAYS = [
+  "1m","2m","3m","4m","5m","6m","7m","8m","9m",
+  "1p","2p","3p","4p","5p","6p","7p","8p","9p",
+  "1s","2s","3s","4s","5s","6s","7s","8s","9s",
+  "东","南","西","北","白","发","中"
+];
+
+function formatTile(idx) {
+  var suit = Math.floor(idx / 9);
+  var val = idx % 9;
+  var isMobile = window.innerWidth <= 600;
+  var w = isMobile ? 30 : 40;
+  var h = isMobile ? 48.375 : 64.5;
+  var x = -(val * w);
+  var y = -(suit * h);
+  return '<span class="mj-tile" style="background-position: ' + x + 'px ' + y + 'px;" title="' + TILE_DISPLAYS[idx] + '"></span>';
+}
+
+function parseHand(str) {
+  var counts = new Array(34);
+  for(var i=0; i<34; i++) counts[i] = 0;
+  var nums = [];
+  var count = 0;
+  for (var i = 0; i < str.length; i++) {
+    var c = str[i];
+    if (c >= '1' && c <= '9') {
+      nums.push(parseInt(c) - 1);
+    } else {
+      var offset = -1;
+      if (c === 'm') offset = 0;
+      else if (c === 'p') offset = 9;
+      else if (c === 's') offset = 18;
+      else if (c === 'z') offset = 27;
+      
+      if (offset !== -1) {
+        for (var j = 0; j < nums.length; j++) {
+          if (offset === 27 && nums[j] > 6) continue;
+          counts[offset + nums[j]]++;
+          count++;
+        }
+        nums = [];
+      }
+    }
+  }
+  return { counts: counts, count: count };
+}
+
+function getShanten(counts) {
+  var minS = 8;
+  var kCount = 0, kPair = 0;
+  var kTiles = [0,8,9,17,18,26,27,28,29,30,31,32,33];
+  for (var i = 0; i < kTiles.length; i++) {
+    if (counts[kTiles[i]] > 0) {
+      kCount++;
+      if (counts[kTiles[i]] > 1) kPair = 1;
+    }
+  }
+  minS = Math.min(minS, 13 - kCount - kPair);
+  
+  var pairs = 0, kinds = 0;
+  for (var i = 0; i < 34; i++) {
+    if (counts[i] > 0) kinds++;
+    if (counts[i] >= 2) pairs++;
+  }
+  minS = Math.min(minS, 6 - pairs + Math.max(0, 7 - kinds));
+  
+  function dfs(d, melds, blocks, pair) {
+    while(d < 34 && counts[d] === 0) d++;
+    if (d >= 34) {
+      var b = blocks;
+      if (melds + b > 4) b = 4 - melds;
+      var s = 8 - 2 * melds - b - pair;
+      if (s < minS) minS = s;
+      return;
+    }
+    
+    var c = counts[d];
+    if (c >= 3) { counts[d]-=3; dfs(d, melds+1, blocks, pair); counts[d]+=3; }
+    if (c >= 2 && !pair) { counts[d]-=2; dfs(d, melds, blocks, 1); counts[d]+=2; }
+    if (d < 27 && d % 9 < 7 && counts[d]>0 && counts[d+1]>0 && counts[d+2]>0) {
+      counts[d]--; counts[d+1]--; counts[d+2]--; dfs(d, melds+1, blocks, pair); counts[d]++; counts[d+1]++; counts[d+2]++;
+    }
+    if (melds + blocks < 4) {
+      if (c >= 2) { counts[d]-=2; dfs(d, melds, blocks+1, pair); counts[d]+=2; }
+      if (d < 27 && d % 9 < 8 && counts[d]>0 && counts[d+1]>0) {
+        counts[d]--; counts[d+1]--; dfs(d, melds, blocks+1, pair); counts[d]++; counts[d+1]++;
+      }
+      if (d < 27 && d % 9 < 7 && counts[d]>0 && counts[d+2]>0) {
+        counts[d]--; counts[d+2]--; dfs(d, melds, blocks+1, pair); counts[d]++; counts[d+2]++;
+      }
+    }
+    dfs(d + 1, melds, blocks, pair);
+  }
+  
+  dfs(0, 0, 0, 0);
+  return minS;
+}
+
+function myFunction() {
+  var inputStr = document.getElementById("hand").value.toLowerCase();
+  var parsed = parseHand(inputStr);
+  var counts = parsed.counts;
+  var count = parsed.count;
+  var out = "";
+  var handDisplay = document.getElementById("handDisplay");
+  handDisplay.innerHTML = "";
+
+  if (count !== 13 && count !== 14) {
+    document.getElementById("result").innerHTML = "解析失败：请输入13或14张有效牌。";
+    return;
+  }
+  
+  for (var i = 0; i < 34; i++) {
+    if (counts[i] > 4) {
+      document.getElementById("result").innerHTML = "解析失败：" + TILE_DISPLAYS[i] + " 超过4张！";
+      return;
+    }
+  }
+
+  var handHtml = "";
+  for(var i=0; i<34; i++) {
+    for(var j=0; j<counts[i]; j++) {
+      handHtml += formatTile(i);
+    }
+  }
+  handDisplay.innerHTML = handHtml;
+
+  if (count === 13) {
+    var s = getShanten(counts);
+    var uk = [];
+    var ukc = 0;
+    for (var i = 0; i < 34; i++) {
+      if (counts[i] < 4) {
+        counts[i]++;
+        if (getShanten(counts) < s) {
+          uk.push(formatTile(i));
+          ukc += (4 - (counts[i] - 1));
+        }
+        counts[i]--;
+      }
+    }
+    out = "当前状态：" + (s === 0 ? "听牌" : s + " 向听") + "<br>";
+    if (uk.length > 0) {
+      out += "<div class='flex-row'><span style='flex-shrink:0;'>进张：</span>" + uk.join("") + " <span style='margin-left:10px; flex-shrink:0;'>(共 " + ukc + " 枚)</span></div>";
+    } else {
+      out += "无进张";
+    }
+  } else {
+    var isAgari = getShanten(counts) === -1;
+    if (isAgari) {
+      document.getElementById("result").innerHTML = "已和牌！";
+      return;
+    }
+    
+    var min_s = 8;
+    var discards = [];
+    
+    for (var i = 0; i < 34; i++) {
+      if (counts[i] > 0) {
+        counts[i]--;
+        var s = getShanten(counts);
+        if (s <= min_s) {
+          if (s < min_s) {
+            min_s = s;
+            discards = [];
+          }
+          var uk = [];
+          var ukc = 0;
+          for (var j = 0; j < 34; j++) {
+            if (counts[j] < 4) {
+              counts[j]++;
+              if (getShanten(counts) < s) {
+                uk.push(formatTile(j));
+                var orig = counts[j] - 1 + (j === i ? 1 : 0);
+                ukc += (4 - orig);
+              }
+              counts[j]--;
+            }
+          }
+          if (uk.length > 0) {
+            discards.push({ tile: formatTile(i), ukeire: uk.join(""), ukeireCount: ukc, s: s });
+          }
+        }
+        counts[i]++;
+      }
+    }
+    
+    discards.sort(function(a, b) { return b.ukeireCount - a.ukeireCount; });
+    
+    out = "当前状态：" + (min_s === 0 ? "听牌" : min_s + " 向听") + "<br><br>";
+    if (discards.length > 0) {
+      for (var d = 0; d < discards.length; d++) {
+        out += "<div class='flex-row'>";
+        out += "<span style='margin-right:10px; flex-shrink: 0;'>打</span>" + discards[d].tile;
+        out += "<span style='margin-left:20px; margin-right:10px; flex-shrink: 0;'>进张:</span>" + discards[d].ukeire;
+        out += "<span style='margin-left:10px; flex-shrink: 0;'>(共 " + discards[d].ukeireCount + " 枚)</span>";
+        out += "</div>";
+      }
+    } else {
+      out += "无有效打牌";
+    }
+  }
+  
+  document.getElementById("result").innerHTML = out;
+}
+</script>
+</body>
+</html>
