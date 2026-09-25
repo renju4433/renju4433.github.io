@@ -157,10 +157,10 @@
             var urlParams = new URLSearchParams(window.location.search);
             var hasParams = false;
             
-            if (urlParams.has('n')) { document.getElementById('handN').value = urlParams.get('n').replace(/_/g, ' '); hasParams = true; }
-            if (urlParams.has('e')) { document.getElementById('handE').value = urlParams.get('e').replace(/_/g, ' '); hasParams = true; }
-            if (urlParams.has('s')) { document.getElementById('handS').value = urlParams.get('s').replace(/_/g, ' '); hasParams = true; }
-            if (urlParams.has('w')) { document.getElementById('handW').value = urlParams.get('w').replace(/_/g, ' '); hasParams = true; }
+            if (urlParams.has('n')) { document.getElementById('handN').value = urlParams.get('n'); hasParams = true; }
+            if (urlParams.has('e')) { document.getElementById('handE').value = urlParams.get('e'); hasParams = true; }
+            if (urlParams.has('s')) { document.getElementById('handS').value = urlParams.get('s'); hasParams = true; }
+            if (urlParams.has('w')) { document.getElementById('handW').value = urlParams.get('w'); hasParams = true; }
             if (urlParams.has('t')) { document.getElementById('trump').value = urlParams.get('t'); }
             if (urlParams.has('l')) { document.getElementById('leader').value = urlParams.get('l'); }
             
@@ -195,10 +195,10 @@
 
             // Update URL with current state
             var url = new URL(window.location);
-            if (handStrs[0]) url.searchParams.set('n', handStrs[0].replace(/ /g, '_')); else url.searchParams.delete('n');
-            if (handStrs[1]) url.searchParams.set('e', handStrs[1].replace(/ /g, '_')); else url.searchParams.delete('e');
-            if (handStrs[2]) url.searchParams.set('s', handStrs[2].replace(/ /g, '_')); else url.searchParams.delete('s');
-            if (handStrs[3]) url.searchParams.set('w', handStrs[3].replace(/ /g, '_')); else url.searchParams.delete('w');
+            if (handStrs[0]) url.searchParams.set('n', handStrs[0]); else url.searchParams.delete('n');
+            if (handStrs[1]) url.searchParams.set('e', handStrs[1]); else url.searchParams.delete('e');
+            if (handStrs[2]) url.searchParams.set('s', handStrs[2]); else url.searchParams.delete('s');
+            if (handStrs[3]) url.searchParams.set('w', handStrs[3]); else url.searchParams.delete('w');
             url.searchParams.set('t', trump);
             url.searchParams.set('l', leader);
             window.history.replaceState({}, '', url);
