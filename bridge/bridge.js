@@ -201,7 +201,7 @@ function ab_search(alpha, beta, depth) {
       var is_better = false;
       if (m.s === best_suit) {
         if (m.r > best_rank) is_better = true;
-      } else if (m.s === trump) {
+      } else if (m.s === trump && best_suit !== trump) {
         is_better = true;
       }
       if (is_better) {
@@ -252,6 +252,7 @@ function ab_search(alpha, beta, depth) {
     var flag = 0;
     if (best_val <= orig_alpha) flag = 1;
     else if (best_val >= orig_beta) flag = 2;
+    else flag = 0; // Exact value
     tt.set(hash, { val: best_val, flag: flag });
   }
   
