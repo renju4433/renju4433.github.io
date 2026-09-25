@@ -9,6 +9,45 @@
       font-family: sans-serif;
     }
 
+    .nav-header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      margin: -10px -10px 15px -10px;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item {
+      padding: 15px 25px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+      text-decoration: none;
+      color: #aab7c4;
+      border-bottom: 3px solid transparent;
+    }
+
+    .nav-item:hover {
+      background-color: #34495e;
+      color: white;
+    }
+
+    .nav-item.active {
+      color: #3498db;
+      background-color: #1a252f;
+      border-bottom: 3px solid #3498db;
+    }
+
     input[type="text"] {
       width: 100%;
       max-width: 300px;
@@ -43,7 +82,13 @@
 </head>
 
 <body>
-  立直麻将牌理机<br>
+  <div class="nav-header">
+    <div class="nav-menu">
+      <a href="index.html" class="nav-item active">立直麻将牌理机</a>
+      <a href="../bridge/index.html" class="nav-item">桥牌双明手分析</a>
+    </div>
+  </div>
+
   <div style="display: flex; align-items: center; gap: 5px; max-width: 300px;">
     <input type="text" name="hand" id="hand" style="flex: 1;">
     <select id="handType" style="padding: 5px; height: 32px; box-sizing: border-box;">
