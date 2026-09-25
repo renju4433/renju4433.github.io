@@ -72,19 +72,19 @@
     <div style="margin-top: 10px; max-width: 350px;">
         <div class="flex-row">
             <span style="width: 30px;">北:</span>
-            <input type="text" id="handN" placeholder="例如: S:AKQ H:JT D:98 C:765" value="S:AKQ H:J">
+            <input type="text" id="handN">
         </div>
         <div class="flex-row">
             <span style="width: 30px;">东:</span>
-            <input type="text" id="handE" placeholder="例如: S:JT9 H:98 D:76 C:AKQ" value="S:JT9 H:9">
+            <input type="text" id="handE">
         </div>
         <div class="flex-row">
             <span style="width: 30px;">南:</span>
-            <input type="text" id="handS" placeholder="例如: S:876 H:AKQ D:JT C:98" value="S:876 H:A">
+            <input type="text" id="handS">
         </div>
         <div class="flex-row">
             <span style="width: 30px;">西:</span>
-            <input type="text" id="handW" placeholder="例如: S:54 H:765 D:AKQ C:JT4" value="S:54 H:76">
+            <input type="text" id="handW">
         </div>
 
         <div class="flex-row">
@@ -108,13 +108,6 @@
     <span id="result"></span>
     <script src="bridge.js"></script>
     <script>
-        var cardHashes = {
-            '2S': 'd/de', '3S': 'c/ce', '4S': 'c/cc', '5S': 'a/ac', '6S': '1/1f', '7S': 'a/a1', '8S': '3/36', '9S': '3/31', '10S': '1/16', 'JS': 'd/d9', 'QS': '3/35', 'KS': '5/5c', 'AS': '2/27',
-            '2H': '9/9d', '3H': '3/3a', '4H': '6/6f', '5H': '0/03', '6H': 'a/a2', '7H': 'e/e1', '8H': '3/34', '9H': 'e/e0', '10H': '8/8a', 'JH': '1/15', 'QH': 'd/d2', 'KH': 'e/e5', 'AH': '8/87',
-            '2D': 'f/fb', '3D': '5/57', '4D': 'c/c7', '5D': 'd/d9', '6D': 'c/cf', '7D': '5/5a', '8D': '8/80', '9D': '0/09', '10D': '8/83', 'JD': '3/33', 'QD': '6/63', 'KD': '0/06', 'AD': '6/6d',
-            '2C': '6/69', '3C': '7/70', '4C': '2/25', '5C': '6/6d', '6C': '6/62', '7C': '6/68', '8C': '9/94', '9C': '6/63', '10C': 'c/c7', 'JC': '1/11', 'QC': '9/9e', 'KC': 'e/e1', 'AC': 'e/eb'
-        };
-
         window.onload = function() {
             var urlParams = new URLSearchParams(window.location.search);
             var hasParams = false;
@@ -126,10 +119,54 @@
             if (urlParams.has('t')) { document.getElementById('trump').value = urlParams.get('t'); }
             if (urlParams.has('l')) { document.getElementById('leader').value = urlParams.get('l'); }
             
-            if (hasParams) {
-                myFunction();
-            }
+            // 绑定事件监听器
+            var inputs = ['handN', 'handE', 'handS', 'handW'];
+            inputs.forEach(function(id) {
+                document.getElementById(id).addEventListener('input', function() {
+                    document.getElementById("result").innerHTML = ""; // 清空计算结果
+                    updateView();
+                });
+            });
+            var selects = ['trump', 'leader'];
+            selects.forEach(function(id) {
+                document.getElementById(id).addEventListener('change', function() {
+                    document.getElementById("result").innerHTML = ""; // 清空计算结果
+                    updateView();
+                });
+            });
+
+            updateView();
         };
+
+        function updateView() {
+            var handStrs = [
+                document.getElementById("handN").value,
+                document.getElementById("handE").value,
+                document.getElementById("handS").value,
+                document.getElementById("handW").value
+            ];
+            var trump = parseInt(document.getElementById("trump").value);
+            var leader = parseInt(document.getElementById("leader").value);
+
+            // Update URL with current state
+            var url = new URL(window.location);
+            if (handStrs[0]) url.searchParams.set('n', handStrs[0]); else url.searchParams.delete('n');
+            if (handStrs[1]) url.searchParams.set('e', handStrs[1]); else url.searchParams.delete('e');
+            if (handStrs[2]) url.searchParams.set('s', handStrs[2]); else url.searchParams.delete('s');
+            if (handStrs[3]) url.searchParams.set('w', handStrs[3]); else url.searchParams.delete('w');
+            url.searchParams.set('t', trump);
+            url.searchParams.set('l', leader);
+            window.history.replaceState({}, '', url);
+
+            try {
+                var parsed = parseHands(handStrs);
+                document.getElementById("handDisplay").innerHTML = displayHands(parsed);
+                return parsed;
+            } catch (e) {
+                document.getElementById("handDisplay").innerHTML = "";
+                return null;
+            }
+        }
 
         function formatCard(suit, rank) {
             var suitChars = ['S', 'H', 'D', 'C'];
@@ -138,9 +175,8 @@
             var rStr = (rChar === 'T') ? '10' : rChar;
             var sChar = suitChars[suit];
             var key = rStr + sChar;
-            var hash = cardHashes[key];
-            var url = 'https://upload.wikimedia.org/wikipedia/commons/' + hash + '/' + key + '.svg';
-            return '<img src="' + url + '" alt="' + key + '" style="width: 50px; margin-right: -20px; box-shadow: 1px 1px 3px rgba(0,0,0,0.3); border-radius: 3px; position: relative;">';
+            var url = 'cards/' + key + '.png';
+            return '<img src="' + url + '" alt="' + key + '" style="width: 50px; margin-right: -40px; box-shadow: 1px 1px 3px rgba(0,0,0,0.3); border-radius: 3px; position: relative; background-color: white;">';
         }
 
         function displayHands(hands) {
@@ -157,7 +193,7 @@
                         }
                     }
                     if (suitHtml !== "") {
-                        html += "<div style='margin-right: 15px; display: flex;'>" + suitHtml + "</div>";
+                        html += "<div style='margin-right: 5px; display: flex;'>" + suitHtml + "</div>";
                     }
                 }
                 html += "</div></div>";
@@ -167,36 +203,26 @@
 
         function myFunction() {
             var t0 = performance.now();
-            var handStrs = [
-                document.getElementById("handN").value,
-                document.getElementById("handE").value,
-                document.getElementById("handS").value,
-                document.getElementById("handW").value
-            ];
+            var parsed = updateView();
+            if (!parsed) return;
 
             var trump = parseInt(document.getElementById("trump").value);
             var leader = parseInt(document.getElementById("leader").value);
 
-            // Update URL with current state
-            var url = new URL(window.location);
-            if (handStrs[0]) url.searchParams.set('n', handStrs[0]); else url.searchParams.delete('n');
-            if (handStrs[1]) url.searchParams.set('e', handStrs[1]); else url.searchParams.delete('e');
-            if (handStrs[2]) url.searchParams.set('s', handStrs[2]); else url.searchParams.delete('s');
-            if (handStrs[3]) url.searchParams.set('w', handStrs[3]); else url.searchParams.delete('w');
-            url.searchParams.set('t', trump);
-            url.searchParams.set('l', leader);
-            window.history.replaceState({}, '', url);
-
             document.getElementById("result").innerHTML = "计算中...";
 
-            var parsed = parseHands(handStrs);
-            document.getElementById("handDisplay").innerHTML = displayHands(parsed);
+            // Use setTimeout to allow UI to update before heavy computation
+            setTimeout(function() {
+                try {
+                    var res = solveDDS(parsed, trump, leader);
+                    var t1 = performance.now();
 
-            var res = solveDDS(parsed, trump, leader);
-            var t1 = performance.now();
-
-            var out = "南北 " + res.ns + " 墩 东西 " + res.ew + " 墩 <span style='color: #888; font-size: 0.9em;'>(耗时 " + (t1 - t0).toFixed(1) + " ms)</span>";
-            document.getElementById("result").innerHTML = out;
+                    var out = "南北 " + res.ns + " 墩 东西 " + res.ew + " 墩 <span style='color: #888; font-size: 0.9em;'>(耗时 " + (t1 - t0).toFixed(1) + " ms, 节点数 " + res.nodes + ")</span>";
+                    document.getElementById("result").innerHTML = out;
+                } catch (e) {
+                    document.getElementById("result").innerHTML = "<span style='color:red;'>错误: " + e.message + "</span>";
+                }
+            }, 10);
         }
     </script>
 </body>

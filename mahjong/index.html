@@ -69,9 +69,17 @@
         if (urlParams.has('type')) {
           document.getElementById('handType').value = urlParams.get('type');
         }
-        if (hasParams) {
-          myFunction();
-        }
+
+        document.getElementById('hand').addEventListener('input', function() {
+          document.getElementById('result').innerHTML = ""; // 清空计算结果
+          updateView();
+        });
+        document.getElementById('handType').addEventListener('change', function() {
+          document.getElementById('result').innerHTML = ""; // 清空计算结果
+          updateView();
+        });
+
+        updateView();
       })
       .catch(error => {
         document.getElementById("result").innerHTML = "<span style='color:red;'>加载失败: " + error.message + "</span>";
@@ -93,8 +101,7 @@
       return '<span class="mj-tile" style="' + styleStr + '"></span>';
     }
 
-    function myFunction() {
-      var t0 = performance.now();
+    function updateView() {
       var inputStr = document.getElementById("hand").value.toLowerCase();
       var handType = document.getElementById("handType").value;
       
@@ -109,11 +116,7 @@
       window.history.replaceState({}, '', url);
 
       var parsed = parseHand(inputStr);
-      var counts = parsed.counts;
-      var count = parsed.count;
       var tiles = parsed.tiles;
-      var akas = parsed.akas;
-      var out = "";
       var handDisplay = document.getElementById("handDisplay");
       handDisplay.innerHTML = "";
 
@@ -131,6 +134,17 @@
         }
       }
       handDisplay.innerHTML = handHtml;
+      return parsed;
+    }
+
+    function myFunction() {
+      var t0 = performance.now();
+      var handType = document.getElementById("handType").value;
+      var parsed = updateView();
+      var counts = parsed.counts;
+      var count = parsed.count;
+      var akas = parsed.akas;
+      var out = "";
 
       if (count === 0 || count > 14 || (count % 3 !== 1 && count % 3 !== 2)) {
         document.getElementById("result").innerHTML = "请输入最多14张的3n+1或3n+2张有效牌。";
