@@ -643,40 +643,6 @@ main {
       #2f6fed);
   transition: width .18s;
 }
-.metaGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-.metaItem {
-  background: var(--soft);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 8px 10px;
-}
-.metaItem .k {
-  font-size: 11px;
-  color: var(--muted);
-}
-.metaItem .v {
-  font-size: 14px;
-  font-weight: 650;
-  margin-top: 2px;
-  font-variant-numeric: tabular-nums;
-}
-.metaItem.wide {
-  grid-column: 1/-1;
-}
-.metaItem .v.mono {
-  font-family:
-    ui-monospace,
-    Consolas,
-    monospace;
-  font-size: 12.5px;
-  letter-spacing: .6px;
-  color: #2f6fed;
-}
 .help {
   font-size: 12.8px;
   line-height: 1.78;
@@ -829,7 +795,10 @@ main {
         </div>
         <div class="btnrow">
           <button class="btn primary" id="btnSolve">求解</button>
-          <button class="btn" id="btnNextSolve" hidden>下一题</button>
+        </div>
+        <div class="btnrow" id="pzNavSolve" hidden>
+          <button class="btn" id="btnPrevSolve">上一题</button>
+          <button class="btn" id="btnNextSolve">下一题</button>
         </div>
         <div class="status" id="solveStatus">摆好局面后点「求解」，或到「出题」页生成一道题。</div>
         <div id="solHead" hidden>
@@ -878,19 +847,11 @@ main {
         </div>
         <button class="btn primary" id="btnGen" style="width:100%">生成题目</button>
         <div class="progress"><div id="genBar"></div></div>
-        <div class="status" id="genStatus" style="margin-top:12px">生成器会随机自对弈造出局面（只用开局范围、两格邻接、不许做四/五三条规则），再用 quintet 判定是否存在冲四杀，最后剔除无关棋子。</div>
+        <div class="status" id="genStatus" style="margin-top:12px">生成器先让双方「安静」自对弈铺出局面（都不主动冲四），再用 quintet 判定这里是否藏着冲四杀，最后成对剔除无关棋子。</div>
         <div id="genResult" hidden>
-          <div class="metaGrid">
-            <div class="metaItem"><div class="k">攻击方</div><div class="v" id="genSide">—</div></div>
-            <div class="metaItem"><div class="k">最少手数</div><div class="v" id="genDepth">—</div></div>
-            <div class="metaItem"><div class="k">盘面棋子</div><div class="v" id="genStones">—</div></div>
-            <div class="metaItem"><div class="k">试玩局数</div><div class="v" id="genTries">—</div></div>
-            <div class="metaItem wide"><div class="k">开局</div><div class="v mono" id="genOpening">—</div></div>
-            <div class="metaItem wide"><div class="k">本次生成</div><div class="v" id="genBatch">—</div></div>
-          </div>
-          <div class="btnrow">
-            <button class="btn" id="btnShowAns">显示答案</button>
-            <button class="btn" id="btnNext">下一题</button>
+          <div class="btnrow" id="pzNavGen" hidden>
+            <button class="btn" id="btnPrevGen">上一题</button>
+            <button class="btn" id="btnNextGen">下一题</button>
           </div>
           <div class="btnrow" style="margin-bottom:0">
             <button class="btn" id="btnGenAgain">再来一题</button>
@@ -917,11 +878,14 @@ main {
           </ul>
           <h3>出题原理</h3>
           <ul>
-            <li>双方自对弈不做任何棋型评估：候选点只有三个硬条件——开局四手在框内、两格内已有棋子、落子后既不成五也不做出四（四、五都用「真落一子试探」判定），其余在候选点里<b>均匀随机</b>。</li>
+            <li>先让双方用一套<b>「安静」自对弈</b>铺出一盘棋：轮到谁走，谁做出冲四或活四都要吃重罚（−5e4），所以双方都只铺二、铺三，局面密集却没有直接杀棋。选点的起点只有三条硬条件——开局四手在框内、两格内已有棋子、落子不成五。</li>
+            <li>棋型不是查模板表，而是<b>沿整条线递归定义</b>：五＝这条线已含五连；活四＝两个不同空点填入都能成五；冲四＝恰好一个；活三＝某个空点填入后变活四；眠三＝填入后变冲四；活二、眠二再向下递归一层。因此跳四（<code>●●_●●</code>、<code>●_●●●</code>）这类带空隙的形状不会算错。</li>
+            <li>评分 = 我方棋型分 + 对方棋型分 × 0.92 + 随机扰动，权重从五连 1e6、活四 1e5、冲四 1.2e4 一直排到活三 6000、眠三 650、活二 320、眠二 55。排序后若前 16 名里存在「对方下一手就能成五」的点，就强制去挡；否则在前 4 名里按 <code>rnd^1.5</code> 加权随机取一个，保证每盘棋都不同。</li>
+            <li>一旦某手成五，或落子后自己已经握有「下一手成五」的冲四，立即停手——题面起点必须是双方都没有四的干净局面。</li>
+            <li>从第 16 手起，只要轮到目标攻方，就调用 quintet 求 VCF；攻方手数落进所选难度区间就当场截取，否则继续往下走。整盘棋可能被验十几次，任一中途状态成立都能成题。</li>
+            <li>截下来的局面往往有 40 多子，不像题目，于是<b>成对剪枝</b>：只从第 5 手起按相邻一黑一白成对删除，保住前 4 手与解法路径上的点；每删一对都用 quintet 复算最短深度，仍落在区间内就永久删除，否则回滚。通常削到 20 子上下。</li>
+            <li>最后终审：最短深度在区间内、总子数 ≥10、轮走方正是攻方、棋谱里没有「幽灵子」、黑白严格交替、开局四手仍在框内；再独立复盘一遍，确认每一手的挡点确实是唯一应手。</li>
             <li>开局强制合规：黑1 天元（h8）、白2 在 3×3、黑3 在 5×5、白4 在 7×7，这四子始终保留。</li>
-            <li>每一步轮到目标方时，调用 quintet 判定是否存在 VCF；命中即截取。</li>
-            <li>贪心剔除解答路径外的一黑一白（成对剔除，保证棋谱仍然黑白交替、开局不变），每次剔除都重新用 quintet 验证深度不降。</li>
-            <li>最后独立复盘一遍：确认每个挡点确实是唯一应手。</li>
             <li>「生成题数」可以一次出多题，全部完成后自动下载一个 TXT 文件：<b>一行一题，每行先是局面代码（棋谱），再是解法</b>，例如 <code>h8i9h7i8... g7g6g5...</code>。也可随时点「下载 TXT」重新保存。</li>
           </ul>
           <h3>限制</h3>
@@ -1514,7 +1478,8 @@ main {
     batchIdx: 0,
     batchMeta: "",
     // summary line for the batch
-    genOpts: { min: 3, max: 5, side: 1, count: 1 }
+    genOpts: { min: 3, max: 5, side: 1, count: 1 },
+    tab: "solve"
   };
   var G = { size: 560, pad: 34, step: 35 };
   function layout() {
@@ -1760,6 +1725,7 @@ main {
     S.hist = [];
     S.turn = BLACK;
     S.record = [];
+    S.gen = null;
     clearSolution();
     render();
     syncTurnUI();
@@ -1894,8 +1860,7 @@ main {
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 5e3);
   }
-  function loadPuzzle(g, autoSolve) {
-    const wasShowing = !!S.solution;
+  function loadPuzzle(g) {
     S.gen = g;
     S.bd = Int8Array.from(g.bd);
     S.hist = [];
@@ -1907,33 +1872,30 @@ main {
     renderSolution();
     render();
     syncTurnUI();
-    const cnt = countStones(S.bd);
-    $("genSide").textContent = (S.turn === BLACK ? "\u9ED1\u65B9" : "\u767D\u65B9") + "\uFF08\u9ED1 " + cnt.b + " \xB7 \u767D " + cnt.w + "\uFF09";
-    $("genDepth").textContent = g.depth + " \u624B";
-    $("genStones").textContent = g.stones + " \u5B50";
-    $("genTries").textContent = g.attempts + " \u5C40";
-    const op = (g.opening || []).map(pointToken);
-    $("genOpening").textContent = op.length === 4 ? op.slice(0, 4).join(" ") : "\u2014";
     setStatus($("solveStatus"), "\u9898\u76EE\u5DF2\u8F7D\u5165\uFF1A" + (S.turn === BLACK ? "\u9ED1" : "\u767D") + "\u5148 \xB7 " + g.stones + " \u5B50 \xB7 \u85CF\u7740\u4E00\u5957 " + g.depth + " \u624B\u51B2\u56DB\u6740\u3002");
-    if (autoSolve || wasShowing) doSolve();
+    if (S.tab === "solve") doSolve();
   }
-  function gotoNextPuzzle() {
+  function gotoPuzzle(delta) {
     const gs = S.batch || [];
     if (!gs.length) {
       toast("\u5148\u53BB\u300C\u51FA\u9898\u300D\u9875\u751F\u6210\u9898\u76EE");
       return;
     }
     if (gs.length === 1) {
-      loadPuzzle(gs[0], false);
+      loadPuzzle(gs[0]);
       toast("\u53EA\u6709 1 \u9898\uFF0C\u5DF2\u91CD\u65B0\u8F7D\u5165");
       return;
     }
-    S.batchIdx = (S.batchIdx + 1) % gs.length;
+    S.batchIdx = (S.batchIdx + delta + gs.length) % gs.length;
     const n = S.batchIdx + 1;
-    loadPuzzle(gs[S.batchIdx], false);
-    if (S.batchMeta) $("genBatch").textContent = S.batchMeta + " \xB7 \u7B2C " + n + "/" + gs.length + " \u9898";
-    setStatus($("genStatus"), "\u7B2C <b>" + n + "/" + gs.length + "</b> \u9898\u5DF2\u8F7D\u5165\u68CB\u76D8" + (S.batchIdx === 0 ? "\uFF08\u5DF2\u56DE\u5230\u7B2C 1 \u9898\uFF09" : "") + "\u3002", "ok");
+    loadPuzzle(gs[S.batchIdx]);
+    setStatus($("genStatus"), "\u7B2C <b>" + n + "/" + gs.length + "</b> \u9898\u5DF2\u8F7D\u5165\u68CB\u76D8\u3002", "ok");
     toast("\u7B2C " + n + "/" + gs.length + " \u9898");
+  }
+  function syncPuzzleNav(show) {
+    const multi = !!show && (S.batch || []).length > 1;
+    $("pzNavSolve").hidden = !multi;
+    $("pzNavGen").hidden = !multi;
   }
   function runGenerate() {
     if (S.busy) return;
@@ -1951,7 +1913,7 @@ main {
     S.batch = [];
     S.batchIdx = 0;
     S.batchMeta = "";
-    $("btnNextSolve").hidden = true;
+    syncPuzzleNav(false);
     const side = S.genOpts.side;
     const timeLimit = cfg.maxMoves >= 9 ? 25e3 : 12e3;
     const range = cfg.minMoves === cfg.maxMoves ? cfg.minMoves : cfg.minMoves + "\u2013" + cfg.maxMoves;
@@ -1989,7 +1951,6 @@ main {
             gs.push(r.value);
             list.push(toPuzzleEntry(r.value));
           }
-          $("genBatch").textContent = "\u5DF2\u5B8C\u6210 " + idx + "/" + count + " \u9898";
           $("genResult").hidden = false;
           setTimeout(step, 0);
           return;
@@ -2020,13 +1981,11 @@ main {
       S.batchIdx = 0;
       const blacks = list.filter((p) => p.side === "black").length;
       S.batchMeta = list.length + " \u9898\uFF08\u9ED1\u5148 " + blacks + " \xB7 \u767D\u5148 " + (list.length - blacks) + "\uFF09 \xB7 " + ((performance.now() - t0) / 1e3).toFixed(1) + "s";
-      $("btnNext").disabled = gs.length < 2;
-      $("btnNextSolve").hidden = gs.length < 2;
-      loadPuzzle(gs[0], false);
-      $("genBatch").textContent = S.batchMeta + " \xB7 \u7B2C 1/" + gs.length + " \u9898";
+      syncPuzzleNav(true);
+      loadPuzzle(gs[0]);
       setStatus(
         $("genStatus"),
-        "<b>\u5DF2\u751F\u6210 " + list.length + " \u9898\uFF0C\u5DF2\u4E0B\u8F7D\uFF1A</b><code>" + filename + "</code><br>\u4E00\u884C\u4E00\u9898\uFF0C\u6BCF\u884C\u5148\u662F\u5C40\u9762\u4EE3\u7801\u3001\u7A7A\u683C\u3001\u518D\u662F\u89E3\u6CD5\u3002\u7B2C 1 \u9898\u5DF2\u8F7D\u5165\u68CB\u76D8\uFF0C\u70B9\u300C\u663E\u793A\u7B54\u6848\u300D\u770B\u89E3\u6CD5\uFF0C\u70B9\u300C\u4E0B\u4E00\u9898\u300D\u6362\u4E00\u9053\u3002",
+        "<b>\u5DF2\u751F\u6210 " + list.length + " \u9898\uFF0C\u5DF2\u4E0B\u8F7D\uFF1A</b><code>" + filename + "</code><br>\u4E00\u884C\u4E00\u9898\uFF0C\u6BCF\u884C\u5148\u662F\u5C40\u9762\u4EE3\u7801\u3001\u7A7A\u683C\u3001\u518D\u662F\u89E3\u6CD5\u3002\u7B2C 1 \u9898\u5DF2\u8F7D\u5165\u68CB\u76D8\uFF0C\u5230\u300C\u89E3\u9898\u300D\u9875\u5373\u53EF\u770B\u89E3\u6CD5\uFF0C\u70B9\u300C\u4E0A\u4E00\u9898 / \u4E0B\u4E00\u9898\u300D\u6362\u4E00\u9053\u3002",
         "ok"
       );
       downloadText(text, filename);
@@ -2036,6 +1995,12 @@ main {
   function switchTab(name) {
     document.querySelectorAll(".tabs button").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
     document.querySelectorAll(".tabpane").forEach((p) => p.classList.toggle("active", p.id === "pane-" + name));
+    S.tab = name;
+    if (name === "gen") clearSolution();
+    else if (name === "solve" && !S.busy && !S.solution && S.gen) {
+      const c = countStones(S.bd);
+      if (c.b + c.w >= 5) doSolve();
+    }
   }
   var pointToken = (c) => String.fromCharCode(97 + PX(c)) + (PY(c) + 1);
   function pairedSequence(bd, counts) {
@@ -2160,12 +2125,10 @@ main {
   $("btnPlay").onclick = togglePlay;
   $("btnGen").onclick = runGenerate;
   $("btnGenAgain").onclick = runGenerate;
-  $("btnNext").onclick = gotoNextPuzzle;
-  $("btnNextSolve").onclick = gotoNextPuzzle;
-  $("btnShowAns").onclick = () => {
-    switchTab("solve");
-    doSolve();
-  };
+  $("btnPrevSolve").onclick = () => gotoPuzzle(-1);
+  $("btnNextSolve").onclick = () => gotoPuzzle(1);
+  $("btnPrevGen").onclick = () => gotoPuzzle(-1);
+  $("btnNextGen").onclick = () => gotoPuzzle(1);
   $("btnTxt").onclick = () => {
     if (!S.genFile) {
       toast("\u8FD8\u6CA1\u6709\u53EF\u4E0B\u8F7D\u7684\u9898\u76EE");
