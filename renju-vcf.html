@@ -784,8 +784,9 @@ main {
             <button class="chip active" data-mode="vcf">VCF · 纯冲四</button>
             <button class="chip" data-mode="vct">VCT · 含活三</button>
           </div>
+          <div class="hint" id="modeHint"></div>
         </div>
-        <div class="field">
+        <div class="field" id="limitField">
           <div class="label">VCT 允许做 V 手数</div>
           <div class="rangeRow">
             <input type="range" class="rng" id="limitRange" min="1" max="13" step="1" value="5">
@@ -865,7 +866,7 @@ main {
           <h3>求解器：quintet</h3>
           本题解引擎不是自己写的搜索，而是 <b>renju-note/quintet</b> —— 一个用 Rust 编写的连珠杀棋求解器，编译成 WebAssembly 后在浏览器里直接运行（npm 包 <code>@renju-note/quintet</code>，MIT）。
           <ul>
-            <li><b>VCF</b>：只用冲四的强制胜，对手每步只有唯一挡点。</li>
+            <li><b>VCF</b>：只用冲四的强制胜，对手每步只有唯一挡点。<b>不设手数上限</b>（上限 225 ＝ 棋盘点数，即搜到冲四链走完为止）。</li>
             <li><b>VCT</b>：冲四 + 活三，对手有多个应手，属于 AND/OR 树，用 df-pn 证明数搜索。</li>
             <li>完整实现连珠规则：黑方三三、四四、长连禁手（含「真假活三」递归判定），既是黑方的约束，也是白方取胜的资源。</li>
           </ul>
@@ -874,7 +875,7 @@ main {
             <li>左键落子、右键删子；<span class="kbd">←</span> <span class="kbd">→</span> 逐步看解法。</li>
             <li>「停一手」＝当前方 pass，由对方接着走（连珠里少见，但排局和让子局用得上）。</li>
             <li>「复制局面链接」给出的是一串棋谱，形如 <code>#p=h8i9j10k10</code>，可以直接发给别人复盘。</li>
-            <li>「求解」按当前手数上限搜索；「出题」的难度则用<b>攻方手数范围</b>（最少 – 最多）给出。</li>
+            <li>「求解」里 <b>VCF 不设手数上限</b>（225 手＝棋盘上限），<b>VCT</b> 才用「V 手数」封顶；「出题」的难度则用<b>攻方手数范围</b>（最少 – 最多）给出。</li>
           </ul>
           <h3>出题原理</h3>
           <ul>
@@ -1069,6 +1070,18 @@ main {
       if (r.path) return { path: r.path, depth: d, ms: performance.now() - t0 };
     }
     return { path: null, depth: 0, ms: performance.now() - t0 };
+  }
+  var VCF_LIMIT = 225;
+  function solveVcfShortest(bd, attacker) {
+    const t0 = performance.now();
+    const r = solveRaw(bd, attacker, VCF_LIMIT, "vcf");
+    if (!r.path) return { path: null, depth: 0, ms: performance.now() - t0 };
+    const depth = r.path.length + 1 >> 1;
+    if (depth > 1) {
+      const s = solveShortest(bd, attacker, depth, "vcf");
+      if (s.path) return { path: s.path, depth: s.depth, ms: performance.now() - t0 };
+    }
+    return { path: r.path, depth, ms: performance.now() - t0 };
   }
   function pointName(code) {
     return String.fromCharCode(65 + PX(code)) + (PY(code) + 1);
@@ -1445,11 +1458,10 @@ main {
   var LIMIT_MIN = 1;
   var LIMIT_MAX = 13;
   function limitLabel(n) {
-    const steps = n - 1;
     let tail;
-    if (n <= 1) tail = "\u4EC5\u5141\u8BB8\u6D3B\u4E09";
-    else if (n === 2) tail = "\u505A 43";
-    else tail = "\u505A <b>" + steps + "</b> \u6B65 VCF";
+    if (n <= 1) tail = "\u653B\u65B9\u53EA\u8D70\u4E00\u624B\uFF08\u987B\u76F4\u63A5\u6210\u4E94\uFF09";
+    else if (n === 2) tail = "\u653B\u65B9\u6700\u591A <b>2</b> \u624B";
+    else tail = "\u653B\u65B9\u6700\u591A <b>" + n + "</b> \u624B\uFF08\u51B2\u56DB + \u6D3B\u4E09\u94FE\uFF09";
     return "V<b>" + n + "</b> \xB7 " + tail;
   }
   var sideToMove = (bd) => {
@@ -1761,20 +1773,21 @@ main {
       return;
     }
     const attacker = S.turn;
+    const vcf = S.mode === "vcf";
     S.busy = true;
     $("btnSolve").disabled = true;
-    setStatus($("solveStatus"), "quintet \u6B63\u5728\u641C\u7D22\u2026\uFF08" + (S.mode === "vcf" ? "VCF" : "VCT") + " \xB7 \u653B\u65B9 \u2264 " + S.limit + " \u624B\uFF09");
+    setStatus($("solveStatus"), "quintet \u6B63\u5728\u641C\u7D22\u2026\uFF08" + (vcf ? "VCF \xB7 \u4E0D\u9650\u624B\u6570" : "VCT \xB7 \u653B\u65B9 \u2264 " + S.limit + " \u624B") + "\uFF09");
     sleep(16).then(() => {
       let res;
       try {
-        res = solveShortest(S.bd, attacker, S.limit, S.mode);
+        res = vcf ? solveVcfShortest(S.bd, attacker) : solveShortest(S.bd, attacker, S.limit, "vct");
       } catch (e) {
         res = { path: null, ms: 0, err: String(e) };
       }
       S.busy = false;
       $("btnSolve").disabled = false;
       if (res.path) {
-        const v = S.mode === "vcf" ? replayCheck(S.bd, attacker, res.path) : { ok: true };
+        const v = vcf ? replayCheck(S.bd, attacker, res.path) : { ok: true };
         S.solution = {
           path: res.path,
           depth: res.depth,
@@ -1785,11 +1798,11 @@ main {
           vmsg: v.msg
         };
         S.step = res.path.length;
-        const note = S.mode === "vcf" ? v.ok ? " \xB7 \u5DF2\u590D\u76D8\u786E\u8BA4\u6BCF\u6B65\u552F\u4E00\u6321\u70B9" : " \xB7 \u590D\u76D8\u5F02\u5E38\uFF1A" + v.msg : " \xB7 \u5BF9\u624B\u5E94\u624B\u53D6\u6700\u4F73\u9632\u5B88\u7EBF";
+        const note = vcf ? v.ok ? " \xB7 \u5DF2\u590D\u76D8\u786E\u8BA4\u6BCF\u6B65\u552F\u4E00\u6321\u70B9" : " \xB7 \u590D\u76D8\u5F02\u5E38\uFF1A" + v.msg : " \xB7 \u5BF9\u624B\u5E94\u624B\u53D6\u6700\u4F73\u9632\u5B88\u7EBF";
         setStatus(
           $("solveStatus"),
-          "<b>" + (attacker === BLACK ? "\u9ED1" : "\u767D") + "\u65B9" + (S.mode === "vcf" ? " VCF" : " VCT") + " \u80DC</b>\uFF1A\u653B\u65B9 " + res.depth + " \u624B \xB7 \u5171 " + res.path.length + " \u624B\u68CB<br>quintet \u7528\u65F6 " + res.ms.toFixed(1) + " ms" + note,
-          S.mode === "vcf" && !v.ok ? "bad" : "ok"
+          "<b>" + (attacker === BLACK ? "\u9ED1" : "\u767D") + "\u65B9" + (vcf ? " VCF" : " VCT") + " \u80DC</b>\uFF1A\u653B\u65B9 " + res.depth + " \u624B \xB7 \u5171 " + res.path.length + " \u624B\u68CB<br>quintet \u7528\u65F6 " + res.ms.toFixed(1) + " ms" + note,
+          vcf && !v.ok ? "bad" : "ok"
         );
         render();
         renderSolution();
@@ -1800,7 +1813,7 @@ main {
         render();
         setStatus(
           $("solveStatus"),
-          "\u672A\u627E\u5230" + (S.mode === "vcf" ? " VCF" : " VCT") + "\uFF08\u653B\u65B9 \u2264 " + S.limit + " \u624B\uFF09\u3002<br>\u7528\u65F6 " + (res.ms || 0).toFixed(1) + " ms" + (res.err ? " \xB7 " + res.err : "") + "\uFF0C\u53EF\u4EE5\u8C03\u9AD8\u624B\u6570\u4E0A\u9650\u518D\u8BD5\u3002",
+          (vcf ? "\u672A\u627E\u5230 VCF\uFF1A\u51B2\u56DB\u94FE\u8DEF\u5DF2\u641C\u5C3D\uFF08\u4E0A\u9650 " + VCF_LIMIT + " \u624B\uFF0C\u7B49\u540C\u4E0D\u8BBE\u9650\uFF09\u3002<br>" : "\u672A\u627E\u5230 VCT\uFF08\u653B\u65B9 \u2264 " + S.limit + " \u624B\uFF09\u3002<br>") + "\u7528\u65F6 " + (res.ms || 0).toFixed(1) + " ms" + (res.err ? " \xB7 " + res.err : "") + (vcf ? "\u3002" : "\uFF0C\u53EF\u4EE5\u8C03\u9AD8 V \u624B\u6570\u518D\u8BD5\u3002"),
           "bad"
         );
       }
@@ -1866,7 +1879,6 @@ main {
     S.hist = [];
     S.record = Array.from(g.order || []);
     S.turn = sideToMove(S.bd);
-    if (S.limitMoves < g.depth) setLimitMoves(Math.min(LIMIT_MAX, g.depth));
     S.solution = null;
     S.step = 0;
     renderSolution();
@@ -2164,8 +2176,14 @@ main {
       };
     });
   }
+  function syncModeUI() {
+    const vcf = S.mode === "vcf";
+    $("limitField").hidden = vcf;
+    $("modeHint").innerHTML = vcf ? "\u51B2\u56DB\u94FE\u4E00\u8DEF\u641C\u5230\u5E95\uFF1A\u4E0A\u9650 <b>" + VCF_LIMIT + "</b> \u624B\uFF08\u68CB\u76D8\u70B9\u6570\uFF09\uFF0C\u7B49\u4E8E\u4E0D\u8BBE\u9650\u3002" : "VCT \u6309\u4E0B\u9762\u7684 V \u624B\u6570\u5C01\u9876\uFF1A\u6570\u5B57\u8D8A\u5927\u8D8A\u6162\uFF0C\u4F46\u80FD\u8BC1\u660E\u66F4\u6DF1\u7684\u6D3B\u4E09\u94FE\u3002";
+  }
   bindChips("modeChips", (b) => {
     S.mode = b.dataset.mode;
+    syncModeUI();
     clearSolution();
   });
   bindChips("sideChips", (b) => {
@@ -2243,6 +2261,7 @@ main {
     }
     overlay.remove();
     setLimitMoves(S.limitMoves);
+    syncModeUI();
     syncDiffUI();
     setGenCount(S.genOpts.count);
     $("btnTxt").disabled = true;
