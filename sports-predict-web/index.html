@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>赛事预测</title>
+<style>
+  :root {
+    --bg: #fbfbfa;
+    --card: #ffffff;
+    --line: #e9e9e6;
+    --text: #17171a;
+    --muted: #92929a;
+    --accent: #d2451f;
+    --row: #fafaf8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 28px 20px 64px; }
+
+  .tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+  .tabs button {
+    appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font: inherit; font-size: 14px; padding: 7px 16px;
+    border-radius: 999px; cursor: pointer; transition: .15s;
+  }
+  .tabs button.on { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+  .pickers { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  select {
+    appearance: none; flex: 1 1 150px; min-width: 0;
+    border: 1px solid var(--line); background: var(--card) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%2392929a'/></svg>") no-repeat right 12px center;
+    color: var(--text); font: inherit; font-size: 14px;
+    padding: 9px 30px 9px 12px; border-radius: 9px; cursor: pointer;
+    text-overflow: ellipsis;
+  }
+  select:focus { outline: none; border-color: var(--accent); }
+
+  /* ---------- 100m：名次榜 ---------- */
+  .grid { display: grid; grid-template-columns: 24px minmax(0, 1fr) 4.3em 3.9em 4.7em; align-items: center; }
+  .head {
+    color: var(--muted); font-size: 12px; letter-spacing: .02em;
+    padding: 0 12px 8px; gap: 0 8px;
+  }
+  .head span:nth-child(n+3) { text-align: right; }
+
+  #list { border-top: 1px solid var(--line); }
+  .row {
+    position: relative; padding: 11px 12px; gap: 0 8px; cursor: pointer;
+    border-bottom: 1px solid var(--line); overflow: hidden;
+  }
+  .row:hover { background: var(--row); }
+  .row.sel { background: var(--row); }
+  .row .rank { color: var(--muted); font-size: 13px; }
+  .row .name { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row .num { text-align: right; font-size: 15px; }
+  .row .num.dim { color: var(--muted); font-size: 14px; }
+  .row .num b { font-weight: 600; }
+  .row .track {
+    position: absolute; inset: 0 auto 0 0; width: 0;
+    background: var(--accent); opacity: .07; pointer-events: none;
+    transition: width .55s cubic-bezier(.2,.8,.2,1);
+  }
+  .row.sel .track { opacity: .12; }
+
+  .panel { border-bottom: 1px solid var(--line); background: #fff; padding: 4px 12px 20px 46px; }
+  .panel .top { display: flex; align-items: baseline; gap: 18px; padding: 10px 0 16px; flex-wrap: wrap; }
+  .panel .top .big { font-size: 26px; font-weight: 600; letter-spacing: -.01em; }
+  .panel .top .big small { font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 4px; }
+  .panel .chips { display: flex; gap: 8px 20px; flex-wrap: wrap; }
+  .chip { font-size: 13px; color: var(--muted); }
+  .chip b { color: var(--text); font-weight: 500; margin-left: 5px; }
+  .dist { display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; height: 78px; margin-top: 4px; }
+  .dist .col { flex: 1 1 0; max-width: 44px; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; }
+  .dist .bar { flex: 1; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
+  .dist .bar i {
+    display: block; width: 100%; border-radius: 3px 3px 0 0;
+    background: var(--accent); opacity: .22;
+  }
+  .dist .col.hot .bar i { opacity: .85; }
+  .dist .k { font-size: 11px; color: var(--muted); }
+
+  /* ---------- 乒乓球：逐场赛程 ---------- */
+  .mhead {
+    display: grid; grid-template-columns: 3.4em minmax(0, 1fr) 4.1em;
+    gap: 0 8px; color: var(--muted); font-size: 12px; padding: 0 12px 8px;
+  }
+  .mhead span:last-child { text-align: right; }
+
+  .grp {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 12px 8px; color: var(--muted); font-size: 12px;
+  }
+  .grp::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  .m {
+    position: relative; display: grid;
+    grid-template-columns: 3.4em minmax(0, 1fr) 4.1em;
+    grid-template-rows: auto auto; gap: 1px 8px;
+    padding: 10px 12px 11px; border-bottom: 1px solid var(--line);
+    cursor: pointer; align-items: center;
+  }
+  .m:hover { background: var(--row); }
+  .m.sel { background: var(--row); }
+  .m .mt { grid-row: 1 / span 2; color: var(--muted); font-size: 12px; }
+  .m .n { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .m .n.win { font-weight: 500; }
+  .m .p { text-align: right; font-size: 14px; color: var(--text); }
+  .m .p.dim { color: var(--muted); }
+  .m .p.win { font-weight: 600; }
+  .m .bar {
+    position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+    display: flex; pointer-events: none;
+  }
+  .m .bar span { display: block; height: 100%; transition: width .5s cubic-bezier(.2,.8,.2,1); }
+  .m .bar .ba { background: var(--accent); opacity: .5; }
+  .m .bar .bb { background: var(--line); }
+
+  .mp { border-bottom: 1px solid var(--line); background: #fff; padding: 2px 12px 18px; }
+  .mp .probs { display: flex; align-items: center; gap: 12px; padding: 10px 0 16px; }
+  .mp .probs b { font-size: 15px; font-weight: 600; }
+  .mp .probs b.dim { color: var(--muted); font-weight: 500; }
+  .mp .probs .track { flex: 1; height: 4px; border-radius: 2px; background: var(--line); position: relative; overflow: hidden; }
+  .mp .probs .track i { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 2px; }
+  .mp .tbl { display: grid; gap: 1px; font-size: 13px; justify-content: start; }
+  .mp .tr { display: grid; grid-template-columns: minmax(4.4em, auto) 3.6em 3.8em 3.4em; gap: 8px 22px; padding: 5px 0; }
+  .mp .tr span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mp .tr span:nth-child(n+2) { text-align: right; }
+  .mp .tr.h { color: var(--muted); font-size: 12px; }
+
+  .empty { padding: 40px 0; color: var(--muted); font-size: 14px; text-align: center; }
+  .spin { opacity: .45; transition: opacity .2s; }
+
+  @media (max-width: 560px) {
+    main { padding: 20px 14px 48px; }
+    .grid { grid-template-columns: 20px minmax(0, 1fr) 4.1em 3.7em 4.4em; }
+    .head { padding: 0 10px 8px; font-size: 11px; }
+    .row { padding: 10px; font-size: 14px; }
+    .row .num { font-size: 14px; }
+    .row .num.dim { font-size: 13px; }
+    .panel { padding: 4px 10px 18px 38px; }
+    .panel .top .big { font-size: 22px; }
+    .panel .chips { gap: 6px 14px; }
+    .dist .col { max-width: 34px; }
+    .mhead { grid-template-columns: 3em minmax(0, 1fr) 3.9em; padding: 0 10px 8px; font-size: 11px; }
+    .m { grid-template-columns: 3em minmax(0, 1fr) 3.9em; padding: 9px 10px 10px; font-size: 14px; }
+    .mp { padding: 2px 10px 16px; }
+    .mp .tr { grid-template-columns: minmax(3.8em, auto) 3.2em 3.4em 3em; gap: 6px 14px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <nav class="tabs">
+    <button data-sport="100m" class="on">100m</button>
+    <button data-sport="table_tennis">乒乓球</button>
+  </nav>
+
+  <div class="pickers">
+    <select id="event" aria-label="赛事"></select>
+    <select id="category" aria-label="项目"></select>
+    <select id="round" aria-label="轮次"></select>
+  </div>
+
+  <div class="grid head" id="head">
+    <span></span><span></span><span>夺冠</span><span>前三</span><span>期望名次</span>
+  </div>
+  <div id="list"></div>
+</main>
+
+<script>
+(function () {
+  const CFG = {
+    base: "https://sports-predict-api.app.workbuddy.host",
+    share: "QKF4TFHG6X",
+  };
+  const qs = new URLSearchParams(location.search);
+  if (qs.get("api")) CFG.base = qs.get("api").replace(/\/$/, "");
+  if (qs.get("share") !== null) CFG.share = qs.get("share");
+
+  const ACCENT = { "100m": "#d2451f", table_tennis: "#1f6feb" };
+  const $ = (id) => document.getElementById(id);
+  const el = {
+    event: $("event"), category: $("category"), round: $("round"),
+    list: $("list"), head: $("head"),
+  };
+
+  const HEAD = {
+    field: '<span></span><span></span><span>夺冠</span><span>前三</span><span>期望名次</span>',
+    matches: '<span>时间</span><span>对阵</span><span>胜率</span>',
+  };
+
+  let state = { sport: "100m", events: [], event: null, category: null, round: null, data: null, openId: null };
+
+  function url(path, extra) {
+    const u = new URL(CFG.base + path);
+    if (CFG.share) u.searchParams.set("sharecode", CFG.share);
+    Object.entries(extra || {}).forEach(([k, v]) => v != null && u.searchParams.set(k, v));
+    return u.toString();
+  }
+  async function api(path, opts, extra) {
+    const res = await fetch(url(path, extra), opts);
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(body.detail || res.status);
+    return body;
+  }
+  const pct = (v) => (v == null ? "—" : (v * 100).toFixed(1) + "%");
+  const num = (v, d) => (v == null ? "—" : Number(v).toFixed(d == null ? 2 : d));
+  const hhmm = (s) => (s ? String(s).slice(11, 16) : "—");
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  function fill(select, items, value, label) {
+    select.innerHTML = "";
+    items.forEach((it) => {
+      const o = document.createElement("option");
+      o.value = it.value;
+      o.textContent = it.label;
+      select.appendChild(o);
+    });
+    if (value != null) select.value = value;
+  }
+
+  function setHead(kind) {
+    el.head.className = kind === "matches" ? "mhead" : "grid head";
+    el.head.innerHTML = HEAD[kind];
+  }
+
+  /* ---------------- 赛事 / 项目 / 轮次 ---------------- */
+  async function loadEvents() {
+    el.list.innerHTML = '<div class="empty spin">·</div>';
+    const res = await api("/api/v1/events", null, { sport: state.sport, upcoming: "true", limit: 60 });
+    state.events = res.events || [];
+    if (!state.events.length) {
+      state.event = null;
+      fill(el.event, [{ value: "", label: "—" }], "");
+      fill(el.category, [{ value: "", label: "—" }], "");
+      fill(el.round, [{ value: "", label: "—" }], "");
+      el.list.innerHTML = '<div class="empty">—</div>';
+      return;
+    }
+    fill(el.event, state.events.map((e) => ({ value: e.id, label: e.name })), state.events[0].id);
+    state.event = state.events[0].id;
+    await loadEventDetail();
+  }
+
+  async function loadEventDetail() {
+    if (!state.event) return;
+    el.category.innerHTML = "";
+    el.round.innerHTML = "";
+    const res = await api("/api/v1/events/" + state.event);
+    const matches = res.matches || [];
+    const order = (arr) => [...new Set(arr.filter(Boolean))];
+    const cats = order(matches.map((m) => m.category));
+    const rounds = order(matches.map((m) => m.round));
+    fill(el.category, cats.map((c) => ({ value: c, label: c })), cats[0]);
+    fill(el.round, rounds.map((r) => ({ value: r, label: r })), rounds[0]);
+    state.category = cats[0] || null;
+    state.round = rounds[0] || null;
+    await loadBlock();
+  }
+
+  async function loadBlock() {
+    if (!state.event) return;
+    state.openId = null;
+    el.list.innerHTML = '<div class="empty spin">·</div>';
+    el.list.classList.add("spin");
+    try {
+      const body = await api("/api/v1/predict/field", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ event_id: state.event, category: state.category, round: state.round }),
+      });
+      const groups = body.categories || [];
+      const group = groups.find((c) => c.category === state.category) || groups[0] || null;
+      state.data = group;
+      setHead(group && group.format === "pairwise" ? "matches" : "field");
+      render();
+    } catch (err) {
+      el.list.innerHTML = '<div class="empty">—</div>';
+    } finally {
+      el.list.classList.remove("spin");
+    }
+  }
+
+  /* ---------------- 渲染 ---------------- */
+  function render() {
+    const g = state.data;
+    el.list.innerHTML = "";
+    if (!g) {
+      el.list.innerHTML = '<div class="empty">—</div>';
+      return;
+    }
+    if (g.format === "pairwise") renderMatches(g);
+    else renderRanking(g);
+  }
+
+  function renderRanking(g) {
+    const list = g.ranking || [];
+    if (!list.length) {
+      el.list.innerHTML = '<div class="empty">—</div>';
+      return;
+    }
+    list.forEach((p) => {
+      const row = document.createElement("div");
+      row.className = "grid row" + (state.openId === p.player_id ? " sel" : "");
+      row.innerHTML = `
+        <div class="track" style="width:${Math.min(100, (p.win_probability || 0) * 100).toFixed(1)}%"></div>
+        <div class="rank">${p.predicted_rank}</div>
+        <div class="name">${esc(p.player_name)}</div>
+        <div class="num"><b>${pct(p.win_probability)}</b></div>
+        <div class="num dim">${pct(p.top3_probability)}</div>
+        <div class="num dim">${num(p.expected_rank)}</div>`;
+      row.addEventListener("click", () => toggleAthlete(p, row));
+      el.list.appendChild(row);
+    });
+  }
+
+  function renderMatches(g) {
+    const ms = (g.matches || []).slice().sort((a, b) =>
+      String(a.scheduled_time).localeCompare(String(b.scheduled_time)));
+    if (!ms.length) {
+      el.list.innerHTML = '<div class="empty">—</div>';
+      return;
+    }
+    const rounds = [...new Set(ms.map((m) => m.round).filter(Boolean))];
+    let cur = null;
+    ms.forEach((m) => {
+      if (rounds.length > 1 && m.round && m.round !== cur) {
+        cur = m.round;
+        const gd = document.createElement("div");
+        gd.className = "grp";
+        gd.textContent = m.round;
+        el.list.appendChild(gd);
+      }
+      const aWin = (m.prob_a || 0) >= (m.prob_b || 0);
+      const pa = Math.min(100, (m.prob_a || 0) * 100).toFixed(1);
+      const pb = Math.min(100, (m.prob_b || 0) * 100).toFixed(1);
+      const row = document.createElement("div");
+      row.className = "m" + (state.openId === m.match_id ? " sel" : "");
+      row.innerHTML = `
+        <div class="mt">${hhmm(m.scheduled_time)}</div>
+        <div class="n${aWin ? " win" : ""}">${esc(m.player_a_name)}</div>
+        <div class="p${aWin ? " win" : " dim"}">${pct(m.prob_a)}</div>
+        <div class="n${aWin ? "" : " win"}">${esc(m.player_b_name)}</div>
+        <div class="p${aWin ? " dim" : " win"}">${pct(m.prob_b)}</div>
+        <div class="bar"><span class="ba" style="width:${pa}%"></span><span class="bb" style="width:${pb}%"></span></div>`;
+      row.addEventListener("click", () => toggleMatch(m, row));
+      el.list.appendChild(row);
+    });
+  }
+
+  /* ---------------- 展开 ---------------- */
+  function openPanel(afterRow, cls) {
+    const existing = el.list.querySelector(".panel");
+    if (existing) existing.remove();
+    el.list.querySelectorAll(".row.sel, .m.sel").forEach((r) => r.classList.remove("sel"));
+    const panel = document.createElement("div");
+    panel.className = "panel " + (cls || "");
+    panel.innerHTML = '<div class="empty spin">·</div>';
+    afterRow.insertAdjacentElement("afterend", panel);
+    afterRow.classList.add("sel");
+    return panel;
+  }
+
+  async function toggleAthlete(p, row) {
+    const same = state.openId === p.player_id;
+    const panel = openPanel(row, "");
+    if (same) { state.openId = null; panel.remove(); row.classList.remove("sel"); return; }
+    state.openId = p.player_id;
+    try {
+      const body = await api(
+        `/api/v1/events/${state.event}/athletes/${p.player_id}`, null, { round: state.round }
+      );
+      renderAthletePanel(panel, body);
+    } catch (err) {
+      panel.innerHTML = '<div class="empty">—</div>';
+    }
+  }
+
+  function renderAthletePanel(panel, body) {
+    const a = body.athlete || {};
+    const prof = a.profile || {};
+    const chips = [
+      ["预测成绩", a.projected_time ? num(a.projected_time, 3) : null],
+      ["PB", prof.pb ? num(prof.pb, 3) : null],
+      ["SB", prof.sb ? num(prof.sb, 3) : null],
+      ["近三场", prof.form3 ? num(prof.form3, 3) : null],
+      ["反应", prof.reaction ? num(prof.reaction, 3) : null],
+      ["休息", prof.rest != null ? num(prof.rest, 0) : null],
+    ];
+    const dist = a.rank_distribution || [];
+    const max = Math.max.apply(null, dist.concat([0.0001]));
+    const cols = dist
+      .map((v, i) => `
+        <div class="col${i === 0 ? " hot" : ""}" title="${(v * 100).toFixed(1)}%">
+          <div class="bar"><i style="height:${Math.max(2, (v / max) * 100).toFixed(1)}%"></i></div>
+          <div class="k">${i + 1}</div>
+        </div>`)
+      .join("");
+
+    panel.innerHTML = `
+      <div class="top">
+        <div class="big">${esc(a.name || a.player_name)} <small>${pct(a.win_probability)}</small></div>
+        <div class="chips">
+          ${chips.filter((c) => c[1] != null).map((c) => `<span class="chip">${c[0]}<b>${c[1]}</b></span>`).join("")}
+        </div>
+      </div>
+      <div class="dist">${cols}</div>`;
+  }
+
+  async function toggleMatch(m, row) {
+    const same = state.openId === m.match_id;
+    const panel = openPanel(row, "mp");
+    if (same) { state.openId = null; panel.remove(); row.classList.remove("sel"); return; }
+    state.openId = m.match_id;
+    try {
+      const body = await api("/api/v1/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ match_id: m.match_id }),
+      });
+      renderMatchPanel(panel, m, body);
+    } catch (err) {
+      panel.innerHTML = '<div class="empty">—</div>';
+    }
+  }
+
+  function renderMatchPanel(panel, m, body) {
+    const fa = (body.factors || {}).a || {};
+    const fb = (body.factors || {}).b || {};
+    const pA = body.prob_a != null ? body.prob_a : m.prob_a;
+    const pB = body.prob_b != null ? body.prob_b : m.prob_b;
+    const aWin = pA >= pB;
+    const rows = [
+      ["等级分", num(fa["等级分"], 0), num(fb["等级分"], 0)],
+      ["近五场", pct(fa["近五场胜率"]), pct(fb["近五场胜率"])],
+      ["交手", pct(fa["交手胜率"]), pct(fb["交手胜率"])],
+    ];
+    panel.innerHTML = `
+      <div class="probs">
+        <b class="${aWin ? "" : "dim"}">${pct(pA)}</b>
+        <div class="track"><i style="width:${(Math.min(1, pA) * 100).toFixed(1)}%"></i></div>
+        <b class="${aWin ? "dim" : ""}">${pct(pB)}</b>
+      </div>
+      <div class="tbl">
+        <div class="tr h"><span></span>${rows.map((r) => `<span>${r[0]}</span>`).join("")}</div>
+        <div class="tr"><span>${esc(m.player_a_name)}</span>${rows.map((r) => `<span>${r[1]}</span>`).join("")}</div>
+        <div class="tr"><span>${esc(m.player_b_name)}</span>${rows.map((r) => `<span>${r[2]}</span>`).join("")}</div>
+      </div>`;
+  }
+
+  /* ---------------- 交互 ---------------- */
+  document.querySelectorAll(".tabs button").forEach((b) => {
+    b.addEventListener("click", () => {
+      if (state.sport === b.dataset.sport) return;
+      document.querySelectorAll(".tabs button").forEach((x) => x.classList.toggle("on", x === b));
+      state.sport = b.dataset.sport;
+      state.data = null;
+      setHead(b.dataset.sport === "100m" ? "field" : "matches");
+      document.documentElement.style.setProperty("--accent", ACCENT[state.sport] || "#d2451f");
+      loadEvents().catch(() => { el.list.innerHTML = '<div class="empty">—</div>'; });
+    });
+  });
+  el.event.addEventListener("change", () => { state.event = el.event.value; loadEventDetail(); });
+  el.category.addEventListener("change", () => { state.category = el.category.value; loadBlock(); });
+  el.round.addEventListener("change", () => { state.round = el.round.value; loadBlock(); });
+
+  document.documentElement.style.setProperty("--accent", ACCENT[state.sport]);
+  loadEvents().catch(() => { el.list.innerHTML = '<div class="empty">—</div>'; });
+})();
+</script>
+</body>
+</html>
