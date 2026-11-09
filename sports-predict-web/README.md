@@ -25,8 +25,12 @@ python -m http.server 8080
 http://127.0.0.1:8080/?api=http://127.0.0.1:8000&share=
 ```
 
-## 部署到 GitCode Pages
+## 在线地址
 
-1. 在 GitCode 新建仓库，把本目录推上去；
-2. 仓库设置 → Pages，选择分支 `main` / 根目录 `/`；
-3. 访问生成的 Pages 地址即可。
+**https://renju4433.github.io/sports-predict-web/**
+
+托管在 GitHub Pages（仓库 `renju4433/renju4433.github.io` 的子目录 `sports-predict-web/`），推送即自动构建。
+
+代码另有两份镜像：GitCode `m0_61071414/sports-predict-web`、Gitee `yaobf/sports-predict-web`。
+
+> GitCode 与 Gitee 均无 Pages 可用：GitCode 未开放该功能，Gitee Pages 已于 2024 年 5 月下线。
