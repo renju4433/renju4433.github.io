@@ -264,11 +264,14 @@
 
   <script>
     const urlApi = new URLSearchParams(window.location.search).get("api");
+    const CLOUD_API = "https://chess-prematch-api-production.up.railway.app";
     const defaultApi = window.location.protocol.startsWith("http") && !window.location.hostname.endsWith("github.io")
       ? window.location.origin
-      : "http://127.0.0.1:8000";
+      : CLOUD_API;
+    const savedApi = localStorage.getItem("chess_api_base");
+    const usableSaved = savedApi && !(window.location.protocol === "https:" && savedApi.startsWith("http://")) ? savedApi : null;
     const apiInput = document.getElementById("apiBase");
-    apiInput.value = (urlApi || localStorage.getItem("chess_api_base") || defaultApi).trim().replace(/\/+$/, "");
+    apiInput.value = (urlApi || usableSaved || defaultApi).trim().replace(/\/+$/, "");
     apiInput.addEventListener("change", () => {
       localStorage.setItem("chess_api_base", apiInput.value.trim().replace(/\/+$/, ""));
       init();
