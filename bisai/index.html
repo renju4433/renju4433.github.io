@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>bisai</title>
 <style>
   :root {
@@ -18,11 +18,17 @@
     --red: #dc2626;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; background: var(--bg); color: var(--text); }
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: clip;
+  }
   body {
     font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
       "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
     font-variant-numeric: tabular-nums;
   }
 
@@ -36,25 +42,29 @@
   .hdr-in { max-width: 1120px; margin: 0 auto; padding: 10px 20px 0; }
   .hdr-top {
     display: flex; align-items: center; justify-content: space-between;
-    gap: 12px; padding-bottom: 8px;
+    gap: 10px; padding-bottom: 6px; min-height: 44px;
   }
   .brand {
     font-size: 18px; font-weight: 700; letter-spacing: -.02em;
     display: flex; align-items: center; gap: 6px; cursor: pointer;
+    flex-shrink: 0;
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
   .brand i { color: var(--blue); font-style: normal; }
-  .hdr-actions { display: flex; align-items: center; gap: 8px; }
+  .hdr-actions {
+    display: flex; align-items: center; gap: 6px;
+    flex: 1; justify-content: flex-end; min-width: 0;
+  }
   .icon-btn {
     appearance: none; border: 0; background: transparent; color: var(--text);
-    width: 34px; height: 34px; border-radius: 8px; cursor: pointer;
+    width: 40px; height: 40px; border-radius: 8px; cursor: pointer; flex-shrink: 0;
     display: inline-flex; align-items: center; justify-content: center;
   }
   .icon-btn:hover { background: var(--pill); }
   .search-input {
-    display: none; width: 220px; max-width: 50vw;
+    display: none; flex: 1; max-width: 340px; min-width: 0; height: 38px;
     border: 1px solid var(--line); background: var(--surface);
-    border-radius: 8px; padding: 6px 10px; font: inherit; font-size: 13px;
+    border-radius: 8px; padding: 6px 12px; font: inherit; font-size: 14px;
     color: var(--text); outline: none;
   }
   .search-input.open { display: block; }
@@ -65,9 +75,9 @@
   }
   .nav-tabs::-webkit-scrollbar { display: none; }
   .nav-tabs button {
-    appearance: none; border: 0; background: none;
+    appearance: none; border: 0; background: none; min-height: 42px;
     padding: 8px 2px 10px; font: inherit; font-size: 14px; font-weight: 500;
-    color: var(--muted); cursor: pointer; white-space: nowrap;
+    color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;
     border-bottom: 2px solid transparent; transition: .15s;
   }
   .nav-tabs button.on {
@@ -80,36 +90,46 @@
     display: grid; grid-template-columns: minmax(0, 1fr) 320px;
     gap: 30px; align-items: start;
   }
+  #mainCol, #sidebar { min-width: 0; }
 
   /* ---------- Centered Segmented Toggle ---------- */
   .seg-center {
-    display: flex; justify-content: center; margin-bottom: 20px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    margin-bottom: 18px;
   }
   .seg {
     display: inline-flex; background: var(--pill); padding: 3px; border-radius: 999px;
   }
   .seg button {
-    appearance: none; border: 0; background: transparent;
-    padding: 5px 18px; border-radius: 999px; font: inherit; font-size: 13px;
+    appearance: none; border: 0; background: transparent; min-height: 36px;
+    padding: 6px 20px; border-radius: 999px; font: inherit; font-size: 13px;
     font-weight: 500; color: var(--muted); cursor: pointer; transition: .15s;
   }
   .seg button.on {
     background: #fff; color: var(--text); font-weight: 600;
     box-shadow: 0 1px 2px rgba(15, 23, 42, .08);
   }
+  .res-summary {
+    font-size: 13px; color: var(--muted); text-align: center;
+  }
+  .res-summary b { color: var(--text); font-weight: 600; }
 
   .filter-pill-bar {
     display: none; align-items: center; gap: 8px; margin-bottom: 14px;
   }
   .filter-pill-bar.on { display: flex; }
   .filter-chip {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--pill); padding: 4px 10px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 8px; max-width: 100%;
+    background: var(--pill); padding: 6px 12px; border-radius: 999px;
     font-size: 12px; font-weight: 600;
+  }
+  .filter-chip span {
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
   .filter-chip button {
     appearance: none; border: 0; background: none; cursor: pointer;
-    color: var(--muted); font-size: 14px; padding: 0; line-height: 1;
+    color: var(--muted); font-size: 16px; padding: 0 2px; line-height: 1;
+    flex-shrink: 0;
   }
 
   .sec-title {
@@ -125,44 +145,48 @@
   .fcard {
     border: 1px solid var(--line); border-radius: 10px; background: #fff;
     padding: 10px 12px; cursor: pointer; transition: border-color .15s;
+    min-width: 0; overflow: hidden;
   }
   .fcard:hover { border-color: #cbd5e1; }
   .fcard .fmeta {
-    font-size: 11px; color: var(--muted); white-space: nowrap;
-    overflow: hidden; text-overflow: ellipsis; margin-bottom: 8px;
+    font-size: 11px; color: var(--muted); margin-bottom: 8px;
+  }
+  .fcard .fmeta-line {
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .fcard .frow {
     display: flex; align-items: center; justify-content: space-between;
-    gap: 6px; margin-top: 5px;
+    gap: 8px; margin-top: 5px; min-width: 0;
   }
   .fcard .fn {
     font-size: 13px; font-weight: 500; white-space: nowrap;
-    overflow: hidden; text-overflow: ellipsis;
+    overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1;
   }
   .fcard .fn.win { font-weight: 700; }
 
   /* ---------- Most Confident Compact List ---------- */
   .conf-list { margin-bottom: 18px; }
   .conf-row {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 12px; padding: 9px 2px; border-bottom: 1px solid var(--line);
-    cursor: pointer; font-size: 14px;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center; gap: 10px; min-height: 44px;
+    padding: 8px 2px; border-bottom: 1px solid var(--line);
+    cursor: pointer; font-size: 14px; min-width: 0;
   }
   .conf-row:hover { background: var(--surface); }
   .conf-names {
     min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .conf-names b { font-weight: 700; }
-  .conf-right {
-    display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+  .conf-meta {
+    font-size: 12px; color: var(--muted); white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; max-width: 240px; min-width: 0;
   }
-  .conf-meta { font-size: 12px; color: var(--muted); }
 
   /* ---------- Probability Badges ---------- */
   .badge {
     display: inline-flex; align-items: center; justify-content: center;
     padding: 2px 7px; border-radius: 5px; font-size: 12px; font-weight: 700;
-    line-height: 1.3; white-space: nowrap;
+    line-height: 1.3; white-space: nowrap; flex-shrink: 0;
   }
   .badge.hi { background: var(--green); color: #fff; }
   .badge.mid { background: var(--slate); color: #fff; }
@@ -177,57 +201,78 @@
     content: ""; flex: 1; height: 1px; background: var(--line);
   }
 
-  /* ---------- Match Cards (exact sport.dev 3-col layout) ---------- */
+  /* ---------- Match Cards (sport.dev 3-col layout) ---------- */
   .mcard {
     border-bottom: 1px solid var(--line); padding: 13px 2px; cursor: pointer;
+    min-width: 0;
   }
   .mcard:hover { background: var(--surface); }
   .mcard .mtop {
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 12px; color: var(--muted); margin-bottom: 8px;
+    gap: 10px; font-size: 12px; color: var(--muted); margin-bottom: 8px; min-width: 0;
   }
+  .mtop-title {
+    min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .mtop-title b { color: var(--text); font-weight: 600; }
+  .mtop-tc { flex-shrink: 0; white-space: nowrap; }
   .mcard .mgrid {
-    display: grid; grid-template-columns: minmax(0, 1fr) 104px minmax(0, 1fr);
+    display: grid; grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
     align-items: center; gap: 10px;
   }
-  .side { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .side {
+    display: flex; flex-direction: column; align-items: flex-start;
+    gap: 5px; min-width: 0;
+  }
   .side.right { align-items: flex-end; text-align: right; }
   .pname {
     display: flex; align-items: center; gap: 6px; max-width: 100%;
-    font-size: 15px; font-weight: 600;
+    font-size: 15px; font-weight: 500; min-width: 0;
   }
+  .pname.win { font-weight: 700; }
   .side.right .pname { flex-direction: row-reverse; }
   .pname span.txt {
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
   }
   .elo-tag {
     font-size: 11px; font-weight: 500; color: var(--muted);
     background: var(--pill); padding: 1px 5px; border-radius: 4px; flex-shrink: 0;
   }
-  .center-box { text-align: center; }
-  .center-box .main-val {
-    font-size: 16px; font-weight: 700; color: var(--text); white-space: nowrap;
+  .center-box {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; min-width: 0;
   }
+  .center-box .sub-val { font-size: 11px; color: var(--muted); line-height: 1.2; }
+  .center-box .main-val {
+    font-size: 16px; font-weight: 700; color: var(--text); white-space: nowrap; line-height: 1.3;
+  }
+  .hit-tag {
+    display: inline-block; margin-top: 2px; font-size: 11px; font-weight: 700;
+  }
+  .hit-tag.ok { color: var(--green); }
+  .hit-tag.bad { color: var(--red); }
+  .hit-tag.neu { color: var(--muted); font-weight: 500; }
 
   .mdetail {
     margin-top: 10px; padding: 10px 12px; background: var(--surface);
     border: 1px solid var(--line); border-radius: 8px;
   }
   .pbar-wrap { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; }
+  .pbar-wrap span { white-space: nowrap; flex-shrink: 0; }
   .pbar {
-    flex: 1; height: 6px; border-radius: 999px; background: var(--line);
+    flex: 1; min-width: 0; height: 6px; border-radius: 999px; background: var(--line);
     display: flex; overflow: hidden;
   }
   .pbar i { display: block; height: 100%; }
   .pbar .pw { background: var(--blue); }
   .pbar .pd { background: #cbd5e1; }
   .pbar .pb { background: var(--text); }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); }
   .chips b { color: var(--text); font-weight: 600; margin-left: 4px; }
 
   .more-wrap { display: flex; justify-content: center; margin-top: 20px; }
   .more-btn {
-    appearance: none; background: #fff; border: 1px solid var(--line);
+    appearance: none; background: #fff; border: 1px solid var(--line); min-height: 44px;
     border-radius: 8px; padding: 10px 32px; font: inherit; font-size: 14px;
     font-weight: 600; color: var(--text); cursor: pointer;
   }
@@ -238,40 +283,45 @@
     display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;
   }
   .tour-pills button {
-    appearance: none; border: 1px solid var(--line); background: #fff;
-    padding: 5px 12px; border-radius: 999px; font: inherit; font-size: 12px;
-    color: var(--muted); cursor: pointer;
+    appearance: none; border: 1px solid var(--line); background: #fff; min-height: 36px;
+    padding: 6px 12px; border-radius: 999px; font: inherit; font-size: 12px;
+    color: var(--muted); cursor: pointer; max-width: 100%;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .tour-pills button.on {
     background: var(--text); color: #fff; border-color: var(--text); font-weight: 600;
   }
   .rr-card {
     border: 1px solid var(--line); border-radius: 10px; background: #fff;
-    overflow: hidden; margin-bottom: 16px;
+    overflow: hidden; margin-bottom: 16px; min-width: 0;
   }
   .rr-head, .rr-row {
-    display: grid; grid-template-columns: 32px minmax(0, 1fr) 54px 52px 66px 56px 58px;
+    display: grid; grid-template-columns: 30px minmax(0, 1fr) 54px 48px 64px 54px 56px;
     gap: 8px; padding: 10px 14px; align-items: center;
   }
   .rr-head {
     background: var(--surface); border-bottom: 1px solid var(--line);
     font-size: 11px; color: var(--muted); font-weight: 600;
   }
-  .rr-head span:nth-child(n+3), .rr-row span:nth-child(n+3) { text-align: right; }
+  .rr-head span:nth-child(n+3), .rr-row > span:nth-child(n+3) { text-align: right; }
   .rr-row {
-    border-bottom: 1px solid var(--line); cursor: pointer; font-size: 14px;
+    border-bottom: 1px solid var(--line); cursor: pointer; font-size: 14px; min-height: 46px;
   }
   .rr-row:last-child { border-bottom: 0; }
   .rr-row:hover, .rr-row.sel { background: var(--surface); }
+  .rr-name-cell { min-width: 0; display: flex; flex-direction: column; }
   .rr-row .nm { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rr-sub-mob { display: none; font-size: 11px; color: var(--muted); line-height: 1.25; }
   .rr-panel {
-    padding: 12px 16px 16px; background: var(--surface); border-bottom: 1px solid var(--line);
+    padding: 12px 14px 16px; background: var(--surface); border-bottom: 1px solid var(--line);
   }
   .dist {
-    display: flex; align-items: flex-end; gap: 6px; height: 68px; margin-top: 10px;
+    display: flex; align-items: flex-end; gap: 4px; height: 68px; margin-top: 10px;
+    overflow-x: auto; scrollbar-width: none;
   }
+  .dist::-webkit-scrollbar { display: none; }
   .dist .col {
-    flex: 1; max-width: 40px; display: flex; flex-direction: column;
+    flex: 1; min-width: 18px; max-width: 38px; display: flex; flex-direction: column;
     align-items: center; gap: 4px; height: 100%;
   }
   .dist .bar { flex: 1; width: 100%; display: flex; align-items: flex-end; }
@@ -282,17 +332,17 @@
   .dist .k { font-size: 11px; color: var(--muted); }
 
   /* ---------- Right Sidebar ---------- */
-  aside { display: flex; flex-direction: column; gap: 16px; }
-  .stat-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  aside { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .stat-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .stat-box {
     background: var(--surface); border: 1px solid var(--line);
-    border-radius: 10px; padding: 12px 14px;
+    border-radius: 10px; padding: 12px 14px; min-width: 0;
   }
   .stat-box .lbl { font-size: 12px; color: var(--muted); }
-  .stat-box .big { font-size: 26px; font-weight: 700; margin: 2px 0; }
+  .stat-box .big { font-size: 24px; font-weight: 700; margin: 2px 0; }
   .stat-box .sub { font-size: 11px; color: var(--muted); }
 
-  .side-block h3 { font-size: 13px; font-weight: 600; color: var(--muted); margin: 0 0 8px; }
+  .side-block h3 { font-size: 13px; font-weight: 600; color: var(--muted); margin: 0 0 6px; }
   .side-item { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
   .side-item:last-child { border-bottom: 0; }
   .side-match {
@@ -305,20 +355,28 @@
   .side-match span:last-child { text-align: right; }
   .side-sub {
     font-size: 11px; color: var(--muted); margin-top: 2px;
-    display: flex; justify-content: space-between; gap: 6px;
+    display: flex; justify-content: space-between; gap: 8px;
+  }
+  .side-sub span:first-child {
+    min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .side-sub span:last-child { flex-shrink: 0; white-space: nowrap; }
+  .side-more {
+    appearance: none; border: 0; background: none; padding: 8px 0 2px;
+    font: inherit; font-size: 13px; font-weight: 600; color: var(--text); cursor: pointer;
   }
 
   .side-card {
     background: #fff; border: 1px solid var(--line);
-    border-radius: 10px; padding: 14px;
+    border-radius: 10px; padding: 14px; min-width: 0;
   }
   .side-card h3 { font-size: 14px; font-weight: 700; margin: 0 0 10px; }
   .league-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 12px;
   }
   .league-item {
     display: flex; align-items: center; justify-content: space-between;
-    gap: 6px; font-size: 12px; padding: 4px 0; cursor: pointer; min-width: 0;
+    gap: 6px; font-size: 12px; padding: 6px 0; cursor: pointer; min-width: 0;
   }
   .league-item:hover { color: var(--blue); }
   .league-item .ln { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -326,11 +384,66 @@
 
   .empty { padding: 40px 0; text-align: center; color: var(--muted); font-size: 14px; }
 
+  /* ---------- Tablet & Mobile Responsive ---------- */
   @media (max-width: 880px) {
-    .shell { grid-template-columns: 1fr; }
-    .feat-grid { grid-template-columns: 1fr; }
-    .league-grid { grid-template-columns: 1fr; }
-    .rr-head, .rr-row { grid-template-columns: 26px minmax(0, 1fr) 48px 46px 58px 48px 48px; padding: 9px 10px; font-size: 13px; }
+    .shell { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .feat-grid { grid-template-columns: minmax(0, 1fr); }
+    .league-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .hdr-in { padding: 8px 14px 0; }
+    .shell { padding: 14px 14px 48px; gap: 22px; }
+    .seg-center { margin-bottom: 14px; }
+    .seg button { min-height: 38px; padding: 6px 22px; font-size: 14px; }
+    .nav-tabs { gap: 18px; }
+    .nav-tabs button { min-height: 44px; padding: 10px 2px; }
+
+    /* Compact 2-line Most Confident rows on mobile: zero cutoff, >=48px touch target */
+    .conf-row {
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-rows: auto auto;
+      gap: 2px 10px;
+      padding: 10px 2px;
+      min-height: 52px;
+    }
+    .conf-names { grid-column: 1; grid-row: 1; font-size: 14px; }
+    .conf-meta { grid-column: 1; grid-row: 2; max-width: 100%; font-size: 12px; }
+    .conf-row .badge { grid-column: 2; grid-row: 1 / 3; align-self: center; }
+
+    /* Match Card 3-col spacing optimized for 360px-430px phone width */
+    .mcard { padding: 12px 0; }
+    .mcard .mgrid { grid-template-columns: minmax(0, 1fr) 68px minmax(0, 1fr); gap: 6px; }
+    .pname { font-size: 14px; flex-wrap: wrap; row-gap: 2px; column-gap: 4px; }
+    .pname span.txt {
+      white-space: normal; word-break: break-word; line-height: 1.25;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    }
+    .center-box .main-val { font-size: 14px; }
+    .mdetail { padding: 10px; }
+
+    /* Round-Robin horizontal scrollable pills & readable mobile columns */
+    .tour-pills {
+      flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+      -webkit-overflow-scrolling: touch; padding-bottom: 4px;
+    }
+    .tour-pills::-webkit-scrollbar { display: none; }
+    .tour-pills button { flex-shrink: 0; max-width: 240px; min-height: 38px; }
+
+    .rr-head, .rr-row {
+      grid-template-columns: 20px minmax(0, 1fr) 38px 54px 48px;
+      gap: 6px; padding: 10px; font-size: 13px;
+    }
+    .rr-head span:nth-child(3), .rr-head span:nth-child(7),
+    .rr-row > span:nth-child(3), .rr-row > span:nth-child(7) {
+      display: none;
+    }
+    .rr-sub-mob { display: block; margin-top: 2px; }
+
+    .stat-box { padding: 10px 12px; }
+    .stat-box .big { font-size: 21px; }
+    .league-item { padding: 8px 0; min-height: 38px; border-bottom: 1px solid var(--line); }
+    .league-item:last-child { border-bottom: 0; }
   }
 </style>
 </head>
@@ -357,6 +470,7 @@
         <button data-sub="schedule" class="on">赛程</button>
         <button data-sub="results">赛果</button>
       </div>
+      <div class="res-summary" id="resSummary" style="display:none"></div>
     </div>
     <div class="filter-pill-bar" id="filterPillBar"></div>
     <div id="mainContent"></div>
@@ -376,6 +490,7 @@
     searchBtn: $("searchToggle"),
     segWrap: $("segWrap"),
     viewSeg: $("viewSeg"),
+    resSummary: $("resSummary"),
     pillBar: $("filterPillBar"),
     main: $("mainContent"),
     side: $("sidebar"),
@@ -402,6 +517,17 @@
     return "lo";
   }
 
+  function hitState(game) {
+    const st = game.status;
+    const pr = game.prediction;
+    if (!isDone(st) || !pr) return null;
+    const pw = pr.p_white_win || 0;
+    const pb = pr.p_black_win || 0;
+    const pick = pw >= pb ? "1-0" : "0-1";
+    if (st === "1/2-1/2" || st === "½-½") return { cls: "neu", txt: "和" };
+    return st === pick ? { cls: "ok", txt: "✓" } : { cls: "bad", txt: "×" };
+  }
+
   /* ---------------- 可扩展项目注册表 ---------------- */
   const PROJECTS = [
     { id: "chess", label: "国际象棋", type: "matches", dataUrl: "./data/chess.json" },
@@ -416,6 +542,8 @@
     tourName: null,
     champTourId: null,
     limitShow: 15,
+    hitsLimit: 4,
+    missesLimit: 3,
     openKey: null,
     data: null,
   };
@@ -447,7 +575,7 @@
   function renderPillBar() {
     if (state.project.type === "matches" && state.tourId) {
       el.pillBar.className = "filter-pill-bar on";
-      el.pillBar.innerHTML = `<span class="filter-chip">${esc(state.tourName || state.tourId)} <button id="clearTourFilter">×</button></span>`;
+      el.pillBar.innerHTML = `<span class="filter-chip"><span>${esc(state.tourName || state.tourId)}</span><button id="clearTourFilter" aria-label="清除筛选">×</button></span>`;
       $("clearTourFilter").addEventListener("click", () => {
         state.tourId = null;
         state.tourName = null;
@@ -466,7 +594,17 @@
 
     const q = state.query.trim().toLowerCase();
     const events = (state.data && state.data.events) || [];
+    const sum = (state.data && state.data.summary) || {};
     const wantFinished = state.subView === "results";
+
+    if (wantFinished && sum.accuracy != null) {
+      el.resSummary.style.display = "block";
+      el.resSummary.innerHTML = `模型战绩：预测正确率 <b>${pct(sum.accuracy)}</b> · 高把握为 <b>${pct(sum.confident_accuracy)}</b>`;
+    } else {
+      el.resSummary.style.display = "none";
+      el.resSummary.innerHTML = "";
+    }
+
     let rounds = events.filter((ev) => (wantFinished ? ev.status === "finished" : ev.status !== "finished"));
     if (state.tourId) rounds = rounds.filter((r) => r.tour_id === state.tourId);
 
@@ -481,16 +619,13 @@
         const pr = g.prediction || {};
         const pw = pr.p_white_win || 0;
         const pb = pr.p_black_win || 0;
-        const favP = Math.max(pw, pb);
-        const favName = pw >= pb ? g.white : g.black;
         flat.push({
           key: `${r.round_id}::${idx}`,
           round: r,
           game: g,
           dt,
           maxElo: Math.max(g.white_elo || 0, g.black_elo || 0),
-          favP,
-          favName,
+          favP: Math.max(pw, pb),
         });
       });
     });
@@ -503,7 +638,7 @@
     let html = "";
 
     // 1. 焦点赛事（3栏卡片）
-    if (!q && !state.tourId && flat.length >= 3) {
+    if (!q && !state.tourId && !wantFinished && flat.length >= 3) {
       const top3 = flat.slice().sort((a, b) => b.maxElo - a.maxElo).slice(0, 3);
       html += `<div class="sec-title">焦点赛事</div><div class="feat-grid">`;
       top3.forEach((it) => {
@@ -516,7 +651,10 @@
         const bWin = done ? g.status === "0-1" : pb > pw;
         html += `
           <div class="fcard" data-jump="${esc(it.key)}">
-            <div class="fmeta">${esc(it.round.round_name)} · ${esc(it.round.tour_name)}<br>${esc(it.dt.full)}</div>
+            <div class="fmeta">
+              <div class="fmeta-line">${esc(it.round.round_name)} · ${esc(it.round.tour_name.split("|")[0].trim())}</div>
+              <div class="fmeta-line">${esc(it.dt.full)}</div>
+            </div>
             <div class="frow">
               <span class="fn${wWin ? " win" : ""}">${esc(g.white)}</span>
               <span class="badge ${badgeClass(pw, pb)}">${pct(pw)}</span>
@@ -530,8 +668,8 @@
       html += `</div>`;
     }
 
-    // 2. 我们最有把握的预测（5行紧凑列表）
-    if (!q && !state.tourId && flat.length >= 3) {
+    // 2. 最有把握的预测（5行紧凑列表）
+    if (!q && !state.tourId && !wantFinished && flat.length >= 3) {
       const topConf = flat.slice().sort((a, b) => b.favP - a.favP).slice(0, 5);
       html += `<div class="sec-title">最有把握的预测</div><div class="conf-list">`;
       topConf.forEach((it) => {
@@ -543,10 +681,8 @@
             <div class="conf-names">
               ${wFav ? `<b>${esc(g.white)}</b>` : esc(g.white)} – ${!wFav ? `<b>${esc(g.black)}</b>` : esc(g.black)}
             </div>
-            <div class="conf-right">
-              <span class="conf-meta">${esc(it.round.tour_name.split("|")[0].trim())} · ${esc(it.dt.full)}</span>
-              <span class="badge ${it.favP >= 0.58 ? "hi" : "mid"}">${pct(it.favP)}</span>
-            </div>
+            <span class="conf-meta">${esc(it.round.tour_name.split("|")[0].trim())} · ${esc(it.dt.full)}</span>
+            <span class="badge ${it.favP >= 0.58 ? "hi" : "mid"}">${pct(it.favP)}</span>
           </div>`;
       });
       html += `</div>`;
@@ -570,29 +706,35 @@
         const pd = pr ? pr.p_draw : 0;
         const pb = pr ? pr.p_black_win : 0;
         const done = isDone(g.status);
-        const centerMain = done ? esc(g.status) : esc(it.dt.full);
+        const wWin = done ? g.status === "1-0" : pw >= pb;
+        const bWin = done ? g.status === "0-1" : pb > pw;
+        const hs = done ? hitState(g) : null;
         const open = state.openKey === it.key;
         const f = (pr && pr.factors) || {};
+        const shortTour = r.tour_name.split("|")[0].trim();
 
         html += `
           <div class="mcard" data-key="${esc(it.key)}" id="card-${esc(it.key)}">
             <div class="mtop">
-              <span>${esc(r.tour_name)} · ${esc(r.round_name)}</span>
-              <span>${esc(r.time_control)} ›</span>
+              <span class="mtop-title"><b>${esc(shortTour)}</b> · ${esc(r.round_name)}</span>
+              <span class="mtop-tc">${esc(r.time_control)} ›</span>
             </div>
             <div class="mgrid">
               <div class="side">
-                <div class="pname">
+                <div class="pname${wWin ? " win" : ""}">
                   <span class="txt">${esc(g.white)}</span>
                   ${g.white_elo ? `<span class="elo-tag">#${g.white_elo}</span>` : ""}
                 </div>
                 <span class="badge ${badgeClass(pw, pb)}">${pct(pw)}</span>
               </div>
               <div class="center-box">
-                <div class="main-val">${centerMain}</div>
+                ${done
+                  ? `<div class="main-val">${esc(g.status)}</div>${hs ? `<span class="hit-tag ${hs.cls}">${hs.txt}</span>` : ""}`
+                  : `<div class="sub-val">${esc(it.dt.day)}</div><div class="main-val">${esc(it.dt.time)}</div>`
+                }
               </div>
               <div class="side right">
-                <div class="pname">
+                <div class="pname${bWin ? " win" : ""}">
                   <span class="txt">${esc(g.black)}</span>
                   ${g.black_elo ? `<span class="elo-tag">#${g.black_elo}</span>` : ""}
                 </div>
@@ -700,7 +842,10 @@
       html += `
         <div class="rr-row${open ? " sel" : ""}" data-rr="${esc(k)}">
           <span style="color:var(--muted)">${p.predicted_rank}</span>
-          <span class="nm">${esc(p.name)}</span>
+          <div class="rr-name-cell">
+            <span class="nm">${esc(p.name)}</span>
+            <span class="rr-sub-mob">#${p.elo} · 期望 ${num(p.expected_points, 2)}</span>
+          </div>
           <span style="color:var(--muted)">${p.elo}</span>
           <span>${num(p.current_points, 1)}</span>
           <span><span class="badge ${p.p_champion >= 0.4 ? "hi" : (p.p_champion >= 0.15 ? "mid" : "lo")}">${pct1(p.p_champion)}</span></span>
@@ -717,6 +862,8 @@
         html += `
           <div class="rr-panel">
             <div class="chips">
+              <span>等级分<b>${p.elo}</b></span>
+              <span>期望分<b>${num(p.expected_points, 2)}</b></span>
               <span>已赛<b>${p.games_played}</b></span>
               <span>余局<b>${p.games_remaining}</b></span>
               <span>索伯分<b>${num(p.current_sb, 2)}</b></span>
@@ -734,17 +881,18 @@
       upcoming.slice(0, 18).forEach((g) => {
         const pw = g.p_white_win || 0;
         const pb = g.p_black_win || 0;
+        const wFav = pw >= pb;
         html += `
           <div class="mcard" style="cursor:default">
-            <div class="mtop"><span>${esc(g.round_name)}</span><span>${esc(tour.time_control)}</span></div>
+            <div class="mtop"><span class="mtop-title"><b>${esc(g.round_name)}</b></span><span class="mtop-tc">${esc(tour.time_control)}</span></div>
             <div class="mgrid">
               <div class="side">
-                <div class="pname"><span class="txt">${esc(g.white)}</span></div>
+                <div class="pname${wFav ? " win" : ""}"><span class="txt">${esc(g.white)}</span></div>
                 <span class="badge ${badgeClass(pw, pb)}">${pct(pw)}</span>
               </div>
               <div class="center-box"><div class="main-val">vs</div></div>
               <div class="side right">
-                <div class="pname"><span class="txt">${esc(g.black)}</span></div>
+                <div class="pname${!wFav ? " win" : ""}"><span class="txt">${esc(g.black)}</span></div>
                 <span class="badge ${badgeClass(pb, pw)}">${pct(pb)}</span>
               </div>
             </div>
@@ -795,7 +943,7 @@
     const hits = sum.recent_hits || [];
     if (hits.length) {
       html += `<div class="side-block"><h3>命中的预测</h3>`;
-      hits.slice(0, 4).forEach((h) => {
+      hits.slice(0, state.hitsLimit).forEach((h) => {
         html += `
           <div class="side-item">
             <div class="side-match">
@@ -809,13 +957,16 @@
             </div>
           </div>`;
       });
+      if (hits.length > state.hitsLimit) {
+        html += `<button class="side-more" id="moreHitsBtn">再显示${hits.length - state.hitsLimit}条</button>`;
+      }
       html += `</div>`;
     }
 
     const misses = sum.recent_misses || [];
     if (misses.length) {
       html += `<div class="side-block"><h3>最有把握却失误的预测</h3>`;
-      misses.slice(0, 3).forEach((ms) => {
+      misses.slice(0, state.missesLimit).forEach((ms) => {
         html += `
           <div class="side-item">
             <div class="side-match">
@@ -829,6 +980,9 @@
             </div>
           </div>`;
       });
+      if (misses.length > state.missesLimit) {
+        html += `<button class="side-more" id="moreMissesBtn">再显示${misses.length - state.missesLimit}条</button>`;
+      }
       html += `</div>`;
     }
 
@@ -850,6 +1004,12 @@
     }
 
     el.side.innerHTML = html;
+
+    const mh = $("moreHitsBtn");
+    if (mh) mh.addEventListener("click", () => { state.hitsLimit += 8; renderSidebar(); });
+    const mm = $("moreMissesBtn");
+    if (mm) mm.addEventListener("click", () => { state.missesLimit += 8; renderSidebar(); });
+
     el.side.querySelectorAll(".league-item").forEach((lr) => {
       lr.addEventListener("click", () => {
         state.project = PROJECTS[0];
