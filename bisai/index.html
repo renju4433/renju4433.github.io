@@ -3,279 +3,406 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>赛事预测</title>
+<title>bisai · 赛事预测</title>
 <style>
   :root {
-    --bg: #fbfbfa;
-    --card: #ffffff;
-    --line: #e9e9e6;
-    --text: #17171a;
-    --muted: #92929a;
-    --accent: #1f6feb;
-    --row: #fafaf8;
+    --bg: #ffffff;
+    --surface: #f8fafc;
+    --pill: #f1f5f9;
+    --line: #e2e8f0;
+    --text: #0f172a;
+    --muted: #64748b;
+    --blue: #1d4ed8;
+    --green: #16a34a;
+    --slate: #475569;
+    --red: #dc2626;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); }
   body {
-    background: var(--bg);
-    color: var(--text);
-    font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
       "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     -webkit-font-smoothing: antialiased;
     font-variant-numeric: tabular-nums;
   }
-  main { max-width: 760px; margin: 0 auto; padding: 28px 20px 64px; }
 
-  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-  .tabs button {
-    appearance: none; border: 1px solid var(--line); background: var(--card);
-    color: var(--muted); font: inherit; font-size: 14px; padding: 7px 16px;
-    border-radius: 999px; cursor: pointer; transition: .15s;
+  /* ---------- Top Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255, 255, 255, .96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
   }
-  .tabs button.on { color: #fff; background: var(--accent); border-color: var(--accent); }
+  .hdr-in {
+    max-width: 1120px; margin: 0 auto; padding: 10px 20px 0;
+  }
+  .hdr-top {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; padding-bottom: 10px;
+  }
+  .brand {
+    font-size: 17px; font-weight: 700; letter-spacing: -.02em;
+    display: flex; align-items: center; gap: 6px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  .brand i { color: var(--blue); font-style: normal; }
+  .search-wrap {
+    position: relative; width: 220px; max-width: 50vw;
+  }
+  .search-wrap input {
+    width: 100%; border: 1px solid var(--line); background: var(--surface);
+    border-radius: 8px; padding: 6px 10px 6px 28px; font: inherit; font-size: 13px;
+    color: var(--text); outline: none;
+  }
+  .search-wrap input:focus { border-color: var(--blue); background: #fff; }
+  .search-wrap svg {
+    position: absolute; left: 9px; top: 50%; transform: translateY(-50%);
+    width: 14px; height: 14px; color: var(--muted); pointer-events: none;
+  }
 
-  .pickers { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .nav-tabs {
+    display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tabs button {
+    appearance: none; border: 0; background: none;
+    padding: 8px 2px 10px; font: inherit; font-size: 14px; font-weight: 500;
+    color: var(--muted); cursor: pointer; white-space: nowrap;
+    border-bottom: 2px solid transparent; transition: .15s;
+  }
+  .nav-tabs button.on {
+    color: var(--text); font-weight: 600; border-bottom-color: var(--text);
+  }
+
+  /* ---------- Main 2-Column Shell ---------- */
+  .shell {
+    max-width: 1120px; margin: 0 auto; padding: 20px 20px 64px;
+    display: grid; grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 28px; align-items: start;
+  }
+
+  /* ---------- Left Column ---------- */
+  .seg-wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; flex-wrap: wrap; margin-bottom: 18px;
+  }
+  .seg {
+    display: inline-flex; background: var(--pill); padding: 3px; border-radius: 999px;
+  }
+  .seg button {
+    appearance: none; border: 0; background: transparent;
+    padding: 5px 16px; border-radius: 999px; font: inherit; font-size: 13px;
+    font-weight: 500; color: var(--muted); cursor: pointer; transition: .15s;
+  }
+  .seg button.on {
+    background: #fff; color: var(--text); font-weight: 600;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, .08);
+  }
+
+  .filters { display: flex; gap: 8px; flex: 1; justify-content: flex-end; min-width: 200px; }
   select {
-    appearance: none; flex: 1 1 150px; min-width: 0;
+    appearance: none; max-width: 240px; min-width: 0;
     border: 1px solid var(--line);
-    background: var(--card) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%2392929a'/></svg>") no-repeat right 12px center;
-    color: var(--text); font: inherit; font-size: 14px;
-    padding: 9px 30px 9px 12px; border-radius: 9px; cursor: pointer;
+    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%2364748b'/></svg>") no-repeat right 10px center;
+    color: var(--text); font: inherit; font-size: 13px;
+    padding: 6px 26px 6px 10px; border-radius: 8px; cursor: pointer;
     text-overflow: ellipsis;
   }
-  select:focus { outline: none; border-color: var(--accent); }
+  select:focus { outline: none; border-color: var(--blue); }
 
-  /* ---------- 单循环冠军：名次榜 ---------- */
-  .grid { display: grid; grid-template-columns: 24px minmax(0, 1fr) 56px 52px 64px; align-items: center; }
-  .head {
-    color: var(--muted); font-size: 12px; letter-spacing: .02em;
-    padding: 0 12px 8px; gap: 0 8px;
+  .sec-title {
+    font-size: 15px; font-weight: 700; margin: 18px 0 10px; color: var(--text);
   }
-  .head span:nth-child(n+3) { text-align: right; }
+  .sec-title:first-child { margin-top: 0; }
 
-  #list { border-top: 1px solid var(--line); }
-  .row {
-    position: relative; padding: 11px 12px; gap: 0 8px; cursor: pointer;
-    border-bottom: 1px solid var(--line); overflow: hidden;
+  /* ---------- Featured 3-Card Grid ---------- */
+  .feat-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px; margin-bottom: 20px;
   }
-  .row:hover, .row.sel { background: var(--row); }
-  .row .rank { color: var(--muted); font-size: 13px; }
-  .row .name { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .row .num { text-align: right; font-size: 15px; }
-  .row .num.dim { color: var(--muted); font-size: 14px; }
-  .row .num b { font-weight: 600; }
-  .row .track {
-    position: absolute; inset: 0 auto 0 0; width: 0;
-    background: var(--accent); opacity: .07; pointer-events: none;
-    transition: width .55s cubic-bezier(.2,.8,.2,1);
+  .fcard {
+    border: 1px solid var(--line); border-radius: 10px; background: #fff;
+    padding: 10px 12px; cursor: pointer; transition: border-color .15s;
   }
-  .row.sel .track { opacity: .12; }
+  .fcard:hover { border-color: #cbd5e1; }
+  .fcard .fmeta {
+    font-size: 11px; color: var(--muted); white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; margin-bottom: 8px;
+  }
+  .fcard .frow {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 6px; margin-top: 5px;
+  }
+  .fcard .fn {
+    font-size: 13px; font-weight: 500; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .fcard .fn.win { font-weight: 700; }
 
-  .panel { border-bottom: 1px solid var(--line); background: #fff; padding: 4px 12px 20px 46px; }
-  .panel .top { display: flex; align-items: baseline; gap: 18px; padding: 10px 0 16px; flex-wrap: wrap; }
-  .panel .top .big { font-size: 26px; font-weight: 600; letter-spacing: -.01em; }
-  .panel .top .big small { font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 4px; }
-  .panel .chips { display: flex; gap: 8px 20px; flex-wrap: wrap; }
-  .chip { font-size: 13px; color: var(--muted); }
-  .chip b { color: var(--text); font-weight: 500; margin-left: 5px; }
-  .dist { display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; height: 78px; margin-top: 4px; }
-  .dist .col { flex: 1 1 0; max-width: 44px; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; }
-  .dist .bar { flex: 1; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
-  .dist .bar i {
-    display: block; width: 100%; border-radius: 3px 3px 0 0;
-    background: var(--accent); opacity: .22;
+  /* ---------- Probability Badges ---------- */
+  .badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 2px 7px; border-radius: 5px; font-size: 12px; font-weight: 600;
+    line-height: 1.3; white-space: nowrap;
   }
-  .dist .col.hot .bar i { opacity: .85; }
-  .dist .k { font-size: 11px; color: var(--muted); }
+  .badge.hi { background: var(--green); color: #fff; }
+  .badge.mid { background: var(--slate); color: #fff; }
+  .badge.lo { background: transparent; color: var(--muted); padding: 2px 0; font-weight: 500; }
 
-  /* ---------- 国际象棋：逐场赛程 ---------- */
-  .mhead {
-    display: grid; grid-template-columns: 48px minmax(0, 1fr) 56px;
-    gap: 0 8px; color: var(--muted); font-size: 12px; padding: 0 12px 8px;
+  /* ---------- Date Divider ---------- */
+  .day-div {
+    display: flex; align-items: center; gap: 12px;
+    margin: 18px 0 6px; color: var(--muted); font-size: 13px; font-weight: 600;
   }
-  .mhead span:last-child { text-align: right; }
+  .day-div::before, .day-div::after {
+    content: ""; flex: 1; height: 1px; background: var(--line);
+  }
 
-  .grp {
-    display: flex; align-items: center; gap: 10px;
-    padding: 14px 12px 8px; color: var(--muted); font-size: 12px;
+  /* ---------- Match Cards (sport.dev 3-col layout) ---------- */
+  .mcard {
+    border-bottom: 1px solid var(--line); padding: 12px 4px; cursor: pointer;
   }
-  .grp::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .mcard:hover { background: var(--surface); }
+  .mcard .mtop {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; color: var(--muted); margin-bottom: 6px;
+  }
+  .mcard .mgrid {
+    display: grid; grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
+    align-items: center; gap: 10px;
+  }
+  .side { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .side.right { align-items: flex-end; text-align: right; }
+  .pname {
+    display: flex; align-items: center; gap: 5px; max-width: 100%;
+    font-size: 15px; font-weight: 600;
+  }
+  .side.right .pname { flex-direction: row-reverse; }
+  .pname span.txt {
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .elo-tag {
+    font-size: 11px; font-weight: 500; color: var(--muted);
+    background: var(--pill); padding: 1px 5px; border-radius: 4px; flex-shrink: 0;
+  }
+  .center-box {
+    text-align: center;
+  }
+  .center-box .main-val {
+    font-size: 15px; font-weight: 700; color: var(--text); white-space: nowrap;
+  }
+  .center-box .sub-val {
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+  }
 
-  .m {
-    position: relative; display: grid;
-    grid-template-columns: 48px minmax(0, 1fr) 56px;
-    grid-template-rows: auto auto; gap: 1px 8px;
-    padding: 10px 12px 11px; border-bottom: 1px solid var(--line);
-    cursor: pointer; align-items: center;
+  .mdetail {
+    margin-top: 10px; padding: 10px 12px; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 8px;
   }
-  .m:hover, .m.sel { background: var(--row); }
-  .m .mt { grid-row: 1 / span 2; color: var(--muted); font-size: 12px; line-height: 1.3; }
-  .m .n { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .m .n.win { font-weight: 500; }
-  .m .p { text-align: right; font-size: 14px; color: var(--text); }
-  .m .p.dim { color: var(--muted); }
-  .m .p.win { font-weight: 600; }
-  .m .bar {
-    position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
-    display: flex; pointer-events: none;
-  }
-  .m .bar span { display: block; height: 100%; transition: width .5s cubic-bezier(.2,.8,.2,1); }
-  .m .bar .ba { background: var(--accent); opacity: .55; }
-  .m .bar .bd { background: var(--line); }
-  .m .bar .bb { background: var(--text); opacity: .28; }
-
-  .mp { border-bottom: 1px solid var(--line); background: #fff; padding: 2px 12px 18px; }
-  .mp .probs { display: flex; align-items: center; gap: 10px; padding: 10px 0 16px; }
-  .mp .probs b { font-size: 15px; font-weight: 600; }
-  .mp .probs b.dim { color: var(--muted); font-weight: 500; font-size: 13px; }
-  .mp .probs .track {
-    flex: 1; height: 4px; border-radius: 2px; background: var(--line);
+  .pbar-wrap { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; }
+  .pbar {
+    flex: 1; height: 6px; border-radius: 999px; background: var(--line);
     display: flex; overflow: hidden;
   }
-  .mp .probs .track i { display: block; height: 100%; }
-  .mp .probs .track .ta { background: var(--accent); }
-  .mp .probs .track .td { background: #d4d4d8; }
-  .mp .probs .track .tb { background: var(--text); opacity: .45; }
+  .pbar i { display: block; height: 100%; }
+  .pbar .pw { background: var(--blue); }
+  .pbar .pd { background: #cbd5e1; }
+  .pbar .pb { background: var(--text); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted); }
+  .chips b { color: var(--text); font-weight: 600; margin-left: 4px; }
 
-  .mp .tbl { display: grid; gap: 1px; font-size: 13px; justify-content: start; }
-  .mp .tr { display: grid; grid-template-columns: minmax(56px, auto) 48px 50px 44px; gap: 8px 22px; padding: 5px 0; }
-  .mp .tr span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .mp .tr span:nth-child(n+2) { text-align: right; }
-  .mp .tr.h { color: var(--muted); font-size: 12px; }
+  /* ---------- Championship Leaderboard ---------- */
+  .rr-card {
+    border: 1px solid var(--line); border-radius: 10px; background: #fff;
+    overflow: hidden; margin-bottom: 16px;
+  }
+  .rr-head, .rr-row {
+    display: grid; grid-template-columns: 32px minmax(0, 1fr) 54px 52px 66px 56px 58px;
+    gap: 8px; padding: 10px 14px; align-items: center;
+  }
+  .rr-head {
+    background: var(--surface); border-bottom: 1px solid var(--line);
+    font-size: 11px; color: var(--muted); font-weight: 600;
+  }
+  .rr-head span:nth-child(n+3), .rr-row span:nth-child(n+3) { text-align: right; }
+  .rr-row {
+    border-bottom: 1px solid var(--line); cursor: pointer; font-size: 14px;
+  }
+  .rr-row:last-child { border-bottom: 0; }
+  .rr-row:hover, .rr-row.sel { background: var(--surface); }
+  .rr-row .nm { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rr-panel {
+    padding: 12px 16px 16px; background: var(--surface); border-bottom: 1px solid var(--line);
+  }
+  .dist {
+    display: flex; align-items: flex-end; gap: 6px; height: 68px; margin-top: 10px;
+  }
+  .dist .col {
+    flex: 1; max-width: 40px; display: flex; flex-direction: column;
+    align-items: center; gap: 4px; height: 100%;
+  }
+  .dist .bar { flex: 1; width: 100%; display: flex; align-items: flex-end; }
+  .dist .bar i {
+    display: block; width: 100%; border-radius: 3px 3px 0 0; background: var(--blue); opacity: .25;
+  }
+  .dist .col.hot .bar i { opacity: .9; }
+  .dist .k { font-size: 11px; color: var(--muted); }
 
-  .empty { padding: 40px 0; color: var(--muted); font-size: 14px; text-align: center; }
-  .spin { opacity: .45; transition: opacity .2s; }
+  /* ---------- Right Sidebar ---------- */
+  aside { display: flex; flex-direction: column; gap: 16px; }
+  .stat-pair {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .stat-box {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .stat-box .lbl { font-size: 12px; color: var(--muted); }
+  .stat-box .big { font-size: 24px; font-weight: 700; margin: 2px 0; }
+  .stat-box .sub { font-size: 11px; color: var(--muted); }
 
-  @media (max-width: 560px) {
-    main { padding: 20px 14px 48px; }
-    .grid { grid-template-columns: 20px minmax(0, 1fr) 50px 46px 58px; }
-    .head { padding: 0 10px 8px; font-size: 11px; }
-    .row { padding: 10px; font-size: 14px; }
-    .row .num { font-size: 14px; }
-    .row .num.dim { font-size: 13px; }
-    .panel { padding: 4px 10px 18px 38px; }
-    .panel .top .big { font-size: 22px; }
-    .panel .chips { gap: 6px 14px; }
-    .dist .col { max-width: 34px; }
-    .mhead { grid-template-columns: 42px minmax(0, 1fr) 50px; padding: 0 10px 8px; font-size: 11px; }
-    .m { grid-template-columns: 42px minmax(0, 1fr) 50px; padding: 9px 10px 10px; font-size: 14px; }
-    .mp { padding: 2px 10px 16px; }
-    .mp .tr { grid-template-columns: minmax(48px, auto) 40px 42px 38px; gap: 6px 14px; font-size: 12px; }
+  .side-card {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: 10px; padding: 14px;
+  }
+  .side-card h3 {
+    font-size: 14px; font-weight: 700; margin: 0 0 10px;
+  }
+  .side-item {
+    padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px;
+  }
+  .side-item:last-child { border-bottom: 0; padding-bottom: 0; }
+  .side-match {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 6px; align-items: center; font-weight: 600;
+  }
+  .side-match span:first-child, .side-match span:last-child {
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .side-match span:last-child { text-align: right; }
+  .side-sub {
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+    display: flex; justify-content: space-between; gap: 6px;
+  }
+  .league-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 7px 0; border-bottom: 1px solid var(--line);
+    font-size: 13px; cursor: pointer; gap: 8px;
+  }
+  .league-row:last-child { border-bottom: 0; }
+  .league-row:hover { color: var(--blue); }
+  .league-row .ln { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
+  .league-row .lr { color: var(--muted); font-size: 12px; flex-shrink: 0; }
+
+  .empty { padding: 40px 0; text-align: center; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; }
+    .feat-grid { grid-template-columns: 1fr; }
+    .rr-head, .rr-row { grid-template-columns: 26px minmax(0, 1fr) 48px 46px 58px 48px 48px; padding: 9px 10px; font-size: 13px; }
   }
 </style>
 </head>
 <body>
-<main>
-  <nav class="tabs" id="projectTabs"></nav>
-
-  <div class="pickers">
-    <select id="event" aria-label="赛事"></select>
-    <select id="round" aria-label="轮次"></select>
+<header>
+  <div class="hdr-in">
+    <div class="hdr-top">
+      <div class="brand"><i>#</i><span>bisai</span></div>
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="searchBox" type="search" placeholder="搜索棋手 / 赛事" />
+      </div>
+    </div>
+    <nav class="nav-tabs" id="projectTabs"></nav>
   </div>
+</header>
 
-  <div class="mhead" id="head"></div>
-  <div id="list"></div>
-</main>
+<div class="shell">
+  <section id="mainCol">
+    <div class="seg-wrap" id="controlsBar">
+      <div class="seg" id="viewSeg">
+        <button data-sub="schedule" class="on">赛程</button>
+        <button data-sub="results">赛果</button>
+      </div>
+      <div class="filters">
+        <select id="eventSelect" aria-label="赛事"></select>
+        <select id="roundSelect" aria-label="轮次"></select>
+      </div>
+    </div>
+    <div id="mainContent"></div>
+  </section>
+
+  <aside id="sidebar"></aside>
+</div>
 
 <script>
 (function () {
   const qs = new URLSearchParams(location.search);
-  const customApi = qs.get("api") ? qs.get("api").replace(/\/$/, "") : null;
-
   const $ = (id) => document.getElementById(id);
   const el = {
     tabs: $("projectTabs"),
-    event: $("event"),
-    round: $("round"),
-    head: $("head"),
-    list: $("list"),
+    search: $("searchBox"),
+    viewSeg: $("viewSeg"),
+    eventSel: $("eventSelect"),
+    roundSel: $("roundSelect"),
+    main: $("mainContent"),
+    side: $("sidebar"),
   };
 
-  const pct = (v) => (v == null ? "—" : (v * 100).toFixed(1) + "%");
+  const pct = (v) => (v == null ? "—" : Math.round(v * 100) + "%");
+  const pct1 = (v) => (v == null ? "—" : (v * 100).toFixed(1) + "%");
   const num = (v, d = 2) => (v == null ? "—" : Number(v).toFixed(d));
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const isDone = (st) => st === "1-0" || st === "0-1" || st === "1/2-1/2" || st === "½-½";
 
-  function splitDateTime(ms, iso) {
+  function fmtDateTime(ms, iso) {
     const d = ms ? new Date(ms) : (iso ? new Date(String(iso).replace(" UTC", "Z").replace(" ", "T")) : null);
-    if (!d || isNaN(d.getTime())) return ["—", "—"];
+    if (!d || isNaN(d.getTime())) return { day: "—", time: "—", full: "—" };
     const pad = (n) => String(n).padStart(2, "0");
-    return [`${pad(d.getMonth() + 1)}-${pad(d.getDate())}`, `${pad(d.getHours())}:${pad(d.getMinutes())}`];
+    const day = `${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    const time = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    return { day, time, full: `${day} ${time}` };
   }
 
-  async function fetchJson(url, opts) {
-    const res = await fetch(url, opts);
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(data.error || res.status);
-    return data;
+  function badgeClass(p, oppP) {
+    if (p >= 0.58) return "hi";
+    if (p >= oppP && p >= 0.35) return "mid";
+    return "lo";
   }
 
-  function fill(select, items, value) {
-    select.innerHTML = "";
-    items.forEach((it) => {
-      const o = document.createElement("option");
-      o.value = it.value;
-      o.textContent = it.label;
-      select.appendChild(o);
-    });
-    if (value != null) select.value = value;
-  }
-
-  /* ---------------- 可扩展项目注册表（后续新增项目只需追加条目） ---------------- */
+  /* ---------------- 可扩展项目注册表（未来新增体育/棋类项目只需追加条目） ---------------- */
   const PROJECTS = [
     {
       id: "chess",
       label: "国际象棋",
-      mode: "matches",
-      accent: "#1f6feb",
-      staticJson: "./data/chess.json",
-      apiBase: customApi,
-      headClass: "mhead",
-      headHtml: "<span>时间</span><span>对阵</span><span>胜率</span>",
-      async load(proj) {
-        let raw = [];
-        if (proj.apiBase) {
-          const res = await fetchJson(`${proj.apiBase}/api/schedule?limit=16&with_pairings=true`);
-          raw = res.events || [];
-        } else {
-          const bust = Math.floor(Date.now() / 60000);
-          const res = await fetchJson(`${proj.staticJson}?v=${bust}`);
-          raw = res.events || [];
-        }
-        const byTour = new Map();
-        raw.forEach((ev) => {
-          const tid = ev.tour_id || ev.tour_name;
-          if (!byTour.has(tid)) {
-            byTour.set(tid, { id: tid, name: ev.tour_name, time_control: ev.time_control, rounds: [] });
-          }
-          byTour.get(tid).rounds.push(ev);
-        });
-        return [...byTour.values()];
-      },
+      type: "matches",
+      dataUrl: "./data/chess.json",
     },
     {
-      id: "chess_rr",
+      id: "chess_championship",
       label: "单循环冠军",
-      mode: "championship",
-      accent: "#d2451f",
-      staticJson: "./data/chess_rr.json",
-      headClass: "grid head",
-      headHtml: "<span></span><span></span><span>夺冠</span><span>前三</span><span>期望分</span>",
-      async load(proj) {
-        const bust = Math.floor(Date.now() / 60000);
-        const res = await fetchJson(`${proj.staticJson}?v=${bust}`);
-        return res.tournaments || [];
-      },
+      type: "championship",
+      dataUrl: "./data/chess.json",
     },
   ];
 
   let state = {
     project: PROJECTS.find((p) => p.id === qs.get("view") || p.id === qs.get("project")) || PROJECTS[0],
-    items: [],
-    current: null,
-    round: null,
-    openIdx: null,
+    subView: "schedule", // "schedule" | "results"
+    query: "",
+    tourId: "__all__",
+    roundId: "__all__",
+    champTourId: null,
+    openKey: null,
+    data: null,
   };
+
+  async function loadData() {
+    const bust = Math.floor(Date.now() / 60000);
+    const res = await fetch(`${state.project.dataUrl}?v=${bust}`);
+    if (!res.ok) throw new Error(res.status);
+    state.data = await res.json();
+  }
 
   function renderTabs() {
     el.tabs.innerHTML = "";
@@ -286,232 +413,474 @@
       b.addEventListener("click", () => {
         if (state.project.id === p.id) return;
         state.project = p;
+        state.openKey = null;
         renderTabs();
-        activateProject();
+        renderAll();
       });
       el.tabs.appendChild(b);
     });
   }
 
-  async function activateProject() {
-    const p = state.project;
-    document.documentElement.style.setProperty("--accent", p.accent || "#1f6feb");
-    el.head.className = p.headClass;
-    el.head.innerHTML = p.headHtml;
-    el.round.style.display = p.mode === "championship" ? "none" : "";
-    el.list.innerHTML = '<div class="empty spin">·</div>';
-    state.openIdx = null;
-    try {
-      state.items = await p.load(p);
-      if (!state.items.length) {
-        fill(el.event, [{ value: "", label: "—" }], "");
-        fill(el.round, [{ value: "", label: "—" }], "");
-        el.list.innerHTML = '<div class="empty">—</div>';
+  function getFilteredRounds() {
+    const events = (state.data && state.data.events) || [];
+    const wantFinished = state.subView === "results";
+    return events.filter((ev) => (wantFinished ? ev.status === "finished" : ev.status !== "finished"));
+  }
+
+  function syncFilters() {
+    if (state.project.type === "championship") {
+      el.viewSeg.style.display = "none";
+      el.roundSel.style.display = "none";
+      const champs = (state.data && state.data.championships) || [];
+      el.eventSel.innerHTML = "";
+      if (!champs.length) {
+        const o = document.createElement("option");
+        o.value = ""; o.textContent = "—";
+        el.eventSel.appendChild(o);
+        state.champTourId = null;
         return;
       }
-      if (p.mode === "championship") {
-        fill(
-          el.event,
-          state.items.map((t) => ({
-            value: t.tour_id,
-            label: `${t.tour_name} · ${t.rounds_played}/${t.total_rounds}`,
-          })),
-          state.items[0].tour_id
-        );
-        state.current = state.items[0];
-        renderChampionship();
-      } else {
-        fill(el.event, state.items.map((t) => ({ value: t.id, label: t.name })), state.items[0].id);
-        state.current = state.items[0];
-        syncRounds();
+      champs.forEach((c) => {
+        const o = document.createElement("option");
+        o.value = c.tour_id;
+        o.textContent = `${c.tour_name} · ${c.rounds_played}/${c.total_rounds}`;
+        el.eventSel.appendChild(o);
+      });
+      if (!state.champTourId || !champs.some((c) => c.tour_id === state.champTourId)) {
+        state.champTourId = champs[0].tour_id;
       }
-    } catch {
-      el.list.innerHTML = '<div class="empty">—</div>';
-    }
-  }
-
-  function syncRounds() {
-    const rounds = state.current ? state.current.rounds : [];
-    if (!rounds.length) {
-      state.round = null;
-      fill(el.round, [{ value: "", label: "—" }], "");
-      el.list.innerHTML = '<div class="empty">—</div>';
-      return;
-    }
-    fill(
-      el.round,
-      rounds.map((r) => {
-        const [dStr, tStr] = splitDateTime(r.starts_at_ms, r.starts_at);
-        const dt = dStr !== "—" ? `${dStr} ${tStr}` : "";
-        return {
-          value: r.round_id,
-          label: `${r.round_name}${dt ? " · " + dt : ""}`,
-        };
-      }),
-      rounds[0].round_id
-    );
-    state.round = rounds[0];
-    renderMatches();
-  }
-
-  /* ---------------- 赛程列表（完全对齐 sport.dev 布局） ---------------- */
-  function renderMatches() {
-    state.openIdx = null;
-    const pairings = (state.round && state.round.pairings) || [];
-    el.list.innerHTML = "";
-    if (!pairings.length) {
-      el.list.innerHTML = '<div class="empty">—</div>';
+      el.eventSel.value = state.champTourId;
       return;
     }
 
-    const [dStr, tStr] = splitDateTime(state.round.starts_at_ms, state.round.starts_at);
+    el.viewSeg.style.display = "";
+    el.roundSel.style.display = "";
+    const rounds = getFilteredRounds();
 
-    pairings.forEach((g, idx) => {
-      const pr = g.prediction;
-      const pw = pr ? pr.p_white_win : 0;
-      const pd = pr ? pr.p_draw : 0;
-      const pb = pr ? pr.p_black_win : 0;
-      const done = isDone(g.status);
-      const wWin = done ? g.status === "1-0" : pw >= pb;
-      const bWin = done ? g.status === "0-1" : pb > pw;
-      const rightTop = done ? (g.status === "1-0" ? "胜" : (g.status === "0-1" ? "负" : "和")) : (pr ? pct(pw) : "—");
-      const rightBot = done ? (pr ? pct(pw) : "—") : (pr ? pct(pb) : "—");
+    const tourMap = new Map();
+    rounds.forEach((r) => {
+      if (!tourMap.has(r.tour_id)) tourMap.set(r.tour_id, r.tour_name);
+    });
 
-      const row = document.createElement("div");
-      row.className = "m";
-      row.innerHTML = `
-        <div class="mt">${esc(dStr)}<br>${esc(tStr)}</div>
-        <div class="n${wWin ? " win" : ""}">${esc(g.white)}</div>
-        <div class="p${done ? (wWin ? " win" : " dim") : (wWin ? " win" : " dim")}">${esc(rightTop)}</div>
-        <div class="n${bWin ? " win" : ""}">${esc(g.black)}</div>
-        <div class="p${done ? " dim" : (bWin ? " win" : " dim")}">${esc(rightBot)}</div>
-        <div class="bar">
-          <span class="ba" style="width:${(pw * 100).toFixed(1)}%"></span>
-          <span class="bd" style="width:${(pd * 100).toFixed(1)}%"></span>
-          <span class="bb" style="width:${(pb * 100).toFixed(1)}%"></span>
-        </div>`;
-      row.addEventListener("click", () => toggleMatch(idx, g, pr, row));
-      el.list.appendChild(row);
+    el.eventSel.innerHTML = '<option value="__all__">全部赛事</option>';
+    tourMap.forEach((name, tid) => {
+      const o = document.createElement("option");
+      o.value = tid;
+      o.textContent = name;
+      el.eventSel.appendChild(o);
+    });
+    if (state.tourId !== "__all__" && !tourMap.has(state.tourId)) state.tourId = "__all__";
+    el.eventSel.value = state.tourId;
+
+    const rPool = state.tourId === "__all__" ? rounds : rounds.filter((r) => r.tour_id === state.tourId);
+    el.roundSel.innerHTML = '<option value="__all__">全部轮次</option>';
+    rPool.forEach((r) => {
+      const o = document.createElement("option");
+      o.value = r.round_id;
+      o.textContent = `${r.tour_name.split("|")[0].trim()} · ${r.round_name}`;
+      el.roundSel.appendChild(o);
+    });
+    if (state.roundId !== "__all__" && !rPool.some((r) => r.round_id === state.roundId)) state.roundId = "__all__";
+    el.roundSel.value = state.roundId;
+  }
+
+  function renderMatchesView() {
+    const q = state.query.trim().toLowerCase();
+    let rounds = getFilteredRounds();
+    if (state.tourId !== "__all__") rounds = rounds.filter((r) => r.tour_id === state.tourId);
+    if (state.roundId !== "__all__") rounds = rounds.filter((r) => r.round_id === state.roundId);
+
+    const flat = [];
+    rounds.forEach((r) => {
+      const dt = fmtDateTime(r.starts_at_ms, r.starts_at);
+      (r.pairings || []).forEach((g, idx) => {
+        if (q) {
+          const hay = `${r.tour_name} ${g.white} ${g.black}`.toLowerCase();
+          if (!hay.includes(q)) return;
+        }
+        flat.push({
+          key: `${r.round_id}::${idx}`,
+          round: r,
+          game: g,
+          dt,
+          maxElo: Math.max(g.white_elo || 0, g.black_elo || 0),
+        });
+      });
+    });
+
+    if (!flat.length) {
+      el.main.innerHTML = '<div class="empty">—</div>';
+      return;
+    }
+
+    let html = "";
+
+    // 焦点赛事（前3场最高等级分）
+    if (!q && flat.length >= 3) {
+      const top3 = flat.slice().sort((a, b) => b.maxElo - a.maxElo).slice(0, 3);
+      html += `<div class="sec-title">焦点赛事</div><div class="feat-grid">`;
+      top3.forEach((it) => {
+        const g = it.game;
+        const pr = g.prediction || {};
+        const pw = pr.p_white_win || 0;
+        const pb = pr.p_black_win || 0;
+        const done = isDone(g.status);
+        const wWin = done ? g.status === "1-0" : pw >= pb;
+        const bWin = done ? g.status === "0-1" : pb > pw;
+        html += `
+          <div class="fcard" data-jump="${esc(it.key)}">
+            <div class="fmeta">${esc(it.round.tour_name)} · ${esc(it.dt.full)}</div>
+            <div class="frow">
+              <span class="fn${wWin ? " win" : ""}">${esc(g.white)}</span>
+              <span class="badge ${badgeClass(pw, pb)}">${pct(pw)}</span>
+            </div>
+            <div class="frow">
+              <span class="fn${bWin ? " win" : ""}">${esc(g.black)}</span>
+              <span class="badge ${badgeClass(pb, pw)}">${pct(pb)}</span>
+            </div>
+          </div>`;
+      });
+      html += `</div>`;
+    }
+
+    // 按日期分组展示对阵卡片
+    const byDay = new Map();
+    flat.forEach((it) => {
+      if (!byDay.has(it.dt.day)) byDay.set(it.dt.day, []);
+      byDay.get(it.dt.day).push(it);
+    });
+
+    byDay.forEach((items, day) => {
+      html += `<div class="day-div">${esc(day)}</div>`;
+      items.forEach((it) => {
+        const r = it.round;
+        const g = it.game;
+        const pr = g.prediction;
+        const pw = pr ? pr.p_white_win : 0;
+        const pd = pr ? pr.p_draw : 0;
+        const pb = pr ? pr.p_black_win : 0;
+        const done = isDone(g.status);
+        const centerMain = done ? esc(g.status) : esc(it.dt.time);
+        const centerSub = pr ? `和 ${pct(pd)}` : "—";
+        const open = state.openKey === it.key;
+        const f = (pr && pr.factors) || {};
+
+        html += `
+          <div class="mcard" data-key="${esc(it.key)}" id="card-${esc(it.key)}">
+            <div class="mtop">
+              <span>${esc(r.tour_name)} · ${esc(r.round_name)}</span>
+              <span>${esc(r.time_control)}</span>
+            </div>
+            <div class="mgrid">
+              <div class="side">
+                <div class="pname">
+                  <span class="txt">${esc(g.white)}</span>
+                  ${g.white_elo ? `<span class="elo-tag">#${g.white_elo}</span>` : ""}
+                </div>
+                <span class="badge ${badgeClass(pw, pb)}">${pct(pw)}</span>
+              </div>
+              <div class="center-box">
+                <div class="main-val">${centerMain}</div>
+                <div class="sub-val">${centerSub}</div>
+              </div>
+              <div class="side right">
+                <div class="pname">
+                  <span class="txt">${esc(g.black)}</span>
+                  ${g.black_elo ? `<span class="elo-tag">#${g.black_elo}</span>` : ""}
+                </div>
+                <span class="badge ${badgeClass(pb, pw)}">${pct(pb)}</span>
+              </div>
+            </div>
+            ${open && pr ? `
+              <div class="mdetail">
+                <div class="pbar-wrap">
+                  <span>白 ${pct1(pw)}</span>
+                  <div class="pbar">
+                    <i class="pw" style="width:${(pw * 100).toFixed(1)}%"></i>
+                    <i class="pd" style="width:${(pd * 100).toFixed(1)}%"></i>
+                    <i class="pb" style="width:${(pb * 100).toFixed(1)}%"></i>
+                  </div>
+                  <span>黑 ${pct1(pb)}</span>
+                </div>
+                <div class="chips">
+                  <span>预期<b>${num(pr.expected_score_white, 2)} : ${num(pr.expected_score_black, 2)}</b></span>
+                  <span>Glicko-2<b>${num(f.white_glicko, 0)} / ${num(f.black_glicko, 0)}</b></span>
+                  <span>近十局<b>${num(f.white_form_10, 2)} / ${num(f.black_form_10, 2)}</b></span>
+                  <span>交手<b>${f.h2h_games != null ? f.h2h_games : 0}</b></span>
+                </div>
+              </div>` : ""}
+          </div>`;
+      });
+    });
+
+    el.main.innerHTML = html;
+    el.main.querySelectorAll(".mcard").forEach((card) => {
+      card.addEventListener("click", () => {
+        const k = card.dataset.key;
+        state.openKey = state.openKey === k ? null : k;
+        renderMatchesView();
+      });
+    });
+    el.main.querySelectorAll(".fcard").forEach((fc) => {
+      fc.addEventListener("click", () => {
+        const k = fc.dataset.jump;
+        state.openKey = k;
+        renderMatchesView();
+        const target = document.getElementById(`card-${k}`);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
     });
   }
 
-  function toggleMatch(idx, g, pr, row) {
-    const existing = el.list.querySelector(".panel");
-    if (existing) existing.remove();
-    el.list.querySelectorAll(".m.sel").forEach((r) => r.classList.remove("sel"));
-    if (state.openIdx === idx) { state.openIdx = null; return; }
-    state.openIdx = idx;
-    row.classList.add("sel");
-    if (!pr) return;
+  function renderChampionshipView() {
+    const champs = (state.data && state.data.championships) || [];
+    const tour = champs.find((c) => c.tour_id === state.champTourId) || champs[0];
+    if (!tour) {
+      el.main.innerHTML = '<div class="empty">—</div>';
+      return;
+    }
 
-    const f = pr.factors || {};
-    const panel = document.createElement("div");
-    panel.className = "panel mp";
-    panel.innerHTML = `
-      <div class="probs">
-        <b class="${pr.p_white_win >= pr.p_black_win ? "" : "dim"}">${pct(pr.p_white_win)}</b>
-        <b class="dim">${pct(pr.p_draw)}</b>
-        <div class="track">
-          <i class="ta" style="width:${(pr.p_white_win * 100).toFixed(1)}%"></i>
-          <i class="td" style="width:${(pr.p_draw * 100).toFixed(1)}%"></i>
-          <i class="tb" style="width:${(pr.p_black_win * 100).toFixed(1)}%"></i>
-        </div>
-        <b class="${pr.p_black_win > pr.p_white_win ? "" : "dim"}">${pct(pr.p_black_win)}</b>
+    const tbStr = (tour.tiebreaks || []).join(" · ");
+    const srcStr = tour.schedule_source === "official_chess_results" ? "官方赛程" : "FIDE编排";
+
+    let html = `
+      <div class="sec-title">${esc(tour.tour_name)} · ${esc(tour.format)}</div>
+      <div class="chips" style="margin-bottom:12px;">
+        <span>轮次<b>${tour.rounds_played}/${tour.total_rounds}</b></span>
+        <span>破同分<b>${esc(tbStr)}</b></span>
+        <span>赛程<b>${srcStr}</b></span>
       </div>
-      <div class="tbl">
-        <div class="tr h"><span></span><span>等级分</span><span>近十局</span><span>交手</span></div>
-        <div class="tr">
-          <span>${esc(pr.white)}</span>
-          <span>${num(pr.white_elo_used, 0)}</span>
-          <span>${num(f.white_form_10, 2)}</span>
-          <span>${f.h2h_games != null ? f.h2h_games : 0}</span>
+      <div class="rr-card">
+        <div class="rr-head">
+          <span>#</span><span>棋手</span><span>等级分</span><span>积分</span><span>夺冠</span><span>前三</span><span>期望分</span>
+        </div>`;
+
+    (tour.standings || []).forEach((p, idx) => {
+      const k = `rr::${idx}`;
+      const open = state.openKey === k;
+      const dist = p.rank_distribution || [];
+      const maxV = Math.max.apply(null, dist.concat([0.0001]));
+
+      html += `
+        <div class="rr-row${open ? " sel" : ""}" data-rr="${esc(k)}">
+          <span style="color:var(--muted)">${p.predicted_rank}</span>
+          <span class="nm">${esc(p.name)}</span>
+          <span style="color:var(--muted)">${p.elo}</span>
+          <span>${num(p.current_points, 1)}</span>
+          <span><span class="badge ${p.p_champion >= 0.4 ? "hi" : (p.p_champion >= 0.15 ? "mid" : "lo")}">${pct1(p.p_champion)}</span></span>
+          <span style="color:var(--muted)">${pct1(p.p_top3)}</span>
+          <span style="color:var(--muted)">${num(p.expected_points, 2)}</span>
+        </div>`;
+
+      if (open) {
+        const cols = dist.map((v, i) => `
+          <div class="col${i === 0 ? " hot" : ""}" title="${pct1(v)}">
+            <div class="bar"><i style="height:${Math.max(2, (v / maxV) * 100).toFixed(1)}%"></i></div>
+            <div class="k">${i + 1}</div>
+          </div>`).join("");
+        html += `
+          <div class="rr-panel">
+            <div class="chips">
+              <span>已赛<b>${p.games_played}</b></span>
+              <span>余局<b>${p.games_remaining}</b></span>
+              <span>索伯分<b>${num(p.current_sb, 2)}</b></span>
+              <span>期望名次<b>${num(p.expected_rank, 2)}</b></span>
+            </div>
+            <div class="dist">${cols}</div>
+          </div>`;
+      }
+    });
+    html += `</div>`;
+
+    const upcoming = tour.upcoming_pairings || [];
+    if (upcoming.length) {
+      html += `<div class="sec-title">待赛对阵</div>`;
+      upcoming.slice(0, 18).forEach((g) => {
+        const pw = g.p_white_win || 0;
+        const pd = g.p_draw || 0;
+        const pb = g.p_black_win || 0;
+        html += `
+          <div class="mcard" style="cursor:default">
+            <div class="mtop"><span>${esc(g.round_name)}</span><span>${esc(tour.time_control)}</span></div>
+            <div class="mgrid">
+              <div class="side">
+                <div class="pname"><span class="txt">${esc(g.white)}</span></div>
+                <span class="badge ${badgeClass(pw, pb)}">${pct(pw)}</span>
+              </div>
+              <div class="center-box">
+                <div class="main-val">vs</div>
+                <div class="sub-val">和 ${pct(pd)}</div>
+              </div>
+              <div class="side right">
+                <div class="pname"><span class="txt">${esc(g.black)}</span></div>
+                <span class="badge ${badgeClass(pb, pw)}">${pct(pb)}</span>
+              </div>
+            </div>
+          </div>`;
+      });
+    }
+
+    el.main.innerHTML = html;
+    el.main.querySelectorAll(".rr-row").forEach((row) => {
+      row.addEventListener("click", () => {
+        const k = row.dataset.rr;
+        state.openKey = state.openKey === k ? null : k;
+        renderChampionshipView();
+      });
+    });
+  }
+
+  function renderSidebar() {
+    const d = state.data || {};
+    const m = d.model || {};
+    const sum = d.summary || {};
+    const events = d.events || [];
+
+    const confAcc = sum.confident_accuracy != null ? pct(sum.confident_accuracy) : "—";
+    const allAcc = sum.accuracy != null ? pct(sum.accuracy) : "—";
+
+    let html = `
+      <div class="stat-pair">
+        <div class="stat-box">
+          <div class="lbl">高把握命中</div>
+          <div class="big">${confAcc}</div>
+          <div class="sub">${sum.confident_hits || 0}/${sum.confident_total || 0} · 全部 ${allAcc}</div>
         </div>
-        <div class="tr">
-          <span>${esc(pr.black)}</span>
-          <span>${num(pr.black_elo_used, 0)}</span>
-          <span>${num(f.black_form_10, 2)}</span>
-          <span>${isDone(g.status) ? esc(g.status) : "—"}</span>
+        <div class="stat-box">
+          <div class="lbl">库内档案</div>
+          <div class="big">${(m.n_games || 0).toLocaleString()}</div>
+          <div class="sub">${(m.n_players || 0).toLocaleString()} 名棋手</div>
         </div>
       </div>`;
-    row.insertAdjacentElement("afterend", panel);
-  }
 
-  /* ---------------- 单循环冠军榜（完全对齐 sport.dev 名次榜布局） ---------------- */
-  function renderChampionship() {
-    state.openIdx = null;
-    el.list.innerHTML = "";
-    const t = state.current;
-    const list = (t && t.standings) || [];
-    if (!list.length) {
-      el.list.innerHTML = '<div class="empty">—</div>';
-      return;
+    const hits = sum.recent_hits || [];
+    if (hits.length) {
+      html += `<div class="side-card"><h3>命中赛果</h3>`;
+      hits.slice(0, 5).forEach((h) => {
+        html += `
+          <div class="side-item">
+            <div class="side-match">
+              <span>${esc(h.white)}</span>
+              <span>${esc(h.status)}</span>
+              <span>${esc(h.black)}</span>
+            </div>
+            <div class="side-sub">
+              <span>${esc(h.tour_name)}</span>
+              <span>${esc(h.pick)} ${pct(h.prob)}</span>
+            </div>
+          </div>`;
+      });
+      html += `</div>`;
     }
 
-    list.forEach((p, idx) => {
-      const row = document.createElement("div");
-      row.className = "grid row";
-      row.innerHTML = `
-        <div class="track" style="width:${Math.min(100, (p.p_champion || 0) * 100).toFixed(1)}%"></div>
-        <div class="rank">${p.predicted_rank}</div>
-        <div class="name">${esc(p.name)}</div>
-        <div class="num"><b>${pct(p.p_champion)}</b></div>
-        <div class="num dim">${pct(p.p_top3)}</div>
-        <div class="num dim">${num(p.expected_points, 2)}</div>`;
-      row.addEventListener("click", () => toggleStanding(idx, p, row));
-      el.list.appendChild(row);
+    const misses = sum.recent_misses || [];
+    if (misses.length) {
+      html += `<div class="side-card"><h3>冷门失误</h3>`;
+      misses.slice(0, 4).forEach((ms) => {
+        html += `
+          <div class="side-item">
+            <div class="side-match">
+              <span>${esc(ms.white)}</span>
+              <span>${esc(ms.status)}</span>
+              <span>${esc(ms.black)}</span>
+            </div>
+            <div class="side-sub">
+              <span>${esc(ms.tour_name)}</span>
+              <span style="color:var(--red)">${esc(ms.pick)} ${pct(ms.prob)}</span>
+            </div>
+          </div>`;
+      });
+      html += `</div>`;
+    }
+
+    // 进行中的赛事列表
+    const tourSeen = new Map();
+    events.filter((e) => e.status !== "finished").forEach((e) => {
+      if (!tourSeen.has(e.tour_id)) tourSeen.set(e.tour_id, e);
+    });
+    if (tourSeen.size) {
+      html += `<div class="side-card"><h3>进行中的赛事</h3>`;
+      tourSeen.forEach((ev, tid) => {
+        html += `
+          <div class="league-row" data-tid="${esc(tid)}">
+            <span class="ln">${esc(ev.tour_name)}</span>
+            <span class="lr">${esc(ev.round_name)}</span>
+          </div>`;
+      });
+      html += `</div>`;
+    }
+
+    el.side.innerHTML = html;
+    el.side.querySelectorAll(".league-row").forEach((lr) => {
+      lr.addEventListener("click", () => {
+        state.project = PROJECTS[0];
+        state.subView = "schedule";
+        state.tourId = lr.dataset.tid;
+        state.roundId = "__all__";
+        el.viewSeg.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.sub === "schedule"));
+        renderTabs();
+        renderAll();
+      });
     });
   }
 
-  function toggleStanding(idx, p, row) {
-    const existing = el.list.querySelector(".panel");
-    if (existing) existing.remove();
-    el.list.querySelectorAll(".row.sel").forEach((r) => r.classList.remove("sel"));
-    if (state.openIdx === idx) { state.openIdx = null; return; }
-    state.openIdx = idx;
-    row.classList.add("sel");
-
-    const dist = p.rank_distribution || [];
-    const maxV = Math.max.apply(null, dist.concat([0.0001]));
-    const cols = dist.map((v, i) => `
-      <div class="col${i === 0 ? " hot" : ""}" title="${pct(v)}">
-        <div class="bar"><i style="height:${Math.max(2, (v / maxV) * 100).toFixed(1)}%"></i></div>
-        <div class="k">${i + 1}</div>
-      </div>`).join("");
-
-    const panel = document.createElement("div");
-    panel.className = "panel";
-    panel.innerHTML = `
-      <div class="top">
-        <div class="big">${esc(p.name)} <small>${pct(p.p_champion)}</small></div>
-        <div class="chips">
-          <span class="chip">等级分<b>${p.elo}</b></span>
-          <span class="chip">现积分<b>${num(p.current_points, 1)}</b></span>
-          <span class="chip">索伯分<b>${num(p.current_sb, 2)}</b></span>
-          <span class="chip">余局<b>${p.games_remaining}</b></span>
-          <span class="chip">期望名次<b>${num(p.expected_rank, 2)}</b></span>
-        </div>
-      </div>
-      <div class="dist">${cols}</div>`;
-    row.insertAdjacentElement("afterend", panel);
+  function renderAll() {
+    syncFilters();
+    if (state.project.type === "championship") {
+      renderChampionshipView();
+    } else {
+      renderMatchesView();
+    }
+    renderSidebar();
   }
 
-  el.event.addEventListener("change", () => {
-    if (state.project.mode === "championship") {
-      state.current = state.items.find((t) => t.tour_id === el.event.value) || null;
-      renderChampionship();
+  el.viewSeg.querySelectorAll("button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (state.subView === btn.dataset.sub) return;
+      state.subView = btn.dataset.sub;
+      state.tourId = "__all__";
+      state.roundId = "__all__";
+      state.openKey = null;
+      el.viewSeg.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b === btn));
+      renderAll();
+    });
+  });
+
+  el.eventSel.addEventListener("change", () => {
+    if (state.project.type === "championship") {
+      state.champTourId = el.eventSel.value;
+      state.openKey = null;
+      renderChampionshipView();
     } else {
-      state.current = state.items.find((t) => t.id === el.event.value) || null;
-      syncRounds();
+      state.tourId = el.eventSel.value;
+      state.roundId = "__all__";
+      state.openKey = null;
+      renderAll();
     }
   });
-  el.round.addEventListener("change", () => {
-    const rounds = (state.current && state.current.rounds) || [];
-    state.round = rounds.find((r) => r.round_id === el.round.value) || null;
-    renderMatches();
+
+  el.roundSel.addEventListener("change", () => {
+    state.roundId = el.roundSel.value;
+    state.openKey = null;
+    renderMatchesView();
+  });
+
+  el.search.addEventListener("input", () => {
+    state.query = el.search.value;
+    if (state.project.type === "matches") renderMatchesView();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/" && document.activeElement !== el.search) {
+      e.preventDefault();
+      el.search.focus();
+    }
   });
 
   renderTabs();
-  activateProject();
+  loadData().then(renderAll).catch(() => {
+    el.main.innerHTML = '<div class="empty">—</div>';
+  });
 })();
 </script>
 </body>

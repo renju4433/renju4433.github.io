@@ -36,20 +36,20 @@ jobs:
       - name: Install dependencies
         run: pip install -r bisai/_engine/requirements.txt
 
-      - name: Sync SQLite DB, lock predictions, simulate Round-Robin, and export JSONs
-        run: python bisai/_engine/generate.py --model bisai/_engine/chess_prematch.joblib --db bisai/_engine/history/chess.db --out bisai/data/chess.json --rr-out bisai/data/chess_rr.json --limit 16
+      - name: Sync SQLite DB, lock predictions, simulate championships, and export chess.json
+        run: python bisai/_engine/generate.py --model bisai/_engine/chess_prematch.joblib --db bisai/_engine/history/chess.db --out bisai/data/chess.json --limit 16
 
-      - name: Commit updated DB, model, and JSONs if changed
+      - name: Commit updated DB, model, and chess.json if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add bisai/data/chess.json bisai/data/chess_rr.json bisai/_engine/chess_prematch.joblib
+          git add bisai/data/chess.json bisai/_engine/chess_prematch.joblib
           if [ -f bisai/_engine/history/chess.db ]; then
             git add bisai/_engine/history/chess.db
           fi
           if git diff --cached --quiet; then
-            echo "No schedule, DB, or RR changes."
+            echo "No schedule, DB, or championship changes."
           else
-            git commit -m "chore(bisai): sync DB, locked predictions, and RR standings"
+            git commit -m "chore(bisai): sync DB, locked predictions, and chess.json"
             git push
           fi

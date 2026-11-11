@@ -172,10 +172,15 @@ def fetch_recent_schedule(
     return selected
 
 
-def fetch_single_round_robin_tours(max_tours: int = 6) -> List[Tuple[Dict[str, Any], List[Dict[str, Any]]]]:
+def fetch_single_round_robin_tours(
+    max_tours: int = 5,
+) -> List[Tuple[Dict[str, Any], List[Dict[str, Any]], List[str], str]]:
     """
-    Discover active/recent Single Round-Robin tournaments and fetch all their rounds & pairings.
+    Discover active/recent Round-Robin tournaments.
+    Prefer complete official schedules & tiebreak rules from chess-results.com;
+    fall back to Lichess Broadcast rounds + FIDE Berger completion when absent.
     """
+    from .chess_results import fetch_chess_results_tournament
     from .round_robin import is_single_round_robin
 
     try:
@@ -191,8 +196,13 @@ def fetch_single_round_robin_tours(max_tours: int = 6) -> List[Tuple[Dict[str, A
         tid = tour.get("id")
         if not tid or tid in seen_tours:
             continue
-        fmt = str((tour.get("info") or {}).get("format") or "")
-        if not is_single_round_robin(fmt):
+        info = tour.get("info") or {}
+        fmt = str(info.get("format") or "")
+        standings_url = str(info.get("standings") or "")
+        # Include single RR, plus official chess-results double RR (like Salamanca)
+        is_srr = is_single_round_robin(fmt)
+        is_indiv_rr = ("round-robin" in fmt.lower() or "round robin" in fmt.lower()) and "team" not in fmt.lower()
+        if not (is_srr or (is_indiv_rr and "chess-results.com" in standings_url.lower())):
             continue
         seen_tours.add(tid)
         rnd = entry.get("round") or {}
@@ -203,15 +213,25 @@ def fetch_single_round_robin_tours(max_tours: int = 6) -> List[Tuple[Dict[str, A
                 "tour_name": str(tour.get("name") or tid),
                 "tier": int(tour.get("tier") or 0),
                 "format": fmt,
+                "standings_url": standings_url,
                 "time_control": _infer_tc_from_tour_name(str(tour.get("name") or "")),
                 "is_active": is_active,
             }
         )
 
     candidates.sort(key=lambda t: (0 if t["is_active"] else 1, -t["tier"]))
-    results: List[Tuple[Dict[str, Any], List[Dict[str, Any]]]] = []
+    now_ms = int(time.time() * 1000)
+    results: List[Tuple[Dict[str, Any], List[Dict[str, Any]], List[str], str]] = []
 
     for tour in candidates[:max_tours]:
+        # 1. Try complete official schedule & tiebreaks from chess-results.com
+        cr = fetch_chess_results_tournament(tour.get("standings_url"), tour)
+        if cr is not None:
+            tiebreaks, rounds_cr = cr
+            results.append((tour, rounds_cr, tiebreaks, "official_chess_results"))
+            continue
+
+        # 2. Fallback: fetch Lichess rounds (skip far-future empty rounds)
         tid = tour["tour_id"]
         try:
             detail = _get_json(f"https://lichess.org/api/broadcast/{tid}", timeout=12)
@@ -222,6 +242,9 @@ def fetch_single_round_robin_tours(max_tours: int = 6) -> List[Tuple[Dict[str, A
         for r in rounds_meta:
             rid = r.get("id")
             if not rid:
+                continue
+            starts_ms = int(r.get("startsAt") or 0)
+            if not r.get("finished") and not r.get("ongoing") and starts_ms > now_ms + 36 * 3600 * 1000:
                 continue
             time.sleep(0.12)
             pairings = _fetch_round_pairings(str(rid))
@@ -235,11 +258,11 @@ def fetch_single_round_robin_tours(max_tours: int = 6) -> List[Tuple[Dict[str, A
                     "round_name": str(r.get("name") or ""),
                     "status": "ongoing" if r.get("ongoing") else ("finished" if r.get("finished") else "upcoming"),
                     "starts_at": _ms_to_iso(r.get("startsAt")),
-                    "starts_at_ms": r.get("startsAt") or 0,
+                    "starts_at_ms": starts_ms,
                     "time_control": tour["time_control"],
                     "pairings": pairings,
                 }
             )
         if any(r["pairings"] for r in rounds_out):
-            results.append((tour, rounds_out))
+            results.append((tour, rounds_out, ["de", "sb", "wins", "black_games"], "fide_berger"))
     return results

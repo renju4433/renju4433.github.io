@@ -8,6 +8,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 
 import numpy as np
 
+from .chess_results import TIEBREAK_LABELS
 from .data_loader import normalize_player_name, normalize_result, parse_elo
 from .predictor import ChessPreMatchPredictor
 
@@ -18,6 +19,16 @@ def is_single_round_robin(tour_format: Optional[str]) -> bool:
     if "round-robin" not in text and "round robin" not in text:
         return False
     if "double" in text or "team" in text:
+        return False
+    return True
+
+
+def is_individual_round_robin(tour_format: Optional[str]) -> bool:
+    """Return True for individual round-robin formats (single or double, excluding team)."""
+    text = str(tour_format or "").lower()
+    if "round-robin" not in text and "round robin" not in text:
+        return False
+    if "team" in text:
         return False
     return True
 
@@ -232,17 +243,15 @@ def simulate_fide_round_robin(
     rounds_data: List[Dict[str, Any]],
     predictor: ChessPreMatchPredictor,
     locked_predictions: Optional[Dict[Tuple[str, str, str], Dict[str, Any]]] = None,
+    tiebreaks: Optional[List[str]] = None,
+    schedule_source: str = "fide_berger",
     n_sims: int = 5000,
     seed: int = 42,
 ) -> Optional[Dict[str, Any]]:
     """
-    Simulate remaining games in a FIDE Single Round-Robin tournament and compute
-    championship, top-3, and full rank distribution probabilities under FIDE tiebreaks:
-    1. Points
-    2. Direct Encounter (among tied players)
-    3. Sonneborn-Berger
-    4. Number of Wins
-    5. Number of Black Games
+    Simulate remaining games in a Round-Robin tournament using either the official
+    pre-drawn schedule (e.g. from chess-results.com) or FIDE Berger completion,
+    and rank players by the tournament's official tiebreak order.
     """
     player_elos: Dict[str, float] = {}
     player_order: List[str] = []
@@ -329,31 +338,35 @@ def simulate_fide_round_robin(
                     }
                 )
 
-    # Complete remaining future rounds via FIDE Berger pairing rules
-    future_pairings = complete_remaining_rr_pairings(player_order, rounds_data)
-    for fg in future_pairings:
-        w, b = fg["white"], fg["black"]
-        wi, bi = p_idx[w], p_idx[b]
-        black_games[bi] += 1.0
-        pr = predictor.predict(
-            white=w,
-            black=b,
-            white_elo=player_elos.get(w),
-            black_elo=player_elos.get(b),
-            time_control=time_control,
-        ).to_dict()
-        unplayed_games.append(
-            {
-                "round_name": fg["round_name"],
-                "white": w,
-                "black": b,
-                "wi": wi,
-                "bi": bi,
-                "p_w": float(pr["p_white_win"]),
-                "p_d": float(pr["p_draw"]),
-                "p_b": float(pr["p_black_win"]),
-            }
-        )
+    # If we do not have an official complete schedule, complete missing rounds via FIDE Berger
+    has_official_complete = (
+        schedule_source == "official_chess_results" and len(rounds_data) >= 3
+    )
+    if not has_official_complete:
+        future_pairings = complete_remaining_rr_pairings(player_order, rounds_data)
+        for fg in future_pairings:
+            w, b = fg["white"], fg["black"]
+            wi, bi = p_idx[w], p_idx[b]
+            black_games[bi] += 1.0
+            pr = predictor.predict(
+                white=w,
+                black=b,
+                white_elo=player_elos.get(w),
+                black_elo=player_elos.get(b),
+                time_control=time_control,
+            ).to_dict()
+            unplayed_games.append(
+                {
+                    "round_name": fg["round_name"],
+                    "white": w,
+                    "black": b,
+                    "wi": wi,
+                    "bi": bi,
+                    "p_w": float(pr["p_white_win"]),
+                    "p_d": float(pr["p_draw"]),
+                    "p_b": float(pr["p_black_win"]),
+                }
+            )
 
     current_pts = base_scores.sum(axis=1)
     games_rem = np.zeros(n, dtype=int)
@@ -387,7 +400,11 @@ def simulate_fide_round_robin(
     # Sonneborn-Berger: S_ij * P_j summed over j
     sb = np.einsum("sij,sj->si", sim_scores, total_pts)
 
-    # Apply FIDE Tiebreaks per trial: Points -> Direct Encounter -> SB -> Wins -> Black Games
+    tb_rules = tiebreaks or ["de", "sb", "wins", "black_games"]
+    total_games_per_player = (games_played + games_rem).astype(float)
+    koya_threshold = 0.5 * total_games_per_player
+
+    # Apply tournament's exact official tiebreak order per trial
     rank_counts = np.zeros((n, n), dtype=float)
     exp_ranks = np.zeros(n, dtype=float)
 
@@ -395,28 +412,39 @@ def simulate_fide_round_robin(
         pts_s = total_pts[s]
         sb_s = sb[s]
         wins_s = sim_wins[s]
-        # Direct encounter boost among players tied on total points
-        de_s = np.zeros(n, dtype=float)
-        unique_pts = np.unique(pts_s)
-        if len(unique_pts) < n:
-            mat_s = sim_scores[s]
-            for val in unique_pts:
-                tied = np.where(np.abs(pts_s - val) < 1e-9)[0]
-                if len(tied) > 1:
-                    de_s[tied] = mat_s[np.ix_(tied, tied)].sum(axis=1)
+        mat_s = sim_scores[s]
 
-        # Sort descending by (pts, de, sb, wins, black_games)
-        order = sorted(
-            range(n),
-            key=lambda i: (
-                round(float(pts_s[i]), 6),
-                round(float(de_s[i]), 6),
-                round(float(sb_s[i]), 6),
-                float(wins_s[i]),
-                float(black_games[i]),
-            ),
-            reverse=True,
-        )
+        # Direct encounter among players tied on total points
+        de_s = np.zeros(n, dtype=float)
+        if "de" in tb_rules:
+            unique_pts = np.unique(pts_s)
+            if len(unique_pts) < n:
+                for val in unique_pts:
+                    tied = np.where(np.abs(pts_s - val) < 1e-9)[0]
+                    if len(tied) > 1:
+                        de_s[tied] = mat_s[np.ix_(tied, tied)].sum(axis=1)
+
+        koya_s = np.zeros(n, dtype=float)
+        if "koya" in tb_rules:
+            opp_50 = pts_s >= (koya_threshold - 1e-9)
+            koya_s = mat_s @ opp_50.astype(float)
+
+        def tb_key(i: int) -> Tuple[float, ...]:
+            vals: List[float] = [round(float(pts_s[i]), 6)]
+            for code in tb_rules:
+                if code == "de":
+                    vals.append(round(float(de_s[i]), 6))
+                elif code == "sb":
+                    vals.append(round(float(sb_s[i]), 6))
+                elif code == "wins":
+                    vals.append(float(wins_s[i]))
+                elif code == "koya":
+                    vals.append(round(float(koya_s[i]), 6))
+                elif code == "black_games":
+                    vals.append(float(black_games[i]))
+            return tuple(vals)
+
+        order = sorted(range(n), key=tb_key, reverse=True)
         for r_pos, player_i in enumerate(order):
             rank_counts[player_i, r_pos] += 1.0
             exp_ranks[player_i] += (r_pos + 1)
@@ -474,11 +502,12 @@ def simulate_fide_round_robin(
         "tier": int(tour.get("tier") or 0),
         "format": tour.get("format") or f"{n}-player round-robin",
         "time_control": time_control,
+        "schedule_source": schedule_source,
         "n_players": n,
         "rounds_played": played_rounds,
         "total_rounds": total_rounds_expected,
         "n_simulations": n_sims,
-        "tiebreaks": ["积分", "直胜(DE)", "索伯分(SB)", "胜局数", "执黑局数"],
+        "tiebreaks": ["积分"] + [TIEBREAK_LABELS.get(c, c) for c in tb_rules],
         "standings": standings,
         "upcoming_pairings": upcoming_preview,
     }

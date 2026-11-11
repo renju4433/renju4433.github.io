@@ -1,4 +1,4 @@
-"""Sync SQLite DB, lock pre-match predictions, archive finished games, and export JSONs."""
+"""Sync SQLite DB, lock pre-match predictions, simulate championships, and export chess.json."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ if str(ENGINE_DIR) not in sys.path:
     sys.path.insert(0, str(ENGINE_DIR))
 
 from chess_predictor.database import ChessDatabase
-from chess_predictor.export_static import build_round_robin_snapshot, build_schedule_snapshot
+from chess_predictor.export_static import build_championship_list, build_schedule_snapshot
 from chess_predictor.predictor import ChessPreMatchPredictor
 from chess_predictor.schedule import fetch_recent_schedule
 
@@ -23,7 +23,6 @@ def main() -> int:
     parser.add_argument("--db", default=str(ENGINE_DIR / "history" / "chess.db"))
     parser.add_argument("--legacy-csv", default=str(ENGINE_DIR / "history" / "finished_games.csv"))
     parser.add_argument("--out", default=str(ENGINE_DIR.parent / "data" / "chess.json"))
-    parser.add_argument("--rr-out", default=str(ENGINE_DIR.parent / "data" / "chess_rr.json"))
     parser.add_argument("--limit", type=int, default=16)
     args = parser.parse_args()
 
@@ -41,16 +40,20 @@ def main() -> int:
         include_finished=6,
     )
     locked, ingested = db.sync_events_and_lock_predictions(live_events, predictor)
+
+    championships = build_championship_list(predictor, db=db, max_tours=5, n_sims=5000)
     if ingested > 0:
         predictor.save(model_path)
     print(f"DB synced: locked={locked}, newly_ingested={ingested}, total_games={predictor.metadata.get('n_games', 0)}")
 
-    # Read finished rounds from DB & combine with active/upcoming live rounds
     out = Path(args.out)
     previous_events = []
     if out.exists():
         try:
-            previous_events = json.loads(out.read_text(encoding="utf-8")).get("events", [])
+            prev_obj = json.loads(out.read_text(encoding="utf-8"))
+            previous_events = prev_obj.get("events", [])
+            if not championships:
+                championships = prev_obj.get("championships", [])
         except Exception:
             previous_events = []
 
@@ -60,19 +63,15 @@ def main() -> int:
         previous_events=previous_events,
         db=db,
         max_finished_history=25,
+        championships=championships,
     )
     if snapshot["events"] or not out.exists():
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-        print(f"Wrote {out} ({out.stat().st_size} bytes, {len(snapshot['events'])} rounds)")
-
-    # Simulate active/recent Single Round-Robin tournaments with FIDE Berger + FIDE tiebreaks
-    rr_out = Path(args.rr_out)
-    rr_snap = build_round_robin_snapshot(predictor, db=db, max_tours=6, n_sims=5000)
-    if rr_snap["tournaments"] or not rr_out.exists():
-        rr_out.parent.mkdir(parents=True, exist_ok=True)
-        rr_out.write_text(json.dumps(rr_snap, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-        print(f"Wrote {rr_out} ({rr_out.stat().st_size} bytes, {len(rr_snap['tournaments'])} RR tours)")
+        print(
+            f"Wrote {out} ({out.stat().st_size} bytes, {len(snapshot['events'])} rounds, "
+            f"{len(snapshot['championships'])} championships)"
+        )
 
     return 0
 
