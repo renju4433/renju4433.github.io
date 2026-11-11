@@ -190,7 +190,7 @@ def build_championship_list(
     predictor: ChessPreMatchPredictor,
     db: Optional[ChessDatabase] = None,
     max_tours: int = 5,
-    n_sims: int = 5000,
+    n_sims: int = 20000,
 ) -> List[Dict[str, Any]]:
     """Simulate active/recent Round-Robin tournaments using official schedules & tiebreaks."""
     tours_with_rounds = fetch_single_round_robin_tours(max_tours=max_tours)

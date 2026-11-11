@@ -245,7 +245,7 @@ def simulate_fide_round_robin(
     locked_predictions: Optional[Dict[Tuple[str, str, str], Dict[str, Any]]] = None,
     tiebreaks: Optional[List[str]] = None,
     schedule_source: str = "fide_berger",
-    n_sims: int = 5000,
+    n_sims: int = 20000,
     seed: int = 42,
 ) -> Optional[Dict[str, Any]]:
     """
@@ -374,84 +374,75 @@ def simulate_fide_round_robin(
         games_rem[ug["wi"]] += 1
         games_rem[ug["bi"]] += 1
 
-    # Vectorized Monte Carlo simulation
+    # Vectorized Monte Carlo simulation across all n_sims trials
     rng = np.random.default_rng(seed)
     sim_scores = np.broadcast_to(base_scores, (n_sims, n, n)).copy()
     sim_wins = np.broadcast_to(base_wins, (n_sims, n)).copy()
 
     if unplayed_games:
-        u_arr = rng.random((n_sims, len(unplayed_games)))
+        m = len(unplayed_games)
+        u_arr = rng.random((n_sims, m))
+        pw_vec = np.array([ug["p_w"] for ug in unplayed_games], dtype=np.float64)[None, :]
+        pwd_vec = pw_vec + np.array([ug["p_d"] for ug in unplayed_games], dtype=np.float64)[None, :]
+        outcomes = (u_arr >= pw_vec).astype(np.int8) + (u_arr >= pwd_vec).astype(np.int8)
+        ws_mat = 1.0 - 0.5 * outcomes
+        w_win_mat = (outcomes == 0).astype(np.float64)
+        b_win_mat = (outcomes == 2).astype(np.float64)
+
         for idx_g, ug in enumerate(unplayed_games):
             wi, bi = ug["wi"], ug["bi"]
-            pw, pd = ug["p_w"], ug["p_d"]
-            u = u_arr[:, idx_g]
-            w_mask = u < pw
-            d_mask = (u >= pw) & (u < pw + pd)
-            b_mask = ~(w_mask | d_mask)
-
-            ws = np.where(w_mask, 1.0, np.where(d_mask, 0.5, 0.0))
-            bs = 1.0 - ws
+            ws = ws_mat[:, idx_g]
             sim_scores[:, wi, bi] += ws
-            sim_scores[:, bi, wi] += bs
-            sim_wins[:, wi] += w_mask.astype(float)
-            sim_wins[:, bi] += b_mask.astype(float)
+            sim_scores[:, bi, wi] += (1.0 - ws)
+            sim_wins[:, wi] += w_win_mat[:, idx_g]
+            sim_wins[:, bi] += b_win_mat[:, idx_g]
 
     total_pts = sim_scores.sum(axis=2)  # (n_sims, n)
-    # Sonneborn-Berger: S_ij * P_j summed over j
     sb = np.einsum("sij,sj->si", sim_scores, total_pts)
 
     tb_rules = tiebreaks or ["de", "sb", "wins", "black_games"]
-    total_games_per_player = (games_played + games_rem).astype(float)
-    koya_threshold = 0.5 * total_games_per_player
+    pts_int = np.rint(total_pts * 2.0).astype(np.int64)
 
-    # Apply tournament's exact official tiebreak order per trial
+    de = np.zeros((n_sims, n), dtype=np.float64)
+    if "de" in tb_rules:
+        tied_mask = pts_int[:, :, None] == pts_int[:, None, :]
+        de = (sim_scores * tied_mask).sum(axis=2)
+
+    koya = np.zeros((n_sims, n), dtype=np.float64)
+    if "koya" in tb_rules:
+        total_games_per_player = (games_played + games_rem).astype(np.float64)
+        koya_threshold = 0.5 * total_games_per_player
+        opp_50 = (total_pts >= (koya_threshold[None, :] - 1e-9)).astype(np.float64)
+        koya = np.einsum("sij,sj->si", sim_scores, opp_50)
+
+    # Vectorized lexicographical ranking (np.lexsort primary key MUST be last)
+    lex_keys: List[np.ndarray] = []
+    for code in reversed(tb_rules):
+        if code == "de":
+            lex_keys.append(-np.rint(de * 1000.0).astype(np.int64))
+        elif code == "sb":
+            lex_keys.append(-np.rint(sb * 10000.0).astype(np.int64))
+        elif code == "wins":
+            lex_keys.append(-np.rint(sim_wins * 2.0).astype(np.int64))
+        elif code == "koya":
+            lex_keys.append(-np.rint(koya * 1000.0).astype(np.int64))
+        elif code == "black_games":
+            lex_keys.append(
+                -np.broadcast_to(np.rint(black_games).astype(np.int64)[None, :], (n_sims, n))
+            )
+    lex_keys.append(-pts_int)
+
+    order = np.lexsort(tuple(lex_keys), axis=1)  # (n_sims, n), order[s, r_pos] = player_i
+    rank_pos = np.empty_like(order)
+    rank_pos[np.arange(n_sims)[:, None], order] = np.arange(n)[None, :]
+    exp_ranks = rank_pos.mean(axis=0) + 1.0
+
     rank_counts = np.zeros((n, n), dtype=float)
-    exp_ranks = np.zeros(n, dtype=float)
-
-    for s in range(n_sims):
-        pts_s = total_pts[s]
-        sb_s = sb[s]
-        wins_s = sim_wins[s]
-        mat_s = sim_scores[s]
-
-        # Direct encounter among players tied on total points
-        de_s = np.zeros(n, dtype=float)
-        if "de" in tb_rules:
-            unique_pts = np.unique(pts_s)
-            if len(unique_pts) < n:
-                for val in unique_pts:
-                    tied = np.where(np.abs(pts_s - val) < 1e-9)[0]
-                    if len(tied) > 1:
-                        de_s[tied] = mat_s[np.ix_(tied, tied)].sum(axis=1)
-
-        koya_s = np.zeros(n, dtype=float)
-        if "koya" in tb_rules:
-            opp_50 = pts_s >= (koya_threshold - 1e-9)
-            koya_s = mat_s @ opp_50.astype(float)
-
-        def tb_key(i: int) -> Tuple[float, ...]:
-            vals: List[float] = [round(float(pts_s[i]), 6)]
-            for code in tb_rules:
-                if code == "de":
-                    vals.append(round(float(de_s[i]), 6))
-                elif code == "sb":
-                    vals.append(round(float(sb_s[i]), 6))
-                elif code == "wins":
-                    vals.append(float(wins_s[i]))
-                elif code == "koya":
-                    vals.append(round(float(koya_s[i]), 6))
-                elif code == "black_games":
-                    vals.append(float(black_games[i]))
-            return tuple(vals)
-
-        order = sorted(range(n), key=tb_key, reverse=True)
-        for r_pos, player_i in enumerate(order):
-            rank_counts[player_i, r_pos] += 1.0
-            exp_ranks[player_i] += (r_pos + 1)
+    for r_pos in range(n):
+        rank_counts[:, r_pos] = np.bincount(order[:, r_pos], minlength=n)
 
     rank_probs = rank_counts / float(n_sims)
     exp_pts = total_pts.mean(axis=0)
-    exp_ranks /= float(n_sims)
     current_sb = np.dot(base_scores, current_pts)
 
     standings = []

@@ -41,7 +41,7 @@ def main() -> int:
     )
     locked, ingested = db.sync_events_and_lock_predictions(live_events, predictor)
 
-    championships = build_championship_list(predictor, db=db, max_tours=5, n_sims=5000)
+    championships = build_championship_list(predictor, db=db, max_tours=5, n_sims=20000)
     if ingested > 0:
         predictor.save(model_path)
     print(f"DB synced: locked={locked}, newly_ingested={ingested}, total_games={predictor.metadata.get('n_games', 0)}")
