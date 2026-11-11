@@ -1071,14 +1071,6 @@
         ${f.white_form_10 != null ? `<div class="cmp-row"><span class="cmp-v">${num(f.white_form_10, 2)}</span><span class="cmp-k">近十局得分率</span><span class="cmp-v right">${num(f.black_form_10, 2)}</span></div>` : ""}
         ${dp.p_white != null ? `<div class="cmp-row"><span class="cmp-v">${pct1(dp.p_white)}</span><span class="cmp-k">Davidson 先验 · 和 ${pct1(dp.p_draw)}</span><span class="cmp-v right">${pct1(dp.p_black)}</span></div>` : ""}
         ${f.h2h_games != null ? `<div class="cmp-row"><span class="cmp-v">${f.h2h_games} 局</span><span class="cmp-k">历史交手</span><span class="cmp-v right">白得分 ${pct(f.h2h_white_score_smoothed)}</span></div>` : ""}
-      </div>
-
-      <div class="tour-banner" id="jumpTourStandings">
-        <div>
-          <b>${esc(r.tour_name.split("|")[0].trim())}</b>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px;">${hasChamp ? "单循环夺冠概率与完整名次表" : "赛事积分名次表与全部轮次"}</div>
-        </div>
-        <span>查看名次表 ›</span>
       </div>`;
 
     el.main.innerHTML = html;
@@ -1088,7 +1080,6 @@
       renderMain();
     });
     $("detailTourLink").addEventListener("click", () => openTournament(r.tour_id));
-    $("jumpTourStandings").addEventListener("click", () => openTournament(r.tour_id));
   }
 
   function renderTournamentView() {
@@ -1138,11 +1129,14 @@
             <div class="rr-head">
               <span>#</span><span>棋手</span><span>等级分</span><span>积分</span><span>夺冠</span><span>前三</span><span>期望分</span>
             </div>`;
+        const maxChampP = Math.max.apply(null, c.standings.map((x) => x.p_champion || 0));
         c.standings.forEach((p, idx) => {
           const k = `rr::${idx}`;
           const open = state.openRrKey === k;
           const dist = p.rank_distribution || [];
           const maxV = Math.max.apply(null, dist.concat([0.0001]));
+          const isTopChamp = (p.p_champion || 0) >= maxChampP - 1e-9 && maxChampP > 0;
+          const champBadge = isTopChamp ? (p.p_champion > 0.50 ? "hi" : "mid") : "lo";
           html += `
             <div class="rr-row${open ? " sel" : ""}" data-rr="${esc(k)}">
               <span style="color:var(--muted)">${p.predicted_rank}</span>
@@ -1152,7 +1146,7 @@
               </div>
               <span style="color:var(--muted)">${p.elo}</span>
               <span>${num(p.current_points, 1)}</span>
-              <span><span class="badge ${p.p_champion > 0.50 ? "hi" : (idx === 0 ? "mid" : "lo")}">${pct1(p.p_champion)}</span></span>
+              <span><span class="badge ${champBadge}">${pct1(p.p_champion)}</span></span>
               <span style="color:var(--muted)">${pct1(p.p_top3)}</span>
               <span style="color:var(--muted)">${num(p.expected_points, 2)}</span>
             </div>`;
@@ -1406,11 +1400,15 @@
           <div class="fcard" data-match="${esc(it.key)}">
             <div class="fmeta">
               <div class="fmeta-line">${esc(it.round.round_name)} · ${esc(it.round.tour_name.split("|")[0].trim())}</div>
-              <div class="fmeta-line">${esc(it.dt.full)} · 和 ${pct(pd)}</div>
+              <div class="fmeta-line">${esc(it.dt.full)}</div>
             </div>
             <div class="frow">
               <span class="fn${wWin ? " win" : ""}">${esc(g.white)}</span>
               <span class="badge ${badgeClass(pw, pw, pd, pb)}">${pct(pw)}</span>
+            </div>
+            <div class="frow">
+              <span class="fn" style="color:var(--muted);font-size:12px;">和棋</span>
+              <span class="badge ${badgeClass(pd, pw, pd, pb)}">${pct(pd)}</span>
             </div>
             <div class="frow">
               <span class="fn${bWin ? " win" : ""}">${esc(g.black)}</span>
