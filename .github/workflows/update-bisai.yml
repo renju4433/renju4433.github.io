@@ -7,7 +7,9 @@ on:
   push:
     branches: ["main"]
     paths:
-      - "bisai/_engine/**"
+      - "bisai/_engine/generate.py"
+      - "bisai/_engine/chess_predictor/**"
+      - "bisai/_engine/requirements.txt"
       - ".github/workflows/update-bisai.yml"
 
 permissions:
@@ -34,17 +36,20 @@ jobs:
       - name: Install dependencies
         run: pip install -r bisai/_engine/requirements.txt
 
-      - name: Generate chess schedule predictions JSON
-        run: python bisai/_engine/generate.py --model bisai/_engine/chess_prematch.joblib --out bisai/data/chess.json --limit 16
+      - name: Archive finished games and generate chess schedule JSON
+        run: python bisai/_engine/generate.py --model bisai/_engine/chess_prematch.joblib --history bisai/_engine/history/finished_games.csv --out bisai/data/chess.json --limit 16
 
-      - name: Commit updated JSON if changed
+      - name: Commit updated JSON and archived history if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add bisai/data/chess.json
+          git add bisai/data/chess.json bisai/_engine/chess_prematch.joblib
+          if [ -f bisai/_engine/history/finished_games.csv ]; then
+            git add bisai/_engine/history/finished_games.csv
+          fi
           if git diff --cached --quiet; then
-            echo "No schedule changes."
+            echo "No schedule or history changes."
           else
-            git commit -m "chore(bisai): update schedule predictions"
+            git commit -m "chore(bisai): archive finished games and update schedule"
             git push
           fi

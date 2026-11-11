@@ -69,7 +69,7 @@ def normalize_result(raw: object) -> Optional[int]:
     text = str(raw).strip().lower()
     if text in {"1-0", "w", "white", "white_win", "win_white", "1"}:
         return 0
-    if text in {"1/2-1/2", "0.5-0.5", "0.5", "d", "draw", "tie"}:
+    if text in {"1/2-1/2", "½-½", "½–½", "0.5-0.5", "0.5", "d", "draw", "tie"}:
         return 1
     if text in {"0-1", "b", "black", "black_win", "win_black", "0"}:
         return 2
