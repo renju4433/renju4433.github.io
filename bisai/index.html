@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>bisai · 赛事预测</title>
+<title>bisai</title>
 <style>
   :root {
     --bg: #ffffff;
     --surface: #f8fafc;
     --pill: #f1f5f9;
-    --line: #e2e8f0;
+    --line: #e5e7eb;
     --text: #0f172a;
     --muted: #64748b;
     --blue: #1d4ed8;
@@ -29,39 +29,39 @@
   /* ---------- Top Header ---------- */
   header {
     position: sticky; top: 0; z-index: 20;
-    background: rgba(255, 255, 255, .96);
+    background: rgba(255, 255, 255, .97);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
-  .hdr-in {
-    max-width: 1120px; margin: 0 auto; padding: 10px 20px 0;
-  }
+  .hdr-in { max-width: 1120px; margin: 0 auto; padding: 10px 20px 0; }
   .hdr-top {
     display: flex; align-items: center; justify-content: space-between;
-    gap: 12px; padding-bottom: 10px;
+    gap: 12px; padding-bottom: 8px;
   }
   .brand {
-    font-size: 17px; font-weight: 700; letter-spacing: -.02em;
-    display: flex; align-items: center; gap: 6px;
+    font-size: 18px; font-weight: 700; letter-spacing: -.02em;
+    display: flex; align-items: center; gap: 6px; cursor: pointer;
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
   .brand i { color: var(--blue); font-style: normal; }
-  .search-wrap {
-    position: relative; width: 220px; max-width: 50vw;
+  .hdr-actions { display: flex; align-items: center; gap: 8px; }
+  .icon-btn {
+    appearance: none; border: 0; background: transparent; color: var(--text);
+    width: 34px; height: 34px; border-radius: 8px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
   }
-  .search-wrap input {
-    width: 100%; border: 1px solid var(--line); background: var(--surface);
-    border-radius: 8px; padding: 6px 10px 6px 28px; font: inherit; font-size: 13px;
+  .icon-btn:hover { background: var(--pill); }
+  .search-input {
+    display: none; width: 220px; max-width: 50vw;
+    border: 1px solid var(--line); background: var(--surface);
+    border-radius: 8px; padding: 6px 10px; font: inherit; font-size: 13px;
     color: var(--text); outline: none;
   }
-  .search-wrap input:focus { border-color: var(--blue); background: #fff; }
-  .search-wrap svg {
-    position: absolute; left: 9px; top: 50%; transform: translateY(-50%);
-    width: 14px; height: 14px; color: var(--muted); pointer-events: none;
-  }
+  .search-input.open { display: block; }
+  .search-input:focus { border-color: var(--blue); background: #fff; }
 
   .nav-tabs {
-    display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none;
+    display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none;
   }
   .nav-tabs::-webkit-scrollbar { display: none; }
   .nav-tabs button {
@@ -78,20 +78,19 @@
   .shell {
     max-width: 1120px; margin: 0 auto; padding: 20px 20px 64px;
     display: grid; grid-template-columns: minmax(0, 1fr) 320px;
-    gap: 28px; align-items: start;
+    gap: 30px; align-items: start;
   }
 
-  /* ---------- Left Column ---------- */
-  .seg-wrap {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 10px; flex-wrap: wrap; margin-bottom: 18px;
+  /* ---------- Centered Segmented Toggle ---------- */
+  .seg-center {
+    display: flex; justify-content: center; margin-bottom: 20px;
   }
   .seg {
     display: inline-flex; background: var(--pill); padding: 3px; border-radius: 999px;
   }
   .seg button {
     appearance: none; border: 0; background: transparent;
-    padding: 5px 16px; border-radius: 999px; font: inherit; font-size: 13px;
+    padding: 5px 18px; border-radius: 999px; font: inherit; font-size: 13px;
     font-weight: 500; color: var(--muted); cursor: pointer; transition: .15s;
   }
   .seg button.on {
@@ -99,26 +98,29 @@
     box-shadow: 0 1px 2px rgba(15, 23, 42, .08);
   }
 
-  .filters { display: flex; gap: 8px; flex: 1; justify-content: flex-end; min-width: 200px; }
-  select {
-    appearance: none; max-width: 240px; min-width: 0;
-    border: 1px solid var(--line);
-    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%2364748b'/></svg>") no-repeat right 10px center;
-    color: var(--text); font: inherit; font-size: 13px;
-    padding: 6px 26px 6px 10px; border-radius: 8px; cursor: pointer;
-    text-overflow: ellipsis;
+  .filter-pill-bar {
+    display: none; align-items: center; gap: 8px; margin-bottom: 14px;
   }
-  select:focus { outline: none; border-color: var(--blue); }
+  .filter-pill-bar.on { display: flex; }
+  .filter-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--pill); padding: 4px 10px; border-radius: 999px;
+    font-size: 12px; font-weight: 600;
+  }
+  .filter-chip button {
+    appearance: none; border: 0; background: none; cursor: pointer;
+    color: var(--muted); font-size: 14px; padding: 0; line-height: 1;
+  }
 
   .sec-title {
-    font-size: 15px; font-weight: 700; margin: 18px 0 10px; color: var(--text);
+    font-size: 15px; font-weight: 700; margin: 20px 0 10px; color: var(--text);
   }
   .sec-title:first-child { margin-top: 0; }
 
   /* ---------- Featured 3-Card Grid ---------- */
   .feat-grid {
     display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px; margin-bottom: 20px;
+    gap: 10px; margin-bottom: 22px;
   }
   .fcard {
     border: 1px solid var(--line); border-radius: 10px; background: #fff;
@@ -139,10 +141,27 @@
   }
   .fcard .fn.win { font-weight: 700; }
 
+  /* ---------- Most Confident Compact List ---------- */
+  .conf-list { margin-bottom: 18px; }
+  .conf-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; padding: 9px 2px; border-bottom: 1px solid var(--line);
+    cursor: pointer; font-size: 14px;
+  }
+  .conf-row:hover { background: var(--surface); }
+  .conf-names {
+    min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .conf-names b { font-weight: 700; }
+  .conf-right {
+    display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+  }
+  .conf-meta { font-size: 12px; color: var(--muted); }
+
   /* ---------- Probability Badges ---------- */
   .badge {
     display: inline-flex; align-items: center; justify-content: center;
-    padding: 2px 7px; border-radius: 5px; font-size: 12px; font-weight: 600;
+    padding: 2px 7px; border-radius: 5px; font-size: 12px; font-weight: 700;
     line-height: 1.3; white-space: nowrap;
   }
   .badge.hi { background: var(--green); color: #fff; }
@@ -152,29 +171,29 @@
   /* ---------- Date Divider ---------- */
   .day-div {
     display: flex; align-items: center; gap: 12px;
-    margin: 18px 0 6px; color: var(--muted); font-size: 13px; font-weight: 600;
+    margin: 20px 0 4px; color: var(--muted); font-size: 13px; font-weight: 600;
   }
   .day-div::before, .day-div::after {
     content: ""; flex: 1; height: 1px; background: var(--line);
   }
 
-  /* ---------- Match Cards (sport.dev 3-col layout) ---------- */
+  /* ---------- Match Cards (exact sport.dev 3-col layout) ---------- */
   .mcard {
-    border-bottom: 1px solid var(--line); padding: 12px 4px; cursor: pointer;
+    border-bottom: 1px solid var(--line); padding: 13px 2px; cursor: pointer;
   }
   .mcard:hover { background: var(--surface); }
   .mcard .mtop {
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 11px; color: var(--muted); margin-bottom: 6px;
+    font-size: 12px; color: var(--muted); margin-bottom: 8px;
   }
   .mcard .mgrid {
-    display: grid; grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
+    display: grid; grid-template-columns: minmax(0, 1fr) 104px minmax(0, 1fr);
     align-items: center; gap: 10px;
   }
-  .side { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .side { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
   .side.right { align-items: flex-end; text-align: right; }
   .pname {
-    display: flex; align-items: center; gap: 5px; max-width: 100%;
+    display: flex; align-items: center; gap: 6px; max-width: 100%;
     font-size: 15px; font-weight: 600;
   }
   .side.right .pname { flex-direction: row-reverse; }
@@ -185,14 +204,9 @@
     font-size: 11px; font-weight: 500; color: var(--muted);
     background: var(--pill); padding: 1px 5px; border-radius: 4px; flex-shrink: 0;
   }
-  .center-box {
-    text-align: center;
-  }
+  .center-box { text-align: center; }
   .center-box .main-val {
-    font-size: 15px; font-weight: 700; color: var(--text); white-space: nowrap;
-  }
-  .center-box .sub-val {
-    font-size: 11px; color: var(--muted); margin-top: 2px;
+    font-size: 16px; font-weight: 700; color: var(--text); white-space: nowrap;
   }
 
   .mdetail {
@@ -211,7 +225,26 @@
   .chips { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted); }
   .chips b { color: var(--text); font-weight: 600; margin-left: 4px; }
 
+  .more-wrap { display: flex; justify-content: center; margin-top: 20px; }
+  .more-btn {
+    appearance: none; background: #fff; border: 1px solid var(--line);
+    border-radius: 8px; padding: 10px 32px; font: inherit; font-size: 14px;
+    font-weight: 600; color: var(--text); cursor: pointer;
+  }
+  .more-btn:hover { background: var(--surface); }
+
   /* ---------- Championship Leaderboard ---------- */
+  .tour-pills {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;
+  }
+  .tour-pills button {
+    appearance: none; border: 1px solid var(--line); background: #fff;
+    padding: 5px 12px; border-radius: 999px; font: inherit; font-size: 12px;
+    color: var(--muted); cursor: pointer;
+  }
+  .tour-pills button.on {
+    background: var(--text); color: #fff; border-color: var(--text); font-weight: 600;
+  }
   .rr-card {
     border: 1px solid var(--line); border-radius: 10px; background: #fff;
     overflow: hidden; margin-bottom: 16px;
@@ -250,28 +283,18 @@
 
   /* ---------- Right Sidebar ---------- */
   aside { display: flex; flex-direction: column; gap: 16px; }
-  .stat-pair {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-  }
+  .stat-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .stat-box {
     background: var(--surface); border: 1px solid var(--line);
     border-radius: 10px; padding: 12px 14px;
   }
   .stat-box .lbl { font-size: 12px; color: var(--muted); }
-  .stat-box .big { font-size: 24px; font-weight: 700; margin: 2px 0; }
+  .stat-box .big { font-size: 26px; font-weight: 700; margin: 2px 0; }
   .stat-box .sub { font-size: 11px; color: var(--muted); }
 
-  .side-card {
-    background: #fff; border: 1px solid var(--line);
-    border-radius: 10px; padding: 14px;
-  }
-  .side-card h3 {
-    font-size: 14px; font-weight: 700; margin: 0 0 10px;
-  }
-  .side-item {
-    padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px;
-  }
-  .side-item:last-child { border-bottom: 0; padding-bottom: 0; }
+  .side-block h3 { font-size: 13px; font-weight: 600; color: var(--muted); margin: 0 0 8px; }
+  .side-item { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .side-item:last-child { border-bottom: 0; }
   .side-match {
     display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     gap: 6px; align-items: center; font-weight: 600;
@@ -284,21 +307,29 @@
     font-size: 11px; color: var(--muted); margin-top: 2px;
     display: flex; justify-content: space-between; gap: 6px;
   }
-  .league-row {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 7px 0; border-bottom: 1px solid var(--line);
-    font-size: 13px; cursor: pointer; gap: 8px;
+
+  .side-card {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: 10px; padding: 14px;
   }
-  .league-row:last-child { border-bottom: 0; }
-  .league-row:hover { color: var(--blue); }
-  .league-row .ln { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
-  .league-row .lr { color: var(--muted); font-size: 12px; flex-shrink: 0; }
+  .side-card h3 { font-size: 14px; font-weight: 700; margin: 0 0 10px; }
+  .league-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px;
+  }
+  .league-item {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 6px; font-size: 12px; padding: 4px 0; cursor: pointer; min-width: 0;
+  }
+  .league-item:hover { color: var(--blue); }
+  .league-item .ln { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .league-item .ld { color: var(--muted); flex-shrink: 0; }
 
   .empty { padding: 40px 0; text-align: center; color: var(--muted); font-size: 14px; }
 
   @media (max-width: 880px) {
     .shell { grid-template-columns: 1fr; }
     .feat-grid { grid-template-columns: 1fr; }
+    .league-grid { grid-template-columns: 1fr; }
     .rr-head, .rr-row { grid-template-columns: 26px minmax(0, 1fr) 48px 46px 58px 48px 48px; padding: 9px 10px; font-size: 13px; }
   }
 </style>
@@ -307,10 +338,12 @@
 <header>
   <div class="hdr-in">
     <div class="hdr-top">
-      <div class="brand"><i>#</i><span>bisai</span></div>
-      <div class="search-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input id="searchBox" type="search" placeholder="搜索棋手 / 赛事" />
+      <div class="brand" id="brandHome"><i>#</i><span>bisai</span></div>
+      <div class="hdr-actions">
+        <input id="searchBox" class="search-input" type="search" placeholder="搜索棋手 / 赛事" />
+        <button class="icon-btn" id="searchToggle" aria-label="搜索">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
       </div>
     </div>
     <nav class="nav-tabs" id="projectTabs"></nav>
@@ -319,16 +352,13 @@
 
 <div class="shell">
   <section id="mainCol">
-    <div class="seg-wrap" id="controlsBar">
+    <div class="seg-center" id="segWrap">
       <div class="seg" id="viewSeg">
         <button data-sub="schedule" class="on">赛程</button>
         <button data-sub="results">赛果</button>
       </div>
-      <div class="filters">
-        <select id="eventSelect" aria-label="赛事"></select>
-        <select id="roundSelect" aria-label="轮次"></select>
-      </div>
     </div>
+    <div class="filter-pill-bar" id="filterPillBar"></div>
     <div id="mainContent"></div>
   </section>
 
@@ -340,11 +370,13 @@
   const qs = new URLSearchParams(location.search);
   const $ = (id) => document.getElementById(id);
   const el = {
+    brand: $("brandHome"),
     tabs: $("projectTabs"),
     search: $("searchBox"),
+    searchBtn: $("searchToggle"),
+    segWrap: $("segWrap"),
     viewSeg: $("viewSeg"),
-    eventSel: $("eventSelect"),
-    roundSel: $("roundSelect"),
+    pillBar: $("filterPillBar"),
     main: $("mainContent"),
     side: $("sidebar"),
   };
@@ -370,29 +402,20 @@
     return "lo";
   }
 
-  /* ---------------- 可扩展项目注册表（未来新增体育/棋类项目只需追加条目） ---------------- */
+  /* ---------------- 可扩展项目注册表 ---------------- */
   const PROJECTS = [
-    {
-      id: "chess",
-      label: "国际象棋",
-      type: "matches",
-      dataUrl: "./data/chess.json",
-    },
-    {
-      id: "chess_championship",
-      label: "单循环冠军",
-      type: "championship",
-      dataUrl: "./data/chess.json",
-    },
+    { id: "chess", label: "国际象棋", type: "matches", dataUrl: "./data/chess.json" },
+    { id: "chess_championship", label: "单循环冠军", type: "championship", dataUrl: "./data/chess.json" },
   ];
 
   let state = {
     project: PROJECTS.find((p) => p.id === qs.get("view") || p.id === qs.get("project")) || PROJECTS[0],
     subView: "schedule", // "schedule" | "results"
     query: "",
-    tourId: "__all__",
-    roundId: "__all__",
+    tourId: null,
+    tourName: null,
     champTourId: null,
+    limitShow: 15,
     openKey: null,
     data: null,
   };
@@ -421,74 +444,31 @@
     });
   }
 
-  function getFilteredRounds() {
-    const events = (state.data && state.data.events) || [];
-    const wantFinished = state.subView === "results";
-    return events.filter((ev) => (wantFinished ? ev.status === "finished" : ev.status !== "finished"));
-  }
-
-  function syncFilters() {
-    if (state.project.type === "championship") {
-      el.viewSeg.style.display = "none";
-      el.roundSel.style.display = "none";
-      const champs = (state.data && state.data.championships) || [];
-      el.eventSel.innerHTML = "";
-      if (!champs.length) {
-        const o = document.createElement("option");
-        o.value = ""; o.textContent = "—";
-        el.eventSel.appendChild(o);
-        state.champTourId = null;
-        return;
-      }
-      champs.forEach((c) => {
-        const o = document.createElement("option");
-        o.value = c.tour_id;
-        o.textContent = `${c.tour_name} · ${c.rounds_played}/${c.total_rounds}`;
-        el.eventSel.appendChild(o);
+  function renderPillBar() {
+    if (state.project.type === "matches" && state.tourId) {
+      el.pillBar.className = "filter-pill-bar on";
+      el.pillBar.innerHTML = `<span class="filter-chip">${esc(state.tourName || state.tourId)} <button id="clearTourFilter">×</button></span>`;
+      $("clearTourFilter").addEventListener("click", () => {
+        state.tourId = null;
+        state.tourName = null;
+        state.limitShow = 15;
+        renderAll();
       });
-      if (!state.champTourId || !champs.some((c) => c.tour_id === state.champTourId)) {
-        state.champTourId = champs[0].tour_id;
-      }
-      el.eventSel.value = state.champTourId;
-      return;
+    } else {
+      el.pillBar.className = "filter-pill-bar";
+      el.pillBar.innerHTML = "";
     }
-
-    el.viewSeg.style.display = "";
-    el.roundSel.style.display = "";
-    const rounds = getFilteredRounds();
-
-    const tourMap = new Map();
-    rounds.forEach((r) => {
-      if (!tourMap.has(r.tour_id)) tourMap.set(r.tour_id, r.tour_name);
-    });
-
-    el.eventSel.innerHTML = '<option value="__all__">全部赛事</option>';
-    tourMap.forEach((name, tid) => {
-      const o = document.createElement("option");
-      o.value = tid;
-      o.textContent = name;
-      el.eventSel.appendChild(o);
-    });
-    if (state.tourId !== "__all__" && !tourMap.has(state.tourId)) state.tourId = "__all__";
-    el.eventSel.value = state.tourId;
-
-    const rPool = state.tourId === "__all__" ? rounds : rounds.filter((r) => r.tour_id === state.tourId);
-    el.roundSel.innerHTML = '<option value="__all__">全部轮次</option>';
-    rPool.forEach((r) => {
-      const o = document.createElement("option");
-      o.value = r.round_id;
-      o.textContent = `${r.tour_name.split("|")[0].trim()} · ${r.round_name}`;
-      el.roundSel.appendChild(o);
-    });
-    if (state.roundId !== "__all__" && !rPool.some((r) => r.round_id === state.roundId)) state.roundId = "__all__";
-    el.roundSel.value = state.roundId;
   }
 
   function renderMatchesView() {
+    el.segWrap.style.display = "flex";
+    renderPillBar();
+
     const q = state.query.trim().toLowerCase();
-    let rounds = getFilteredRounds();
-    if (state.tourId !== "__all__") rounds = rounds.filter((r) => r.tour_id === state.tourId);
-    if (state.roundId !== "__all__") rounds = rounds.filter((r) => r.round_id === state.roundId);
+    const events = (state.data && state.data.events) || [];
+    const wantFinished = state.subView === "results";
+    let rounds = events.filter((ev) => (wantFinished ? ev.status === "finished" : ev.status !== "finished"));
+    if (state.tourId) rounds = rounds.filter((r) => r.tour_id === state.tourId);
 
     const flat = [];
     rounds.forEach((r) => {
@@ -498,12 +478,19 @@
           const hay = `${r.tour_name} ${g.white} ${g.black}`.toLowerCase();
           if (!hay.includes(q)) return;
         }
+        const pr = g.prediction || {};
+        const pw = pr.p_white_win || 0;
+        const pb = pr.p_black_win || 0;
+        const favP = Math.max(pw, pb);
+        const favName = pw >= pb ? g.white : g.black;
         flat.push({
           key: `${r.round_id}::${idx}`,
           round: r,
           game: g,
           dt,
           maxElo: Math.max(g.white_elo || 0, g.black_elo || 0),
+          favP,
+          favName,
         });
       });
     });
@@ -515,8 +502,8 @@
 
     let html = "";
 
-    // 焦点赛事（前3场最高等级分）
-    if (!q && flat.length >= 3) {
+    // 1. 焦点赛事（3栏卡片）
+    if (!q && !state.tourId && flat.length >= 3) {
       const top3 = flat.slice().sort((a, b) => b.maxElo - a.maxElo).slice(0, 3);
       html += `<div class="sec-title">焦点赛事</div><div class="feat-grid">`;
       top3.forEach((it) => {
@@ -529,7 +516,7 @@
         const bWin = done ? g.status === "0-1" : pb > pw;
         html += `
           <div class="fcard" data-jump="${esc(it.key)}">
-            <div class="fmeta">${esc(it.round.tour_name)} · ${esc(it.dt.full)}</div>
+            <div class="fmeta">${esc(it.round.round_name)} · ${esc(it.round.tour_name)}<br>${esc(it.dt.full)}</div>
             <div class="frow">
               <span class="fn${wWin ? " win" : ""}">${esc(g.white)}</span>
               <span class="badge ${badgeClass(pw, pb)}">${pct(pw)}</span>
@@ -543,9 +530,32 @@
       html += `</div>`;
     }
 
-    // 按日期分组展示对阵卡片
+    // 2. 我们最有把握的预测（5行紧凑列表）
+    if (!q && !state.tourId && flat.length >= 3) {
+      const topConf = flat.slice().sort((a, b) => b.favP - a.favP).slice(0, 5);
+      html += `<div class="sec-title">最有把握的预测</div><div class="conf-list">`;
+      topConf.forEach((it) => {
+        const g = it.game;
+        const pr = g.prediction || {};
+        const wFav = (pr.p_white_win || 0) >= (pr.p_black_win || 0);
+        html += `
+          <div class="conf-row" data-jump="${esc(it.key)}">
+            <div class="conf-names">
+              ${wFav ? `<b>${esc(g.white)}</b>` : esc(g.white)} – ${!wFav ? `<b>${esc(g.black)}</b>` : esc(g.black)}
+            </div>
+            <div class="conf-right">
+              <span class="conf-meta">${esc(it.round.tour_name.split("|")[0].trim())} · ${esc(it.dt.full)}</span>
+              <span class="badge ${it.favP >= 0.58 ? "hi" : "mid"}">${pct(it.favP)}</span>
+            </div>
+          </div>`;
+      });
+      html += `</div>`;
+    }
+
+    // 3. 按日期分组的赛程 / 赛果对阵列表
+    const shown = flat.slice(0, state.limitShow);
     const byDay = new Map();
-    flat.forEach((it) => {
+    shown.forEach((it) => {
       if (!byDay.has(it.dt.day)) byDay.set(it.dt.day, []);
       byDay.get(it.dt.day).push(it);
     });
@@ -560,8 +570,7 @@
         const pd = pr ? pr.p_draw : 0;
         const pb = pr ? pr.p_black_win : 0;
         const done = isDone(g.status);
-        const centerMain = done ? esc(g.status) : esc(it.dt.time);
-        const centerSub = pr ? `和 ${pct(pd)}` : "—";
+        const centerMain = done ? esc(g.status) : esc(it.dt.full);
         const open = state.openKey === it.key;
         const f = (pr && pr.factors) || {};
 
@@ -569,7 +578,7 @@
           <div class="mcard" data-key="${esc(it.key)}" id="card-${esc(it.key)}">
             <div class="mtop">
               <span>${esc(r.tour_name)} · ${esc(r.round_name)}</span>
-              <span>${esc(r.time_control)}</span>
+              <span>${esc(r.time_control)} ›</span>
             </div>
             <div class="mgrid">
               <div class="side">
@@ -581,7 +590,6 @@
               </div>
               <div class="center-box">
                 <div class="main-val">${centerMain}</div>
-                <div class="sub-val">${centerSub}</div>
               </div>
               <div class="side right">
                 <div class="pname">
@@ -603,6 +611,7 @@
                   <span>黑 ${pct1(pb)}</span>
                 </div>
                 <div class="chips">
+                  <span>和棋<b>${pct1(pd)}</b></span>
                   <span>预期<b>${num(pr.expected_score_white, 2)} : ${num(pr.expected_score_black, 2)}</b></span>
                   <span>Glicko-2<b>${num(f.white_glicko, 0)} / ${num(f.black_glicko, 0)}</b></span>
                   <span>近十局<b>${num(f.white_form_10, 2)} / ${num(f.black_form_10, 2)}</b></span>
@@ -613,7 +622,12 @@
       });
     });
 
+    if (flat.length > state.limitShow) {
+      html += `<div class="more-wrap"><button class="more-btn" id="showMoreBtn">显示更多比赛</button></div>`;
+    }
+
     el.main.innerHTML = html;
+
     el.main.querySelectorAll(".mcard").forEach((card) => {
       card.addEventListener("click", () => {
         const k = card.dataset.key;
@@ -621,29 +635,51 @@
         renderMatchesView();
       });
     });
-    el.main.querySelectorAll(".fcard").forEach((fc) => {
+    el.main.querySelectorAll("[data-jump]").forEach((fc) => {
       fc.addEventListener("click", () => {
         const k = fc.dataset.jump;
+        const idx = flat.findIndex((x) => x.key === k);
+        if (idx >= state.limitShow) state.limitShow = idx + 10;
         state.openKey = k;
         renderMatchesView();
         const target = document.getElementById(`card-${k}`);
         if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
       });
     });
+    const moreBtn = $("showMoreBtn");
+    if (moreBtn) {
+      moreBtn.addEventListener("click", () => {
+        state.limitShow += 20;
+        renderMatchesView();
+      });
+    }
   }
 
   function renderChampionshipView() {
+    el.segWrap.style.display = "none";
+    el.pillBar.className = "filter-pill-bar";
+    el.pillBar.innerHTML = "";
+
     const champs = (state.data && state.data.championships) || [];
-    const tour = champs.find((c) => c.tour_id === state.champTourId) || champs[0];
-    if (!tour) {
+    if (!champs.length) {
       el.main.innerHTML = '<div class="empty">—</div>';
       return;
     }
+    if (!state.champTourId || !champs.some((c) => c.tour_id === state.champTourId)) {
+      state.champTourId = champs[0].tour_id;
+    }
+    const tour = champs.find((c) => c.tour_id === state.champTourId) || champs[0];
+
+    let html = `<div class="tour-pills">`;
+    champs.forEach((c) => {
+      html += `<button class="${c.tour_id === tour.tour_id ? "on" : ""}" data-cid="${esc(c.tour_id)}">${esc(c.tour_name.split("|")[0].trim())}</button>`;
+    });
+    html += `</div>`;
 
     const tbStr = (tour.tiebreaks || []).join(" · ");
     const srcStr = tour.schedule_source === "official_chess_results" ? "官方赛程" : "FIDE编排";
 
-    let html = `
+    html += `
       <div class="sec-title">${esc(tour.tour_name)} · ${esc(tour.format)}</div>
       <div class="chips" style="margin-bottom:12px;">
         <span>轮次<b>${tour.rounds_played}/${tour.total_rounds}</b></span>
@@ -697,7 +733,6 @@
       html += `<div class="sec-title">待赛对阵</div>`;
       upcoming.slice(0, 18).forEach((g) => {
         const pw = g.p_white_win || 0;
-        const pd = g.p_draw || 0;
         const pb = g.p_black_win || 0;
         html += `
           <div class="mcard" style="cursor:default">
@@ -707,10 +742,7 @@
                 <div class="pname"><span class="txt">${esc(g.white)}</span></div>
                 <span class="badge ${badgeClass(pw, pb)}">${pct(pw)}</span>
               </div>
-              <div class="center-box">
-                <div class="main-val">vs</div>
-                <div class="sub-val">和 ${pct(pd)}</div>
-              </div>
+              <div class="center-box"><div class="main-val">vs</div></div>
               <div class="side right">
                 <div class="pname"><span class="txt">${esc(g.black)}</span></div>
                 <span class="badge ${badgeClass(pb, pw)}">${pct(pb)}</span>
@@ -721,6 +753,13 @@
     }
 
     el.main.innerHTML = html;
+    el.main.querySelectorAll("[data-cid]").forEach((b) => {
+      b.addEventListener("click", () => {
+        state.champTourId = b.dataset.cid;
+        state.openKey = null;
+        renderChampionshipView();
+      });
+    });
     el.main.querySelectorAll(".rr-row").forEach((row) => {
       row.addEventListener("click", () => {
         const k = row.dataset.rr;
@@ -755,8 +794,8 @@
 
     const hits = sum.recent_hits || [];
     if (hits.length) {
-      html += `<div class="side-card"><h3>命中赛果</h3>`;
-      hits.slice(0, 5).forEach((h) => {
+      html += `<div class="side-block"><h3>命中的预测</h3>`;
+      hits.slice(0, 4).forEach((h) => {
         html += `
           <div class="side-item">
             <div class="side-match">
@@ -775,8 +814,8 @@
 
     const misses = sum.recent_misses || [];
     if (misses.length) {
-      html += `<div class="side-card"><h3>冷门失误</h3>`;
-      misses.slice(0, 4).forEach((ms) => {
+      html += `<div class="side-block"><h3>最有把握却失误的预测</h3>`;
+      misses.slice(0, 3).forEach((ms) => {
         html += `
           <div class="side-item">
             <div class="side-match">
@@ -793,39 +832,40 @@
       html += `</div>`;
     }
 
-    // 进行中的赛事列表
     const tourSeen = new Map();
     events.filter((e) => e.status !== "finished").forEach((e) => {
       if (!tourSeen.has(e.tour_id)) tourSeen.set(e.tour_id, e);
     });
     if (tourSeen.size) {
-      html += `<div class="side-card"><h3>进行中的赛事</h3>`;
+      html += `<div class="side-card"><h3>赛季进行中的赛事</h3><div class="league-grid">`;
       tourSeen.forEach((ev, tid) => {
+        const dt = fmtDateTime(ev.starts_at_ms, ev.starts_at);
         html += `
-          <div class="league-row" data-tid="${esc(tid)}">
-            <span class="ln">${esc(ev.tour_name)}</span>
-            <span class="lr">${esc(ev.round_name)}</span>
+          <div class="league-item" data-tid="${esc(tid)}" data-tname="${esc(ev.tour_name)}">
+            <span class="ln">${esc(ev.tour_name.split("|")[0].trim())}</span>
+            <span class="ld">${esc(dt.day)}</span>
           </div>`;
       });
-      html += `</div>`;
+      html += `</div></div>`;
     }
 
     el.side.innerHTML = html;
-    el.side.querySelectorAll(".league-row").forEach((lr) => {
+    el.side.querySelectorAll(".league-item").forEach((lr) => {
       lr.addEventListener("click", () => {
         state.project = PROJECTS[0];
         state.subView = "schedule";
         state.tourId = lr.dataset.tid;
-        state.roundId = "__all__";
+        state.tourName = lr.dataset.tname;
+        state.limitShow = 30;
         el.viewSeg.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.sub === "schedule"));
         renderTabs();
         renderAll();
+        window.scrollTo({ top: 0, behavior: "smooth" });
       });
     });
   }
 
   function renderAll() {
-    syncFilters();
     if (state.project.type === "championship") {
       renderChampionshipView();
     } else {
@@ -834,37 +874,30 @@
     renderSidebar();
   }
 
+  el.brand.addEventListener("click", () => {
+    state.tourId = null;
+    state.tourName = null;
+    state.query = "";
+    el.search.value = "";
+    state.limitShow = 15;
+    renderAll();
+  });
+
   el.viewSeg.querySelectorAll("button").forEach((btn) => {
     btn.addEventListener("click", () => {
       if (state.subView === btn.dataset.sub) return;
       state.subView = btn.dataset.sub;
-      state.tourId = "__all__";
-      state.roundId = "__all__";
       state.openKey = null;
+      state.limitShow = 15;
       el.viewSeg.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b === btn));
       renderAll();
     });
   });
 
-  el.eventSel.addEventListener("change", () => {
-    if (state.project.type === "championship") {
-      state.champTourId = el.eventSel.value;
-      state.openKey = null;
-      renderChampionshipView();
-    } else {
-      state.tourId = el.eventSel.value;
-      state.roundId = "__all__";
-      state.openKey = null;
-      renderAll();
-    }
+  el.searchBtn.addEventListener("click", () => {
+    el.search.classList.toggle("open");
+    if (el.search.classList.contains("open")) el.search.focus();
   });
-
-  el.roundSel.addEventListener("change", () => {
-    state.roundId = el.roundSel.value;
-    state.openKey = null;
-    renderMatchesView();
-  });
-
   el.search.addEventListener("input", () => {
     state.query = el.search.value;
     if (state.project.type === "matches") renderMatchesView();
@@ -873,6 +906,7 @@
   document.addEventListener("keydown", (e) => {
     if (e.key === "/" && document.activeElement !== el.search) {
       e.preventDefault();
+      el.search.classList.add("open");
       el.search.focus();
     }
   });
