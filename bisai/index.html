@@ -406,12 +406,13 @@
     padding: 12px 14px 16px; background: var(--surface); border-bottom: 1px solid var(--line);
   }
   .hmap {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
-    gap: 5px; margin-top: 10px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(46px, 1fr));
+    gap: 0; margin-top: 10px; border-radius: 6px; overflow: hidden;
+    border: 1px solid rgba(15, 23, 42, .08);
   }
   .hm-cell {
-    border-radius: 6px; padding: 6px 4px; text-align: center;
-    border: 1px solid rgba(15, 23, 42, .06);
+    padding: 6px 3px; text-align: center;
+    box-shadow: inset -1px -1px 0 rgba(15, 23, 42, .06);
   }
   .hm-cell .hm-k { font-size: 10px; line-height: 1.2; opacity: .8; }
   .hm-cell .hm-v { font-size: 12px; font-weight: 700; line-height: 1.3; margin-top: 1px; }
@@ -1153,7 +1154,7 @@
               const fg = rel >= 0.52 ? "#ffffff" : "#0f172a";
               return `
                 <div class="hm-cell" style="background:${bg};color:${fg};">
-                  <div class="hm-k">第${i + 1}名</div>
+                  <div class="hm-k">${i + 1}</div>
                   <div class="hm-v">${pct1(v)}</div>
                 </div>`;
             }).join("");
