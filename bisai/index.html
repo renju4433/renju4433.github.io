@@ -36,7 +36,7 @@
 
   .pickers { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
   select {
-    appearance: none; flex: 1 1 180px; min-width: 0;
+    appearance: none; flex: 1 1 150px; min-width: 0;
     border: 1px solid var(--line);
     background: var(--card) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%2392929a'/></svg>") no-repeat right 12px center;
     color: var(--text); font: inherit; font-size: 14px;
@@ -45,47 +45,15 @@
   }
   select:focus { outline: none; border-color: var(--accent); }
 
-  /* ---------- 赛程列表 ---------- */
-  .mhead {
-    display: grid; grid-template-columns: 86px minmax(0, 1fr) 92px;
-    gap: 0 10px; color: var(--muted); font-size: 12px; padding: 0 12px 8px;
-  }
-  .mhead span:last-child { text-align: right; }
-
-  #list { border-top: 1px solid var(--line); }
-
-  .m {
-    position: relative; display: grid;
-    grid-template-columns: 86px minmax(0, 1fr) 92px;
-    grid-template-rows: auto auto; gap: 2px 10px;
-    padding: 10px 12px 12px; border-bottom: 1px solid var(--line);
-    cursor: pointer; align-items: center;
-  }
-  .m:hover, .m.sel { background: var(--row); }
-  .m .mt { grid-row: 1 / span 2; color: var(--muted); font-size: 12px; line-height: 1.35; }
-  .m .n { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .m .n.win { font-weight: 600; }
-  .m .elo { color: var(--muted); font-size: 12px; margin-left: 6px; font-weight: 400; }
-  .m .p { text-align: right; font-size: 13px; color: var(--text); white-space: nowrap; }
-  .m .p.dim { color: var(--muted); }
-  .m .p.win { font-weight: 600; }
-  .m .bar {
-    position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
-    display: flex; pointer-events: none;
-  }
-  .m .bar span { display: block; height: 100%; transition: width .45s cubic-bezier(.2,.8,.2,1); }
-  .m .bar .bw { background: var(--accent); opacity: .65; }
-  .m .bar .bd { background: #d4d4d8; }
-  .m .bar .bb { background: var(--text); opacity: .35; }
-
-  /* ---------- 单循环冠军榜（名次榜） ---------- */
-  .grid { display: grid; grid-template-columns: 28px minmax(0, 1fr) 62px 58px 66px; align-items: center; }
+  /* ---------- 单循环冠军：名次榜 ---------- */
+  .grid { display: grid; grid-template-columns: 24px minmax(0, 1fr) 56px 52px 64px; align-items: center; }
   .head {
     color: var(--muted); font-size: 12px; letter-spacing: .02em;
     padding: 0 12px 8px; gap: 0 8px;
   }
   .head span:nth-child(n+3) { text-align: right; }
 
+  #list { border-top: 1px solid var(--line); }
   .row {
     position: relative; padding: 11px 12px; gap: 0 8px; cursor: pointer;
     border-bottom: 1px solid var(--line); overflow: hidden;
@@ -93,7 +61,6 @@
   .row:hover, .row.sel { background: var(--row); }
   .row .rank { color: var(--muted); font-size: 13px; }
   .row .name { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .row .name small { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 6px; }
   .row .num { text-align: right; font-size: 15px; }
   .row .num.dim { color: var(--muted); font-size: 14px; }
   .row .num b { font-weight: 600; }
@@ -104,16 +71,14 @@
   }
   .row.sel .track { opacity: .12; }
 
-  /* ---------- 展开面板 ---------- */
-  .panel { border-bottom: 1px solid var(--line); background: #fff; padding: 4px 12px 18px; }
-  .panel .top { display: flex; align-items: baseline; gap: 18px; padding: 10px 0 14px; flex-wrap: wrap; }
-  .panel .top .big { font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
+  .panel { border-bottom: 1px solid var(--line); background: #fff; padding: 4px 12px 20px 46px; }
+  .panel .top { display: flex; align-items: baseline; gap: 18px; padding: 10px 0 16px; flex-wrap: wrap; }
+  .panel .top .big { font-size: 26px; font-weight: 600; letter-spacing: -.01em; }
   .panel .top .big small { font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 4px; }
-  .panel .chips { display: flex; gap: 8px 18px; flex-wrap: wrap; }
+  .panel .chips { display: flex; gap: 8px 20px; flex-wrap: wrap; }
   .chip { font-size: 13px; color: var(--muted); }
   .chip b { color: var(--text); font-weight: 500; margin-left: 5px; }
-
-  .dist { display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; height: 74px; margin-top: 4px; }
+  .dist { display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; height: 78px; margin-top: 4px; }
   .dist .col { flex: 1 1 0; max-width: 44px; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; }
   .dist .bar { flex: 1; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
   .dist .bar i {
@@ -123,45 +88,79 @@
   .dist .col.hot .bar i { opacity: .85; }
   .dist .k { font-size: 11px; color: var(--muted); }
 
-  .mp .probs { display: flex; align-items: center; gap: 10px; padding: 10px 0 14px; font-size: 13px; }
-  .mp .probs b { font-size: 14px; font-weight: 600; white-space: nowrap; }
-  .mp .probs b.dim { color: var(--muted); font-weight: 500; }
+  /* ---------- 国际象棋：逐场赛程 ---------- */
+  .mhead {
+    display: grid; grid-template-columns: 48px minmax(0, 1fr) 56px;
+    gap: 0 8px; color: var(--muted); font-size: 12px; padding: 0 12px 8px;
+  }
+  .mhead span:last-child { text-align: right; }
+
+  .grp {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 12px 8px; color: var(--muted); font-size: 12px;
+  }
+  .grp::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  .m {
+    position: relative; display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) 56px;
+    grid-template-rows: auto auto; gap: 1px 8px;
+    padding: 10px 12px 11px; border-bottom: 1px solid var(--line);
+    cursor: pointer; align-items: center;
+  }
+  .m:hover, .m.sel { background: var(--row); }
+  .m .mt { grid-row: 1 / span 2; color: var(--muted); font-size: 12px; line-height: 1.3; }
+  .m .n { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .m .n.win { font-weight: 500; }
+  .m .p { text-align: right; font-size: 14px; color: var(--text); }
+  .m .p.dim { color: var(--muted); }
+  .m .p.win { font-weight: 600; }
+  .m .bar {
+    position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+    display: flex; pointer-events: none;
+  }
+  .m .bar span { display: block; height: 100%; transition: width .5s cubic-bezier(.2,.8,.2,1); }
+  .m .bar .ba { background: var(--accent); opacity: .55; }
+  .m .bar .bd { background: var(--line); }
+  .m .bar .bb { background: var(--text); opacity: .28; }
+
+  .mp { border-bottom: 1px solid var(--line); background: #fff; padding: 2px 12px 18px; }
+  .mp .probs { display: flex; align-items: center; gap: 10px; padding: 10px 0 16px; }
+  .mp .probs b { font-size: 15px; font-weight: 600; }
+  .mp .probs b.dim { color: var(--muted); font-weight: 500; font-size: 13px; }
   .mp .probs .track {
-    flex: 1; height: 5px; border-radius: 3px; background: var(--line);
+    flex: 1; height: 4px; border-radius: 2px; background: var(--line);
     display: flex; overflow: hidden;
   }
   .mp .probs .track i { display: block; height: 100%; }
-  .mp .probs .track .tw { background: var(--accent); }
+  .mp .probs .track .ta { background: var(--accent); }
   .mp .probs .track .td { background: #d4d4d8; }
-  .mp .probs .track .tb { background: var(--text); opacity: .55; }
+  .mp .probs .track .tb { background: var(--text); opacity: .45; }
 
-  .mp .tbl { display: grid; gap: 1px; font-size: 13px; }
-  .mp .tr {
-    display: grid; grid-template-columns: minmax(90px, 1.4fr) 54px 66px 56px 54px 54px;
-    gap: 8px 14px; padding: 5px 0; align-items: center;
-  }
+  .mp .tbl { display: grid; gap: 1px; font-size: 13px; justify-content: start; }
+  .mp .tr { display: grid; grid-template-columns: minmax(56px, auto) 48px 50px 44px; gap: 8px 22px; padding: 5px 0; }
   .mp .tr span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .mp .tr span:nth-child(n+2) { text-align: right; }
   .mp .tr.h { color: var(--muted); font-size: 12px; }
 
-  .grp {
-    display: flex; align-items: center; gap: 10px;
-    padding: 18px 12px 8px; color: var(--muted); font-size: 12px;
-  }
-  .grp::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-
-  .empty { padding: 44px 0; color: var(--muted); font-size: 14px; text-align: center; }
+  .empty { padding: 40px 0; color: var(--muted); font-size: 14px; text-align: center; }
   .spin { opacity: .45; transition: opacity .2s; }
 
   @media (max-width: 560px) {
     main { padding: 20px 14px 48px; }
-    .mhead { grid-template-columns: 76px minmax(0, 1fr) 82px; padding: 0 10px 8px; font-size: 11px; }
-    .m { grid-template-columns: 76px minmax(0, 1fr) 82px; padding: 9px 10px 11px; font-size: 14px; }
-    .grid { grid-template-columns: 22px minmax(0, 1fr) 54px 50px 58px; }
+    .grid { grid-template-columns: 20px minmax(0, 1fr) 50px 46px 58px; }
     .head { padding: 0 10px 8px; font-size: 11px; }
     .row { padding: 10px; font-size: 14px; }
-    .panel { padding: 4px 10px 16px; }
-    .mp .tr { grid-template-columns: minmax(70px, 1.2fr) 44px 54px 46px 44px 44px; gap: 6px 8px; font-size: 12px; }
+    .row .num { font-size: 14px; }
+    .row .num.dim { font-size: 13px; }
+    .panel { padding: 4px 10px 18px 38px; }
+    .panel .top .big { font-size: 22px; }
+    .panel .chips { gap: 6px 14px; }
+    .dist .col { max-width: 34px; }
+    .mhead { grid-template-columns: 42px minmax(0, 1fr) 50px; padding: 0 10px 8px; font-size: 11px; }
+    .m { grid-template-columns: 42px minmax(0, 1fr) 50px; padding: 9px 10px 10px; font-size: 14px; }
+    .mp { padding: 2px 10px 16px; }
+    .mp .tr { grid-template-columns: minmax(48px, auto) 40px 42px 38px; gap: 6px 14px; font-size: 12px; }
   }
 </style>
 </head>
@@ -194,14 +193,15 @@
 
   const pct = (v) => (v == null ? "—" : (v * 100).toFixed(1) + "%");
   const num = (v, d = 2) => (v == null ? "—" : Number(v).toFixed(d));
-  const fmtDateTime = (ms, iso) => {
-    const d = ms ? new Date(ms) : (iso ? new Date(String(iso).replace(" UTC", "Z").replace(" ", "T")) : null);
-    if (!d || isNaN(d.getTime())) return iso ? String(iso).slice(5, 16) : "—";
-    const pad = (n) => String(n).padStart(2, "0");
-    return `${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-  };
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const isDone = (st) => st === "1-0" || st === "0-1" || st === "1/2-1/2" || st === "½-½";
+
+  function splitDateTime(ms, iso) {
+    const d = ms ? new Date(ms) : (iso ? new Date(String(iso).replace(" UTC", "Z").replace(" ", "T")) : null);
+    if (!d || isNaN(d.getTime())) return ["—", "—"];
+    const pad = (n) => String(n).padStart(2, "0");
+    return [`${pad(d.getMonth() + 1)}-${pad(d.getDate())}`, `${pad(d.getHours())}:${pad(d.getMinutes())}`];
+  }
 
   async function fetchJson(url, opts) {
     const res = await fetch(url, opts);
@@ -231,26 +231,16 @@
       staticJson: "./data/chess.json",
       apiBase: customApi,
       headClass: "mhead",
-      headHtml: "<span>时间</span><span>对阵</span><span>胜 / 和</span>",
+      headHtml: "<span>时间</span><span>对阵</span><span>胜率</span>",
       async load(proj) {
         let raw = [];
         if (proj.apiBase) {
           const res = await fetchJson(`${proj.apiBase}/api/schedule?limit=16&with_pairings=true`);
           raw = res.events || [];
         } else {
-          try {
-            const bust = Math.floor(Date.now() / 60000);
-            const res = await fetchJson(`${proj.staticJson}?v=${bust}`);
-            raw = res.events || [];
-          } catch (e) {
-            if (window.location.protocol.startsWith("http") && !window.location.hostname.endsWith("github.io")) {
-              proj.apiBase = window.location.origin;
-              const res = await fetchJson(`${proj.apiBase}/api/schedule?limit=16&with_pairings=true`);
-              raw = res.events || [];
-            } else {
-              throw e;
-            }
-          }
+          const bust = Math.floor(Date.now() / 60000);
+          const res = await fetchJson(`${proj.staticJson}?v=${bust}`);
+          raw = res.events || [];
         }
         const byTour = new Map();
         raw.forEach((ev) => {
@@ -267,7 +257,7 @@
       id: "chess_rr",
       label: "单循环冠军",
       mode: "championship",
-      accent: "#0f766e",
+      accent: "#d2451f",
       staticJson: "./data/chess_rr.json",
       headClass: "grid head",
       headHtml: "<span></span><span></span><span>夺冠</span><span>前三</span><span>期望分</span>",
@@ -324,7 +314,7 @@
           el.event,
           state.items.map((t) => ({
             value: t.tour_id,
-            label: `${t.tour_name} · ${t.rounds_played}/${t.total_rounds}轮`,
+            label: `${t.tour_name} · ${t.rounds_played}/${t.total_rounds}`,
           })),
           state.items[0].tour_id
         );
@@ -348,14 +338,14 @@
       el.list.innerHTML = '<div class="empty">—</div>';
       return;
     }
-    const stName = (s) => (s === "ongoing" ? "进行中" : (s === "upcoming" ? "待开赛" : "已比完"));
     fill(
       el.round,
       rounds.map((r) => {
-        const dtStr = fmtDateTime(r.starts_at_ms, r.starts_at);
+        const [dStr, tStr] = splitDateTime(r.starts_at_ms, r.starts_at);
+        const dt = dStr !== "—" ? `${dStr} ${tStr}` : "";
         return {
           value: r.round_id,
-          label: `${r.round_name}${dtStr !== "—" ? " · " + dtStr : ""} · ${stName(r.status)}`,
+          label: `${r.round_name}${dt ? " · " + dt : ""}`,
         };
       }),
       rounds[0].round_id
@@ -364,7 +354,7 @@
     renderMatches();
   }
 
-  /* ---------------- 赛程视图 ---------------- */
+  /* ---------------- 赛程列表（完全对齐 sport.dev 布局） ---------------- */
   function renderMatches() {
     state.openIdx = null;
     const pairings = (state.round && state.round.pairings) || [];
@@ -374,8 +364,7 @@
       return;
     }
 
-    const timeLabel = fmtDateTime(state.round.starts_at_ms, state.round.starts_at);
-    const stTag = state.round.status === "ongoing" ? "进行中" : (state.round.status === "upcoming" ? "待开赛" : "已比完");
+    const [dStr, tStr] = splitDateTime(state.round.starts_at_ms, state.round.starts_at);
 
     pairings.forEach((g, idx) => {
       const pr = g.prediction;
@@ -385,19 +374,19 @@
       const done = isDone(g.status);
       const wWin = done ? g.status === "1-0" : pw >= pb;
       const bWin = done ? g.status === "0-1" : pb > pw;
-      const rightTop = done ? esc(g.status) : `${pr ? pct(pw) : "—"} · ${pr ? pct(pd) : "—"}`;
-      const rightBot = done ? (pr ? `${pct(pw)} / ${pct(pb)}` : "—") : (pr ? pct(pb) : esc(g.status || "—"));
+      const rightTop = done ? (g.status === "1-0" ? "胜" : (g.status === "0-1" ? "负" : "和")) : (pr ? pct(pw) : "—");
+      const rightBot = done ? (pr ? pct(pw) : "—") : (pr ? pct(pb) : "—");
 
       const row = document.createElement("div");
       row.className = "m";
       row.innerHTML = `
-        <div class="mt">${esc(timeLabel)}<br>${esc(stTag)}</div>
-        <div class="n${wWin ? " win" : ""}">${esc(g.white)}${g.white_elo ? `<span class="elo">${g.white_elo}</span>` : ""}</div>
-        <div class="p${done || wWin ? " win" : " dim"}">${rightTop}</div>
-        <div class="n${bWin ? " win" : ""}">${esc(g.black)}${g.black_elo ? `<span class="elo">${g.black_elo}</span>` : ""}</div>
-        <div class="p${!done && bWin ? " win" : " dim"}">${rightBot}</div>
+        <div class="mt">${esc(dStr)}<br>${esc(tStr)}</div>
+        <div class="n${wWin ? " win" : ""}">${esc(g.white)}</div>
+        <div class="p${done ? (wWin ? " win" : " dim") : (wWin ? " win" : " dim")}">${esc(rightTop)}</div>
+        <div class="n${bWin ? " win" : ""}">${esc(g.black)}</div>
+        <div class="p${done ? " dim" : (bWin ? " win" : " dim")}">${esc(rightBot)}</div>
         <div class="bar">
-          <span class="bw" style="width:${(pw * 100).toFixed(1)}%"></span>
+          <span class="ba" style="width:${(pw * 100).toFixed(1)}%"></span>
           <span class="bd" style="width:${(pd * 100).toFixed(1)}%"></span>
           <span class="bb" style="width:${(pb * 100).toFixed(1)}%"></span>
         </div>`;
@@ -420,38 +409,34 @@
     panel.className = "panel mp";
     panel.innerHTML = `
       <div class="probs">
-        <b class="${pr.p_white_win >= pr.p_black_win ? "" : "dim"}">白 ${pct(pr.p_white_win)}</b>
-        <b class="dim">和 ${pct(pr.p_draw)}</b>
+        <b class="${pr.p_white_win >= pr.p_black_win ? "" : "dim"}">${pct(pr.p_white_win)}</b>
+        <b class="dim">${pct(pr.p_draw)}</b>
         <div class="track">
-          <i class="tw" style="width:${(pr.p_white_win * 100).toFixed(1)}%"></i>
+          <i class="ta" style="width:${(pr.p_white_win * 100).toFixed(1)}%"></i>
           <i class="td" style="width:${(pr.p_draw * 100).toFixed(1)}%"></i>
           <i class="tb" style="width:${(pr.p_black_win * 100).toFixed(1)}%"></i>
         </div>
-        <b class="${pr.p_black_win > pr.p_white_win ? "" : "dim"}">黑 ${pct(pr.p_black_win)}</b>
+        <b class="${pr.p_black_win > pr.p_white_win ? "" : "dim"}">${pct(pr.p_black_win)}</b>
       </div>
       <div class="tbl">
-        <div class="tr h"><span></span><span>等级分</span><span>Glicko-2</span><span>近10局</span><span>预期</span><span>交手</span></div>
+        <div class="tr h"><span></span><span>等级分</span><span>近十局</span><span>交手</span></div>
         <div class="tr">
           <span>${esc(pr.white)}</span>
           <span>${num(pr.white_elo_used, 0)}</span>
-          <span>${num(f.white_glicko, 0)}</span>
           <span>${num(f.white_form_10, 2)}</span>
-          <span>${num(pr.expected_score_white, 2)}</span>
           <span>${f.h2h_games != null ? f.h2h_games : 0}</span>
         </div>
         <div class="tr">
           <span>${esc(pr.black)}</span>
           <span>${num(pr.black_elo_used, 0)}</span>
-          <span>${num(f.black_glicko, 0)}</span>
           <span>${num(f.black_form_10, 2)}</span>
-          <span>${num(pr.expected_score_black, 2)}</span>
           <span>${isDone(g.status) ? esc(g.status) : "—"}</span>
         </div>
       </div>`;
     row.insertAdjacentElement("afterend", panel);
   }
 
-  /* ---------------- 单循环 FIDE 冠军预测视图 ---------------- */
+  /* ---------------- 单循环冠军榜（完全对齐 sport.dev 名次榜布局） ---------------- */
   function renderChampionship() {
     state.openIdx = null;
     el.list.innerHTML = "";
@@ -468,39 +453,13 @@
       row.innerHTML = `
         <div class="track" style="width:${Math.min(100, (p.p_champion || 0) * 100).toFixed(1)}%"></div>
         <div class="rank">${p.predicted_rank}</div>
-        <div class="name">${esc(p.name)}<small>${p.elo} · ${num(p.current_points, 1)}/${p.games_played}</small></div>
+        <div class="name">${esc(p.name)}</div>
         <div class="num"><b>${pct(p.p_champion)}</b></div>
         <div class="num dim">${pct(p.p_top3)}</div>
         <div class="num dim">${num(p.expected_points, 2)}</div>`;
       row.addEventListener("click", () => toggleStanding(idx, p, row));
       el.list.appendChild(row);
     });
-
-    const upcoming = (t && t.upcoming_pairings) || [];
-    if (upcoming.length) {
-      const grp = document.createElement("div");
-      grp.className = "grp";
-      grp.textContent = "FIDE 编排余轮";
-      el.list.appendChild(grp);
-      upcoming.slice(0, 18).forEach((g) => {
-        const r = document.createElement("div");
-        r.className = "m";
-        r.style.cursor = "default";
-        const wf = g.p_white_win >= g.p_black_win;
-        r.innerHTML = `
-          <div class="mt">${esc(g.round_name)}</div>
-          <div class="n${wf ? " win" : ""}">${esc(g.white)}</div>
-          <div class="p${wf ? " win" : " dim"}">${pct(g.p_white_win)} · ${pct(g.p_draw)}</div>
-          <div class="n${!wf ? " win" : ""}">${esc(g.black)}</div>
-          <div class="p${!wf ? " win" : " dim"}">${pct(g.p_black_win)}</div>
-          <div class="bar">
-            <span class="bw" style="width:${(g.p_white_win * 100).toFixed(1)}%"></span>
-            <span class="bd" style="width:${(g.p_draw * 100).toFixed(1)}%"></span>
-            <span class="bb" style="width:${(g.p_black_win * 100).toFixed(1)}%"></span>
-          </div>`;
-        el.list.appendChild(r);
-      });
-    }
   }
 
   function toggleStanding(idx, p, row) {
@@ -525,6 +484,7 @@
       <div class="top">
         <div class="big">${esc(p.name)} <small>${pct(p.p_champion)}</small></div>
         <div class="chips">
+          <span class="chip">等级分<b>${p.elo}</b></span>
           <span class="chip">现积分<b>${num(p.current_points, 1)}</b></span>
           <span class="chip">索伯分<b>${num(p.current_sb, 2)}</b></span>
           <span class="chip">余局<b>${p.games_remaining}</b></span>
