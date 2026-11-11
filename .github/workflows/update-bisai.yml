@@ -1,0 +1,50 @@
+name: Update Bisai Schedule JSON
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "bisai/_engine/**"
+      - ".github/workflows/update-bisai.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-bisai-json
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+          cache-dependency-path: "bisai/_engine/requirements.txt"
+
+      - name: Install dependencies
+        run: pip install -r bisai/_engine/requirements.txt
+
+      - name: Generate chess schedule predictions JSON
+        run: python bisai/_engine/generate.py --model bisai/_engine/chess_prematch.joblib --out bisai/data/chess.json --limit 16
+
+      - name: Commit updated JSON if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bisai/data/chess.json
+          if git diff --cached --quiet; then
+            echo "No schedule changes."
+          else
+            git commit -m "chore(bisai): update schedule predictions"
+            git push
+          fi

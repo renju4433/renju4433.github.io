@@ -129,9 +129,7 @@
 <script>
 (function () {
   const qs = new URLSearchParams(location.search);
-  const chessDefaultApi = window.location.protocol.startsWith("http") && !window.location.hostname.endsWith("github.io")
-    ? window.location.origin
-    : "https://chess-prematch-api-production.up.railway.app";
+  const customApi = qs.get("api") ? qs.get("api").replace(/\/$/, "") : null;
 
   const $ = (id) => document.getElementById(id);
   const el = {
@@ -165,11 +163,29 @@
       id: "chess",
       label: "国际象棋",
       accent: "#1f6feb",
-      apiBase: (qs.get("api") || chessDefaultApi).replace(/\/$/, ""),
+      staticJson: "./data/chess.json",
+      apiBase: customApi,
       headHtml: "<span>时间</span><span>对阵</span><span>胜 / 和</span>",
       async fetchSchedule(proj) {
-        const res = await fetchJson(`${proj.apiBase}/api/schedule?limit=16&with_pairings=true`);
-        const raw = res.events || [];
+        let raw = [];
+        if (proj.apiBase) {
+          const res = await fetchJson(`${proj.apiBase}/api/schedule?limit=16&with_pairings=true`);
+          raw = res.events || [];
+        } else {
+          try {
+            const bust = Math.floor(Date.now() / 60000);
+            const res = await fetchJson(`${proj.staticJson}?v=${bust}`);
+            raw = res.events || [];
+          } catch (e) {
+            if (window.location.protocol.startsWith("http") && !window.location.hostname.endsWith("github.io")) {
+              proj.apiBase = window.location.origin;
+              const res = await fetchJson(`${proj.apiBase}/api/schedule?limit=16&with_pairings=true`);
+              raw = res.events || [];
+            } else {
+              throw e;
+            }
+          }
+        }
         const byTour = new Map();
         raw.forEach((ev) => {
           const tid = ev.tour_id || ev.tour_name;
@@ -183,6 +199,10 @@
       async predictRound(proj, roundObj) {
         const pairings = roundObj.pairings || [];
         if (!pairings.length) return [];
+        if (!proj.apiBase && pairings[0] && pairings[0].prediction) {
+          return pairings.map((g) => g.prediction);
+        }
+        if (!proj.apiBase) return [];
         const res = await fetchJson(`${proj.apiBase}/api/predict-round`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
