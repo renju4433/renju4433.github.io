@@ -122,6 +122,7 @@ def fetch_recent_schedule(
                 "tour_id": tour.get("id"),
                 "tour_name": tour_name,
                 "tier": tier,
+                "format": str((tour.get("info") or {}).get("format") or ""),
                 "round_id": rid,
                 "round_name": str(rnd.get("name") or ""),
                 "status": status,
@@ -169,3 +170,76 @@ def fetch_recent_schedule(
 
     _CACHE[cache_key] = (now, selected)
     return selected
+
+
+def fetch_single_round_robin_tours(max_tours: int = 6) -> List[Tuple[Dict[str, Any], List[Dict[str, Any]]]]:
+    """
+    Discover active/recent Single Round-Robin tournaments and fetch all their rounds & pairings.
+    """
+    from .round_robin import is_single_round_robin
+
+    try:
+        top = _get_json("https://lichess.org/api/broadcast/top?page=1", timeout=12)
+        raw_entries = top.get("active", []) + top.get("past", {}).get("currentPageResults", [])
+    except Exception:
+        return []
+
+    candidates: List[Dict[str, Any]] = []
+    seen_tours = set()
+    for entry in raw_entries:
+        tour = entry.get("tour") or {}
+        tid = tour.get("id")
+        if not tid or tid in seen_tours:
+            continue
+        fmt = str((tour.get("info") or {}).get("format") or "")
+        if not is_single_round_robin(fmt):
+            continue
+        seen_tours.add(tid)
+        rnd = entry.get("round") or {}
+        is_active = bool(rnd.get("ongoing")) or (not bool(rnd.get("finished")))
+        candidates.append(
+            {
+                "tour_id": tid,
+                "tour_name": str(tour.get("name") or tid),
+                "tier": int(tour.get("tier") or 0),
+                "format": fmt,
+                "time_control": _infer_tc_from_tour_name(str(tour.get("name") or "")),
+                "is_active": is_active,
+            }
+        )
+
+    candidates.sort(key=lambda t: (0 if t["is_active"] else 1, -t["tier"]))
+    results: List[Tuple[Dict[str, Any], List[Dict[str, Any]]]] = []
+
+    for tour in candidates[:max_tours]:
+        tid = tour["tour_id"]
+        try:
+            detail = _get_json(f"https://lichess.org/api/broadcast/{tid}", timeout=12)
+        except Exception:
+            continue
+        rounds_meta = detail.get("rounds") or []
+        rounds_out: List[Dict[str, Any]] = []
+        for r in rounds_meta:
+            rid = r.get("id")
+            if not rid:
+                continue
+            time.sleep(0.12)
+            pairings = _fetch_round_pairings(str(rid))
+            rounds_out.append(
+                {
+                    "tour_id": tid,
+                    "tour_name": tour["tour_name"],
+                    "tier": tour["tier"],
+                    "format": tour["format"],
+                    "round_id": str(rid),
+                    "round_name": str(r.get("name") or ""),
+                    "status": "ongoing" if r.get("ongoing") else ("finished" if r.get("finished") else "upcoming"),
+                    "starts_at": _ms_to_iso(r.get("startsAt")),
+                    "starts_at_ms": r.get("startsAt") or 0,
+                    "time_control": tour["time_control"],
+                    "pairings": pairings,
+                }
+            )
+        if any(r["pairings"] for r in rounds_out):
+            results.append((tour, rounds_out))
+    return results

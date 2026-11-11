@@ -45,6 +45,7 @@
   }
   select:focus { outline: none; border-color: var(--accent); }
 
+  /* ---------- 赛程列表 ---------- */
   .mhead {
     display: grid; grid-template-columns: 86px minmax(0, 1fr) 92px;
     gap: 0 10px; color: var(--muted); font-size: 12px; padding: 0 12px 8px;
@@ -63,7 +64,7 @@
   .m:hover, .m.sel { background: var(--row); }
   .m .mt { grid-row: 1 / span 2; color: var(--muted); font-size: 12px; line-height: 1.35; }
   .m .n { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .m .n.win { font-weight: 500; }
+  .m .n.win { font-weight: 600; }
   .m .elo { color: var(--muted); font-size: 12px; margin-left: 6px; font-weight: 400; }
   .m .p { text-align: right; font-size: 13px; color: var(--text); white-space: nowrap; }
   .m .p.dim { color: var(--muted); }
@@ -77,7 +78,51 @@
   .m .bar .bd { background: #d4d4d8; }
   .m .bar .bb { background: var(--text); opacity: .35; }
 
+  /* ---------- 单循环冠军榜（名次榜） ---------- */
+  .grid { display: grid; grid-template-columns: 28px minmax(0, 1fr) 62px 58px 66px; align-items: center; }
+  .head {
+    color: var(--muted); font-size: 12px; letter-spacing: .02em;
+    padding: 0 12px 8px; gap: 0 8px;
+  }
+  .head span:nth-child(n+3) { text-align: right; }
+
+  .row {
+    position: relative; padding: 11px 12px; gap: 0 8px; cursor: pointer;
+    border-bottom: 1px solid var(--line); overflow: hidden;
+  }
+  .row:hover, .row.sel { background: var(--row); }
+  .row .rank { color: var(--muted); font-size: 13px; }
+  .row .name { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row .name small { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 6px; }
+  .row .num { text-align: right; font-size: 15px; }
+  .row .num.dim { color: var(--muted); font-size: 14px; }
+  .row .num b { font-weight: 600; }
+  .row .track {
+    position: absolute; inset: 0 auto 0 0; width: 0;
+    background: var(--accent); opacity: .07; pointer-events: none;
+    transition: width .55s cubic-bezier(.2,.8,.2,1);
+  }
+  .row.sel .track { opacity: .12; }
+
+  /* ---------- 展开面板 ---------- */
   .panel { border-bottom: 1px solid var(--line); background: #fff; padding: 4px 12px 18px; }
+  .panel .top { display: flex; align-items: baseline; gap: 18px; padding: 10px 0 14px; flex-wrap: wrap; }
+  .panel .top .big { font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
+  .panel .top .big small { font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 4px; }
+  .panel .chips { display: flex; gap: 8px 18px; flex-wrap: wrap; }
+  .chip { font-size: 13px; color: var(--muted); }
+  .chip b { color: var(--text); font-weight: 500; margin-left: 5px; }
+
+  .dist { display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; height: 74px; margin-top: 4px; }
+  .dist .col { flex: 1 1 0; max-width: 44px; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; }
+  .dist .bar { flex: 1; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
+  .dist .bar i {
+    display: block; width: 100%; border-radius: 3px 3px 0 0;
+    background: var(--accent); opacity: .22;
+  }
+  .dist .col.hot .bar i { opacity: .85; }
+  .dist .k { font-size: 11px; color: var(--muted); }
+
   .mp .probs { display: flex; align-items: center; gap: 10px; padding: 10px 0 14px; font-size: 13px; }
   .mp .probs b { font-size: 14px; font-weight: 600; white-space: nowrap; }
   .mp .probs b.dim { color: var(--muted); font-weight: 500; }
@@ -99,6 +144,12 @@
   .mp .tr span:nth-child(n+2) { text-align: right; }
   .mp .tr.h { color: var(--muted); font-size: 12px; }
 
+  .grp {
+    display: flex; align-items: center; gap: 10px;
+    padding: 18px 12px 8px; color: var(--muted); font-size: 12px;
+  }
+  .grp::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
   .empty { padding: 44px 0; color: var(--muted); font-size: 14px; text-align: center; }
   .spin { opacity: .45; transition: opacity .2s; }
 
@@ -106,6 +157,9 @@
     main { padding: 20px 14px 48px; }
     .mhead { grid-template-columns: 76px minmax(0, 1fr) 82px; padding: 0 10px 8px; font-size: 11px; }
     .m { grid-template-columns: 76px minmax(0, 1fr) 82px; padding: 9px 10px 11px; font-size: 14px; }
+    .grid { grid-template-columns: 22px minmax(0, 1fr) 54px 50px 58px; }
+    .head { padding: 0 10px 8px; font-size: 11px; }
+    .row { padding: 10px; font-size: 14px; }
     .panel { padding: 4px 10px 16px; }
     .mp .tr { grid-template-columns: minmax(70px, 1.2fr) 44px 54px 46px 44px 44px; gap: 6px 8px; font-size: 12px; }
   }
@@ -116,18 +170,11 @@
   <nav class="tabs" id="projectTabs"></nav>
 
   <div class="pickers">
-    <select id="statusFilter" aria-label="状态" style="flex:0 1 130px;">
-      <option value="all">全部赛程</option>
-      <option value="active">进行 · 待开赛</option>
-      <option value="finished">已比完</option>
-    </select>
     <select id="event" aria-label="赛事"></select>
     <select id="round" aria-label="轮次"></select>
   </div>
 
-  <div class="mhead" id="head">
-    <span>时间</span><span>对阵</span><span>胜 / 和</span>
-  </div>
+  <div class="mhead" id="head"></div>
   <div id="list"></div>
 </main>
 
@@ -139,7 +186,6 @@
   const $ = (id) => document.getElementById(id);
   const el = {
     tabs: $("projectTabs"),
-    statusFilter: $("statusFilter"),
     event: $("event"),
     round: $("round"),
     head: $("head"),
@@ -155,6 +201,7 @@
     return `${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
   };
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const isDone = (st) => st === "1-0" || st === "0-1" || st === "1/2-1/2" || st === "½-½";
 
   async function fetchJson(url, opts) {
     const res = await fetch(url, opts);
@@ -163,16 +210,29 @@
     return data;
   }
 
-  /* ---------------- 项目注册表（后续新增项目只需追加条目） ---------------- */
+  function fill(select, items, value) {
+    select.innerHTML = "";
+    items.forEach((it) => {
+      const o = document.createElement("option");
+      o.value = it.value;
+      o.textContent = it.label;
+      select.appendChild(o);
+    });
+    if (value != null) select.value = value;
+  }
+
+  /* ---------------- 可扩展项目注册表（后续新增项目只需追加条目） ---------------- */
   const PROJECTS = [
     {
       id: "chess",
       label: "国际象棋",
+      mode: "matches",
       accent: "#1f6feb",
       staticJson: "./data/chess.json",
       apiBase: customApi,
+      headClass: "mhead",
       headHtml: "<span>时间</span><span>对阵</span><span>胜 / 和</span>",
-      async fetchSchedule(proj) {
+      async load(proj) {
         let raw = [];
         if (proj.apiBase) {
           const res = await fetchJson(`${proj.apiBase}/api/schedule?limit=16&with_pairings=true`);
@@ -202,76 +262,30 @@
         });
         return [...byTour.values()];
       },
-      async predictRound(proj, roundObj) {
-        const pairings = roundObj.pairings || [];
-        if (!pairings.length) return [];
-        if (!proj.apiBase && pairings[0] && pairings[0].prediction) {
-          return pairings.map((g) => g.prediction);
-        }
-        if (!proj.apiBase) return [];
-        const res = await fetchJson(`${proj.apiBase}/api/predict-round`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            time_control: roundObj.time_control || "classical",
-            pairings,
-          }),
-        });
-        return res.predictions || [];
+    },
+    {
+      id: "chess_rr",
+      label: "单循环冠军",
+      mode: "championship",
+      accent: "#0f766e",
+      staticJson: "./data/chess_rr.json",
+      headClass: "grid head",
+      headHtml: "<span></span><span></span><span>夺冠</span><span>前三</span><span>期望分</span>",
+      async load(proj) {
+        const bust = Math.floor(Date.now() / 60000);
+        const res = await fetchJson(`${proj.staticJson}?v=${bust}`);
+        return res.tournaments || [];
       },
     },
   ];
 
   let state = {
-    project: PROJECTS.find((p) => p.id === qs.get("project")) || PROJECTS[0],
-    allTours: [],
-    tours: [],
-    statusFilter: "all",
-    tour: null,
+    project: PROJECTS.find((p) => p.id === qs.get("view") || p.id === qs.get("project")) || PROJECTS[0],
+    items: [],
+    current: null,
     round: null,
-    preds: [],
     openIdx: null,
   };
-
-  function isFinishedStatus(st) {
-    return st === "1-0" || st === "0-1" || st === "1/2-1/2" || st === "½-½";
-  }
-
-  function applyFilter() {
-    const f = state.statusFilter;
-    const filtered = [];
-    state.allTours.forEach((t) => {
-      const rds = t.rounds.filter((r) => {
-        if (f === "active") return r.status === "ongoing" || r.status === "upcoming";
-        if (f === "finished") return r.status === "finished";
-        return true;
-      });
-      if (rds.length) filtered.push({ ...t, rounds: rds });
-    });
-    state.tours = filtered;
-    if (!state.tours.length) {
-      state.tour = null;
-      fill(el.event, [{ value: "", label: "—" }], "");
-      fill(el.round, [{ value: "", label: "—" }], "");
-      el.list.innerHTML = '<div class="empty">—</div>';
-      return;
-    }
-    const prevTourId = state.tour && state.tours.find((t) => t.id === state.tour.id) ? state.tour.id : state.tours[0].id;
-    fill(el.event, state.tours.map((t) => ({ value: t.id, label: t.name })), prevTourId);
-    state.tour = state.tours.find((t) => t.id === prevTourId) || state.tours[0];
-    syncRounds();
-  }
-
-  function fill(select, items, value) {
-    select.innerHTML = "";
-    items.forEach((it) => {
-      const o = document.createElement("option");
-      o.value = it.value;
-      o.textContent = it.label;
-      select.appendChild(o);
-    });
-    if (value != null) select.value = value;
-  }
 
   function renderTabs() {
     el.tabs.innerHTML = "";
@@ -290,19 +304,44 @@
   }
 
   async function activateProject() {
-    document.documentElement.style.setProperty("--accent", state.project.accent || "#1f6feb");
-    el.head.innerHTML = state.project.headHtml;
+    const p = state.project;
+    document.documentElement.style.setProperty("--accent", p.accent || "#1f6feb");
+    el.head.className = p.headClass;
+    el.head.innerHTML = p.headHtml;
+    el.round.style.display = p.mode === "championship" ? "none" : "";
     el.list.innerHTML = '<div class="empty spin">·</div>';
+    state.openIdx = null;
     try {
-      state.allTours = await state.project.fetchSchedule(state.project);
-      applyFilter();
+      state.items = await p.load(p);
+      if (!state.items.length) {
+        fill(el.event, [{ value: "", label: "—" }], "");
+        fill(el.round, [{ value: "", label: "—" }], "");
+        el.list.innerHTML = '<div class="empty">—</div>';
+        return;
+      }
+      if (p.mode === "championship") {
+        fill(
+          el.event,
+          state.items.map((t) => ({
+            value: t.tour_id,
+            label: `${t.tour_name} · ${t.rounds_played}/${t.total_rounds}轮`,
+          })),
+          state.items[0].tour_id
+        );
+        state.current = state.items[0];
+        renderChampionship();
+      } else {
+        fill(el.event, state.items.map((t) => ({ value: t.id, label: t.name })), state.items[0].id);
+        state.current = state.items[0];
+        syncRounds();
+      }
     } catch {
       el.list.innerHTML = '<div class="empty">—</div>';
     }
   }
 
   function syncRounds() {
-    const rounds = state.tour ? state.tour.rounds : [];
+    const rounds = state.current ? state.current.rounds : [];
     if (!rounds.length) {
       state.round = null;
       fill(el.round, [{ value: "", label: "—" }], "");
@@ -322,27 +361,13 @@
       rounds[0].round_id
     );
     state.round = rounds[0];
-    loadMatches();
+    renderMatches();
   }
 
-  async function loadMatches() {
-    if (!state.round) return;
-    state.openIdx = null;
-    el.list.innerHTML = '<div class="empty spin">·</div>';
-    el.list.classList.add("spin");
-    try {
-      state.preds = await state.project.predictRound(state.project, state.round);
-      renderMatches();
-    } catch {
-      el.list.innerHTML = '<div class="empty">—</div>';
-    } finally {
-      el.list.classList.remove("spin");
-    }
-  }
-
+  /* ---------------- 赛程视图 ---------------- */
   function renderMatches() {
+    state.openIdx = null;
     const pairings = (state.round && state.round.pairings) || [];
-    const preds = state.preds || [];
     el.list.innerHTML = "";
     if (!pairings.length) {
       el.list.innerHTML = '<div class="empty">—</div>';
@@ -353,18 +378,18 @@
     const stTag = state.round.status === "ongoing" ? "进行中" : (state.round.status === "upcoming" ? "待开赛" : "已比完");
 
     pairings.forEach((g, idx) => {
-      const pr = preds[idx];
+      const pr = g.prediction;
       const pw = pr ? pr.p_white_win : 0;
       const pd = pr ? pr.p_draw : 0;
       const pb = pr ? pr.p_black_win : 0;
-      const done = isFinishedStatus(g.status);
+      const done = isDone(g.status);
       const wWin = done ? g.status === "1-0" : pw >= pb;
       const bWin = done ? g.status === "0-1" : pb > pw;
       const rightTop = done ? esc(g.status) : `${pr ? pct(pw) : "—"} · ${pr ? pct(pd) : "—"}`;
       const rightBot = done ? (pr ? `${pct(pw)} / ${pct(pb)}` : "—") : (pr ? pct(pb) : esc(g.status || "—"));
 
       const row = document.createElement("div");
-      row.className = "m" + (state.openIdx === idx ? " sel" : "");
+      row.className = "m";
       row.innerHTML = `
         <div class="mt">${esc(timeLabel)}<br>${esc(stTag)}</div>
         <div class="n${wWin ? " win" : ""}">${esc(g.white)}${g.white_elo ? `<span class="elo">${g.white_elo}</span>` : ""}</div>
@@ -385,10 +410,7 @@
     const existing = el.list.querySelector(".panel");
     if (existing) existing.remove();
     el.list.querySelectorAll(".m.sel").forEach((r) => r.classList.remove("sel"));
-    if (state.openIdx === idx) {
-      state.openIdx = null;
-      return;
-    }
+    if (state.openIdx === idx) { state.openIdx = null; return; }
     state.openIdx = idx;
     row.classList.add("sel");
     if (!pr) return;
@@ -423,24 +445,109 @@
           <span>${num(f.black_glicko, 0)}</span>
           <span>${num(f.black_form_10, 2)}</span>
           <span>${num(pr.expected_score_black, 2)}</span>
-          <span>—</span>
+          <span>${isDone(g.status) ? esc(g.status) : "—"}</span>
         </div>
       </div>`;
     row.insertAdjacentElement("afterend", panel);
   }
 
-  el.statusFilter.addEventListener("change", () => {
-    state.statusFilter = el.statusFilter.value;
-    applyFilter();
-  });
+  /* ---------------- 单循环 FIDE 冠军预测视图 ---------------- */
+  function renderChampionship() {
+    state.openIdx = null;
+    el.list.innerHTML = "";
+    const t = state.current;
+    const list = (t && t.standings) || [];
+    if (!list.length) {
+      el.list.innerHTML = '<div class="empty">—</div>';
+      return;
+    }
+
+    list.forEach((p, idx) => {
+      const row = document.createElement("div");
+      row.className = "grid row";
+      row.innerHTML = `
+        <div class="track" style="width:${Math.min(100, (p.p_champion || 0) * 100).toFixed(1)}%"></div>
+        <div class="rank">${p.predicted_rank}</div>
+        <div class="name">${esc(p.name)}<small>${p.elo} · ${num(p.current_points, 1)}/${p.games_played}</small></div>
+        <div class="num"><b>${pct(p.p_champion)}</b></div>
+        <div class="num dim">${pct(p.p_top3)}</div>
+        <div class="num dim">${num(p.expected_points, 2)}</div>`;
+      row.addEventListener("click", () => toggleStanding(idx, p, row));
+      el.list.appendChild(row);
+    });
+
+    const upcoming = (t && t.upcoming_pairings) || [];
+    if (upcoming.length) {
+      const grp = document.createElement("div");
+      grp.className = "grp";
+      grp.textContent = "FIDE 编排余轮";
+      el.list.appendChild(grp);
+      upcoming.slice(0, 18).forEach((g) => {
+        const r = document.createElement("div");
+        r.className = "m";
+        r.style.cursor = "default";
+        const wf = g.p_white_win >= g.p_black_win;
+        r.innerHTML = `
+          <div class="mt">${esc(g.round_name)}</div>
+          <div class="n${wf ? " win" : ""}">${esc(g.white)}</div>
+          <div class="p${wf ? " win" : " dim"}">${pct(g.p_white_win)} · ${pct(g.p_draw)}</div>
+          <div class="n${!wf ? " win" : ""}">${esc(g.black)}</div>
+          <div class="p${!wf ? " win" : " dim"}">${pct(g.p_black_win)}</div>
+          <div class="bar">
+            <span class="bw" style="width:${(g.p_white_win * 100).toFixed(1)}%"></span>
+            <span class="bd" style="width:${(g.p_draw * 100).toFixed(1)}%"></span>
+            <span class="bb" style="width:${(g.p_black_win * 100).toFixed(1)}%"></span>
+          </div>`;
+        el.list.appendChild(r);
+      });
+    }
+  }
+
+  function toggleStanding(idx, p, row) {
+    const existing = el.list.querySelector(".panel");
+    if (existing) existing.remove();
+    el.list.querySelectorAll(".row.sel").forEach((r) => r.classList.remove("sel"));
+    if (state.openIdx === idx) { state.openIdx = null; return; }
+    state.openIdx = idx;
+    row.classList.add("sel");
+
+    const dist = p.rank_distribution || [];
+    const maxV = Math.max.apply(null, dist.concat([0.0001]));
+    const cols = dist.map((v, i) => `
+      <div class="col${i === 0 ? " hot" : ""}" title="${pct(v)}">
+        <div class="bar"><i style="height:${Math.max(2, (v / maxV) * 100).toFixed(1)}%"></i></div>
+        <div class="k">${i + 1}</div>
+      </div>`).join("");
+
+    const panel = document.createElement("div");
+    panel.className = "panel";
+    panel.innerHTML = `
+      <div class="top">
+        <div class="big">${esc(p.name)} <small>${pct(p.p_champion)}</small></div>
+        <div class="chips">
+          <span class="chip">现积分<b>${num(p.current_points, 1)}</b></span>
+          <span class="chip">索伯分<b>${num(p.current_sb, 2)}</b></span>
+          <span class="chip">余局<b>${p.games_remaining}</b></span>
+          <span class="chip">期望名次<b>${num(p.expected_rank, 2)}</b></span>
+        </div>
+      </div>
+      <div class="dist">${cols}</div>`;
+    row.insertAdjacentElement("afterend", panel);
+  }
+
   el.event.addEventListener("change", () => {
-    state.tour = state.tours.find((t) => t.id === el.event.value) || null;
-    syncRounds();
+    if (state.project.mode === "championship") {
+      state.current = state.items.find((t) => t.tour_id === el.event.value) || null;
+      renderChampionship();
+    } else {
+      state.current = state.items.find((t) => t.id === el.event.value) || null;
+      syncRounds();
+    }
   });
   el.round.addEventListener("change", () => {
-    const rounds = (state.tour && state.tour.rounds) || [];
+    const rounds = (state.current && state.current.rounds) || [];
     state.round = rounds.find((r) => r.round_id === el.round.value) || null;
-    loadMatches();
+    renderMatches();
   });
 
   renderTabs();

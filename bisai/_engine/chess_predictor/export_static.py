@@ -1,4 +1,4 @@
-"""Export pre-computed recent & finished tournament schedules to static JSON."""
+"""Export DB-backed schedule snapshots and FIDE Round-Robin championship JSON."""
 
 from __future__ import annotations
 
@@ -7,13 +7,15 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from .data_loader import normalize_result
+from .data_loader import normalize_player_name, normalize_result
+from .database import ChessDatabase
 from .predictor import ChessPreMatchPredictor
-from .schedule import fetch_recent_schedule
+from .round_robin import simulate_fide_round_robin
+from .schedule import fetch_recent_schedule, fetch_single_round_robin_tours
 
 
 def _pair_key(g: Dict[str, Any]) -> Tuple[str, str]:
-    return (str(g.get("white") or "").strip(), str(g.get("black") or "").strip())
+    return (normalize_player_name(g.get("white", "")), normalize_player_name(g.get("black", "")))
 
 
 def build_schedule_snapshot(
@@ -21,13 +23,18 @@ def build_schedule_snapshot(
     limit: int = 16,
     events: Optional[List[Dict[str, Any]]] = None,
     previous_events: Optional[List[Dict[str, Any]]] = None,
-    max_finished_history: int = 30,
+    db: Optional[ChessDatabase] = None,
+    max_finished_history: int = 25,
 ) -> Dict[str, Any]:
     """
-    Attach pre-match predictions to recent/upcoming/finished tournament rounds,
-    preserving finished rounds and original pre-match predictions across runs.
+    Combine live active/upcoming rounds (with locked pre-match predictions) and
+    finished rounds read strictly from ChessDatabase.
     """
     raw_events = events if events is not None else fetch_recent_schedule(limit=limit, with_pairings=True)
+
+    # Sync live events into DB & lock pre-match predictions before kickoff/completion
+    if db is not None and raw_events:
+        db.sync_events_and_lock_predictions(raw_events, predictor)
 
     prev_by_round: Dict[str, Dict[str, Any]] = {}
     for pev in previous_events or []:
@@ -35,28 +42,39 @@ def build_schedule_snapshot(
         if rid and (pev.get("pairings") or []):
             prev_by_round[rid] = pev
 
-    merged_by_round: Dict[str, Dict[str, Any]] = {}
+    active_events: List[Dict[str, Any]] = []
+    seen_round_ids = set()
 
     for ev in raw_events:
         rid = str(ev.get("round_id") or ev.get("round_name") or "")
         tc = str(ev.get("time_control") or "classical")
+        pairings = ev.get("pairings") or []
+        if not pairings:
+            continue
+
+        all_done = all(normalize_result(g.get("status")) is not None for g in pairings)
+        if all_done and db is not None:
+            # Finished rounds will be served directly from the database below
+            continue
+
         prev_ev = prev_by_round.get(rid)
-        prev_pred_map: Dict[Tuple[str, str], Dict[str, Any]] = {}
-        if prev_ev:
-            for pg in prev_ev.get("pairings") or []:
-                if pg.get("prediction"):
-                    prev_pred_map[_pair_key(pg)] = pg["prediction"]
+        prev_pred_map = (
+            {_pair_key(pg): pg["prediction"] for pg in (prev_ev.get("pairings") or []) if pg.get("prediction")}
+            if prev_ev
+            else {}
+        )
 
         out_pairings: List[Dict[str, Any]] = []
-        for g in ev.get("pairings") or []:
+        for g in pairings:
             w, b = _pair_key(g)
             if not w or not b:
                 continue
-            is_finished_game = normalize_result(g.get("status")) is not None
-            # Keep original pre-match prediction if game has finished since prior snapshot
-            if is_finished_game and (w, b) in prev_pred_map:
+            pred_dict = None
+            if db is not None:
+                pred_dict = db.get_locked_prediction(rid, w, b)
+            if pred_dict is None and (w, b) in prev_pred_map and normalize_result(g.get("status")) is not None:
                 pred_dict = prev_pred_map[(w, b)]
-            else:
+            if pred_dict is None:
                 pred_dict = predictor.predict(
                     white=w,
                     black=b,
@@ -69,41 +87,25 @@ def build_schedule_snapshot(
         if not out_pairings:
             continue
         ev_copy = {k: v for k, v in ev.items() if k != "pairings"}
+        ev_copy["pairings"] = out_pairings
         if all(normalize_result(g.get("status")) is not None for g in out_pairings):
             ev_copy["status"] = "finished"
-        ev_copy["pairings"] = out_pairings
-        merged_by_round[rid] = ev_copy
+        active_events.append(ev_copy)
+        seen_round_ids.add(rid)
 
-    # Retain previous rounds (especially finished ones) that rotated out of the live feed
-    retained_finished: List[Dict[str, Any]] = []
-    for rid, pev in prev_by_round.items():
-        if rid in merged_by_round:
-            continue
-        p_copy = dict(pev)
-        # If an older ongoing/upcoming round rotated out without live update, keep it as finished if results exist
-        if any(normalize_result(g.get("status")) is not None for g in p_copy.get("pairings") or []):
-            if all(normalize_result(g.get("status")) is not None for g in p_copy.get("pairings") or []):
-                p_copy["status"] = "finished"
-            retained_finished.append(p_copy)
-        elif p_copy.get("status") == "finished":
-            retained_finished.append(p_copy)
+    # Read finished rounds directly from SQLite database (with locked pre-match predictions)
+    finished_events: List[Dict[str, Any]] = []
+    if db is not None:
+        for fr in db.get_finished_rounds(predictor, limit=max_finished_history):
+            if str(fr.get("round_id") or "") not in seen_round_ids:
+                finished_events.append(fr)
+    else:
+        for pev in previous_events or []:
+            rid = str(pev.get("round_id") or "")
+            if rid not in seen_round_ids and pev.get("status") == "finished":
+                finished_events.append(pev)
 
-    all_events = list(merged_by_round.values()) + retained_finished
-    active_list = [e for e in all_events if e.get("status") in {"ongoing", "upcoming"}]
-    finished_list = [e for e in all_events if e.get("status") == "finished"]
-
-    active_list.sort(
-        key=lambda e: (
-            0 if e.get("status") == "ongoing" else 1,
-            -int(e.get("tier") or 0),
-            int(e.get("starts_at_ms") or 0) if e.get("status") == "upcoming" else -int(e.get("starts_at_ms") or 0),
-        )
-    )
-    finished_list.sort(
-        key=lambda e: (-int(e.get("starts_at_ms") or 0), -int(e.get("tier") or 0))
-    )
-
-    final_events = active_list + finished_list[:max_finished_history]
+    final_events = active_events + finished_events[:max_finished_history]
 
     return {
         "generated_at": dt.datetime.now(tz=dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -116,29 +118,69 @@ def build_schedule_snapshot(
     }
 
 
+def build_round_robin_snapshot(
+    predictor: ChessPreMatchPredictor,
+    db: Optional[ChessDatabase] = None,
+    max_tours: int = 6,
+    n_sims: int = 5000,
+) -> Dict[str, Any]:
+    """Simulate active/recent FIDE Single Round-Robin tournaments and save to DB."""
+    tours_with_rounds = fetch_single_round_robin_tours(max_tours=max_tours)
+    rr_list: List[Dict[str, Any]] = []
+
+    for tour, rounds_out in tours_with_rounds:
+        if db is not None:
+            db.sync_events_and_lock_predictions(rounds_out, predictor)
+
+        locked_map: Dict[Tuple[str, str, str], Dict[str, Any]] = {}
+        if db is not None:
+            for rd in rounds_out:
+                rid = str(rd.get("round_id") or "")
+                for g in rd.get("pairings") or []:
+                    w, b = _pair_key(g)
+                    pr = db.get_locked_prediction(rid, w, b)
+                    if pr is not None:
+                        locked_map[(rid, w, b)] = pr
+
+        sim = simulate_fide_round_robin(
+            tour=tour,
+            rounds_data=rounds_out,
+            predictor=predictor,
+            locked_predictions=locked_map,
+            n_sims=n_sims,
+        )
+        if sim is None:
+            continue
+        rr_list.append(sim)
+        if db is not None:
+            db.save_rr_snapshot(
+                tour_id=str(tour["tour_id"]),
+                tour_name=str(tour["tour_name"]),
+                tour_format=str(tour["format"]),
+                as_of_round=f"{sim['rounds_played']}/{sim['total_rounds']}",
+                snapshot=sim,
+            )
+
+    return {
+        "generated_at": dt.datetime.now(tz=dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "tournaments": rr_list,
+    }
+
+
 def export_schedule_json(
     model_path: Union[str, Path],
     output_path: Union[str, Path],
     limit: int = 16,
+    db_path: Optional[Union[str, Path]] = None,
 ) -> Path:
-    """Load local predictor artifact and write static schedule+prediction JSON."""
+    """Load local predictor artifact, sync DB, and write static schedule+prediction JSON."""
     mpath = Path(model_path)
     out = Path(output_path)
     predictor = ChessPreMatchPredictor.load(mpath) if mpath.exists() else ChessPreMatchPredictor()
+    db = ChessDatabase(db_path) if db_path is not None else None
 
-    previous_events: List[Dict[str, Any]] = []
-    if out.exists():
-        try:
-            previous_events = json.loads(out.read_text(encoding="utf-8")).get("events", [])
-        except Exception:
-            previous_events = []
-
-    snapshot = build_schedule_snapshot(
-        predictor,
-        limit=limit,
-        previous_events=previous_events,
-    )
-    if not snapshot["events"] and previous_events:
+    snapshot = build_schedule_snapshot(predictor, limit=limit, db=db)
+    if not snapshot["events"] and out.exists():
         return out
 
     out.parent.mkdir(parents=True, exist_ok=True)
