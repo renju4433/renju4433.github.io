@@ -386,6 +386,9 @@
     display: grid; grid-template-columns: 30px minmax(0, 1fr) 54px 48px 64px 54px 56px;
     gap: 8px; padding: 10px 14px; align-items: center;
   }
+  .rr-head.fb, .rr-row.fb {
+    grid-template-columns: 30px minmax(0, 1fr) 56px 52px 52px 68px;
+  }
   .rr-head {
     background: var(--surface); border-bottom: 1px solid var(--line);
     font-size: 11px; color: var(--muted); font-weight: 600;
@@ -588,6 +591,9 @@
       grid-template-columns: 20px minmax(0, 1fr) 38px 54px 48px;
       gap: 6px; padding: 10px; font-size: 13px;
     }
+    .rr-head.fb, .rr-row.fb {
+      grid-template-columns: 20px minmax(0, 1fr) 42px 40px 56px;
+    }
     .rr-head span:nth-child(3), .rr-head span:nth-child(7),
     .rr-row > span:nth-child(3), .rr-row > span:nth-child(7) {
       display: none;
@@ -670,9 +676,10 @@
     return { day, time, full: `${day} ${time}` };
   }
 
-  function badgeClass(p, oppP) {
-    if (p >= 0.58) return "hi";
-    if (p >= oppP && p >= 0.35) return "mid";
+  function badgeClass(p, pw, pd, pb) {
+    const mx = Math.max(pw, pd, pb);
+    if (p > 0.50 && p >= mx - 1e-9) return "hi";
+    if (p >= mx - 1e-9 && p > 0) return "mid";
     return "lo";
   }
 
@@ -891,23 +898,23 @@
           <div class="side">
             <div class="pname${wWin ? " win" : ""}">
               <span class="txt">${esc(g.white)}</span>
-              ${g.white_elo ? `<span class="elo-tag">#${g.white_elo}</span>` : ""}
+              ${g.white_elo ? `<span class="elo-tag">${g.white_elo}</span>` : ""}
             </div>
-            <span class="badge ${badgeClass(pw, pb)}">${pct(pw)}</span>
+            <span class="badge ${badgeClass(pw, pw, pd, pb)}">${pct(pw)}</span>
           </div>
           <div class="center-box">
             ${done
               ? `<div class="main-val">${esc(g.status)}${hs ? `<span class="hit-tag ${hs.cls}">${hs.txt}</span>` : ""}</div>`
               : `<div class="sub-val">${esc(it.dt.day)}</div><div class="main-val">${esc(it.dt.time)}</div>`
             }
-            ${pr ? `<span class="draw-pill${drawHot ? " hot" : ""}">和 ${pct(pd)}</span>` : ""}
+            ${pr ? `<span class="badge ${badgeClass(pd, pw, pd, pb)}" style="margin-top:4px;font-size:11px;">和 ${pct(pd)}</span>` : ""}
           </div>
           <div class="side right">
             <div class="pname${bWin ? " win" : ""}">
               <span class="txt">${esc(g.black)}</span>
-              ${g.black_elo ? `<span class="elo-tag">#${g.black_elo}</span>` : ""}
+              ${g.black_elo ? `<span class="elo-tag">${g.black_elo}</span>` : ""}
             </div>
-            <span class="badge ${badgeClass(pb, pw)}">${pct(pb)}</span>
+            <span class="badge ${badgeClass(pb, pw, pd, pb)}">${pct(pb)}</span>
           </div>
         </div>
       </div>`;
@@ -947,7 +954,7 @@
     const hasChamp = Boolean(tourObj && tourObj.champ);
 
     const bestOutcome = pw >= pb && pw >= pd ? "w" : (pb >= pw && pb >= pd ? "b" : "d");
-    const boxCls = (role, p) => (bestOutcome === role ? (p >= 0.58 ? "hi" : "mid") : "");
+    const boxCls = (role, p) => (bestOutcome === role ? (p > 0.50 ? "hi" : "mid") : "");
 
     let html = `
       <div class="crumb-row">
@@ -965,7 +972,7 @@
             <div class="hero-pname">${esc(g.white)}</div>
             <div class="hero-psub">
               ${g.white_title ? `<span class="elo-tag">${esc(g.white_title)}</span>` : ""}
-              ${g.white_elo ? `<span>#${g.white_elo}</span>` : ""}
+              ${g.white_elo ? `<span>${g.white_elo}</span>` : ""}
               <span>执白</span>
             </div>
           </div>
@@ -979,7 +986,7 @@
             <div class="hero-pname">${esc(g.black)}</div>
             <div class="hero-psub">
               <span>执黑</span>
-              ${g.black_elo ? `<span>#${g.black_elo}</span>` : ""}
+              ${g.black_elo ? `<span>${g.black_elo}</span>` : ""}
               ${g.black_title ? `<span class="elo-tag">${esc(g.black_title)}</span>` : ""}
             </div>
           </div>
@@ -1081,11 +1088,11 @@
               <span style="color:var(--muted)">${p.predicted_rank}</span>
               <div class="rr-name-cell">
                 <span class="nm">${esc(p.name)}</span>
-                <span class="rr-sub-mob">#${p.elo} · 期望 ${num(p.expected_points, 2)}</span>
+                <span class="rr-sub-mob">${p.elo} · 期望 ${num(p.expected_points, 2)}</span>
               </div>
               <span style="color:var(--muted)">${p.elo}</span>
               <span>${num(p.current_points, 1)}</span>
-              <span><span class="badge ${p.p_champion >= 0.4 ? "hi" : (p.p_champion >= 0.15 ? "mid" : "lo")}">${pct1(p.p_champion)}</span></span>
+              <span><span class="badge ${p.p_champion > 0.50 ? "hi" : (idx === 0 ? "mid" : "lo")}">${pct1(p.p_champion)}</span></span>
               <span style="color:var(--muted)">${pct1(p.p_top3)}</span>
               <span style="color:var(--muted)">${num(p.expected_points, 2)}</span>
             </div>`;
@@ -1117,23 +1124,21 @@
         } else {
           html += `
             <div class="rr-card">
-              <div class="rr-head">
-                <span>#</span><span>棋手</span><span>等级分</span><span>积分</span><span>已赛</span><span>胜/和/负</span><span>胜率</span>
+              <div class="rr-head fb">
+                <span>#</span><span>棋手</span><span>等级分</span><span>积分</span><span>已赛</span><span>胜/和/负</span>
               </div>`;
           rows.forEach((p, i) => {
-            const wr = p.played ? pct(p.pts / p.played) : "—";
             html += `
-              <div class="rr-row static">
+              <div class="rr-row fb static">
                 <span style="color:var(--muted)">${i + 1}</span>
                 <div class="rr-name-cell">
                   <span class="nm">${esc(p.name)}</span>
-                  <span class="rr-sub-mob">#${p.elo || "—"} · ${p.w}/${p.d}/${p.l}</span>
+                  <span class="rr-sub-mob">${p.elo || "—"}</span>
                 </div>
                 <span style="color:var(--muted)">${p.elo || "—"}</span>
                 <span><b>${num(p.pts, 1)}</b></span>
                 <span style="color:var(--muted)">${p.played}</span>
                 <span style="color:var(--muted)">${p.w}/${p.d}/${p.l}</span>
-                <span style="color:var(--muted)">${wr}</span>
               </div>`;
           });
           html += `</div>`;
@@ -1350,11 +1355,11 @@
             </div>
             <div class="frow">
               <span class="fn${wWin ? " win" : ""}">${esc(g.white)}</span>
-              <span class="badge ${badgeClass(pw, pb)}">${pct(pw)}</span>
+              <span class="badge ${badgeClass(pw, pw, pd, pb)}">${pct(pw)}</span>
             </div>
             <div class="frow">
               <span class="fn${bWin ? " win" : ""}">${esc(g.black)}</span>
-              <span class="badge ${badgeClass(pb, pw)}">${pct(pb)}</span>
+              <span class="badge ${badgeClass(pb, pw, pd, pb)}">${pct(pb)}</span>
             </div>
           </div>`;
       });
@@ -1368,14 +1373,17 @@
       topConf.forEach((it) => {
         const g = it.game;
         const pr = g.prediction || {};
-        const wFav = (pr.p_white_win || 0) >= (pr.p_black_win || 0);
+        const pw = pr.p_white_win || 0;
+        const pd = pr.p_draw || 0;
+        const pb = pr.p_black_win || 0;
+        const wFav = pw >= pb;
         html += `
           <div class="conf-row" data-match="${esc(it.key)}">
             <div class="conf-names">
               ${wFav ? `<b>${esc(g.white)}</b>` : esc(g.white)} – ${!wFav ? `<b>${esc(g.black)}</b>` : esc(g.black)}
             </div>
             <span class="conf-meta">${esc(it.round.tour_name.split("|")[0].trim())} · ${esc(it.dt.full)}</span>
-            <span class="badge ${it.favP >= 0.58 ? "hi" : "mid"}">${pct(it.favP)}</span>
+            <span class="badge ${it.favP > 0.50 ? "hi" : "mid"}">${pct(it.favP)}</span>
           </div>`;
       });
       html += `</div>`;
