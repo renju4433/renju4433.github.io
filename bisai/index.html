@@ -464,8 +464,9 @@
     border-radius: 4px; font-weight: 700; font-size: 11px;
   }
 
-  /* ---------- Right Sidebar ---------- */
+  /* ---------- Accuracy View & Right Sidebar ---------- */
   aside { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .stat-triple { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 18px; }
   .stat-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .stat-box {
     background: var(--surface); border: 1px solid var(--line);
@@ -475,7 +476,20 @@
   .stat-box .big { font-size: 24px; font-weight: 700; margin: 2px 0; }
   .stat-box .sub { font-size: 11px; color: var(--muted); }
 
-  .side-block h3 { font-size: 13px; font-weight: 600; color: var(--muted); margin: 0 0 6px; }
+  .acc-row {
+    display: grid; grid-template-columns: 24px minmax(0, 1fr) auto auto;
+    align-items: center; gap: 10px; min-height: 44px; padding: 8px 2px;
+    border-bottom: 1px solid var(--line); cursor: pointer; font-size: 13px;
+  }
+  .acc-row:hover { background: var(--surface); }
+  .acc-row:last-child { border-bottom: 0; }
+  .acc-row .rk { color: var(--muted); font-size: 12px; text-align: center; }
+  .acc-row .tn { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .acc-row .cnt { color: var(--muted); font-size: 12px; white-space: nowrap; }
+  .acc-row .rate { font-weight: 700; font-size: 13px; white-space: nowrap; }
+
+  .side-block { margin-bottom: 18px; }
+  .side-block h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 8px; }
   .side-item { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
   .side-item:last-child { border-bottom: 0; }
   .side-match {
@@ -529,8 +543,8 @@
     .shell { padding: 14px 14px 48px; gap: 22px; }
     .ctrl-row { justify-content: space-between; margin-bottom: 14px; }
     .ctrl-center { margin-bottom: 14px; }
-    .seg button { min-height: 38px; padding: 6px 16px; font-size: 13px; }
-    .picker-btn { max-width: 52%; padding: 6px 10px; font-size: 12px; }
+    .seg button { min-height: 38px; padding: 6px 13px; font-size: 13px; }
+    .picker-btn { max-width: 44%; padding: 6px 10px; font-size: 12px; }
     .nav-tabs { gap: 18px; }
     .nav-tabs button { min-height: 44px; padding: 10px 2px; }
 
@@ -580,6 +594,8 @@
     }
     .rr-sub-mob { display: block; margin-top: 2px; }
 
+    .stat-triple { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stat-triple .stat-box:last-child { grid-column: 1 / -1; }
     .stat-box { padding: 10px 12px; }
     .stat-box .big { font-size: 21px; }
     .league-item { padding: 8px 0; min-height: 38px; border-bottom: 1px solid var(--line); }
@@ -664,11 +680,13 @@
     const st = game.status;
     const pr = game.prediction;
     if (!isDone(st) || !pr) return null;
+    const actual = st === "1-0" ? "W" : (st === "0-1" ? "B" : "D");
     const pw = pr.p_white_win || 0;
+    const pd = pr.p_draw || 0;
     const pb = pr.p_black_win || 0;
-    const pick = pw >= pb ? "1-0" : "0-1";
-    if (st === "1/2-1/2" || st === "½-½") return { cls: "neu", txt: "和" };
-    return st === pick ? { cls: "ok", txt: "✓" } : { cls: "bad", txt: "×" };
+    const pred = (pd >= pw && pd >= pb) ? "D" : (pw >= pb ? "W" : "B");
+    if (actual === pred) return { cls: "ok", txt: "✓" };
+    return actual === "D" ? { cls: "neu", txt: "和" } : { cls: "bad", txt: "×" };
   }
 
   /* ---------------- 可扩展项目注册表 ---------------- */
@@ -696,6 +714,7 @@
     let target = "";
     if (state.matchKey) target = `#match=${encodeURIComponent(state.matchKey)}`;
     else if (state.tourId) target = `#tour=${encodeURIComponent(state.tourId)}`;
+    else if (state.subView === "accuracy") target = "#stats";
     const nextUrl = target || (location.pathname + location.search);
     if (location.hash !== target) {
       if (push) history.pushState(null, "", nextUrl);
@@ -711,6 +730,10 @@
       state.matchKey = null;
       state.tourId = decodeURIComponent(h.slice(6));
       state.tourSubView = "standings";
+    } else if (h === "#stats") {
+      state.matchKey = null;
+      state.tourId = null;
+      state.subView = "accuracy";
     } else {
       state.matchKey = null;
       state.tourId = null;
@@ -834,6 +857,7 @@
         state.project = p;
         state.tourId = null;
         state.matchKey = null;
+        state.subView = "schedule";
         state.limitShow = 15;
         syncHash();
         renderTabs();
@@ -1150,27 +1174,145 @@
     bindCardClicks(el.main);
   }
 
-  function renderAllMatchesView() {
-    const q = state.query.trim().toLowerCase();
-    const sum = (state.data && state.data.summary) || {};
-    const wantFinished = state.subView === "results";
+  function renderControlsHTML() {
     const tourCount = state.tourMap.size;
-
-    let html = `
+    return `
       <div class="ctrl-row">
         <div class="seg" id="viewSeg">
-          <button data-sub="schedule" class="${!wantFinished ? "on" : ""}">赛程</button>
-          <button data-sub="results" class="${wantFinished ? "on" : ""}">赛果</button>
+          <button data-sub="schedule" class="${state.subView === "schedule" ? "on" : ""}">赛程</button>
+          <button data-sub="results" class="${state.subView === "results" ? "on" : ""}">赛果</button>
+          <button data-sub="accuracy" class="${state.subView === "accuracy" ? "on" : ""}">准确度</button>
         </div>
         <button class="picker-btn" id="openTourPickerBtn">
           <span class="lbl">全部赛事 (${tourCount})</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
         </button>
       </div>`;
+  }
 
-    if (wantFinished && sum.accuracy != null) {
-      html += `<div class="res-summary">模型战绩：预测正确率 <b>${pct(sum.accuracy)}</b> · 高把握为 <b>${pct(sum.confident_accuracy)}</b></div>`;
+  function renderAccuracyView() {
+    const d = state.data || {};
+    const m = d.model || {};
+    const sum = d.summary || {};
+
+    const confAcc = sum.confident_accuracy != null ? pct(sum.confident_accuracy) : "—";
+    const allAcc = sum.accuracy != null ? pct(sum.accuracy) : "—";
+
+    let html = renderControlsHTML() + `
+      <div class="stat-triple">
+        <div class="stat-box">
+          <div class="lbl">高把握命中</div>
+          <div class="big">${confAcc}</div>
+          <div class="sub">${sum.confident_hits || 0} / ${sum.confident_total || 0} 局</div>
+        </div>
+        <div class="stat-box">
+          <div class="lbl">全部预测准确率</div>
+          <div class="big">${allAcc}</div>
+          <div class="sub">${sum.hits || 0} / ${sum.total_finished || 0} 局</div>
+        </div>
+        <div class="stat-box">
+          <div class="lbl">库内档案</div>
+          <div class="big">${(m.n_games || 0).toLocaleString()}</div>
+          <div class="sub">${(m.n_players || 0).toLocaleString()} 名棋手${m.date_max ? ` · ${esc(m.date_max)}` : ""}</div>
+        </div>
+      </div>`;
+
+    // 分赛事准确率统计（从已完赛记录汇总）
+    const byTour = [];
+    state.tourMap.forEach((t) => {
+      let tot = 0, ok = 0;
+      t.rounds.forEach((r) => {
+        (r.pairings || []).forEach((g) => {
+          const hs = hitState(g);
+          if (!hs) return;
+          tot += 1;
+          if (hs.cls === "ok") ok += 1;
+        });
+      });
+      if (tot >= 3) byTour.push({ tour_id: t.tour_id, name: t.short_name, ok, tot, rate: ok / tot });
+    });
+    byTour.sort((a, b) => (b.rate - a.rate) || (b.tot - a.tot));
+
+    if (byTour.length) {
+      html += `<div class="side-block"><h3>分赛事准确率</h3><div class="side-card" style="padding:6px 14px;">`;
+      byTour.slice(0, 12).forEach((row, i) => {
+        html += `
+          <div class="acc-row" data-tid="${esc(row.tour_id)}">
+            <span class="rk">${i + 1}</span>
+            <span class="tn">${esc(row.name)}</span>
+            <span class="cnt">${row.ok}/${row.tot}</span>
+            <span class="rate" style="color:${row.rate >= 0.6 ? "var(--green)" : "var(--text)"}">${pct(row.rate)}</span>
+          </div>`;
+      });
+      html += `</div></div>`;
     }
+
+    const hits = sum.recent_hits || [];
+    if (hits.length) {
+      html += `<div class="side-block"><h3>命中的预测</h3><div class="side-card" style="padding:6px 14px;">`;
+      hits.slice(0, state.hitsLimit).forEach((h) => {
+        html += `
+          <div class="side-item">
+            <div class="side-match">
+              <span>${esc(h.white)}</span>
+              <span>${esc(h.status)}</span>
+              <span>${esc(h.black)}</span>
+            </div>
+            <div class="side-sub">
+              <span>${esc(h.tour_name)}</span>
+              <span style="color:var(--green);font-weight:600">${esc(h.pick)} ${pct(h.prob)}</span>
+            </div>
+          </div>`;
+      });
+      if (hits.length > state.hitsLimit) {
+        html += `<button class="side-more" id="moreHitsBtn">再显示${hits.length - state.hitsLimit}条</button>`;
+      }
+      html += `</div></div>`;
+    }
+
+    const misses = sum.recent_misses || [];
+    if (misses.length) {
+      html += `<div class="side-block"><h3>最有把握却失误的预测</h3><div class="side-card" style="padding:6px 14px;">`;
+      misses.slice(0, state.missesLimit).forEach((ms) => {
+        html += `
+          <div class="side-item">
+            <div class="side-match">
+              <span>${esc(ms.white)}</span>
+              <span>${esc(ms.status)}</span>
+              <span>${esc(ms.black)}</span>
+            </div>
+            <div class="side-sub">
+              <span>${esc(ms.tour_name)}</span>
+              <span style="color:var(--red);font-weight:600">${esc(ms.pick)} ${pct(ms.prob)}</span>
+            </div>
+          </div>`;
+      });
+      if (misses.length > state.missesLimit) {
+        html += `<button class="side-more" id="moreMissesBtn">再显示${misses.length - state.missesLimit}条</button>`;
+      }
+      html += `</div></div>`;
+    }
+
+    el.main.innerHTML = html;
+    bindTopControls();
+    el.main.querySelectorAll(".acc-row").forEach((r) => {
+      r.addEventListener("click", () => openTournament(r.dataset.tid));
+    });
+    const mh = $("moreHitsBtn");
+    if (mh) mh.addEventListener("click", () => { state.hitsLimit += 8; renderAccuracyView(); });
+    const mm = $("moreMissesBtn");
+    if (mm) mm.addEventListener("click", () => { state.missesLimit += 8; renderAccuracyView(); });
+  }
+
+  function renderAllMatchesView() {
+    if (state.subView === "accuracy") {
+      renderAccuracyView();
+      return;
+    }
+    const q = state.query.trim().toLowerCase();
+    const wantFinished = state.subView === "results";
+
+    let html = renderControlsHTML();
 
     const flat = [];
     state.matchIndex.forEach((it) => {
@@ -1267,6 +1409,7 @@
         if (state.subView === btn.dataset.sub) return;
         state.subView = btn.dataset.sub;
         state.limitShow = 15;
+        syncHash(true);
         renderAllMatchesView();
       });
     });
@@ -1334,73 +1477,7 @@
   }
 
   function renderSidebar() {
-    const d = state.data || {};
-    const m = d.model || {};
-    const sum = d.summary || {};
-
-    const confAcc = sum.confident_accuracy != null ? pct(sum.confident_accuracy) : "—";
-    const allAcc = sum.accuracy != null ? pct(sum.accuracy) : "—";
-
-    let html = `
-      <div class="stat-pair">
-        <div class="stat-box">
-          <div class="lbl">高把握命中</div>
-          <div class="big">${confAcc}</div>
-          <div class="sub">${sum.confident_hits || 0}/${sum.confident_total || 0} · 全部 ${allAcc}</div>
-        </div>
-        <div class="stat-box">
-          <div class="lbl">库内档案</div>
-          <div class="big">${(m.n_games || 0).toLocaleString()}</div>
-          <div class="sub">${(m.n_players || 0).toLocaleString()} 名棋手</div>
-        </div>
-      </div>`;
-
-    const hits = sum.recent_hits || [];
-    if (hits.length) {
-      html += `<div class="side-block"><h3>命中的预测</h3>`;
-      hits.slice(0, state.hitsLimit).forEach((h) => {
-        html += `
-          <div class="side-item">
-            <div class="side-match">
-              <span>${esc(h.white)}</span>
-              <span>${esc(h.status)}</span>
-              <span>${esc(h.black)}</span>
-            </div>
-            <div class="side-sub">
-              <span>${esc(h.tour_name)}</span>
-              <span>${esc(h.pick)} ${pct(h.prob)}</span>
-            </div>
-          </div>`;
-      });
-      if (hits.length > state.hitsLimit) {
-        html += `<button class="side-more" id="moreHitsBtn">再显示${hits.length - state.hitsLimit}条</button>`;
-      }
-      html += `</div>`;
-    }
-
-    const misses = sum.recent_misses || [];
-    if (misses.length) {
-      html += `<div class="side-block"><h3>最有把握却失误的预测</h3>`;
-      misses.slice(0, state.missesLimit).forEach((ms) => {
-        html += `
-          <div class="side-item">
-            <div class="side-match">
-              <span>${esc(ms.white)}</span>
-              <span>${esc(ms.status)}</span>
-              <span>${esc(ms.black)}</span>
-            </div>
-            <div class="side-sub">
-              <span>${esc(ms.tour_name)}</span>
-              <span style="color:var(--red)">${esc(ms.pick)} ${pct(ms.prob)}</span>
-            </div>
-          </div>`;
-      });
-      if (misses.length > state.missesLimit) {
-        html += `<button class="side-more" id="moreMissesBtn">再显示${misses.length - state.missesLimit}条</button>`;
-      }
-      html += `</div>`;
-    }
-
+    let html = "";
     if (state.tourMap.size) {
       html += `<div class="side-card"><h3>赛季进行中的赛事</h3><div class="league-grid">`;
       state.tourMap.forEach((t) => {
@@ -1415,11 +1492,6 @@
 
     el.side.innerHTML = html;
 
-    const mh = $("moreHitsBtn");
-    if (mh) mh.addEventListener("click", () => { state.hitsLimit += 8; renderSidebar(); });
-    const mm = $("moreMissesBtn");
-    if (mm) mm.addEventListener("click", () => { state.missesLimit += 8; renderSidebar(); });
-
     el.side.querySelectorAll(".league-item").forEach((lr) => {
       lr.addEventListener("click", () => openTournament(lr.dataset.tid));
     });
@@ -1433,6 +1505,7 @@
   el.brand.addEventListener("click", () => {
     state.tourId = null;
     state.matchKey = null;
+    state.subView = "schedule";
     state.query = "";
     el.search.value = "";
     state.limitShow = 15;
@@ -1447,6 +1520,7 @@
   });
   el.search.addEventListener("input", () => {
     state.query = el.search.value;
+    if (state.subView === "accuracy" && state.query.trim()) state.subView = "schedule";
     if (!state.matchKey && !state.tourId) renderAllMatchesView();
   });
 
