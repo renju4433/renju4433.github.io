@@ -955,7 +955,7 @@
           </div>
           <div class="center-box">
             ${done
-              ? `<div class="main-val">${esc(g.status)}${hs ? `<span class="hit-tag ${hs.cls}">${hs.txt}</span>` : ""}</div>`
+              ? `${it.dt.day !== "—" ? `<div class="sub-val">${esc(it.dt.full)}</div>` : ""}<div class="main-val">${esc(g.status)}${hs ? `<span class="hit-tag ${hs.cls}">${hs.txt}</span>` : ""}</div>`
               : (it.isSyntheticRR
                 ? `<div class="main-val">vs</div>`
                 : `<div class="sub-val">${esc(it.dt.day)}</div><div class="main-val">${esc(it.dt.time)}</div>`)
