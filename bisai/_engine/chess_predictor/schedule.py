@@ -79,12 +79,13 @@ def _fetch_round_pairings(round_id: str) -> List[Dict[str, Any]]:
 
 
 def fetch_recent_schedule(
-    limit: int = 12,
+    limit: int = 16,
     with_pairings: bool = True,
-    max_pairing_rounds: int = 12,
+    max_pairing_rounds: int = 16,
+    include_finished: int = 8,
 ) -> List[Dict[str, Any]]:
     """
-    Return recent, ongoing, and upcoming official tournament schedules from Lichess Broadcasts.
+    Return recent, ongoing, upcoming, and finished official tournament schedules from Lichess Broadcasts.
     """
     cache_key = (limit, with_pairings)
     now = time.time()
@@ -102,7 +103,6 @@ def fetch_recent_schedule(
     except Exception:
         raw_entries = []
 
-    # Prioritize higher-tier and active/upcoming events
     for entry in raw_entries:
         tour = entry.get("tour") or {}
         rnd = entry.get("round") or {}
@@ -133,7 +133,6 @@ def fetch_recent_schedule(
             }
         )
 
-    # Sort: ongoing first, then upcoming (nearest start time), then finished (latest first), weighted by tier
     def sort_key(it: Dict[str, Any]) -> Tuple[int, int, int]:
         st_rank = {"ongoing": 0, "upcoming": 1, "finished": 2}.get(it["status"], 3)
         tier_rank = -int(it["tier"])
@@ -142,7 +141,20 @@ def fetch_recent_schedule(
         return (st_rank, tier_rank, ts_rank)
 
     items.sort(key=sort_key)
-    selected = items[:limit]
+
+    # Guarantee a balanced mix of active/upcoming and recently finished rounds
+    active_items = [it for it in items if it["status"] in {"ongoing", "upcoming"}]
+    finished_items = [it for it in items if it["status"] == "finished"]
+    n_fin = min(len(finished_items), include_finished)
+    n_act = max(0, limit - n_fin)
+    selected = active_items[:n_act] + finished_items[:n_fin]
+    if len(selected) < limit:
+        used = {it["round_id"] for it in selected}
+        for it in items:
+            if it["round_id"] not in used:
+                selected.append(it)
+            if len(selected) >= limit:
+                break
 
     if with_pairings and selected:
         targets = selected[:max_pairing_rounds]
@@ -151,6 +163,8 @@ def fetch_recent_schedule(
         for it, pairings in zip(targets, pair_list):
             if pairings:
                 it["pairings"] = pairings
+                if all(str(g.get("status") or "*") in {"1-0", "0-1", "1/2-1/2", "½-½"} for g in pairings):
+                    it["status"] = "finished"
         selected = [it for it in selected if it["pairings"]] or selected
 
     _CACHE[cache_key] = (now, selected)

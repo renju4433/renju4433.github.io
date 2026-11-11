@@ -116,6 +116,11 @@
   <nav class="tabs" id="projectTabs"></nav>
 
   <div class="pickers">
+    <select id="statusFilter" aria-label="状态" style="flex:0 1 130px;">
+      <option value="all">全部赛程</option>
+      <option value="active">进行 · 待开赛</option>
+      <option value="finished">已比完</option>
+    </select>
     <select id="event" aria-label="赛事"></select>
     <select id="round" aria-label="轮次"></select>
   </div>
@@ -134,6 +139,7 @@
   const $ = (id) => document.getElementById(id);
   const el = {
     tabs: $("projectTabs"),
+    statusFilter: $("statusFilter"),
     event: $("event"),
     round: $("round"),
     head: $("head"),
@@ -218,12 +224,43 @@
 
   let state = {
     project: PROJECTS.find((p) => p.id === qs.get("project")) || PROJECTS[0],
+    allTours: [],
     tours: [],
+    statusFilter: "all",
     tour: null,
     round: null,
     preds: [],
     openIdx: null,
   };
+
+  function isFinishedStatus(st) {
+    return st === "1-0" || st === "0-1" || st === "1/2-1/2" || st === "½-½";
+  }
+
+  function applyFilter() {
+    const f = state.statusFilter;
+    const filtered = [];
+    state.allTours.forEach((t) => {
+      const rds = t.rounds.filter((r) => {
+        if (f === "active") return r.status === "ongoing" || r.status === "upcoming";
+        if (f === "finished") return r.status === "finished";
+        return true;
+      });
+      if (rds.length) filtered.push({ ...t, rounds: rds });
+    });
+    state.tours = filtered;
+    if (!state.tours.length) {
+      state.tour = null;
+      fill(el.event, [{ value: "", label: "—" }], "");
+      fill(el.round, [{ value: "", label: "—" }], "");
+      el.list.innerHTML = '<div class="empty">—</div>';
+      return;
+    }
+    const prevTourId = state.tour && state.tours.find((t) => t.id === state.tour.id) ? state.tour.id : state.tours[0].id;
+    fill(el.event, state.tours.map((t) => ({ value: t.id, label: t.name })), prevTourId);
+    state.tour = state.tours.find((t) => t.id === prevTourId) || state.tours[0];
+    syncRounds();
+  }
 
   function fill(select, items, value) {
     select.innerHTML = "";
@@ -257,16 +294,8 @@
     el.head.innerHTML = state.project.headHtml;
     el.list.innerHTML = '<div class="empty spin">·</div>';
     try {
-      state.tours = await state.project.fetchSchedule(state.project);
-      if (!state.tours.length) {
-        fill(el.event, [{ value: "", label: "—" }], "");
-        fill(el.round, [{ value: "", label: "—" }], "");
-        el.list.innerHTML = '<div class="empty">—</div>';
-        return;
-      }
-      fill(el.event, state.tours.map((t) => ({ value: t.id, label: t.name })), state.tours[0].id);
-      state.tour = state.tours[0];
-      syncRounds();
+      state.allTours = await state.project.fetchSchedule(state.project);
+      applyFilter();
     } catch {
       el.list.innerHTML = '<div class="empty">—</div>';
     }
@@ -280,13 +309,14 @@
       el.list.innerHTML = '<div class="empty">—</div>';
       return;
     }
+    const stName = (s) => (s === "ongoing" ? "进行中" : (s === "upcoming" ? "待开赛" : "已比完"));
     fill(
       el.round,
       rounds.map((r) => {
         const dtStr = fmtDateTime(r.starts_at_ms, r.starts_at);
         return {
           value: r.round_id,
-          label: `${r.round_name}${dtStr !== "—" ? " · " + dtStr : ""}`,
+          label: `${r.round_name}${dtStr !== "—" ? " · " + dtStr : ""} · ${stName(r.status)}`,
         };
       }),
       rounds[0].round_id
@@ -320,23 +350,27 @@
     }
 
     const timeLabel = fmtDateTime(state.round.starts_at_ms, state.round.starts_at);
-    const stTag = state.round.status === "ongoing" ? "进行中" : (state.round.status === "upcoming" ? "待开赛" : "已结束");
+    const stTag = state.round.status === "ongoing" ? "进行中" : (state.round.status === "upcoming" ? "待开赛" : "已比完");
 
     pairings.forEach((g, idx) => {
       const pr = preds[idx];
       const pw = pr ? pr.p_white_win : 0;
       const pd = pr ? pr.p_draw : 0;
       const pb = pr ? pr.p_black_win : 0;
-      const wFav = pw >= pb;
+      const done = isFinishedStatus(g.status);
+      const wWin = done ? g.status === "1-0" : pw >= pb;
+      const bWin = done ? g.status === "0-1" : pb > pw;
+      const rightTop = done ? esc(g.status) : `${pr ? pct(pw) : "—"} · ${pr ? pct(pd) : "—"}`;
+      const rightBot = done ? (pr ? `${pct(pw)} / ${pct(pb)}` : "—") : (pr ? pct(pb) : esc(g.status || "—"));
 
       const row = document.createElement("div");
       row.className = "m" + (state.openIdx === idx ? " sel" : "");
       row.innerHTML = `
         <div class="mt">${esc(timeLabel)}<br>${esc(stTag)}</div>
-        <div class="n${wFav ? " win" : ""}">${esc(g.white)}${g.white_elo ? `<span class="elo">${g.white_elo}</span>` : ""}</div>
-        <div class="p${wFav ? " win" : " dim"}">${pr ? pct(pw) : "—"} · ${pr ? pct(pd) : "—"}</div>
-        <div class="n${!wFav ? " win" : ""}">${esc(g.black)}${g.black_elo ? `<span class="elo">${g.black_elo}</span>` : ""}</div>
-        <div class="p${!wFav ? " win" : " dim"}">${pr ? pct(pb) : esc(g.status || "—")}</div>
+        <div class="n${wWin ? " win" : ""}">${esc(g.white)}${g.white_elo ? `<span class="elo">${g.white_elo}</span>` : ""}</div>
+        <div class="p${done || wWin ? " win" : " dim"}">${rightTop}</div>
+        <div class="n${bWin ? " win" : ""}">${esc(g.black)}${g.black_elo ? `<span class="elo">${g.black_elo}</span>` : ""}</div>
+        <div class="p${!done && bWin ? " win" : " dim"}">${rightBot}</div>
         <div class="bar">
           <span class="bw" style="width:${(pw * 100).toFixed(1)}%"></span>
           <span class="bd" style="width:${(pd * 100).toFixed(1)}%"></span>
@@ -395,6 +429,10 @@
     row.insertAdjacentElement("afterend", panel);
   }
 
+  el.statusFilter.addEventListener("change", () => {
+    state.statusFilter = el.statusFilter.value;
+    applyFilter();
+  });
   el.event.addEventListener("change", () => {
     state.tour = state.tours.find((t) => t.id === el.event.value) || null;
     syncRounds();
