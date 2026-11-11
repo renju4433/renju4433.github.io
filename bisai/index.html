@@ -965,33 +965,21 @@
           <div class="out-box ${boxCls("w", pw)}">
             <div class="olbl">白胜</div>
             <div class="opct">${pct1(pw)}</div>
-            <div class="oodds">公平赔率 ${num(pr.fair_odds_white, 2)}</div>
           </div>
           <div class="out-box ${boxCls("d", pd)}">
             <div class="olbl">和棋</div>
             <div class="opct">${pct1(pd)}</div>
-            <div class="oodds">公平赔率 ${num(pr.fair_odds_draw, 2)}</div>
           </div>
           <div class="out-box ${boxCls("b", pb)}">
             <div class="olbl">黑胜</div>
             <div class="opct">${pct1(pb)}</div>
-            <div class="oodds">公平赔率 ${num(pr.fair_odds_black, 2)}</div>
           </div>
-        </div>
-
-        <div class="pbar-wrap">
-          <span>预期 ${num(pr.expected_score_white, 2)}</span>
-          <div class="pbar">
-            <i class="pw" style="width:${(pw * 100).toFixed(1)}%"></i>
-            <i class="pd" style="width:${(pd * 100).toFixed(1)}%"></i>
-            <i class="pb" style="width:${(pb * 100).toFixed(1)}%"></i>
-          </div>
-          <span>${num(pr.expected_score_black, 2)} 预期</span>
         </div>
       </div>
 
       <div class="detail-card">
         <h3><span>双方模型数据对比</span><span style="font-size:12px;color:var(--muted);font-weight:500;">差值 ${f.elo_diff != null ? (f.elo_diff >= 0 ? "+" : "") + Math.round(f.elo_diff) : "—"}</span></h3>
+        <div class="cmp-row"><span class="cmp-v">${num(pr.expected_score_white, 2)}</span><span class="cmp-k">预期得分</span><span class="cmp-v right">${num(pr.expected_score_black, 2)}</span></div>
         <div class="cmp-row"><span class="cmp-v">${pr.white_elo_used != null ? Math.round(pr.white_elo_used) : (g.white_elo || "—")}</span><span class="cmp-k">等级分 (Elo)</span><span class="cmp-v right">${pr.black_elo_used != null ? Math.round(pr.black_elo_used) : (g.black_elo || "—")}</span></div>
         <div class="cmp-row"><span class="cmp-v">${num(f.white_glicko, 0)}</span><span class="cmp-k">Glicko-2 评分</span><span class="cmp-v right">${num(f.black_glicko, 0)}</span></div>
         <div class="cmp-row"><span class="cmp-v">${num(f.white_form_10, 2)}</span><span class="cmp-k">近十局得分率</span><span class="cmp-v right">${num(f.black_form_10, 2)}</span></div>
@@ -1331,9 +1319,7 @@
       html += `
         <div class="pick-item${state.tourId === t.tour_id ? " on" : ""}" data-pick="${esc(t.tour_id)}">
           <span class="pn">${esc(t.short_name)}</span>
-          <span class="pr">
-            ${t.champ ? `<span class="tag-rr">单循环 · ${t.champ.standings.length}人</span>` : `<span>${esc(t.next_dt.day)}</span>`}
-          </span>
+          <span class="pr"><span>${esc(t.next_dt.day)}</span></span>
         </div>`;
     });
 
@@ -1421,7 +1407,7 @@
         html += `
           <div class="league-item" data-tid="${esc(t.tour_id)}">
             <span class="ln">${esc(t.short_name)}</span>
-            <span class="ld">${t.champ ? "单循环" : esc(t.next_dt.day)}</span>
+            <span class="ld">${esc(t.next_dt.day)}</span>
           </div>`;
       });
       html += `</div></div>`;
