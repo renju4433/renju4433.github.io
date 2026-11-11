@@ -39,7 +39,7 @@
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
-  .hdr-in { max-width: 1120px; margin: 0 auto; padding: 10px 20px 0; }
+  .hdr-in { max-width: 840px; margin: 0 auto; padding: 10px 20px 0; }
   .hdr-top {
     display: flex; align-items: center; justify-content: space-between;
     gap: 10px; padding-bottom: 6px; min-height: 44px;
@@ -84,13 +84,12 @@
     color: var(--text); font-weight: 600; border-bottom-color: var(--text);
   }
 
-  /* ---------- Main 2-Column Shell ---------- */
+  /* ---------- Main Centered Shell ---------- */
   .shell {
-    max-width: 1120px; margin: 0 auto; padding: 20px 20px 64px;
-    display: grid; grid-template-columns: minmax(0, 1fr) 320px;
-    gap: 30px; align-items: start;
+    max-width: 840px; margin: 0 auto; padding: 20px 20px 64px;
+    display: block;
   }
-  #mainCol, #sidebar { min-width: 0; }
+  #mainCol { min-width: 0; }
 
   /* ---------- Top Controls Row (Segmented Toggle + Tournament Picker) ---------- */
   .ctrl-row {
@@ -629,7 +628,6 @@
 
 <div class="shell">
   <section id="mainCol"></section>
-  <aside id="sidebar"></aside>
 </div>
 
 <!-- Tournament Picker Modal -->
@@ -756,49 +754,102 @@
     const champByTid = new Map();
     champs.forEach((c) => champByTid.set(c.tour_id, c));
 
+    const seenByTour = new Map();
+    const ensureTour = (tid, tname, tc, dt) => {
+      if (!state.tourMap.has(tid)) {
+        state.tourMap.set(tid, {
+          tour_id: tid,
+          tour_name: tname,
+          short_name: tname.split("|")[0].trim(),
+          time_control: tc || "classical",
+          next_dt: dt || { day: "—", time: "—", full: "—" },
+          champ: champByTid.get(tid) || null,
+          rounds: [],
+          upcomingItems: [],
+          finishedItems: [],
+        });
+        seenByTour.set(tid, new Set());
+      }
+      return state.tourMap.get(tid);
+    };
+
     events.forEach((r) => {
       const dt = fmtDateTime(r.starts_at_ms, r.starts_at);
-      if (!state.tourMap.has(r.tour_id)) {
-        state.tourMap.set(r.tour_id, {
-          tour_id: r.tour_id,
-          tour_name: r.tour_name,
-          short_name: r.tour_name.split("|")[0].trim(),
-          time_control: r.time_control,
-          next_dt: dt,
-          champ: champByTid.get(r.tour_id) || null,
-          rounds: [],
-        });
-      }
-      const tm = state.tourMap.get(r.tour_id);
+      const tm = ensureTour(r.tour_id, r.tour_name, r.time_control, dt);
       tm.rounds.push(r);
       if (r.status !== "finished" && tm.next_dt.day === "—") tm.next_dt = dt;
+      const seen = seenByTour.get(r.tour_id);
 
       (r.pairings || []).forEach((g, idx) => {
         const key = `${r.round_id}::${idx}`;
         const pr = g.prediction || {};
-        state.matchIndex.set(key, {
+        const item = {
           key,
           round: r,
           game: g,
           dt,
+          isSyntheticRR: false,
           maxElo: Math.max(g.white_elo || 0, g.black_elo || 0),
           favP: Math.max(pr.p_white_win || 0, pr.p_black_win || 0),
-        });
+        };
+        state.matchIndex.set(key, item);
+        seen.add(`${r.round_name}::${g.white}::${g.black}`.toLowerCase());
+        if (isDone(g.status)) tm.finishedItems.push(item);
+        else tm.upcomingItems.push(item);
       });
     });
 
     champs.forEach((c) => {
-      if (!state.tourMap.has(c.tour_id)) {
-        state.tourMap.set(c.tour_id, {
-          tour_id: c.tour_id,
-          tour_name: c.tour_name,
-          short_name: c.tour_name.split("|")[0].trim(),
-          time_control: c.time_control || "classical",
-          next_dt: { day: "—", time: "—", full: "—" },
-          champ: c,
-          rounds: [],
-        });
-      }
+      const tm = ensureTour(c.tour_id, c.tour_name, c.time_control || "classical", null);
+      const seen = seenByTour.get(c.tour_id);
+      const eloMap = new Map();
+      (c.standings || []).forEach((p) => { eloMap.set(p.name, p.elo); });
+
+      (c.upcoming_pairings || []).forEach((up, idx) => {
+        const sig = `${up.round_name}::${up.white}::${up.black}`.toLowerCase();
+        if (seen.has(sig)) return;
+        seen.add(sig);
+        const pw = up.p_white_win || 0;
+        const pd = up.p_draw || 0;
+        const pb = up.p_black_win || 0;
+        const wElo = eloMap.get(up.white) || 0;
+        const bElo = eloMap.get(up.black) || 0;
+        const key = `rr::${c.tour_id}::${idx}`;
+        const item = {
+          key,
+          round: {
+            tour_id: c.tour_id,
+            tour_name: c.tour_name,
+            round_id: `rr-${c.tour_id}-${idx}`,
+            round_name: up.round_name,
+            time_control: c.time_control || "classical",
+            status: "upcoming",
+          },
+          game: {
+            white: up.white,
+            black: up.black,
+            white_elo: wElo || null,
+            black_elo: bElo || null,
+            status: "*",
+            prediction: {
+              p_white_win: pw,
+              p_draw: pd,
+              p_black_win: pb,
+              expected_score_white: pw + 0.5 * pd,
+              expected_score_black: pb + 0.5 * pd,
+              white_elo_used: wElo || null,
+              black_elo_used: bElo || null,
+              factors: { elo_diff: wElo && bElo ? (wElo - bElo) : null },
+            },
+          },
+          dt: { day: up.round_name, time: up.round_name, full: up.round_name },
+          isSyntheticRR: true,
+          maxElo: Math.max(wElo, bElo),
+          favP: Math.max(pw, pb),
+        };
+        state.matchIndex.set(key, item);
+        tm.upcomingItems.push(item);
+      });
     });
   }
 
@@ -905,7 +956,9 @@
           <div class="center-box">
             ${done
               ? `<div class="main-val">${esc(g.status)}${hs ? `<span class="hit-tag ${hs.cls}">${hs.txt}</span>` : ""}</div>`
-              : `<div class="sub-val">${esc(it.dt.day)}</div><div class="main-val">${esc(it.dt.time)}</div>`
+              : (it.isSyntheticRR
+                ? `<div class="main-val">vs</div>`
+                : `<div class="sub-val">${esc(it.dt.day)}</div><div class="main-val">${esc(it.dt.time)}</div>`)
             }
             ${pr ? `<span class="badge ${badgeClass(pd, pw, pd, pb)}" style="margin-top:4px;font-size:11px;">和 ${pct(pd)}</span>` : ""}
           </div>
@@ -979,7 +1032,9 @@
           <div class="hero-center">
             ${done
               ? `<div class="hero-score">${esc(g.status)}</div><div class="hero-time">${hs ? `<span class="hit-tag ${hs.cls}">${hs.txt === "✓" ? "命中 ✓" : hs.txt === "×" ? "失误 ×" : "和棋"}</span> · ` : ""}${esc(it.dt.full)}</div>`
-              : `<div class="hero-score">${esc(it.dt.time)}</div><div class="hero-time">${esc(it.dt.day)} 开赛</div>`
+              : (it.isSyntheticRR
+                ? `<div class="hero-score">vs</div><div class="hero-time">${esc(r.round_name)}</div>`
+                : `<div class="hero-score">${esc(it.dt.time)}</div><div class="hero-time">${esc(it.dt.day)} 开赛</div>`)
             }
           </div>
           <div class="hero-player right">
@@ -1012,10 +1067,10 @@
         <h3><span>双方模型数据对比</span><span style="font-size:12px;color:var(--muted);font-weight:500;">差值 ${f.elo_diff != null ? (f.elo_diff >= 0 ? "+" : "") + Math.round(f.elo_diff) : "—"}</span></h3>
         <div class="cmp-row"><span class="cmp-v">${num(pr.expected_score_white, 2)}</span><span class="cmp-k">预期得分</span><span class="cmp-v right">${num(pr.expected_score_black, 2)}</span></div>
         <div class="cmp-row"><span class="cmp-v">${pr.white_elo_used != null ? Math.round(pr.white_elo_used) : (g.white_elo || "—")}</span><span class="cmp-k">等级分 (Elo)</span><span class="cmp-v right">${pr.black_elo_used != null ? Math.round(pr.black_elo_used) : (g.black_elo || "—")}</span></div>
-        <div class="cmp-row"><span class="cmp-v">${num(f.white_glicko, 0)}</span><span class="cmp-k">Glicko-2 评分</span><span class="cmp-v right">${num(f.black_glicko, 0)}</span></div>
-        <div class="cmp-row"><span class="cmp-v">${num(f.white_form_10, 2)}</span><span class="cmp-k">近十局得分率</span><span class="cmp-v right">${num(f.black_form_10, 2)}</span></div>
-        <div class="cmp-row"><span class="cmp-v">${pct1(dp.p_white)}</span><span class="cmp-k">Davidson 先验 · 和 ${pct1(dp.p_draw)}</span><span class="cmp-v right">${pct1(dp.p_black)}</span></div>
-        <div class="cmp-row"><span class="cmp-v">${f.h2h_games != null ? f.h2h_games : 0} 局</span><span class="cmp-k">历史交手</span><span class="cmp-v right">白得分 ${pct(f.h2h_white_score_smoothed)}</span></div>
+        ${f.white_glicko != null ? `<div class="cmp-row"><span class="cmp-v">${num(f.white_glicko, 0)}</span><span class="cmp-k">Glicko-2 评分</span><span class="cmp-v right">${num(f.black_glicko, 0)}</span></div>` : ""}
+        ${f.white_form_10 != null ? `<div class="cmp-row"><span class="cmp-v">${num(f.white_form_10, 2)}</span><span class="cmp-k">近十局得分率</span><span class="cmp-v right">${num(f.black_form_10, 2)}</span></div>` : ""}
+        ${dp.p_white != null ? `<div class="cmp-row"><span class="cmp-v">${pct1(dp.p_white)}</span><span class="cmp-k">Davidson 先验 · 和 ${pct1(dp.p_draw)}</span><span class="cmp-v right">${pct1(dp.p_black)}</span></div>` : ""}
+        ${f.h2h_games != null ? `<div class="cmp-row"><span class="cmp-v">${f.h2h_games} 局</span><span class="cmp-k">历史交手</span><span class="cmp-v right">白得分 ${pct(f.h2h_white_score_smoothed)}</span></div>` : ""}
       </div>
 
       <div class="tour-banner" id="jumpTourStandings">
@@ -1046,6 +1101,11 @@
     }
 
     const c = tourObj.champ;
+    const hasUp = tourObj.upcomingItems.length > 0;
+    const hasDone = tourObj.finishedItems.length > 0;
+    if (state.tourSubView === "schedule" && !hasUp) state.tourSubView = "standings";
+    if (state.tourSubView === "results" && !hasDone) state.tourSubView = "standings";
+
     const tbStr = c && c.tiebreaks ? c.tiebreaks.join(" · ") : "积分 · 等级分";
     const srcStr = c && c.schedule_source === "official_chess_results" ? "官方赛程" : "FIDE编排";
 
@@ -1066,8 +1126,8 @@
       <div class="ctrl-center">
         <div class="seg" id="tourSeg">
           <button data-tsub="standings" class="${state.tourSubView === "standings" ? "on" : ""}">名次表</button>
-          <button data-tsub="schedule" class="${state.tourSubView === "schedule" ? "on" : ""}">赛程</button>
-          <button data-tsub="results" class="${state.tourSubView === "results" ? "on" : ""}">赛果</button>
+          ${hasUp ? `<button data-tsub="schedule" class="${state.tourSubView === "schedule" ? "on" : ""}">赛程</button>` : ""}
+          ${hasDone ? `<button data-tsub="results" class="${state.tourSubView === "results" ? "on" : ""}">赛果</button>` : ""}
         </div>
       </div>`;
 
@@ -1145,18 +1205,11 @@
         }
       }
     } else {
-      const wantDone = state.tourSubView === "results";
-      const items = [];
-      tourObj.rounds.filter((r) => (wantDone ? r.status === "finished" : r.status !== "finished")).forEach((r) => {
-        (r.pairings || []).forEach((_, idx) => {
-          const it = state.matchIndex.get(`${r.round_id}::${idx}`);
-          if (it) items.push(it);
-        });
-      });
+      const items = state.tourSubView === "results" ? tourObj.finishedItems : tourObj.upcomingItems;
       if (!items.length) {
         html += `<div class="empty">—</div>`;
       } else {
-        items.slice(0, 60).forEach((it) => { html += renderMatchCardHTML(it); });
+        items.slice(0, 80).forEach((it) => { html += renderMatchCardHTML(it); });
       }
     }
 
@@ -1321,7 +1374,9 @@
 
     const flat = [];
     state.matchIndex.forEach((it) => {
-      if (wantFinished ? it.round.status !== "finished" : it.round.status === "finished") return;
+      if (it.isSyntheticRR) return;
+      const gDone = isDone(it.game.status);
+      if (wantFinished ? !gDone : gDone) return;
       if (q) {
         const hay = `${it.round.tour_name} ${it.game.white} ${it.game.black}`.toLowerCase();
         if (!hay.includes(q)) return;
@@ -1452,6 +1507,9 @@
   function renderTourModalList(filterText) {
     const q = (filterText || "").trim().toLowerCase();
     const list = Array.from(state.tourMap.values()).sort((a, b) => {
+      const aUp = a.upcomingItems.length > 0;
+      const bUp = b.upcomingItems.length > 0;
+      if (aUp !== bUp) return aUp ? -1 : 1;
       if (Boolean(a.champ) !== Boolean(b.champ)) return a.champ ? -1 : 1;
       return a.short_name.localeCompare(b.short_name);
     });
@@ -1484,30 +1542,8 @@
     });
   }
 
-  function renderSidebar() {
-    let html = "";
-    if (state.tourMap.size) {
-      html += `<div class="side-card"><h3>赛季进行中的赛事</h3><div class="league-grid">`;
-      state.tourMap.forEach((t) => {
-        html += `
-          <div class="league-item" data-tid="${esc(t.tour_id)}">
-            <span class="ln">${esc(t.short_name)}</span>
-            <span class="ld">${esc(t.next_dt.day)}</span>
-          </div>`;
-      });
-      html += `</div></div>`;
-    }
-
-    el.side.innerHTML = html;
-
-    el.side.querySelectorAll(".league-item").forEach((lr) => {
-      lr.addEventListener("click", () => openTournament(lr.dataset.tid));
-    });
-  }
-
   function renderAll() {
     renderMain();
-    renderSidebar();
   }
 
   el.brand.addEventListener("click", () => {
