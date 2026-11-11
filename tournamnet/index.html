@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chess Pre-Match</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --panel: #171a23;
+      --border: #262b38;
+      --text: #e6e9ef;
+      --muted: #8b93a7;
+      --accent: #3b82f6;
+      --win: #22c55e;
+      --draw: #94a3b8;
+      --loss: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 20px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .topbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .title { font-size: 18px; font-weight: 700; margin-right: auto; }
+    input, select, button {
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 13px;
+      outline: none;
+    }
+    input:focus, select:focus { border-color: var(--accent); }
+    button {
+      background: var(--accent);
+      border-color: var(--accent);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button.secondary {
+      background: var(--panel);
+      border-color: var(--border);
+    }
+    button:hover { opacity: 0.9; }
+    .badge {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .badge.ok { color: var(--win); border-color: rgba(34,197,94,0.4); }
+    .badge.err { color: var(--loss); border-color: rgba(239,68,68,0.4); }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 2fr 1fr 1.2fr auto;
+      gap: 10px;
+      align-items: end;
+    }
+    .field label {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .field input, .field select { width: 100%; }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .metric {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .metric .k { font-size: 11px; color: var(--muted); }
+    .metric .v { font-size: 20px; font-weight: 700; margin-top: 4px; }
+    .metric .s { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .bar {
+      display: flex;
+      height: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 12px;
+      background: var(--bg);
+    }
+    .bar-w { background: var(--win); }
+    .bar-d { background: var(--draw); }
+    .bar-b { background: var(--loss); }
+    .kv-row {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .kv-row span strong { color: var(--text); }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .section-head h2 { font-size: 14px; font-weight: 600; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    th { font-size: 11px; color: var(--muted); text-transform: uppercase; }
+    tr.clickable:hover { background: rgba(59,130,246,0.08); cursor: pointer; }
+    .num { font-variant-numeric: tabular-nums; }
+    .events-list {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+    .event-tab {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 12px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .event-tab.active {
+      border-color: var(--accent);
+      background: rgba(59,130,246,0.15);
+    }
+    @media (max-width: 820px) {
+      .form-grid { grid-template-columns: 1fr 1fr; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="title">♟️ Chess Pre-Match</div>
+    <input id="apiBase" type="text" style="width: 280px" />
+    <span id="apiStatus" class="badge">...</span>
+    <button class="secondary" onclick="init()">Sync</button>
+  </div>
+
+  <div class="card">
+    <div class="form-grid">
+      <div class="field">
+        <label>White</label>
+        <input id="whiteName" list="playersList" value="Magnus Carlsen" />
+      </div>
+      <div class="field">
+        <label>White Elo</label>
+        <input id="whiteElo" type="number" placeholder="Auto" />
+      </div>
+      <div class="field">
+        <label>Black</label>
+        <input id="blackName" list="playersList" value="Hikaru Nakamura" />
+      </div>
+      <div class="field">
+        <label>Black Elo</label>
+        <input id="blackElo" type="number" placeholder="Auto" />
+      </div>
+      <div class="field">
+        <label>Time Control</label>
+        <select id="timeControl">
+          <option value="classical">classical</option>
+          <option value="rapid">rapid</option>
+          <option value="blitz">blitz</option>
+          <option value="bullet">bullet</option>
+        </select>
+      </div>
+      <button onclick="analyzeSingle()">Analyze</button>
+    </div>
+    <datalist id="playersList"></datalist>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="k">White (1-0)</div>
+        <div class="v" id="pWhite">-</div>
+        <div class="s" id="oWhite">-</div>
+      </div>
+      <div class="metric">
+        <div class="k">Draw (1/2-1/2)</div>
+        <div class="v" id="pDraw">-</div>
+        <div class="s" id="oDraw">-</div>
+      </div>
+      <div class="metric">
+        <div class="k">Black (0-1)</div>
+        <div class="v" id="pBlack">-</div>
+        <div class="s" id="oBlack">-</div>
+      </div>
+      <div class="metric">
+        <div class="k">Expected</div>
+        <div class="v" id="expScore">-</div>
+        <div class="s" id="usedElos">-</div>
+      </div>
+      <div class="metric">
+        <div class="k">H2H / ΔElo</div>
+        <div class="v" id="eloDiff">-</div>
+        <div class="s" id="h2hInfo">-</div>
+      </div>
+    </div>
+
+    <div class="bar">
+      <div id="barW" class="bar-w" style="width:33.3%"></div>
+      <div id="barD" class="bar-d" style="width:33.4%"></div>
+      <div id="barB" class="bar-b" style="width:33.3%"></div>
+    </div>
+    <div class="kv-row" id="contextRow"></div>
+  </div>
+
+  <div class="card">
+    <div class="section-head">
+      <h2>Schedule</h2>
+      <div style="display:flex; gap:8px;">
+        <button class="secondary" onclick="loadSchedule()">Reload</button>
+        <button onclick="analyzeActiveRound()">Analyze Round</button>
+      </div>
+    </div>
+    <div id="eventTabs" class="events-list"></div>
+    <div id="roundMeta" class="kv-row" style="margin-bottom:10px;"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>White</th>
+          <th>Black</th>
+          <th>1-0</th>
+          <th>1/2-1/2</th>
+          <th>0-1</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody id="scheduleBody"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const urlApi = new URLSearchParams(window.location.search).get("api");
+    const defaultApi = window.location.protocol.startsWith("http") && !window.location.hostname.endsWith("github.io")
+      ? window.location.origin
+      : "http://127.0.0.1:8000";
+    const apiInput = document.getElementById("apiBase");
+    apiInput.value = (urlApi || localStorage.getItem("chess_api_base") || defaultApi).trim().replace(/\/+$/, "");
+    apiInput.addEventListener("change", () => {
+      localStorage.setItem("chess_api_base", apiInput.value.trim().replace(/\/+$/, ""));
+      init();
+    });
+
+    let scheduleEvents = [];
+    let activeEventIdx = 0;
+
+    function baseUrl() {
+      return apiInput.value.trim().replace(/\/+$/, "");
+    }
+
+    async function checkHealth() {
+      const badge = document.getElementById("apiStatus");
+      try {
+        const r = await fetch(`${baseUrl()}/health`);
+        const d = await r.json();
+        badge.textContent = `ONLINE · ${d.n_games}G / ${d.n_players}P`;
+        badge.className = "badge ok";
+      } catch {
+        badge.textContent = "OFFLINE";
+        badge.className = "badge err";
+      }
+    }
+
+    async function loadPlayers() {
+      try {
+        const r = await fetch(`${baseUrl()}/api/players?limit=250&min_games=5`);
+        const d = await r.json();
+        const dl = document.getElementById("playersList");
+        dl.innerHTML = "";
+        for (const p of (d.players || [])) {
+          const opt = document.createElement("option");
+          opt.value = p.name;
+          dl.appendChild(opt);
+        }
+      } catch {}
+    }
+
+    async function analyzeSingle() {
+      const body = {
+        white: document.getElementById("whiteName").value.trim(),
+        black: document.getElementById("blackName").value.trim(),
+        white_elo: document.getElementById("whiteElo").value || null,
+        black_elo: document.getElementById("blackElo").value || null,
+        time_control: document.getElementById("timeControl").value
+      };
+      const r = await fetch(`${baseUrl()}/api/predict`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      if (!r.ok) return;
+      const d = await r.json();
+      renderPrediction(d);
+    }
+
+    function renderPrediction(d) {
+      const pw = (d.p_white_win * 100).toFixed(1) + "%";
+      const pd = (d.p_draw * 100).toFixed(1) + "%";
+      const pb = (d.p_black_win * 100).toFixed(1) + "%";
+      document.getElementById("pWhite").textContent = pw;
+      document.getElementById("pDraw").textContent = pd;
+      document.getElementById("pBlack").textContent = pb;
+      document.getElementById("oWhite").textContent = `Odds ${d.fair_odds_white.toFixed(2)}`;
+      document.getElementById("oDraw").textContent = `Odds ${d.fair_odds_draw.toFixed(2)}`;
+      document.getElementById("oBlack").textContent = `Odds ${d.fair_odds_black.toFixed(2)}`;
+      document.getElementById("expScore").textContent = `${d.expected_score_white.toFixed(2)} : ${d.expected_score_black.toFixed(2)}`;
+      document.getElementById("usedElos").textContent = `${Math.round(d.white_elo_used)} vs ${Math.round(d.black_elo_used)}`;
+      document.getElementById("eloDiff").textContent = (d.factors.elo_diff >= 0 ? "+" : "") + Math.round(d.factors.elo_diff);
+      document.getElementById("h2hInfo").textContent = `H2H ${d.factors.h2h_games}`;
+      document.getElementById("barW").style.width = pw;
+      document.getElementById("barD").style.width = pd;
+      document.getElementById("barB").style.width = pb;
+      document.getElementById("contextRow").innerHTML = `
+        <span>Glicko-2: <strong>${d.factors.white_glicko.toFixed(0)} / ${d.factors.black_glicko.toFixed(0)}</strong></span>
+        <span>Form10: <strong>${d.factors.white_form_10.toFixed(2)} / ${d.factors.black_form_10.toFixed(2)}</strong></span>
+        <span>Mode: <strong>${d.mode}</strong></span>
+      `;
+    }
+
+    async function loadSchedule() {
+      try {
+        const r = await fetch(`${baseUrl()}/api/schedule?limit=15&with_pairings=true`);
+        const d = await r.json();
+        scheduleEvents = d.events || [];
+        activeEventIdx = 0;
+        renderScheduleTabs();
+        renderActiveEvent();
+      } catch {}
+    }
+
+    function renderScheduleTabs() {
+      const wrap = document.getElementById("eventTabs");
+      wrap.innerHTML = "";
+      scheduleEvents.forEach((ev, idx) => {
+        const btn = document.createElement("div");
+        btn.className = "event-tab" + (idx === activeEventIdx ? " active" : "");
+        btn.textContent = `${ev.tour_name} · ${ev.round_name} [${ev.status}]`;
+        btn.onclick = () => {
+          activeEventIdx = idx;
+          renderScheduleTabs();
+          renderActiveEvent();
+        };
+        wrap.appendChild(btn);
+      });
+    }
+
+    function renderActiveEvent(predsMap = null) {
+      const ev = scheduleEvents[activeEventIdx];
+      const meta = document.getElementById("roundMeta");
+      const tbody = document.getElementById("scheduleBody");
+      tbody.innerHTML = "";
+      if (!ev) {
+        meta.innerHTML = "";
+        return;
+      }
+      meta.innerHTML = `
+        <span><strong>${ev.tour_name}</strong></span>
+        <span>${ev.round_name}</span>
+        <span>${ev.starts_at || "-"}</span>
+        <span>${ev.time_control}</span>
+        <span>${ev.status}</span>
+      `;
+      const pairings = ev.pairings || [];
+      pairings.forEach((g, i) => {
+        const tr = document.createElement("tr");
+        tr.className = "clickable";
+        const pr = predsMap ? predsMap[i] : null;
+        tr.innerHTML = `
+          <td>${g.white} ${g.white_elo ? `(${g.white_elo})` : ""}</td>
+          <td>${g.black} ${g.black_elo ? `(${g.black_elo})` : ""}</td>
+          <td class="num">${pr ? (pr.p_white_win * 100).toFixed(1) + "%" : "-"}</td>
+          <td class="num">${pr ? (pr.p_draw * 100).toFixed(1) + "%" : "-"}</td>
+          <td class="num">${pr ? (pr.p_black_win * 100).toFixed(1) + "%" : "-"}</td>
+          <td class="num">${pr ? pr.expected_score_white.toFixed(2) + " : " + pr.expected_score_black.toFixed(2) : g.status}</td>
+        `;
+        tr.onclick = () => {
+          document.getElementById("whiteName").value = g.white;
+          document.getElementById("whiteElo").value = g.white_elo || "";
+          document.getElementById("blackName").value = g.black;
+          document.getElementById("blackElo").value = g.black_elo || "";
+          document.getElementById("timeControl").value = ev.time_control || "classical";
+          analyzeSingle();
+        };
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function analyzeActiveRound() {
+      const ev = scheduleEvents[activeEventIdx];
+      if (!ev || !(ev.pairings || []).length) return;
+      const r = await fetch(`${baseUrl()}/api/predict-round`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          time_control: ev.time_control || "classical",
+          pairings: ev.pairings
+        })
+      });
+      if (!r.ok) return;
+      const d = await r.json();
+      renderActiveEvent(d.predictions || []);
+    }
+
+    async function init() {
+      await Promise.all([checkHealth(), loadPlayers(), loadSchedule(), analyzeSingle()]);
+    }
+
+    init();
+  </script>
+</body>
+</html>
