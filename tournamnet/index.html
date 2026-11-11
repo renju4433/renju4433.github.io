@@ -46,7 +46,7 @@
   select:focus { outline: none; border-color: var(--accent); }
 
   .mhead {
-    display: grid; grid-template-columns: 56px minmax(0, 1fr) 92px;
+    display: grid; grid-template-columns: 86px minmax(0, 1fr) 92px;
     gap: 0 10px; color: var(--muted); font-size: 12px; padding: 0 12px 8px;
   }
   .mhead span:last-child { text-align: right; }
@@ -55,7 +55,7 @@
 
   .m {
     position: relative; display: grid;
-    grid-template-columns: 56px minmax(0, 1fr) 92px;
+    grid-template-columns: 86px minmax(0, 1fr) 92px;
     grid-template-rows: auto auto; gap: 2px 10px;
     padding: 10px 12px 12px; border-bottom: 1px solid var(--line);
     cursor: pointer; align-items: center;
@@ -104,8 +104,8 @@
 
   @media (max-width: 560px) {
     main { padding: 20px 14px 48px; }
-    .mhead { grid-template-columns: 46px minmax(0, 1fr) 82px; padding: 0 10px 8px; font-size: 11px; }
-    .m { grid-template-columns: 46px minmax(0, 1fr) 82px; padding: 9px 10px 11px; font-size: 14px; }
+    .mhead { grid-template-columns: 76px minmax(0, 1fr) 82px; padding: 0 10px 8px; font-size: 11px; }
+    .m { grid-template-columns: 76px minmax(0, 1fr) 82px; padding: 9px 10px 11px; font-size: 14px; }
     .panel { padding: 4px 10px 16px; }
     .mp .tr { grid-template-columns: minmax(70px, 1.2fr) 44px 54px 46px 44px 44px; gap: 6px 8px; font-size: 12px; }
   }
@@ -144,7 +144,12 @@
 
   const pct = (v) => (v == null ? "—" : (v * 100).toFixed(1) + "%");
   const num = (v, d = 2) => (v == null ? "—" : Number(v).toFixed(d));
-  const hhmm = (s) => (s ? String(s).slice(11, 16) : "—");
+  const fmtDateTime = (ms, iso) => {
+    const d = ms ? new Date(ms) : (iso ? new Date(String(iso).replace(" UTC", "Z").replace(" ", "T")) : null);
+    if (!d || isNaN(d.getTime())) return iso ? String(iso).slice(5, 16) : "—";
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  };
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   async function fetchJson(url, opts) {
@@ -257,10 +262,13 @@
     }
     fill(
       el.round,
-      rounds.map((r) => ({
-        value: r.round_id,
-        label: `${r.round_name}${r.starts_at ? " · " + r.starts_at.slice(5, 16) : ""}`,
-      })),
+      rounds.map((r) => {
+        const dtStr = fmtDateTime(r.starts_at_ms, r.starts_at);
+        return {
+          value: r.round_id,
+          label: `${r.round_name}${dtStr !== "—" ? " · " + dtStr : ""}`,
+        };
+      }),
       rounds[0].round_id
     );
     state.round = rounds[0];
@@ -291,7 +299,7 @@
       return;
     }
 
-    const timeLabel = hhmm(state.round.starts_at);
+    const timeLabel = fmtDateTime(state.round.starts_at_ms, state.round.starts_at);
     const stTag = state.round.status === "ongoing" ? "进行中" : (state.round.status === "upcoming" ? "待开赛" : "已结束");
 
     pairings.forEach((g, idx) => {
