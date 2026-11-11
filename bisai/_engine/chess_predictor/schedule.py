@@ -6,6 +6,7 @@ import concurrent.futures
 import datetime as dt
 import json
 import time
+import urllib.error
 import urllib.request
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -17,13 +18,21 @@ _CACHE: Dict[Tuple[int, bool], Tuple[float, List[Dict[str, Any]]]] = {}
 _CACHE_TTL_SEC = 120.0
 
 
-def _get_json(url: str, timeout: int = 12) -> Any:
-    req = urllib.request.Request(
-        url,
-        headers={"User-Agent": USER_AGENT, "Accept": "application/json"},
-    )
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return json.loads(resp.read().decode("utf-8", errors="replace"))
+def _get_json(url: str, timeout: int = 12, retries: int = 2) -> Any:
+    for attempt in range(retries + 1):
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": USER_AGENT, "Accept": "application/json"},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return json.loads(resp.read().decode("utf-8", errors="replace"))
+        except urllib.error.HTTPError as exc:
+            if exc.code == 429 and attempt < retries:
+                time.sleep(2.5 * (attempt + 1))
+                continue
+            raise
+    return {}
 
 
 def _ms_to_iso(ms: Optional[int]) -> Optional[str]:
@@ -70,9 +79,9 @@ def _fetch_round_pairings(round_id: str) -> List[Dict[str, Any]]:
 
 
 def fetch_recent_schedule(
-    limit: int = 16,
+    limit: int = 12,
     with_pairings: bool = True,
-    max_pairing_rounds: int = 16,
+    max_pairing_rounds: int = 12,
 ) -> List[Dict[str, Any]]:
     """
     Return recent, ongoing, and upcoming official tournament schedules from Lichess Broadcasts.
@@ -137,7 +146,7 @@ def fetch_recent_schedule(
 
     if with_pairings and selected:
         targets = selected[:max_pairing_rounds]
-        with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
             pair_list = list(pool.map(lambda it: _fetch_round_pairings(str(it["round_id"])), targets))
         for it, pairings in zip(targets, pair_list):
             if pairings:
