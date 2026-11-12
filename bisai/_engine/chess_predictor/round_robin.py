@@ -576,7 +576,7 @@ def simulate_fide_round_robin(
             "p_draw": round(ug["p_d"], 4),
             "p_black_win": round(ug["p_b"], 4),
         }
-        for ug in unplayed_games[:60]
+        for ug in unplayed_games
     ]
 
     return {
