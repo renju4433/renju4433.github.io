@@ -33,6 +33,37 @@ def is_individual_round_robin(tour_format: Optional[str]) -> bool:
     return True
 
 
+def is_double_round_robin(
+    tour_format: Optional[str],
+    n_players: int = 0,
+    total_rounds: int = 0,
+) -> bool:
+    """Detect double round-robin from explicit format text or round count vs player count."""
+    text = str(tour_format or "").lower()
+    if "double" in text or "双循环" in text:
+        return True
+    if n_players >= 3 and total_rounds > 0:
+        single_rounds = n_players if (n_players % 2 == 1) else (n_players - 1)
+        if total_rounds >= 2 * single_rounds:
+            return True
+    return False
+
+
+def normalize_round_robin_format(
+    tour_format: Optional[str],
+    n_players: int,
+    total_rounds: int,
+) -> str:
+    """Return canonical round-robin format distinguishing single vs double round-robin."""
+    text = str(tour_format or "")
+    if "team" in text.lower():
+        return text or f"{n_players}-team round-robin"
+    expected_n = _extract_expected_player_count(text, n_players)
+    if is_double_round_robin(text, n_players=expected_n, total_rounds=total_rounds):
+        return f"{expected_n}-player double round-robin"
+    return f"{expected_n}-player single round-robin"
+
+
 def fide_berger_table(n_players: int) -> List[List[Tuple[int, int]]]:
     """
     Generate exact FIDE Handbook C.05 Berger pairing tables for n players.
@@ -72,6 +103,7 @@ def fide_berger_table(n_players: int) -> List[List[Tuple[int, int]]]:
 def _infer_berger_mapping(
     players: List[str],
     rounds_data: List[Dict[str, Any]],
+    double_rr: bool = False,
 ) -> Optional[List[Tuple[str, int, str, str]]]:
     """
     If Round 1..k matches a clean Berger table mapping, return remaining (round_name, round_idx, white, black).
@@ -131,6 +163,28 @@ def _infer_berger_mapping(
         if r2_actual != r2_expected:
             return None
 
+    full_table = list(table)
+    if double_rr:
+        full_table.extend([[(b_i, w_i) for (w_i, b_i) in r_pairs] for r_pairs in table])
+
+    if double_rr:
+        played_directed: Set[Tuple[str, str]] = set()
+        for rd in rounds_data:
+            for g in rd.get("pairings") or []:
+                w = normalize_player_name(g.get("white", ""))
+                b = normalize_player_name(g.get("black", ""))
+                if w and b:
+                    played_directed.add((w, b))
+        remaining: List[Tuple[str, int, str, str]] = []
+        for r_idx, r_pairs in enumerate(full_table):
+            r_name = f"Round {r_idx + 1}"
+            for w_i, b_i in r_pairs:
+                w_name = idx_to_player[w_i]
+                b_name = idx_to_player[b_i]
+                if (w_name, b_name) not in played_directed:
+                    remaining.append((r_name, r_idx + 1, w_name, b_name))
+        return remaining
+
     played_pairs: Set[frozenset] = set()
     for rd in rounds_data:
         for g in rd.get("pairings") or []:
@@ -140,7 +194,7 @@ def _infer_berger_mapping(
                 played_pairs.add(frozenset((w, b)))
 
     remaining: List[Tuple[str, int, str, str]] = []
-    for r_idx, r_pairs in enumerate(table):
+    for r_idx, r_pairs in enumerate(full_table):
         r_name = f"Round {r_idx + 1}"
         for w_i, b_i in r_pairs:
             w_name = idx_to_player[w_i]
@@ -153,15 +207,17 @@ def _infer_berger_mapping(
 def complete_remaining_rr_pairings(
     players: List[str],
     rounds_data: List[Dict[str, Any]],
+    double_rr: bool = False,
 ) -> List[Dict[str, Any]]:
     """
-    Build all remaining unplayed games in a single round-robin tournament using
+    Build all remaining unplayed games in a single/double round-robin tournament using
     FIDE Berger pairing tables (or color-balanced round completion if Round 1 differs).
     """
     # Collect already known pairings & color counts
     white_counts: Dict[str, int] = {p: 0 for p in players}
     black_counts: Dict[str, int] = {p: 0 for p in players}
     seen_pairs: Set[frozenset] = set()
+    seen_directed: Set[Tuple[str, str]] = set()
 
     for rd in rounds_data:
         for g in rd.get("pairings") or []:
@@ -171,8 +227,9 @@ def complete_remaining_rr_pairings(
                 white_counts[w] += 1
                 black_counts[b] += 1
                 seen_pairs.add(frozenset((w, b)))
+                seen_directed.add((w, b))
 
-    berger_rem = _infer_berger_mapping(players, rounds_data)
+    berger_rem = _infer_berger_mapping(players, rounds_data, double_rr=double_rr)
     if berger_rem is not None:
         return [
             {"round_name": rname, "round_num": rnum, "white": w, "black": b}
@@ -182,27 +239,35 @@ def complete_remaining_rr_pairings(
     # Fallback: FIDE Berger round structure over players ordered by seed/rating, filtering already-played pairs
     n = len(players)
     table = fide_berger_table(n)
-    rem_pairs: List[Tuple[int, str, str]] = []
+    full_table = list(table)
+    if double_rr:
+        full_table.extend([[(b_i, w_i) for (w_i, b_i) in r_pairs] for r_pairs in table])
     max_known_round = sum(1 for rd in rounds_data if rd.get("pairings"))
     next_round = max_known_round + 1
 
-    # Gather unplayed pairs in canonical Berger order, assigning White to fewer-White player
+    # Gather unplayed pairs in canonical Berger order, assigning White cleanly
     unplayed_edges: List[Tuple[str, str]] = []
-    for r_pairs in table:
+    for leg_idx, r_pairs in enumerate(full_table):
         for w_i, b_i in r_pairs:
             u, v = players[w_i], players[b_i]
-            if frozenset((u, v)) in seen_pairs:
-                continue
-            seen_pairs.add(frozenset((u, v)))
-            if white_counts[u] < white_counts[v]:
-                w_p, b_p = u, v
-            elif white_counts[v] < white_counts[u]:
-                w_p, b_p = v, u
+            if double_rr:
+                if (u, v) in seen_directed:
+                    continue
+                seen_directed.add((u, v))
+                unplayed_edges.append((u, v))
             else:
-                w_p, b_p = u, v
-            white_counts[w_p] += 1
-            black_counts[b_p] += 1
-            unplayed_edges.append((w_p, b_p))
+                if frozenset((u, v)) in seen_pairs:
+                    continue
+                seen_pairs.add(frozenset((u, v)))
+                if white_counts[u] < white_counts[v]:
+                    w_p, b_p = u, v
+                elif white_counts[v] < white_counts[u]:
+                    w_p, b_p = v, u
+                else:
+                    w_p, b_p = u, v
+                white_counts[w_p] += 1
+                black_counts[b_p] += 1
+                unplayed_edges.append((w_p, b_p))
 
     # Pack unplayed edges greedily into rounds without repeating a player in the same round
     scheduled: List[Dict[str, Any]] = []
@@ -338,12 +403,32 @@ def simulate_fide_round_robin(
                     }
                 )
 
+    # Detect double round-robin from format string, number of rounds, or rematch pairs
+    seen_directed_all: Set[Tuple[str, str]] = set()
+    has_rematch_pair = False
+    for rd in rounds_data:
+        for g in rd.get("pairings") or []:
+            w_p = normalize_player_name(g.get("white", ""))
+            b_p = normalize_player_name(g.get("black", ""))
+            if w_p and b_p:
+                if (b_p, w_p) in seen_directed_all:
+                    has_rematch_pair = True
+                seen_directed_all.add((w_p, b_p))
+
+    expected_n = _extract_expected_player_count(str(tour.get("format") or ""), n)
+    single_rounds = expected_n - (0 if expected_n % 2 == 1 else 1)
+    is_double = has_rematch_pair or is_double_round_robin(
+        str(tour.get("format") or ""), n_players=expected_n, total_rounds=len(rounds_data)
+    )
+
     # If we do not have an official complete schedule, complete missing rounds via FIDE Berger
     has_official_complete = (
         schedule_source == "official_chess_results" and len(rounds_data) >= 3
     )
     if not has_official_complete:
-        future_pairings = complete_remaining_rr_pairings(player_order, rounds_data)
+        future_pairings = complete_remaining_rr_pairings(
+            player_order, rounds_data, double_rr=is_double
+        )
         for fg in future_pairings:
             w, b = fg["white"], fg["black"]
             wi, bi = p_idx[w], p_idx[b]
@@ -472,7 +557,14 @@ def simulate_fide_round_robin(
 
     total_rounds_expected = max(
         len(rounds_data),
-        _extract_expected_player_count(str(tour.get("format") or ""), n) - (0 if n % 2 == 1 else 1),
+        single_rounds * (2 if is_double else 1),
+    )
+    fmt_normalized = normalize_round_robin_format(
+        f"{expected_n}-player {'double ' if is_double else ''}round-robin"
+        if is_double
+        else str(tour.get("format") or ""),
+        expected_n,
+        total_rounds_expected,
     )
 
     upcoming_preview = [
@@ -484,14 +576,14 @@ def simulate_fide_round_robin(
             "p_draw": round(ug["p_d"], 4),
             "p_black_win": round(ug["p_b"], 4),
         }
-        for ug in unplayed_games[:30]
+        for ug in unplayed_games[:60]
     ]
 
     return {
         "tour_id": tour.get("tour_id"),
         "tour_name": tour.get("tour_name"),
         "tier": int(tour.get("tier") or 0),
-        "format": tour.get("format") or f"{n}-player round-robin",
+        "format": fmt_normalized,
         "time_control": time_control,
         "schedule_source": schedule_source,
         "n_players": n,

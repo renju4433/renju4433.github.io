@@ -91,7 +91,7 @@ def build_schedule_snapshot(
     events: Optional[List[Dict[str, Any]]] = None,
     previous_events: Optional[List[Dict[str, Any]]] = None,
     db: Optional[ChessDatabase] = None,
-    max_finished_history: int = 25,
+    max_finished_history: Optional[int] = None,
     championships: Optional[List[Dict[str, Any]]] = None,
 ) -> Dict[str, Any]:
     """
@@ -170,8 +170,21 @@ def build_schedule_snapshot(
             if rid not in seen_round_ids and pev.get("status") == "finished":
                 finished_events.append(pev)
 
-    final_events = active_events + finished_events[:max_finished_history]
-    summary = _compute_db_accuracy(finished_events)
+    if max_finished_history is not None and max_finished_history > 0:
+        finished_events = finished_events[:max_finished_history]
+    final_events = active_events + finished_events
+    champ_fmt_by_tid = {
+        str(c.get("tour_id") or ""): str(c.get("format") or "")
+        for c in (championships or [])
+        if c.get("tour_id") and c.get("format")
+    }
+    if champ_fmt_by_tid:
+        for ev in final_events:
+            tid = str(ev.get("tour_id") or "")
+            if tid in champ_fmt_by_tid:
+                ev["format"] = champ_fmt_by_tid[tid]
+
+    summary = _compute_db_accuracy(final_events)
 
     return {
         "generated_at": dt.datetime.now(tz=dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -226,7 +239,7 @@ def build_championship_list(
             db.save_rr_snapshot(
                 tour_id=str(tour["tour_id"]),
                 tour_name=str(tour["tour_name"]),
-                tour_format=str(tour["format"]),
+                tour_format=str(sim["format"]),
                 as_of_round=f"{sim['rounds_played']}/{sim['total_rounds']}",
                 snapshot=sim,
             )

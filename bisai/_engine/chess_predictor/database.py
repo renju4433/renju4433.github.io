@@ -370,35 +370,45 @@ class ChessDatabase:
     def get_finished_rounds(
         self,
         predictor: ChessPreMatchPredictor,
-        limit: int = 20,
+        limit: Optional[int] = None,
     ) -> List[Dict[str, Any]]:
         """
-        Read finished rounds strictly from the SQLite database, attaching each game's
-        saved pre-match prediction and actual final result.
+        Read all finished rounds & historical decided games strictly from the SQLite database,
+        attaching each game's saved pre-match prediction and actual final result.
         """
         with self._connect() as conn:
-            round_rows = conn.execute(
-                """
+            sql = """
                 SELECT round_id, tour_id, tour_name, tier, round_name,
                        starts_at, starts_at_ms, time_control, tour_format,
                        COUNT(*) AS total_games,
-                       SUM(CASE WHEN status IN ('1-0','0-1','1/2-1/2') THEN 1 ELSE 0 END) AS done_games
+                       SUM(CASE WHEN status IN ('1-0','0-1','1/2-1/2','½-½') THEN 1 ELSE 0 END) AS done_games
                 FROM games
                 WHERE round_id != ''
                 GROUP BY round_id
-                HAVING done_games > 0 AND done_games = total_games
+                HAVING done_games > 0
                 ORDER BY starts_at_ms DESC, tier DESC
-                LIMIT ?
-                """,
-                (limit,),
-            ).fetchall()
+            """
+            if limit is not None and limit > 0:
+                round_rows = conn.execute(sql + " LIMIT ?", (limit,)).fetchall()
+            else:
+                round_rows = conn.execute(sql).fetchall()
 
             events: List[Dict[str, Any]] = []
             for rr in round_rows:
-                g_rows = conn.execute(
-                    "SELECT * FROM games WHERE round_id = ? ORDER BY rowid ASC",
-                    (rr["round_id"],),
-                ).fetchall()
+                if rr["done_games"] < rr["total_games"]:
+                    g_rows = conn.execute(
+                        """
+                        SELECT * FROM games
+                        WHERE round_id = ? AND status IN ('1-0','0-1','1/2-1/2','½-½')
+                        ORDER BY rowid ASC
+                        """,
+                        (rr["round_id"],),
+                    ).fetchall()
+                else:
+                    g_rows = conn.execute(
+                        "SELECT * FROM games WHERE round_id = ? ORDER BY rowid ASC",
+                        (rr["round_id"],),
+                    ).fetchall()
                 pairings: List[Dict[str, Any]] = []
                 for gr in g_rows:
                     if gr["pred_p_white"] is not None:

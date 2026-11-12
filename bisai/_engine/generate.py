@@ -62,7 +62,7 @@ def main() -> int:
         events=live_events,
         previous_events=previous_events,
         db=db,
-        max_finished_history=25,
+        max_finished_history=None,
         championships=championships,
     )
     if snapshot["events"] or not out.exists():

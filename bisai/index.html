@@ -270,7 +270,6 @@
   }
   .hit-tag.ok { color: var(--green); }
   .hit-tag.bad { color: var(--red); }
-  .hit-tag.neu { color: var(--muted); font-weight: 500; }
 
   .more-wrap { display: flex; justify-content: center; margin-top: 20px; }
   .more-btn {
@@ -685,9 +684,38 @@
     const pw = pr.p_white_win || 0;
     const pd = pr.p_draw || 0;
     const pb = pr.p_black_win || 0;
-    const pred = (pd >= pw && pd >= pb) ? "D" : (pw >= pb ? "W" : "B");
-    if (actual === pred) return { cls: "ok", txt: "✓" };
-    return actual === "D" ? { cls: "neu", txt: "和" } : { cls: "bad", txt: "×" };
+    let pred = "W", best = pw;
+    if (pd > best) { pred = "D"; best = pd; }
+    if (pb > best) { pred = "B"; best = pb; }
+    return actual === pred ? { cls: "ok", txt: "✓" } : { cls: "bad", txt: "×" };
+  }
+
+  function formatLabel(rawFmt, c) {
+    const src = String(rawFmt || (c && c.format) || "").trim();
+    const low = src.toLowerCase();
+    const mPlayer = low.match(/(\d+)\s*[-\s]*player/);
+    const n = (c && c.n_players) || (mPlayer ? parseInt(mPlayer[1], 10) : 0);
+    const totR = (c && c.total_rounds) || 0;
+    const singleR = n >= 3 ? (n % 2 === 1 ? n : n - 1) : 0;
+    const isRR = low.includes("round-robin") || low.includes("round robin");
+    if (low.includes("team") && isRR) return n ? `${n}队循环赛` : "团队循环赛";
+    if (low.includes("double") || low.includes("双循环") || (isRR && singleR > 0 && totR >= 2 * singleR)) {
+      return n ? `${n}人双循环` : "双循环赛";
+    }
+    if (isRR || low.includes("single") || low.includes("单循环")) {
+      return n ? `${n}人单循环` : "单循环赛";
+    }
+    if (low.includes("swiss")) {
+      const mRnd = low.match(/(\d+)\s*[-\s]*round/);
+      const rCnt = mRnd ? parseInt(mRnd[1], 10) : 0;
+      if (low.includes("team")) return rCnt ? `${rCnt}轮团体瑞士制` : "团体瑞士制";
+      return rCnt ? `${rCnt}轮瑞士制` : "瑞士制";
+    }
+    if (low.includes("knockout")) {
+      const mEng = low.match(/(\d+)\s*[-\s]*(engine|player)/);
+      return mEng ? `${mEng[1]}路淘汰赛` : "淘汰赛";
+    }
+    return src || "标准赛制";
   }
 
   /* ---------------- 可扩展项目注册表 ---------------- */
@@ -757,6 +785,7 @@
           tour_id: tid,
           tour_name: tname,
           short_name: tname.split("|")[0].trim(),
+          format: "",
           time_control: tc || "classical",
           next_dt: dt || { day: "—", time: "—", full: "—" },
           champ: champByTid.get(tid) || null,
@@ -772,6 +801,7 @@
     events.forEach((r) => {
       const dt = fmtDateTime(r.starts_at_ms, r.starts_at);
       const tm = ensureTour(r.tour_id, r.tour_name, r.time_control, dt);
+      if (r.format && !tm.format) tm.format = r.format;
       tm.rounds.push(r);
       if (r.status !== "finished" && tm.next_dt.day === "—") tm.next_dt = dt;
       const seen = seenByTour.get(r.tour_id);
@@ -1027,7 +1057,7 @@
           </div>
           <div class="hero-center">
             ${done
-              ? `<div class="hero-score">${esc(g.status)}</div><div class="hero-time">${hs ? `<span class="hit-tag ${hs.cls}">${hs.txt === "✓" ? "命中 ✓" : hs.txt === "×" ? "失误 ×" : "和棋"}</span> · ` : ""}${esc(it.dt.full)}</div>`
+              ? `<div class="hero-score">${esc(g.status)}</div><div class="hero-time">${hs ? `<span class="hit-tag ${hs.cls}">${hs.txt === "✓" ? "预测正确 ✓" : "预测失误 ×"}</span> · ` : ""}${esc(it.dt.full)}</div>`
               : (it.isSyntheticRR
                 ? `<div class="hero-score">vs</div><div class="hero-time">${esc(r.round_name)}</div>`
                 : `<div class="hero-score">${esc(it.dt.time)}</div><div class="hero-time">${esc(it.dt.day)} 开赛</div>`)
@@ -1107,7 +1137,7 @@
       <div class="tour-hdr">
         <h1>${esc(tourObj.tour_name)}</h1>
         <div class="chips">
-          ${c ? `<span>赛制<b>${esc(c.format)}</b></span><span>轮次<b>${c.rounds_played}/${c.total_rounds}</b></span><span>破同分<b>${esc(tbStr)}</b></span><span>赛程<b>${srcStr}</b></span>` : `<span>时限<b>${esc(tourObj.time_control)}</b></span>`}
+          ${c ? `<span>赛制<b>${esc(formatLabel(c.format, c))}</b></span><span>轮次<b>${c.rounds_played}/${c.total_rounds}</b></span><span>破同分<b>${esc(tbStr)}</b></span><span>赛程<b>${srcStr}</b></span>` : `${tourObj.format ? `<span>赛制<b>${esc(formatLabel(tourObj.format, null))}</b></span>` : ""}<span>时限<b>${esc(tourObj.time_control)}</b></span>`}
         </div>
       </div>
       <div class="ctrl-center">
@@ -1205,7 +1235,7 @@
       if (!items.length) {
         html += `<div class="empty">—</div>`;
       } else {
-        items.slice(0, 80).forEach((it) => { html += renderMatchCardHTML(it); });
+        items.forEach((it) => { html += renderMatchCardHTML(it); });
       }
     }
 
@@ -1283,13 +1313,13 @@
           if (hs.cls === "ok") ok += 1;
         });
       });
-      if (tot >= 3) byTour.push({ tour_id: t.tour_id, name: t.short_name, ok, tot, rate: ok / tot });
+      if (tot >= 1) byTour.push({ tour_id: t.tour_id, name: t.short_name, ok, tot, rate: ok / tot });
     });
     byTour.sort((a, b) => (b.rate - a.rate) || (b.tot - a.tot));
 
     if (byTour.length) {
-      html += `<div class="side-block"><h3>分赛事准确率</h3><div class="side-card" style="padding:6px 14px;">`;
-      byTour.slice(0, 12).forEach((row, i) => {
+      html += `<div class="side-block"><h3>分赛事准确率 (${byTour.length})</h3><div class="side-card" style="padding:6px 14px;">`;
+      byTour.forEach((row, i) => {
         html += `
           <div class="acc-row" data-tid="${esc(row.tour_id)}">
             <span class="rk">${i + 1}</span>
@@ -1386,6 +1416,12 @@
       return;
     }
 
+    flat.sort((a, b) => {
+      const am = a.round.starts_at_ms || 0;
+      const bm = b.round.starts_at_ms || 0;
+      return wantFinished ? (bm - am) : ((am || 9e15) - (bm || 9e15));
+    });
+
     // 1. 焦点赛事（3栏卡片）
     if (!q && !wantFinished && flat.length >= 3) {
       const top3 = flat.slice().sort((a, b) => b.maxElo - a.maxElo).slice(0, 3);
@@ -1445,7 +1481,7 @@
     }
 
     // 3. 按日期分组的对阵列表
-    const shown = flat.slice(0, state.limitShow);
+    const shown = q ? flat : flat.slice(0, state.limitShow);
     const byDay = new Map();
     shown.forEach((it) => {
       if (!byDay.has(it.dt.day)) byDay.set(it.dt.day, []);
@@ -1457,8 +1493,9 @@
       items.forEach((it) => { html += renderMatchCardHTML(it); });
     });
 
-    if (flat.length > state.limitShow) {
-      html += `<div class="more-wrap"><button class="more-btn" id="showMoreBtn">显示更多比赛</button></div>`;
+    if (!q && flat.length > state.limitShow) {
+      const rest = flat.length - state.limitShow;
+      html += `<div class="more-wrap" style="gap:10px;"><button class="more-btn" id="showMoreBtn">显示更多 (+50)</button><button class="more-btn" id="showAllBtn" data-tot="${flat.length}">全部显示 (余 ${rest})</button></div>`;
     }
 
     el.main.innerHTML = html;
@@ -1481,7 +1518,14 @@
     const moreBtn = $("showMoreBtn");
     if (moreBtn) {
       moreBtn.addEventListener("click", () => {
-        state.limitShow += 20;
+        state.limitShow += 50;
+        renderAllMatchesView();
+      });
+    }
+    const allBtn = $("showAllBtn");
+    if (allBtn) {
+      allBtn.addEventListener("click", () => {
+        state.limitShow = Math.max(state.limitShow, parseInt(allBtn.dataset.tot || "99999", 10) + 1);
         renderAllMatchesView();
       });
     }
@@ -1525,10 +1569,12 @@
 
     list.forEach((t) => {
       if (q && !t.tour_name.toLowerCase().includes(q)) return;
+      const fmtTag = t.champ ? formatLabel(t.champ.format, t.champ) : (t.format ? formatLabel(t.format, null) : "");
+      const metaRight = fmtTag && t.next_dt.day !== "—" ? `${fmtTag} · ${t.next_dt.day}` : (fmtTag || t.next_dt.day);
       html += `
         <div class="pick-item${state.tourId === t.tour_id ? " on" : ""}" data-pick="${esc(t.tour_id)}">
           <span class="pn">${esc(t.short_name)}</span>
-          <span class="pr"><span>${esc(t.next_dt.day)}</span></span>
+          <span class="pr"><span>${esc(metaRight)}</span></span>
         </div>`;
     });
 
