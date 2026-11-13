@@ -425,12 +425,13 @@
             const p = currentMatches[i];
             const nameDisp = getDisplayName(p);
             const ageDisp = p.age ? `${p.age}岁` : '未知年龄';
+            const genderDisp = p.gender || '';
             const item = document.createElement('div');
             item.className = 'dropdown-item';
             item.setAttribute('data-id', p.id);
             item.innerHTML = `
               <div><b>${nameDisp}</b></div>
-              <div class="dropdown-item-meta">[${p.country_abbr}, ${ageDisp}] <b>${p.rating.toFixed(0)}±${p.std.toFixed(0)}</b></div>
+              <div class="dropdown-item-meta">[${p.country_abbr}, ${genderDisp}, ${ageDisp}] <b>${p.rating.toFixed(0)}±${p.std.toFixed(0)}</b></div>
             `;
             fragment.appendChild(item);
           }
@@ -659,12 +660,14 @@
         const p2Name = getDisplayName(p2);
         const p1AgeDisp = p1.age ? `${p1.age}岁` : '年龄不详';
         const p2AgeDisp = p2.age ? `${p2.age}岁` : '年龄不详';
+        const p1GenderDisp = p1.gender || '';
+        const p2GenderDisp = p2.gender || '';
 
         resCol.innerHTML = `
           <div class="info-card">
             <div class="player-box">
               <div class="player-role">假先方</div>
-              <div class="player-name">${p1Name} <span class="player-meta">[${p1.country_abbr}, ${p1AgeDisp}]</span></div>
+              <div class="player-name">${p1Name} <span class="player-meta">[${p1.country_abbr}, ${p1GenderDisp}, ${p1AgeDisp}]</span></div>
               <div><span class="badge-tb">${rTb.toFixed(0)}±${stdTb.toFixed(0)}</span></div>
             </div>
             <div class="center-summary">
@@ -673,7 +676,7 @@
             </div>
             <div class="player-box" style="text-align:right;">
               <div class="player-role">假后方</div>
-              <div class="player-name">${p2Name} <span class="player-meta">[${p2.country_abbr}, ${p2AgeDisp}]</span></div>
+              <div class="player-name">${p2Name} <span class="player-meta">[${p2.country_abbr}, ${p2GenderDisp}, ${p2AgeDisp}]</span></div>
               <div><span class="badge-tw">${rTw.toFixed(0)}±${stdTw.toFixed(0)}</span></div>
             </div>
           </div>
