@@ -651,42 +651,14 @@
         const rVelTw = (p2.r_vel !== undefined) ? p2.r_vel : 0.0;
         const rVelDiff = rVelTb - rVelTw;
 
-        // 规则动态交换期望与个性化开局定型分析：
-        // 1. 两打/山口/索索夫(1, 5, 24): 假先100%落第3手定型
-        // 2. 坂田/超级坂田(3, 17): 假后100%落第3手定型
-        // 3. 塔拉山口-10/塔拉尼科夫(25, 4): 读取双方基于真实历史首手与二次交换得出的个性化定型率 (tb_m3, tw_m3)
-        let p3_b = 1.0;
-        let p3_w = 0.0;
-        if (ruleId === 3 || ruleId === 17) {
-          p3_b = 0.0;
-          p3_w = 1.0;
-        } else if (ruleId === 25 || ruleId === 4) {
-          p3_b = (p1.tb_m3 !== undefined) ? p1.tb_m3 : 0.46;
-          p3_w = (p2.tw_m3 !== undefined) ? p2.tw_m3 : 0.54;
-        } else if (ruleId !== 1 && ruleId !== 5 && ruleId !== 24) {
-          p3_b = 0.5;
-          p3_w = 0.5;
-        }
-
-        const cWinB = (p1.op_c_win !== undefined) ? p1.op_c_win : 0.49;
-        const cDrawB = (p1.op_c_draw !== undefined) ? p1.op_c_draw : 0.08;
-        const fWinB = (p1.op_f_win !== undefined) ? p1.op_f_win : 0.49;
-        const fDrawB = (p1.op_f_draw !== undefined) ? p1.op_f_draw : 0.08;
-
-        const cWinW = (p2.op_c_win !== undefined) ? p2.op_c_win : 0.49;
-        const cDrawW = (p2.op_c_draw !== undefined) ? p2.op_c_draw : 0.08;
-        const fWinW = (p2.op_f_win !== undefined) ? p2.op_f_win : 0.49;
-        const fDrawW = (p2.op_f_draw !== undefined) ? p2.op_f_draw : 0.08;
-
-        const opWinTb = p3_b * cWinB + (1.0 - p3_b) * fWinB;
-        const opDrawTb = p3_b * cDrawB + (1.0 - p3_b) * fDrawB;
-        const opWinTw = p3_w * cWinW + (1.0 - p3_w) * fWinW;
-        const opDrawTw = p3_w * cDrawW + (1.0 - p3_w) * fDrawW;
-        const opBiasDiff = opWinTb - opWinTw;
-
         // 走第 2 手习惯偏好（直止率）
         const m2DirTb = (p1.m2_dir !== undefined) ? p1.m2_dir : 0.455;
         const m2DirTw = (p2.m2_dir !== undefined) ? p2.m2_dir : 0.455;
+
+        // 棋手对于 26 种开局的开率与个人得分胜率加权期望
+        const expOpScoreTb = (p1.exp_op_score !== undefined) ? p1.exp_op_score : 0.50;
+        const expOpScoreTw = (p2.exp_op_score !== undefined) ? p2.exp_op_score : 0.50;
+        const expOpScoreDiff = expOpScoreTb - expOpScoreTw;
 
         const sample = [
           ruleId, rTb, rTw, diff, meanR,
@@ -700,9 +672,7 @@
           h.decayedRate,
           rVelTb, rVelTw, rVelDiff,
           m2DirTb, m2DirTw,
-          opWinTb, opDrawTb,
-          opWinTw, opDrawTw,
-          opBiasDiff
+          expOpScoreTb, expOpScoreTw, expOpScoreDiff
         ];
 
         const probs = predict(sample);
