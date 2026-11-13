@@ -636,43 +636,18 @@
         const formTb = (p1.form !== undefined) ? p1.form : 0.5;
         const formTw = (p2.form !== undefined) ? p2.form : 0.5;
 
-        const sosTb = (p1.sos !== undefined) ? p1.sos : rTb;
-        const sosTw = (p2.sos !== undefined) ? p2.sos : rTw;
-        const sosDiff = sosTb - sosTw;
-
-        const tbProfP1 = (p1.tb_prof !== undefined) ? p1.tb_prof : 0.5;
-        const twProfP2 = (p2.tw_prof !== undefined) ? p2.tw_prof : 0.5;
-        const roleProfDiff = tbProfP1 - twProfP2;
-
-        const ruleExpTb = (p1.rule_exp && p1.rule_exp[ruleId] !== undefined) ? p1.rule_exp[ruleId] : 0.0;
-        const ruleExpTw = (p2.rule_exp && p2.rule_exp[ruleId] !== undefined) ? p2.rule_exp[ruleId] : 0.0;
-
         const rVelTb = (p1.r_vel !== undefined) ? p1.r_vel : 0.0;
         const rVelTw = (p2.r_vel !== undefined) ? p2.r_vel : 0.0;
         const rVelDiff = rVelTb - rVelTw;
-
-        // 走第 2 手习惯偏好（直止率）
-        const m2DirTb = (p1.m2_dir !== undefined) ? p1.m2_dir : 0.455;
-        const m2DirTw = (p2.m2_dir !== undefined) ? p2.m2_dir : 0.455;
-
-        // 棋手对于 26 种开局的开率与个人得分胜率加权期望
-        const expOpScoreTb = (p1.exp_op_score !== undefined) ? p1.exp_op_score : 0.50;
-        const expOpScoreTw = (p2.exp_op_score !== undefined) ? p2.exp_op_score : 0.50;
-        const expOpScoreDiff = expOpScoreTb - expOpScoreTw;
 
         const sample = [
           ruleId, rTb, rTw, diff, meanR,
           stdTb, stdTw, jointStd,
           cTb, cTw, isSameCountry,
           drTb, drTw, combinedDrawRate,
-          formTb, formTw,
-          sosDiff,
-          tbProfP1, twProfP2, roleProfDiff,
-          ruleExpTb, ruleExpTw,
           h.decayedRate,
-          rVelTb, rVelTw, rVelDiff,
-          m2DirTb, m2DirTw,
-          expOpScoreTb, expOpScoreTw, expOpScoreDiff
+          formTb, formTw,
+          rVelTb, rVelTw, rVelDiff
         ];
 
         const probs = predict(sample);
