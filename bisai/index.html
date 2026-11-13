@@ -578,12 +578,13 @@
       function getH2H(p1Id, p2Id) {
         const key = (p1Id < p2Id) ? `${p1Id}_${p2Id}` : `${p2Id}_${p1Id}`;
         const item = h2h[key];
-        if (!item) return { total: 0, p1Wins: 0, p2Wins: 0, draws: 0 };
+        if (!item) return { total: 0, p1Wins: 0, p2Wins: 0, draws: 0, decayedRate: 0.5 };
         const total = item[0];
-        const draws = item[3];
         const p1Wins = (p1Id < p2Id) ? item[1] : item[2];
         const p2Wins = (p1Id < p2Id) ? item[2] : item[1];
-        return { total, p1Wins, p2Wins, draws };
+        const draws = item[3];
+        const decayedRate = (p1Id < p2Id) ? item[4] : (1.0 - item[4]);
+        return { total, p1Wins, p2Wins, draws, decayedRate };
       }
 
       function render() {
@@ -635,18 +636,27 @@
         const formTb = (p1.form !== undefined) ? p1.form : 0.5;
         const formTw = (p2.form !== undefined) ? p2.form : 0.5;
 
+        const sosTb = (p1.sos !== undefined) ? p1.sos : rTb;
+        const sosTw = (p2.sos !== undefined) ? p2.sos : rTw;
+        const sosDiff = sosTb - sosTw;
+
+        const tbProfP1 = (p1.tb_prof !== undefined) ? p1.tb_prof : 0.5;
+        const twProfP2 = (p2.tw_prof !== undefined) ? p2.tw_prof : 0.5;
+        const roleProfDiff = tbProfP1 - twProfP2;
+
         const ruleExpTb = (p1.rule_exp && p1.rule_exp[ruleId] !== undefined) ? p1.rule_exp[ruleId] : 0.0;
         const ruleExpTw = (p2.rule_exp && p2.rule_exp[ruleId] !== undefined) ? p2.rule_exp[ruleId] : 0.0;
 
         const sample = [
           ruleId, rTb, rTw, diff, meanR,
           stdTb, stdTw, jointStd,
-          h.total, h.p1Wins, h.p2Wins, h.draws,
-          tbWinRate, drawRate,
           cTb, cTw, isSameCountry,
           drTb, drTw, combinedDrawRate,
           formTb, formTw,
-          ruleExpTb, ruleExpTw
+          sosDiff,
+          tbProfP1, twProfP2, roleProfDiff,
+          ruleExpTb, ruleExpTw,
+          h.total, h.decayedRate
         ];
 
         const probs = predict(sample);
