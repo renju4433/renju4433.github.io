@@ -531,7 +531,11 @@
 
       function predict(sample) {
         const trees = model.trees;
-        const catMap = model.pandas_cat;
+        const catMaps = model.cat_maps || {
+          '0': model.pandas_cat ? model.pandas_cat[0] : [],
+          '14': model.pandas_cat ? model.pandas_cat[1] : [],
+          '15': model.pandas_cat ? model.pandas_cat[2] : []
+        };
         const scores = [0.0, 0.0, 0.0];
 
         for (let i = 0; i < trees.length; i++) {
@@ -540,24 +544,22 @@
           while (curr.v === undefined) {
             const fIdx = curr.f;
             const val = sample[fIdx];
-            const threshold = curr.t;
 
             if (val === null || val === undefined || Number.isNaN(val)) {
               curr = (curr.dl === 1) ? curr.l : curr.r;
               continue;
             }
 
-            if (curr.d === '==') {
-              const catIndices = String(threshold).split('||').map(Number);
-              const catList = catMap[fIdx];
+            if (curr.tc !== undefined) {
+              const catList = catMaps[fIdx];
               const internalIdx = catList ? catList.indexOf(Number(val)) : -1;
-              if (internalIdx !== -1 && catIndices.includes(internalIdx)) {
+              if (internalIdx !== -1 && curr.tc.includes(internalIdx)) {
                 curr = curr.l;
               } else {
                 curr = curr.r;
               }
             } else {
-              if (val <= threshold) {
+              if (val <= curr.t) {
                 curr = curr.l;
               } else {
                 curr = curr.r;
