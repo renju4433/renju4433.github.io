@@ -633,21 +633,9 @@
         const drTw = (p2.draw_rate !== undefined) ? p2.draw_rate : 0.12;
         const combinedDrawRate = (drTb + drTw) / 2.0;
 
-        const formTb = (p1.form !== undefined) ? p1.form : 0.5;
-        const formTw = (p2.form !== undefined) ? p2.form : 0.5;
-
-        const rVelTb = (p1.r_vel !== undefined) ? p1.r_vel : 0.0;
-        const rVelTw = (p2.r_vel !== undefined) ? p2.r_vel : 0.0;
-        const rVelDiff = rVelTb - rVelTw;
-
         const sample = [
           ruleId, rTb, rTw, diff, meanR,
-          stdTb, stdTw, jointStd,
-          cTb, cTw, isSameCountry,
-          drTb, drTw, combinedDrawRate,
-          h.decayedRate,
-          formTb, formTw,
-          rVelTb, rVelTw, rVelDiff
+          stdTb, stdTw, jointStd
         ];
 
         const probs = predict(sample);
