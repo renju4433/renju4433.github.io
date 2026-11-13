@@ -412,40 +412,59 @@
         const dropdown = $(dropdownId);
         const clearBtn = $(clearId);
 
+        let currentMatches = [];
+        let renderedCount = 0;
+        const PAGE_SIZE = 30;
+
+        function renderBatch() {
+          if (renderedCount >= currentMatches.length) return;
+          const nextCount = Math.min(renderedCount + PAGE_SIZE, currentMatches.length);
+          const fragment = document.createDocumentFragment();
+
+          for (let i = renderedCount; i < nextCount; i++) {
+            const p = currentMatches[i];
+            const nameDisp = getDisplayName(p);
+            const ageDisp = p.age ? `${p.age}岁` : '未知年龄';
+            const item = document.createElement('div');
+            item.className = 'dropdown-item';
+            item.setAttribute('data-id', p.id);
+            item.innerHTML = `
+              <div><b>${nameDisp}</b></div>
+              <div class="dropdown-item-meta">[${p.country_abbr}, ${ageDisp}] <b>${p.rating.toFixed(0)}±${p.std.toFixed(0)}</b></div>
+            `;
+            fragment.appendChild(item);
+          }
+          dropdown.appendChild(fragment);
+          renderedCount = nextCount;
+        }
+
         function updateMenu(keyword) {
           const kw = (keyword || '').trim().toLowerCase();
-          let matched = [];
           if (!kw) {
-            matched = players.slice(0, 30);
+            currentMatches = players;
           } else {
-            for (let i = 0; i < players.length; i++) {
-              if (players[i]._searchStr.includes(kw)) {
-                matched.push(players[i]);
-                if (matched.length >= 30) break;
-              }
-            }
+            currentMatches = players.filter(p => p._searchStr.includes(kw));
           }
 
-          if (matched.length === 0) {
+          dropdown.innerHTML = '';
+          renderedCount = 0;
+          dropdown.scrollTop = 0;
+
+          if (currentMatches.length === 0) {
             dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8; font-size:13px;">无匹配棋手</div>';
             dropdown.style.display = 'block';
             return;
           }
 
-          let html = '';
-          matched.forEach(p => {
-            const nameDisp = getDisplayName(p);
-            const ageDisp = p.age ? `${p.age}岁` : '未知年龄';
-            html += `
-              <div class="dropdown-item" data-id="${p.id}">
-                <div><b>${nameDisp}</b></div>
-                <div class="dropdown-item-meta">[${p.country_abbr}, ${ageDisp}] <b>${p.rating.toFixed(0)}±${p.std.toFixed(0)}</b></div>
-              </div>
-            `;
-          });
-          dropdown.innerHTML = html;
+          renderBatch();
           dropdown.style.display = 'block';
         }
+
+        dropdown.addEventListener('scroll', () => {
+          if (dropdown.scrollTop + dropdown.clientHeight >= dropdown.scrollHeight - 80) {
+            renderBatch();
+          }
+        });
 
         input.addEventListener('focus', () => {
           updateMenu(input.value);
