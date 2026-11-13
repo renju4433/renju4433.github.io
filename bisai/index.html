@@ -617,10 +617,6 @@
         const stdTw = p2.std;
         const jointStd = Math.sqrt(stdTb * stdTb + stdTw * stdTw);
 
-        const ageTb = p1.age !== null ? p1.age : NaN;
-        const ageTw = p2.age !== null ? p2.age : NaN;
-        const ageDiff = (!Number.isNaN(ageTb) && !Number.isNaN(ageTw)) ? (ageTb - ageTw) : NaN;
-
         const cTb = p1.country_id;
         const cTw = p2.country_id;
         const isSameCountry = (cTb === cTw && cTb > 0) ? 1 : 0;
@@ -629,13 +625,25 @@
         const tbWinRate = h.total > 0 ? (h.p1Wins / h.total) : 0.5;
         const drawRate = h.total > 0 ? (h.draws / h.total) : 0.0;
 
+        const drTb = (p1.draw_rate !== undefined) ? p1.draw_rate : 0.12;
+        const drTw = (p2.draw_rate !== undefined) ? p2.draw_rate : 0.12;
+        const combinedDrawRate = (drTb + drTw) / 2.0;
+
+        const formTb = (p1.form !== undefined) ? p1.form : 0.5;
+        const formTw = (p2.form !== undefined) ? p2.form : 0.5;
+
+        const ruleExpTb = (p1.rule_exp && p1.rule_exp[ruleId] !== undefined) ? p1.rule_exp[ruleId] : 0.0;
+        const ruleExpTw = (p2.rule_exp && p2.rule_exp[ruleId] !== undefined) ? p2.rule_exp[ruleId] : 0.0;
+
         const sample = [
           ruleId, rTb, rTw, diff, meanR,
           stdTb, stdTw, jointStd,
           h.total, h.p1Wins, h.p2Wins, h.draws,
           tbWinRate, drawRate,
-          ageTb, ageTw, ageDiff,
-          cTb, cTw, isSameCountry
+          cTb, cTw, isSameCountry,
+          drTb, drTw, combinedDrawRate,
+          formTb, formTw,
+          ruleExpTb, ruleExpTw
         ];
 
         const probs = predict(sample);
