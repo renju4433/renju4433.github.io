@@ -651,8 +651,13 @@
         const rVelTw = (p2.r_vel !== undefined) ? p2.r_vel : 0.0;
         const rVelDiff = rVelTb - rVelTw;
 
-        const opWinTb = (p1.op_win !== undefined) ? p1.op_win : 0.49;
-        const opDrawTb = (p1.op_draw !== undefined) ? p1.op_draw : 0.08;
+        // 规则自适应开局定型者判断：坂田规则(3, 17)由假后落第3手，两打/塔10/山口(1, 4, 5, 24, 25)由假先落第3手
+        const isTbMove3 = (ruleId !== 3 && ruleId !== 17);
+        const opWinTb = isTbMove3 ? (p1.op_c_win !== undefined ? p1.op_c_win : 0.49) : (p1.op_f_win !== undefined ? p1.op_f_win : 0.49);
+        const opDrawTb = isTbMove3 ? (p1.op_c_draw !== undefined ? p1.op_c_draw : 0.08) : (p1.op_f_draw !== undefined ? p1.op_f_draw : 0.08);
+        const opWinTw = isTbMove3 ? (p2.op_f_win !== undefined ? p2.op_f_win : 0.49) : (p2.op_c_win !== undefined ? p2.op_c_win : 0.49);
+        const opDrawTw = isTbMove3 ? (p2.op_f_draw !== undefined ? p2.op_f_draw : 0.08) : (p2.op_c_draw !== undefined ? p2.op_c_draw : 0.08);
+        const opBiasDiff = opWinTb - opWinTw;
 
         const sample = [
           ruleId, rTb, rTw, diff, meanR,
@@ -665,7 +670,9 @@
           ruleExpTb, ruleExpTw,
           h.total, h.decayedRate,
           rVelTb, rVelTw, rVelDiff,
-          opWinTb, opDrawTb
+          opWinTb, opDrawTb,
+          opWinTw, opDrawTw,
+          opBiasDiff
         ];
 
         const probs = predict(sample);
