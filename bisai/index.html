@@ -1,1741 +1,507 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>bisai</title>
-<style>
-  :root {
-    --bg: #ffffff;
-    --surface: #f8fafc;
-    --pill: #f1f5f9;
-    --line: #e5e7eb;
-    --text: #0f172a;
-    --muted: #64748b;
-    --blue: #1d4ed8;
-    --green: #16a34a;
-    --slate: #475569;
-    --red: #dc2626;
-  }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: clip;
-  }
-  body {
-    font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -webkit-tap-highlight-color: transparent;
-    font-variant-numeric: tabular-nums;
-  }
-
-  /* ---------- Top Header ---------- */
-  header {
-    position: sticky; top: 0; z-index: 20;
-    background: rgba(255, 255, 255, .97);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
-  }
-  .hdr-in { max-width: 840px; margin: 0 auto; padding: 10px 20px 0; }
-  .hdr-top {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 10px; padding-bottom: 6px; min-height: 44px;
-  }
-  .brand {
-    font-size: 18px; font-weight: 700; letter-spacing: -.02em;
-    display: flex; align-items: center; gap: 6px; cursor: pointer;
-    flex-shrink: 0;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  }
-  .brand i { color: var(--blue); font-style: normal; }
-  .hdr-actions {
-    display: flex; align-items: center; gap: 6px;
-    flex: 1; justify-content: flex-end; min-width: 0;
-  }
-  .icon-btn {
-    appearance: none; border: 0; background: transparent; color: var(--text);
-    width: 40px; height: 40px; border-radius: 8px; cursor: pointer; flex-shrink: 0;
-    display: inline-flex; align-items: center; justify-content: center;
-  }
-  .icon-btn:hover { background: var(--pill); }
-  .search-input {
-    display: none; flex: 1; max-width: 360px; min-width: 0; height: 38px;
-    border: 1px solid var(--line); background: var(--surface);
-    border-radius: 8px; padding: 6px 12px; font: inherit; font-size: 14px;
-    color: var(--text); outline: none;
-  }
-  .search-input.open { display: block; }
-  .search-input:focus { border-color: var(--blue); background: #fff; }
-
-  .nav-tabs {
-    display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none;
-  }
-  .nav-tabs::-webkit-scrollbar { display: none; }
-  .nav-tabs button {
-    appearance: none; border: 0; background: none; min-height: 42px;
-    padding: 8px 2px 10px; font: inherit; font-size: 14px; font-weight: 500;
-    color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;
-    border-bottom: 2px solid transparent; transition: .15s;
-  }
-  .nav-tabs button.on {
-    color: var(--text); font-weight: 600; border-bottom-color: var(--text);
-  }
-
-  /* ---------- Main Centered Shell ---------- */
-  .shell {
-    max-width: 840px; margin: 0 auto; padding: 20px 20px 64px;
-    display: block;
-  }
-  #mainCol { min-width: 0; }
-
-  /* ---------- Top Controls Row (Segmented Toggle + Tournament Picker) ---------- */
-  .ctrl-row {
-    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-    gap: 10px; margin-bottom: 16px;
-  }
-  .ctrl-center {
-    display: flex; justify-content: center; margin-bottom: 16px;
-  }
-  .seg {
-    display: inline-flex; background: var(--pill); padding: 3px; border-radius: 999px;
-  }
-  .seg button {
-    appearance: none; border: 0; background: transparent; min-height: 36px;
-    padding: 6px 18px; border-radius: 999px; font: inherit; font-size: 13px;
-    font-weight: 500; color: var(--muted); cursor: pointer; transition: .15s;
-    white-space: nowrap;
-  }
-  .seg button.on {
-    background: #fff; color: var(--text); font-weight: 600;
-    box-shadow: 0 1px 2px rgba(15, 23, 42, .08);
-  }
-  .picker-btn {
-    appearance: none; border: 1px solid var(--line); background: #fff;
-    min-height: 38px; padding: 6px 12px; border-radius: 999px;
-    font: inherit; font-size: 13px; font-weight: 600; color: var(--text);
-    cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
-    max-width: 100%; min-width: 0; transition: border-color .15s;
-  }
-  .picker-btn:hover { border-color: #cbd5e1; background: var(--surface); }
-  .picker-btn span.lbl {
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  }
-  .picker-btn svg { flex-shrink: 0; color: var(--muted); }
-
-  .res-summary {
-    font-size: 13px; color: var(--muted); text-align: center; margin: -6px 0 16px;
-  }
-  .res-summary b { color: var(--text); font-weight: 600; }
-
-  /* ---------- Breadcrumb / Back Row ---------- */
-  .crumb-row {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 10px; margin-bottom: 14px; flex-wrap: wrap;
-  }
-  .back-btn {
-    appearance: none; border: 1px solid var(--line); background: #fff;
-    min-height: 38px; padding: 6px 12px; border-radius: 8px;
-    font: inherit; font-size: 13px; font-weight: 600; color: var(--text);
-    cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
-    flex-shrink: 0;
-  }
-  .back-btn:hover { background: var(--surface); }
-
-  .sec-title {
-    font-size: 15px; font-weight: 700; margin: 20px 0 10px; color: var(--text);
-  }
-  .sec-title:first-child { margin-top: 0; }
-
-  /* ---------- Featured 3-Card Grid ---------- */
-  .feat-grid {
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px; margin-bottom: 22px;
-  }
-  .fcard {
-    border: 1px solid var(--line); border-radius: 10px; background: #fff;
-    padding: 10px 12px; cursor: pointer; transition: border-color .15s;
-    min-width: 0; overflow: hidden;
-  }
-  .fcard:hover { border-color: #cbd5e1; }
-  .fcard .fmeta {
-    font-size: 11px; color: var(--muted); margin-bottom: 8px;
-  }
-  .fcard .fmeta-line {
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .fcard .frow {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 8px; margin-top: 5px; min-width: 0;
-  }
-  .fcard .fn {
-    font-size: 13px; font-weight: 500; white-space: nowrap;
-    overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1;
-  }
-  .fcard .fn.win { font-weight: 700; }
-
-  /* ---------- Most Confident Compact List ---------- */
-  .conf-list { margin-bottom: 18px; }
-  .conf-row {
-    display: grid; grid-template-columns: minmax(0, 1fr) auto auto;
-    align-items: center; gap: 10px; min-height: 44px;
-    padding: 8px 2px; border-bottom: 1px solid var(--line);
-    cursor: pointer; font-size: 14px; min-width: 0;
-  }
-  .conf-row:hover { background: var(--surface); }
-  .conf-names {
-    min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .conf-names b { font-weight: 700; }
-  .conf-meta {
-    font-size: 12px; color: var(--muted); white-space: nowrap;
-    overflow: hidden; text-overflow: ellipsis; max-width: 240px; min-width: 0;
-  }
-
-  /* ---------- Probability Badges ---------- */
-  .badge {
-    display: inline-flex; align-items: center; justify-content: center;
-    padding: 2px 7px; border-radius: 5px; font-size: 12px; font-weight: 700;
-    line-height: 1.3; white-space: nowrap; flex-shrink: 0;
-  }
-  .badge.hi { background: var(--green); color: #fff; }
-  .badge.mid { background: var(--slate); color: #fff; }
-  .badge.lo { background: transparent; color: var(--muted); padding: 2px 0; font-weight: 500; }
-  .draw-pill {
-    display: inline-flex; align-items: center; justify-content: center;
-    margin-top: 4px; padding: 1px 6px; border-radius: 4px;
-    font-size: 11px; font-weight: 600; white-space: nowrap;
-    background: var(--pill); color: var(--muted);
-  }
-  .draw-pill.hot { background: var(--slate); color: #fff; }
-
-  /* ---------- Date Divider ---------- */
-  .day-div {
-    display: flex; align-items: center; gap: 12px;
-    margin: 20px 0 4px; color: var(--muted); font-size: 13px; font-weight: 600;
-  }
-  .day-div::before, .day-div::after {
-    content: ""; flex: 1; height: 1px; background: var(--line);
-  }
-
-  /* ---------- Match Cards (sport.dev 3-col layout) ---------- */
-  .mcard {
-    border-bottom: 1px solid var(--line); padding: 13px 2px; cursor: pointer;
-    min-width: 0; transition: background .12s;
-  }
-  .mcard:hover { background: var(--surface); }
-  .mcard .mtop {
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 10px; font-size: 12px; color: var(--muted); margin-bottom: 8px; min-width: 0;
-  }
-  .mtop-title {
-    min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  }
-  .mtop-title b { color: var(--text); font-weight: 600; }
-  .mtop-tc { flex-shrink: 0; white-space: nowrap; }
-  .mcard .mgrid {
-    display: grid; grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
-    align-items: center; gap: 10px;
-  }
-  .side {
-    display: flex; flex-direction: column; align-items: flex-start;
-    gap: 5px; min-width: 0;
-  }
-  .side.right { align-items: flex-end; text-align: right; }
-  .pname {
-    display: flex; align-items: center; gap: 6px; max-width: 100%;
-    font-size: 15px; font-weight: 500; min-width: 0;
-  }
-  .pname.win { font-weight: 700; }
-  .side.right .pname { flex-direction: row-reverse; }
-  .pname span.txt {
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
-  }
-  .elo-tag {
-    font-size: 11px; font-weight: 500; color: var(--muted);
-    background: var(--pill); padding: 1px 5px; border-radius: 4px; flex-shrink: 0;
-  }
-  .center-box {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; min-width: 0;
-  }
-  .center-box .sub-val { font-size: 11px; color: var(--muted); line-height: 1.2; }
-  .center-box .main-val {
-    font-size: 16px; font-weight: 700; color: var(--text); white-space: nowrap; line-height: 1.3;
-  }
-  .hit-tag {
-    display: inline-block; margin-left: 4px; font-size: 11px; font-weight: 700;
-  }
-  .hit-tag.ok { color: var(--green); }
-  .hit-tag.bad { color: var(--red); }
-
-  .more-wrap { display: flex; justify-content: center; margin-top: 20px; }
-  .more-btn {
-    appearance: none; background: #fff; border: 1px solid var(--line); min-height: 44px;
-    border-radius: 8px; padding: 10px 32px; font: inherit; font-size: 14px;
-    font-weight: 600; color: var(--text); cursor: pointer;
-  }
-  .more-btn:hover { background: var(--surface); }
-
-  .rp-bar {
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 8px; margin: 14px 0;
-  }
-  .rp-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
-  .rp-btn {
-    appearance: none; background: #fff; border: 1px solid var(--line); border-radius: 8px;
-    padding: 5px 11px; min-height: 34px; font: inherit; font-size: 12px; font-weight: 600;
-    color: var(--text); cursor: pointer; font-variant-numeric: tabular-nums;
-  }
-  .rp-btn:hover:not(:disabled) { background: var(--surface); border-color: #cbd5e1; }
-  .rp-btn.on { background: var(--text); color: #fff; border-color: var(--text); }
-  .rp-btn:disabled { opacity: 0.4; cursor: default; }
-  .rp-info { font-size: 12px; color: var(--muted); font-weight: 500; font-variant-numeric: tabular-nums; }
-
-  /* ---------- Match Detail Page (sport.dev style) ---------- */
-  .hero-card {
-    border: 1px solid var(--line); border-radius: 12px; background: #fff;
-    padding: 18px; margin-bottom: 16px;
-  }
-  .hero-meta {
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
-    gap: 8px; font-size: 12px; color: var(--muted); margin-bottom: 16px;
-  }
-  .hero-tour {
-    color: var(--blue); font-weight: 600; cursor: pointer;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%;
-  }
-  .hero-tour:hover { text-decoration: underline; }
-  .hero-grid {
-    display: grid; grid-template-columns: minmax(0, 1fr) 110px minmax(0, 1fr);
-    align-items: center; gap: 12px; margin-bottom: 18px;
-  }
-  .hero-player { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
-  .hero-player.right { align-items: flex-end; text-align: right; }
-  .hero-pname {
-    font-size: 18px; font-weight: 700; line-height: 1.25;
-    word-break: break-word;
-  }
-  .hero-psub {
-    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
-    font-size: 12px; color: var(--muted);
-  }
-  .hero-player.right .hero-psub { justify-content: flex-end; }
-  .hero-center { text-align: center; }
-  .hero-score { font-size: 24px; font-weight: 800; line-height: 1.2; }
-  .hero-time { font-size: 12px; color: var(--muted); margin-top: 3px; }
-
-  .outcome-trio {
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px; margin-bottom: 14px;
-  }
-  .out-box {
-    border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
-    padding: 10px 12px; text-align: center;
-  }
-  .out-box.hi { border-color: var(--green); background: #f0fdf4; }
-  .out-box.mid { border-color: #94a3b8; background: var(--pill); }
-  .out-box .olbl { font-size: 12px; color: var(--muted); }
-  .out-box .opct { font-size: 20px; font-weight: 800; margin: 2px 0; }
-  .out-box.hi .opct { color: var(--green); }
-  .out-box .oodds { font-size: 11px; color: var(--muted); }
-
-  .pbar-wrap { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
-  .pbar-wrap span { white-space: nowrap; flex-shrink: 0; }
-  .pbar {
-    flex: 1; min-width: 0; height: 8px; border-radius: 999px; background: var(--line);
-    display: flex; overflow: hidden;
-  }
-  .pbar i { display: block; height: 100%; }
-  .pbar .pw { background: var(--blue); }
-  .pbar .pd { background: #cbd5e1; }
-  .pbar .pb { background: var(--text); }
-
-  .detail-card {
-    border: 1px solid var(--line); border-radius: 12px; background: #fff;
-    overflow: hidden; margin-bottom: 16px;
-  }
-  .detail-card h3 {
-    margin: 0; padding: 12px 16px; font-size: 14px; font-weight: 700;
-    background: var(--surface); border-bottom: 1px solid var(--line);
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .cmp-row {
-    display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    align-items: center; gap: 10px; padding: 11px 16px;
-    border-bottom: 1px solid var(--line); font-size: 13px;
-  }
-  .cmp-row:last-child { border-bottom: 0; }
-  .cmp-v { font-weight: 700; font-size: 14px; }
-  .cmp-v.right { text-align: right; }
-  .cmp-k { font-size: 12px; color: var(--muted); text-align: center; white-space: nowrap; }
-
-  .tour-banner {
-    border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
-    padding: 12px 14px; display: flex; align-items: center; justify-content: space-between;
-    gap: 10px; cursor: pointer;
-  }
-  .tour-banner:hover { border-color: #cbd5e1; }
-  .tour-banner b { font-size: 14px; }
-  .tour-banner span { font-size: 12px; color: var(--blue); font-weight: 600; flex-shrink: 0; }
-
-  /* ---------- Tournament Header & Standings (名次表) ---------- */
-  .tour-hdr {
-    margin-bottom: 16px;
-  }
-  .tour-hdr h1 {
-    margin: 0 0 8px; font-size: 18px; font-weight: 700; line-height: 1.3;
-  }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); }
-  .chips b { color: var(--text); font-weight: 600; margin-left: 4px; }
-
-  .rr-card {
-    border: 1px solid var(--line); border-radius: 10px; background: #fff;
-    overflow: hidden; margin-bottom: 16px; min-width: 0;
-  }
-  .rr-head, .rr-row {
-    display: grid; grid-template-columns: 30px minmax(0, 1fr) 54px 48px 64px 54px 56px;
-    gap: 8px; padding: 10px 14px; align-items: center;
-  }
-  .rr-head.fb, .rr-row.fb {
-    grid-template-columns: 30px minmax(0, 1fr) 56px 52px 52px 68px;
-  }
-  .rr-head {
-    background: var(--surface); border-bottom: 1px solid var(--line);
-    font-size: 11px; color: var(--muted); font-weight: 600;
-  }
-  .rr-head span:nth-child(n+3), .rr-row > span:nth-child(n+3) { text-align: right; }
-  .rr-row {
-    border-bottom: 1px solid var(--line); cursor: pointer; font-size: 14px; min-height: 46px;
-  }
-  .rr-row.static { cursor: default; }
-  .rr-row:last-child { border-bottom: 0; }
-  .rr-row:hover:not(.static), .rr-row.sel { background: var(--surface); }
-  .rr-name-cell { min-width: 0; display: flex; flex-direction: column; }
-  .rr-row .nm { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .rr-sub-mob { display: none; font-size: 11px; color: var(--muted); line-height: 1.25; }
-  .rr-panel {
-    padding: 12px 14px 16px; background: var(--surface); border-bottom: 1px solid var(--line);
-  }
-  .hmap {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(46px, 1fr));
-    gap: 0; margin-top: 10px; border-radius: 6px; overflow: hidden;
-    border: 1px solid rgba(15, 23, 42, .08);
-  }
-  .hm-cell {
-    padding: 6px 3px; text-align: center;
-    box-shadow: inset -1px -1px 0 rgba(15, 23, 42, .06);
-  }
-  .hm-cell .hm-k { font-size: 10px; line-height: 1.2; opacity: .8; }
-  .hm-cell .hm-v { font-size: 12px; font-weight: 700; line-height: 1.3; margin-top: 1px; }
-
-  /* ---------- Tournament Picker Modal ---------- */
-  .modal-scrim {
-    position: fixed; inset: 0; z-index: 50; background: rgba(15, 23, 42, .45);
-    display: none; align-items: flex-start; justify-content: center;
-    padding: 56px 14px 20px;
-  }
-  .modal-scrim.open { display: flex; }
-  .modal-box {
-    width: 100%; max-width: 480px; max-height: 78vh;
-    background: #fff; border-radius: 12px; border: 1px solid var(--line);
-    box-shadow: 0 20px 40px rgba(15, 23, 42, .18);
-    display: flex; flex-direction: column; overflow: hidden;
-  }
-  .modal-hdr {
-    display: flex; align-items: center; gap: 8px;
-    padding: 12px 14px; border-bottom: 1px solid var(--line);
-  }
-  .modal-hdr input {
-    flex: 1; min-width: 0; height: 38px; border: 1px solid var(--line);
-    border-radius: 8px; padding: 6px 12px; font: inherit; font-size: 14px;
-    background: var(--surface); outline: none;
-  }
-  .modal-hdr input:focus { border-color: var(--blue); background: #fff; }
-  .modal-list { overflow-y: auto; padding: 6px 0; }
-  .pick-item {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 10px; padding: 11px 16px; cursor: pointer; min-height: 46px;
-    border-bottom: 1px solid #f1f5f9;
-  }
-  .pick-item:last-child { border-bottom: 0; }
-  .pick-item:hover { background: var(--surface); }
-  .pick-item.on { background: #eff6ff; }
-  .pick-item .pn {
-    font-size: 14px; font-weight: 600; min-width: 0;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  }
-  .pick-item .pr {
-    display: flex; align-items: center; gap: 6px; flex-shrink: 0;
-    font-size: 11px; color: var(--muted);
-  }
-  .tag-rr {
-    background: #dbeafe; color: var(--blue); padding: 2px 6px;
-    border-radius: 4px; font-weight: 700; font-size: 11px;
-  }
-
-  /* ---------- Accuracy View & Right Sidebar ---------- */
-  aside { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-  .stat-triple { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 18px; }
-  .stat-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .stat-box {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: 10px; padding: 12px 14px; min-width: 0;
-  }
-  .stat-box .lbl { font-size: 12px; color: var(--muted); }
-  .stat-box .big { font-size: 24px; font-weight: 700; margin: 2px 0; }
-  .stat-box .sub { font-size: 11px; color: var(--muted); }
-
-  .acc-row {
-    display: grid; grid-template-columns: 24px minmax(0, 1fr) auto auto;
-    align-items: center; gap: 10px; min-height: 44px; padding: 8px 2px;
-    border-bottom: 1px solid var(--line); cursor: pointer; font-size: 13px;
-  }
-  .acc-row:hover { background: var(--surface); }
-  .acc-row:last-child { border-bottom: 0; }
-  .acc-row .rk { color: var(--muted); font-size: 12px; text-align: center; }
-  .acc-row .tn { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .acc-row .cnt { color: var(--muted); font-size: 12px; white-space: nowrap; }
-  .acc-row .rate { font-weight: 700; font-size: 13px; white-space: nowrap; }
-
-  .side-block { margin-bottom: 18px; }
-  .side-block h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 8px; }
-  .side-item { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
-  .side-item:last-child { border-bottom: 0; }
-  .side-match {
-    display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    gap: 6px; align-items: center; font-weight: 600;
-  }
-  .side-match span:first-child, .side-match span:last-child {
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .side-match span:last-child { text-align: right; }
-  .side-sub {
-    font-size: 11px; color: var(--muted); margin-top: 2px;
-    display: flex; justify-content: space-between; gap: 8px;
-  }
-  .side-sub span:first-child {
-    min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  }
-  .side-sub span:last-child { flex-shrink: 0; white-space: nowrap; }
-  .side-more {
-    appearance: none; border: 0; background: none; padding: 8px 0 2px;
-    font: inherit; font-size: 13px; font-weight: 600; color: var(--text); cursor: pointer;
-  }
-
-  .side-card {
-    background: #fff; border: 1px solid var(--line);
-    border-radius: 10px; padding: 14px; min-width: 0;
-  }
-  .side-card h3 { font-size: 14px; font-weight: 700; margin: 0 0 10px; }
-  .league-grid {
-    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 12px;
-  }
-  .league-item {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 6px; font-size: 12px; padding: 6px 0; cursor: pointer; min-width: 0;
-  }
-  .league-item:hover { color: var(--blue); }
-  .league-item .ln { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .league-item .ld { color: var(--muted); flex-shrink: 0; }
-
-  .empty { padding: 40px 0; text-align: center; color: var(--muted); font-size: 14px; }
-
-  /* ---------- Tablet & Mobile Responsive ---------- */
-  @media (max-width: 880px) {
-    .shell { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-    .feat-grid { grid-template-columns: minmax(0, 1fr); }
-    .league-grid { grid-template-columns: minmax(0, 1fr); }
-  }
-
-  @media (max-width: 640px) {
-    .hdr-in { padding: 8px 14px 0; }
-    .shell { padding: 14px 14px 48px; gap: 22px; }
-    .ctrl-row { justify-content: space-between; margin-bottom: 14px; }
-    .ctrl-center { margin-bottom: 14px; }
-    .seg button { min-height: 38px; padding: 6px 13px; font-size: 13px; }
-    .picker-btn { max-width: 44%; padding: 6px 10px; font-size: 12px; }
-    .nav-tabs { gap: 18px; }
-    .nav-tabs button { min-height: 44px; padding: 10px 2px; }
-
-    /* Search open hides brand slightly or shrinks cleanly */
-    .hdr-top.searching .brand span { display: none; }
-
-    /* Compact 2-line Most Confident rows on mobile */
-    .conf-row {
-      grid-template-columns: minmax(0, 1fr) auto;
-      grid-template-rows: auto auto;
-      gap: 2px 10px;
-      padding: 10px 2px;
-      min-height: 52px;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>五子棋精算预测</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100vw; height: 100vh;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
     }
-    .conf-names { grid-column: 1; grid-row: 1; font-size: 14px; }
-    .conf-meta { grid-column: 1; grid-row: 2; max-width: 100%; font-size: 12px; }
-    .conf-row .badge { grid-column: 2; grid-row: 1 / 3; align-self: center; }
-
-    /* Match Card 3-col spacing optimized for phone width */
-    .mcard { padding: 12px 0; }
-    .mcard .mgrid { grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr); gap: 6px; }
-    .pname { font-size: 14px; flex-wrap: wrap; row-gap: 2px; column-gap: 4px; }
-    .pname span.txt {
-      white-space: normal; word-break: break-word; line-height: 1.25;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    .app-container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      padding: 24px 36px;
+      gap: 32px;
+      box-sizing: border-box;
     }
-    .center-box .main-val { font-size: 14px; }
-
-    /* Match Detail on mobile */
-    .hero-card { padding: 14px 12px; }
-    .hero-grid { grid-template-columns: minmax(0, 1fr) 76px minmax(0, 1fr); gap: 8px; }
-    .hero-pname { font-size: 15px; }
-    .hero-score { font-size: 19px; }
-    .out-box { padding: 8px 6px; }
-    .out-box .opct { font-size: 17px; }
-    .cmp-row { padding: 10px 12px; font-size: 12px; }
-    .cmp-v { font-size: 13px; }
-
-    /* Standings table readable mobile columns */
-    .rr-head, .rr-row {
-      grid-template-columns: 20px minmax(0, 1fr) 38px 54px 48px;
-      gap: 6px; padding: 10px; font-size: 13px;
+    .left-col {
+      flex: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
     }
-    .rr-head.fb, .rr-row.fb {
-      grid-template-columns: 20px minmax(0, 1fr) 42px 40px 56px;
+    .right-col {
+      flex: 7;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-    .rr-head span:nth-child(3), .rr-head span:nth-child(7),
-    .rr-row > span:nth-child(3), .rr-row > span:nth-child(7) {
-      display: none;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
-    .rr-sub-mob { display: block; margin-top: 2px; }
+    .form-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: #475569;
+    }
+    .swap-row {
+      display: flex;
+      justify-content: center;
+      margin: -4px 0;
+    }
+    .swap-btn {
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #334155;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .swap-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .custom-select {
+      width: 100%;
+      height: 44px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0 12px;
+      font-size: 15px;
+      background: white;
+      color: #0f172a;
+      outline: none;
+    }
+    .choices__inner {
+      background: white !important;
+      border: 1px solid #cbd5e1 !important;
+      border-radius: 8px !important;
+      min-height: 44px !important;
+      padding: 4px 10px !important;
+      font-size: 15px !important;
+    }
+    .choices__list--dropdown {
+      z-index: 50 !important;
+    }
 
-    .stat-triple { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .stat-triple .stat-box:last-child { grid-column: 1 / -1; }
-    .stat-box { padding: 10px 12px; }
-    .stat-box .big { font-size: 21px; }
-    .league-item { padding: 8px 0; min-height: 38px; border-bottom: 1px solid var(--line); }
-    .league-item:last-child { border-bottom: 0; }
-    .modal-scrim { padding: 18px 10px; align-items: flex-end; }
-    .modal-box { max-height: 82vh; }
-  }
-</style>
+    /* Info Card */
+    .info-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 18px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .player-box {
+      min-width: 180px;
+    }
+    .player-role {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .player-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .player-meta {
+      font-size: 15px;
+      font-weight: 400;
+      color: #475569;
+    }
+    .badge-tb {
+      font-size: 17px;
+      font-weight: 700;
+      color: #2563eb;
+      background: #eff6ff;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      display: inline-block;
+      margin-top: 6px;
+    }
+    .badge-tw {
+      font-size: 17px;
+      font-weight: 700;
+      color: #dc2626;
+      background: #fef2f2;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      display: inline-block;
+      margin-top: 6px;
+    }
+    .center-summary {
+      text-align: center;
+      padding: 0 20px;
+    }
+    .diff-line {
+      font-size: 16px;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+    .h2h-badge {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0f172a;
+      background: #e2e8f0;
+      padding: 6px 18px;
+      border-radius: 24px;
+      display: inline-block;
+    }
+
+    /* Table */
+    .pred-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 17px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      background: white;
+    }
+    .pred-table th {
+      background: #f1f5f9;
+      border-bottom: 2px solid #cbd5e1;
+      padding: 16px;
+      font-size: 17px;
+      color: #334155;
+    }
+    .pred-table td {
+      padding: 18px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .td-label {
+      font-weight: 700;
+      font-size: 18px;
+      color: #1e293b;
+    }
+    .td-prob-blue {
+      color: #2563eb;
+      font-weight: 800;
+      font-size: 22px;
+    }
+    .td-prob-gray {
+      color: #64748b;
+      font-weight: 800;
+      font-size: 22px;
+    }
+    .td-prob-red {
+      color: #dc2626;
+      font-weight: 800;
+      font-size: 22px;
+    }
+    .td-odds {
+      font-weight: 700;
+      font-size: 18px;
+      color: #334155;
+    }
+
+    .error-card {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .loading-tip {
+      text-align: center;
+      color: #64748b;
+      font-size: 18px;
+      padding: 40px;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="hdr-in">
-    <div class="hdr-top" id="hdrTop">
-      <div class="brand" id="brandHome"><i>#</i><span>bisai</span></div>
-      <div class="hdr-actions">
-        <input id="searchBox" class="search-input" type="search" placeholder="搜索棋手 / 赛事" />
-        <button class="icon-btn" id="searchToggle" aria-label="搜索">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        </button>
+  <div class="app-container" id="app">
+    <div class="left-col">
+      <div class="form-group">
+        <label class="form-label" for="tbSelect">假先方</label>
+        <select id="tbSelect"></select>
+      </div>
+      <div class="swap-row">
+        <button class="swap-btn" id="swapBtn">⇅ 对调先后手</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="twSelect">假后方</label>
+        <select id="twSelect"></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="ruleSelect">比赛规则</label>
+        <select id="ruleSelect" class="custom-select">
+          <option value="25" selected>塔拉山口-10 (Taraguchi-10)</option>
+          <option value="5">山口规则 (Yamaguchi)</option>
+          <option value="24">索索夫-8 (Soosyrv-8)</option>
+          <option value="1">两打 (Classic)</option>
+          <option value="4">塔拉尼科夫 (Tarannikov)</option>
+          <option value="10">索索夫 (Soosyrv)</option>
+        </select>
       </div>
     </div>
-    <nav class="nav-tabs" id="projectTabs"></nav>
-  </div>
-</header>
 
-<div class="shell">
-  <section id="mainCol"></section>
-</div>
-
-<!-- Tournament Picker Modal -->
-<div class="modal-scrim" id="tourModal" role="dialog" aria-modal="true" aria-label="选择赛事">
-  <div class="modal-box">
-    <div class="modal-hdr">
-      <input id="tourFilterInput" type="search" placeholder="搜索赛事名称..." />
-      <button class="icon-btn" id="closeTourModal" aria-label="关闭">×</button>
+    <div class="right-col" id="resultCol">
+      <div class="loading-tip">正在载入数据与模型引擎...</div>
     </div>
-    <div class="modal-list" id="tourModalList"></div>
   </div>
-</div>
 
-<script>
-(function () {
-  const qs = new URLSearchParams(location.search);
-  const $ = (id) => document.getElementById(id);
-  const el = {
-    hdrTop: $("hdrTop"),
-    brand: $("brandHome"),
-    tabs: $("projectTabs"),
-    search: $("searchBox"),
-    searchBtn: $("searchToggle"),
-    main: $("mainCol"),
-    side: $("sidebar"),
-    modal: $("tourModal"),
-    modalInput: $("tourFilterInput"),
-    modalList: $("tourModalList"),
-    modalClose: $("closeTourModal"),
-  };
+  <script>
+    (async function () {
+      const CURRENT_YEAR = 2026;
+      const $ = (id) => document.getElementById(id);
 
-  const pct = (v) => (v == null ? "—" : Math.round(v * 100) + "%");
-  const pct1 = (v) => (v == null ? "—" : (v * 100).toFixed(1) + "%");
-  const num = (v, d = 2) => (v == null ? "—" : Number(v).toFixed(d));
-  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const isDone = (st) => st === "1-0" || st === "0-1" || st === "1/2-1/2" || st === "½-½";
+      // 1. 并发载入静态数据资源
+      const [playersRes, h2hRes, modelRes] = await Promise.all([
+        fetch('./data/players.json'),
+        fetch('./data/h2h.json'),
+        fetch('./data/model.json')
+      ]);
 
-  function fmtDateTime(ms, iso) {
-    const d = ms ? new Date(ms) : (iso ? new Date(String(iso).replace(" UTC", "Z").replace(" ", "T")) : null);
-    if (!d || isNaN(d.getTime())) return { day: "—", time: "—", full: "—" };
-    const pad = (n) => String(n).padStart(2, "0");
-    const day = `${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-    const time = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
-    return { day, time, full: `${day} ${time}` };
-  }
+      const players = await playersRes.json();
+      const h2h = await h2hRes.json();
+      const model = await modelRes.json();
 
-  function badgeClass(p, pw, pd, pb) {
-    const mx = Math.max(pw, pd, pb);
-    if (p > 0.50 && p >= mx - 1e-9) return "hi";
-    if (p >= mx - 1e-9 && p > 0) return "mid";
-    return "lo";
-  }
+      const playerMap = {};
+      players.forEach(p => { playerMap[p.id] = p; });
 
-  function hitState(game) {
-    const st = game.status;
-    const pr = game.prediction;
-    if (!isDone(st) || !pr) return null;
-    const actual = st === "1-0" ? "W" : (st === "0-1" ? "B" : "D");
-    const pw = pr.p_white_win || 0;
-    const pd = pr.p_draw || 0;
-    const pb = pr.p_black_win || 0;
-    let pred = "W", best = pw;
-    if (pd > best) { pred = "D"; best = pd; }
-    if (pb > best) { pred = "B"; best = pb; }
-    return actual === pred ? { cls: "ok", txt: "✓" } : { cls: "bad", txt: "×" };
-  }
+      // 2. 初始化 Choices 下拉选择
+      const formatLabel = (p) => {
+        const nameDisp = p.native_name ? `${p.native_name} (${p.name})` : p.name;
+        const ageDisp = p.age ? `${p.age}岁` : '未知年龄';
+        return `${nameDisp} [${p.country_abbr}, ${ageDisp}] | ${p.rating.toFixed(0)}±${p.std.toFixed(0)} | ID:${p.id}`;
+      };
 
-  function formatLabel(rawFmt, c) {
-    const src = String(rawFmt || (c && c.format) || "").trim();
-    const low = src.toLowerCase();
-    const mPlayer = low.match(/(\d+)\s*[-\s]*player/);
-    const n = (c && c.n_players) || (mPlayer ? parseInt(mPlayer[1], 10) : 0);
-    const totR = (c && c.total_rounds) || 0;
-    const singleR = n >= 3 ? (n % 2 === 1 ? n : n - 1) : 0;
-    const isRR = low.includes("round-robin") || low.includes("round robin");
-    if (low.includes("team") && isRR) return n ? `${n}队循环赛` : "团队循环赛";
-    if (low.includes("double") || low.includes("双循环") || (isRR && singleR > 0 && totR >= 2 * singleR)) {
-      return n ? `${n}人双循环` : "双循环赛";
-    }
-    if (isRR || low.includes("single") || low.includes("单循环")) {
-      return n ? `${n}人单循环` : "单循环赛";
-    }
-    if (low.includes("swiss")) {
-      const mRnd = low.match(/(\d+)\s*[-\s]*round/);
-      const rCnt = mRnd ? parseInt(mRnd[1], 10) : 0;
-      if (low.includes("team")) return rCnt ? `${rCnt}轮团体瑞士制` : "团体瑞士制";
-      return rCnt ? `${rCnt}轮瑞士制` : "瑞士制";
-    }
-    if (low.includes("knockout")) {
-      const mEng = low.match(/(\d+)\s*[-\s]*(engine|player)/);
-      return mEng ? `${mEng[1]}人淘汰赛` : "淘汰赛";
-    }
-    return src || "标准赛制";
-  }
+      const selectChoices = players.map(p => ({
+        value: p.id,
+        label: formatLabel(p)
+      }));
 
-  /* ---------------- 可扩展项目注册表 ---------------- */
-  const PROJECTS = [
-    { id: "chess", label: "国际象棋", type: "matches", dataUrl: "./data/chess.json" },
-  ];
-
-  let state = {
-    project: PROJECTS.find((p) => p.id === qs.get("project")) || PROJECTS[0],
-    subView: "schedule",      // "schedule" | "results"
-    tourSubView: "standings", // "standings" | "schedule" | "results"
-    query: "",
-    tourId: null,
-    matchKey: null,
-    openRrKey: null,
-    allRoundPage: 1,
-    tourRoundPage: 0,
-    hitsLimit: 4,
-    missesLimit: 3,
-    data: null,
-    matchIndex: new Map(),
-    tourMap: new Map(),
-  };
-
-  function syncHash(push = false) {
-    let target = "";
-    if (state.matchKey) target = `#match=${encodeURIComponent(state.matchKey)}`;
-    else if (state.tourId) target = `#tour=${encodeURIComponent(state.tourId)}`;
-    else if (state.subView === "accuracy") target = "#stats";
-    const nextUrl = target || (location.pathname + location.search);
-    if (location.hash !== target) {
-      if (push) history.pushState(null, "", nextUrl);
-      else history.replaceState(null, "", nextUrl);
-    }
-  }
-
-  function readHash() {
-    const h = location.hash || "";
-    if (h.startsWith("#match=")) {
-      state.matchKey = decodeURIComponent(h.slice(7));
-    } else if (h.startsWith("#tour=")) {
-      state.matchKey = null;
-      state.tourId = decodeURIComponent(h.slice(6));
-      state.tourSubView = "standings";
-    } else if (h === "#stats") {
-      state.matchKey = null;
-      state.tourId = null;
-      state.subView = "accuracy";
-    } else {
-      state.matchKey = null;
-      state.tourId = null;
-    }
-  }
-
-  function buildIndexes() {
-    state.matchIndex = new Map();
-    state.tourMap = new Map();
-    const d = state.data || {};
-    const events = d.events || [];
-    const champs = d.championships || [];
-    const champByTid = new Map();
-    champs.forEach((c) => champByTid.set(c.tour_id, c));
-
-    const seenByTour = new Map();
-    const ensureTour = (tid, tname, tc, dt) => {
-      if (!state.tourMap.has(tid)) {
-        state.tourMap.set(tid, {
-          tour_id: tid,
-          tour_name: tname,
-          short_name: tname.split("|")[0].trim(),
-          format: "",
-          time_control: tc || "classical",
-          next_dt: dt || { day: "—", time: "—", full: "—" },
-          champ: champByTid.get(tid) || null,
-          rounds: [],
-          upcomingItems: [],
-          finishedItems: [],
-        });
-        seenByTour.set(tid, new Set());
-      }
-      return state.tourMap.get(tid);
-    };
-
-    events.forEach((r) => {
-      const dt = fmtDateTime(r.starts_at_ms, r.starts_at);
-      const tm = ensureTour(r.tour_id, r.tour_name, r.time_control, dt);
-      if (r.format && !tm.format) tm.format = r.format;
-      tm.rounds.push(r);
-      if (r.status !== "finished" && tm.next_dt.day === "—") tm.next_dt = dt;
-      const seen = seenByTour.get(r.tour_id);
-
-      (r.pairings || []).forEach((g, idx) => {
-        const key = `${r.round_id}::${idx}`;
-        const pr = g.prediction || {};
-        const item = {
-          key,
-          round: r,
-          game: g,
-          dt,
-          isSyntheticRR: false,
-          maxElo: Math.max(g.white_elo || 0, g.black_elo || 0),
-          favP: Math.max(pr.p_white_win || 0, pr.p_black_win || 0),
-        };
-        state.matchIndex.set(key, item);
-        seen.add(`${r.round_name}::${g.white}::${g.black}`.toLowerCase());
-        if (isDone(g.status)) tm.finishedItems.push(item);
-        else tm.upcomingItems.push(item);
+      const tbChoices = new Choices('#tbSelect', {
+        choices: selectChoices,
+        searchEnabled: true,
+        shouldSort: false,
+        itemSelectText: '',
       });
-    });
 
-    champs.forEach((c) => {
-      const tm = ensureTour(c.tour_id, c.tour_name, c.time_control || "classical", null);
-      const seen = seenByTour.get(c.tour_id);
-      const eloMap = new Map();
-      (c.standings || []).forEach((p) => { eloMap.set(p.name, p.elo); });
-
-      (c.upcoming_pairings || []).forEach((up, idx) => {
-        const sig = `${up.round_name}::${up.white}::${up.black}`.toLowerCase();
-        if (seen.has(sig)) return;
-        seen.add(sig);
-        const pw = up.p_white_win || 0;
-        const pd = up.p_draw || 0;
-        const pb = up.p_black_win || 0;
-        const wElo = eloMap.get(up.white) || 0;
-        const bElo = eloMap.get(up.black) || 0;
-        const key = `rr::${c.tour_id}::${idx}`;
-        const item = {
-          key,
-          round: {
-            tour_id: c.tour_id,
-            tour_name: c.tour_name,
-            round_id: `rr-${c.tour_id}-${idx}`,
-            round_name: up.round_name,
-            time_control: c.time_control || "classical",
-            status: "upcoming",
-          },
-          game: {
-            white: up.white,
-            black: up.black,
-            white_elo: wElo || null,
-            black_elo: bElo || null,
-            status: "*",
-            prediction: {
-              p_white_win: pw,
-              p_draw: pd,
-              p_black_win: pb,
-              expected_score_white: pw + 0.5 * pd,
-              expected_score_black: pb + 0.5 * pd,
-              white_elo_used: wElo || null,
-              black_elo_used: bElo || null,
-              factors: { elo_diff: wElo && bElo ? (wElo - bElo) : null },
-            },
-          },
-          dt: { day: up.round_name, time: up.round_name, full: up.round_name },
-          isSyntheticRR: true,
-          maxElo: Math.max(wElo, bElo),
-          favP: Math.max(pw, pb),
-        };
-        state.matchIndex.set(key, item);
-        tm.upcomingItems.push(item);
+      const twChoices = new Choices('#twSelect', {
+        choices: selectChoices,
+        searchEnabled: true,
+        shouldSort: false,
+        itemSelectText: '',
       });
-    });
-  }
 
-  function computeFallbackStandings(tourObj) {
-    const players = new Map();
-    const ensure = (name, elo) => {
-      if (!players.has(name)) {
-        players.set(name, { name, elo: elo || 0, played: 0, w: 0, d: 0, l: 0, pts: 0 });
-      }
-      const p = players.get(name);
-      if (elo && !p.elo) p.elo = elo;
-      return p;
-    };
-    (tourObj.rounds || []).forEach((r) => {
-      (r.pairings || []).forEach((g) => {
-        const w = ensure(g.white, g.white_elo);
-        const b = ensure(g.black, g.black_elo);
-        if (!isDone(g.status)) return;
-        w.played += 1;
-        b.played += 1;
-        if (g.status === "1-0") { w.w += 1; w.pts += 1; b.l += 1; }
-        else if (g.status === "0-1") { b.w += 1; b.pts += 1; w.l += 1; }
-        else { w.d += 1; w.pts += 0.5; b.d += 1; b.pts += 0.5; }
-      });
-    });
-    return Array.from(players.values()).sort((a, b) => (b.pts - a.pts) || (b.elo - a.elo));
-  }
+      // 默认选中前列选手: 凌世杰 (100974) vs 艾显平 (100073)
+      tbChoices.setChoiceByValue('100974');
+      twChoices.setChoiceByValue('100073');
 
-  async function loadData() {
-    const bust = Math.floor(Date.now() / 60000);
-    const res = await fetch(`${state.project.dataUrl}?v=${bust}`);
-    if (!res.ok) throw new Error(res.status);
-    state.data = await res.json();
-    buildIndexes();
-    readHash();
-  }
+      // 3. 极速纯前端 LightGBM 决策树推断 API
+      function predict(sample) {
+        const trees = model.trees;
+        const catMap = model.pandas_cat;
+        const scores = [0.0, 0.0, 0.0];
 
-  function openMatch(key) {
-    state.matchKey = key;
-    syncHash(true);
-    renderMain();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+        for (let i = 0; i < trees.length; i++) {
+          const cls = i % 3;
+          let curr = trees[i];
+          while (curr.v === undefined) {
+            const fIdx = curr.f;
+            const val = sample[fIdx];
+            const threshold = curr.t;
 
-  function openTournament(tid) {
-    state.matchKey = null;
-    state.tourId = tid || null;
-    state.tourSubView = "standings";
-    state.openRrKey = null;
-    state.tourRoundPage = 0;
-    syncHash(true);
-    renderMain();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  function groupByRound(items) {
-    const groups = [];
-    const map = new Map();
-    items.forEach((it) => {
-      const k = it.isSyntheticRR
-        ? `${it.round.tour_id}::${it.round.round_name}`
-        : `${it.round.tour_id}::${it.round.round_id || it.round.round_name}`;
-      let g = map.get(k);
-      if (!g) {
-        g = {
-          key: k,
-          tourShort: it.round.tour_name.split("|")[0].trim(),
-          roundName: it.round.round_name || "",
-          day: it.dt.day || "—",
-          items: [],
-        };
-        map.set(k, g);
-        groups.push(g);
-      }
-      g.items.push(it);
-    });
-    return groups;
-  }
-
-  function renderTabs() {
-    el.tabs.innerHTML = "";
-    PROJECTS.forEach((p) => {
-      const b = document.createElement("button");
-      b.textContent = p.label;
-      b.className = p.id === state.project.id ? "on" : "";
-      b.addEventListener("click", () => {
-        state.project = p;
-        state.tourId = null;
-        state.matchKey = null;
-        state.subView = "schedule";
-        state.allRoundPage = 1;
-        state.tourRoundPage = 0;
-        syncHash();
-        renderTabs();
-        renderMain();
-      });
-      el.tabs.appendChild(b);
-    });
-  }
-
-  function renderMatchCardHTML(it) {
-    const r = it.round;
-    const g = it.game;
-    const pr = g.prediction;
-    const pw = pr ? pr.p_white_win : 0;
-    const pd = pr ? pr.p_draw : 0;
-    const pb = pr ? pr.p_black_win : 0;
-    const done = isDone(g.status);
-    const wWin = done ? g.status === "1-0" : pw >= pb && pw >= pd;
-    const bWin = done ? g.status === "0-1" : pb > pw && pb >= pd;
-    const drawHot = pd > pw && pd > pb;
-    const hs = done ? hitState(g) : null;
-    const shortTour = r.tour_name.split("|")[0].trim();
-
-    return `
-      <div class="mcard" data-match="${esc(it.key)}">
-        <div class="mtop">
-          <span class="mtop-title"><b data-tourjump="${esc(r.tour_id)}">${esc(shortTour)}</b> · ${esc(r.round_name)}</span>
-          <span class="mtop-tc">${esc(r.time_control)} ›</span>
-        </div>
-        <div class="mgrid">
-          <div class="side">
-            <div class="pname${wWin ? " win" : ""}">
-              <span class="txt">${esc(g.white)}</span>
-              ${g.white_elo ? `<span class="elo-tag">${g.white_elo}</span>` : ""}
-            </div>
-            <span class="badge ${badgeClass(pw, pw, pd, pb)}">${pct(pw)}</span>
-          </div>
-          <div class="center-box">
-            ${done
-              ? `${it.dt.day !== "—" ? `<div class="sub-val">${esc(it.dt.full)}</div>` : ""}<div class="main-val">${esc(g.status)}${hs ? `<span class="hit-tag ${hs.cls}">${hs.txt}</span>` : ""}</div>`
-              : (it.isSyntheticRR
-                ? `<div class="main-val">vs</div>`
-                : `<div class="sub-val">${esc(it.dt.day)}</div><div class="main-val">${esc(it.dt.time)}</div>`)
+            // Missing / NaN handling
+            if (val === null || val === undefined || Number.isNaN(val)) {
+              curr = (curr.dl === 1) ? curr.l : curr.r;
+              continue;
             }
-            ${pr ? `<span class="badge ${badgeClass(pd, pw, pd, pb)}" style="margin-top:4px;font-size:11px;">和 ${pct(pd)}</span>` : ""}
-          </div>
-          <div class="side right">
-            <div class="pname${bWin ? " win" : ""}">
-              <span class="txt">${esc(g.black)}</span>
-              ${g.black_elo ? `<span class="elo-tag">${g.black_elo}</span>` : ""}
-            </div>
-            <span class="badge ${badgeClass(pb, pw, pd, pb)}">${pct(pb)}</span>
-          </div>
-        </div>
-      </div>`;
-  }
 
-  function bindCardClicks(root) {
-    root.querySelectorAll("[data-tourjump]").forEach((t) => {
-      t.addEventListener("click", (e) => {
-        e.stopPropagation();
-        openTournament(t.dataset.tourjump);
-      });
-    });
-    root.querySelectorAll("[data-match]").forEach((elCard) => {
-      elCard.addEventListener("click", () => openMatch(elCard.dataset.match));
-    });
-  }
-
-  function renderMatchDetailView() {
-    const it = state.matchIndex.get(state.matchKey);
-    if (!it) {
-      state.matchKey = null;
-      syncHash();
-      renderMain();
-      return;
-    }
-    const r = it.round;
-    const g = it.game;
-    const pr = g.prediction || {};
-    const f = pr.factors || {};
-    const dp = f.davidson_prior || {};
-    const pw = pr.p_white_win || 0;
-    const pd = pr.p_draw || 0;
-    const pb = pr.p_black_win || 0;
-    const done = isDone(g.status);
-    const hs = done ? hitState(g) : null;
-    const tourObj = state.tourMap.get(r.tour_id);
-    const hasChamp = Boolean(tourObj && tourObj.champ);
-
-    const bestOutcome = pw >= pb && pw >= pd ? "w" : (pb >= pw && pb >= pd ? "b" : "d");
-    const boxCls = (role, p) => (bestOutcome === role ? (p > 0.50 ? "hi" : "mid") : "");
-
-    let html = `
-      <div class="crumb-row">
-        <button class="back-btn" id="detailBackBtn">← 返回</button>
-        <span class="hero-tour" id="detailTourLink">${esc(r.tour_name.split("|")[0].trim())} · ${esc(r.round_name)} ›</span>
-      </div>
-
-      <div class="hero-card">
-        <div class="hero-meta">
-          <span>${esc(r.tour_name)}</span>
-          <span>${esc(r.time_control)}${pr.mode === "locked_prematch_db" ? " · 赛前已锁定" : ""}</span>
-        </div>
-        <div class="hero-grid">
-          <div class="hero-player">
-            <div class="hero-pname">${esc(g.white)}</div>
-            <div class="hero-psub">
-              ${g.white_title ? `<span class="elo-tag">${esc(g.white_title)}</span>` : ""}
-              ${g.white_elo ? `<span>${g.white_elo}</span>` : ""}
-              <span>执白</span>
-            </div>
-          </div>
-          <div class="hero-center">
-            ${done
-              ? `<div class="hero-score">${esc(g.status)}</div><div class="hero-time">${hs ? `<span class="hit-tag ${hs.cls}">${hs.txt === "✓" ? "预测正确 ✓" : "预测失误 ×"}</span> · ` : ""}${esc(it.dt.full)}</div>`
-              : (it.isSyntheticRR
-                ? `<div class="hero-score">vs</div><div class="hero-time">${esc(r.round_name)}</div>`
-                : `<div class="hero-score">${esc(it.dt.time)}</div><div class="hero-time">${esc(it.dt.day)} 开赛</div>`)
+            if (curr.d === '==') {
+              const catIndices = String(threshold).split('||').map(Number);
+              const catList = catMap[fIdx];
+              const internalIdx = catList ? catList.indexOf(Number(val)) : -1;
+              if (internalIdx !== -1 && catIndices.includes(internalIdx)) {
+                curr = curr.l;
+              } else {
+                curr = curr.r;
+              }
+            } else {
+              if (val <= threshold) {
+                curr = curr.l;
+              } else {
+                curr = curr.r;
+              }
             }
-          </div>
-          <div class="hero-player right">
-            <div class="hero-pname">${esc(g.black)}</div>
-            <div class="hero-psub">
-              <span>执黑</span>
-              ${g.black_elo ? `<span>${g.black_elo}</span>` : ""}
-              ${g.black_title ? `<span class="elo-tag">${esc(g.black_title)}</span>` : ""}
-            </div>
-          </div>
-        </div>
-
-        <div class="outcome-trio">
-          <div class="out-box ${boxCls("w", pw)}">
-            <div class="olbl">白胜</div>
-            <div class="opct">${pct1(pw)}</div>
-          </div>
-          <div class="out-box ${boxCls("d", pd)}">
-            <div class="olbl">和棋</div>
-            <div class="opct">${pct1(pd)}</div>
-          </div>
-          <div class="out-box ${boxCls("b", pb)}">
-            <div class="olbl">黑胜</div>
-            <div class="opct">${pct1(pb)}</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="detail-card">
-        <h3><span>双方模型数据对比</span><span style="font-size:12px;color:var(--muted);font-weight:500;">差值 ${f.elo_diff != null ? (f.elo_diff >= 0 ? "+" : "") + Math.round(f.elo_diff) : "—"}</span></h3>
-        <div class="cmp-row"><span class="cmp-v">${num(pr.expected_score_white, 2)}</span><span class="cmp-k">预期得分</span><span class="cmp-v right">${num(pr.expected_score_black, 2)}</span></div>
-        <div class="cmp-row"><span class="cmp-v">${pr.white_elo_used != null ? Math.round(pr.white_elo_used) : (g.white_elo || "—")}</span><span class="cmp-k">等级分 (Elo)</span><span class="cmp-v right">${pr.black_elo_used != null ? Math.round(pr.black_elo_used) : (g.black_elo || "—")}</span></div>
-        ${f.white_glicko != null ? `<div class="cmp-row"><span class="cmp-v">${num(f.white_glicko, 0)}</span><span class="cmp-k">Glicko-2 评分</span><span class="cmp-v right">${num(f.black_glicko, 0)}</span></div>` : ""}
-        ${f.white_form_10 != null ? `<div class="cmp-row"><span class="cmp-v">${num(f.white_form_10, 2)}</span><span class="cmp-k">近十局得分率</span><span class="cmp-v right">${num(f.black_form_10, 2)}</span></div>` : ""}
-        ${dp.p_white != null ? `<div class="cmp-row"><span class="cmp-v">${pct1(dp.p_white)}</span><span class="cmp-k">Davidson 先验 · 和 ${pct1(dp.p_draw)}</span><span class="cmp-v right">${pct1(dp.p_black)}</span></div>` : ""}
-        ${f.h2h_games != null ? `<div class="cmp-row"><span class="cmp-v">${f.h2h_games} 局</span><span class="cmp-k">历史交手</span><span class="cmp-v right">白得分 ${pct(f.h2h_white_score_smoothed)}</span></div>` : ""}
-      </div>`;
-
-    el.main.innerHTML = html;
-    $("detailBackBtn").addEventListener("click", () => {
-      state.matchKey = null;
-      syncHash();
-      renderMain();
-    });
-    $("detailTourLink").addEventListener("click", () => openTournament(r.tour_id));
-  }
-
-  function renderTournamentView() {
-    const tourObj = state.tourMap.get(state.tourId);
-    if (!tourObj) {
-      state.tourId = null;
-      syncHash();
-      renderMain();
-      return;
-    }
-
-    const c = tourObj.champ;
-    const hasUp = tourObj.upcomingItems.length > 0;
-    const hasDone = tourObj.finishedItems.length > 0;
-    if (state.tourSubView === "schedule" && !hasUp) state.tourSubView = "standings";
-    if (state.tourSubView === "results" && !hasDone) state.tourSubView = "standings";
-
-    const tbStr = c && c.tiebreaks ? c.tiebreaks.join(" · ") : "积分 · 等级分";
-    const srcStr = c && c.schedule_source === "official_chess_results" ? "官方赛程" : "FIDE编排";
-
-    let html = `
-      <div class="crumb-row">
-        <button class="back-btn" id="tourBackBtn">← 全部赛事</button>
-        <button class="picker-btn" id="openTourPickerBtn">
-          <span class="lbl">${esc(tourObj.short_name)}</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
-      </div>
-      <div class="tour-hdr">
-        <h1>${esc(tourObj.tour_name)}</h1>
-        <div class="chips">
-          ${c ? `<span>赛制<b>${esc(formatLabel(c.format, c))}</b></span><span>轮次<b>${c.rounds_played}/${c.total_rounds}</b></span><span>破同分<b>${esc(tbStr)}</b></span><span>赛程<b>${srcStr}</b></span>` : `${tourObj.format ? `<span>赛制<b>${esc(formatLabel(tourObj.format, null))}</b></span>` : ""}<span>时限<b>${esc(tourObj.time_control)}</b></span>`}
-        </div>
-      </div>
-      <div class="ctrl-center">
-        <div class="seg" id="tourSeg">
-          <button data-tsub="standings" class="${state.tourSubView === "standings" ? "on" : ""}">名次表</button>
-          ${hasUp ? `<button data-tsub="schedule" class="${state.tourSubView === "schedule" ? "on" : ""}">赛程</button>` : ""}
-          ${hasDone ? `<button data-tsub="results" class="${state.tourSubView === "results" ? "on" : ""}">赛果</button>` : ""}
-        </div>
-      </div>`;
-
-    if (state.tourSubView === "standings") {
-      if (c && c.standings && c.standings.length) {
-        html += `
-          <div class="rr-card">
-            <div class="rr-head">
-              <span>#</span><span>棋手</span><span>等级分</span><span>积分</span><span>夺冠</span><span>前三</span><span>期望分</span>
-            </div>`;
-        const maxChampP = Math.max.apply(null, c.standings.map((x) => x.p_champion || 0));
-        c.standings.forEach((p, idx) => {
-          const k = `rr::${idx}`;
-          const open = state.openRrKey === k;
-          const dist = p.rank_distribution || [];
-          const maxV = Math.max.apply(null, dist.concat([0.0001]));
-          const isTopChamp = (p.p_champion || 0) >= maxChampP - 1e-9 && maxChampP > 0;
-          const champBadge = isTopChamp ? (p.p_champion > 0.50 ? "hi" : "mid") : "lo";
-          html += `
-            <div class="rr-row${open ? " sel" : ""}" data-rr="${esc(k)}">
-              <span style="color:var(--muted)">${p.predicted_rank}</span>
-              <div class="rr-name-cell">
-                <span class="nm">${esc(p.name)}</span>
-                <span class="rr-sub-mob">${p.elo} · 期望 ${num(p.expected_points, 2)}</span>
-              </div>
-              <span style="color:var(--muted)">${p.elo}</span>
-              <span>${num(p.current_points, 1)}</span>
-              <span><span class="badge ${champBadge}">${pct1(p.p_champion)}</span></span>
-              <span style="color:var(--muted)">${pct1(p.p_top3)}</span>
-              <span style="color:var(--muted)">${num(p.expected_points, 2)}</span>
-            </div>`;
-          if (open) {
-            const cells = dist.map((v, i) => {
-              const rel = maxV > 0 ? Math.max(0, Math.min(1, v / maxV)) : 0;
-              const alpha = (0.04 + rel * 0.84).toFixed(2);
-              const bg = (i === 0 && v > 0.50) ? `rgba(22,163,74,${alpha})` : `rgba(29,78,216,${alpha})`;
-              const fg = rel >= 0.52 ? "#ffffff" : "#0f172a";
-              return `
-                <div class="hm-cell" style="background:${bg};color:${fg};">
-                  <div class="hm-k">${i + 1}</div>
-                  <div class="hm-v">${pct1(v)}</div>
-                </div>`;
-            }).join("");
-            html += `
-              <div class="rr-panel">
-                <div class="chips">
-                  <span>等级分<b>${p.elo}</b></span>
-                  <span>期望分<b>${num(p.expected_points, 2)}</b></span>
-                  <span>已赛<b>${p.games_played}</b></span>
-                  <span>余局<b>${p.games_remaining}</b></span>
-                  <span>索伯分<b>${num(p.current_sb, 2)}</b></span>
-                  <span>期望名次<b>${num(p.expected_rank, 2)}</b></span>
-                </div>
-                <div class="hmap">${cells}</div>
-              </div>`;
           }
-        });
-        html += `</div>`;
-      } else {
-        const rows = computeFallbackStandings(tourObj);
-        if (!rows.length) {
-          html += `<div class="empty">暂无名次数据</div>`;
-        } else {
-          html += `
-            <div class="rr-card">
-              <div class="rr-head fb">
-                <span>#</span><span>棋手</span><span>等级分</span><span>积分</span><span>已赛</span><span>胜/和/负</span>
-              </div>`;
-          rows.forEach((p, i) => {
-            html += `
-              <div class="rr-row fb static">
-                <span style="color:var(--muted)">${i + 1}</span>
-                <div class="rr-name-cell">
-                  <span class="nm">${esc(p.name)}</span>
-                  <span class="rr-sub-mob">${p.elo || "—"}</span>
-                </div>
-                <span style="color:var(--muted)">${p.elo || "—"}</span>
-                <span><b>${num(p.pts, 1)}</b></span>
-                <span style="color:var(--muted)">${p.played}</span>
-                <span style="color:var(--muted)">${p.w}/${p.d}/${p.l}</span>
-              </div>`;
-          });
-          html += `</div>`;
+          scores[cls] += curr.v;
         }
+
+        const maxS = Math.max(...scores);
+        const expS = scores.map(s => Math.exp(s - maxS));
+        const sumE = expS.reduce((a, b) => a + b, 0);
+        return expS.map(e => e / sumE);
       }
-    } else {
-      const items = (state.tourSubView === "results" ? tourObj.finishedItems : tourObj.upcomingItems).slice();
-      items.sort((a, b) => {
-        const am = a.round.starts_at_ms || 0;
-        const bm = b.round.starts_at_ms || 0;
-        return state.tourSubView === "results" ? (bm - am) : ((am || 9e15) - (bm || 9e15));
-      });
-      if (!items.length) {
-        html += `<div class="empty">—</div>`;
-      } else {
-        const tGroups = groupByRound(items);
-        if (state.tourRoundPage > tGroups.length) state.tourRoundPage = 0;
-        if (tGroups.length >= 2) {
-          const curIdx = state.tourRoundPage;
-          html += `<div class="rp-bar"><div class="rp-nav">`;
-          html += `<button class="rp-btn" id="trPrevBtn" ${curIdx === 1 ? "disabled" : ""}>‹ 上一轮</button>`;
-          html += `<button class="rp-btn${curIdx === 0 ? " on" : ""}" data-trpage="0">全部 (${tGroups.length}轮 · ${items.length}局)</button>`;
-          tGroups.forEach((rg, idx) => {
-            const p = idx + 1;
-            const shortR = rg.roundName.replace(/^Round\s+/i, "R");
-            html += `<button class="rp-btn${curIdx === p ? " on" : ""}" data-trpage="${p}">${esc(shortR)}</button>`;
-          });
-          html += `<button class="rp-btn" id="trNextBtn" ${curIdx === tGroups.length ? "disabled" : ""}>下一轮 ›</button>`;
-          html += `</div></div>`;
+
+      function getH2H(p1Id, p2Id) {
+        const key = (p1Id < p2Id) ? `${p1Id}_${p2Id}` : `${p2Id}_${p1Id}`;
+        const item = h2h[key];
+        if (!item) return { total: 0, p1Wins: 0, p2Wins: 0, draws: 0 };
+        const total = item[0];
+        const draws = item[3];
+        const p1Wins = (p1Id < p2Id) ? item[1] : item[2];
+        const p2Wins = (p1Id < p2Id) ? item[2] : item[1];
+        return { total, p1Wins, p2Wins, draws };
+      }
+
+      function render() {
+        const tbId = $('tbSelect').value;
+        const twId = $('twSelect').value;
+        const ruleId = Number($('ruleSelect').value);
+        const resCol = $('resultCol');
+
+        if (!tbId || !twId) {
+          resCol.innerHTML = '<div class="loading-tip">请选择对阵双方</div>';
+          return;
         }
-        const visibleGroups = state.tourRoundPage > 0 ? [tGroups[state.tourRoundPage - 1]] : tGroups;
-        visibleGroups.forEach((rg) => {
-          html += `<div class="day-div">${esc(rg.roundName)}${rg.day && rg.day !== "—" && rg.day !== rg.roundName ? ` · ${esc(rg.day)}` : ""} · ${rg.items.length}局</div>`;
-          rg.items.forEach((it) => { html += renderMatchCardHTML(it); });
-        });
+
+        if (tbId === twId) {
+          const p = playerMap[tbId];
+          const pName = p.native_name || p.name;
+          resCol.innerHTML = `
+            <div class="error-card">
+              <div style="font-size:20px; font-weight:700; color:#dc2626; margin-bottom:8px;">⚠️ 无法对同一名棋手进行对局精算</div>
+              <div style="font-size:15px; color:#991b1b;">当前假先方与假后方均为 <b>${pName}</b> (ID: ${p.id})，请在左侧选择不同的对阵选手。</div>
+            </div>
+          `;
+          return;
+        }
+
+        const p1 = playerMap[tbId];
+        const p2 = playerMap[twId];
+
+        const rTb = p1.rating;
+        const rTw = p2.rating;
+        const diff = rTb - rTw;
+        const meanR = (rTb + rTw) / 2.0;
+        const stdTb = p1.std;
+        const stdTw = p2.std;
+        const jointStd = Math.sqrt(stdTb * stdTb + stdTw * stdTw);
+
+        const ageTb = p1.age !== null ? p1.age : NaN;
+        const ageTw = p2.age !== null ? p2.age : NaN;
+        const ageDiff = (!Number.isNaN(ageTb) && !Number.isNaN(ageTw)) ? (ageTb - ageTw) : NaN;
+
+        const cTb = p1.country_id;
+        const cTw = p2.country_id;
+        const isSameCountry = (cTb === cTw && cTb > 0) ? 1 : 0;
+
+        const h = getH2H(tbId, twId);
+        const tbWinRate = h.total > 0 ? (h.p1Wins / h.total) : 0.5;
+        const drawRate = h.total > 0 ? (h.draws / h.total) : 0.0;
+
+        // 特征顺序严格对齐:
+        // ['rule', 'rating_tb', 'rating_tw', 'rating_diff', 'rating_mean',
+        //  'std_tb', 'std_tw', 'joint_std', 'h2h_total', 'h2h_tb_wins', 'h2h_tw_wins', 'h2h_draws',
+        //  'h2h_tb_win_rate', 'h2h_draw_rate', 'age_tb', 'age_tw', 'age_diff', 'country_tb', 'country_tw', 'is_same_country']
+        const sample = [
+          ruleId, rTb, rTw, diff, meanR,
+          stdTb, stdTw, jointStd,
+          h.total, h.p1Wins, h.p2Wins, h.draws,
+          tbWinRate, drawRate,
+          ageTb, ageTw, ageDiff,
+          cTb, cTw, isSameCountry
+        ];
+
+        const probs = predict(sample);
+        const pTw = probs[0];
+        const pDraw = probs[1];
+        const pTb = probs[2];
+
+        const oddsTb = pTb > 0 ? (1.0 / pTb).toFixed(2) : '--';
+        const oddsDraw = pDraw > 0 ? (1.0 / pDraw).toFixed(2) : '--';
+        const oddsTw = pTw > 0 ? (1.0 / pTw).toFixed(2) : '--';
+
+        const p1Name = p1.native_name || p1.name;
+        const p2Name = p2.native_name || p2.name;
+        const p1AgeDisp = p1.age ? `${p1.age}岁` : '年龄不详';
+        const p2AgeDisp = p2.age ? `${p2.age}岁` : '年龄不详';
+
+        resCol.innerHTML = `
+          <div class="info-card">
+            <div class="player-box">
+              <div class="player-role">假先方</div>
+              <div class="player-name">${p1Name} <span class="player-meta">[${p1.country_abbr}, ${p1AgeDisp}]</span></div>
+              <div><span class="badge-tb">${rTb.toFixed(0)}±${stdTb.toFixed(0)}</span></div>
+            </div>
+            <div class="center-summary">
+              <div class="diff-line">分差: <b style="font-size:18px; color:${diff >= 0 ? '#16a34a' : '#dc2626'};">${diff >= 0 ? '+' : ''}${diff.toFixed(0)}</b> | 联合不确定度: <b>±${jointStd.toFixed(0)}</b></div>
+              <div class="h2h-badge">历史交锋: 共 <b>${h.total}</b> 局 (假先 <b>${h.p1Wins}胜</b> / <b>${h.draws}和</b> / <b>${h.p2Wins}负</b>)</div>
+            </div>
+            <div class="player-box" style="text-align:right;">
+              <div class="player-role">假后方</div>
+              <div class="player-name">${p2Name} <span class="player-meta">[${p2.country_abbr}, ${p2AgeDisp}]</span></div>
+              <div><span class="badge-tw">${rTw.toFixed(0)}±${stdTw.toFixed(0)}</span></div>
+            </div>
+          </div>
+
+          <table class="pred-table">
+            <thead>
+              <tr>
+                <th>赛果预测</th>
+                <th>理论胜率</th>
+                <th>理论公平赔率</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-label">${p1Name}胜</td>
+                <td class="td-prob-blue">${(pTb * 100).toFixed(1)}%</td>
+                <td class="td-odds">${oddsTb}</td>
+              </tr>
+              <tr style="background:#f8fafc;">
+                <td class="td-label">和棋</td>
+                <td class="td-prob-gray">${(pDraw * 100).toFixed(1)}%</td>
+                <td class="td-odds">${oddsDraw}</td>
+              </tr>
+              <tr>
+                <td class="td-label">${p2Name}胜</td>
+                <td class="td-prob-red">${(pTw * 100).toFixed(1)}%</td>
+                <td class="td-odds">${oddsTw}</td>
+              </tr>
+            </tbody>
+          </table>
+        `;
       }
-    }
 
-    el.main.innerHTML = html;
-    $("tourBackBtn").addEventListener("click", () => openTournament(null));
-    $("openTourPickerBtn").addEventListener("click", openTourModal);
-    el.main.querySelectorAll("#tourSeg button").forEach((b) => {
-      b.addEventListener("click", () => {
-        state.tourSubView = b.dataset.tsub;
-        state.tourRoundPage = 0;
-        renderTournamentView();
+      // 4. 事件绑定
+      $('tbSelect').addEventListener('change', render);
+      $('twSelect').addEventListener('change', render);
+      $('ruleSelect').addEventListener('change', render);
+
+      $('swapBtn').addEventListener('click', () => {
+        const v1 = $('tbSelect').value;
+        const v2 = $('twSelect').value;
+        tbChoices.setChoiceByValue(v2);
+        twChoices.setChoiceByValue(v1);
+        render();
       });
-    });
-    el.main.querySelectorAll("[data-trpage]").forEach((b) => {
-      b.addEventListener("click", () => {
-        state.tourRoundPage = parseInt(b.dataset.trpage || "0", 10);
-        renderTournamentView();
-      });
-    });
-    const trPrev = $("trPrevBtn");
-    if (trPrev) trPrev.addEventListener("click", () => {
-      state.tourRoundPage = state.tourRoundPage <= 1 ? 1 : state.tourRoundPage - 1;
-      renderTournamentView();
-    });
-    const trNext = $("trNextBtn");
-    if (trNext) trNext.addEventListener("click", () => {
-      state.tourRoundPage = state.tourRoundPage === 0 ? 1 : state.tourRoundPage + 1;
-      renderTournamentView();
-    });
-    el.main.querySelectorAll(".rr-row:not(.static)").forEach((row) => {
-      row.addEventListener("click", () => {
-        const k = row.dataset.rr;
-        state.openRrKey = state.openRrKey === k ? null : k;
-        renderTournamentView();
-      });
-    });
-    bindCardClicks(el.main);
-  }
 
-  function renderControlsHTML() {
-    const tourCount = state.tourMap.size;
-    return `
-      <div class="ctrl-row">
-        <div class="seg" id="viewSeg">
-          <button data-sub="schedule" class="${state.subView === "schedule" ? "on" : ""}">赛程</button>
-          <button data-sub="results" class="${state.subView === "results" ? "on" : ""}">赛果</button>
-          <button data-sub="accuracy" class="${state.subView === "accuracy" ? "on" : ""}">准确度</button>
-        </div>
-        <button class="picker-btn" id="openTourPickerBtn">
-          <span class="lbl">全部赛事 (${tourCount})</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
-      </div>`;
-  }
-
-  function renderAccuracyView() {
-    const d = state.data || {};
-    const m = d.model || {};
-    const sum = d.summary || {};
-
-    const confAcc = sum.confident_accuracy != null ? pct(sum.confident_accuracy) : "—";
-    const allAcc = sum.accuracy != null ? pct(sum.accuracy) : "—";
-
-    let html = renderControlsHTML() + `
-      <div class="stat-triple">
-        <div class="stat-box">
-          <div class="lbl">高把握命中</div>
-          <div class="big">${confAcc}</div>
-          <div class="sub">${sum.confident_hits || 0} / ${sum.confident_total || 0} 局</div>
-        </div>
-        <div class="stat-box">
-          <div class="lbl">全部预测准确率</div>
-          <div class="big">${allAcc}</div>
-          <div class="sub">${sum.hits || 0} / ${sum.total_finished || 0} 局</div>
-        </div>
-        <div class="stat-box">
-          <div class="lbl">库内档案</div>
-          <div class="big">${(m.n_games || 0).toLocaleString()}</div>
-          <div class="sub">${(m.n_players || 0).toLocaleString()} 名棋手${m.date_max ? ` · ${esc(m.date_max)}` : ""}</div>
-        </div>
-      </div>`;
-
-    // 分赛事准确率统计（从已完赛记录汇总）
-    const byTour = [];
-    state.tourMap.forEach((t) => {
-      let tot = 0, ok = 0;
-      t.rounds.forEach((r) => {
-        (r.pairings || []).forEach((g) => {
-          const hs = hitState(g);
-          if (!hs) return;
-          tot += 1;
-          if (hs.cls === "ok") ok += 1;
-        });
-      });
-      if (tot >= 1) byTour.push({ tour_id: t.tour_id, name: t.short_name, ok, tot, rate: ok / tot });
-    });
-    byTour.sort((a, b) => (b.rate - a.rate) || (b.tot - a.tot));
-
-    if (byTour.length) {
-      html += `<div class="side-block"><h3>分赛事准确率 (${byTour.length})</h3><div class="side-card" style="padding:6px 14px;">`;
-      byTour.forEach((row, i) => {
-        html += `
-          <div class="acc-row" data-tid="${esc(row.tour_id)}">
-            <span class="rk">${i + 1}</span>
-            <span class="tn">${esc(row.name)}</span>
-            <span class="cnt">${row.ok}/${row.tot}</span>
-            <span class="rate" style="color:${row.rate >= 0.6 ? "var(--green)" : "var(--text)"}">${pct(row.rate)}</span>
-          </div>`;
-      });
-      html += `</div></div>`;
-    }
-
-    const hits = sum.recent_hits || [];
-    if (hits.length) {
-      html += `<div class="side-block"><h3>命中的预测</h3><div class="side-card" style="padding:6px 14px;">`;
-      hits.slice(0, state.hitsLimit).forEach((h) => {
-        html += `
-          <div class="side-item">
-            <div class="side-match">
-              <span>${esc(h.white)}</span>
-              <span>${esc(h.status)}</span>
-              <span>${esc(h.black)}</span>
-            </div>
-            <div class="side-sub">
-              <span>${esc(h.tour_name)}</span>
-              <span style="color:var(--green);font-weight:600">${esc(h.pick)} ${pct(h.prob)}</span>
-            </div>
-          </div>`;
-      });
-      if (hits.length > state.hitsLimit) {
-        html += `<button class="side-more" id="moreHitsBtn">再显示${hits.length - state.hitsLimit}条</button>`;
-      }
-      html += `</div></div>`;
-    }
-
-    const misses = sum.recent_misses || [];
-    if (misses.length) {
-      html += `<div class="side-block"><h3>最有把握却失误的预测</h3><div class="side-card" style="padding:6px 14px;">`;
-      misses.slice(0, state.missesLimit).forEach((ms) => {
-        html += `
-          <div class="side-item">
-            <div class="side-match">
-              <span>${esc(ms.white)}</span>
-              <span>${esc(ms.status)}</span>
-              <span>${esc(ms.black)}</span>
-            </div>
-            <div class="side-sub">
-              <span>${esc(ms.tour_name)}</span>
-              <span style="color:var(--red);font-weight:600">${esc(ms.pick)} ${pct(ms.prob)}</span>
-            </div>
-          </div>`;
-      });
-      if (misses.length > state.missesLimit) {
-        html += `<button class="side-more" id="moreMissesBtn">再显示${misses.length - state.missesLimit}条</button>`;
-      }
-      html += `</div></div>`;
-    }
-
-    el.main.innerHTML = html;
-    bindTopControls();
-    el.main.querySelectorAll(".acc-row").forEach((r) => {
-      r.addEventListener("click", () => openTournament(r.dataset.tid));
-    });
-    const mh = $("moreHitsBtn");
-    if (mh) mh.addEventListener("click", () => { state.hitsLimit += 8; renderAccuracyView(); });
-    const mm = $("moreMissesBtn");
-    if (mm) mm.addEventListener("click", () => { state.missesLimit += 8; renderAccuracyView(); });
-  }
-
-  function renderAllMatchesView() {
-    if (state.subView === "accuracy") {
-      renderAccuracyView();
-      return;
-    }
-    const q = state.query.trim().toLowerCase();
-    const wantFinished = state.subView === "results";
-
-    let html = renderControlsHTML();
-
-    const flat = [];
-    state.matchIndex.forEach((it) => {
-      if (it.isSyntheticRR) return;
-      const gDone = isDone(it.game.status);
-      if (wantFinished ? !gDone : gDone) return;
-      if (q) {
-        const hay = `${it.round.tour_name} ${it.game.white} ${it.game.black}`.toLowerCase();
-        if (!hay.includes(q)) return;
-      }
-      flat.push(it);
-    });
-
-    if (!flat.length) {
-      el.main.innerHTML = html + '<div class="empty">—</div>';
-      bindTopControls(flat);
-      return;
-    }
-
-    flat.sort((a, b) => {
-      const am = a.round.starts_at_ms || 0;
-      const bm = b.round.starts_at_ms || 0;
-      return wantFinished ? (bm - am) : ((am || 9e15) - (bm || 9e15));
-    });
-
-    // 1. 焦点赛事（3栏卡片）
-    if (!q && !wantFinished && flat.length >= 3) {
-      const top3 = flat.slice().sort((a, b) => b.maxElo - a.maxElo).slice(0, 3);
-      html += `<div class="sec-title">焦点赛事</div><div class="feat-grid">`;
-      top3.forEach((it) => {
-        const g = it.game;
-        const pr = g.prediction || {};
-        const pw = pr.p_white_win || 0;
-        const pd = pr.p_draw || 0;
-        const pb = pr.p_black_win || 0;
-        const wWin = pw >= pb && pw >= pd;
-        const bWin = pb > pw && pb >= pd;
-        html += `
-          <div class="fcard" data-match="${esc(it.key)}">
-            <div class="fmeta">
-              <div class="fmeta-line">${esc(it.round.round_name)} · ${esc(it.round.tour_name.split("|")[0].trim())}</div>
-              <div class="fmeta-line">${esc(it.dt.full)}</div>
-            </div>
-            <div class="frow">
-              <span class="fn${wWin ? " win" : ""}">${esc(g.white)}</span>
-              <span class="badge ${badgeClass(pw, pw, pd, pb)}">${pct(pw)}</span>
-            </div>
-            <div class="frow">
-              <span class="fn" style="color:var(--muted);font-size:12px;">和棋</span>
-              <span class="badge ${badgeClass(pd, pw, pd, pb)}">${pct(pd)}</span>
-            </div>
-            <div class="frow">
-              <span class="fn${bWin ? " win" : ""}">${esc(g.black)}</span>
-              <span class="badge ${badgeClass(pb, pw, pd, pb)}">${pct(pb)}</span>
-            </div>
-          </div>`;
-      });
-      html += `</div>`;
-    }
-
-    // 2. 最有把握的预测（5行紧凑列表）
-    if (!q && !wantFinished && flat.length >= 3) {
-      const topConf = flat.slice().sort((a, b) => b.favP - a.favP).slice(0, 5);
-      html += `<div class="sec-title">最有把握的预测</div><div class="conf-list">`;
-      topConf.forEach((it) => {
-        const g = it.game;
-        const pr = g.prediction || {};
-        const pw = pr.p_white_win || 0;
-        const pd = pr.p_draw || 0;
-        const pb = pr.p_black_win || 0;
-        const wFav = pw >= pb;
-        html += `
-          <div class="conf-row" data-match="${esc(it.key)}">
-            <div class="conf-names">
-              ${wFav ? `<b>${esc(g.white)}</b>` : esc(g.white)} – ${!wFav ? `<b>${esc(g.black)}</b>` : esc(g.black)}
-            </div>
-            <span class="conf-meta">${esc(it.round.tour_name.split("|")[0].trim())} · ${esc(it.dt.full)}</span>
-            <span class="badge ${it.favP > 0.50 ? "hi" : "mid"}">${pct(it.favP)}</span>
-          </div>`;
-      });
-      html += `</div>`;
-    }
-
-    // 3. 按完整轮次分组并翻页（不截断单轮内部对局）
-    const roundGroups = groupByRound(flat);
-    const ROUNDS_PER_PAGE = 6;
-    const totalPages = Math.max(1, Math.ceil(roundGroups.length / ROUNDS_PER_PAGE));
-    const showAllRounds = Boolean(q) || state.allRoundPage === 0;
-    let curPage = state.allRoundPage;
-    if (!showAllRounds) {
-      if (curPage < 1) curPage = 1;
-      if (curPage > totalPages) curPage = totalPages;
-      state.allRoundPage = curPage;
-    }
-
-    const visibleGroups = showAllRounds
-      ? roundGroups
-      : roundGroups.slice((curPage - 1) * ROUNDS_PER_PAGE, curPage * ROUNDS_PER_PAGE);
-
-    const pagerHTML = (!q && totalPages > 1) ? `
-      <div class="rp-bar">
-        <div class="rp-nav">
-          <button class="rp-btn" data-rpact="prev" ${showAllRounds || curPage <= 1 ? "disabled" : ""}>‹ 上一页</button>
-          <span class="rp-info">${showAllRounds ? `全部 ${roundGroups.length} 轮 · ${flat.length} 局` : `第 ${curPage} / ${totalPages} 页 · 共 ${roundGroups.length} 轮 ${flat.length} 局`}</span>
-          <button class="rp-btn" data-rpact="next" ${showAllRounds || curPage >= totalPages ? "disabled" : ""}>下一页 ›</button>
-        </div>
-        <button class="rp-btn${showAllRounds ? " on" : ""}" data-rpact="toggleAll">${showAllRounds ? "分页查看" : `全部显示 (${roundGroups.length}轮)`}</button>
-      </div>` : "";
-
-    html += pagerHTML;
-    visibleGroups.forEach((rg) => {
-      html += `<div class="day-div">${esc(rg.day)} · ${esc(rg.tourShort)} · ${esc(rg.roundName)} (${rg.items.length}局)</div>`;
-      rg.items.forEach((it) => { html += renderMatchCardHTML(it); });
-    });
-    html += pagerHTML;
-
-    el.main.innerHTML = html;
-    bindTopControls(totalPages);
-    bindCardClicks(el.main);
-  }
-
-  function bindTopControls(totalPages = 1) {
-    el.main.querySelectorAll("#viewSeg button").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        if (state.subView === btn.dataset.sub) return;
-        state.subView = btn.dataset.sub;
-        state.allRoundPage = 1;
-        syncHash(true);
-        renderAllMatchesView();
-      });
-    });
-    const pickBtn = $("openTourPickerBtn");
-    if (pickBtn) pickBtn.addEventListener("click", openTourModal);
-    el.main.querySelectorAll("[data-rpact]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const act = btn.dataset.rpact;
-        if (act === "prev") state.allRoundPage = Math.max(1, (state.allRoundPage || 1) - 1);
-        else if (act === "next") state.allRoundPage = Math.min(totalPages, (state.allRoundPage || 1) + 1);
-        else if (act === "toggleAll") state.allRoundPage = state.allRoundPage === 0 ? 1 : 0;
-        renderAllMatchesView();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    });
-  }
-
-  function renderMain() {
-    if (state.matchKey) renderMatchDetailView();
-    else if (state.tourId) renderTournamentView();
-    else renderAllMatchesView();
-  }
-
-  function openTourModal() {
-    el.modalInput.value = "";
-    renderTourModalList("");
-    el.modal.classList.add("open");
-    el.modalInput.focus();
-  }
-
-  function closeTourModal() {
-    el.modal.classList.remove("open");
-  }
-
-  function renderTourModalList(filterText) {
-    const q = (filterText || "").trim().toLowerCase();
-    const list = Array.from(state.tourMap.values()).sort((a, b) => {
-      const aUp = a.upcomingItems.length > 0;
-      const bUp = b.upcomingItems.length > 0;
-      if (aUp !== bUp) return aUp ? -1 : 1;
-      if (Boolean(a.champ) !== Boolean(b.champ)) return a.champ ? -1 : 1;
-      return a.short_name.localeCompare(b.short_name);
-    });
-
-    let html = "";
-    if (!q) {
-      html += `
-        <div class="pick-item${!state.tourId ? " on" : ""}" data-pick="">
-          <span class="pn">全部赛事</span>
-          <span class="pr">${list.length} 项</span>
-        </div>`;
-    }
-
-    list.forEach((t) => {
-      if (q && !t.tour_name.toLowerCase().includes(q)) return;
-      const fmtTag = t.champ ? formatLabel(t.champ.format, t.champ) : (t.format ? formatLabel(t.format, null) : "");
-      const metaRight = fmtTag && t.next_dt.day !== "—" ? `${fmtTag} · ${t.next_dt.day}` : (fmtTag || t.next_dt.day);
-      html += `
-        <div class="pick-item${state.tourId === t.tour_id ? " on" : ""}" data-pick="${esc(t.tour_id)}">
-          <span class="pn">${esc(t.short_name)}</span>
-          <span class="pr"><span>${esc(metaRight)}</span></span>
-        </div>`;
-    });
-
-    el.modalList.innerHTML = html || '<div class="empty">无匹配赛事</div>';
-    el.modalList.querySelectorAll(".pick-item").forEach((item) => {
-      item.addEventListener("click", () => {
-        const tid = item.dataset.pick || null;
-        closeTourModal();
-        openTournament(tid);
-      });
-    });
-  }
-
-  function renderAll() {
-    renderMain();
-  }
-
-  el.brand.addEventListener("click", () => {
-    state.tourId = null;
-    state.matchKey = null;
-    state.subView = "schedule";
-    state.query = "";
-    el.search.value = "";
-    state.allRoundPage = 1;
-    state.tourRoundPage = 0;
-    syncHash();
-    renderAll();
-  });
-
-  el.searchBtn.addEventListener("click", () => {
-    const open = el.search.classList.toggle("open");
-    el.hdrTop.classList.toggle("searching", open);
-    if (open) el.search.focus();
-  });
-  el.search.addEventListener("input", () => {
-    state.query = el.search.value;
-    if (state.subView === "accuracy" && state.query.trim()) state.subView = "schedule";
-    if (!state.matchKey && !state.tourId) renderAllMatchesView();
-  });
-
-  el.modalInput.addEventListener("input", () => renderTourModalList(el.modalInput.value));
-  el.modalClose.addEventListener("click", closeTourModal);
-  el.modal.addEventListener("click", (e) => { if (e.target === el.modal) closeTourModal(); });
-
-  window.addEventListener("hashchange", () => {
-    readHash();
-    renderMain();
-  });
-  window.addEventListener("popstate", () => {
-    readHash();
-    renderMain();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeTourModal();
-    if (e.key === "/" && document.activeElement !== el.search && !el.modal.classList.contains("open")) {
-      e.preventDefault();
-      el.search.classList.add("open");
-      el.hdrTop.classList.add("searching");
-      el.search.focus();
-    }
-  });
-
-  renderTabs();
-  loadData().then(renderAll).catch(() => {
-    el.main.innerHTML = '<div class="empty">—</div>';
-  });
-})();
-</script>
+      // 初次渲染
+      render();
+    })();
+  </script>
 </body>
 </html>
