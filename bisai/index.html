@@ -621,9 +621,8 @@
         const stdTw = p2.std;
         const jointStd = Math.sqrt(stdTb * stdTb + stdTw * stdTw);
 
-        const cTb = p1.country_id;
-        const cTw = p2.country_id;
-        const isSameCountry = (cTb === cTw && cTb > 0) ? 1 : 0;
+        const cTb = (p1.country_id !== undefined && p1.country_id !== null) ? p1.country_id : 0;
+        const cTw = (p2.country_id !== undefined && p2.country_id !== null) ? p2.country_id : 0;
 
         const h = getH2H(tbId, twId);
         const tbWinRate = h.total > 0 ? (h.p1Wins / h.total) : 0.5;
@@ -638,7 +637,8 @@
           ruleId, rTb, rTw, diff, meanR,
           stdTb, stdTw, jointStd,
           drTb, drTw, combinedDecayedDr,
-          decayedH2HScore
+          decayedH2HScore,
+          cTb, cTw
         ];
 
         const probs = predict(sample);
