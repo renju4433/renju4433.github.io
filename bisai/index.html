@@ -629,13 +629,16 @@
         const tbWinRate = h.total > 0 ? (h.p1Wins / h.total) : 0.5;
         const drawRate = h.total > 0 ? (h.draws / h.total) : 0.0;
 
-        const drTb = (p1.draw_rate !== undefined) ? p1.draw_rate : 0.12;
-        const drTw = (p2.draw_rate !== undefined) ? p2.draw_rate : 0.12;
-        const combinedDrawRate = (drTb + drTw) / 2.0;
+        const drTb = (p1.decayed_draw_rate !== undefined) ? p1.decayed_draw_rate : 0.12;
+        const drTw = (p2.decayed_draw_rate !== undefined) ? p2.decayed_draw_rate : 0.12;
+        const combinedDecayedDr = (drTb + drTw) / 2.0;
+        const decayedH2HScore = h.decayedRate;
 
         const sample = [
           ruleId, rTb, rTw, diff, meanR,
-          stdTb, stdTw, jointStd
+          stdTb, stdTw, jointStd,
+          drTb, drTw, combinedDecayedDr,
+          decayedH2HScore
         ];
 
         const probs = predict(sample);
