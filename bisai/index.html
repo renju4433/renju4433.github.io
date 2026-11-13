@@ -10,12 +10,14 @@
     * { box-sizing: border-box; }
     html, body {
       margin: 0; padding: 0;
-      width: 100vw; height: 100vh;
-      overflow: hidden;
+      width: 100%; min-height: 100%;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
       background: #f1f5f9;
       color: #0f172a;
+      -webkit-tap-highlight-color: transparent;
     }
+
+    /* 桌面端默认双列铺满 */
     .app-container {
       display: flex;
       width: 100vw;
@@ -23,13 +25,14 @@
       padding: 24px 36px;
       gap: 32px;
       box-sizing: border-box;
+      overflow-y: hidden;
     }
     .left-col {
       flex: 5;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 18px;
+      gap: 16px;
     }
     .right-col {
       flex: 7;
@@ -37,6 +40,7 @@
       flex-direction: column;
       justify-content: center;
     }
+
     .form-group {
       display: flex;
       flex-direction: column;
@@ -50,7 +54,7 @@
     .swap-row {
       display: flex;
       justify-content: center;
-      margin: -4px 0;
+      margin: -2px 0;
     }
     .swap-btn {
       background: white;
@@ -63,8 +67,9 @@
       color: #334155;
       transition: all 0.15s ease;
       box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      touch-action: manipulation;
     }
-    .swap-btn:hover {
+    .swap-btn:hover, .swap-btn:active {
       background: #e2e8f0;
       color: #0f172a;
     }
@@ -91,7 +96,7 @@
       z-index: 50 !important;
     }
 
-    /* Info Card */
+    /* 对阵卡片 */
     .info-card {
       display: flex;
       justify-content: space-between;
@@ -99,76 +104,79 @@
       background: #f8fafc;
       border: 1px solid #cbd5e1;
       border-radius: 12px;
-      padding: 18px 28px;
+      padding: 18px 24px;
       margin-bottom: 20px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
     .player-box {
-      min-width: 180px;
+      flex: 1;
     }
     .player-role {
-      font-size: 14px;
+      font-size: 13px;
       color: #64748b;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       font-weight: 600;
     }
     .player-name {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 700;
       color: #0f172a;
+      line-height: 1.25;
     }
     .player-meta {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 400;
       color: #475569;
     }
     .badge-tb {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       color: #2563eb;
       background: #eff6ff;
-      padding: 3px 10px;
+      padding: 3px 8px;
       border-radius: 6px;
       font-family: monospace;
       display: inline-block;
-      margin-top: 6px;
+      margin-top: 5px;
     }
     .badge-tw {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       color: #dc2626;
       background: #fef2f2;
-      padding: 3px 10px;
+      padding: 3px 8px;
       border-radius: 6px;
       font-family: monospace;
       display: inline-block;
-      margin-top: 6px;
+      margin-top: 5px;
     }
     .center-summary {
       text-align: center;
-      padding: 0 20px;
+      padding: 0 16px;
     }
     .diff-line {
-      font-size: 16px;
+      font-size: 15px;
       color: #475569;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      white-space: nowrap;
     }
     .h2h-badge {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
       color: #0f172a;
       background: #e2e8f0;
-      padding: 6px 18px;
-      border-radius: 24px;
+      padding: 5px 14px;
+      border-radius: 20px;
       display: inline-block;
+      white-space: nowrap;
     }
 
-    /* Table */
+    /* 胜率预测表格 */
     .pred-table {
       width: 100%;
       border-collapse: collapse;
       text-align: center;
-      font-size: 17px;
+      font-size: 16px;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
       overflow: hidden;
@@ -178,37 +186,37 @@
     .pred-table th {
       background: #f1f5f9;
       border-bottom: 2px solid #cbd5e1;
-      padding: 16px;
-      font-size: 17px;
+      padding: 14px;
+      font-size: 16px;
       color: #334155;
     }
     .pred-table td {
-      padding: 18px;
+      padding: 16px;
       border-bottom: 1px solid #e2e8f0;
     }
     .td-label {
       font-weight: 700;
-      font-size: 18px;
+      font-size: 17px;
       color: #1e293b;
     }
     .td-prob-blue {
       color: #2563eb;
       font-weight: 800;
-      font-size: 22px;
+      font-size: 21px;
     }
     .td-prob-gray {
       color: #64748b;
       font-weight: 800;
-      font-size: 22px;
+      font-size: 21px;
     }
     .td-prob-red {
       color: #dc2626;
       font-weight: 800;
-      font-size: 22px;
+      font-size: 21px;
     }
     .td-odds {
       font-weight: 700;
-      font-size: 18px;
+      font-size: 17px;
       color: #334155;
     }
 
@@ -216,15 +224,69 @@
       background: #fef2f2;
       border: 1px solid #fecaca;
       border-radius: 12px;
-      padding: 24px;
+      padding: 20px;
       text-align: center;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
     .loading-tip {
       text-align: center;
       color: #64748b;
-      font-size: 18px;
-      padding: 40px;
+      font-size: 16px;
+      padding: 30px;
+    }
+
+    /* 移动端媒体查询 (< 768px) */
+    @media (max-width: 768px) {
+      body {
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+      }
+      .app-container {
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        padding: 16px 12px 28px !important;
+        gap: 20px !important;
+        overflow-y: visible !important;
+      }
+      .left-col, .right-col {
+        flex: none !important;
+        width: 100% !important;
+        justify-content: flex-start !important;
+        gap: 12px !important;
+      }
+      .info-card {
+        flex-direction: column !important;
+        gap: 14px !important;
+        padding: 14px 16px !important;
+        text-align: center !important;
+      }
+      .player-box {
+        width: 100% !important;
+        text-align: center !important;
+      }
+      .center-summary {
+        width: 100% !important;
+        padding: 6px 0 !important;
+        border-top: 1px dashed #cbd5e1;
+        border-bottom: 1px dashed #cbd5e1;
+      }
+      .pred-table th {
+        padding: 10px 8px !important;
+        font-size: 14px !important;
+      }
+      .pred-table td {
+        padding: 12px 8px !important;
+      }
+      .td-label {
+        font-size: 15px !important;
+      }
+      .td-prob-blue, .td-prob-gray, .td-prob-red {
+        font-size: 18px !important;
+      }
+      .td-odds {
+        font-size: 15px !important;
+      }
     }
   </style>
 </head>
@@ -265,7 +327,7 @@
       const CURRENT_YEAR = 2026;
       const $ = (id) => document.getElementById(id);
 
-      // 1. 并发载入静态数据资源
+      // 并发请求资源
       const [playersRes, h2hRes, modelRes] = await Promise.all([
         fetch('./data/players.json'),
         fetch('./data/h2h.json'),
@@ -279,7 +341,6 @@
       const playerMap = {};
       players.forEach(p => { playerMap[p.id] = p; });
 
-      // 2. 初始化 Choices 下拉选择
       const formatLabel = (p) => {
         const nameDisp = p.native_name ? `${p.native_name} (${p.name})` : p.name;
         const ageDisp = p.age ? `${p.age}岁` : '未知年龄';
@@ -305,11 +366,10 @@
         itemSelectText: '',
       });
 
-      // 默认选中前列选手: 凌世杰 (100974) vs 艾显平 (100073)
+      // 默认选中中国顶尖对阵: 凌世杰 vs 艾显平
       tbChoices.setChoiceByValue('100974');
       twChoices.setChoiceByValue('100073');
 
-      // 3. 极速纯前端 LightGBM 决策树推断 API
       function predict(sample) {
         const trees = model.trees;
         const catMap = model.pandas_cat;
@@ -323,7 +383,6 @@
             const val = sample[fIdx];
             const threshold = curr.t;
 
-            // Missing / NaN handling
             if (val === null || val === undefined || Number.isNaN(val)) {
               curr = (curr.dl === 1) ? curr.l : curr.r;
               continue;
@@ -382,8 +441,8 @@
           const pName = p.native_name || p.name;
           resCol.innerHTML = `
             <div class="error-card">
-              <div style="font-size:20px; font-weight:700; color:#dc2626; margin-bottom:8px;">⚠️ 无法对同一名棋手进行对局精算</div>
-              <div style="font-size:15px; color:#991b1b;">当前假先方与假后方均为 <b>${pName}</b> (ID: ${p.id})，请在左侧选择不同的对阵选手。</div>
+              <div style="font-size:18px; font-weight:700; color:#dc2626; margin-bottom:6px;">⚠️ 无法对同一名棋手进行对局精算</div>
+              <div style="font-size:14px; color:#991b1b;">当前假先方与假后方均为 <b>${pName}</b> (ID: ${p.id})，请在上方选择不同的对阵选手。</div>
             </div>
           `;
           return;
@@ -412,10 +471,6 @@
         const tbWinRate = h.total > 0 ? (h.p1Wins / h.total) : 0.5;
         const drawRate = h.total > 0 ? (h.draws / h.total) : 0.0;
 
-        // 特征顺序严格对齐:
-        // ['rule', 'rating_tb', 'rating_tw', 'rating_diff', 'rating_mean',
-        //  'std_tb', 'std_tw', 'joint_std', 'h2h_total', 'h2h_tb_wins', 'h2h_tw_wins', 'h2h_draws',
-        //  'h2h_tb_win_rate', 'h2h_draw_rate', 'age_tb', 'age_tw', 'age_diff', 'country_tb', 'country_tw', 'is_same_country']
         const sample = [
           ruleId, rTb, rTw, diff, meanR,
           stdTb, stdTw, jointStd,
@@ -447,7 +502,7 @@
               <div><span class="badge-tb">${rTb.toFixed(0)}±${stdTb.toFixed(0)}</span></div>
             </div>
             <div class="center-summary">
-              <div class="diff-line">分差: <b style="font-size:18px; color:${diff >= 0 ? '#16a34a' : '#dc2626'};">${diff >= 0 ? '+' : ''}${diff.toFixed(0)}</b> | 联合不确定度: <b>±${jointStd.toFixed(0)}</b></div>
+              <div class="diff-line">分差: <b style="font-size:17px; color:${diff >= 0 ? '#16a34a' : '#dc2626'};">${diff >= 0 ? '+' : ''}${diff.toFixed(0)}</b> | 联合不确定度: <b>±${jointStd.toFixed(0)}</b></div>
               <div class="h2h-badge">历史交锋: 共 <b>${h.total}</b> 局 (假先 <b>${h.p1Wins}胜</b> / <b>${h.draws}和</b> / <b>${h.p2Wins}负</b>)</div>
             </div>
             <div class="player-box" style="text-align:right;">
@@ -486,7 +541,6 @@
         `;
       }
 
-      // 4. 事件绑定
       $('tbSelect').addEventListener('change', render);
       $('twSelect').addEventListener('change', render);
       $('ruleSelect').addEventListener('change', render);
@@ -499,7 +553,6 @@
         render();
       });
 
-      // 初次渲染
       render();
     })();
   </script>
