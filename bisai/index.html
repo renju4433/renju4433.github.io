@@ -85,7 +85,6 @@
       padding: 4px;
     }
 
-    /* 极速悬浮下拉面板 */
     .dropdown-menu {
       position: absolute;
       top: 100%;
@@ -341,7 +340,7 @@
       <div class="form-group">
         <label class="form-label" for="tbInput">假先方</label>
         <div class="input-wrapper">
-          <input type="text" id="tbInput" class="search-input" placeholder="输入姓名、拼音或 ID 快速选择..." autocomplete="off" />
+          <input type="text" id="tbInput" class="search-input" placeholder="输入姓名或拼音..." autocomplete="off" />
           <button class="clear-btn" id="tbClear">&times;</button>
         </div>
         <div class="dropdown-menu" id="tbDropdown"></div>
@@ -355,7 +354,7 @@
       <div class="form-group">
         <label class="form-label" for="twInput">假后方</label>
         <div class="input-wrapper">
-          <input type="text" id="twInput" class="search-input" placeholder="输入姓名、拼音或 ID 快速选择..." autocomplete="off" />
+          <input type="text" id="twInput" class="search-input" placeholder="输入姓名或拼音..." autocomplete="off" />
           <button class="clear-btn" id="twClear">&times;</button>
         </div>
         <div class="dropdown-menu" id="twDropdown"></div>
@@ -403,13 +402,11 @@
       let selectedTbId = '100974'; // 凌世杰
       let selectedTwId = '100073'; // 艾显平
 
-      const formatLabel = (p) => {
-        const nameDisp = p.native_name ? `${p.native_name} (${p.name})` : p.name;
-        const ageDisp = p.age ? `${p.age}岁` : '未知年龄';
-        return `${nameDisp} [${p.country_abbr}, ${ageDisp}] | ${p.rating.toFixed(0)}±${p.std.toFixed(0)} | ID:${p.id}`;
+      // 输入框内只显示干净的名字
+      const getDisplayName = (p) => {
+        return p.native_name || p.name;
       };
 
-      // 极轻量高效搜索与下拉组件
       function setupAutocomplete(inputId, dropdownId, clearId, onSelect) {
         const input = $(inputId);
         const dropdown = $(dropdownId);
@@ -437,7 +434,7 @@
 
           let html = '';
           matched.forEach(p => {
-            const nameDisp = p.native_name ? `${p.native_name} (${p.name})` : p.name;
+            const nameDisp = getDisplayName(p);
             const ageDisp = p.age ? `${p.age}岁` : '未知年龄';
             html += `
               <div class="dropdown-item" data-id="${p.id}">
@@ -473,7 +470,8 @@
           if (item) {
             const id = item.getAttribute('data-id');
             const p = playerMap[id];
-            input.value = formatLabel(p);
+            // 仅显示名字
+            input.value = getDisplayName(p);
             dropdown.style.display = 'none';
             clearBtn.style.display = 'block';
             onSelect(id);
@@ -497,13 +495,12 @@
         render();
       });
 
-      // 初始化显示默认值
-      $('tbInput').value = formatLabel(playerMap[selectedTbId]);
-      $('twInput').value = formatLabel(playerMap[selectedTwId]);
+      // 初始化只显示名字
+      $('tbInput').value = getDisplayName(playerMap[selectedTbId]);
+      $('twInput').value = getDisplayName(playerMap[selectedTwId]);
       $('tbClear').style.display = 'block';
       $('twClear').style.display = 'block';
 
-      // 毫秒级决策树推断
       function predict(sample) {
         const trees = model.trees;
         const catMap = model.pandas_cat;
@@ -572,7 +569,7 @@
 
         if (tbId === twId) {
           const p = playerMap[tbId];
-          const pName = p.native_name || p.name;
+          const pName = getDisplayName(p);
           resCol.innerHTML = `
             <div class="error-card">
               <div style="font-size:18px; font-weight:700; color:#dc2626; margin-bottom:6px;">⚠️ 无法对同一名棋手进行对局精算</div>
@@ -623,8 +620,8 @@
         const oddsDraw = pDraw > 0 ? (1.0 / pDraw).toFixed(2) : '--';
         const oddsTw = pTw > 0 ? (1.0 / pTw).toFixed(2) : '--';
 
-        const p1Name = p1.native_name || p1.name;
-        const p2Name = p2.native_name || p2.name;
+        const p1Name = getDisplayName(p1);
+        const p2Name = getDisplayName(p2);
         const p1AgeDisp = p1.age ? `${p1.age}岁` : '年龄不详';
         const p2AgeDisp = p2.age ? `${p2.age}岁` : '年龄不详';
 
@@ -681,8 +678,8 @@
         const tmp = selectedTbId;
         selectedTbId = selectedTwId;
         selectedTwId = tmp;
-        $('tbInput').value = formatLabel(playerMap[selectedTbId]);
-        $('twInput').value = formatLabel(playerMap[selectedTwId]);
+        $('tbInput').value = getDisplayName(playerMap[selectedTbId]);
+        $('twInput').value = getDisplayName(playerMap[selectedTwId]);
         render();
       });
 
