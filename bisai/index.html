@@ -399,15 +399,15 @@
         p._searchStr = `${p.native_name || ''} ${p.name || ''} ${p.id}`.toLowerCase();
       });
 
-      let selectedTbId = '100974'; // 凌世杰
-      let selectedTwId = '100073'; // 艾显平
+      let selectedTbId = null;
+      let selectedTwId = null;
 
       // 输入框内只显示干净的名字
       const getDisplayName = (p) => {
         return p.native_name || p.name;
       };
 
-      function setupAutocomplete(inputId, dropdownId, clearId, onSelect) {
+      function setupAutocomplete(inputId, dropdownId, clearId, onSelect, onClear) {
         const input = $(inputId);
         const dropdown = $(dropdownId);
         const clearBtn = $(clearId);
@@ -474,6 +474,7 @@
         input.addEventListener('input', () => {
           updateMenu(input.value);
           clearBtn.style.display = input.value ? 'block' : 'none';
+          if (onClear) onClear();
         });
 
         clearBtn.addEventListener('click', (e) => {
@@ -482,6 +483,7 @@
           clearBtn.style.display = 'none';
           input.focus();
           updateMenu('');
+          if (onClear) onClear();
         });
 
         dropdown.addEventListener('click', (e) => {
@@ -504,21 +506,27 @@
         });
       }
 
-      setupAutocomplete('tbInput', 'tbDropdown', 'tbClear', (id) => {
-        selectedTbId = id;
-        render();
-      });
+      setupAutocomplete('tbInput', 'tbDropdown', 'tbClear',
+        (id) => {
+          selectedTbId = id;
+          render();
+        },
+        () => {
+          selectedTbId = null;
+          render();
+        }
+      );
 
-      setupAutocomplete('twInput', 'twDropdown', 'twClear', (id) => {
-        selectedTwId = id;
-        render();
-      });
-
-      // 初始化只显示名字
-      $('tbInput').value = getDisplayName(playerMap[selectedTbId]);
-      $('twInput').value = getDisplayName(playerMap[selectedTwId]);
-      $('tbClear').style.display = 'block';
-      $('twClear').style.display = 'block';
+      setupAutocomplete('twInput', 'twDropdown', 'twClear',
+        (id) => {
+          selectedTwId = id;
+          render();
+        },
+        () => {
+          selectedTwId = null;
+          render();
+        }
+      );
 
       function predict(sample) {
         const trees = model.trees;
@@ -582,7 +590,7 @@
         const resCol = $('resultCol');
 
         if (!tbId || !twId) {
-          resCol.innerHTML = '<div class="loading-tip">请选择对阵双方</div>';
+          resCol.innerHTML = '<div class="loading-tip">请在上方选择对阵双方棋手</div>';
           return;
         }
 
@@ -697,8 +705,10 @@
         const tmp = selectedTbId;
         selectedTbId = selectedTwId;
         selectedTwId = tmp;
-        $('tbInput').value = getDisplayName(playerMap[selectedTbId]);
-        $('twInput').value = getDisplayName(playerMap[selectedTwId]);
+        $('tbInput').value = (selectedTbId && playerMap[selectedTbId]) ? getDisplayName(playerMap[selectedTbId]) : '';
+        $('twInput').value = (selectedTwId && playerMap[selectedTwId]) ? getDisplayName(playerMap[selectedTwId]) : '';
+        $('tbClear').style.display = selectedTbId ? 'block' : 'none';
+        $('twClear').style.display = selectedTwId ? 'block' : 'none';
         render();
       });
 
