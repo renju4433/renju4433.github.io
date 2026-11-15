@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>山海杯 · 名次表</title>
+<style>
+@font-face{
+  font-family:"ShuHei";
+  font-style:normal;
+  font-weight:400 900;
+  font-display:swap;
+  src:local("Alimama ShuHeiTi Bold"),local("Alimama ShuHeiTi"),local("AlimamaShuHeiTi-Bold"),local("阿里妈妈数黑体"),
+      url("./fonts/AlimamaShuHeiTi-Bold.woff2") format("woff2");
+}
+*{font-family:"ShuHei","Alimama ShuHeiTi",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;box-sizing:border-box}
+:root{
+  --paper:#f2f0e9;--card:#fffefb;--ink:#15201c;--ink3:#7c877f;
+  --line:#e4dfd2;--line2:#eeeadf;--green:#0d4736;--mint:#e5f0ea;--mint2:#f2f8f5;
+}
+html{-webkit-text-size-adjust:100%;font-synthesis:none}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.6 inherit;
+  -webkit-font-smoothing:antialiased;padding:28px 20px 40px}
+.sheet{max-width:1020px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  box-shadow:0 16px 40px -30px rgba(12,50,40,.5)}
+.card::before{content:"";display:block;height:4px;
+  background:linear-gradient(90deg,#0d4736 0%,#2f7f63 42%,#cf8f45 100%)}
+.hd{padding:19px 22px 17px;border-bottom:1px solid var(--line)}
+.hd h1{margin:0;font-weight:700;font-size:25px;line-height:1.34;letter-spacing:.005em}
+.hd h1 em{font-style:normal;color:var(--green)}
+.hd h1 .yr{color:var(--green);font-weight:700}
+.hd-sub{margin-top:8px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;
+  font-size:13px;color:var(--ink3)}
+.rd{padding:1px 9px;border-radius:999px;background:var(--mint);color:var(--green);font-weight:600}
+.rd-nav{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.rd-nav a{display:inline-block;padding:2px 10px;border-radius:999px;border:1px solid var(--line);
+  color:var(--ink3);text-decoration:none;font-size:12.5px;line-height:1.7}
+.rd-nav a.on{background:var(--green);border-color:var(--green);color:#fff}
+.mlink{margin-left:10px;color:var(--green);text-decoration:none;font-size:13px;
+  border-bottom:1px solid var(--line);padding-bottom:1px}
+.tb-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+thead th{font-size:12.5px;font-weight:600;color:var(--ink3);text-align:center;
+  padding:11px 8px 9px;border-bottom:1px solid var(--line);white-space:nowrap}
+thead th.t-l{text-align:left;padding-left:18px}
+tbody td{padding:9px 8px;border-bottom:1px solid var(--line2);text-align:center;font-size:14px}
+tbody td.c-rk{font-weight:700;color:var(--green);width:60px}
+tbody td.c-no{color:var(--ink3);width:60px}
+tbody td.c-nm{text-align:left;padding-left:14px;font-weight:600;min-width:140px}
+tbody td.c-pt{font-weight:700}
+tbody td.c-bk,tbody td.c-md,tbody td.c-ws{color:var(--ink3)}
+tbody td.c-cp{font-weight:700;color:var(--green)}
+tbody td.c-cp.z{font-weight:400;color:var(--ink3)}
+.dist-card{margin-top:20px}
+.dist-hd{padding:14px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.dist-hd h2{margin:0;font-size:17px;font-weight:700}
+.dist-hd span{font-size:12.5px;color:var(--ink3)}
+.dist-tb{table-layout:auto;width:max-content;min-width:100%}
+.dist-tb th,.dist-tb td{padding:7px 6px;font-size:12px;white-space:nowrap}
+.dist-tb .st-rk{position:sticky;left:0;z-index:2;background:var(--card);width:44px;min-width:44px}
+.dist-tb .st-no{position:sticky;left:44px;z-index:2;background:var(--card);width:44px;min-width:44px;color:var(--ink3)}
+.dist-tb .st-nm{position:sticky;left:88px;z-index:2;background:var(--card);text-align:left;padding-left:10px;min-width:86px;border-right:1px solid var(--line)}
+.dist-tb tr.shade .st-rk,.dist-tb tr.shade .st-no,.dist-tb tr.shade .st-nm{background:var(--mint2)}
+.dist-tb thead .st-rk,.dist-tb thead .st-no,.dist-tb thead .st-nm{background:var(--card);z-index:3}
+.dist-tb td.c-dp{color:var(--ink3);min-width:52px}
+.dist-tb td.c-dp.hi{color:var(--ink);font-weight:600}
+.exp-btn{padding:4px 12px;border-radius:999px;border:1px solid var(--green);background:transparent;
+  color:var(--green);font-size:12.5px;font-weight:600;cursor:pointer}
+.exp-btn:hover{background:var(--mint)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr.shade td{background:var(--mint2)}
+.empty{padding:30px;text-align:center;color:var(--ink3)}
+@media (max-width:700px){
+  body{padding:12px 10px 26px}
+  .hd{padding:15px 14px 13px}
+  .hd h1{font-size:18px;line-height:1.42}
+  .hd-sub{margin-top:7px;font-size:12.5px;gap:6px;line-height:1.9}
+  .rd{padding:1px 8px}
+  .mlink{font-size:12.5px}
+  .rd-nav{width:100%;margin-left:0}
+  thead th{font-size:10.5px;padding:8px 3px 7px;letter-spacing:-.01em;white-space:normal}
+  tbody td{padding:8px 3px;font-size:12.5px}
+  table{table-layout:fixed;width:100%}
+  thead th:nth-child(1){width:12%}
+  thead th:nth-child(2){width:10%}
+  thead th:nth-child(3){width:24%}
+  thead th:nth-child(4){width:11%}
+  thead th:nth-child(5){width:13%}
+  thead th:nth-child(6){width:15%}
+  thead th:nth-child(7){width:15%}
+  table.has-cp{table-layout:auto;min-width:540px}
+  table.has-cp thead th{width:auto!important;padding:8px 5px 7px}
+  tbody td.c-rk{width:auto;font-size:13px}
+  tbody td.c-no{width:auto;font-size:11px}
+  tbody td.c-nm{width:auto;min-width:0;padding-left:8px;font-size:13px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#121614;--card:#171c1a;--ink:#e8ece7;--ink3:#9aa79f;--line:#2a322e;
+    --line2:#222925;--green:#7fd0ae;--mint:#1d2a25;--mint2:#1a211e}
+  body{background:var(--paper)}
+  .rd-nav a.on{color:#0d1915}
+  .mlink{color:var(--green)}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="card">
+    <div class="hd">
+      <h1 id="ttl"><em>“山海杯”</em><span class="yr">2026</span>年全国五子棋业余棋王争霸赛 · 名次表</h1>
+      <div class="hd-sub">
+        <span id="grp">公开组</span>
+        <span class="rd" id="rnd">第 1 轮</span>
+        <a class="mlink" id="mlink" href="index.html?r=1">对阵表 ↗</a>
+        <a class="mlink" href="metrics.html">模型评估 ↗</a>
+        <a class='mlink' href='predict.html'>预测 / API ↗</a>
+        <nav class="rd-nav" id="rdnav"></nav>
+      </div>
+    </div>
+    <div class="tb-wrap">
+      <table id="tbl">
+        <thead>
+          <tr>
+            <th style="width:64px">名次</th>
+            <th style="width:64px">编号</th>
+            <th class="t-l">棋手</th>
+            <th>积分</th>
+            <th>对手分</th>
+            <th>中间<br>对手分</th>
+            <th>胜局数</th>
+            <th id="th-er" style="display:none">期望<br>名次</th>
+            <th id="th-cp" style="display:none">夺冠<br>概率</th>
+            <th id="th-t3" style="display:none">前三<br>概率</th>
+            <th id="th-t8" style="display:none">前八<br>概率</th>
+          </tr>
+        </thead>
+        <tbody id="rows">
+          <tr><td colspan="7" class="empty">正在读取</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card dist-card" id="dist-card" style="display:none">
+    <div class="dist-hd">
+      <h2>名次分布表</h2>
+      <button type="button" class="exp-btn" id="btn-export">导出图片</button>
+    </div>
+    <div class="tb-wrap">
+      <table class="dist-tb" id="dist-tbl">
+        <thead id="dist-head"></thead>
+        <tbody id="dist-rows"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+  var SLUG = 'shanhai';
+  var INDEX = './api/index.json';
+  var SAPI = './api/' + SLUG + '/standings/';
+  var fromQuery = new URLSearchParams(location.search).get('r');
+  var ROUND = parseInt(fromQuery || '0', 10);
+  if (!(ROUND > 0)) ROUND = 0;
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function num(v) {
+    if (v == null) return '—';
+    return (Math.round(v * 100) / 100).toString();
+  }
+  function getJSON(url) {
+    return fetch(url, { cache: 'no-store' }).then(function (r) {
+      if (!r.ok) throw new Error(url + ' ' + r.status);
+      return r.json();
+    });
+  }
+  function decorate(name, year) {
+    var s = esc(name);
+    s = s.replace(/「([^」"]{1,24})」/, '<em>「$1」</em>');
+    if (year) s = s.replace(String(year) + ' 年', '<span class="yr">' + year + '</span> 年');
+    return s;
+  }
+
+  var navBox = document.getElementById('rdnav');
+  var tbody = document.getElementById('rows');
+
+  getJSON(INDEX).then(function (idx) {
+    var t = (idx.tournaments || []).filter(function (x) { return x.slug === SLUG; })[0];
+    if (!t) throw new Error('index 里没有 ' + SLUG);
+    document.getElementById('grp').textContent = t.group || '公开组';
+    var short = (String(t.name || '').match(/「([^」]+)」/) || [])[1] || '山海杯';
+    document.getElementById('ttl').innerHTML = decorate(t.name, t.year) + ' · 名次表';
+
+    var rList = t.rounds || [];
+    // 只有全部出赛果的完赛轮次才有名次表
+    var finishedList = rList.filter(function (r) {
+      return r.standings && (r.is_finished !== false);
+    });
+    var finishedRounds = finishedList.map(function (r) { return r.round; });
+
+    if (!finishedRounds.length) {
+      document.getElementById('rnd').textContent = '未完赛';
+      tbody.innerHTML = '<tr><td colspan="7" class="empty">比赛进行中，待全轮完赛后公布名次表</td></tr>';
+      navBox.innerHTML = '';
+      return;
+    }
+
+    // 未指定 ?r= 或请求的轮次尚未全部完赛时，自动选择最新的已完赛轮次（不显示未完赛轮次的名次表）
+    if (!ROUND || finishedRounds.indexOf(ROUND) === -1) {
+      ROUND = Math.max.apply(null, finishedRounds);
+    }
+
+    // 名次表导航仅展示全部完赛的轮次
+    navBox.innerHTML = finishedList.map(function (item) {
+      var r = item.round;
+      var cls = r === ROUND ? ' class="on"' : '';
+      return '<a href="standings.html?r=' + r + '"' + cls + '>第 ' + r + ' 轮</a>';
+    }).join('');
+    document.getElementById('mlink').href = 'index.html?r=' + ROUND;
+
+    document.title = short + ' · 第 ' + ROUND + ' 轮名次表';
+    return getJSON(SAPI + 'r' + ROUND + '.json').then(render).catch(function () {
+      tbody.innerHTML = '<tr><td colspan="7" class="empty">第 ' + ROUND + ' 轮名次表未生成或读取失败</td></tr>';
+    });
+  }).catch(function () {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty">数据读取失败，请稍后重试</td></tr>';
+  });
+
+  function fmtProb(v) {
+    if (v == null) return '<td class="c-cp z">—</td>';
+    if (!(v > 0)) return '<td class="c-cp z">0.00%</td>';
+    return '<td class="c-cp">' + v.toFixed(2) + '%</td>';
+  }
+
+  function render(d) {
+    document.getElementById('rnd').textContent = '第 ' + d.round + ' 轮';
+    var list = d.ranking || [];
+    var hasCp = list.some(function (p) { return p.champion_prob != null; });
+    var hasEr = list.some(function (p) { return p.expected_rank != null; });
+    var tbl = document.getElementById('tbl');
+    if (tbl) tbl.classList.toggle('has-cp', hasCp || hasEr);
+    var thEr = document.getElementById('th-er');
+    if (thEr) thEr.style.display = hasEr ? '' : 'none';
+    ['th-cp', 'th-t3', 'th-t8'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = hasCp ? '' : 'none';
+    });
+
+    var html = list.map(function (p, i) {
+      var erCell = hasEr ? ('<td class="c-cp">' + (p.expected_rank == null ? '—' : p.expected_rank.toFixed(2)) + '</td>') : '';
+      var probCells = hasCp
+        ? (fmtProb(p.champion_prob) + fmtProb(p.top3_prob) + fmtProb(p.top8_prob))
+        : '';
+      return '<tr' + (i % 2 ? ' class="shade"' : '') + '>' +
+        '<td class="c-rk">' + p.rank + '</td>' +
+        '<td class="c-no">' + (p.no == null ? '—' : p.no) + '</td>' +
+        '<td class="c-nm">' + esc(p.name) + '</td>' +
+        '<td class="c-pt">' + num(p.score) + '</td>' +
+        '<td class="c-bk">' + num(p.buch) + '</td>' +
+        '<td class="c-md">' + num(p.med) + '</td>' +
+        '<td class="c-ws">' + (p.wins == null ? '—' : p.wins) + '</td>' +
+        erCell +
+        probCells +
+        '</tr>';
+    }).join('');
+    var cols = 7 + (hasEr ? 1 : 0) + (hasCp ? 3 : 0);
+    tbody.innerHTML = html || '<tr><td colspan="' + cols + '" class="empty">还没有名次</td></tr>';
+
+    var distCard = document.getElementById('dist-card');
+    var hasDist = list.some(function (p) { return Array.isArray(p.rank_probs) && p.rank_probs.length; });
+    if (distCard) distCard.style.display = hasDist ? '' : 'none';
+    if (hasDist) {
+      var m = list[0].rank_probs.length;
+      var hdr = '<tr><th class="st-rk">现名</th><th class="st-no">编号</th><th class="st-nm">棋手</th><th>期望</th>';
+      for (var r = 1; r <= m; r++) hdr += '<th>' + r + '</th>';
+      hdr += '</tr>';
+      document.getElementById('dist-head').innerHTML = hdr;
+      document.getElementById('dist-rows').innerHTML = list.map(function (p, i) {
+        var cells = '<td class="st-rk c-rk">' + p.rank + '</td>' +
+          '<td class="st-no">' + (p.no == null ? '—' : p.no) + '</td>' +
+          '<td class="st-nm c-nm">' + esc(p.name) + '</td>' +
+          '<td class="c-cp">' + (p.expected_rank == null ? '—' : p.expected_rank.toFixed(2)) + '</td>';
+        var arr = p.rank_probs || [];
+        for (var k = 0; k < m; k++) {
+          var v = arr[k];
+          if (v != null) {
+            var alpha = Math.min(0.45, v / 100 * 0.55).toFixed(3);
+            var txt = v.toFixed(2) + '%';
+            cells += '<td class="c-dp' + (v >= 5 ? ' hi' : '') + '"' + (v > 0 ? ' style="background:rgba(13,71,54,' + alpha + ')"' : '') + '>' + txt + '</td>';
+          } else {
+            cells += '<td class="c-dp">·</td>';
+          }
+        }
+        return '<tr' + (i % 2 ? ' class="shade"' : '') + '>' + cells + '</tr>';
+      }).join('');
+      bindExport(d, list, m);
+    }
+  }
+
+  function bindExport(d, list, m) {
+    var btn = document.getElementById('btn-export');
+    if (!btn) return;
+    btn.onclick = function () {
+      var scale = 2;
+      var rkW = 46, noW = 46, nmW = 88, erW = 56, colW = 54;
+      var padX = 20, padY = 18, hdrH = 44, thH = 30, rowH = 26;
+      var W = padX * 2 + rkW + noW + nmW + erW + m * colW;
+      var H = padY * 2 + hdrH + thH + list.length * rowH;
+      var cv = document.createElement('canvas');
+      cv.width = W * scale;
+      cv.height = H * scale;
+      var ctx = cv.getContext('2d');
+      ctx.scale(scale, scale);
+
+      ctx.fillStyle = '#fffefb';
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0d4736';
+      ctx.fillRect(0, 0, W, 4);
+
+      ctx.font = '700 17px "PingFang SC","Microsoft YaHei",sans-serif';
+      ctx.fillStyle = '#15201c';
+      ctx.textBaseline = 'middle';
+      ctx.textAlign = 'left';
+      ctx.fillText('“山海杯”2026年全国五子棋业余棋王争霸赛 · 第 ' + d.round + ' 轮名次分布表', padX, padY + hdrH / 2);
+
+      var y0 = padY + hdrH;
+      ctx.fillStyle = '#f7f5ee';
+      ctx.fillRect(padX, y0, W - padX * 2, thH);
+      ctx.strokeStyle = '#e4dfd2';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(padX, y0 + thH);
+      ctx.lineTo(W - padX, y0 + thH);
+      ctx.stroke();
+
+      ctx.font = '600 12px "PingFang SC","Microsoft YaHei",sans-serif';
+      ctx.fillStyle = '#7c877f';
+      ctx.textAlign = 'center';
+      ctx.fillText('现名', padX + rkW / 2, y0 + thH / 2);
+      ctx.fillText('编号', padX + rkW + noW / 2, y0 + thH / 2);
+      ctx.textAlign = 'left';
+      ctx.fillText('棋手', padX + rkW + noW + 10, y0 + thH / 2);
+      ctx.textAlign = 'center';
+      ctx.fillText('期望', padX + rkW + noW + nmW + erW / 2, y0 + thH / 2);
+      for (var r = 0; r < m; r++) {
+        ctx.fillText(String(r + 1), padX + rkW + noW + nmW + erW + r * colW + colW / 2, y0 + thH / 2);
+      }
+
+      list.forEach(function (p, i) {
+        var ry = y0 + thH + i * rowH;
+        if (i % 2) {
+          ctx.fillStyle = '#f2f8f5';
+          ctx.fillRect(padX, ry, W - padX * 2, rowH);
+        }
+        ctx.strokeStyle = '#eeeadf';
+        ctx.beginPath();
+        ctx.moveTo(padX, ry + rowH);
+        ctx.lineTo(W - padX, ry + rowH);
+        ctx.stroke();
+
+        ctx.font = '700 12px "PingFang SC","Microsoft YaHei",sans-serif';
+        ctx.fillStyle = '#0d4736';
+        ctx.textAlign = 'center';
+        ctx.fillText(String(p.rank), padX + rkW / 2, ry + rowH / 2);
+
+        ctx.font = '400 12px "PingFang SC","Microsoft YaHei",sans-serif';
+        ctx.fillStyle = '#7c877f';
+        ctx.fillText(p.no == null ? '—' : String(p.no), padX + rkW + noW / 2, ry + rowH / 2);
+
+        ctx.font = '600 12px "PingFang SC","Microsoft YaHei",sans-serif';
+        ctx.fillStyle = '#15201c';
+        ctx.textAlign = 'left';
+        ctx.fillText(p.name || '', padX + rkW + noW + 10, ry + rowH / 2);
+
+        ctx.font = '700 12px "PingFang SC","Microsoft YaHei",sans-serif';
+        ctx.fillStyle = '#0d4736';
+        ctx.textAlign = 'center';
+        ctx.fillText(p.expected_rank == null ? '—' : p.expected_rank.toFixed(2), padX + rkW + noW + nmW + erW / 2, ry + rowH / 2);
+
+        var arr = p.rank_probs || [];
+        for (var k = 0; k < m; k++) {
+          var v = arr[k];
+          var cx = padX + rkW + noW + nmW + erW + k * colW;
+          if (v != null) {
+            if (v > 0) {
+              var alpha = Math.min(0.45, v / 100 * 0.55);
+              ctx.fillStyle = 'rgba(13,71,54,' + alpha.toFixed(3) + ')';
+              ctx.fillRect(cx, ry, colW, rowH);
+            }
+            ctx.font = (v >= 5 ? '600' : '400') + ' 11px "PingFang SC","Microsoft YaHei",sans-serif';
+            ctx.fillStyle = v >= 5 ? '#15201c' : '#556159';
+            ctx.fillText(v.toFixed(2) + '%', cx + colW / 2, ry + rowH / 2);
+          } else {
+            ctx.font = '400 11px "PingFang SC","Microsoft YaHei",sans-serif';
+            ctx.fillStyle = '#9aa79f';
+            ctx.fillText('·', cx + colW / 2, ry + rowH / 2);
+          }
+        }
+      });
+
+      cv.toBlob(function (blob) {
+        if (!blob) return;
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'shanhai-r' + d.round + '-dist.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      }, 'image/png');
+    };
+  }
+})();
+</script>
+</body>
+</html>

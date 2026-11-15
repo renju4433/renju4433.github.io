@@ -1,0 +1,117 @@
+{
+  "source": "data/duiju.db",
+  "tournaments": [
+    {
+      "id": "2026-shanhai",
+      "slug": "shanhai",
+      "name": "“山海杯”2026年全国五子棋业余棋王争霸赛",
+      "year": 2026,
+      "group": "公开组",
+      "rule": "塔拉山口-10",
+      "updated_at": "2026-11-15 21:22:01",
+      "api": "api/shanhai/",
+      "metrics": "api/shanhai/metrics.json",
+      "rounds": [
+        {
+          "round": 1,
+          "games": 23,
+          "predicted": 23,
+          "played": 23,
+          "is_finished": true,
+          "model": "model_glicko_20261113",
+          "predicted_at": "2026-11-15 21:17:31",
+          "updated_at": "2026-11-15 21:17:31",
+          "standings": "api/shanhai/standings/r1.json"
+        },
+        {
+          "round": 2,
+          "games": 23,
+          "predicted": 23,
+          "played": 23,
+          "is_finished": true,
+          "model": "model_glicko_20261113",
+          "predicted_at": "2026-11-15 21:17:31",
+          "updated_at": "2026-11-15 21:17:31",
+          "standings": "api/shanhai/standings/r2.json"
+        },
+        {
+          "round": 3,
+          "games": 23,
+          "predicted": 22,
+          "played": 22,
+          "is_finished": true,
+          "model": "model_glicko_20261113",
+          "predicted_at": "2026-11-15 20:44:50",
+          "updated_at": "2026-11-15 20:44:50",
+          "standings": "api/shanhai/standings/r3.json"
+        },
+        {
+          "round": 4,
+          "games": 23,
+          "predicted": 22,
+          "played": 22,
+          "is_finished": true,
+          "model": "model_glicko_20261113",
+          "predicted_at": "2026-11-15 20:44:50",
+          "updated_at": "2026-11-15 20:44:50",
+          "standings": "api/shanhai/standings/r4.json"
+        },
+        {
+          "round": 5,
+          "games": 23,
+          "predicted": 22,
+          "played": 22,
+          "is_finished": true,
+          "model": "model_glicko_20261113",
+          "predicted_at": "2026-11-15 20:44:50",
+          "updated_at": "2026-11-15 20:44:50",
+          "standings": "api/shanhai/standings/r5.json"
+        },
+        {
+          "round": 6,
+          "games": 23,
+          "predicted": 22,
+          "played": 22,
+          "is_finished": true,
+          "model": "model_glicko_20261113",
+          "predicted_at": "2026-11-15 20:44:50",
+          "updated_at": "2026-11-15 20:44:50",
+          "standings": "api/shanhai/standings/r6.json"
+        },
+        {
+          "round": 7,
+          "games": 23,
+          "predicted": 22,
+          "played": 22,
+          "is_finished": true,
+          "model": "model_glicko_20261113",
+          "predicted_at": "2026-11-15 20:44:50",
+          "updated_at": "2026-11-15 20:44:50",
+          "standings": "api/shanhai/standings/r7.json"
+        },
+        {
+          "round": 8,
+          "games": 22,
+          "predicted": 22,
+          "played": 22,
+          "is_finished": true,
+          "model": null,
+          "predicted_at": null,
+          "updated_at": "2026-11-15 21:22:01",
+          "standings": "api/shanhai/standings/r8.json"
+        },
+        {
+          "round": 9,
+          "games": 22,
+          "predicted": 22,
+          "played": 0,
+          "is_finished": false,
+          "model": "model_glicko_20261113",
+          "predicted_at": "2026-11-15 21:22:01",
+          "updated_at": "2026-11-15 21:22:01",
+          "standings": null
+        }
+      ]
+    }
+  ]
+}
