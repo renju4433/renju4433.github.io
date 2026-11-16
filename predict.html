@@ -179,14 +179,16 @@ pre{margin:8px 0 0;padding:11px 13px;border-radius:8px;background:#161d1a;color:
     document.getElementById('w-hint').textContent = wg ? ('Glicko: ' + wg.r + ' (RD ' + wg.rd + ')') : '未匹配到棋手，将按默认 2000 分计算';
   }
 
-  function evalTree(node, feat, catSet) {
+  function evalTree(node, feat, catMaps) {
     while (node.v === undefined) {
       var val = feat[node.f];
       var goLeft;
-      if (node.c) {
-        goLeft = node.c.indexOf(Math.round(val)) !== -1;
-      } else if (val == null || isNaN(val)) {
-        goLeft = !!node.dl;
+      if (val == null || isNaN(val)) {
+        goLeft = node.dl === 1;
+      } else if (node.tc !== undefined) {
+        var catList = (catMaps && catMaps[String(node.f)]) || [];
+        var internalIdx = catList.indexOf(Math.round(val));
+        goLeft = internalIdx !== -1 && node.tc.indexOf(internalIdx) !== -1;
       } else {
         goLeft = val <= node.t;
       }
@@ -208,13 +210,17 @@ pre{margin:8px 0 0;padding:11px 13px;border-radius:8px;background:#161d1a;color:
 
     var scores = [0, 0, 0];
     var trees = modelData.trees || [];
+    var catMaps = modelData.cat_maps || {};
     for (var i = 0; i < trees.length; i++) {
-      scores[i % 3] += evalTree(trees[i], feat);
+      var t = trees[i];
+      scores[t.c] += evalTree(t.r, feat, catMaps);
     }
     var mx = Math.max(scores[0], scores[1], scores[2]);
     var e0 = Math.exp(scores[0] - mx), e1 = Math.exp(scores[1] - mx), e2 = Math.exp(scores[2] - mx);
     var sum = e0 + e1 + e2;
-    var pw = e0 / sum * 100, pd = e1 / sum * 100, pb = e2 / sum * 100;
+    var pw = Math.round(e0 / sum * 1000) / 10;
+    var pd = Math.round(e1 / sum * 1000) / 10;
+    var pb = Math.round((100.0 - pw - pd) * 10) / 10;
 
     document.getElementById('res-box').style.display = 'block';
     document.getElementById('res-title').textContent = bn + ' (' + rb.toFixed(0) + ')  vs  ' + wn + ' (' + rw.toFixed(0) + ')';
