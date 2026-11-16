@@ -1,0 +1,377 @@
+{
+  "tournament": {
+    "id": "r4433_66",
+    "slug": "r4433_66",
+    "name": "江苏省第八届五子棋锦标赛",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "total_rounds": 7,
+  "played": 5,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "王弈霖",
+      "score": 3.0,
+      "buch": 4.0,
+      "med": 1.5,
+      "wins": 3,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "朱叶",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "奚振扬",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "丁泽宇",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "周思哲",
+      "score": 3.0,
+      "buch": 2.5,
+      "med": 1.0,
+      "wins": 3,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李昊轩",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "史宏玉",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "梅俊熙",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "丁泽宇",
+      "score": 2.0,
+      "buch": 7.0,
+      "med": 2.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "徐邦",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "周楠",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王弈霖",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "周楠",
+      "score": 2.0,
+      "buch": 4.0,
+      "med": 1.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "梅俊熙",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "丁泽宇",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "史宏玉",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "徐邦",
+      "score": 2.0,
+      "buch": 2.5,
+      "med": 0.5,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "丁泽宇",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张俊天",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李昊轩",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "梅俊熙",
+      "score": 1.0,
+      "buch": 5.5,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "周楠",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "朱叶",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "周思哲",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "史宏玉",
+      "score": 1.0,
+      "buch": 5.0,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张俊天",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "周思哲",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "周楠",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "奚振扬",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王弈霖",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张俊天",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "李昊轩",
+      "score": 0.0,
+      "buch": 5.0,
+      "med": 2.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "周思哲",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "徐邦",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "张俊天",
+      "score": 0.0,
+      "buch": 4.5,
+      "med": 1.5,
+      "wins": 0,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "史宏玉",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "徐邦",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "奚振扬",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "朱叶",
+      "score": 0.0,
+      "buch": 4.0,
+      "med": 1.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王弈霖",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "梅俊熙",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

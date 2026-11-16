@@ -1,0 +1,349 @@
+{
+  "tournament": {
+    "id": "rif_3522",
+    "slug": "rif_3522",
+    "name": "2026 Korea Omok Championship",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "total_rounds": 6,
+  "played": 8,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "강상민",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "김주원",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "김도형",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "김주형",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "김현섭",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "이현",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "민창윤",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "김성현",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "박도영",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "김규민",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "윤준원",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "우태하",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "차승현",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "최승혁",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "허정빈",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "박은호",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "김규민",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "박도영",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "김성현",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "민창윤",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "김주원",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "강상민",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "김주형",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "김도형",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "박은호",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "허정빈",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "우태하",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "윤준원",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "이현",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "김현섭",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "최승혁",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "차승현",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "no": null,
+      "name": "박웅배",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    }
+  ]
+}

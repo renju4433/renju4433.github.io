@@ -1,0 +1,135 @@
+{
+  "tournament": {
+    "id": "rif_3548",
+    "slug": "rif_3548",
+    "name": "Youth Russian Championship groups AB",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 8,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-03-24",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Rahmatulin Timur",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Егор Павловский",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Павел Носков",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Максим Старцев",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Михаил Савватеев",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Михаил Сидоров",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Vershinin Ivan",
+        "score": 3.0
+      },
+      "white": {
+        "no": null,
+        "name": "Локштанов Григорий",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Константин Казанцев",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Баринов Рэндом",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

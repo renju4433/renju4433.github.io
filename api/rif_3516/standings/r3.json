@@ -1,0 +1,367 @@
+{
+  "tournament": {
+    "id": "rif_3516",
+    "slug": "rif_3516",
+    "name": "The championship of Arkhangelsk region, women",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "total_rounds": 9,
+  "played": 5,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Екатерина Порохина",
+      "score": 3.0,
+      "buch": 3.0,
+      "med": 1.0,
+      "wins": 3,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Марина Озерова",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Анастасия Симановская",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Анна Фокичева",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Юлия Саврасова",
+      "score": 3.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 3,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Наталия Звездина",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Наталья Порохина",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Марина Озерова",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Анна Фокичева",
+      "score": 2.0,
+      "buch": 5.0,
+      "med": 1.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Анастасия Симановская",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Юлия Вострякова",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Екатерина Порохина",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Ева Гасанова",
+      "score": 2.0,
+      "buch": 2.0,
+      "med": 1.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Юлия Вострякова",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Наталия Звездина",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Наталья Порохина",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Дарина Никитина",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Наталья Порохина",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Марина Озерова",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Анастасия Симановская",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Анастасия Симановская",
+      "score": 1.0,
+      "buch": 7.0,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Анна Фокичева",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Екатерина Порохина",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дарина Никитина",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Наталия Звездина",
+      "score": 1.0,
+      "buch": 6.0,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ева Гасанова",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Юлия Вострякова",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Юлия Вострякова",
+      "score": 1.0,
+      "buch": 5.0,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ева Гасанова",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Анна Фокичева",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Наталия Звездина",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Марина Озерова",
+      "score": 0.0,
+      "buch": 8.0,
+      "med": 3.0,
+      "wins": 0,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Екатерина Порохина",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дарина Никитина",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Наталья Порохина",
+      "score": 0.0,
+      "buch": 7.0,
+      "med": 2.0,
+      "wins": 0,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дарина Никитина",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ева Гасанова",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

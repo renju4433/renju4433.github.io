@@ -1,0 +1,187 @@
+{
+  "tournament": {
+    "id": "rif_3553",
+    "slug": "rif_3553",
+    "name": "Youth Russian Championship Group H",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "total_rounds": 7,
+  "played": 4,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Ева Гасанова",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Александра Бова",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Екатерина Чернецова",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Амалия Ижмякова",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Марина Озерова",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дарина Никитина",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Наталья Порохина",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Merzlaya Inna",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Merzlaya Inna",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Наталья Порохина",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Александра Бова",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ева Гасанова",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Амалия Ижмякова",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Екатерина Чернецова",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Дарина Никитина",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Марина Озерова",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

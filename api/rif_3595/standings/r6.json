@@ -1,0 +1,803 @@
+{
+  "tournament": {
+    "id": "rif_3595",
+    "slug": "rif_3595",
+    "name": "Youth World Championship 2026 Group D",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "total_rounds": 7,
+  "played": 7,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "傅致屹",
+      "score": 5.0,
+      "buch": 22.5,
+      "med": 14.5,
+      "wins": 5,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "高鹤洋",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "黃曦靖",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "衡博宇",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "顾佳彬",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李可",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张天鑫",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "衡博宇",
+      "score": 5.0,
+      "buch": 21.5,
+      "med": 14.0,
+      "wins": 5,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "楊梓清",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张天鑫",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "傅致屹",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "顾佳彬",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈峻霖",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "顾佳彬",
+      "score": 4.0,
+      "buch": 22.5,
+      "med": 14.5,
+      "wins": 4,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈峻霖",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李可",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "傅致屹",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "衡博宇",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "朱子谦",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "张天鑫",
+      "score": 4.0,
+      "buch": 20.0,
+      "med": 13.5,
+      "wins": 4,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Izhmiakov Artem",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "衡博宇",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "朱煜璟",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李可",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "楊梓清",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "傅致屹",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "李可",
+      "score": 3.0,
+      "buch": 19.0,
+      "med": 14.0,
+      "wins": 3,
+      "played": 5,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "朱子谦",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "顾佳彬",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张天鑫",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "傅致屹",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "陈峻霖",
+      "score": 3.0,
+      "buch": 18.0,
+      "med": 12.5,
+      "wins": 2,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smetanin Petr",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "顾佳彬",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "高鹤洋",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "楊梓清",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "黃曦靖",
+          "result": "D"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "衡博宇",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "高鹤洋",
+      "score": 3.0,
+      "buch": 18.0,
+      "med": 11.5,
+      "wins": 2,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "傅致屹",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张一鸣",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈峻霖",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Izhmiakov Artem",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "朱子谦",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "黃曦靖",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "李岳宁",
+      "score": 3.0,
+      "buch": 17.5,
+      "med": 12.0,
+      "wins": 3,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "顾佳彬",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smetanin Petr",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "朱子谦",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "衡博宇",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "朱煜璟",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李可",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "黃曦靖",
+      "score": 3.0,
+      "buch": 16.5,
+      "med": 10.0,
+      "wins": 2,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张一鸣",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "傅致屹",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "楊梓清",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "朱煜璟",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈峻霖",
+          "result": "D"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "高鹤洋",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "朱子谦",
+      "score": 3.0,
+      "buch": 15.5,
+      "med": 11.0,
+      "wins": 3,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "朱煜璟",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李可",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smetanin Petr",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "高鹤洋",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "顾佳彬",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "楊梓清",
+      "score": 2.0,
+      "buch": 17.5,
+      "med": 12.5,
+      "wins": 2,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "衡博宇",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Izhmiakov Artem",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "黃曦靖",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈峻霖",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张天鑫",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Izhmiakov Artem",
+      "score": 2.0,
+      "buch": 11.5,
+      "med": 7.5,
+      "wins": 2,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张天鑫",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "楊梓清",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张一鸣",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "高鹤洋",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smetanin Petr",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "no": null,
+      "name": "朱煜璟",
+      "score": 1.0,
+      "buch": 14.5,
+      "med": 10.5,
+      "wins": 1,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "朱子谦",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张天鑫",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "黃曦靖",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张一鸣",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "no": null,
+      "name": "张一鸣",
+      "score": 1.0,
+      "buch": 10.5,
+      "med": 7.5,
+      "wins": 1,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "黃曦靖",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "高鹤洋",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Izhmiakov Artem",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smetanin Petr",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "朱煜璟",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "Smetanin Petr",
+      "score": 0.0,
+      "buch": 13.0,
+      "med": 10.0,
+      "wins": 0,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈峻霖",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "朱子谦",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张一鸣",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Izhmiakov Artem",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

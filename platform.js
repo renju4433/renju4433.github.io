@@ -39,7 +39,7 @@
   }
 
   function eventKey(t) {
-    return (t.year ? t.year + ' · ' : '') + (t.event || t.name || t.slug || t.id);
+    return (t.date || t.year || '') + ' · ' + (t.event || t.name || t.slug || t.id);
   }
 
   function latestRoundOf(t) {
@@ -119,8 +119,9 @@
         var eventMap = {};
         tours.forEach(function (t) {
           var key = eventKey(t);
+          var dt = t.date || t.year || '';
           if (!eventMap[key]) {
-            eventMap[key] = { key: key, label: (t.year ? '[' + t.year + '] ' : '') + (t.event || t.name), items: [] };
+            eventMap[key] = { key: key, label: (dt ? '[' + dt + '] ' : '') + (t.event || t.name), items: [] };
             events.push(eventMap[key]);
           }
           eventMap[key].items.push(t);

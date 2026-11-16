@@ -1,0 +1,68 @@
+{
+  "tournament": {
+    "id": "rif_3622",
+    "slug": "rif_3622",
+    "name": "7th Korea Omok Master Final-Match",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "rounds": [
+    1,
+    2
+  ],
+  "total_rounds": 2,
+  "played": 1,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "강상민",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "장은민",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "장은민",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "강상민",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

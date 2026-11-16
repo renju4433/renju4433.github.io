@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "rif_3570",
+    "slug": "rif_3570",
+    "name": "64 Meijinsen Tournament Kansai Hokuriku area 1st round",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-05-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "紀藤真一",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "舘雅也",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "吉田久夫",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "高嶋純也",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

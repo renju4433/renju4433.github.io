@@ -1,0 +1,106 @@
+{
+  "tournament": {
+    "id": "rif_3571",
+    "slug": "rif_3571",
+    "name": "Chinese National Championship 2026, Men Final",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "rounds": [
+    1,
+    2
+  ],
+  "total_rounds": 2,
+  "played": 2,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "吴镝",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "毛玮铭",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "艾显平",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "黄圣明",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "毛玮铭",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吴镝",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "黄圣明",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "艾显平",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

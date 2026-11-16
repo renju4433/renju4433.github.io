@@ -1,0 +1,181 @@
+{
+  "tournament": {
+    "id": "rif_3549",
+    "slug": "rif_3549",
+    "name": "Russian Youth Renju Championship",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "rounds": [
+    1
+  ],
+  "total_rounds": 1,
+  "played": 4,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Dam Matvei",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Аверин Максим",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Иван Иванов",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Максим Афанасьев",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Степан Потапов",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Каландаров Глеб",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Ярослав Рогозинский",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Ерин",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Аверин Максим",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Dam Matvei",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Каландаров Глеб",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Степан Потапов",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Максим Афанасьев",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Иван Иванов",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Олег Ерин",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

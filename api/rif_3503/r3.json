@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_3503",
+    "slug": "rif_3503",
+    "name": "2026 New year tournament",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-01-10",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "차승현",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "허정빈",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "강상민",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "장은민",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "김현섭",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "윤준원",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "이영훈",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "최승혁",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

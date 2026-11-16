@@ -1,0 +1,68 @@
+{
+  "tournament": {
+    "id": "rif_3543",
+    "slug": "rif_3543",
+    "name": "50 Seiunsen Tournament final match",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "rounds": [
+    1,
+    2
+  ],
+  "total_rounds": 2,
+  "played": 1,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "加藤大介",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "鈴木将照",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "鈴木将照",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "加藤大介",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

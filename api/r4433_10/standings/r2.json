@@ -1,0 +1,2215 @@
+{
+  "tournament": {
+    "id": "r4433_10",
+    "slug": "r4433_10",
+    "name": "2026年全国五子棋青少年公开赛",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "total_rounds": 7,
+  "played": 41,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "李韩",
+      "score": 2.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张小康",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张曦元",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "樊雨辰",
+      "score": 2.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王津哲",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王皓正",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "王朝翔",
+      "score": 2.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李奕辰",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "施丁睿",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "郭译熙",
+      "score": 2.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李梓瑞",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李嘉贤",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "钤乐鱼",
+      "score": 2.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王睿彤",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王子韵",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "薛菀瑜",
+      "score": 2.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "高海晏",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李艾熙",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "余承泽",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王子骁",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "何忆辰",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "周长阳",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "韩丰瑞",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "韩毅宸",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "庄沐夕",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "刘楠琪",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "凌溪",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "应蕴鑫",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "董孟琛",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王潇飞",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "李瑞",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "徐康城",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张贵垚",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "杨镒宁",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "杨星蒂",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李姝翯",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "许恕安",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张语桐",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宁钰舒",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "郭采卿",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王仲熙",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吴果益",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "陈奕润",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张祥城",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈敬宇",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "高鹤洋",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "赵承宇",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王清源",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "no": null,
+      "name": "刘子亿",
+      "score": 1.5,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王雨泽",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "闫博轩",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "no": null,
+      "name": "孔泽铭",
+      "score": 1.5,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "常圣煊",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李梓靕",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "no": null,
+      "name": "尹一帆",
+      "score": 1.5,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李俊彦",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "徐康城",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "no": null,
+      "name": "李俊彦",
+      "score": 1.5,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "尹一帆",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "孔维森",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 21,
+      "no": null,
+      "name": "刘舒瑶",
+      "score": 1.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王梓涵",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张语桐",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 21,
+      "no": null,
+      "name": "王若贤",
+      "score": 1.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张源元",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王仲熙",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "何忆辰",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "崔睿明",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "余承泽",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "凌溪",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "马粟",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "庄沐夕",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "宁钰舒",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张芸箬",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "许恕安",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "张贵垚",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张小凡",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李瑞",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "李姝翯",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "林钰瑶",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "杨镒宁",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "李艾熙",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "何姝然",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "薛菀瑜",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "王清源",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张一鸣",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "高鹤洋",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "王皓正",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "南燕臻",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "樊雨辰",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "陈敬宇",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "边显",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈奕润",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "韩毅宸",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张书豪",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "周长阳",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 33,
+      "no": null,
+      "name": "吴果益",
+      "score": 1.0,
+      "buch": 2.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘亦涵",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "郭采卿",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 33,
+      "no": null,
+      "name": "王津哲",
+      "score": 1.0,
+      "buch": 2.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "樊雨辰",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "常圣煊",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "刘梓洢",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "董声筱",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "高悦言",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "墨涵",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王俊然",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张浩鹏",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "张小康",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李韩",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "董孟琛",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "张曦元",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "孔维森",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李韩",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "施丁睿",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李予喆",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王朝翔",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "李嘉贤",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "何泽沐",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "郭译熙",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "李奕辰",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王朝翔",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李予喆",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "李梓瑞",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "郭译熙",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "喻晟睿",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "王子韵",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "周子良",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "钤乐鱼",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "王潇飞",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李绍泽",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "应蕴鑫",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "王睿彤",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "钤乐鱼",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "何泽沐",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "白雨桐",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王誉淇",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "何芮溪",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 47,
+      "no": null,
+      "name": "李梓靕",
+      "score": 1.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "喻晟睿",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "孔泽铭",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 47,
+      "no": null,
+      "name": "林钰瑶",
+      "score": 1.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李姝翯",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张源元",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 47,
+      "no": null,
+      "name": "马粟",
+      "score": 1.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "凌溪",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王梓涵",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 50,
+      "no": null,
+      "name": "何姝然",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李艾熙",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "杨星蒂",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 50,
+      "no": null,
+      "name": "何芮溪",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "白雨桐",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 50,
+      "no": null,
+      "name": "南燕臻",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王皓正",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "周子良",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 50,
+      "no": null,
+      "name": "崔睿明",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "何忆辰",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王子骁",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 50,
+      "no": null,
+      "name": "张一鸣",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王清源",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "赵承宇",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 50,
+      "no": null,
+      "name": "张书豪",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "韩毅宸",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "韩丰瑞",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 50,
+      "no": null,
+      "name": "张小凡",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张贵垚",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李绍泽",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 50,
+      "no": null,
+      "name": "张浩鹏",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "墨涵",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 50,
+      "no": null,
+      "name": "张芸箬",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宁钰舒",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘楠琪",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 50,
+      "no": null,
+      "name": "边显",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈敬宇",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张祥城",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 50,
+      "no": null,
+      "name": "高悦言",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "刘梓洢",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 61,
+      "no": null,
+      "name": "常圣煊",
+      "score": 0.5,
+      "buch": 2.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "孔泽铭",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王津哲",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 61,
+      "no": null,
+      "name": "张源元",
+      "score": 0.5,
+      "buch": 2.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王若贤",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "林钰瑶",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 61,
+      "no": null,
+      "name": "王梓涵",
+      "score": 0.5,
+      "buch": 2.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "刘舒瑶",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "马粟",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 61,
+      "no": null,
+      "name": "高海晏",
+      "score": 0.5,
+      "buch": 2.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "薛菀瑜",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "刘亦涵",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 65,
+      "no": null,
+      "name": "刘亦涵",
+      "score": 0.5,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吴果益",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "高海晏",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 65,
+      "no": null,
+      "name": "闫博轩",
+      "score": 0.5,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘子亿",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 67,
+      "no": null,
+      "name": "张语桐",
+      "score": 0.0,
+      "buch": 3.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "许恕安",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘舒瑶",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 67,
+      "no": null,
+      "name": "徐康城",
+      "score": 0.0,
+      "buch": 3.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李瑞",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "尹一帆",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 67,
+      "no": null,
+      "name": "王仲熙",
+      "score": 0.0,
+      "buch": 3.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "郭采卿",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王若贤",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 70,
+      "no": null,
+      "name": "刘楠琪",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "庄沐夕",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张芸箬",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 70,
+      "no": null,
+      "name": "张祥城",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈奕润",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "边显",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 70,
+      "no": null,
+      "name": "杨星蒂",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "杨镒宁",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "何姝然",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 70,
+      "no": null,
+      "name": "王子骁",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "余承泽",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "崔睿明",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 70,
+      "no": null,
+      "name": "董孟琛",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "应蕴鑫",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张小康",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 70,
+      "no": null,
+      "name": "赵承宇",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "高鹤洋",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张一鸣",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 70,
+      "no": null,
+      "name": "韩丰瑞",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "周长阳",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张书豪",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 77,
+      "no": null,
+      "name": "孔维森",
+      "score": 0.0,
+      "buch": 2.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张曦元",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李俊彦",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 78,
+      "no": null,
+      "name": "何泽沐",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李嘉贤",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王睿彤",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 78,
+      "no": null,
+      "name": "周子良",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王子韵",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "南燕臻",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 78,
+      "no": null,
+      "name": "喻晟睿",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李梓靕",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李梓瑞",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 78,
+      "no": null,
+      "name": "李予喆",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "施丁睿",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李奕辰",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 78,
+      "no": null,
+      "name": "李绍泽",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王潇飞",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张小凡",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 83,
+      "no": null,
+      "name": "王雨泽",
+      "score": 0.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "刘子亿",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 84,
+      "no": null,
+      "name": "王俊然",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "墨涵",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 84,
+      "no": null,
+      "name": "王誉淇",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "白雨桐",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 84,
+      "no": null,
+      "name": "董声筱",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘梓洢",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

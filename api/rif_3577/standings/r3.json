@@ -1,0 +1,443 @@
+{
+  "tournament": {
+    "id": "rif_3577",
+    "slug": "rif_3577",
+    "name": "Youth World qualifying tournament  2026 Group B",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "total_rounds": 7,
+  "played": 6,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "钟煜阳",
+      "score": 3.0,
+      "buch": 5.0,
+      "med": 2.0,
+      "wins": 3,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "潘冠臣",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王鑫宇",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "药博凡",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "康庭瑞",
+      "score": 2.0,
+      "buch": 5.5,
+      "med": 2.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李嘉骏",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈浩源",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "蔡嘉睦",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "王鑫宇",
+      "score": 2.0,
+      "buch": 5.0,
+      "med": 1.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李今朝",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "钟煜阳",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "丁泽宇",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "药博凡",
+      "score": 2.0,
+      "buch": 4.5,
+      "med": 1.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "于子盛",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "周尚礼",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "钟煜阳",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "李嘉骏",
+      "score": 2.0,
+      "buch": 4.0,
+      "med": 1.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "康庭瑞",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "丁泽宇",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "潘冠臣",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "蔡嘉睦",
+      "score": 2.0,
+      "buch": 4.0,
+      "med": 1.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "丁泽宇",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李今朝",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "康庭瑞",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "丁泽宇",
+      "score": 1.0,
+      "buch": 6.0,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "蔡嘉睦",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李嘉骏",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王鑫宇",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "潘冠臣",
+      "score": 1.0,
+      "buch": 5.5,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "钟煜阳",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "周士杰",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李嘉骏",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "李今朝",
+      "score": 1.0,
+      "buch": 5.0,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王鑫宇",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "蔡嘉睦",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "周尚礼",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "周尚礼",
+      "score": 1.0,
+      "buch": 3.5,
+      "med": 1.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "周士杰",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "药博凡",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李今朝",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "陈浩源",
+      "score": 1.0,
+      "buch": 2.5,
+      "med": 0.5,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "康庭瑞",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "于子盛",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "于子盛",
+      "score": 0.0,
+      "buch": 3.5,
+      "med": 1.5,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "药博凡",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈浩源",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "no": null,
+      "name": "周士杰",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 1.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "周尚礼",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "潘冠臣",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

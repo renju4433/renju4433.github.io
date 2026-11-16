@@ -1,0 +1,167 @@
+{
+  "tournament": {
+    "id": "rif_3587",
+    "slug": "rif_3587",
+    "name": "Youth Championship of Arkhangelsk region Group GH",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-06-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Валерия Верещагина",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Марина Озерова",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Амалия Ижмякова",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Казанцева Милана",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Ева Гасанова",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Наталья Порохина",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Екатерина Чернецова",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Дарина Никитина",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Наталия Звездина",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Ангелина Козенкова",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Овчаренко Валерия",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Дарина Биричевская",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Ivanova Lilia",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Евграфова Арина",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

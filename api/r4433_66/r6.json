@@ -1,0 +1,127 @@
+{
+  "tournament": {
+    "id": "r4433_66",
+    "slug": "r4433_66",
+    "name": "江苏省第八届五子棋锦标赛",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-08-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "奚振扬",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "周楠",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "王弈霖",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "周思哲",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "徐邦",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "梅俊熙",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "李昊轩",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "丁泽宇",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "朱叶",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "张俊天",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

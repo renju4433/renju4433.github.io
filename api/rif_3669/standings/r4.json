@@ -1,0 +1,287 @@
+{
+  "tournament": {
+    "id": "rif_3669",
+    "slug": "rif_3669",
+    "name": "Estonian Championship 2026",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "total_rounds": 7,
+  "played": 3,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Topkin Georg-Romet",
+      "score": 3.0,
+      "buch": 9.0,
+      "med": 4.5,
+      "wins": 3,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mesila Villem",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hõbemägi Martin",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lents Johann",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Oll Aivo",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Lents Johann",
+      "score": 3.0,
+      "buch": 7.5,
+      "med": 4.0,
+      "wins": 3,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pajuste Renee",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kolk Kuno",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Topkin Georg-Romet",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mesila Villem",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Mesila Villem",
+      "score": 2.0,
+      "buch": 7.5,
+      "med": 4.5,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Topkin Georg-Romet",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hõbemägi Martin",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lents Johann",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Oll Aivo",
+      "score": 1.5,
+      "buch": 5.0,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pajuste Renee",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kolk Kuno",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Topkin Georg-Romet",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Hõbemägi Martin",
+      "score": 1.0,
+      "buch": 6.0,
+      "med": 3.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kolk Kuno",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Topkin Georg-Romet",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mesila Villem",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Pajuste Renee",
+      "score": 1.0,
+      "buch": 5.5,
+      "med": 2.5,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lents Johann",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Oll Aivo",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kolk Kuno",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Kolk Kuno",
+      "score": 0.5,
+      "buch": 8.0,
+      "med": 3.5,
+      "wins": 0,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hõbemägi Martin",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lents Johann",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Oll Aivo",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pajuste Renee",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

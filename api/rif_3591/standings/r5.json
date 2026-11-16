@@ -1,0 +1,315 @@
+{
+  "tournament": {
+    "id": "rif_3591",
+    "slug": "rif_3591",
+    "name": "64 Meijinsen Tournament East Japan area 2nd round",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "total_rounds": 5,
+  "played": 3,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "河村典彦",
+      "score": 5.0,
+      "buch": 10.0,
+      "med": 6.0,
+      "wins": 5,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "井上史也",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宮本俊寿",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吉川知希",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "田中祥太郎",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "藤田麻衣子",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "井上史也",
+      "score": 3.0,
+      "buch": 12.0,
+      "med": 6.0,
+      "wins": 2,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "河村典彦",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吉川知希",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "田中祥太郎",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "藤田麻衣子",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宮本俊寿",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "藤田麻衣子",
+      "score": 2.5,
+      "buch": 12.5,
+      "med": 6.5,
+      "wins": 2,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吉川知希",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "田中祥太郎",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宮本俊寿",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "井上史也",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "河村典彦",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "吉川知希",
+      "score": 2.0,
+      "buch": 13.0,
+      "med": 7.0,
+      "wins": 2,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "藤田麻衣子",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "井上史也",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "河村典彦",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宮本俊寿",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "田中祥太郎",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "田中祥太郎",
+      "score": 1.5,
+      "buch": 13.5,
+      "med": 7.5,
+      "wins": 1,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宮本俊寿",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "藤田麻衣子",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "井上史也",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "河村典彦",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吉川知希",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "宮本俊寿",
+      "score": 1.0,
+      "buch": 14.0,
+      "med": 7.5,
+      "wins": 1,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "田中祥太郎",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "河村典彦",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "藤田麻衣子",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吉川知希",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "井上史也",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

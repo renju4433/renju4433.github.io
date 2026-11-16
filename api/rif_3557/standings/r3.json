@@ -1,0 +1,431 @@
+{
+  "tournament": {
+    "id": "rif_3557",
+    "slug": "rif_3557",
+    "name": "Renju Ukraine Cup 2026",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "total_rounds": 7,
+  "played": 6,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Skrypnyk Dmytro",
+      "score": 3.0,
+      "buch": 4.0,
+      "med": 1.0,
+      "wins": 3,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Bilusyak Mykhailo",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Gumenyuk Sergiy",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ulan Oleksandr",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Verholiak Yuri",
+      "score": 3.0,
+      "buch": 4.0,
+      "med": 1.0,
+      "wins": 3,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Verkholiak Matvii",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Umantsiv Roman",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Gumenyuk Sergiy",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Ulan Oleksandr",
+      "score": 2.0,
+      "buch": 6.0,
+      "med": 2.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hrechkosii Illia",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ostrovskyi Bohdan",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skrypnyk Dmytro",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Umantsiv Roman",
+      "score": 2.0,
+      "buch": 6.0,
+      "med": 2.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Saik Oleksiy",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Verholiak Yuri",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hrechkosii Illia",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Ostrovskyi Bohdan",
+      "score": 2.0,
+      "buch": 3.0,
+      "med": 1.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pochyhailo Maksymilian",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ulan Oleksandr",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Bilusyak Mykhailo",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Saik Oleksiy",
+      "score": 2.0,
+      "buch": 3.0,
+      "med": 1.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Umantsiv Roman",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Verkholiak Matvii",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pochyhailo Maksymilian",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Gumenyuk Sergiy",
+      "score": 1.0,
+      "buch": 6.0,
+      "med": 3.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pochyhailo Oleh",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Skrypnyk Dmytro",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Verholiak Yuri",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Bilusyak Mykhailo",
+      "score": 1.0,
+      "buch": 5.0,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skrypnyk Dmytro",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pochyhailo Oleh",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ostrovskyi Bohdan",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Verkholiak Matvii",
+      "score": 1.0,
+      "buch": 5.0,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Verholiak Yuri",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Saik Oleksiy",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pochyhailo Oleh",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Hrechkosii Illia",
+      "score": 1.0,
+      "buch": 4.0,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ulan Oleksandr",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pochyhailo Maksymilian",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Umantsiv Roman",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "Pochyhailo Maksymilian",
+      "score": 0.0,
+      "buch": 5.0,
+      "med": 2.0,
+      "wins": 0,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ostrovskyi Bohdan",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hrechkosii Illia",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Saik Oleksiy",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Pochyhailo Oleh",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 1.0,
+      "wins": 0,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Gumenyuk Sergiy",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Bilusyak Mykhailo",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Verkholiak Matvii",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

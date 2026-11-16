@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_3655",
+    "slug": "rif_3655",
+    "name": "41 St. Petersburg Cup",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-09-06",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Виктор Балабай",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Александр Лисютин",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -446,6 +446,9 @@ def compute_standings(conn, tid, upto=None):
     """
     rounds = [r['round'] for r in conn.execute(
         'SELECT round FROM rounds WHERE tournament_id=? ORDER BY round', (tid,))]
+    if not rounds:
+        rounds = [r[0] for r in conn.execute(
+            'SELECT DISTINCT round FROM games WHERE tournament_id=? AND round IS NOT NULL ORDER BY round', (tid,))]
     if upto is None:
         upto = max(rounds) if rounds else 0
     total = max(rounds) if rounds else upto
@@ -626,9 +629,13 @@ def export_api(conn):
 
     导出的内容只由库决定，不带导出时间：同一份库跑两次，产物逐字节相同，
     这样 GitHub Actions 定时跑不会因为时间戳而空提交。"""
-    tours = conn.execute(
-        "SELECT * FROM tournaments WHERE slug IS NOT NULL AND slug != '' ORDER BY year DESC, id"
-    ).fetchall()
+    tours = conn.execute("""
+        SELECT * FROM tournaments
+        WHERE (slug IS NOT NULL AND slug != '')
+           OR (year >= 2026 AND (rule_id IS NULL OR rule_id NOT IN (7, 11, 15, 28))
+               AND EXISTS (SELECT 1 FROM games g WHERE g.tournament_id = tournaments.id AND g.round IS NOT NULL))
+        ORDER BY COALESCE(date, CAST(year AS TEXT)) DESC, id
+    """).fetchall()
     if not tours:
         die('库里还没有赛事，先 record 一轮')
 
@@ -638,11 +645,21 @@ def export_api(conn):
         'tournaments': [],
     }
 
-    for t in tours:
-        rounds = conn.execute(
+    for t_row in tours:
+        t = dict(t_row)
+        t['slug'] = (t.get('slug') or '').strip() or t['id']
+        rounds = [dict(r) for r in conn.execute(
             'SELECT * FROM rounds WHERE tournament_id=? ORDER BY round',
             (t['id'],),
-        ).fetchall()
+        ).fetchall()]
+        if not rounds:
+            rounds = [
+                {'round': r[0], 'model': None, 'predicted_at': None, 'updated_at': t.get('date')}
+                for r in conn.execute(
+                    'SELECT DISTINCT round FROM games WHERE tournament_id=? AND round IS NOT NULL ORDER BY round',
+                    (t['id'],),
+                ).fetchall()
+            ]
         
         round_data = []
         for r in rounds:
@@ -698,6 +715,7 @@ def export_api(conn):
             'slug': t['slug'],
             'name': t['name'],
             'year': t['year'],
+            'date': t.get('date'),
             'group': t['group_name'],
             'rule': t['rule'],
             'updated_at': t['updated_at'],
@@ -779,7 +797,7 @@ def write_round(tour, rmeta, rows, rounds_summary, points, is_finished=False):
         'updated_at': rmeta['updated_at'],
         'games': [],
     }
-    for g in rows:
+    for idx, g in enumerate(rows, 1):
         is_bye = (g['black_name'] == '轮空' or g['white_name'] == '轮空')
         pred = None if (is_bye or g['p_black'] is None) else {
             'black': g['p_black'], 'draw': g['p_draw'], 'white': g['p_white'],
@@ -792,7 +810,7 @@ def write_round(tour, rmeta, rows, rounds_summary, points, is_finished=False):
             is_correct = (fav == g['result'])
 
         payload['games'].append({
-            'table': g['table_no'],
+            'table': g['table_no'] if g['table_no'] is not None else idx,
             'black': {
                 'no': g['black_no'], 'name': g['black_name'],
                 'score': None if g['black_name'] == '轮空' else points.get(g['black_name'], 0),

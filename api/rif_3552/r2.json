@@ -1,0 +1,79 @@
+{
+  "tournament": {
+    "id": "rif_3552",
+    "slug": "rif_3552",
+    "name": "Youth Russian Championship Group FG",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-03-24",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Наталия Звездина",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Екатерина Порохина",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Анна Фокичева",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Мария Петрова",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

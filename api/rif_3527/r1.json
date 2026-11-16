@@ -1,0 +1,123 @@
+{
+  "tournament": {
+    "id": "rif_3527",
+    "slug": "rif_3527",
+    "name": "Larix-2026",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-01-31",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Павел Носков",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Максим Старцев",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Макаров Павел",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Vershinin Pavel",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kinelovskiy Nikita",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Milevsky Alexander",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Vershinin Ivan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Dvoeglazov Vladimir",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Олег Федоркин",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

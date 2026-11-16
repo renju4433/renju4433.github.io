@@ -1,0 +1,59 @@
+{
+  "tournament": {
+    "id": "rif_3605",
+    "slug": "rif_3605",
+    "name": "Kyushu Renju Meijin Tournament",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-07-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "久家彰夫",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "倉掛又一",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

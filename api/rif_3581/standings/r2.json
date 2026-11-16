@@ -1,0 +1,427 @@
+{
+  "tournament": {
+    "id": "rif_3581",
+    "slug": "rif_3581",
+    "name": "Armenian Open Championship - 2026",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "rounds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "total_rounds": 6,
+  "played": 7,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Ավետիսյան Աշոտ",
+      "score": 3.0,
+      "buch": 4.0,
+      "med": 1.5,
+      "wins": 3,
+      "played": 3,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Մինասյան Գագիկ",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Բուլղադարյան Տիգրան",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Poghosyan Davit",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Ներսիսյան Ռաֆիկ",
+      "score": 2.0,
+      "buch": 2.5,
+      "med": 1.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Հովհաննիսյան Սյուզաննա",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Օրդյան Ռաֆայել",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Poghosyan Vahe",
+      "score": 2.0,
+      "buch": 1.5,
+      "med": 0.5,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Տերտերյան Ալեքսանդր",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Մինասյան Գագիկ",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Մինասյան Գագիկ",
+      "score": 1.0,
+      "buch": 7.0,
+      "med": 2.5,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ավետիսյան Աշոտ",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Սանթրոսյան Դավիթ",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Poghosyan Vahe",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Բուլղադարյան Տիգրան",
+      "score": 1.0,
+      "buch": 4.5,
+      "med": 1.5,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ավետիսյան Աշոտ",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Գրիգորյան Մանվել",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Աբրահամյան Էլինա",
+      "score": 1.0,
+      "buch": 4.0,
+      "med": 1.5,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Հովհաննիսյան Սյուզաննա",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Poghosyan Davit",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ցականյան Մհեր",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Poghosyan Davit",
+      "score": 1.0,
+      "buch": 4.0,
+      "med": 1.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Աբրահամյան Էլինա",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ավետիսյան Աշոտ",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Հովհաննիսյան Սյուզաննա",
+      "score": 1.0,
+      "buch": 4.0,
+      "med": 1.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Աբրահամյան Էլինա",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ներսիսյան Ռաֆիկ",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Հովհաննիսյան Էմիլ",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Գրիգորյան Մանվել",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 1.5,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ցականյան Մհեր",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Բուլղադարյան Տիգրան",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Օրդյան Ռաֆայել",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.5,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Հովհաննիսյան Էմիլ",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ներսիսյան Ռաֆիկ",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "Ցականյան Մհեր",
+      "score": 1.0,
+      "buch": 2.5,
+      "med": 1.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Գրիգորյան Մանվել",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Աբրահամյան Էլինա",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Սանթրոսյան Դավիթ",
+      "score": 1.0,
+      "buch": 1.5,
+      "med": 0.5,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Մինասյան Գագիկ",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Տերտերյան Ալեքսանդր",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "no": null,
+      "name": "Տերտերյան Ալեքսանդր",
+      "score": 0.0,
+      "buch": 4.0,
+      "med": 1.5,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Poghosyan Vahe",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Սանթրոսյան Դավիթ",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "no": null,
+      "name": "Հովհաննիսյան Էմիլ",
+      "score": 0.0,
+      "buch": 2.5,
+      "med": 1.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Օրդյան Ռաֆայել",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Հովհաննիսյան Սյուզաննա",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

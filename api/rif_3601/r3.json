@@ -1,0 +1,95 @@
+{
+  "tournament": {
+    "id": "rif_3601",
+    "slug": "rif_3601",
+    "name": "Youth World Championship 2026 Group G",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-07-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "张天瑜",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "韩吉尔",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "汤雅涵",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Екатерина Порохина",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "杨昕霖",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "王嘉欣",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

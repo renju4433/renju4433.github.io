@@ -1,0 +1,1273 @@
+{
+  "tournament": {
+    "id": "rif_3515",
+    "slug": "rif_3515",
+    "name": "The championship of Arkhangelsk region",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 8,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "total_rounds": 9,
+  "played": 9,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Максим Метревели",
+      "score": 7.5,
+      "buch": 39.0,
+      "med": 28.5,
+      "wins": 7,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Летовальцев Матвей",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Носков",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Казанцев",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Старцев",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Егор Павловский",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Сидоров",
+          "result": "D"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Степан Потапов",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Михаил Сидоров",
+      "score": 6.5,
+      "buch": 39.5,
+      "med": 28.0,
+      "wins": 6,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Золотарев",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Егор Павловский",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Максим Старцев",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Степан Потапов",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Метревели",
+          "result": "D"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Казанцев",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Егор Павловский",
+      "score": 6.0,
+      "buch": 39.5,
+      "med": 29.0,
+      "wins": 6,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Сидоров",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Летовальцев Матвей",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Метревели",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Старцев",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Носков",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Степан Потапов",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Максим Старцев",
+      "score": 5.0,
+      "buch": 40.0,
+      "med": 29.5,
+      "wins": 5,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Степан Потапов",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Сидоров",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Максим Метревели",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Носков",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Егор Павловский",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Иван Иванов",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Казанцев",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Павел Носков",
+      "score": 5.0,
+      "buch": 36.5,
+      "med": 26.5,
+      "wins": 5,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Артём Золотарев",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Метревели",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Максим Старцев",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Степан Потапов",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Егор Павловский",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Летовальцев Матвей",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Всеволод Зубов",
+      "score": 4.5,
+      "buch": 37.0,
+      "med": 28.0,
+      "wins": 4,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Егор Павловский",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Казанцев",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Сидоров",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Золотарев",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Метревели",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Сергей Микрюков",
+      "score": 4.5,
+      "buch": 32.0,
+      "med": 23.0,
+      "wins": 4,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Иван Иванов",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Носков",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Казанцев",
+          "result": "D"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Николаев",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Артём Золотарев",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Сидоров",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Степан Потапов",
+      "score": 4.0,
+      "buch": 37.0,
+      "med": 28.0,
+      "wins": 4,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Афанасьев",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Максим Старцев",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Сидоров",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Артём Золотарев",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Носков",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Метревели",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Егор Павловский",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Константин Казанцев",
+      "score": 4.0,
+      "buch": 36.0,
+      "med": 27.0,
+      "wins": 3,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Николаев",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Данила Ананьев",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Максим Метревели",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "D"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Летовальцев Матвей",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Сидоров",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Максим Старцев",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Летовальцев Матвей",
+      "score": 4.0,
+      "buch": 33.5,
+      "med": 24.5,
+      "wins": 4,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Максим Метревели",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Николаев",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Данила Ананьев",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Егор Павловский",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Золотарев",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Казанцев",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Носков",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "Константин Золотарев",
+      "score": 4.0,
+      "buch": 29.0,
+      "med": 21.0,
+      "wins": 4,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Сидоров",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Иван Иванов",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Афанасьев",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Летовальцев Матвей",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Николаев",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Иван Иванов",
+      "score": 4.0,
+      "buch": 25.0,
+      "med": 18.5,
+      "wins": 4,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Артём Золотарев",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Золотарев",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Данила Ананьев",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Максим Старцев",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "no": null,
+      "name": "Никита Страшненков",
+      "score": 3.0,
+      "buch": 29.5,
+      "med": 22.0,
+      "wins": 3,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Егор Павловский",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Золотарев",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Артём Золотарев",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Данила Ананьев",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Летовальцев Матвей",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Иван Иванов",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "no": null,
+      "name": "Ярослав Рогозинский",
+      "score": 3.0,
+      "buch": 28.5,
+      "med": 22.0,
+      "wins": 3,
+      "played": 8,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Старцев",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Максим Афанасьев",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Носков",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Иван Иванов",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Артём Золотарев",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "Артём Золотарев",
+      "score": 2.0,
+      "buch": 25.0,
+      "med": 20.0,
+      "wins": 2,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Носков",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Иван Иванов",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Степан Потапов",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Данила Ананьев",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 16,
+      "no": null,
+      "name": "Михаил Николаев",
+      "score": 2.0,
+      "buch": 22.5,
+      "med": 18.0,
+      "wins": 2,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Казанцев",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Летовальцев Матвей",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Афанасьев",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Данила Ананьев",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Золотарев",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "no": null,
+      "name": "Дмитрий Мартынов",
+      "score": 1.0,
+      "buch": 23.5,
+      "med": 19.0,
+      "wins": 1,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Степан Потапов",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Николаев",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Иван Иванов",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Золотарев",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Данила Ананьев",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 18,
+      "no": null,
+      "name": "Данила Ананьев",
+      "score": 1.0,
+      "buch": 21.5,
+      "med": 17.5,
+      "wins": 1,
+      "played": 7,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Казанцев",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Летовальцев Матвей",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Иван Иванов",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Артём Золотарев",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Николаев",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 19,
+      "no": null,
+      "name": "Максим Афанасьев",
+      "score": 1.0,
+      "buch": 13.5,
+      "med": 9.5,
+      "wins": 1,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Степан Потапов",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Николаев",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Золотарев",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

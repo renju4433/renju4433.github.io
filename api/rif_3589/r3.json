@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_3589",
+    "slug": "rif_3589",
+    "name": "64 Meijinsen Tournament Kansai Hokuriku area 2nd round",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-06-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "高嶋純也",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "舘雅也",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "吉田久夫",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

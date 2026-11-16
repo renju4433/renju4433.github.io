@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_3549",
+    "slug": "rif_3549",
+    "name": "Russian Youth Renju Championship",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-03-24",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Каландаров Глеб",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Степан Потапов",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Олег Ерин",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ярослав Рогозинский",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Аверин Максим",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Dam Matvei",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Иван Иванов",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Максим Афанасьев",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

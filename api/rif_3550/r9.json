@@ -1,0 +1,167 @@
+{
+  "tournament": {
+    "id": "rif_3550",
+    "slug": "rif_3550",
+    "name": "Youth Russian Championship Group C",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 9,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-03-24",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Vershinin Kirill",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Всеволод Зубов",
+        "score": 7
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Каландаров Глеб",
+        "score": 4.0
+      },
+      "white": {
+        "no": null,
+        "name": "Олег Ерин",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Голованов Михаил",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Максим Афанасьев",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Степан Потапов",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Аверин Максим",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Dam Matvei",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Летовальцев Матвей",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Иван Иванов",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Константин Золотарев",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Никита Страшненков",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Ярослав Рогозинский",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

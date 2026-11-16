@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_3523",
+    "slug": "rif_3523",
+    "name": "50 Seiunsen Tournament Hamamatsu area",
+    "year": 2026,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2026-01-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "真弓藍",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "こうき",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "加藤大介",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "玉木翔馬",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "上久保峰夫",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "みき",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}
