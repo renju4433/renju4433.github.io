@@ -8,7 +8,7 @@
     "rule": "塔拉山口-10"
   },
   "model": "model",
-  "evaluated_at": "2026-11-16 12:08:31",
+  "evaluated_at": "2026-11-16 12:12:10",
   "rounds": [
     {
       "n": 22,
@@ -38,9 +38,9 @@
       "n": 22,
       "hit": 15,
       "accuracy": 0.6818,
-      "brier": 0.4681,
-      "logloss": 0.7818,
-      "confidence": 0.6824,
+      "brier": 0.4652,
+      "logloss": 0.778,
+      "confidence": 0.6849,
       "results": {
         "B": 10,
         "D": 2,
@@ -62,9 +62,9 @@
       "n": 22,
       "hit": 16,
       "accuracy": 0.7273,
-      "brier": 0.4353,
-      "logloss": 0.78,
-      "confidence": 0.677,
+      "brier": 0.4291,
+      "logloss": 0.7733,
+      "confidence": 0.6822,
       "results": {
         "B": 4,
         "D": 3,
@@ -86,9 +86,9 @@
       "n": 22,
       "hit": 12,
       "accuracy": 0.5455,
-      "brier": 0.631,
-      "logloss": 1.0821,
-      "confidence": 0.6244,
+      "brier": 0.6299,
+      "logloss": 1.0802,
+      "confidence": 0.6243,
       "results": {
         "B": 10,
         "D": 5,
@@ -110,9 +110,9 @@
       "n": 22,
       "hit": 17,
       "accuracy": 0.7727,
-      "brier": 0.36,
-      "logloss": 0.6318,
-      "confidence": 0.6527,
+      "brier": 0.3636,
+      "logloss": 0.6374,
+      "confidence": 0.6505,
       "results": {
         "B": 12,
         "D": 1,
@@ -132,25 +132,25 @@
     },
     {
       "n": 22,
-      "hit": 12,
-      "accuracy": 0.5455,
-      "brier": 0.5495,
-      "logloss": 0.9272,
-      "confidence": 0.5765,
+      "hit": 11,
+      "accuracy": 0.5,
+      "brier": 0.5533,
+      "logloss": 0.9308,
+      "confidence": 0.589,
       "results": {
-        "B": 10,
+        "B": 12,
         "D": 3,
-        "W": 9
+        "W": 7
       },
       "hit_by_result": {
-        "B": 7,
+        "B": 9,
         "D": 0,
-        "W": 5
+        "W": 2
       },
       "fav_distribution": {
-        "B": 12,
+        "B": 15,
         "D": 0,
-        "W": 10
+        "W": 7
       },
       "round": 6
     },
@@ -158,33 +158,33 @@
       "n": 21,
       "hit": 12,
       "accuracy": 0.5714,
-      "brier": 0.5494,
-      "logloss": 0.9085,
-      "confidence": 0.5782,
+      "brier": 0.5391,
+      "logloss": 0.8963,
+      "confidence": 0.5894,
       "results": {
-        "B": 9,
+        "B": 8,
         "D": 2,
-        "W": 10
+        "W": 11
       },
       "hit_by_result": {
-        "B": 7,
+        "B": 6,
         "D": 0,
-        "W": 5
+        "W": 6
       },
       "fav_distribution": {
-        "B": 13,
+        "B": 12,
         "D": 0,
-        "W": 8
+        "W": 9
       },
       "round": 7
     },
     {
       "n": 22,
-      "hit": 12,
-      "accuracy": 0.5455,
-      "brier": 0.5481,
-      "logloss": 0.9547,
-      "confidence": 0.6087,
+      "hit": 11,
+      "accuracy": 0.5,
+      "brier": 0.5649,
+      "logloss": 0.967,
+      "confidence": 0.6079,
       "results": {
         "B": 5,
         "D": 4,
@@ -193,12 +193,12 @@
       "hit_by_result": {
         "B": 3,
         "D": 0,
-        "W": 9
+        "W": 8
       },
       "fav_distribution": {
-        "B": 10,
+        "B": 11,
         "D": 0,
-        "W": 12
+        "W": 11
       },
       "round": 8
     },
@@ -206,9 +206,9 @@
       "n": 22,
       "hit": 15,
       "accuracy": 0.6818,
-      "brier": 0.4135,
-      "logloss": 0.7414,
-      "confidence": 0.6218,
+      "brier": 0.4154,
+      "logloss": 0.7428,
+      "confidence": 0.623,
       "results": {
         "B": 9,
         "D": 2,
@@ -229,25 +229,25 @@
   ],
   "overall": {
     "n": 197,
-    "hit": 126,
-    "accuracy": 0.6396,
-    "brier": 0.4792,
-    "logloss": 0.8233,
-    "confidence": 0.6361,
+    "hit": 124,
+    "accuracy": 0.6294,
+    "brier": 0.4799,
+    "logloss": 0.8232,
+    "confidence": 0.6393,
     "results": {
-      "B": 77,
+      "B": 78,
       "D": 23,
-      "W": 97
+      "W": 96
     },
     "hit_by_result": {
-      "B": 63,
+      "B": 64,
       "D": 0,
-      "W": 63
+      "W": 60
     },
     "fav_distribution": {
-      "B": 109,
+      "B": 112,
       "D": 0,
-      "W": 88
+      "W": 85
     }
   }
 }
