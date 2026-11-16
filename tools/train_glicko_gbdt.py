@@ -315,6 +315,7 @@ def train_and_export(df, feature_cols, out_name="model_glicko_20261113.json"):
         "features": feature_cols,
         "cat_indices": cat_indices,
         "cat_maps": cat_maps,
+        "inc_draw_calib": {"coef": 0.05, "ref": 15.0},
         "draw_trees": draw_trees,
         "bw_trees": bw_trees,
     }

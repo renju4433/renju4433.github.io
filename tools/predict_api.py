@@ -147,6 +147,11 @@ def predict_gbdt(sample, model=None):
 
     if model.get('format') == 'two_stage_binary_v1':
         z_draw = sum(_eval_tree(t, sample, cat_maps) for t in model['draw_trees'])
+        calib = model.get('inc_draw_calib')
+        if calib:
+            inc_val = sample[5]
+            inc_safe = 0.0 if (inc_val is None or (isinstance(inc_val, float) and math.isnan(inc_val))) else max(0.0, float(inc_val))
+            z_draw += float(calib.get('coef', 0.0)) * (math.log1p(inc_safe) - math.log1p(float(calib.get('ref', 15.0))))
         z_bw = sum(_eval_tree(t, sample, cat_maps) for t in model['bw_trees'])
         p_draw = _sigmoid(z_draw)
         p_b_dec = _sigmoid(z_bw)

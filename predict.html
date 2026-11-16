@@ -214,6 +214,11 @@ pre{margin:8px 0 0;padding:11px 13px;border-radius:8px;background:#161d1a;color:
       var drawTrees = modelData.draw_trees || [];
       var bwTrees = modelData.bw_trees || [];
       for (var i = 0; i < drawTrees.length; i++) zDraw += evalTree(drawTrees[i], feat, catMaps);
+      if (modelData.inc_draw_calib) {
+        var incSafe = Math.max(0, isNaN(feat[5]) ? 0 : feat[5]);
+        var refInc = modelData.inc_draw_calib.ref || 15.0;
+        zDraw += (modelData.inc_draw_calib.coef || 0) * (Math.log(1 + incSafe) - Math.log(1 + refInc));
+      }
       for (var j = 0; j < bwTrees.length; j++) zBw += evalTree(bwTrees[j], feat, catMaps);
       var pDraw = 1.0 / (1.0 + Math.exp(-zDraw));
       var pBDec = 1.0 / (1.0 + Math.exp(-zBw));
