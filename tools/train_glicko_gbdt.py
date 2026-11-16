@@ -21,9 +21,7 @@ from sklearn.metrics import accuracy_score, log_loss
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_DB_PATH = os.path.join(ROOT, "data", "duiju.db")
 DEFAULT_CSV_PATH = os.path.join(ROOT, "data", "all_games.csv")
-MODEL_DIR = os.path.join(ROOT, "model")
-API_DIR = os.path.join(ROOT, "api")
-NON_FORBIDDEN_RULES = (7, 11, 15, 28)
+BISAI_DATA_DIR = os.path.join(ROOT, "bisai", "data")
 SHANHAI_DAY = 20771
 
 Q = math.log(10.0) / 400.0
@@ -46,7 +44,6 @@ def load_training_games(source_path=DEFAULT_DB_PATH, max_day_exclusive=SHANHAI_D
                    black_id, black_name, white_id, white_name, result
             FROM games
             WHERE result IN ('B', 'W', 'D') AND day > 0
-              AND (rule IS NULL OR rule NOT IN (7, 11, 15, 28))
         """
         params = []
         if max_day_exclusive is not None:
@@ -84,8 +81,6 @@ def load_training_games(source_path=DEFAULT_DB_PATH, max_day_exclusive=SHANHAI_D
                 if max_day_exclusive is not None and day >= max_day_exclusive:
                     continue
                 rule = int(float(row.get("rule") or 0))
-                if rule in NON_FORBIDDEN_RULES:
-                    continue
                 rnd = int(row["round"]) if (row.get("round") or "").isdigit() else 0
                 bt_str = (row.get("base_time") or "").strip()
                 inc_str = (row.get("increment") or "").strip()
@@ -246,9 +241,7 @@ def train_and_export(df, feature_cols, out_name="model_glicko_20261113.json"):
         "metric": "multi_logloss",
         "boosting_type": "gbdt",
         "learning_rate": 0.05,
-        "num_leaves": 15,
-        "min_data_in_leaf": 150,
-        "lambda_l2": 5.0,
+        "num_leaves": 31,
         "feature_fraction": 0.9,
         "bagging_fraction": 0.8,
         "bagging_freq": 5,
@@ -306,15 +299,13 @@ def train_and_export(df, feature_cols, out_name="model_glicko_20261113.json"):
         "trees": trees,
     }
 
-    os.makedirs(MODEL_DIR, exist_ok=True)
-    os.makedirs(API_DIR, exist_ok=True)
-    out_path = os.path.join(MODEL_DIR, out_name)
-    default_path = os.path.join(MODEL_DIR, "model.json")
-    api_model_path = os.path.join(API_DIR, "model.json")
-    for p in (out_path, default_path, api_model_path):
+    os.makedirs(BISAI_DATA_DIR, exist_ok=True)
+    out_path = os.path.join(BISAI_DATA_DIR, out_name)
+    default_path = os.path.join(BISAI_DATA_DIR, "model.json")
+    for p in (out_path, default_path):
         with open(p, "w", encoding="utf-8") as f:
             json.dump(out_model, f, separators=(",", ":"))
-    print(f"已导出 Glicko-GBDT 模型: {default_path} 与 {api_model_path} ({len(trees)} 棵树)")
+    print(f"已导出 Glicko-GBDT 模型: {out_path} 与 {default_path} ({len(trees)} 棵树)")
     return out_path
 
 
