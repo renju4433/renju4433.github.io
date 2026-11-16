@@ -104,12 +104,12 @@
           "round": 9,
           "games": 22,
           "predicted": 22,
-          "played": 0,
-          "is_finished": false,
+          "played": 22,
+          "is_finished": true,
           "model": "model_glicko_20261113",
           "predicted_at": "2026-11-15 21:22:01",
           "updated_at": "2026-11-15 21:22:01",
-          "standings": null
+          "standings": "api/shanhai/standings/r9.json"
         }
       ]
     }
