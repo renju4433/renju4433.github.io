@@ -98,13 +98,6 @@ pre{margin:8px 0 0;padding:11px 13px;border-radius:8px;background:#161d1a;color:
             <option value="1">五手两打 (RIF)</option>
           </select>
         </div>
-        <div>
-          <label for="bt">基本时限 / 加秒 (分 / 秒)</label>
-          <div style="display:flex;gap:8px">
-            <input id="bt" type="number" value="60" min="1" step="1">
-            <input id="inc" type="number" value="30" min="0" step="1">
-          </div>
-        </div>
       </div>
       <datalist id="players-list"></datalist>
       <div class="btn-row">
@@ -203,9 +196,7 @@ pre{margin:8px 0 0;padding:11px 13px;border-radius:8px;background:#161d1a;color:
     var rb = (playersMap[bn] ? playersMap[bn].r : 2000.0);
     var rw = (playersMap[wn] ? playersMap[wn].r : 2000.0);
     var rule = parseInt(document.getElementById('rule').value, 10);
-    var bt = parseFloat(document.getElementById('bt').value || '60');
-    var inc = parseFloat(document.getElementById('inc').value || '30');
-    var feat = [rule, rb, rw, rb - rw, bt * 60, inc];
+    var feat = [rule, rb, rw, rb - rw];
 
     var catMaps = modelData.cat_maps || {};
     var pw, pd, pb;
@@ -267,8 +258,6 @@ pre{margin:8px 0 0;padding:11px 13px;border-radius:8px;background:#161d1a;color:
   document.getElementById('b-name').addEventListener('input', updateHints);
   document.getElementById('w-name').addEventListener('input', updateHints);
   document.getElementById('rule').addEventListener('change', predictMatch);
-  document.getElementById('bt').addEventListener('input', predictMatch);
-  document.getElementById('inc').addEventListener('input', predictMatch);
   document.getElementById('btn-run').addEventListener('click', predictMatch);
 })();
 </script>

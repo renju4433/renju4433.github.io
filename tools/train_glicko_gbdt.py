@@ -207,7 +207,7 @@ def build_glicko_features(games):
         rw, rdw = get_pre_win(w_id, day)
         # 类别映射：0: 白胜 (W), 1: 和棋 (D), 2: 黑胜 (B)
         label = 2 if res == "B" else (1 if res == "D" else 0)
-        rows.append((g["rule"], rb, rw, rb - rw, g["base_time"], g["increment"], label))
+        rows.append((g["rule"], rb, rw, rb - rw, label))
 
         gb, gw = g_func(rdb), g_func(rdw)
         eb = 1.0 / (1.0 + 10.0 ** (-gw * (rb - rw) / 400.0))
@@ -223,7 +223,7 @@ def build_glicko_features(games):
         rd_map[w_id] = max(MIN_RD, math.sqrt(1.0 / dw))
         last_day[w_id] = day
 
-    feature_cols = ["rule", "rating_tb", "rating_tw", "rating_diff", "base_time", "increment"]
+    feature_cols = ["rule", "rating_tb", "rating_tw", "rating_diff"]
     return pd.DataFrame(rows, columns=feature_cols + ["label"]), feature_cols
 
 
@@ -237,15 +237,13 @@ def train_and_export(df, feature_cols, out_name="model_glicko_20261113.json"):
     train_df = df.iloc[:n_train].copy()
     test_df = df.iloc[n_train:].copy()
 
-    # 两阶段模型：
-    # 1) 和棋 vs 分胜负（对 base_time 和 increment 施加 +1 单调非降约束，避免无加秒反而更易和棋）
-    y_draw_tr = (train_df["label"] == 1).astype(int)
-    y_draw_te = (test_df["label"] == 1).astype(int)
-    d_tr1 = lgb.Dataset(train_df[feature_cols], label=y_draw_tr, categorical_feature=cat_cols)
-    d_te1 = lgb.Dataset(test_df[feature_cols], label=y_draw_te, reference=d_tr1, categorical_feature=cat_cols)
-    base_params = {
-        "objective": "binary",
-        "metric": "binary_logloss",
+    dtrain = lgb.Dataset(train_df[feature_cols], label=train_df["label"], categorical_feature=cat_cols)
+    dtest = lgb.Dataset(test_df[feature_cols], label=test_df["label"], reference=dtrain, categorical_feature=cat_cols)
+
+    params = {
+        "objective": "multiclass",
+        "num_class": 3,
+        "metric": "multi_logloss",
         "boosting_type": "gbdt",
         "learning_rate": 0.05,
         "num_leaves": 31,
@@ -255,34 +253,21 @@ def train_and_export(df, feature_cols, out_name="model_glicko_20261113.json"):
         "verbose": -1,
         "seed": 42,
     }
-    m_draw = lgb.train(
-        {**base_params, "monotone_constraints": [0, 0, 0, 0, 1, 1]},
-        d_tr1,
+    model = lgb.train(
+        params,
+        dtrain,
         num_boost_round=1000,
-        valid_sets=[d_tr1, d_te1],
+        valid_sets=[dtrain, dtest],
         callbacks=[lgb.early_stopping(50, verbose=False)],
     )
 
-    # 2) 分胜负对局中黑胜 vs 白胜
-    tr_dec = train_df[train_df["label"] != 1].copy()
-    te_dec = test_df[test_df["label"] != 1].copy()
-    d_tr2 = lgb.Dataset(tr_dec[feature_cols], label=(tr_dec["label"] == 2).astype(int), categorical_feature=cat_cols)
-    d_te2 = lgb.Dataset(te_dec[feature_cols], label=(te_dec["label"] == 2).astype(int), reference=d_tr2, categorical_feature=cat_cols)
-    m_bw = lgb.train(
-        base_params,
-        d_tr2,
-        num_boost_round=1000,
-        valid_sets=[d_tr2, d_te2],
-        callbacks=[lgb.early_stopping(50, verbose=False)],
-    )
-
-    pd_te = m_draw.predict(test_df[feature_cols], num_iteration=m_draw.best_iteration)
-    pb_dec_te = m_bw.predict(test_df[feature_cols], num_iteration=m_bw.best_iteration)
-    preds = np.column_stack([(1.0 - pd_te) * (1.0 - pb_dec_te), pd_te, (1.0 - pd_te) * pb_dec_te])
+    preds = model.predict(test_df[feature_cols], num_iteration=model.best_iteration)
     y_true = test_df["label"].values
     acc = accuracy_score(y_true, np.argmax(preds, axis=1))
     loss = log_loss(y_true, preds)
-    print(f"两阶段单调 Glicko-GBDT ({len(feature_cols)}特征) 训练完成: draw_iter={m_draw.best_iteration}, bw_iter={m_bw.best_iteration}, Valid Acc={acc*100:.2f}%, LogLoss={loss:.4f}")
+    print(f"一阶段 Glicko-GBDT ({len(feature_cols)}特征) 训练完成: best_iter={model.best_iteration}, Valid Acc={acc*100:.2f}%, LogLoss={loss:.4f}")
+    imp = dict(zip(feature_cols, model.feature_importance(importance_type="gain").round(1).tolist()))
+    print(f"特征增益重要性 (gain): {imp}")
 
     def parse_tree_node(node):
         if "leaf_value" in node:
@@ -301,23 +286,21 @@ def train_and_export(df, feature_cols, out_name="model_glicko_20261113.json"):
             res["t"] = thresh if abs(thresh) < 1e-15 else round(thresh, 5)
         return res
 
-    draw_dump = m_draw.dump_model()
-    bw_dump = m_bw.dump_model()
-    pandas_cat = draw_dump.get("pandas_categorical", [])
-    draw_trees = [parse_tree_node(t["tree_structure"]) for t in draw_dump["tree_info"]]
-    bw_trees = [parse_tree_node(t["tree_structure"]) for t in bw_dump["tree_info"]]
+    model_dump = model.dump_model()
+    pandas_cat = model_dump.get("pandas_categorical", [])
+    trees = [
+        {"c": t["tree_index"] % 3, "r": parse_tree_node(t["tree_structure"])}
+        for t in model_dump["tree_info"]
+    ]
     cat_maps = {
         str(feature_cols.index(c)): [int(x) for x in pandas_cat[i]]
         for i, c in enumerate(cat_cols)
     }
     out_model = {
-        "format": "two_stage_binary_v1",
         "features": feature_cols,
         "cat_indices": cat_indices,
         "cat_maps": cat_maps,
-        "inc_draw_calib": {"coef": 0.05, "ref": 15.0},
-        "draw_trees": draw_trees,
-        "bw_trees": bw_trees,
+        "trees": trees,
     }
 
     os.makedirs(MODEL_DIR, exist_ok=True)
@@ -327,7 +310,7 @@ def train_and_export(df, feature_cols, out_name="model_glicko_20261113.json"):
     for p in (default_path, api_model_path):
         with open(p, "w", encoding="utf-8") as f:
             json.dump(out_model, f, separators=(",", ":"))
-    print(f"已导出两阶段单调 Glicko-GBDT 模型: {default_path} 与 {api_model_path} ({len(draw_trees)}+{len(bw_trees)} 棵树)")
+    print(f"已导出 Glicko-GBDT 模型: {default_path} 与 {api_model_path} ({len(trees)} 棵树)")
     return default_path
 
 
