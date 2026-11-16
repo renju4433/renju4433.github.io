@@ -110,40 +110,56 @@ def load_gbdt_model():
     return _MODEL_CACHE
 
 
+def _eval_tree(curr, sample, cat_maps):
+    while 'v' not in curr:
+        f_idx = curr['f']
+        val = sample[f_idx]
+        if val is None or (isinstance(val, float) and math.isnan(val)):
+            curr = curr['l'] if curr.get('dl') == 1 else curr['r']
+            continue
+        if 'tc' in curr:
+            cat_list = cat_maps.get(str(f_idx), [])
+            val_int = int(val)
+            internal_idx = cat_list.index(val_int) if val_int in cat_list else -1
+            if internal_idx != -1 and internal_idx in curr['tc']:
+                curr = curr['l']
+            else:
+                curr = curr['r']
+        else:
+            if val <= curr['t']:
+                curr = curr['l']
+            else:
+                curr = curr['r']
+    return curr['v']
+
+
+def _sigmoid(z):
+    if z >= 0:
+        return 1.0 / (1.0 + math.exp(-z))
+    ez = math.exp(z)
+    return ez / (1.0 + ez)
+
+
 def predict_gbdt(sample, model=None):
     """GBDT 三分类概率推断 (p_black, p_draw, p_white)。"""
     model = model or load_gbdt_model()
-    scores = [0.0, 0.0, 0.0]
     cat_maps = model.get('cat_maps', {})
 
-    for t in model['trees']:
-        cls = t['c']
-        curr = t['r']
-        while 'v' not in curr:
-            f_idx = curr['f']
-            val = sample[f_idx]
-            if val is None or (isinstance(val, float) and math.isnan(val)):
-                curr = curr['l'] if curr.get('dl') == 1 else curr['r']
-                continue
-            if 'tc' in curr:
-                cat_list = cat_maps.get(str(f_idx), [])
-                val_int = int(val)
-                internal_idx = cat_list.index(val_int) if val_int in cat_list else -1
-                if internal_idx != -1 and internal_idx in curr['tc']:
-                    curr = curr['l']
-                else:
-                    curr = curr['r']
-            else:
-                if val <= curr['t']:
-                    curr = curr['l']
-                else:
-                    curr = curr['r']
-        scores[cls] += curr['v']
+    if model.get('format') == 'two_stage_binary_v1':
+        z_draw = sum(_eval_tree(t, sample, cat_maps) for t in model['draw_trees'])
+        z_bw = sum(_eval_tree(t, sample, cat_maps) for t in model['bw_trees'])
+        p_draw = _sigmoid(z_draw)
+        p_b_dec = _sigmoid(z_bw)
+        probs = [(1.0 - p_draw) * (1.0 - p_b_dec), p_draw, (1.0 - p_draw) * p_b_dec]
+    else:
+        scores = [0.0, 0.0, 0.0]
+        for t in model['trees']:
+            scores[t['c']] += _eval_tree(t['r'], sample, cat_maps)
+        max_s = max(scores)
+        exp_s = [math.exp(s - max_s) for s in scores]
+        sum_e = sum(exp_s)
+        probs = [e / sum_e for e in exp_s]
 
-    max_s = max(scores)
-    exp_s = [math.exp(s - max_s) for s in scores]
-    sum_e = sum(exp_s)
-    probs = [e / sum_e for e in exp_s]
     # 类别映射：0: 白胜, 1: 和棋, 2: 黑胜
     pw = round(probs[0] * 100, 1)
     pd = round(probs[1] * 100, 1)

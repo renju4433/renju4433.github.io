@@ -207,19 +207,33 @@ pre{margin:8px 0 0;padding:11px 13px;border-radius:8px;background:#161d1a;color:
     var inc = parseFloat(document.getElementById('inc').value || '30');
     var feat = [rule, rb, rw, rb - rw, bt * 60, inc];
 
-    var scores = [0, 0, 0];
-    var trees = modelData.trees || [];
     var catMaps = modelData.cat_maps || {};
-    for (var i = 0; i < trees.length; i++) {
-      var t = trees[i];
-      scores[t.c] += evalTree(t.r, feat, catMaps);
+    var pw, pd, pb;
+    if (modelData.format === 'two_stage_binary_v1') {
+      var zDraw = 0, zBw = 0;
+      var drawTrees = modelData.draw_trees || [];
+      var bwTrees = modelData.bw_trees || [];
+      for (var i = 0; i < drawTrees.length; i++) zDraw += evalTree(drawTrees[i], feat, catMaps);
+      for (var j = 0; j < bwTrees.length; j++) zBw += evalTree(bwTrees[j], feat, catMaps);
+      var pDraw = 1.0 / (1.0 + Math.exp(-zDraw));
+      var pBDec = 1.0 / (1.0 + Math.exp(-zBw));
+      pw = Math.round((1.0 - pDraw) * (1.0 - pBDec) * 1000) / 10;
+      pd = Math.round(pDraw * 1000) / 10;
+      pb = Math.round((100.0 - pw - pd) * 10) / 10;
+    } else {
+      var scores = [0, 0, 0];
+      var trees = modelData.trees || [];
+      for (var k = 0; k < trees.length; k++) {
+        var t = trees[k];
+        scores[t.c] += evalTree(t.r, feat, catMaps);
+      }
+      var mx = Math.max(scores[0], scores[1], scores[2]);
+      var e0 = Math.exp(scores[0] - mx), e1 = Math.exp(scores[1] - mx), e2 = Math.exp(scores[2] - mx);
+      var sum = e0 + e1 + e2;
+      pw = Math.round(e0 / sum * 1000) / 10;
+      pd = Math.round(e1 / sum * 1000) / 10;
+      pb = Math.round((100.0 - pw - pd) * 10) / 10;
     }
-    var mx = Math.max(scores[0], scores[1], scores[2]);
-    var e0 = Math.exp(scores[0] - mx), e1 = Math.exp(scores[1] - mx), e2 = Math.exp(scores[2] - mx);
-    var sum = e0 + e1 + e2;
-    var pw = Math.round(e0 / sum * 1000) / 10;
-    var pd = Math.round(e1 / sum * 1000) / 10;
-    var pb = Math.round((100.0 - pw - pd) * 10) / 10;
 
     document.getElementById('res-box').style.display = 'block';
     document.getElementById('res-title').textContent = bn + ' (' + rb.toFixed(0) + ')  vs  ' + wn + ' (' + rw.toFixed(0) + ')';
