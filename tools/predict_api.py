@@ -56,10 +56,18 @@ RULE_MAP = {
     '塔拉山口-10': 25,
     'Taraguchi-10': 25,
     't10': 25,
-    '索索夫-8': 22,
-    'Soosyrv-8': 22,
+    '索索夫-8': 24,
+    'Soosyrv-8': 24,
+    '山口': 5,
+    'Yamaguchi': 5,
+    '两打': 1,
+    '五手两打': 1,
     'RIF': 1,
+    '指定开局两打': 0,
 }
+
+# 非有禁规则（无禁手 / Gomoku / Swap2）不纳入统计与 Glicko 计算
+NON_FORBIDDEN_RULES = (7, 11, 15, 28)
 
 _MODEL_CACHE = None
 _CSV_GAMES_CACHE = {}
@@ -165,6 +173,7 @@ def load_all_games_csv(csv_path=None):
             FROM games g
             LEFT JOIN tournaments t ON t.id = g.tournament_id
             WHERE g.result IN ('B', 'W', 'D') AND g.day > 0
+              AND (g.rule IS NULL OR g.rule NOT IN (7, 11, 15, 28))
             ORDER BY g.day, g.round, g.id
         """
         for tid, tname, rnd_raw, bid_raw, bn, wid_raw, wn, res, day in conn.execute(sql):
