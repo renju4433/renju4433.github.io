@@ -850,7 +850,7 @@ def predict_tournament(conn, tid, write=True, overwrite=False, csv_path=None):
     return total_predicted
 
 
-def export_players_json(out_path, db_path=None):
+def export_players_json(out_path, db_path=None, max_day=None):
     """导出全库棋手最新 Glicko-1 等级分与 RD，供在线预测与外部 API 查询。"""
     games, name_to_pid = load_all_games_csv(db_path or DB_PATH)
     rating, rd_map, last_day = {}, {}, {}
@@ -866,6 +866,8 @@ def export_players_json(out_path, db_path=None):
         return r, rd
 
     for _, _, b_id, w_id, res, day, _ in games:
+        if max_day is not None and day >= max_day:
+            continue
         rb, rdb = get_pre(b_id, day)
         rw, rdw = get_pre(w_id, day)
         gb = 1.0 / math.sqrt(1.0 + three_q2_pi2 * rdb * rdb)

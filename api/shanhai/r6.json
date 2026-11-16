@@ -174,22 +174,22 @@
     {
       "table": 7,
       "black": {
-        "no": 13,
-        "name": "康哲铭",
-        "score": 3.0
-      },
-      "white": {
         "no": 39,
         "name": "潘为",
         "score": 3
+      },
+      "white": {
+        "no": 13,
+        "name": "康哲铭",
+        "score": 3.0
       },
       "prediction": {
         "black": 81.0,
         "draw": 6.6,
         "white": 12.4
       },
-      "result": "B",
-      "prediction_correct": true
+      "result": "W",
+      "prediction_correct": false
     },
     {
       "table": 8,
@@ -214,13 +214,13 @@
     {
       "table": 9,
       "black": {
-        "no": 46,
-        "name": "鲁益",
+        "no": 24,
+        "name": "马子轩",
         "score": 3
       },
       "white": {
-        "no": 24,
-        "name": "马子轩",
+        "no": 46,
+        "name": "鲁益",
         "score": 3
       },
       "prediction": {
@@ -228,8 +228,8 @@
         "draw": 8.3,
         "white": 22.8
       },
-      "result": "B",
-      "prediction_correct": true
+      "result": "W",
+      "prediction_correct": false
     },
     {
       "table": 10,
