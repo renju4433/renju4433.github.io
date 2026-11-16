@@ -3,18 +3,18 @@
 
   var STYLE_ID = 'rp-platform-style';
   var CSS = [
-    '.rp-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--mint2,#f7faf8);border:1px solid var(--line,#e6dfd0);font:400 13px/1.4 var(--sans,system-ui,sans-serif)}',
-    '.rp-field{display:inline-flex;align-items:center;gap:6px;min-width:0}',
-    '.rp-lbl{font-size:12px;color:var(--ink3,#6c766f);white-space:nowrap}',
-    '.rp-sel{font:500 13px/1.3 var(--sans,system-ui,sans-serif);color:var(--ink,#17201a);background:var(--card,#fff);border:1px solid var(--line,#dfd8c8);border-radius:7px;padding:4px 8px;max-width:340px;cursor:pointer}',
-    '.rp-sel:focus{outline:none;border-color:var(--green,#0d4736)}',
-    '.rp-rule{display:inline-block;padding:3px 9px;border-radius:999px;background:var(--mint,#e9f3ee);color:var(--green,#0d4736);font-size:12px;font-weight:600;white-space:nowrap}',
-    '.rp-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto;align-items:center}',
-    '.rp-tab{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid var(--line,#e6dfd0);color:var(--ink3,#5c665f);text-decoration:none;font-size:12.5px;transition:all .15s}',
-    '.rp-tab:hover{border-color:var(--green,#0d4736);color:var(--green,#0d4736)}',
-    '.rp-tab.on{background:var(--green,#0d4736);border-color:var(--green,#0d4736);color:#fff;font-weight:600}',
-    '@media (max-width:720px){.rp-bar{padding:8px 10px;gap:8px}.rp-sel{max-width:220px}.rp-tabs{margin-left:0;width:100%}}',
-    '@media (prefers-color-scheme:dark){.rp-bar{background:#18211d;border-color:#2a322e}.rp-sel{background:#121715;color:#e8ece7;border-color:#2a322e}.rp-rule{background:#1b3a2e;color:#93d3b6}.rp-tab{border-color:#2a322e;color:#9aa79f}.rp-tab.on{background:#2c5b49;border-color:#2c5b49;color:#fff}}'
+    '#ttl.rp-click,#grp.rp-click{cursor:pointer;position:relative;user-select:none}',
+    '#ttl.rp-click:hover{opacity:.85}',
+    '#ttl.rp-click::after{content:" ▾";font-size:.62em;color:var(--ink3,#6c766f);vertical-align:middle;font-family:var(--sans,system-ui,sans-serif)}',
+    '#grp.rp-click{display:inline-block;padding:1px 7px;border-radius:6px;transition:background .15s}',
+    '#grp.rp-click:hover{background:var(--mint,#e9f3ee);color:var(--green,#0d4736)}',
+    '#grp.rp-click::after{content:" ▾";font-size:.85em;opacity:.7}',
+    '.rp-menu{position:fixed;z-index:9999;min-width:220px;max-width:min(92vw,420px);max-height:60vh;overflow-y:auto;background:var(--card,#fff);border:1px solid var(--line,#e6dfd0);border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.14);padding:6px}',
+    '.rp-item{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left;border:0;background:transparent;color:var(--ink,#17201a);font:400 13.5px/1.45 var(--sans,system-ui,sans-serif);padding:7px 10px;border-radius:7px;cursor:pointer}',
+    '.rp-item:hover{background:var(--mint2,#f4f8f6);color:var(--green,#0d4736)}',
+    '.rp-item.on{background:var(--mint,#e9f3ee);color:var(--green,#0d4736);font-weight:600}',
+    '.rp-item-sub{font-size:11.5px;color:var(--ink3,#6c766f);white-space:nowrap}',
+    '@media (prefers-color-scheme:dark){.rp-menu{background:#171c1a;border-color:#2a322e;box-shadow:0 10px 28px rgba(0,0,0,.45)}.rp-item{color:#e8ece7}.rp-item:hover{background:#1e2823;color:#93d3b6}.rp-item.on{background:#1b3a2e;color:#93d3b6}#grp.rp-click:hover{background:#1d2a25;color:#93d3b6}}'
   ].join('\n');
 
   function injectStyle() {
@@ -59,24 +59,52 @@
     return false;
   }
 
+  var openMenu = null;
+  function closeMenu() {
+    if (openMenu && openMenu.parentNode) openMenu.parentNode.removeChild(openMenu);
+    openMenu = null;
+  }
+  document.addEventListener('click', function (e) {
+    if (!openMenu) return;
+    if (openMenu.contains(e.target)) return;
+    var ttl = document.getElementById('ttl');
+    var grp = document.getElementById('grp');
+    if ((ttl && ttl.contains(e.target)) || (grp && grp.contains(e.target))) return;
+    closeMenu();
+  });
+
+  function showMenu(anchor, items, onPick) {
+    closeMenu();
+    var rect = anchor.getBoundingClientRect();
+    var menu = document.createElement('div');
+    menu.className = 'rp-menu';
+    menu.innerHTML = items.map(function (it, idx) {
+      return '<button type="button" class="rp-item' + (it.active ? ' on' : '') + '" data-i="' + idx + '">' +
+        '<span>' + esc(it.label) + '</span>' +
+        (it.sub ? '<span class="rp-item-sub">' + esc(it.sub) + '</span>' : '') +
+      '</button>';
+    }).join('');
+    document.body.appendChild(menu);
+    var top = Math.min(window.innerHeight - menu.offsetHeight - 12, rect.bottom + 6);
+    var left = Math.max(12, Math.min(window.innerWidth - menu.offsetWidth - 12, rect.left));
+    menu.style.top = Math.max(12, top) + 'px';
+    menu.style.left = left + 'px';
+    Array.prototype.forEach.call(menu.querySelectorAll('.rp-item'), function (btn) {
+      btn.addEventListener('click', function () {
+        var idx = parseInt(btn.getAttribute('data-i'), 10);
+        closeMenu();
+        onPick(items[idx]);
+      });
+    });
+    openMenu = menu;
+  }
+
   window.RenjuPlatform = {
     init: function (opts) {
       injectStyle();
       var indexUrl = opts.indexUrl || './api/index.json';
       var apiRoot = opts.apiRoot || './api/';
-      var page = opts.page || 'matches'; // 'matches' | 'standings' | 'metrics'
-      var pages = opts.pages || {
-        matches: 'index.html',
-        standings: 'standings.html',
-        metrics: 'metrics.html',
-        predict: 'predict.html'
-      };
-
-      var hd = document.querySelector('.hd');
-      var bar = document.createElement('div');
-      bar.className = 'rp-bar';
-      bar.id = 'rp-bar';
-      if (hd) hd.appendChild(bar);
+      var page = opts.page || 'matches';
 
       var qs = new URLSearchParams(location.search);
       var reqSlug = qs.get('t') || qs.get('slug') || '';
@@ -87,7 +115,6 @@
         var tours = idxData.tournaments || [];
         if (!tours.length) throw new Error('索引中暂无赛事');
 
-        // 按赛事分组（同赛事不同组别聚合在一起）
         var events = [];
         var eventMap = {};
         tours.forEach(function (t) {
@@ -110,42 +137,46 @@
         }
         var curRound = (reqRound > 0 && hasRound(curTour, reqRound)) ? reqRound : latestRoundOf(curTour);
 
-        function renderBar() {
-          var curEvKey = eventKey(curTour);
-          var curEv = eventMap[curEvKey] || events[0];
-          var evOpts = events.map(function (ev) {
-            return '<option value="' + esc(ev.key) + '"' + (ev.key === curEvKey ? ' selected' : '') + '>' + esc(ev.label) + '</option>';
-          }).join('');
-          var grpOpts = curEv.items.map(function (it) {
-            var gn = it.group || '公开组';
-            return '<option value="' + esc(it.slug) + '"' + (it.slug === curTour.slug ? ' selected' : '') + '>' + esc(gn) + '</option>';
-          }).join('');
-
-          var qSuffix = '?t=' + encodeURIComponent(curTour.slug) + '&r=' + encodeURIComponent(curRound);
-          var tOnly = '?t=' + encodeURIComponent(curTour.slug);
-
-          bar.innerHTML =
-            '<div class="rp-field"><span class="rp-lbl">赛事</span><select class="rp-sel" id="rp-event">' + evOpts + '</select></div>' +
-            '<div class="rp-field"><span class="rp-lbl">组别</span><select class="rp-sel" id="rp-group">' + grpOpts + '</select></div>' +
-            (curTour.rule ? '<span class="rp-rule">' + esc(curTour.rule) + '</span>' : '') +
-            '<div class="rp-tabs">' +
-              '<a class="rp-tab' + (page === 'matches' ? ' on' : '') + '" href="' + pages.matches + qSuffix + '">对阵与预测</a>' +
-              '<a class="rp-tab' + (page === 'standings' ? ' on' : '') + '" href="' + pages.standings + qSuffix + '">积分与名次</a>' +
-              '<a class="rp-tab' + (page === 'metrics' ? ' on' : '') + '" href="' + pages.metrics + tOnly + '">模型评估</a>' +
-              (pages.predict ? '<a class="rp-tab" href="' + pages.predict + '">自定义预测 / API</a>' : '') +
-            '</div>';
-
-          document.getElementById('rp-event').addEventListener('change', function () {
-            var ev = eventMap[this.value];
-            if (!ev || !ev.items.length) return;
-            selectState(ev.items[0], latestRoundOf(ev.items[0]));
+        var ttlEl = document.getElementById('ttl');
+        var grpEl = document.getElementById('grp');
+        if (ttlEl) {
+          ttlEl.classList.add('rp-click');
+          ttlEl.title = '点击切换赛事';
+          ttlEl.addEventListener('click', function () {
+            var curEvKey = eventKey(curTour);
+            showMenu(ttlEl, events.map(function (ev) {
+              var hasPred = ev.items.some(function (x) {
+                return (x.rounds || []).some(function (r) { return r.predicted > 0; });
+              });
+              return {
+                key: ev.key,
+                label: ev.label,
+                sub: ev.items.length > 1 ? (ev.items.length + ' 组别') : (hasPred ? '' : '无预测'),
+                active: ev.key === curEvKey,
+                ev: ev
+              };
+            }), function (picked) {
+              var nextTour = picked.ev.items[0];
+              selectState(nextTour, latestRoundOf(nextTour));
+            });
           });
-          document.getElementById('rp-group').addEventListener('change', function () {
-            var slug = this.value;
-            var found = tours.filter(function (x) { return x.slug === slug; })[0];
-            if (!found) return;
-            var nextR = hasRound(found, curRound) ? curRound : latestRoundOf(found);
-            selectState(found, nextR);
+        }
+        if (grpEl) {
+          grpEl.classList.add('rp-click');
+          grpEl.title = '点击切换组别';
+          grpEl.addEventListener('click', function () {
+            var curEv = eventMap[eventKey(curTour)] || events[0];
+            showMenu(grpEl, curEv.items.map(function (it) {
+              return {
+                label: it.group || '公开组',
+                sub: it.rule || '',
+                active: it.slug === curTour.slug,
+                tour: it
+              };
+            }), function (picked) {
+              var nextR = hasRound(picked.tour, curRound) ? curRound : latestRoundOf(picked.tour);
+              selectState(picked.tour, nextR);
+            });
           });
         }
 
@@ -162,7 +193,6 @@
           curTour = tour;
           curRound = rnd;
           syncUrl();
-          renderBar();
           opts.onLoad({
             slug: curTour.slug,
             round: curRound,
