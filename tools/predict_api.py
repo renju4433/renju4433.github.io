@@ -204,9 +204,9 @@ def load_all_games_csv(csv_path=None):
                 continue
             rnd = int(rnd_raw) if rnd_raw and int(rnd_raw) > 0 else None
             games.append((tid, rnd, b_id, w_id, res, int(day), tname or ''))
-            if bn and b_id and bn not in name_to_pid:
+            if bn and b_id:
                 name_to_pid[bn] = b_id
-            if wn and w_id and wn not in name_to_pid:
+            if wn and w_id:
                 name_to_pid[wn] = w_id
         conn.close()
         return games, name_to_pid
@@ -444,13 +444,13 @@ def compute_context_from_csv(tid=None, upto_round=None, csv_path=None):
     return ctx
 
 
-def get_player_rating(ctx, name):
+def get_player_rating(ctx, name, pid=None):
     """查询棋手最新 Glicko 等级分与标准差 (RD)。"""
     snap = ctx.get('glicko_snapshot')
     if not snap or not name or name == '轮空':
         return {'rating': GLICKO_INIT_RATING, 'rd': GLICKO_INIT_RD}
-    pid = ctx['name_to_pid'].get(name, name)
-    pair = snap.get(pid)
+    resolved_pid = pid if (pid and pid in snap) else ctx['name_to_pid'].get(name, name)
+    pair = snap.get(resolved_pid)
     if pair is not None:
         return {'rating': round(pair[0], 1), 'rd': round(pair[1], 1)}
     return {'rating': GLICKO_INIT_RATING, 'rd': GLICKO_INIT_RD}
@@ -571,13 +571,15 @@ def predict_games_list(games_rows, ctx, rule_name='塔拉山口-10', model=None,
             })
             continue
 
-        b_g = get_player_rating(ctx, bn)
-        w_g = get_player_rating(ctx, wn)
+        b_pid = g['black_id'] if 'black_id' in g.keys() else None
+        w_pid = g['white_id'] if 'white_id' in g.keys() else None
+        b_g = get_player_rating(ctx, bn, pid=b_pid)
+        w_g = get_player_rating(ctx, wn, pid=w_pid)
         rb, stdb = b_g['rating'], b_g['rd']
         rw, stdw = w_g['rating'], w_g['rd']
 
-        p1_id = name_to_pid.get(bn, bn)
-        p2_id = name_to_pid.get(wn, wn)
+        p1_id = b_pid if (b_pid and b_pid in glicko_dr_map) else name_to_pid.get(bn, bn)
+        p2_id = w_pid if (w_pid and w_pid in glicko_dr_map) else name_to_pid.get(wn, wn)
         gdr_b = glicko_dr_map.get(p1_id, GLICKO_BASE_DRAW_P)
         gdr_w = glicko_dr_map.get(p2_id, GLICKO_BASE_DRAW_P)
 
@@ -752,7 +754,7 @@ def predict_round(conn, tid, rnd, write=False, overwrite=False, csv_path=None):
     ctx = compute_context_from_csv(tid=tid, upto_round=rnd, csv_path=csv_path)
 
     games = conn.execute(
-        'SELECT round, table_no, black_no, black_name, white_no, white_name, result'
+        'SELECT round, table_no, black_id, black_no, black_name, white_id, white_no, white_name, result'
         ' FROM games WHERE tournament_id=? AND round=? ORDER BY table_no',
         (tid, rnd)
     ).fetchall()
