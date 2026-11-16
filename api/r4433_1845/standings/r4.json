@@ -1,0 +1,1204 @@
+{
+  "tournament": {
+    "id": "r4433_1845",
+    "slug": "r4433_1845",
+    "name": "第57期全日本连珠名人战",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "rounds": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "total_rounds": 4,
+  "played": 10,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Ishitani Shin-ichi",
+      "score": 6.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 6,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Suzuki Junichiro",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maruyama Yasushi",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kamikubo Mineo",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kato Daisuke",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mano Yoshihisa",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Suzuki Junichiro",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Kawamura Norihiko",
+      "score": 4.0,
+      "buch": 9.0,
+      "med": 5.0,
+      "wins": 4,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Matsui Tsunehiro",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kito Shinichi",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hasegawa Kazuto",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tachi Masaya",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Ono Takayuki",
+      "score": 4.0,
+      "buch": 5.5,
+      "med": 3.5,
+      "wins": 4,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Iwano Fumio",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tamada Yoichi",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maruta Koji",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Fujita Maiko",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Tachi Masaya",
+      "score": 3.0,
+      "buch": 10.0,
+      "med": 5.0,
+      "wins": 3,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kashihara Akihiko",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Makino Mitsunori",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Iio Yoshihiro",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kawamura Norihiko",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Hasegawa Kazuto",
+      "score": 3.0,
+      "buch": 9.5,
+      "med": 4.0,
+      "wins": 3,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hayashi Shoichi",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Iio Yoshihiro",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kawamura Norihiko",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tanaka Toshiki",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Kashihara Akihiko",
+      "score": 3.0,
+      "buch": 7.5,
+      "med": 3.5,
+      "wins": 3,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tachi Masaya",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hata Masayuki",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Makino Mitsunori",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kito Shinichi",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Maruyama Yasushi",
+      "score": 3.0,
+      "buch": 3.5,
+      "med": 0.0,
+      "wins": 3,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kamikubo Mineo",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ishitani Shin-ichi",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kato Daisuke",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Suzuki Junichiro",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mano Yoshihisa",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Inoue Fumiya",
+      "score": 2.5,
+      "buch": 5.5,
+      "med": 3.5,
+      "wins": 2,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maruta Koji",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mitsumori Masao",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tamada Yoichi",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Iwano Fumio",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Kusajima Masato",
+      "score": 2.5,
+      "buch": 3.5,
+      "med": 0.0,
+      "wins": 2,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Gakumazawa Hideaki",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Miyamoto Syunju",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Miyamoto Syunju",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Maruta Koji",
+      "score": 2.0,
+      "buch": 10.5,
+      "med": 4.5,
+      "wins": 2,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Inoue Fumiya",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maruta Hiroki",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ono Takayuki",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mitsumori Masao",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "Iio Yoshihiro",
+      "score": 2.0,
+      "buch": 8.5,
+      "med": 4.5,
+      "wins": 2,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tanaka Toshiki",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hasegawa Kazuto",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tachi Masaya",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Matsui Tsunehiro",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Kito Shinichi",
+      "score": 2.0,
+      "buch": 8.5,
+      "med": 4.0,
+      "wins": 2,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sakamoto Hirouji",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kawamura Norihiko",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Matsui Tsunehiro",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kashihara Akihiko",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "no": null,
+      "name": "Maruta Hiroki",
+      "score": 2.0,
+      "buch": 7.5,
+      "med": 4.0,
+      "wins": 2,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mitsumori Masao",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maruta Koji",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Fujita Maiko",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tamada Yoichi",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "no": null,
+      "name": "Fujita Maiko",
+      "score": 2.0,
+      "buch": 7.5,
+      "med": 3.5,
+      "wins": 2,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tamada Yoichi",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Iwano Fumio",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maruta Hiroki",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ono Takayuki",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "Hayashi Shoichi",
+      "score": 2.0,
+      "buch": 7.0,
+      "med": 3.0,
+      "wins": 2,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hasegawa Kazuto",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Koiso Shigemasa",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tanaka Toshiki",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Makino Mitsunori",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 16,
+      "no": null,
+      "name": "Mitsumori Masao",
+      "score": 2.0,
+      "buch": 6.5,
+      "med": 4.0,
+      "wins": 2,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maruta Hiroki",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Inoue Fumiya",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Iwano Fumio",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maruta Koji",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "no": null,
+      "name": "Mano Yoshihisa",
+      "score": 2.0,
+      "buch": 4.5,
+      "med": 0.0,
+      "wins": 2,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Suzuki Junichiro",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ishitani Shin-ichi",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maruyama Yasushi",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 18,
+      "no": null,
+      "name": "Miyamoto Syunju",
+      "score": 2.0,
+      "buch": 4.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Gakumazawa Hideaki",
+          "result": "D"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Gakumazawa Hideaki",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kusajima Masato",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kusajima Masato",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 19,
+      "no": null,
+      "name": "Tamada Yoichi",
+      "score": 1.5,
+      "buch": 10.5,
+      "med": 4.5,
+      "wins": 1,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Fujita Maiko",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ono Takayuki",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Inoue Fumiya",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maruta Hiroki",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "no": null,
+      "name": "Makino Mitsunori",
+      "score": 1.0,
+      "buch": 9.5,
+      "med": 5.0,
+      "wins": 1,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hata Masayuki",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tachi Masaya",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kashihara Akihiko",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hayashi Shoichi",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 21,
+      "no": null,
+      "name": "Matsui Tsunehiro",
+      "score": 1.0,
+      "buch": 8.5,
+      "med": 4.0,
+      "wins": 1,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kawamura Norihiko",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sakamoto Hirouji",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kito Shinichi",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Iio Yoshihiro",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 22,
+      "no": null,
+      "name": "Kato Daisuke",
+      "score": 1.0,
+      "buch": 7.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Suzuki Junichiro",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maruyama Yasushi",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kamikubo Mineo",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ishitani Shin-ichi",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "Tanaka Toshiki",
+      "score": 1.0,
+      "buch": 7.0,
+      "med": 4.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Iio Yoshihiro",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hayashi Shoichi",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hasegawa Kazuto",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 24,
+      "no": null,
+      "name": "Hata Masayuki",
+      "score": 1.0,
+      "buch": 5.5,
+      "med": 2.5,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Makino Mitsunori",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kashihara Akihiko",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Koiso Shigemasa",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 25,
+      "no": null,
+      "name": "Koiso Shigemasa",
+      "score": 1.0,
+      "buch": 4.0,
+      "med": 2.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hayashi Shoichi",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sakamoto Hirouji",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hata Masayuki",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 26,
+      "no": null,
+      "name": "Kamikubo Mineo",
+      "score": 1.0,
+      "buch": 2.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maruyama Yasushi",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ishitani Shin-ichi",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kato Daisuke",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 27,
+      "no": null,
+      "name": "Gakumazawa Hideaki",
+      "score": 0.5,
+      "buch": 4.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Miyamoto Syunju",
+          "result": "D"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Miyamoto Syunju",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kusajima Masato",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 28,
+      "no": null,
+      "name": "Iwano Fumio",
+      "score": 0.0,
+      "buch": 10.5,
+      "med": 4.5,
+      "wins": 0,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ono Takayuki",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Fujita Maiko",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mitsumori Masao",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Inoue Fumiya",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 29,
+      "no": null,
+      "name": "Suzuki Junichiro",
+      "score": 0.0,
+      "buch": 7.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ishitani Shin-ichi",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kato Daisuke",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maruyama Yasushi",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mano Yoshihisa",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ishitani Shin-ichi",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 30,
+      "no": null,
+      "name": "Sakamoto Hirouji",
+      "score": 0.0,
+      "buch": 4.5,
+      "med": 2.5,
+      "wins": 0,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kito Shinichi",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Matsui Tsunehiro",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Koiso Shigemasa",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

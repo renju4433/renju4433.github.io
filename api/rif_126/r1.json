@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_126",
+    "slug": "rif_126",
+    "name": "The 1st Korea-China Friendly Match",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2005-05-14",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "김병준",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "吴镝",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "최윤석",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "冯华升",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "朱建锋",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "김규현",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "김수찬",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "曹冬",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

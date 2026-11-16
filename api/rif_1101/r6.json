@@ -1,0 +1,167 @@
+{
+  "tournament": {
+    "id": "rif_1101",
+    "slug": "rif_1101",
+    "name": "Swedish Championship First League",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2005-04-02",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Sjostedt Hans",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Widman Linnea",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Nygards John",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Hagenfors Tomas",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Maltell Tommy",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Dahlin Elin",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Nygards Daniel",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Carlsson Martin",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Paulander Jan",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Karlsson Irene",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Martin",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Lindholm Petter",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Johannesson Rickard",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

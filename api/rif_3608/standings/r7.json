@@ -1,0 +1,736 @@
+{
+  "tournament": {
+    "id": "rif_3608",
+    "slug": "rif_3608",
+    "name": "Nizhny Novgorod spring tournament",
+    "year": 2022,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "total_rounds": 8,
+  "played": 6,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Дарья Толстогузова",
+      "score": 7.0,
+      "buch": 28.0,
+      "med": 19.5,
+      "wins": 7,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Voronina Daria",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhalitsyn Matvey",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Eliseev Georgy",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Всеволод Троицкий",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karavaeva Maria",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Voronina Lyubov",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mochanov Nikolay",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Karavaeva Maria",
+      "score": 5.0,
+      "buch": 25.0,
+      "med": 16.0,
+      "wins": 5,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mochanov Ilja",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Eliseev Georgy",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Voronina Lyubov",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kolchurina Anastasia",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дарья Толстогузова",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mochanov Nikolay",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhalitsyn Matvey",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Всеволод Троицкий",
+      "score": 5.0,
+      "buch": 21.5,
+      "med": 14.5,
+      "wins": 5,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mochanov Nikolay",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Anokhin Mikhail",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дарья Толстогузова",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belova Polina",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kolchurina Anastasia",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Eliseev Georgy",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Belova Polina",
+      "score": 4.0,
+      "buch": 22.5,
+      "med": 15.0,
+      "wins": 4,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Eliseev Georgy",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kolchurina Anastasia",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhalitsyn Matvey",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mochanov Ilja",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Всеволод Троицкий",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Voronina Daria",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Vlasov Dmitry",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Eliseev Georgy",
+      "score": 3.0,
+      "buch": 29.0,
+      "med": 22.0,
+      "wins": 3,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belova Polina",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karavaeva Maria",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дарья Толстогузова",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Voronina Lyubov",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhalitsyn Matvey",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Всеволод Троицкий",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Mochanov Nikolay",
+      "score": 3.0,
+      "buch": 26.5,
+      "med": 18.0,
+      "wins": 3,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Всеволод Троицкий",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Belov Efim",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kolchurina Anastasia",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Voronina Daria",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mochanov Ilja",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karavaeva Maria",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дарья Толстогузова",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Mikhalitsyn Matvey",
+      "score": 3.0,
+      "buch": 23.5,
+      "med": 16.5,
+      "wins": 3,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Anokhin Mikhail",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дарья Толстогузова",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belova Polina",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kolchurina Anastasia",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Eliseev Georgy",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karavaeva Maria",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Voronina Daria",
+      "score": 3.0,
+      "buch": 20.0,
+      "med": 13.0,
+      "wins": 3,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дарья Толстогузова",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Vlasov Dmitry",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mochanov Nikolay",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Belov Efim",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Belova Polina",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mochanov Ilja",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Voronina Lyubov",
+      "score": 3.0,
+      "buch": 19.0,
+      "med": 12.0,
+      "wins": 3,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Belov Efim",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karavaeva Maria",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Eliseev Georgy",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дарья Толстогузова",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Anokhin Mikhail",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Kolchurina Anastasia",
+      "score": 1.0,
+      "buch": 21.0,
+      "med": 15.5,
+      "wins": 1,
+      "played": 5,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belova Polina",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mochanov Nikolay",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karavaeva Maria",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhalitsyn Matvey",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Всеволод Троицкий",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "Mochanov Ilja",
+      "score": 1.0,
+      "buch": 17.0,
+      "med": 12.0,
+      "wins": 1,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karavaeva Maria",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Belov Efim",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belova Polina",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mochanov Nikolay",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Voronina Daria",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Anokhin Mikhail",
+      "score": 0.0,
+      "buch": 13.0,
+      "med": 7.5,
+      "wins": 0,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhalitsyn Matvey",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Всеволод Троицкий",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Voronina Lyubov",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "no": null,
+      "name": "Belov Efim",
+      "score": 0.0,
+      "buch": 12.5,
+      "med": 8.5,
+      "wins": 0,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Voronina Lyubov",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mochanov Nikolay",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mochanov Ilja",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Voronina Daria",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "no": null,
+      "name": "Vlasov Dmitry",
+      "score": 0.0,
+      "buch": 7.5,
+      "med": 3.5,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Voronina Daria",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Belova Polina",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,643 @@
+{
+  "tournament": {
+    "id": "rif_387",
+    "slug": "rif_387",
+    "name": "Helsinki Open",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "total_rounds": 7,
+  "played": 5,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Jonsson Peter",
+      "score": 6.0,
+      "buch": 25.0,
+      "med": 19.0,
+      "wins": 5,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridina Olga",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pellikka Marko",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Toivonen Lauri",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karlsson Stefan",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Saarenpää Samuli",
+          "result": "D"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Haikonen Kari",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Teurokoski Risto",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Saarenpää Samuli",
+      "score": 5.5,
+      "buch": 25.5,
+      "med": 18.0,
+      "wins": 5,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ikonen Jussi",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karlsson Stefan",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pellikka Marko",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pajuste Renee",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Jonsson Peter",
+          "result": "D"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridina Olga",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ikonen Jari",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Pellikka Marko",
+      "score": 5.0,
+      "buch": 24.0,
+      "med": 17.5,
+      "wins": 5,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ikonen Jari",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Jonsson Peter",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Saarenpää Samuli",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Teurokoski Risto",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pajuste Renee",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karlsson Stefan",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridina Olga",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Karlsson Stefan",
+      "score": 4.5,
+      "buch": 26.5,
+      "med": 20.0,
+      "wins": 4,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Teurokoski Risto",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Saarenpää Samuli",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Skuridina Olga",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Jonsson Peter",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Haikonen Kari",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pellikka Marko",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Toivonen Lauri",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Pajuste Renee",
+      "score": 3.0,
+      "buch": 20.5,
+      "med": 15.0,
+      "wins": 3,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Haikonen Kari",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Toivonen Lauri",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Teurokoski Risto",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Saarenpää Samuli",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pellikka Marko",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ikonen Jussi",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Toivonen Lauri",
+      "score": 3.0,
+      "buch": 18.0,
+      "med": 12.0,
+      "wins": 3,
+      "played": 5,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pajuste Renee",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Jonsson Peter",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ikonen Jussi",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ikonen Jari",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karlsson Stefan",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Skuridina Olga",
+      "score": 2.0,
+      "buch": 25.0,
+      "med": 19.0,
+      "wins": 2,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Jonsson Peter",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ikonen Jari",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karlsson Stefan",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ikonen Jussi",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Saarenpää Samuli",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pellikka Marko",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Ikonen Jussi",
+      "score": 2.0,
+      "buch": 19.0,
+      "med": 13.5,
+      "wins": 2,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Saarenpää Samuli",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Haikonen Kari",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridina Olga",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Toivonen Lauri",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Teurokoski Risto",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pajuste Renee",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Haikonen Kari",
+      "score": 2.0,
+      "buch": 18.0,
+      "med": 12.0,
+      "wins": 2,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pajuste Renee",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ikonen Jussi",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ikonen Jari",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karlsson Stefan",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Jonsson Peter",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Ikonen Jari",
+      "score": 1.0,
+      "buch": 20.5,
+      "med": 15.0,
+      "wins": 1,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pellikka Marko",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridina Olga",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Haikonen Kari",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Teurokoski Risto",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Toivonen Lauri",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Saarenpää Samuli",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "Teurokoski Risto",
+      "score": 0.0,
+      "buch": 23.0,
+      "med": 17.0,
+      "wins": 0,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karlsson Stefan",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pajuste Renee",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pellikka Marko",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ikonen Jari",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ikonen Jussi",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Jonsson Peter",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

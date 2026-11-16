@@ -1,0 +1,2357 @@
+{
+  "tournament": {
+    "id": "rif_3020",
+    "slug": "rif_3020",
+    "name": "World Renju Youth Cup 2023 (online) E Group",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "total_rounds": 9,
+  "played": 19,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Сергей Микрюков",
+      "score": 7.0,
+      "buch": 28.5,
+      "med": 20.0,
+      "wins": 7,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "區奕晞",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "沈伽睿",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "刘壹圣",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "丁相勻",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "冯律驰",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王品懿",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "叶开源",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "叶开源",
+      "score": 5.0,
+      "buch": 28.5,
+      "med": 21.5,
+      "wins": 5,
+      "played": 6,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "區奕晞",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sarv Mathias",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李諾琛",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "戴俊睿",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "伍俊豪",
+      "score": 5.0,
+      "buch": 25.5,
+      "med": 17.0,
+      "wins": 5,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "刘壹圣",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "沈伽睿",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kostopoulos Harris",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "丁相勻",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "李岳宁",
+      "score": 5.0,
+      "buch": 22.0,
+      "med": 16.5,
+      "wins": 5,
+      "played": 6,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Буянов",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "伍俊豪",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘壹圣",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "叶开源",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "呂安彥",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "许东哲",
+      "score": 5.0,
+      "buch": 20.5,
+      "med": 15.5,
+      "wins": 5,
+      "played": 5,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuul Ronan Thor",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吴勰",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "丁相勻",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "冯律驰",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "戴俊睿",
+      "score": 5.0,
+      "buch": 20.5,
+      "med": 15.0,
+      "wins": 5,
+      "played": 6,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "鈴木哲爾",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "黃儁銘",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "曾愷晙",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kostopoulos Harris",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "叶开源",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "蔡倬堯",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "冯律驰",
+      "score": 4.5,
+      "buch": 30.0,
+      "med": 20.0,
+      "wins": 4,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "黃儁銘",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "麥俊毅",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "刘壹圣",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "许东哲",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "麥俊毅",
+      "score": 4.5,
+      "buch": 23.0,
+      "med": 16.0,
+      "wins": 4,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "鄺靖珩",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sarv Mathias",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "冯律驰",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "丁相勻",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "蔡倬堯",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘壹圣",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "丁相勻",
+      "score": 4.0,
+      "buch": 33.0,
+      "med": 23.0,
+      "wins": 4,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "曾愷晙",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陳穎瑨",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "蔡倬堯",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "麥俊毅",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "许东哲",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "伍俊豪",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "王品懿",
+      "score": 4.0,
+      "buch": 24.0,
+      "med": 17.0,
+      "wins": 4,
+      "played": 6,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "鄺靖珩",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "梁知行",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "呂安彥",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "蔡倬堯",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吴勰",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "陳穎瑨",
+      "score": 4.0,
+      "buch": 23.0,
+      "med": 16.5,
+      "wins": 4,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "徐海祐",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "丁相勻",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "殷子蠡",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Буянов",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belova Polina",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吴勰",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "鄺靖珩",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "李諾琛",
+      "score": 4.0,
+      "buch": 23.0,
+      "med": 16.0,
+      "wins": 4,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李成熙",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘壹圣",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "沈伽睿",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "叶开源",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "呂安彥",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "何睿霖",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "殷子蠡",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "no": null,
+      "name": "區奕晞",
+      "score": 4.0,
+      "buch": 22.5,
+      "med": 14.0,
+      "wins": 4,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "叶开源",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李成熙",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Vostryakov Denis",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Буянов",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "鈴木哲爾",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "曾愷晙",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "no": null,
+      "name": "Tuul Ronan Thor",
+      "score": 4.0,
+      "buch": 21.5,
+      "med": 14.0,
+      "wins": 4,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "许东哲",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Vostryakov Denis",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kamvisiou Nikoletta",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "黃儁銘",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "呂安彥",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "吴勰",
+      "score": 4.0,
+      "buch": 20.5,
+      "med": 14.5,
+      "wins": 4,
+      "played": 5,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "楊尚霖",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "许东哲",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陳穎瑨",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王品懿",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 16,
+      "no": null,
+      "name": "刘壹圣",
+      "score": 3.0,
+      "buch": 33.5,
+      "med": 23.5,
+      "wins": 3,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "伍俊豪",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李諾琛",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "殷子蠡",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "冯律驰",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "麥俊毅",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "no": null,
+      "name": "Ярослав Рогозинский",
+      "score": 3.0,
+      "buch": 27.5,
+      "med": 19.5,
+      "wins": 3,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "梁知行",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "呂安彥",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "冯律驰",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "许东哲",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "伍俊豪",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "徐海祐",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuul Ronan Thor",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 18,
+      "no": null,
+      "name": "沈伽睿",
+      "score": 3.0,
+      "buch": 25.5,
+      "med": 17.0,
+      "wins": 3,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "殷子蠡",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Сергей Микрюков",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李諾琛",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "伍俊豪",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "楊尚霖",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Буянов",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 19,
+      "no": null,
+      "name": "黃儁銘",
+      "score": 3.0,
+      "buch": 24.0,
+      "med": 17.0,
+      "wins": 3,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "楊尚霖",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "冯律驰",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "戴俊睿",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李成熙",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuul Ronan Thor",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "殷子蠡",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "梁知行",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "no": null,
+      "name": "蔡倬堯",
+      "score": 3.0,
+      "buch": 23.5,
+      "med": 18.0,
+      "wins": 3,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "鈴木哲爾",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "丁相勻",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "殷子蠡",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王品懿",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "麥俊毅",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "戴俊睿",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 21,
+      "no": null,
+      "name": "殷子蠡",
+      "score": 3.0,
+      "buch": 23.0,
+      "med": 16.5,
+      "wins": 3,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "沈伽睿",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "徐海祐",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陳穎瑨",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "蔡倬堯",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘壹圣",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "黃儁銘",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李諾琛",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 22,
+      "no": null,
+      "name": "呂安彥",
+      "score": 3.0,
+      "buch": 22.5,
+      "med": 17.0,
+      "wins": 3,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王品懿",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李諾琛",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tuul Ronan Thor",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "鄺靖珩",
+      "score": 3.0,
+      "buch": 22.0,
+      "med": 16.5,
+      "wins": 3,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "麥俊毅",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王品懿",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kostopoulos Harris",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Краев",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "梁知行",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陳穎瑨",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 24,
+      "no": null,
+      "name": "楊尚霖",
+      "score": 3.0,
+      "buch": 21.0,
+      "med": 16.0,
+      "wins": 3,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "黃儁銘",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吴勰",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belova Polina",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sarv Mathias",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "沈伽睿",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kostopoulos Harris",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 25,
+      "no": null,
+      "name": "Kostopoulos Harris",
+      "score": 3.0,
+      "buch": 21.0,
+      "med": 15.5,
+      "wins": 3,
+      "played": 6,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李成熙",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "鄺靖珩",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sarv Mathias",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "戴俊睿",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "伍俊豪",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "楊尚霖",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 25,
+      "no": null,
+      "name": "Всеволод Зубов",
+      "score": 3.0,
+      "buch": 21.0,
+      "med": 15.5,
+      "wins": 3,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "冯律驰",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "伍俊豪",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Краев",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "徐海祐",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 27,
+      "no": null,
+      "name": "曾愷晙",
+      "score": 3.0,
+      "buch": 21.0,
+      "med": 14.0,
+      "wins": 3,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "丁相勻",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Vostryakov Denis",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Буянов",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "戴俊睿",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "徐海祐",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李成熙",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "區奕晞",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 28,
+      "no": null,
+      "name": "鈴木哲爾",
+      "score": 2.0,
+      "buch": 22.0,
+      "med": 15.0,
+      "wins": 2,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "蔡倬堯",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "戴俊睿",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Belova Polina",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kamvisiou Nikoletta",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "區奕晞",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Vostryakov Denis",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 29,
+      "no": null,
+      "name": "Никита Страшненков",
+      "score": 2.0,
+      "buch": 21.5,
+      "med": 16.5,
+      "wins": 2,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tuul Ronan Thor",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "麥俊毅",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吴勰",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "鄺靖珩",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李成熙",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 30,
+      "no": null,
+      "name": "Sarv Mathias",
+      "score": 2.0,
+      "buch": 19.5,
+      "med": 14.0,
+      "wins": 2,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Краев",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "麥俊毅",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "叶开源",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kostopoulos Harris",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "楊尚霖",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 31,
+      "no": null,
+      "name": "徐海祐",
+      "score": 2.0,
+      "buch": 18.5,
+      "med": 14.5,
+      "wins": 2,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陳穎瑨",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "殷子蠡",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "梁知行",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "曾愷晙",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 32,
+      "no": null,
+      "name": "梁知行",
+      "score": 2.0,
+      "buch": 18.5,
+      "med": 13.0,
+      "wins": 2,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ярослав Рогозинский",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Краев",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王品懿",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "徐海祐",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "鄺靖珩",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kamvisiou Nikoletta",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "黃儁銘",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 33,
+      "no": null,
+      "name": "何睿霖",
+      "score": 2.0,
+      "buch": 13.0,
+      "med": 9.0,
+      "wins": 2,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Vostryakov Denis",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陳梓燊",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Billy Georges",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李諾琛",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 34,
+      "no": null,
+      "name": "Belova Polina",
+      "score": 2.0,
+      "buch": 9.5,
+      "med": 5.5,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "楊尚霖",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "鈴木哲爾",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陳穎瑨",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 35,
+      "no": null,
+      "name": "陳梓燊",
+      "score": 2.0,
+      "buch": 9.0,
+      "med": 5.0,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "丁泽宇",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "何睿霖",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 36,
+      "no": null,
+      "name": "Константин Буянов",
+      "score": 1.0,
+      "buch": 20.5,
+      "med": 15.0,
+      "wins": 1,
+      "played": 6,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李岳宁",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "曾愷晙",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陳穎瑨",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "區奕晞",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Краев",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "沈伽睿",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 37,
+      "no": null,
+      "name": "李成熙",
+      "score": 1.0,
+      "buch": 20.0,
+      "med": 16.0,
+      "wins": 1,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李諾琛",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kostopoulos Harris",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "區奕晞",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "黃儁銘",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "曾愷晙",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Никита Страшненков",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 38,
+      "no": null,
+      "name": "Константин Краев",
+      "score": 1.0,
+      "buch": 17.5,
+      "med": 12.5,
+      "wins": 1,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sarv Mathias",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "梁知行",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Всеволод Зубов",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "鄺靖珩",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Billy Sacha",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Буянов",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Мартынов",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 39,
+      "no": null,
+      "name": "Vostryakov Denis",
+      "score": 1.0,
+      "buch": 16.5,
+      "med": 12.5,
+      "wins": 1,
+      "played": 5,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "何睿霖",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "曾愷晙",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tuul Ronan Thor",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "區奕晞",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "鈴木哲爾",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 40,
+      "no": null,
+      "name": "Дмитрий Мартынов",
+      "score": 1.0,
+      "buch": 16.0,
+      "med": 12.0,
+      "wins": 1,
+      "played": 6,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "呂安彥",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陳梓燊",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "鈴木哲爾",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "沈伽睿",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sarv Mathias",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Краев",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 41,
+      "no": null,
+      "name": "丁泽宇",
+      "score": 1.0,
+      "buch": 4.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陳梓燊",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 42,
+      "no": null,
+      "name": "Billy Sacha",
+      "score": 1.0,
+      "buch": 2.5,
+      "med": 1.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Краев",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kamvisiou Nikoletta",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 43,
+      "no": null,
+      "name": "Kamvisiou Nikoletta",
+      "score": 0.0,
+      "buch": 11.5,
+      "med": 7.5,
+      "wins": 0,
+      "played": 4,
+      "results": [
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuul Ronan Thor",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "鈴木哲爾",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "梁知行",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Billy Sacha",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 44,
+      "no": null,
+      "name": "Billy Georges",
+      "score": 0.0,
+      "buch": 3.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "何睿霖",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

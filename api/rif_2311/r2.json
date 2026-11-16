@@ -1,0 +1,151 @@
+{
+  "tournament": {
+    "id": "rif_2311",
+    "slug": "rif_2311",
+    "name": "World Renju Youth Cup 2020, G Group",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-08-04",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Buslakova Darya",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Roshtshina Dilyara",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Юлия Вострякова",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Екатерина Порохина",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Дарья Юсупмурзина",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Nitov Melissa",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Анна Фокичева",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Дарья Толстогузова",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "张欣怡",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "张云舒",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "王星瑜",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "朱佳颐",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

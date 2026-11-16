@@ -1,0 +1,159 @@
+{
+  "tournament": {
+    "id": "rif_2506",
+    "slug": "rif_2506",
+    "name": "Swedish Open Team Championship",
+    "year": 2022,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2022-11-26",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Tammaru Taavi",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ilu Oliver",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Tammaru Taavi",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ikla Markus",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Nitov Nils",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Ilu Oliver",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Karlsson Sander",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Saard Sergo",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Nitov Melissa",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Sander",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Mirme Madli",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Moor Karl-Mattias",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Saard Sergo",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

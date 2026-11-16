@@ -1,0 +1,115 @@
+{
+  "tournament": {
+    "id": "rif_801",
+    "slug": "rif_801",
+    "name": "Open Swedish Team Championship",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2005-11-26",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Andersson Tord",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Pellikka Marko",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Saarenpää Samuli",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Hermansson Hannes",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Eriksson Marcus",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Irene",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Blomstedt Torbjorn",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Sandstrom Richard",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

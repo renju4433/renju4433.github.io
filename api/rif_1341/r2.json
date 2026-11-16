@@ -1,0 +1,123 @@
+{
+  "tournament": {
+    "id": "rif_1341",
+    "slug": "rif_1341",
+    "name": "Youth Mind Sport Festival Renjutournament",
+    "year": 2012,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2012-06-30",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Heidmets Mark",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "解村",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Tiivel Siim",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Olumets Erko",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Narva Mai",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Moor Karl-Mattias",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nurk Paul",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Mesila Villem",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Savik Aki",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

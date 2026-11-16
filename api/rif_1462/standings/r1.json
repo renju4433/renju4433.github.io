@@ -1,0 +1,243 @@
+{
+  "tournament": {
+    "id": "rif_1462",
+    "slug": "rif_1462",
+    "name": "Youth Russian Championship,group B",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "total_rounds": 7,
+  "played": 8,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Glibin Aleksey",
+      "score": 2.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Strezhnev Mikhail",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Postnikov Fedor",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Ponezhin Gennady",
+      "score": 1.5,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Vostryakov Alexey",
+          "result": "D"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Shabanov Ruslan",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Semenov Oleg",
+      "score": 1.5,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Postnikov Fedor",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Vostryakov Alexey",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Shabanov Ruslan",
+      "score": 1.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Egorov Vladislav",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ponezhin Gennady",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Vostryakov Alexey",
+      "score": 1.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ponezhin Gennady",
+          "result": "D"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Semenov Oleg",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Egorov Vladislav",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Shabanov Ruslan",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Strezhnev Mikhail",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Postnikov Fedor",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Semenov Oleg",
+          "result": "W"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Glibin Aleksey",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Strezhnev Mikhail",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Glibin Aleksey",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Egorov Vladislav",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

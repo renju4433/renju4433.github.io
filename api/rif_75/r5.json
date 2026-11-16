@@ -1,0 +1,159 @@
+{
+  "tournament": {
+    "id": "rif_75",
+    "slug": "rif_75",
+    "name": "World Championship 1995, AT",
+    "year": 1995,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1995-07-31",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "河村典彦",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Poghosyan Albert",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Meritee Ando",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Ilyin Dmitry",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Reims Aldis",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Peskov Stepan",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "奈良秀樹",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Gardström Petter",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Veidemanis Arnis",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "rif_2180",
+    "slug": "rif_2180",
+    "name": "10+",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-04-30",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Егор Морозов",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Екатерина Румянцева",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Bushkowski Ludwik",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Илона Качаева",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Олег Кальницкий",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Galochkin Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Kinelovskiy Nikita",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

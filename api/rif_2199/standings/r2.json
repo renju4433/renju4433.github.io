@@ -1,0 +1,330 @@
+{
+  "tournament": {
+    "id": "rif_2199",
+    "slug": "rif_2199",
+    "name": "2019 Top Invitation Game",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "rounds": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "total_rounds": 4,
+  "played": 6,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "한태호",
+      "score": 2.0,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Jeong Gi-Yong",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "윤홍현",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "김수찬",
+      "score": 2.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "김성현",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "박한주",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "박정호",
+      "score": 2.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "박한주",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lim Jong Hyuk",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "장원철",
+      "score": 2.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "윤홍현",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "김성현",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "김규현",
+      "score": 1.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lim Jong Hyuk",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "강상민",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "강상민",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "김규현",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Jeong Gi-Yong",
+      "score": 0.5,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "한태호",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "서태웅",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "서태웅",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Jeong Gi-Yong",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "김성현",
+      "score": 0.0,
+      "buch": 4.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "김수찬",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "장원철",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "박한주",
+      "score": 0.0,
+      "buch": 4.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "박정호",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "김수찬",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "윤홍현",
+      "score": 0.0,
+      "buch": 4.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "장원철",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "한태호",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Lim Jong Hyuk",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "김규현",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "박정호",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

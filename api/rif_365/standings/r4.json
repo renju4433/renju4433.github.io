@@ -1,0 +1,528 @@
+{
+  "tournament": {
+    "id": "rif_365",
+    "slug": "rif_365",
+    "name": "Open Swedish Team Championship",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "total_rounds": 7,
+  "played": 4,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Taimla Tunnet",
+      "score": 3.0,
+      "buch": 4.0,
+      "med": 2.5,
+      "wins": 3,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Eriksson Marcus",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Carlsson Martin",
+      "score": 2.0,
+      "buch": 3.0,
+      "med": 1.5,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kolouchová Monika",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Eriksson Marcus",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Sandstrom Richard",
+      "score": 2.0,
+      "buch": 3.0,
+      "med": 1.5,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sjostedt Hans",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Asplund Bengt",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Purk Andry",
+      "score": 2.0,
+      "buch": 2.5,
+      "med": 1.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Jellve Emma",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Blomstedt Torbjorn",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Rybka Aleš",
+      "score": 2.0,
+      "buch": 2.5,
+      "med": 1.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Jonsson Peter",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Blomstedt Torbjorn",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Kolouchová Monika",
+      "score": 1.5,
+      "buch": 7.0,
+      "med": 3.0,
+      "wins": 1,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Carlsson Martin",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Eriksson Marcus",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Eriksson Marcus",
+      "score": 1.0,
+      "buch": 8.0,
+      "med": 4.5,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Taimla Tunnet",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kolouchová Monika",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Carlsson Martin",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Asplund Bengt",
+      "score": 1.0,
+      "buch": 6.5,
+      "med": 3.5,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ilu Timo",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sjostedt Hans",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sandstrom Richard",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Sjostedt Hans",
+      "score": 1.0,
+      "buch": 6.5,
+      "med": 3.5,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sandstrom Richard",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Asplund Bengt",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nygards Daniel",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Ilu Timo",
+      "score": 1.0,
+      "buch": 4.0,
+      "med": 1.5,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Asplund Bengt",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karlsson Stefan",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "Nygards Daniel",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 1.5,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sjostedt Hans",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Gaulitz Joachim",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Karlsson Stefan",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ilu Timo",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "no": null,
+      "name": "Hallkvist Joel",
+      "score": 0.5,
+      "buch": 5.0,
+      "med": 1.5,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Taimla Tunnet",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kolouchová Monika",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "no": null,
+      "name": "Blomstedt Torbjorn",
+      "score": 0.0,
+      "buch": 6.0,
+      "med": 3.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Purk Andry",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Rybka Aleš",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "Lind Björn",
+      "score": 0.0,
+      "buch": 5.0,
+      "med": 1.5,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Taimla Tunnet",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kolouchová Monika",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 16,
+      "no": null,
+      "name": "Jellve Emma",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Purk Andry",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 16,
+      "no": null,
+      "name": "Jonsson Peter",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Rybka Aleš",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 18,
+      "no": null,
+      "name": "Gaulitz Joachim",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nygards Daniel",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 19,
+      "no": null,
+      "name": "Karlsson Irene",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    }
+  ]
+}

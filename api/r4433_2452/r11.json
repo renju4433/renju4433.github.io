@@ -1,0 +1,223 @@
+{
+  "tournament": {
+    "id": "r4433_2452",
+    "slug": "r4433_2452",
+    "name": "第5届俄罗斯连珠锦标赛甲级联赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 11,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Makarov Pavel",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Salnikova Nonna",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Vodolazsky Konstantin",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Rodin Maxim",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Filippov Sergey",
+        "score": 6.0
+      },
+      "white": {
+        "no": null,
+        "name": "Taiblin Yuriy",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Krasnov Pavel",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Lebedeva Yelena",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Eluferyev Andrey",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Zaripov Timur",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Barykin Victor",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Zaitsev Vyacheslav",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Vodolazsky Konstantin",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Melnikov Sergey",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Fedorkin Oleg",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Smirnov Sergey",
+        "score": 6
+      },
+      "white": {
+        "no": null,
+        "name": "Sirategyan Karen",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 10,
+      "black": {
+        "no": null,
+        "name": "Nikonova Natalya",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Pavinich Andrey",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

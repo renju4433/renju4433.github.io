@@ -1,0 +1,200 @@
+{
+  "tournament": {
+    "id": "rif_1642",
+    "slug": "rif_1642",
+    "name": "53 Meijinsen Qualification Tokai area 1st round",
+    "year": 2015,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "rounds": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "total_rounds": 4,
+  "played": 3,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "丸山保司",
+      "score": 1.5,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "藤田雄大",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "立松光",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "真野芳久",
+      "score": 1.5,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "井上克巳",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "石谷信一",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "石谷信一",
+      "score": 1.5,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "鈴木淳一郎",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "真野芳久",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "藤田雄大",
+      "score": 1.5,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "丸山保司",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "鈴木淳一郎",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "鈴木淳一郎",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "石谷信一",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "藤田雄大",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "井上克巳",
+      "score": 0.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "真野芳久",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "立松光",
+      "score": 0.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "丸山保司",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

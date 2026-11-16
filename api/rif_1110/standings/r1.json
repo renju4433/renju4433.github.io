@@ -1,0 +1,451 @@
+{
+  "tournament": {
+    "id": "rif_1110",
+    "slug": "rif_1110",
+    "name": "22nd Kanto Shineisen Tournament",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "total_rounds": 5,
+  "played": 11,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "伊丹由行",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "中田真介",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "佐々木美優",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "丹治寛樹",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "友部勝弘",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "加藤康弘",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "小山純",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "手島正勝",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "小野孝之",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "亀本大地",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "有田信義",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "松岡照雄",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "渡辺達也",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "丹野好高",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "田所豊斎",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "丸田浩貴",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "原正男",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "谷崎龍介",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "小山将幸",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "石崎賢俊",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "岩野文雄",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "長尾紀昭",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "石崎賢俊",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "小山将幸",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "谷崎龍介",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "原正男",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "長尾紀昭",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "岩野文雄",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "中田真介",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "伊丹由行",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "丸田浩貴",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "田所豊斎",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "丹治寛樹",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "佐々木美優",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "丹野好高",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "渡辺達也",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "亀本大地",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "小野孝之",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "加藤康弘",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "友部勝弘",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "手島正勝",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "小山純",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "松岡照雄",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "有田信義",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

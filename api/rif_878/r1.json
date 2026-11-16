@@ -1,0 +1,91 @@
+{
+  "tournament": {
+    "id": "rif_878",
+    "slug": "rif_878",
+    "name": "33-rd Touryumon-Sen Tournament",
+    "year": 2000,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2000-03-19",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "畑雅幸",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "北本健二",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "飯田皓一",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "中野輝",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Funamoto Tadashi",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "宮川創",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

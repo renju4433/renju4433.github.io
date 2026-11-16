@@ -1,0 +1,819 @@
+{
+  "tournament": {
+    "id": "rif_787",
+    "slug": "rif_787",
+    "name": "The 19th Open Russian Championship, First League",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "total_rounds": 11,
+  "played": 15,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Mikhailov Alexander",
+      "score": 2.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Карэн Сиратегян",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Semyonov Vladimir",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Виктор Балабай",
+      "score": 2.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Serdyuk Andrey",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Poltaratsky Nikolay",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Макаров Павел",
+      "score": 2.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Нонна Сальникова",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Юрий Тайблин",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Bushkowski Ludwik",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Владимир Филинов",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sobolev Pavel",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Skuridin Alexey",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Semenov Oleg",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Максим Карасёв",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Sumarokov Evgeny",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Oborina Anastasja",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Сергей Волков",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Tarasevich Stepan",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Vostryakov Alexey",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kryuchok Roman",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Павел Сальников",
+      "score": 2.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sobolev Pavel",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ирина Метревели",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Kryuchok Roman",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Komarov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tarasevich Stepan",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Максим Карасёв",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Кира Лашко",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Сергей Волков",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tikhomirov Mikhail",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sumarokov Evgeny",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Poltaratsky Nikolay",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kinozerov Kirill",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Виктор Балабай",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Semyonov Vladimir",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nogovitsin Alexander",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Serdyuk Andrey",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Виктор Балабай",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kinozerov Kirill",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Владимир Филинов",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Bushkowski Ludwik",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Litvinova Alina",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Ирина Метревели",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Litvinova Alina",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Карэн Сиратегян",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nogovitsin Alexander",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Нонна Сальникова",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karpov Fyodor",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Юрий Тайблин",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karpov Fyodor",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "no": null,
+      "name": "Komarov Sergey",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kryuchok Roman",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Vostryakov Alexey",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "no": null,
+      "name": "Tikhomirov Mikhail",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Сергей Волков",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Oborina Anastasja",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "no": null,
+      "name": "Кира Лашко",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Максим Карасёв",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Semenov Oleg",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "no": null,
+      "name": "Sobolev Pavel",
+      "score": 0.0,
+      "buch": 4.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Bushkowski Ludwik",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 24,
+      "no": null,
+      "name": "Oborina Anastasja",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sumarokov Evgeny",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tikhomirov Mikhail",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 24,
+      "no": null,
+      "name": "Semenov Oleg",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Кира Лашко",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 24,
+      "no": null,
+      "name": "Vostryakov Alexey",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tarasevich Stepan",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Komarov Sergey",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 27,
+      "no": null,
+      "name": "Karpov Fyodor",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Юрий Тайблин",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Нонна Сальникова",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 27,
+      "no": null,
+      "name": "Kinozerov Kirill",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Poltaratsky Nikolay",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Serdyuk Andrey",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 27,
+      "no": null,
+      "name": "Litvinova Alina",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ирина Метревели",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Владимир Филинов",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 27,
+      "no": null,
+      "name": "Nogovitsin Alexander",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Semyonov Vladimir",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Карэн Сиратегян",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

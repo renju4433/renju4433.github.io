@@ -1,0 +1,39 @@
+{
+  "tournament": {
+    "id": "rif_872",
+    "slug": "rif_872",
+    "name": "Swedish Cup 2010 Final R3",
+    "year": 2011,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2011-01-08",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Gardström Petter",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Andersson Tord",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

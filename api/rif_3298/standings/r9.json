@@ -1,0 +1,787 @@
+{
+  "tournament": {
+    "id": "rif_3298",
+    "slug": "rif_3298",
+    "name": "Youth World Championship 2024 Group J",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 9,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "total_rounds": 9,
+  "played": 5,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "曹馨予",
+      "score": 9.0,
+      "buch": 36.0,
+      "med": 28.0,
+      "wins": 9,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋翎嘉",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Darikhand ?",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tuvshinsaruul ?",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Enkhtselmeg Bayartogtokh",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Khishigzaya ?",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Евграфова Арина",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Валерия Верещагина",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Gegeenzaya ?",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Amira Amgalantugs",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Валерия Верещагина",
+      "score": 7.0,
+      "buch": 38.0,
+      "med": 28.0,
+      "wins": 7,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Enkhtselmeg Bayartogtokh",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Gegeenzaya ?",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Amira Amgalantugs",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋翎嘉",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Darikhand ?",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvshinsaruul ?",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "曹馨予",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Khishigzaya ?",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Евграфова Арина",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "宋翎嘉",
+      "score": 7.0,
+      "buch": 38.0,
+      "med": 28.0,
+      "wins": 7,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "曹馨予",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Khishigzaya ?",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Евграфова Арина",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Валерия Верещагина",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Gegeenzaya ?",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Amira Amgalantugs",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Enkhtselmeg Bayartogtokh",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Darikhand ?",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvshinsaruul ?",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Евграфова Арина",
+      "score": 6.0,
+      "buch": 39.0,
+      "med": 29.0,
+      "wins": 6,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Gegeenzaya ?",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Amira Amgalantugs",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋翎嘉",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Darikhand ?",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvshinsaruul ?",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "曹馨予",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Khishigzaya ?",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Enkhtselmeg Bayartogtokh",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Валерия Верещагина",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Amira Amgalantugs",
+      "score": 5.0,
+      "buch": 40.0,
+      "med": 30.0,
+      "wins": 5,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Khishigzaya ?",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Евграфова Арина",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Валерия Верещагина",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Gegeenzaya ?",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Enkhtselmeg Bayartogtokh",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋翎嘉",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Darikhand ?",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvshinsaruul ?",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "曹馨予",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Darikhand ?",
+      "score": 4.0,
+      "buch": 41.0,
+      "med": 31.0,
+      "wins": 4,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvshinsaruul ?",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "曹馨予",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Khishigzaya ?",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Евграфова Арина",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Валерия Верещагина",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Gegeenzaya ?",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Amira Amgalantugs",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋翎嘉",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Enkhtselmeg Bayartogtokh",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Enkhtselmeg Bayartogtokh",
+      "score": 3.0,
+      "buch": 42.0,
+      "med": 32.0,
+      "wins": 3,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Валерия Верещагина",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvshinsaruul ?",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Gegeenzaya ?",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "曹馨予",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Amira Amgalantugs",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Khishigzaya ?",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋翎嘉",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Евграфова Арина",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Darikhand ?",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Khishigzaya ?",
+      "score": 2.0,
+      "buch": 43.0,
+      "med": 33.0,
+      "wins": 2,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Amira Amgalantugs",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋翎嘉",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Darikhand ?",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvshinsaruul ?",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "曹馨予",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Enkhtselmeg Bayartogtokh",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Евграфова Арина",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Валерия Верещагина",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Gegeenzaya ?",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Gegeenzaya ?",
+      "score": 1.0,
+      "buch": 44.0,
+      "med": 34.0,
+      "wins": 1,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Евграфова Арина",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Валерия Верещагина",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Enkhtselmeg Bayartogtokh",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Amira Amgalantugs",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋翎嘉",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Darikhand ?",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvshinsaruul ?",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "曹馨予",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Khishigzaya ?",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Tuvshinsaruul ?",
+      "score": 1.0,
+      "buch": 44.0,
+      "med": 34.0,
+      "wins": 1,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Darikhand ?",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Enkhtselmeg Bayartogtokh",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "曹馨予",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Khishigzaya ?",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Евграфова Арина",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Валерия Верещагина",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Gegeenzaya ?",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Amira Amgalantugs",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋翎嘉",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

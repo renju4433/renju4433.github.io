@@ -1,0 +1,147 @@
+{
+  "tournament": {
+    "id": "rif_261",
+    "slug": "rif_261",
+    "name": "Karepa Open",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2005-08-11",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Serdyuk Andrey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Timmermann Alvar",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Gerasimov Ilya",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Klimashin Alexander",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kolk Peeter",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Ses Pavel",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Smirnov Dmitry",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Lents Johann",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kullamaa Mart",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Meritee Ando",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Lillemets Rauni",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

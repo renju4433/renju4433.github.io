@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_1563",
+    "slug": "rif_1563",
+    "name": "Estonian Cup 2013, finals to 1st and 3rd place",
+    "year": 2014,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2014-05-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Lents Johann",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Lents Johann",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

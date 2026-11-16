@@ -1,0 +1,143 @@
+{
+  "tournament": {
+    "id": "rif_567",
+    "slug": "rif_567",
+    "name": "The 6th Shanghai Renju Meijin Invitation Tournament",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-04-30",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "仇云飞",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "李一",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "磯部泰山",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "大角友希",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "三森政男",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "俞满江",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "许斌",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "周可鼎",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "顾炜",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "朱建锋",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "葛凌峰",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

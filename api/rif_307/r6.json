@@ -1,0 +1,111 @@
+{
+  "tournament": {
+    "id": "rif_307",
+    "slug": "rif_307",
+    "name": "STORK Open",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2007-03-25",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Asplund Bengt",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Andersson Tord",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Sjostedt Hans",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Lind Björn",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Blomstedt Torbjorn",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

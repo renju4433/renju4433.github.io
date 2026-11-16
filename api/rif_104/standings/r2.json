@@ -1,0 +1,84 @@
+{
+  "tournament": {
+    "id": "rif_104",
+    "slug": "rif_104",
+    "name": "The 31st Meijin-sen Match",
+    "year": 1993,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "rounds": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "total_rounds": 4,
+  "played": 1,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "中村茂",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "河村典彦",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "河村典彦",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "河村典彦",
+      "score": 1.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "中村茂",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "中村茂",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "tournament": {
+    "id": "rif_643",
+    "slug": "rif_643",
+    "name": "Kullo Cup 2009/2010, 2.stage",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-10-31",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Purk Tauri",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Hõbemägi Martin",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Salula Ain",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Mirme Madli",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Krjukov Gerli",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

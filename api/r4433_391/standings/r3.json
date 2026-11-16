@@ -1,0 +1,283 @@
+{
+  "tournament": {
+    "id": "r4433_391",
+    "slug": "r4433_391",
+    "name": "2022年“棋盟杯”高校五子棋比赛",
+    "year": 2022,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "total_rounds": 7,
+  "played": 2,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "黄湘凝(45)",
+      "score": 3.0,
+      "buch": 3.0,
+      "med": 1.0,
+      "wins": 3,
+      "played": 3,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "胡偲宏(46)",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "王轶超(43)",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李治衡(51)",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "刘昶彤(34)",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "罗明焱(72)",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "杨雨佳(1)",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈焘(2)",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "樊宇天(20)",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "王静儒(63)",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "李治衡(51)",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "黄湘凝(45)",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "王轶超(43)",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "黄湘凝(45)",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "胡偲宏(46)",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "黄湘凝(45)",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "王静儒(63)",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "樊宇天(20)",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "罗明焱(72)",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘昶彤(34)",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "陈焘(2)",
+      "score": 0.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "杨雨佳(1)",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "安宇汉(58)",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "董家豪(12)",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "邓有志(73)",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "陈光锐(39)",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    }
+  ]
+}

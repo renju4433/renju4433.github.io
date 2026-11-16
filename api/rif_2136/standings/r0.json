@@ -1,0 +1,116 @@
+{
+  "tournament": {
+    "id": "rif_2136",
+    "slug": "rif_2136",
+    "name": "43 Seiunsen Tournament Nagoya area",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "rounds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "total_rounds": 5,
+  "played": 1,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "吉田尚人",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "岸善徳",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "岸善徳",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吉田尚人",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Chen Ru-Hong",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Oota Haruki",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Oota Kouki",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Oota Ryoto",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    }
+  ]
+}

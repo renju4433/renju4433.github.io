@@ -1,0 +1,223 @@
+{
+  "tournament": {
+    "id": "rif_3115",
+    "slug": "rif_3115",
+    "name": "The championship of Arkhangelsk region",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-01-02",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Makhin Matvei",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Максим Афанасьев",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Егор Фокичев",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Stoyanov Kirill",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Артём Золотарев",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Денис Озеров",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Константин Золотарев",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Михаил Николаев",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Степан Потапов",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Летовальцев Матвей",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Константин Казанцев",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Dyachkov Nikita",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Максим Кулин",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Соколов Андрей",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Максим Старцев",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Егор Павловский",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Yusupmurzin Danila",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Максим Метревели",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 10,
+      "black": {
+        "no": null,
+        "name": "Павел Носков",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Михаил Сидоров",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 11,
+      "black": {
+        "no": null,
+        "name": "Михаил Микрюков",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Вячеслав Куваев",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

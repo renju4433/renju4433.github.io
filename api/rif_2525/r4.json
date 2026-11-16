@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "rif_2525",
+    "slug": "rif_2525",
+    "name": "2022 Summer TRF Cup, Dan-level Group",
+    "year": 2022,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2022-08-14",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "劉邦沛",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "林姿妘",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "江燈輝",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "陳昱至",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "林敬傑",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "黃紹鈞",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "宋曜廷",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "強少軒",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

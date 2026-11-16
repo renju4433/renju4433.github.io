@@ -1,0 +1,107 @@
+{
+  "tournament": {
+    "id": "r4433_2990",
+    "slug": "r4433_2990",
+    "name": "1993年塔林国际公开赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Holgersson Göran",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Veidemanis Arnis",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Nosovsky Alexander",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Arkbo Frank",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Johannesson Rickard",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Veidemanis Arnis",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Holgersson Göran",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Nosovsky Alexander",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Nikonov Kanstantin",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "O???",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

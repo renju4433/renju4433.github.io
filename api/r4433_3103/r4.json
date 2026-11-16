@@ -1,0 +1,191 @@
+{
+  "tournament": {
+    "id": "r4433_3103",
+    "slug": "r4433_3103",
+    "name": "2018年瑞典团体公开赛",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-11-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Ikla Markus",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Yusupmurzin Danila",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Rahumagi Brenet",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Murumaa Magnus",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Narva Jaan Oskar",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Lohmus Kristofer",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Fedotov Denis",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Piik Sander",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Pukk Oskar",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Lääne Rauno",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Moor Karl-Mattias",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Metreveli Irina",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Sandstrom Richard",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Eriksson Bjorn",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Moisto Mairon",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ilu Timo",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

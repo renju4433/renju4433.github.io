@@ -1,0 +1,83 @@
+{
+  "tournament": {
+    "id": "rif_2126",
+    "slug": "rif_2126",
+    "name": "10th Taiwan Meijinsen Match R1-3",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "rounds": [
+    1,
+    2,
+    3
+  ],
+  "total_rounds": 3,
+  "played": 1,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "林仕斌",
+      "score": 1.5,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "林書玄",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "林書玄",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "林書玄",
+      "score": 0.5,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "林仕斌",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "林仕斌",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

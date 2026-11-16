@@ -1,0 +1,115 @@
+{
+  "tournament": {
+    "id": "rif_3608",
+    "slug": "rif_3608",
+    "name": "Nizhny Novgorod spring tournament",
+    "year": 2022,
+    "group": null,
+    "rule": null
+  },
+  "round": 8,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2022-04-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Karavaeva Maria",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Всеволод Троицкий",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Дарья Толстогузова",
+        "score": 7
+      },
+      "white": {
+        "no": null,
+        "name": "Belova Polina",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kolchurina Anastasia",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Mochanov Ilja",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Voronina Lyubov",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Voronina Daria",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

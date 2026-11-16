@@ -1,0 +1,39 @@
+{
+  "tournament": {
+    "id": "r4433_1018",
+    "slug": "r4433_1018",
+    "name": "2018年浙江省五子棋公开赛",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-08-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "华羽帆",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "鲁益",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

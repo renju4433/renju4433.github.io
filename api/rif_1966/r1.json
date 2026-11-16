@@ -1,0 +1,151 @@
+{
+  "tournament": {
+    "id": "rif_1966",
+    "slug": "rif_1966",
+    "name": "Oka-93",
+    "year": 1993,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1993-06-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Ирина Метревели",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Olyunin Sergey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Нонна Сальникова",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Alexandrov Victor",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Shavarin Mikhail",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridina Olga",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Sokolov Alexander",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Tsaryov Viktor",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

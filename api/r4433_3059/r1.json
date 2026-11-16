@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "r4433_3059",
+    "slug": "r4433_3059",
+    "name": "乌克兰公开锦标赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kolesnikov Viktor",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Biryukov Mikhail",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Malikov Yury",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Stolper Alexander",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Malyshev Dmitry",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Sinyov Igor",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Malikov Yury",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Biryukov Mikhail",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

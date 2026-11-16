@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "rif_2903",
+    "slug": "rif_2903",
+    "name": "46 Souryusen Tournament Hamamatsu area",
+    "year": 2022,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2022-06-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "加藤みこ",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "川田陸翔",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "高村翔人",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "志村広樹",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "上久保峰夫",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "加藤大介",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "みき",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "深田蓮",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_207",
+    "slug": "rif_207",
+    "name": "Dubna tournament",
+    "year": 2003,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2003-02-08",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Макаров Павел",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Klimashin Alexander",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Владимир Сушков",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Ses Pavel",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Artemyev Sergey",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Михаил Кожин",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

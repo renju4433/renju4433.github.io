@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "rif_70",
+    "slug": "rif_70",
+    "name": "Budapest Open",
+    "year": 2004,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2004-12-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Rybka Aleš",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Szilasi Viktória",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kusák Martin",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Demján Attila",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Virág István",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Németh Ákos",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kiszely Ákos",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

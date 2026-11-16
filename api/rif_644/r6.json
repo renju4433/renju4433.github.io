@@ -1,0 +1,111 @@
+{
+  "tournament": {
+    "id": "rif_644",
+    "slug": "rif_644",
+    "name": "Kullo Cup 2009/2010, 3.stage",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-11-28",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Krjukov Gerli",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Reinik Liise-Marie",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nõmm Liina",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Hõbemägi Martin",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Lemmik Claus",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Oll Aivo",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Küling Karl",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

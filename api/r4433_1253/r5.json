@@ -1,0 +1,79 @@
+{
+  "tournament": {
+    "id": "r4433_1253",
+    "slug": "r4433_1253",
+    "name": "2020年青岛市第六届智力运动会（线上）五子棋比赛",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-10-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "林烁",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "段姝睿",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "王骏",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "张瀚文",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

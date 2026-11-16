@@ -1,0 +1,55 @@
+{
+  "tournament": {
+    "id": "r4433_2522",
+    "slug": "r4433_2522",
+    "name": "第一届全苏联连珠邀请赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Nosovsky Alexandr",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Biryukov Mikhail",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

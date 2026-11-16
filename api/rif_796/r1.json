@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_796",
+    "slug": "rif_796",
+    "name": "Team Tournament Jonkoping-Riga",
+    "year": 1991,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1991-04-07",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Reims Aldis",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Holgersson Goran",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Veidemanis Arnis",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Henningsson Anders",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kaminskis Gundars",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Bethers Arilds",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

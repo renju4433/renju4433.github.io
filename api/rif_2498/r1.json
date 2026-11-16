@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_2498",
+    "slug": "rif_2498",
+    "name": "17th Kansai Championship Final",
+    "year": 2022,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2022-03-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "牧野光則",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "tournament": {
+    "id": "rif_392",
+    "slug": "rif_392",
+    "name": "Qualification Tournament",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 8,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    },
+    {
+      "round": 12,
+      "is_finished": true
+    },
+    {
+      "round": 13,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2007-10-08",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Merkulov Artyom",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Pestereva Maria",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Merkulov Maxim",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Krayeva Tatyana",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kryuchok Roman",
+        "score": 6.5
+      },
+      "white": {
+        "no": null,
+        "name": "Romanov Sergey",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Savrasov Ruslan",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kadulin Alexander",
+        "score": 6
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Molotova Anastasja",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Rachitskaya Viktoria",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Kurdina Olga",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Oborina Anastasja",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

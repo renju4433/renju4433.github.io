@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_1802",
+    "slug": "rif_1802",
+    "name": "56 Suiseisen Tournament final round",
+    "year": 2016,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2016-10-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "藤川正樹",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "出町浩一郎",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "岩野文雄",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "丸田浩貴",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

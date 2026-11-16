@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_2232",
+    "slug": "rif_2232",
+    "name": "45 Tokai Championship Hamamatsu area 1st round",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-11-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "加藤大介",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "丸山保司",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "深田蓮",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "山本靖弘",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

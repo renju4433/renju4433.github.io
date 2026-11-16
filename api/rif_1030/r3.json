@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_1030",
+    "slug": "rif_1030",
+    "name": "42nd Meijinsen Qualification: Kansai area 2nd round",
+    "year": 2004,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2004-06-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "高川悌二",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "阪本嵩山",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "大井耕三",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "小磯重正",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

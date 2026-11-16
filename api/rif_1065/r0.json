@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "rif_1065",
+    "slug": "rif_1065",
+    "name": "29th Seiun-sen Tournament - Shizuoka area",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2005-01-16",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "山本福惠",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "小出智大",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "小出智大",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "小出守宏",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "小出守宏",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "山本福惠",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

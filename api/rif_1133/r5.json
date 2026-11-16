@@ -1,0 +1,195 @@
+{
+  "tournament": {
+    "id": "rif_1133",
+    "slug": "rif_1133",
+    "name": "Swedich open international Championship",
+    "year": 1983,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1983-12-03",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Sundling Ingvar",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Jansson Stefan",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Karppinen Jorma",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Wilhelmsson Bo",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Arkbo Frank",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Moller Stefan",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "大野晙象",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Andersson Tord",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Karen Ola",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Hagenfors Tomas",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Dios Stefan",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Johansson Sverker",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Johansson Sven",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Hori Sodo",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Maltell Tommy",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Eriksson Lars",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Lorentsson Christer",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

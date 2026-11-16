@@ -1,0 +1,215 @@
+{
+  "tournament": {
+    "id": "rif_243",
+    "slug": "rif_243",
+    "name": "Open Swedish Team Championship",
+    "year": 2004,
+    "group": null,
+    "rule": null
+  },
+  "round": 9,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2004-11-20",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Eriksson Marcus",
+        "score": 7
+      },
+      "white": {
+        "no": null,
+        "name": "Lind Björn",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Haikonen Kari",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Sandstrom Richard",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Ikonen Jari",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Holgersson Goran",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Hermansson Hannes",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Eriksson Bjorn",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Karlsson Irene",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Hermansson Linus",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Ikonen Jussi",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Hallkvist Joel",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Carlsson Martin",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Karlsson Martin",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Pellikka Marko",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Sulane Sander",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 10,
+      "black": {
+        "no": null,
+        "name": "Gaulitz Joachim",
+        "score": 6
+      },
+      "white": {
+        "no": null,
+        "name": "Quang Vu",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

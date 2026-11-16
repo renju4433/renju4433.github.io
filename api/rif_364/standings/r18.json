@@ -1,0 +1,1426 @@
+{
+  "tournament": {
+    "id": "rif_364",
+    "slug": "rif_364",
+    "name": "High League of the World Championship in Correspondence Renju-2006",
+    "year": 2006,
+    "group": null,
+    "rule": null
+  },
+  "round": 18,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "total_rounds": 18,
+  "played": 5,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Yang Coco",
+      "score": 15.0,
+      "buch": 150.0,
+      "med": 135.5,
+      "wins": 13,
+      "played": 18,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "D"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "D"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "B"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "W"
+        },
+        {
+          "round": 16,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "D"
+        },
+        {
+          "round": 17,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "B"
+        },
+        {
+          "round": 18,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Barykin Victor",
+      "score": 14.5,
+      "buch": 151.0,
+      "med": 136.0,
+      "wins": 11,
+      "played": 18,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "D"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "D"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "D"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "D"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "W"
+        },
+        {
+          "round": 16,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "B"
+        },
+        {
+          "round": 17,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "W"
+        },
+        {
+          "round": 18,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Дмитрий Епифанов",
+      "score": 14.5,
+      "buch": 151.0,
+      "med": 136.0,
+      "wins": 11,
+      "played": 18,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "D"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "D"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "D"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "D"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "W"
+        },
+        {
+          "round": 16,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "B"
+        },
+        {
+          "round": 17,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "W"
+        },
+        {
+          "round": 18,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "张进宇",
+      "score": 10.5,
+      "buch": 159.0,
+      "med": 144.0,
+      "wins": 8,
+      "played": 18,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "D"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "D"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "D"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "W"
+        },
+        {
+          "round": 16,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "W"
+        },
+        {
+          "round": 17,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "D"
+        },
+        {
+          "round": 18,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Shi Bai",
+      "score": 10.5,
+      "buch": 159.0,
+      "med": 144.0,
+      "wins": 7,
+      "played": 18,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "D"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "D"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "B"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "D"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "B"
+        },
+        {
+          "round": 16,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "D"
+        },
+        {
+          "round": 17,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "D"
+        },
+        {
+          "round": 18,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "宋霰",
+      "score": 8.5,
+      "buch": 163.0,
+      "med": 148.0,
+      "wins": 7,
+      "played": 18,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "D"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "B"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "D"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "W"
+        },
+        {
+          "round": 16,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "B"
+        },
+        {
+          "round": 17,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "W"
+        },
+        {
+          "round": 18,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "陈伟",
+      "score": 8.5,
+      "buch": 163.0,
+      "med": 148.0,
+      "wins": 6,
+      "played": 18,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "D"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "B"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "D"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "D"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "D"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "W"
+        },
+        {
+          "round": 16,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "W"
+        },
+        {
+          "round": 17,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "W"
+        },
+        {
+          "round": 18,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Li Chuancheng",
+      "score": 5.0,
+      "buch": 170.0,
+      "med": 155.0,
+      "wins": 4,
+      "played": 18,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "D"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "B"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "D"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "B"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "W"
+        },
+        {
+          "round": 16,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "B"
+        },
+        {
+          "round": 17,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "B"
+        },
+        {
+          "round": 18,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "吕文哲",
+      "score": 3.0,
+      "buch": 174.0,
+      "med": 159.0,
+      "wins": 3,
+      "played": 18,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "B"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "B"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "W"
+        },
+        {
+          "round": 16,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Qi Danei",
+          "result": "W"
+        },
+        {
+          "round": 17,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "B"
+        },
+        {
+          "round": 18,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Qi Danei",
+      "score": 0.0,
+      "buch": 180.0,
+      "med": 162.0,
+      "wins": 0,
+      "played": 18,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "宋霰",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陈伟",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Дмитрий Епифанов",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Shi Bai",
+          "result": "B"
+        },
+        {
+          "round": 16,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "吕文哲",
+          "result": "W"
+        },
+        {
+          "round": 17,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Yang Coco",
+          "result": "B"
+        },
+        {
+          "round": 18,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Li Chuancheng",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

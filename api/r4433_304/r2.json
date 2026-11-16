@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "r4433_304",
+    "slug": "r4433_304",
+    "name": "2012年全国五子棋锦标赛(个人赛)",
+    "year": 2012,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2012-10-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "冯小峰 (13) [1]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "祁观 (2) [1]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "史维新 (36) [1]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "梅凡 (8) [1]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "吴志琴 (9) [0]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "董晨瑛 (16) [.5]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "刘杰 (11) [1]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "沈毅 (40) [1]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

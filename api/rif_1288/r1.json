@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_1288",
+    "slug": "rif_1288",
+    "name": "Wettercupen",
+    "year": 2012,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2012-12-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Maltell Tommy",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Theimer Joachim",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Asplund Bengt",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Martin",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

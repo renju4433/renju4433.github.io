@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_1511",
+    "slug": "rif_1511",
+    "name": "51 Meijinsen Match R1 R2",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-10-19",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "大角友希",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "中村茂",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

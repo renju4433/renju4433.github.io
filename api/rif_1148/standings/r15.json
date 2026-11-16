@@ -1,0 +1,1381 @@
+{
+  "tournament": {
+    "id": "rif_1148",
+    "slug": "rif_1148",
+    "name": "XIII Moscow championship",
+    "year": 1994,
+    "group": null,
+    "rule": null
+  },
+  "round": 15,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "total_rounds": 17,
+  "played": 5,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Filippov Sergey",
+      "score": 8.0,
+      "buch": 85.5,
+      "med": 76.0,
+      "wins": 7,
+      "played": 12,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "D"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Bogatyryov Andrey",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Milevsky Alexander",
+          "result": "D"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Nikolay",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Muraki Minira",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nosovsky Alexander",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Krasnonosov Dmitry",
+      "score": 7.5,
+      "buch": 94.5,
+      "med": 85.0,
+      "wins": 7,
+      "played": 13,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Muraki Minira",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Perepljotchikov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maslyaev Sergey",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Bogatyryov Andrey",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nosovsky Alexander",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Mikhailov Alexander",
+      "score": 7.0,
+      "buch": 72.5,
+      "med": 63.0,
+      "wins": 7,
+      "played": 10,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nosovsky Alexander",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nosovsky Alexander",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maslyaev Sergey",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Bobkov Evgeniy",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Bogatyryov Andrey",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Олег Федоркин",
+      "score": 6.0,
+      "buch": 88.5,
+      "med": 79.0,
+      "wins": 4,
+      "played": 12,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Bogatyryov Andrey",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "D"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Milevsky Alexander",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Nikolay",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nosovsky Alexander",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Golosov Viktor",
+      "score": 6.0,
+      "buch": 88.0,
+      "med": 78.5,
+      "wins": 5,
+      "played": 12,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Nikolay",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Muraki Minira",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "B"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Bogatyryov Andrey",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nosovsky Alexander",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Константин Никонов",
+      "score": 6.0,
+      "buch": 71.0,
+      "med": 61.5,
+      "wins": 6,
+      "played": 10,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nosovsky Alexander",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maslyaev Sergey",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Bogatyryov Andrey",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Nikolay",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Mikhailov Nikolay",
+      "score": 6.0,
+      "buch": 69.5,
+      "med": 60.0,
+      "wins": 6,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Milevsky Alexander",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Smirnov Sergey",
+      "score": 5.5,
+      "buch": 83.0,
+      "med": 73.5,
+      "wins": 5,
+      "played": 11,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maslyaev Sergey",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Bobkov Evgeniy",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Bogatyryov Andrey",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Milevsky Alexander",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Nikolay",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "D"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Lunkin Vitaly",
+      "score": 4.5,
+      "buch": 90.5,
+      "med": 81.0,
+      "wins": 3,
+      "played": 12,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maslyaev Sergey",
+          "result": "D"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nosovsky Alexander",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Bogatyryov Andrey",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Nikolay",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Maslyaev Sergey",
+      "score": 4.5,
+      "buch": 50.5,
+      "med": 41.0,
+      "wins": 4,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "D"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Bogatyryov Andrey",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "Макаров Павел",
+      "score": 4.0,
+      "buch": 88.5,
+      "med": 79.0,
+      "wins": 4,
+      "played": 11,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maslyaev Sergey",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Bobkov Evgeniy",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Milevsky Alexander",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Nikolay",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Milevsky Alexander",
+      "score": 4.0,
+      "buch": 52.5,
+      "med": 43.0,
+      "wins": 3,
+      "played": 7,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nosovsky Alexander",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Nikolay",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "no": null,
+      "name": "Sinyov Igor",
+      "score": 2.5,
+      "buch": 15.5,
+      "med": 7.5,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Milevsky Alexander",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Nikolay",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Muraki Minira",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "no": null,
+      "name": "Bogatyryov Andrey",
+      "score": 2.0,
+      "buch": 77.0,
+      "med": 67.5,
+      "wins": 2,
+      "played": 10,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maslyaev Sergey",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nosovsky Alexander",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "Muraki Minira",
+      "score": 2.0,
+      "buch": 31.0,
+      "med": 21.5,
+      "wins": 2,
+      "played": 4,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nosovsky Alexander",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 16,
+      "no": null,
+      "name": "Bobkov Evgeniy",
+      "score": 2.0,
+      "buch": 23.0,
+      "med": 13.5,
+      "wins": 2,
+      "played": 3,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "no": null,
+      "name": "Nosovsky Alexander",
+      "score": 1.5,
+      "buch": 77.0,
+      "med": 67.5,
+      "wins": 1,
+      "played": 10,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        },
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Milevsky Alexander",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Muraki Minira",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Bogatyryov Andrey",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 18,
+      "no": null,
+      "name": "Perepljotchikov Sergey",
+      "score": 1.0,
+      "buch": 8.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

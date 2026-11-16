@@ -1,0 +1,131 @@
+{
+  "tournament": {
+    "id": "rif_1658",
+    "slug": "rif_1658",
+    "name": "Estonian Cup 2015 to 17th place",
+    "year": 2015,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2015-05-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Raag Ardi",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Jõgimaa Carmen",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kõlar Karl-Ustav",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Pukk Oskar",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kurgpold Reigo",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Moor Karl-Mattias",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Murumaa Mathias",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Varind Taavi",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Pirn Rainer",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Moor Karl-Mattias",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Kurgpold Reigo",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Varind Taavi",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "tournament": {
+    "id": "rif_2424",
+    "slug": "rif_2424",
+    "name": "61 Suiseisen Tournament 1st round",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-09-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "川合仁",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "加藤翔太",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "藤田麻衣子",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "松田将馬",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "藤川正樹",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "丸山貴志",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "田中祥太郎",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "志村広樹",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "横山翔汰",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "友部勝弘",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

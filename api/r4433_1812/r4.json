@@ -1,0 +1,131 @@
+{
+  "tournament": {
+    "id": "r4433_1812",
+    "slug": "r4433_1812",
+    "name": "第60期彗星战",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-09-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kito Shinichi",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kawaai Hitoshi",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Tomobe Katsuhiro",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Nagasoe Hiroki",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kishimoto Shogo",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Nishizawa Aoi",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Iwano Fumio",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kato Shota",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Shimura Hiroki",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Takagi Tomoyuki",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Matsuda Shoma",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Maruyama Takashi",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

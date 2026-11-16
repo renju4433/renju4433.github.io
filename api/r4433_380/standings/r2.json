@@ -1,0 +1,377 @@
+{
+  "tournament": {
+    "id": "r4433_380",
+    "slug": "r4433_380",
+    "name": "“我要上全运”2017年全国五子棋等级赛",
+    "year": 2017,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "total_rounds": 9,
+  "played": 1,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "史旭东 [1]",
+      "score": 1.0,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "姚志勇 [1]",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "姚志勇 [0]",
+      "score": 1.0,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "马晨致 [0]",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "姚志勇 [1]",
+      "score": 0.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "史旭东 [1]",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "马晨致 [0]",
+      "score": 0.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "姚志勇 [0]",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "史旭东 (11) [5]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "史旭东 [2]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "史旭东 [3]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "史旭东 [4]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "史旭东 [5]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "吴雨凡 [3]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "周笑妍 [2]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "姚志勇 (20) [4]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "姚志勇 [2]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "姚志勇 [3]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "姚志勇 [4]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "姚志勇 [5]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "孙宇航 [3]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "孙玺宸 [2]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "张晨 (21) [3]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "李一龙 [4]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "杨淋 [2]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "杨淋 [6]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "王昱骁 (16) [4]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "王昱骁 [4]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "王晨克 [7.5]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "高洋 (3) [5]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "高洋 [4]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "齐博 [1]",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    }
+  ]
+}

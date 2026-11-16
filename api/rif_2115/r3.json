@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "rif_2115",
+    "slug": "rif_2115",
+    "name": "2nd Korea southern region tournament",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-12-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "김성현",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Park Jong hyun",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Song Jin-gyu",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "장원철",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "박웅배",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Choi Seok-won",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "한태호",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "황도훈",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

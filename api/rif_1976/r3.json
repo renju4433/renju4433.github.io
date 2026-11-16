@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_1976",
+    "slug": "rif_1976",
+    "name": "13 Kansai Championship final match",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-03-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "大角友希",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "tournament": {
+    "id": "r4433_2793",
+    "slug": "r4433_2793",
+    "name": "“你好！学校”2021年莫斯科校际赛",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-10-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Yudina Polina",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Mikryukov Sergey",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kazantsev Konstantin",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Novichkova Viktoriia",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Gorbachev Daniil",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Simanovskaia Anastasia",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Petrova Mariia",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Startsev Maksim",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Noskov Pavel",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Pinsky Alexander",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Burtsev Peter",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Strakulia Lev",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Burtsev Nikolai",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Gershman Artem",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_964",
+    "slug": "rif_964",
+    "name": "27th Seiun-Sen Tournament - Final",
+    "year": 2003,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2003-03-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "小出守宏",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "蔵本嗣治",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "tournament": {
+    "id": "rif_854",
+    "slug": "rif_854",
+    "name": "Swedish Cup 2001 Semi Final",
+    "year": 2001,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2001-09-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Gardström Petter",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Holgersson Goran",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gaulitz Joachim",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

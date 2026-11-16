@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "r4433_2524",
+    "slug": "r4433_2524",
+    "name": "1988年苏联团体锦标赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Asplund Bengt",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ibatullin Robert",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Andersons Andris",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "tournament": {
+    "id": "rif_3201",
+    "slug": "rif_3201",
+    "name": "31st Rybinsk Cup",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-04-06",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Сапронов Аркадий",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Конюхов Андрей",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Сергей Волков",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Копейкина Варвара",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Знаменский Андрей",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Евгений Смирнов",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Кирсанов Платон",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Glibin Aleksey",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Myasoyedov Yevgeni",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Конюхов Андрей",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Glibin Aleksey",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Сергей Волков",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Myasoyedov Yevgeni",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Евгений Смирнов",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Сергей Волков",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Евгений Смирнов",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Glibin Aleksey",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Myasoyedov Yevgeni",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

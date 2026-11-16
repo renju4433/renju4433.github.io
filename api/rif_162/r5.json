@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "rif_162",
+    "slug": "rif_162",
+    "name": "Russian QT to World Championship",
+    "year": 2001,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2001-04-29",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Smirnov Sergey",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Макаров Павел",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Константин Никонов",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

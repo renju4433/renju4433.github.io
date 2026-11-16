@@ -1,0 +1,127 @@
+{
+  "tournament": {
+    "id": "rif_1348",
+    "slug": "rif_1348",
+    "name": "Podyuga Sbory",
+    "year": 2012,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2012-03-10",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kryuchok Roman",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Кира Лашко",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Vostryakov Alexey",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Shabanova Darya",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Semenov Oleg",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Nogovitsin Alexander",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Prokopets Tatyana",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Karpov Fyodor",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

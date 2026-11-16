@@ -1,0 +1,779 @@
+{
+  "tournament": {
+    "id": "rif_304",
+    "slug": "rif_304",
+    "name": "Family Team Tournament - 1st table",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "rounds": [
+    0
+  ],
+  "total_rounds": 0,
+  "played": 45,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Kryuchok Roman",
+      "score": 8.0,
+      "buch": 7.0,
+      "med": 0.0,
+      "wins": 8,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Оксана Сорокина",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krayeva Tatyana",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Litvinova Yulia",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Okatova Anna",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belous Polina",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Buyanova Galina",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Merkulov Artyom",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ivanov Oleg",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sumarokov Evgeny",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Merkulov Artyom",
+      "score": 7.0,
+      "buch": 7.0,
+      "med": 0.0,
+      "wins": 7,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Оксана Сорокина",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krayeva Tatyana",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Litvinova Yulia",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Okatova Anna",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belous Polina",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Buyanova Galina",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kryuchok Roman",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ivanov Oleg",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sumarokov Evgeny",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Оксана Сорокина",
+      "score": 7.0,
+      "buch": 7.0,
+      "med": 0.0,
+      "wins": 7,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krayeva Tatyana",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Litvinova Yulia",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Okatova Anna",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Belous Polina",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Buyanova Galina",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kryuchok Roman",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Merkulov Artyom",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ivanov Oleg",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sumarokov Evgeny",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Sumarokov Evgeny",
+      "score": 7.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 7,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Оксана Сорокина",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krayeva Tatyana",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Litvinova Yulia",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Okatova Anna",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belous Polina",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Buyanova Galina",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kryuchok Roman",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Merkulov Artyom",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ivanov Oleg",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Okatova Anna",
+      "score": 6.0,
+      "buch": 7.0,
+      "med": 0.0,
+      "wins": 6,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Оксана Сорокина",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krayeva Tatyana",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Litvinova Yulia",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Belous Polina",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Buyanova Galina",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kryuchok Roman",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Merkulov Artyom",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ivanov Oleg",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sumarokov Evgeny",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Krayeva Tatyana",
+      "score": 4.0,
+      "buch": 7.0,
+      "med": 0.0,
+      "wins": 4,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Оксана Сорокина",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Litvinova Yulia",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Okatova Anna",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Belous Polina",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Buyanova Galina",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kryuchok Roman",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Merkulov Artyom",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ivanov Oleg",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sumarokov Evgeny",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Belous Polina",
+      "score": 3.0,
+      "buch": 7.0,
+      "med": 0.0,
+      "wins": 3,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Оксана Сорокина",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krayeva Tatyana",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Litvinova Yulia",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Okatova Anna",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Buyanova Galina",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kryuchok Roman",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Merkulov Artyom",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ivanov Oleg",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sumarokov Evgeny",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Ivanov Oleg",
+      "score": 2.0,
+      "buch": 7.0,
+      "med": 0.0,
+      "wins": 2,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Оксана Сорокина",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krayeva Tatyana",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Litvinova Yulia",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Okatova Anna",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belous Polina",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Buyanova Galina",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kryuchok Roman",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Merkulov Artyom",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sumarokov Evgeny",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Litvinova Yulia",
+      "score": 1.0,
+      "buch": 7.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Оксана Сорокина",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krayeva Tatyana",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Okatova Anna",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Belous Polina",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Buyanova Galina",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kryuchok Roman",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Merkulov Artyom",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ivanov Oleg",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sumarokov Evgeny",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Buyanova Galina",
+      "score": 0.0,
+      "buch": 7.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Оксана Сорокина",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krayeva Tatyana",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Litvinova Yulia",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Okatova Anna",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Belous Polina",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kryuchok Roman",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Merkulov Artyom",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ivanov Oleg",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sumarokov Evgeny",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

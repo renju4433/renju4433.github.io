@@ -1,0 +1,314 @@
+{
+  "tournament": {
+    "id": "rif_1396",
+    "slug": "rif_1396",
+    "name": "Moscow Super Cup 2011",
+    "year": 2011,
+    "group": null,
+    "rule": null
+  },
+  "round": 43,
+  "rounds": [
+    11,
+    12,
+    13,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    31,
+    32,
+    33,
+    41,
+    42,
+    43,
+    44
+  ],
+  "total_rounds": 44,
+  "played": 1,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Tarannikov Yuriy",
+      "score": 9.0,
+      "buch": 81.0,
+      "med": 74.0,
+      "wins": 9,
+      "played": 12,
+      "results": [
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Golosov Viktor",
+          "result": "W"
+        },
+        {
+          "round": 21,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Карэн Сиратегян",
+          "result": "W"
+        },
+        {
+          "round": 22,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Карэн Сиратегян",
+          "result": "W"
+        },
+        {
+          "round": 23,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Карэн Сиратегян",
+          "result": "W"
+        },
+        {
+          "round": 24,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Карэн Сиратегян",
+          "result": "W"
+        },
+        {
+          "round": 25,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Карэн Сиратегян",
+          "result": "W"
+        },
+        {
+          "round": 26,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Карэн Сиратегян",
+          "result": "B"
+        },
+        {
+          "round": 41,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "B"
+        },
+        {
+          "round": 42,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        },
+        {
+          "round": 43,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Карэн Сиратегян",
+      "score": 4.0,
+      "buch": 84.0,
+      "med": 73.5,
+      "wins": 3,
+      "played": 9,
+      "results": [
+        {
+          "round": 21,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "W"
+        },
+        {
+          "round": 22,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "W"
+        },
+        {
+          "round": 23,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "W"
+        },
+        {
+          "round": 24,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "W"
+        },
+        {
+          "round": 25,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "W"
+        },
+        {
+          "round": 26,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "B"
+        },
+        {
+          "round": 31,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "D"
+        },
+        {
+          "round": 32,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "B"
+        },
+        {
+          "round": 33,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Макаров Павел",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Олег Федоркин",
+      "score": 1.0,
+      "buch": 31.5,
+      "med": 21.0,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 41,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "B"
+        },
+        {
+          "round": 42,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "W"
+        },
+        {
+          "round": 43,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Макаров Павел",
+      "score": 1.0,
+      "buch": 21.0,
+      "med": 14.0,
+      "wins": 0,
+      "played": 3,
+      "results": [
+        {
+          "round": 31,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Карэн Сиратегян",
+          "result": "D"
+        },
+        {
+          "round": 32,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Карэн Сиратегян",
+          "result": "B"
+        },
+        {
+          "round": 33,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Карэн Сиратегян",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Golosov Viktor",
+      "score": 0.0,
+      "buch": 31.5,
+      "med": 21.0,
+      "wins": 0,
+      "played": 3,
+      "results": [
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tarannikov Yuriy",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

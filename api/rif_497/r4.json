@@ -1,0 +1,67 @@
+{
+  "tournament": {
+    "id": "rif_497",
+    "slug": "rif_497",
+    "name": "Jonkoping Trial Triple (Taraguchi rule)",
+    "year": 2008,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2008-06-07",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Asplund Bengt",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridina Olga",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

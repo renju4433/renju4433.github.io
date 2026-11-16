@@ -632,7 +632,7 @@ def export_api(conn):
     tours = conn.execute("""
         SELECT * FROM tournaments
         WHERE (slug IS NOT NULL AND slug != '')
-           OR (year >= 2026 AND (rule_id IS NULL OR rule_id NOT IN (7, 11, 15, 28))
+           OR ((rule_id IS NULL OR rule_id NOT IN (7, 11, 15, 28))
                AND EXISTS (SELECT 1 FROM games g WHERE g.tournament_id = tournaments.id AND g.round IS NOT NULL))
         ORDER BY COALESCE(date, CAST(year AS TEXT)) DESC, id
     """).fetchall()

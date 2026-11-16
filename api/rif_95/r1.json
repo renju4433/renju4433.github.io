@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_95",
+    "slug": "rif_95",
+    "name": "The 39th Meijin-sen Match",
+    "year": 2001,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2001-11-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "中村茂",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

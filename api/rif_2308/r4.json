@@ -1,0 +1,359 @@
+{
+  "tournament": {
+    "id": "rif_2308",
+    "slug": "rif_2308",
+    "name": "World Renju Youth Cup 2020, C Group",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-08-04",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Chernyi Anton",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Georgikakis Nikolaos",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Puzanov Georgi",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "鄺子軒",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Sinjavsky Evgeny",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Mikhalitsyn Matvey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Gorbachev Daniil",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Moisto Mairon",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "陳鶴珣",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Lents Sebastian",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "鄭承熹",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kochanov Vasily",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Lääne Kristjan",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Ilu Oliver",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Roginski Roman",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Pukk Martin",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Berdiy Arseniy",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "河本翔真",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 10,
+      "black": {
+        "no": null,
+        "name": "林鉑洪",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Вячеслав Куваев",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 11,
+      "black": {
+        "no": null,
+        "name": "Stoyanov Egor",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Егор Фокичев",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 12,
+      "black": {
+        "no": null,
+        "name": "Prokopyev Andrei",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "袁華俊",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 13,
+      "black": {
+        "no": null,
+        "name": "Pukk Oskar",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "袁浩翔",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 14,
+      "black": {
+        "no": null,
+        "name": "Narva Jaan Oskar",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kaljola Kaur",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 15,
+      "black": {
+        "no": null,
+        "name": "Lääne Rauno",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "李建豪",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 16,
+      "black": {
+        "no": null,
+        "name": "康庭瑞",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Михаил Сидоров",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 17,
+      "black": {
+        "no": null,
+        "name": "Gershman Artem",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Николай Бурцев",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 18,
+      "black": {
+        "no": null,
+        "name": "张俊宇",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Ikla Markus",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 19,
+      "black": {
+        "no": null,
+        "name": "焦政瑞",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "李嘉骏",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

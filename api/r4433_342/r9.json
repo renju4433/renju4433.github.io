@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "r4433_342",
+    "slug": "r4433_342",
+    "name": "2011年全国少年儿童五子棋锦标赛",
+    "year": 2011,
+    "group": null,
+    "rule": null
+  },
+  "round": 9,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2011-07-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "李震宇, (14) [7]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "邓伟, (4) [5.5]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "张建业",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "黄英男",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "金洪利, (12) [7]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "徐嘉琦, (23) [5.5]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

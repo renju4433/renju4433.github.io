@@ -1,0 +1,135 @@
+{
+  "tournament": {
+    "id": "rif_1534",
+    "slug": "rif_1534",
+    "name": "38 Seiunsen Tournament Hamamatsu area",
+    "year": 2014,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2014-01-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "釘崎道比古",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "藤田雄大",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "田辺元",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "上久保峰夫",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "みき",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "井上克巳",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "川田陸翔",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "山崎正徳",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "加藤大介",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Shinba Takahiro",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "北脇利光",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "加藤魁杜",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

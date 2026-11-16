@@ -1,0 +1,111 @@
+{
+  "tournament": {
+    "id": "rif_2343",
+    "slug": "rif_2343",
+    "name": "World Renju Youth Cup 2021 (online) EF Group",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-07-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "陈璐宁",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Софья Толстогузова",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Ксения Матушкина",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Александра Шангина",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "小林菜々子",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "胡嘉瑶",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "刘梦云",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "刘铭",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

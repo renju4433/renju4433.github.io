@@ -1,0 +1,131 @@
+{
+  "tournament": {
+    "id": "rif_2229",
+    "slug": "rif_2229",
+    "name": "The 38th St.Petersburg Championship",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 9,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-01-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Bushkowski Ludwik",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 6.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Galochkin Sergey",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Александр Лисютин",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Екатерина Румянцева",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Нонна Сальникова",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Виктор Балабай",
+        "score": 5.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

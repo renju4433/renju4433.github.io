@@ -1,0 +1,135 @@
+{
+  "tournament": {
+    "id": "rif_3459",
+    "slug": "rif_3459",
+    "name": "Independment day of Armenian - Renju Tournament",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-09-20",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Иван Данилин",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Будеев Данил",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Ավետիսյան Աշոտ",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Հայրապետյան Գևորգ",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Poghosyan Albert",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Poghosyan Davit",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Ներսիսյան Ռաֆիկ",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Տոնոյան Հրանտ",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Poghosyan Vahe",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Berezin Roman",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,263 @@
+{
+  "tournament": {
+    "id": "rif_2050",
+    "slug": "rif_2050",
+    "name": "1 Open Ukrainian Championship",
+    "year": 1992,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "rounds": [
+    0
+  ],
+  "total_rounds": 0,
+  "played": 9,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Talsky Vladimir",
+      "score": 6.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 6,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Uspensky Valentin",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ponomarenko Nikolay",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Braikov Andrey",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tregubov Mikhail",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tregubov Mikhail",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kutulutsky Georgy",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Barykin Victor",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ilyin Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Eremin Oleg",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Ilyin Dmitry",
+      "score": 1.0,
+      "buch": 6.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Talsky Vladimir",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Ponomarenko Nikolay",
+      "score": 1.0,
+      "buch": 6.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Talsky Vladimir",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Tregubov Mikhail",
+      "score": 1.0,
+      "buch": 6.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Talsky Vladimir",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Talsky Vladimir",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Barykin Victor",
+      "score": 0.0,
+      "buch": 6.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Talsky Vladimir",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Braikov Andrey",
+      "score": 0.0,
+      "buch": 6.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Talsky Vladimir",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Eremin Oleg",
+      "score": 0.0,
+      "buch": 6.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Talsky Vladimir",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Kutulutsky Georgy",
+      "score": 0.0,
+      "buch": 6.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Talsky Vladimir",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Uspensky Valentin",
+      "score": 0.0,
+      "buch": 6.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Talsky Vladimir",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

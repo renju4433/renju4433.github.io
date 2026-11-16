@@ -1,0 +1,107 @@
+{
+  "tournament": {
+    "id": "rif_2978",
+    "slug": "rif_2978",
+    "name": "Tournament \"10+\" - 2023",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2023-05-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Илона Качаева",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Екатерина Румянцева",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Олег Кальницкий",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Zhukov Lev",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Нонна Сальникова",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Михаил Кулешов",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

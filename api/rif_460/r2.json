@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_460",
+    "slug": "rif_460",
+    "name": "3rd Kansai Championship final match",
+    "year": 2008,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2008-03-16",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "大角友希",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

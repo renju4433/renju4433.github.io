@@ -1,0 +1,139 @@
+{
+  "tournament": {
+    "id": "rif_3160",
+    "slug": "rif_3160",
+    "name": "Lin Ping Renju Tournament",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-03-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "王轲",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "傅彦凯",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "陈则亦",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "缪芮馨",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "罗杭",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "朱嘉圆",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "邢书瑜",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "陈一帆",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "苏梓航",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "姚元瀚",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "朱嘉铭",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "项梓芮",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "tournament": {
+    "id": "rif_1393",
+    "slug": "rif_1393",
+    "name": "European Championship 2012, BT",
+    "year": 2012,
+    "group": null,
+    "rule": null
+  },
+  "round": 9,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2012-08-19",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Екатерина Румянцева",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Shabanov Ruslan",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Prokopets Tatyana",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Vostryakov Alexey",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Виктор Балабай",
+        "score": 7
+      },
+      "white": {
+        "no": null,
+        "name": "Kartashev Daniil",
+        "score": 8
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Михаил Микрюков",
+        "score": 7
+      },
+      "white": {
+        "no": null,
+        "name": "Kalyakin Dmitrii",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Sumarokova Aleksandra",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Savik Aki",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

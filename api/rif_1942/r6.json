@@ -1,0 +1,175 @@
+{
+  "tournament": {
+    "id": "rif_1942",
+    "slug": "rif_1942",
+    "name": "Kawamura Cup",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-01-20",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Heidmets Mark",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Lillemaa Argo",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Moisto Mairon",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Aasav Jaak Andero",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kõlar Karl-Ustav",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Ikla Markus",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Lõhmus Kristofer",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Moor Karl-Mattias",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Koni Kirke",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Tähnas Andreas",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Mesila Villem",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Lääne Rauno",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Rahumägi Brenet",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Kolk Kuno",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Topkin Georg-Romet",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Purk Tauri",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

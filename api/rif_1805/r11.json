@@ -1,0 +1,115 @@
+{
+  "tournament": {
+    "id": "rif_1805",
+    "slug": "rif_1805",
+    "name": "II USSR championship. First league.",
+    "year": 1989,
+    "group": null,
+    "rule": null
+  },
+  "round": 11,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1989-11-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Talsky Vladimir",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Voskanyan Eduard",
+        "score": 5.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kolesnikov Alexey",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Moiseyev Kirill",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Alexandrov Gennady",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Mikhailov Alexander",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

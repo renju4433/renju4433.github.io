@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "r4433_2451",
+    "slug": "r4433_2451",
+    "name": "第五届俄罗斯连珠锦标赛最高联赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Lebedeva Yelena",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nikonova Natalya",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Nikonova Natalya",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Salnikova Nonna",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Samal Alla",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nikonova Natalya",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

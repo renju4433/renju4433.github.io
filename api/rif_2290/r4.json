@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "rif_2290",
+    "slug": "rif_2290",
+    "name": "58 Meijinsen Qualification Kyushu area",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-07-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "河野高久",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "田中寿樹",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "倉掛又一",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "久家彰夫",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

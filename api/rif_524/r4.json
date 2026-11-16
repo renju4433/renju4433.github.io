@@ -1,0 +1,91 @@
+{
+  "tournament": {
+    "id": "rif_524",
+    "slug": "rif_524",
+    "name": "40th Kyoto Classified Tournament - group 1",
+    "year": 2008,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2008-11-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kamatani Teruhiro",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "西村浩一",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "今昭",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "小澤哲史",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "亀井茂男",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "奥田新悟",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

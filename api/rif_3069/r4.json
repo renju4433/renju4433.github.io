@@ -1,0 +1,135 @@
+{
+  "tournament": {
+    "id": "rif_3069",
+    "slug": "rif_3069",
+    "name": "2023 Kyushu Championship",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2023-11-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "倉掛又一",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "早田慎之介",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "中川道織",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "實藤陽秋",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "川合仁",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "山根友裕",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "久家彰夫",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "河本翔真",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "高橋豊",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "稲住正則",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "河野高久",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "井上史也",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

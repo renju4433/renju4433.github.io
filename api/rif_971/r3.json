@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_971",
+    "slug": "rif_971",
+    "name": "41th Meijinsen Qualification: Tokai area - 1st round",
+    "year": 2003,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2003-05-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "小出守宏",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "三好丈夫",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "鈴木淳一郎",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "藤尾勝俊",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "山本靖弘",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "蔵本嗣治",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "宮津五一",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

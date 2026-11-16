@@ -1,0 +1,135 @@
+{
+  "tournament": {
+    "id": "rif_785",
+    "slug": "rif_785",
+    "name": "Moscow Championship",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    },
+    {
+      "round": 12,
+      "is_finished": true
+    },
+    {
+      "round": 13,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2010-10-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Sinitsyn Vladimir",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Константин Никонов",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Sadelov Igor",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nikonova Natalya",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Golosov Viktor",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Карэн Сиратегян",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Tarannikov Yuriy",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Макаров Павел",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

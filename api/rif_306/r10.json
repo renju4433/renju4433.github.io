@@ -1,0 +1,107 @@
+{
+  "tournament": {
+    "id": "rif_306",
+    "slug": "rif_306",
+    "name": "Swedish WC Qualification",
+    "year": 1991,
+    "group": null,
+    "rule": null
+  },
+  "round": 10,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1991-07-03",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Sundling Ingvar",
+        "score": 6.5
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Palmgren Jan",
+        "score": 5.0
+      },
+      "white": {
+        "no": null,
+        "name": "Andersson Tord",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Henningsson Anders",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Gardström Petter",
+        "score": 6.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

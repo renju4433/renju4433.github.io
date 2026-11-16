@@ -1,0 +1,151 @@
+{
+  "tournament": {
+    "id": "r4433_2532",
+    "slug": "r4433_2532",
+    "name": "第1届苏联-瑞典对抗赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Zanchenko Sergey",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Palmgren Jan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Bobkov Evgeniy",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Gluhovsky Leonid",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Jansson Stefan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Nikonov Konstantin",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Lorentsson Christer",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Salnikov Pavel",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Hagenfors Tomas",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Alexandrov Nikolay",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Milevsky Alexandr",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Moller Stefan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

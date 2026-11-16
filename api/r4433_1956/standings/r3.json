@@ -1,0 +1,67 @@
+{
+  "tournament": {
+    "id": "r4433_1956",
+    "slug": "r4433_1956",
+    "name": "第1期全日本连珠名人战",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "rounds": [
+    3
+  ],
+  "total_rounds": 3,
+  "played": 1,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "新井华石",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "三森政男",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "三森政男",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "新井华石",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

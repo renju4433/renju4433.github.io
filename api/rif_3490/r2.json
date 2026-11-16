@@ -1,0 +1,131 @@
+{
+  "tournament": {
+    "id": "rif_3490",
+    "slug": "rif_3490",
+    "name": "26 Kanto Renju Emperor Tournament Qualification round",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-10-19",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "苏利德",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "小松奏晴",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "宮本俊寿",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "丸田浩貴",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "田村一誠",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "田中祥太郎",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "藤田麻衣子",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "井上史也",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "小野孝之",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "小山純",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "河村典彦",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

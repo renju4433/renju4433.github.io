@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_3322",
+    "slug": "rif_3322",
+    "name": "16th Taiwan Meijinsen Tournament",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-11-30",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "游天龍",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "張益豐",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "張棕皓",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "林皇羽",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "莊友良",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "廖豊嘉",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

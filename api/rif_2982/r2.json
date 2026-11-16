@@ -1,0 +1,115 @@
+{
+  "tournament": {
+    "id": "rif_2982",
+    "slug": "rif_2982",
+    "name": "2023 Seoul Invitation Game",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2023-06-04",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "박웅배",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "이호준",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "舘雅也",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "강상민",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "김규현",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "장은민",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "류한주",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Hwang In-hyeok",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "허정빈",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "김성현",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

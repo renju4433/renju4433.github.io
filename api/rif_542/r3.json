@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_542",
+    "slug": "rif_542",
+    "name": "Match Cao-Aivo",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-01-02",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Oll Aivo",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "曹冬",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

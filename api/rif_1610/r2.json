@@ -1,0 +1,159 @@
+{
+  "tournament": {
+    "id": "rif_1610",
+    "slug": "rif_1610",
+    "name": "World Championship 2015, AT",
+    "year": 2015,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2015-08-07",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Олег Федоркин",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "林皇羽",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Макаров Павел",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Taimla Tunnet",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "兰志仁",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "祁观",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Hõbemägi Martin",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "神谷俊介",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "鄧啟霖",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "陳科翰",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

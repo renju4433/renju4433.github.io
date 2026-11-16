@@ -1,0 +1,107 @@
+{
+  "tournament": {
+    "id": "rif_980",
+    "slug": "rif_980",
+    "name": "Voronezh-400",
+    "year": 1984,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1984-11-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Terekhov Dmitry",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Terteryan Alexander",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Stadnichenko Sergey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Artemiev Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Brusnikin Alexander",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Kulikov Kirill",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "rif_2006",
+    "slug": "rif_2006",
+    "name": "56 Meijinsen Tournament",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-09-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "中村茂",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "松浦浩",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "久家彰夫",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "神谷俊介",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "小山純",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "河村典彦",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "tournament": {
+    "id": "rif_826",
+    "slug": "rif_826",
+    "name": "Wettercupen",
+    "year": 1999,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1999-10-02",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Karlsson Irene",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Moller Hakan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Karlsson Martin",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Skuridina Olga",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Paulander Jan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

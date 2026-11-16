@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_158",
+    "slug": "rif_158",
+    "name": "7th Kanto Renju Emperor Tournament - Final",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2007-02-25",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "中村茂",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

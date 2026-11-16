@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_2305",
+    "slug": "rif_2305",
+    "name": "44 Souryusen Tournament final match",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-07-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "野田誠也",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "深田蓮",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

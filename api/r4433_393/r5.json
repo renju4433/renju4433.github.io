@@ -1,0 +1,155 @@
+{
+  "tournament": {
+    "id": "r4433_393",
+    "slug": "r4433_393",
+    "name": "粤鄂五子棋网络交流赛",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-03-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "艾显平(6)",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "陈经辉(27)",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "单葆亮(8)",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "罗晔(18)",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "余钢(9)",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "黄湘凝(7)",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "阮浩(25)",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "黄馨颍(42)",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "李鸣睿(11)",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "齐智善(2)",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "芦海(10)",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "汪清清(29)",
+        "score": 3.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "冼文扬(9)",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "曹冬(35)",
+        "score": 3.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

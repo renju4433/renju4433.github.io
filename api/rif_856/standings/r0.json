@@ -1,0 +1,521 @@
+{
+  "tournament": {
+    "id": "rif_856",
+    "slug": "rif_856",
+    "name": "Swedish Championship by Correspondence",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "rounds": [
+    0
+  ],
+  "total_rounds": 0,
+  "played": 30,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Lind Björn",
+      "score": 9.0,
+      "buch": 4.0,
+      "med": 0.0,
+      "wins": 9,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nyberg Bengt",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Wallgren Björn",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pettersson Sven-Ake",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nyberg Bengt",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Paulander Jan",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Paulander Jan",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pettersson Sven-Ake",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Wallgren Björn",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Wallgren Björn",
+      "score": 8.5,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 8,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pettersson Sven-Ake",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nyberg Bengt",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Paulander Jan",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pettersson Sven-Ake",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nyberg Bengt",
+          "result": "D"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Paulander Jan",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Nyberg Bengt",
+      "score": 4.5,
+      "buch": 8.5,
+      "med": 0.0,
+      "wins": 4,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Wallgren Björn",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pettersson Sven-Ake",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Paulander Jan",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pettersson Sven-Ake",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Paulander Jan",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Wallgren Björn",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Hallkvist Joel",
+      "score": 4.0,
+      "buch": 2.0,
+      "med": 0.0,
+      "wins": 4,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pettersson Sven-Ake",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nyberg Bengt",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pettersson Sven-Ake",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nyberg Bengt",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Wallgren Björn",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Paulander Jan",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Wallgren Björn",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Paulander Jan",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Paulander Jan",
+      "score": 2.0,
+      "buch": 8.5,
+      "med": 0.0,
+      "wins": 2,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Pettersson Sven-Ake",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Pettersson Sven-Ake",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nyberg Bengt",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nyberg Bengt",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Wallgren Björn",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Wallgren Björn",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Pettersson Sven-Ake",
+      "score": 2.0,
+      "buch": 8.5,
+      "med": 0.0,
+      "wins": 2,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Paulander Jan",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Wallgren Björn",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nyberg Bengt",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "W"
+        },
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Hallkvist Joel",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Paulander Jan",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nyberg Bengt",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lind Björn",
+          "result": "B"
+        },
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Wallgren Björn",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

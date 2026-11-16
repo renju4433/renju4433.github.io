@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "r4433_2176",
+    "slug": "r4433_2176",
+    "name": "第16期关西连珠锦标赛",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-10-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kawamura Norihiko",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Sakamoto Hirouji",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Hayashi Shoichi",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Iio Yoshihiro",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kito Shinichi",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Toyo Koryu",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Adachi Tomoya",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Tanaka Shotaro",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

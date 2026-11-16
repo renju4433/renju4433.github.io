@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "rif_1503",
+    "slug": "rif_1503",
+    "name": "9th Kansai Championship 1st round",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-10-27",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "今昭",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "阪本嵩山",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "渡邊延夫",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

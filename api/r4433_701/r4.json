@@ -1,0 +1,55 @@
+{
+  "tournament": {
+    "id": "r4433_701",
+    "slug": "r4433_701",
+    "name": "第9届上海五子棋联赛",
+    "year": 2012,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2012-03-03",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "王俊波",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "顾炜",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "钱坤",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "蔡力捷",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "tournament": {
+    "id": "rif_2589",
+    "slug": "rif_2589",
+    "name": "Deskohrani 2013",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-10-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kostlivý Radim",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Žižka Petr",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kořínková Soňa",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Fialová Pavlína",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Pellikka Marko",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Tesařík Štěpán",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Háša Miroslav",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Purkrábek Jan",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Laube Pavel",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Rybka Aleš",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

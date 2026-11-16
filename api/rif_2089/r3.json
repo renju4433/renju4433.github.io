@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "rif_2089",
+    "slug": "rif_2089",
+    "name": "50 Kyoto Classified Tournament",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-11-11",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "田中寿樹",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "藤田麻衣子",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "林昭一",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "畑雅幸",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "阪本嵩山",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "西田敏生",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "小澤哲史",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

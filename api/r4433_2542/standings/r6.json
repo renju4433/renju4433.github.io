@@ -1,0 +1,202 @@
+{
+  "tournament": {
+    "id": "r4433_2542",
+    "slug": "r4433_2542",
+    "name": "1997年西北联邦区赛暨波久加公开赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "rounds": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "total_rounds": 9,
+  "played": 2,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Meritee Ando",
+      "score": 3.0,
+      "buch": 5.0,
+      "med": 3.0,
+      "wins": 3,
+      "played": 3,
+      "results": [
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kabanov Dmitri",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kozhin Mikhail",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Soosõrv Ants",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Kozhin Mikhail",
+      "score": 1.0,
+      "buch": 4.5,
+      "med": 1.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Meritee Ando",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Soosõrv Ants",
+      "score": 1.0,
+      "buch": 4.5,
+      "med": 1.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kabanov Dmitri",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Meritee Ando",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Skuridin Alexey",
+      "score": 1.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Kabanov Dmitri",
+      "score": 0.0,
+      "buch": 5.5,
+      "med": 2.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Meritee Ando",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Soosõrv Ants",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Nikonova Natalya",
+      "score": 0.0,
+      "buch": 4.5,
+      "med": 2.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kozhin Mikhail",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Kareyev Vladislav",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    }
+  ]
+}

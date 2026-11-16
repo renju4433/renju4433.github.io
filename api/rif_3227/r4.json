@@ -1,0 +1,183 @@
+{
+  "tournament": {
+    "id": "rif_3227",
+    "slug": "rif_3227",
+    "name": "International Olympic Day Renju Tournament",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-06-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "孙斯亮",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "黄子译",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "许志含",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "马晨致",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "张楠",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "刘晋峰",
+        "score": 1.0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "于宁",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "薛鑫泽",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "林熙蒙",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "乔明天",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "吕彦",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "吴晓宁",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "李婕",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "郝天一",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "金戈",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "李厚德",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "白青亮",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "孙倩",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

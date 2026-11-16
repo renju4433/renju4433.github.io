@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "rif_3439",
+    "slug": "rif_3439",
+    "name": "63rd Meijin-sen Tokyo area 1st round",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-06-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "吉川知希",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "藤田麻衣子",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "河村典彦",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "藤田麻衣子",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

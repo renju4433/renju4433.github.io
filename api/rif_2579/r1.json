@@ -1,0 +1,75 @@
+{
+  "tournament": {
+    "id": "rif_2579",
+    "slug": "rif_2579",
+    "name": "38th Kyoto Classified - group 1",
+    "year": 2006,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2006-11-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "林宏二",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "小澤哲史",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "奥田新悟",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "武原健次",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

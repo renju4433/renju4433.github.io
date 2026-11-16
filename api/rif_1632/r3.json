@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_1632",
+    "slug": "rif_1632",
+    "name": "Swedish Championship First League",
+    "year": 2015,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2015-03-14",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Fanell Jan",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Widman Linnea",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Lind Björn",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "tournament": {
+    "id": "rif_104",
+    "slug": "rif_104",
+    "name": "The 31st Meijin-sen Match",
+    "year": 1993,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1993-09-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "中村茂",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "河村典彦",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

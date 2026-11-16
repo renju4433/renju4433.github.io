@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_2088",
+    "slug": "rif_2088",
+    "name": "14 Kansai Championship 1st round",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-10-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "阪本嵩山",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Sakamoto Ryuto",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "林昭一",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Masuda Yuuto",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Adachi Tomoya",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

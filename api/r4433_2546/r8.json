@@ -1,0 +1,127 @@
+{
+  "tournament": {
+    "id": "r4433_2546",
+    "slug": "r4433_2546",
+    "name": "1993年俄罗斯西北联邦区赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 8,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 6
+      },
+      "white": {
+        "no": null,
+        "name": "Gruzin Sergey",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Metreveli Irina",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Olyunin Sergey",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Vinogradov Alexey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Volkov Sergey",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Lapshin Mikhail",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Mirkin Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

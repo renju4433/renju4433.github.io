@@ -1,0 +1,55 @@
+{
+  "tournament": {
+    "id": "rif_927",
+    "slug": "rif_927",
+    "name": "Estonian Cup",
+    "year": 2002,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2002-01-20",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Taimla Tunnet",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

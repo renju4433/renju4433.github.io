@@ -1,0 +1,107 @@
+{
+  "tournament": {
+    "id": "rif_1863",
+    "slug": "rif_1863",
+    "name": "Korea-Russia Friendship Tournament",
+    "year": 2017,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2017-04-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Jeong Gi-Yong",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Katsev Ilya",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kim Do-hyun",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Yu Hyun-geon",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "박상현",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Дмитрий Епифанов",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Cho Ik-hyun",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "김규현",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

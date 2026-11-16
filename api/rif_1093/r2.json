@@ -1,0 +1,143 @@
+{
+  "tournament": {
+    "id": "rif_1093",
+    "slug": "rif_1093",
+    "name": "Ural and Sibiria Cup",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2005-05-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Timofeeva Viktoria",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kovalenko Marina",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Saranchina Tatiana",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Deviatkova Ekaterina",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Lomakin Mikhail",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Максим Карасёв",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Sinitsyn Vladimir",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Tsyrenova Mariya",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Saranchina Irina",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Berezin Roman",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Tsyrenova Valentina",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Beshantsev Vasily",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

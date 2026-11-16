@@ -1,0 +1,75 @@
+{
+  "tournament": {
+    "id": "rif_1997",
+    "slug": "rif_1997",
+    "name": "Swedish Championship, First League",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-04-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Maltell Tommy",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Florentzson Adam",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

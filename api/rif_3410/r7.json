@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_3410",
+    "slug": "rif_3410",
+    "name": "Kawamura Open 2025",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-07-07",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Tuul Ronan Thor",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Normak Mihkel",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

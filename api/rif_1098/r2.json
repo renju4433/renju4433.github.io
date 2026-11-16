@@ -1,0 +1,147 @@
+{
+  "tournament": {
+    "id": "rif_1098",
+    "slug": "rif_1098",
+    "name": "43rd Meijinsen Qualification: East Japan 1st round",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2005-06-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "小山純",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "久富隆洋",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "久保出美",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "長尾紀昭",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "佐々木美優",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "有田信義",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "丹野好高",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "丸田光治",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "大野晙象",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "伊丹由行",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "佐藤清富",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "三森政男",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "小野孝之",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

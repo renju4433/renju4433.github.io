@@ -1,0 +1,871 @@
+{
+  "tournament": {
+    "id": "rif_191",
+    "slug": "rif_191",
+    "name": "World Championship 2001, WT",
+    "year": 2001,
+    "group": null,
+    "rule": null
+  },
+  "round": 10,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "total_rounds": 11,
+  "played": 5,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Юлия Саврасова",
+      "score": 7.5,
+      "buch": 46.5,
+      "med": 39.0,
+      "wins": 7,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富千絵",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Song Hee-jeong",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ирина Метревели",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "許紋菁",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karlsson Irene",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvikene Maris",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富睦",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tihkan Evelyn",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "楊筱玉",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "許紋菁",
+      "score": 7.0,
+      "buch": 48.0,
+      "med": 39.5,
+      "wins": 7,
+      "played": 10,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "楊筱玉",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tihkan Evelyn",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富睦",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "達富千絵",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ирина Метревели",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Song Hee-jeong",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kocharyan Ani",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karlsson Irene",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tuvikene Maris",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Karlsson Irene",
+      "score": 7.0,
+      "buch": 40.0,
+      "med": 32.0,
+      "wins": 7,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tuvikene Maris",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "楊筱玉",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kocharyan Ani",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富睦",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tihkan Evelyn",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富千絵",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Song Hee-jeong",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "許紋菁",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Ирина Метревели",
+      "score": 7.0,
+      "buch": 40.0,
+      "med": 32.0,
+      "wins": 6,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富睦",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "達富千絵",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kocharyan Ani",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Song Hee-jeong",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "許紋菁",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvikene Maris",
+          "result": "D"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "楊筱玉",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tihkan Evelyn",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Tuvikene Maris",
+      "score": 6.0,
+      "buch": 46.0,
+      "med": 38.0,
+      "wins": 5,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karlsson Irene",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kocharyan Ani",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "楊筱玉",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tihkan Evelyn",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富睦",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "達富千絵",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ирина Метревели",
+          "result": "D"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "許紋菁",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Tihkan Evelyn",
+      "score": 5.5,
+      "buch": 45.5,
+      "med": 37.5,
+      "wins": 5,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Song Hee-jeong",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "許紋菁",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvikene Maris",
+          "result": "D"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karlsson Irene",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kocharyan Ani",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "楊筱玉",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富千絵",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ирина Метревели",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "楊筱玉",
+      "score": 4.0,
+      "buch": 49.0,
+      "med": 41.0,
+      "wins": 4,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "許紋菁",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karlsson Irene",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvikene Maris",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Song Hee-jeong",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kocharyan Ani",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富睦",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tihkan Evelyn",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ирина Метревели",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "達富睦",
+      "score": 3.0,
+      "buch": 45.5,
+      "med": 37.5,
+      "wins": 3,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ирина Метревели",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "許紋菁",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karlsson Irene",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tuvikene Maris",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "楊筱玉",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kocharyan Ani",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "達富千絵",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Song Hee-jeong",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Song Hee-jeong",
+      "score": 2.0,
+      "buch": 46.0,
+      "med": 38.0,
+      "wins": 2,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tihkan Evelyn",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "達富千絵",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "楊筱玉",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ирина Метревели",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "許紋菁",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Karlsson Irene",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kocharyan Ani",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富睦",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "達富千絵",
+      "score": 1.0,
+      "buch": 49.0,
+      "med": 41.0,
+      "wins": 1,
+      "played": 9,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Юлия Саврасова",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ирина Метревели",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Song Hee-jeong",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "許紋菁",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvikene Maris",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karlsson Irene",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tihkan Evelyn",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富睦",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kocharyan Ani",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "Kocharyan Ani",
+      "score": 0.0,
+      "buch": 46.5,
+      "med": 39.0,
+      "wins": 0,
+      "played": 9,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Tuvikene Maris",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Karlsson Irene",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ирина Метревели",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "楊筱玉",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Tihkan Evelyn",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富睦",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "許紋菁",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Song Hee-jeong",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "達富千絵",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

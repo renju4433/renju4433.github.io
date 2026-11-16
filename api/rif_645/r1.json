@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_645",
+    "slug": "rif_645",
+    "name": "Kullo Cup 2009/2010, 4.stage",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-12-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Krjukov Gerli",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Oll Aivo",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Mirme Madli",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Hõbemägi Martin",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Timmermann Alvar",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "tournament": {
+    "id": "rif_3215",
+    "slug": "rif_3215",
+    "name": "62nd Meijin-sen Tokyo area 1st round",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-05-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "丸田浩貴",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "岸本祥吾",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "井上史也",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "松田将馬",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "田中祥太郎",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "小野孝之",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "山本桜輔",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "横山翔汰",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "藤川正樹",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "吉川知希",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

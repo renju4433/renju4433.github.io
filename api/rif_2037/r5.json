@@ -1,0 +1,55 @@
+{
+  "tournament": {
+    "id": "rif_2037",
+    "slug": "rif_2037",
+    "name": "The 19th Meijin-sen Match",
+    "year": 1982,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1982-02-20",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "中村茂",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "西山厚",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

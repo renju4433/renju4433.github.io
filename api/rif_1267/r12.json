@@ -1,0 +1,139 @@
+{
+  "tournament": {
+    "id": "rif_1267",
+    "slug": "rif_1267",
+    "name": "The 20th Russian Championship among Women",
+    "year": 2012,
+    "group": null,
+    "rule": null
+  },
+  "round": 12,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    },
+    {
+      "round": 12,
+      "is_finished": true
+    },
+    {
+      "round": 13,
+      "is_finished": true
+    },
+    {
+      "round": 14,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2012-02-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Glibina Ekaterina",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Nikonova Natalya",
+        "score": 8
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Prokopets Tatyana",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Krayeva Tatyana",
+        "score": 6
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Oborina Anastasja",
+        "score": 9
+      },
+      "white": {
+        "no": null,
+        "name": "Kurdina Olga",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Нонна Сальникова",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Кира Лашко",
+        "score": 6.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

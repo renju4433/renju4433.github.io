@@ -1,0 +1,233 @@
+{
+  "tournament": {
+    "id": "r4433_2338",
+    "slug": "r4433_2338",
+    "name": "2018年韩国五子棋春季超级联赛",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "rounds": [
+    6,
+    7,
+    8,
+    9
+  ],
+  "total_rounds": 9,
+  "played": 5,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Kang Sang-min",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kim Seong-hyeon",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Kim Young-woo",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Chang Kyoung-Jun",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Park Han-Ju",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Jang Won-cheol",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Hwang Do-hoon",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kim Gyu-Hyeon",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Kim Gyu-Hyeon",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Hwang Do-hoon",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Kim Hong Soon",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Park Woong-bae",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Park Woong-bae",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kim Hong Soon",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Chang Kyoung-Jun",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Kim Young-woo",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Jang Won-cheol",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Park Han-Ju",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Kim Seong-hyeon",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Kang Sang-min",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "Han a-reum-chan",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    }
+  ]
+}

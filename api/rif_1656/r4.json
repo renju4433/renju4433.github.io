@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "rif_1656",
+    "slug": "rif_1656",
+    "name": "Tournament of Ten",
+    "year": 2015,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2015-05-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Максим Карасёв",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Artemyev Sergey",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Виктор Балабай",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "tournament": {
+    "id": "rif_3137",
+    "slug": "rif_3137",
+    "name": "16th Renju Ukraine Cup",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-04-27",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Skrypnyk Vasyl",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Verkholiak Matvii",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Vitovskyi Vitalii",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Pochyhailo Oleh",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Hundiak Volodymyr",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Saik Oleksiy",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Skrypnyk Dmytro",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Bulatovsky Oleg",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Ostrovskyi Bohdan",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Verholiak Yuri",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Melnychuk Dmytro",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Verkholiak Pavlo",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Umantsiv Roman",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Ulan Oleksandr",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

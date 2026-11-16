@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_2940",
+    "slug": "rif_2940",
+    "name": "Swedish Championship",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2023-03-24",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Andersson Tord",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Lindberg Kristian",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Eriksson Bjorn",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Lind Björn",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

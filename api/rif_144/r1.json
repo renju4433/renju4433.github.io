@@ -1,0 +1,127 @@
+{
+  "tournament": {
+    "id": "rif_144",
+    "slug": "rif_144",
+    "name": "Polish Championship",
+    "year": 2006,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2006-09-08",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Nowakowski Maciej",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Godlewski Filip",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Gorzecki Marek",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Leszczyński Michał",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Tarasiński Paweł",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Łękowski Jerzy",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Bohdankiewicz Marcin",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Zajk Michał",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Nowak Paweł",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Małowiejski Piotr",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

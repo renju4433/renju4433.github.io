@@ -1,0 +1,67 @@
+{
+  "tournament": {
+    "id": "rif_2267",
+    "slug": "rif_2267",
+    "name": "Estonian QT to TWC 2008",
+    "year": 2008,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "rounds": [
+    2
+  ],
+  "total_rounds": 2,
+  "played": 1,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Oll Aivo",
+      "score": 1.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Purk Andry",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Purk Andry",
+      "score": 0.0,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Oll Aivo",
+          "result": "W"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "tournament": {
+    "id": "rif_920",
+    "slug": "rif_920",
+    "name": "III Moscow championship",
+    "year": 1982,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1982-11-11",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Zanchenko Sergey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Alexandrov Nikolay",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Zanchenko Sergey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Sinyov Igor",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

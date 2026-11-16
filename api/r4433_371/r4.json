@@ -1,0 +1,79 @@
+{
+  "tournament": {
+    "id": "r4433_371",
+    "slug": "r4433_371",
+    "name": "2013年全国五子棋公开赛",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-06-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "汪清清 (1) [3]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "王烨林 (4) [3]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "简咏璇 (14) [2]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "董晨瑛 (8) [2]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "rif_1919",
+    "slug": "rif_1919",
+    "name": "The 32th St. Petersburg Cup",
+    "year": 2017,
+    "group": null,
+    "rule": null
+  },
+  "round": 8,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2017-09-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Виктор Балабай",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Александр Лисютин",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Екатерина Румянцева",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Trubitsin Stepan",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Нонна Сальникова",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

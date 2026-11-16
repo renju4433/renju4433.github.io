@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_41",
+    "slug": "rif_41",
+    "name": "30th Soryu-sen tournament in Hamamatsu area",
+    "year": 2006,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2006-07-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "上久保峰夫",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "鈴木一大",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

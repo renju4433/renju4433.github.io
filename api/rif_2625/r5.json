@@ -1,0 +1,111 @@
+{
+  "tournament": {
+    "id": "rif_2625",
+    "slug": "rif_2625",
+    "name": "Chinese National Open 2014, Women Group",
+    "year": 2014,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2014-09-06",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "唐莉",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "刘恂",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "岳祖蛟",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "胡夕",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "万俊宏",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "刘沁",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "成艳珍",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "曾广明",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "tournament": {
+    "id": "rif_623",
+    "slug": "rif_623",
+    "name": "47 Meijinsen Match R1,R2",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "rounds": [
+    1,
+    2
+  ],
+  "total_rounds": 2,
+  "played": 1,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "長谷川一人",
+      "score": 1.5,
+      "buch": 1.0,
+      "med": 0.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "河村典彦",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "河村典彦",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "河村典彦",
+      "score": 0.5,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "長谷川一人",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "長谷川一人",
+          "result": "D"
+        }
+      ]
+    }
+  ]
+}

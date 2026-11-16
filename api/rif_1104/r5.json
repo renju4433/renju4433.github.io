@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "rif_1104",
+    "slug": "rif_1104",
+    "name": "Volga regional tournament - 1987",
+    "year": 1987,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1987-08-16",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Mikhailov Nikolay",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Ermakov Vladimir",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Filippov Sergey",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Михаил Кожин",
+        "score": 1.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Milevsky Alexander",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Sobolev Mikhail",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Ibatullin Robert",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Krupikov Andrey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

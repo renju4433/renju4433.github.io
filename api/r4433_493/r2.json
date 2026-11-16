@@ -1,0 +1,79 @@
+{
+  "tournament": {
+    "id": "r4433_493",
+    "slug": "r4433_493",
+    "name": "第13届北京市五子棋高校邀请赛",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-11-28",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "郝天一",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "解志亮",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "彭阳",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "黄梦迪",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_1118",
+    "slug": "rif_1118",
+    "name": "The 3-d USSR youth championship",
+    "year": 1987,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1987-03-25",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kalyakin Dmitrii",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Eremin Oleg",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

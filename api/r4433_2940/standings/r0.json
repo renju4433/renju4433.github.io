@@ -1,0 +1,79 @@
+{
+  "tournament": {
+    "id": "r4433_2940",
+    "slug": "r4433_2940",
+    "name": "第4届爱沙尼亚连珠大赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "rounds": [
+    0,
+    1
+  ],
+  "total_rounds": 1,
+  "played": 1,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Meritee Ando",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Moiseev Kirill",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Moiseev Kirill",
+      "score": 0.5,
+      "buch": 0.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 0,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Meritee Ando",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Kozhin Mikhail",
+      "score": 0.0,
+      "buch": 0.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 0,
+      "results": []
+    }
+  ]
+}

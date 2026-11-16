@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_593",
+    "slug": "rif_593",
+    "name": "47th Meijinsen Qualification Kansai area 2nd round",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-06-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "大角友希",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "畑雅幸",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "阪本嵩山",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "久保出美",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

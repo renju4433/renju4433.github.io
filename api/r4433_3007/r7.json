@@ -1,0 +1,175 @@
+{
+  "tournament": {
+    "id": "r4433_3007",
+    "slug": "r4433_3007",
+    "name": "2023年卡雷帕公开赛",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2023-07-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Aleksandrenkova Maria",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ilu Oliver",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kond Jesper",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Lemmik Laas",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kaljurand Karl Lukas",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Tuul Ronan Thor",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Saard Sergo",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Veer Mihkel",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Kask Sören",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Kütt Andreas-Gert",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Tuul Tristan Tormi",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Kuzmin Dmitri",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Aleksandrenkov Ivan",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Maranik Mark",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Kütt Andreas-Gert",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Kuzmin Dmitri",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

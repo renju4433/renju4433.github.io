@@ -1,0 +1,51 @@
+{
+  "tournament": {
+    "id": "rif_407",
+    "slug": "rif_407",
+    "name": "8 Kanto Renju Emperor Tournament final match",
+    "year": 2008,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2008-02-24",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "中村茂",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

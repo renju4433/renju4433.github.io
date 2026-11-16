@@ -1,0 +1,159 @@
+{
+  "tournament": {
+    "id": "rif_2543",
+    "slug": "rif_2543",
+    "name": "St. Petersburg Cup 2002 Final",
+    "year": 2003,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2003-01-11",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Bushkowski Ludwik",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Виктор Балабай",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Serdyuk Andrey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Mshagsky Konstantin",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Smirnov Dmitry",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gerasimov Ilya",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Arevkov Maxim",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Maltsev Andrey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Vodolazsky Konstantin",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Zubashchenko Ivan",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Нонна Сальникова",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Alexandrov Victor",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Klimashin Alexander",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Artemyev Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

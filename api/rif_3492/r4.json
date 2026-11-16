@@ -1,0 +1,91 @@
+{
+  "tournament": {
+    "id": "rif_3492",
+    "slug": "rif_3492",
+    "name": "2025 Beijing Renju ”Wuziqi King“ Tournament, Young Gr.",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-11-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "张晰杰",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "胡洺硕",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "刘壹圣",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "张芸箬",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "鲁泓闻",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "江奕彤",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

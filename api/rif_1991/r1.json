@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_1991",
+    "slug": "rif_1991",
+    "name": "56 Meijinsen Qualification East Japan area 2nd round",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-06-25",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "草島真人",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "小山純",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "小野孝之",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "佐藤清富",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

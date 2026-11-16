@@ -1,0 +1,55 @@
+{
+  "tournament": {
+    "id": "rif_3201",
+    "slug": "rif_3201",
+    "name": "31st Rybinsk Cup",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-04-06",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Конюхов Андрей",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Сапронов Аркадий",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

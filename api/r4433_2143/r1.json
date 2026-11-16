@@ -1,0 +1,55 @@
+{
+  "tournament": {
+    "id": "r4433_2143",
+    "slug": "r4433_2143",
+    "name": "第9期青云战",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Yoshioka",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Unknown",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kato",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Niita",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

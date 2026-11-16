@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "rif_659",
+    "slug": "rif_659",
+    "name": "21th Renju Opening (D10) Tournament",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2010-01-16",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "江寅坤",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Shu Shanwen",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Li Jun",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "丁炯",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "钱坤",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "黄宇峰",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "顾炜",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "李婕",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

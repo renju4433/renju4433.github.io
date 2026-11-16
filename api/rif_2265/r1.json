@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_2265",
+    "slug": "rif_2265",
+    "name": "45 Tokai Championship final match",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-02-16",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "真野芳久",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "rif_2482",
+    "slug": "rif_2482",
+    "name": "Swedish Championship",
+    "year": 2022,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2022-03-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Lindberg Kristian",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Andersson Tord",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

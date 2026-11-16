@@ -1,0 +1,79 @@
+{
+  "tournament": {
+    "id": "rif_1826",
+    "slug": "rif_1826",
+    "name": "5 Nizhny Novgorod championship",
+    "year": 1989,
+    "group": null,
+    "rule": null
+  },
+  "round": 10,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    },
+    {
+      "round": 12,
+      "is_finished": true
+    },
+    {
+      "round": 13,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1989-10-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Sokolov Alexander",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

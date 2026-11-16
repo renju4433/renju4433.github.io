@@ -1,0 +1,75 @@
+{
+  "tournament": {
+    "id": "r4433_273",
+    "slug": "r4433_273",
+    "name": "1986年苏联乌克兰大区赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Glinka Vitaly",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Tregubov Mikhail",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Petrov Evgeny",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Gluhovsky Leonid",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Nazarov Vladimir",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Suslov Alexandr",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

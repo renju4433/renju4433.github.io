@@ -1,0 +1,143 @@
+{
+  "tournament": {
+    "id": "rif_2623",
+    "slug": "rif_2623",
+    "name": "Chinese National Championship 2014, Women Group",
+    "year": 2014,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2014-10-04",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "韩悦",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "汪清清",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "吴志琴",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "成艳珍",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "李小青",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "于亚君",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "沈子涵",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "刘恂",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "王新慧",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "朱小娟",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "董晓丽",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "董晨瑛",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

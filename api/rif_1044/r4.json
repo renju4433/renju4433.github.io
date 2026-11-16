@@ -1,0 +1,51 @@
+{
+  "tournament": {
+    "id": "rif_1044",
+    "slug": "rif_1044",
+    "name": "Poduga Cup 2004 - 1/4 finals",
+    "year": 2004,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2004-10-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kadulin Alexander",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Okatova Anna",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

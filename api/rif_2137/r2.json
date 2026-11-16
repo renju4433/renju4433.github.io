@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "rif_2137",
+    "slug": "rif_2137",
+    "name": "43 Seiunsen Tournament Hamamatsu area",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-01-27",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "高橋広大",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "伊藤ふみ",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "加藤みこ",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "加藤大介",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "伊藤健良",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "ほこ",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "みき",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "上久保峰夫",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "山崎正徳",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "釘崎道比古",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

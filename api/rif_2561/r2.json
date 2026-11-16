@@ -1,0 +1,127 @@
+{
+  "tournament": {
+    "id": "rif_2561",
+    "slug": "rif_2561",
+    "name": "Olympiada 2004",
+    "year": 2004,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2004-10-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Pšánská Petra",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Schmied Horst",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Rybka Aleš",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Rippel Jan",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Melichar Stanislav",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kusák Martin",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Niedbalec Marcin",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Nykl Ondřej",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Ševčíková Lucie",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Neuman Petr",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

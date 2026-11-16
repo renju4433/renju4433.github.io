@@ -1,0 +1,167 @@
+{
+  "tournament": {
+    "id": "rif_2045",
+    "slug": "rif_2045",
+    "name": "Volga regional tournament - 1986",
+    "year": 1986,
+    "group": null,
+    "rule": null
+  },
+  "round": 9,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1986-08-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Михаил Кожин",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Eibatov Nizami",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Talsky Vladimir",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Eremin Oleg",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Klisenko Evgeny",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Terteryan Alexander",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Poghosyan Albert",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Zakharian Michael",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Shataloov Aleksander",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Sakhapov Albert",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Dvoeglazov Vladimir",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Azov Dmitriy",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Baisalov Erzhan",
+        "score": 6
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

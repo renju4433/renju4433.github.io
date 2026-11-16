@@ -1,0 +1,59 @@
+{
+  "tournament": {
+    "id": "r4433_3054",
+    "slug": "r4433_3054",
+    "name": "第1届乌克兰公开锦标赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Braykov A.",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Talsky Vladimir",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Talsky Vladimir",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Barykin Victor",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

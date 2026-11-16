@@ -1,0 +1,135 @@
+{
+  "tournament": {
+    "id": "rif_92",
+    "slug": "rif_92",
+    "name": "41st Meijin-sen Tournament",
+    "year": 2003,
+    "group": null,
+    "rule": null
+  },
+  "round": 9,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2003-09-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 6.5
+      },
+      "white": {
+        "no": null,
+        "name": "松浦浩",
+        "score": 6.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "宮川淳三",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "磯部泰山",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 6
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "高嶋純也",
+        "score": 1.0
+      },
+      "white": {
+        "no": null,
+        "name": "久富隆洋",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "久家彰夫",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

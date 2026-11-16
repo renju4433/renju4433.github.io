@@ -1,0 +1,95 @@
+{
+  "tournament": {
+    "id": "rif_661",
+    "slug": "rif_661",
+    "name": "3rd Champion Cup Tournament",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2010-02-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "王烨林",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "张轶峰",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "顾炜",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "黄宇峰",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "贺启发",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "薛文曦",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

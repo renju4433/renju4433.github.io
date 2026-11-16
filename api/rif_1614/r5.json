@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_1614",
+    "slug": "rif_1614",
+    "name": "6th Taiwan Meijinsen Tournament",
+    "year": 2014,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2014-12-06",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "林皇羽",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "黃彥樺",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "林仕斌",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "林劉民",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "宋佩蓉",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "陳科翰",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

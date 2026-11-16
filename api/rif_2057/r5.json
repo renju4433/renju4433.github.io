@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "rif_2057",
+    "slug": "rif_2057",
+    "name": "Leningrad Masters tournament",
+    "year": 1988,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1988-08-14",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Reims Aldis",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Terekhov Dmitry",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Beloutov Gennady",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Talsky Vladimir",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Voskanyan Eduard",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_808",
+    "slug": "rif_808",
+    "name": "Swedish Championship Final",
+    "year": 1989,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1989-12-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Gardström Petter",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Sundling Ingvar",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

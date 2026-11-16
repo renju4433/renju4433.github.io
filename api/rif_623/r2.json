@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_623",
+    "slug": "rif_623",
+    "name": "47 Meijinsen Match R1,R2",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-10-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "河村典彦",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_1047",
+    "slug": "rif_1047",
+    "name": "Estonian Cup 2004 - Semi final",
+    "year": 2006,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2006-01-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Meritee Ando",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Lents Johann",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

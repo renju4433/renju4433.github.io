@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_81",
+    "slug": "rif_81",
+    "name": "Tallinn Open",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2005-12-28",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Lents Johann",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Taimla Tunnet",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,486 @@
+{
+  "tournament": {
+    "id": "r4433_1680",
+    "slug": "r4433_1680",
+    "name": "第四届中日交流暨首届中日五子棋友好对抗赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "rounds": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "total_rounds": 6,
+  "played": 9,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "于京平",
+      "score": 2.5,
+      "buch": 9.0,
+      "med": 4.5,
+      "wins": 2,
+      "played": 4,
+      "results": [
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "奈良秀树",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陆瑶",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "苏梁",
+          "result": "D"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "李栋",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "奈良秀树",
+      "score": 2.0,
+      "buch": 4.5,
+      "med": 2.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "于京平",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "邓京辉",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "张进宇",
+      "score": 2.0,
+      "buch": 3.0,
+      "med": 1.5,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "陆瑶",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "梁爽",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "白涛",
+      "score": 2.0,
+      "buch": 2.5,
+      "med": 1.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "岩间辰史",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "安达康弘",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "三森政男",
+      "score": 2.0,
+      "buch": 2.0,
+      "med": 1.0,
+      "wins": 2,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张晖",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘彤",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "苏梁",
+      "score": 1.5,
+      "buch": 4.0,
+      "med": 1.5,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "于京平",
+          "result": "D"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "高玉民",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "陆瑶",
+      "score": 1.0,
+      "buch": 6.5,
+      "med": 3.5,
+      "wins": 1,
+      "played": 3,
+      "results": [
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "于京平",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "岩间辰史",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "李栋",
+      "score": 1.0,
+      "buch": 4.5,
+      "med": 2.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "殷立成",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "于京平",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "邓京辉",
+      "score": 1.0,
+      "buch": 4.0,
+      "med": 1.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "刘彤",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "奈良秀树",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "殷立成",
+      "score": 1.0,
+      "buch": 3.0,
+      "med": 1.0,
+      "wins": 1,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "李栋",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张晖",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "西园典生",
+      "score": 1.0,
+      "buch": 1.5,
+      "med": 0.0,
+      "wins": 1,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "崔悦",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "刘彤",
+      "score": 0.0,
+      "buch": 5.0,
+      "med": 2.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "邓京辉",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "三森政男",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "张晖",
+      "score": 0.0,
+      "buch": 5.0,
+      "med": 2.0,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "三森政男",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "殷立成",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "no": null,
+      "name": "岩间辰史",
+      "score": 0.0,
+      "buch": 4.5,
+      "med": 1.5,
+      "wins": 0,
+      "played": 2,
+      "results": [
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "白涛",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "陆瑶",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "安达康弘",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "白涛",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "梁爽",
+      "score": 0.0,
+      "buch": 3.0,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "张进宇",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "no": null,
+      "name": "崔悦",
+      "score": 0.0,
+      "buch": 2.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "西园典生",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "no": null,
+      "name": "高玉民",
+      "score": 0.0,
+      "buch": 2.5,
+      "med": 0.0,
+      "wins": 0,
+      "played": 1,
+      "results": [
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "苏梁",
+          "result": "B"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "tournament": {
+    "id": "rif_1499",
+    "slug": "rif_1499",
+    "name": "Vladimir Open 2013",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-08-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Олег Федоркин",
+        "score": 4.0
+      },
+      "white": {
+        "no": null,
+        "name": "Карэн Сиратегян",
+        "score": 3.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Magdeev Igor",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Golomaryov Anthony",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Tarannikov Yuriy",
+        "score": 3.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

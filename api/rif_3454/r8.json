@@ -1,0 +1,147 @@
+{
+  "tournament": {
+    "id": "rif_3454",
+    "slug": "rif_3454",
+    "name": "The Nizhny Novgorod open tournament 2021",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 8,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-04-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Дарья Толстогузова",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Данила Громов",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Таисия Садова",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Пётр Бурцев",
+        "score": 6
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Анастасия Линич",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Shkarupa Maria",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Belova Polina",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Churikova Daria",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Karavaeva Maria",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kolchurina Anastasia",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Александр Пинский",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Всеволод Троицкий",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

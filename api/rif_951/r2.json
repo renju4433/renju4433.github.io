@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_951",
+    "slug": "rif_951",
+    "name": "2nd Riga - Moscow match",
+    "year": 1986,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1986-04-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Ermakov Vladimir",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Shkushkovniks Juris",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kiverin Dmitry",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Gaujens Artis",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Maslyaev Sergey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Uzhulis Gundars",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

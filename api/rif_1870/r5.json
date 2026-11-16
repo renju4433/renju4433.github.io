@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_1870",
+    "slug": "rif_1870",
+    "name": "55 Meijinsen Qualification East Japan area 2nd round",
+    "year": 2017,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2017-06-10",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "宮本俊寿",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "友部勝弘",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "佐藤清富",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "小山純",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "玉田陽一",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "小野孝之",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "rif_2351",
+    "slug": "rif_2351",
+    "name": "Nizhny Novgorod New Year on-line Tournament",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-01-04",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Tonchilo Konstantin",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Alexejev Valentin",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Andreev Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Мария Петрова",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Александр Пинский",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Litvak Sofia",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ivanov Alexey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

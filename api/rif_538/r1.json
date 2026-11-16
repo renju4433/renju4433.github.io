@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_538",
+    "slug": "rif_538",
+    "name": "4th Kansai Championship, final match",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-03-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "大角友希",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

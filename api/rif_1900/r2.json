@@ -1,0 +1,67 @@
+{
+  "tournament": {
+    "id": "rif_1900",
+    "slug": "rif_1900",
+    "name": "55 Meijinsen Qualification Kansai area 2nd round",
+    "year": 2017,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2017-06-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "河村典彦",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "舘雅也",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

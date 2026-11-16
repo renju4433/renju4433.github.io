@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_1524",
+    "slug": "rif_1524",
+    "name": "5th Taiwan Meijinsen Tournament",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-12-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "陳雅慧",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "陳科翰",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "林書玄",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "溫舜光",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "鄭志良",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "陳國輝",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

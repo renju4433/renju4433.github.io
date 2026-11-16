@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_1154",
+    "slug": "rif_1154",
+    "name": "Swedish Cup - Final",
+    "year": 2000,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2000-12-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Holgersson Goran",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

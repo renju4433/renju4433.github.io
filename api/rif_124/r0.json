@@ -1,0 +1,39 @@
+{
+  "tournament": {
+    "id": "rif_124",
+    "slug": "rif_124",
+    "name": "The 5th Best of Best Match",
+    "year": 2006,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2006-06-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "김규현",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "박정호",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

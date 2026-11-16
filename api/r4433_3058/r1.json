@@ -1,0 +1,55 @@
+{
+  "tournament": {
+    "id": "r4433_3058",
+    "slug": "r4433_3058",
+    "name": "1991年乌克兰杯公开赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Guliaev Igor",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Atreschenkov Gennady",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Tregubov Mikhail",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Iljin Dmitrij",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

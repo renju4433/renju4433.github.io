@@ -1,0 +1,171 @@
+{
+  "tournament": {
+    "id": "rif_363",
+    "slug": "rif_363",
+    "name": "High League of the World Championship in Correspondence Renju-2007",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    },
+    {
+      "round": 12,
+      "is_finished": true
+    },
+    {
+      "round": 13,
+      "is_finished": true
+    },
+    {
+      "round": 14,
+      "is_finished": true
+    },
+    {
+      "round": 15,
+      "is_finished": true
+    },
+    {
+      "round": 16,
+      "is_finished": true
+    },
+    {
+      "round": 17,
+      "is_finished": true
+    },
+    {
+      "round": 18,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2007-03-03",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Константин Никонов",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Ustimov Anatoly",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Potapov Alexey",
+        "score": 3.0
+      },
+      "white": {
+        "no": null,
+        "name": "Suslov Alexander",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Zyazin Alexandr",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "张进宇",
+        "score": 3.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 3.0
+      },
+      "white": {
+        "no": null,
+        "name": "Дмитрий Епифанов",
+        "score": 4.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Dzainukov Eldar",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Олег Федоркин",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

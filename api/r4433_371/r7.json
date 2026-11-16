@@ -1,0 +1,127 @@
+{
+  "tournament": {
+    "id": "r4433_371",
+    "slug": "r4433_371",
+    "name": "2013年全国五子棋公开赛",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-06-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "祁 观 (1) [4.5]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "兰志仁 (2) [5.5]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "汪清清 (1) [6]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "吴志琴 (13) [4]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "曹冬 (4) [5]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "芦海 (3) [4]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "奚振扬 (7) [3.5]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "徐建鑫 (23) [3.5]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "江寅坤 (6) [3]",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "董晨瑛 (8) [3.5]",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

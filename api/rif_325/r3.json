@@ -1,0 +1,51 @@
+{
+  "tournament": {
+    "id": "rif_325",
+    "slug": "rif_325",
+    "name": "Springtournament",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2007-05-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Pajuste Renee",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Kodasma Rasmus",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

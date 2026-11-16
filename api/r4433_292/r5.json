@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "r4433_292",
+    "slug": "r4433_292",
+    "name": "2024年全国五子棋锦标赛",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-03-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "何舒军",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "梅凡",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "刘杰",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "黄立勤",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

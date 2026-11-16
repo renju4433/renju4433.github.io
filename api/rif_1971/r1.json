@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "rif_1971",
+    "slug": "rif_1971",
+    "name": "European Championship 2018, BT",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-06-29",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kolk Mari",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Voznjuk Pavel",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Raag Ardi",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gardström Petter",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

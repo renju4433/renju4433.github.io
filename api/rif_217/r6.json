@@ -1,0 +1,143 @@
+{
+  "tournament": {
+    "id": "rif_217",
+    "slug": "rif_217",
+    "name": "European Championship 2002, QT",
+    "year": 2002,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2002-08-07",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Artemyev Sergey",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Jappinen Juno",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Ses Pavel",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Irene",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Ирина Метревели",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Samotsvetov Igor",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Nikonova Natalya",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Toivonen Lauri",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Oblikas Mikk",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Kolk Kaia",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Sulane Sander",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Kolk Peeter",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

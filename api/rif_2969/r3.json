@@ -1,0 +1,79 @@
+{
+  "tournament": {
+    "id": "rif_2969",
+    "slug": "rif_2969",
+    "name": "Nizhny Novgorod spring tournament",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2023-04-22",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Karavaeva Maria",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Belova Polina",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Данила Громов",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

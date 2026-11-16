@@ -1,0 +1,115 @@
+{
+  "tournament": {
+    "id": "r4433_1615",
+    "slug": "r4433_1615",
+    "name": "《第一届嘉南棋王赛》",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "李士文",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "谭素萍",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "林士樱",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "陈隆泉",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "蒋建勇",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "钟先骥",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "连家豪",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "陈富华",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "伍博文",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "王双勇",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_2922",
+    "slug": "rif_2922",
+    "name": "23 Kanto Renju Emperor Tournament 2nd round",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2023-01-29",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "井上史也",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "横山翔汰",
+        "score": 3.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "丸田光治",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "神谷俊介",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "藤田麻衣子",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

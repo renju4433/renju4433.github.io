@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "r4433_2374",
+    "slug": "r4433_2374",
+    "name": "第七届欧洲连珠锦标赛",
+    "year": 2004,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2004-06-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Sirategyan Karen",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

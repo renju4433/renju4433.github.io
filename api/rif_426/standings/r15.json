@@ -1,0 +1,1915 @@
+{
+  "tournament": {
+    "id": "rif_426",
+    "slug": "rif_426",
+    "name": "VI Russian Championship, High League",
+    "year": 1998,
+    "group": null,
+    "rule": null
+  },
+  "round": 15,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "total_rounds": 15,
+  "played": 8,
+  "tiebreak": [
+    "score",
+    "buch",
+    "med",
+    "wins"
+  ],
+  "points": {
+    "win": 1.0,
+    "draw": 0.5,
+    "bye": 1.0
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "no": null,
+      "name": "Михаил Кожин",
+      "score": 12.0,
+      "buch": 109.0,
+      "med": 97.0,
+      "wins": 9,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "D"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "D"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "D"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "D"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "B"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "D"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "no": null,
+      "name": "Sinyov Igor",
+      "score": 10.0,
+      "buch": 111.0,
+      "med": 97.0,
+      "wins": 9,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "B"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "no": null,
+      "name": "Mikhailov Alexander",
+      "score": 10.0,
+      "buch": 111.0,
+      "med": 97.0,
+      "wins": 8,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "D"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "D"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "no": null,
+      "name": "Олег Федоркин",
+      "score": 9.5,
+      "buch": 111.5,
+      "med": 97.5,
+      "wins": 8,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "D"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "D"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "B"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "B"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "no": null,
+      "name": "Skuridin Alexey",
+      "score": 9.0,
+      "buch": 112.0,
+      "med": 98.0,
+      "wins": 8,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "D"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "B"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "no": null,
+      "name": "Константин Никонов",
+      "score": 9.0,
+      "buch": 112.0,
+      "med": 98.0,
+      "wins": 5,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "D"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "D"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "D"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "B"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "D"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "no": null,
+      "name": "Filippov Sergey",
+      "score": 9.0,
+      "buch": 109.5,
+      "med": 97.5,
+      "wins": 5,
+      "played": 14,
+      "results": [
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "D"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "D"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "D"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "D"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "D"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "D"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "D"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "no": null,
+      "name": "Ses Pavel",
+      "score": 8.5,
+      "buch": 112.5,
+      "med": 98.5,
+      "wins": 7,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "D"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "B"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "D"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "no": null,
+      "name": "Smirnov Sergey",
+      "score": 8.0,
+      "buch": 113.0,
+      "med": 99.0,
+      "wins": 7,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "D"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "no": null,
+      "name": "Владислав Русин",
+      "score": 7.5,
+      "buch": 113.5,
+      "med": 99.5,
+      "wins": 7,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "D"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "B"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "no": null,
+      "name": "Krasnonosov Dmitry",
+      "score": 7.0,
+      "buch": 114.0,
+      "med": 100.0,
+      "wins": 6,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "B"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "D"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "D"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "no": null,
+      "name": "Павел Сальников",
+      "score": 6.5,
+      "buch": 114.5,
+      "med": 100.5,
+      "wins": 5,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "B"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "D"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "no": null,
+      "name": "Nikonova Natalya",
+      "score": 5.0,
+      "buch": 116.0,
+      "med": 102.0,
+      "wins": 4,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "W"
+        },
+        {
+          "round": 2,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "D"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "D"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "B"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "B"
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "no": null,
+      "name": "Александр Радзевелюк",
+      "score": 4.0,
+      "buch": 117.0,
+      "med": 103.0,
+      "wins": 2,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 3,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "W"
+        },
+        {
+          "round": 4,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "B"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "B"
+        },
+        {
+          "round": 7,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "B"
+        },
+        {
+          "round": 11,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "D"
+        },
+        {
+          "round": 12,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "B"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "D"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "no": null,
+      "name": "Maltsev Oleg",
+      "score": 3.0,
+      "buch": 107.5,
+      "med": 95.5,
+      "wins": 2,
+      "played": 14,
+      "results": [
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "W"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "W"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "D"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "W"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "W"
+        },
+        {
+          "round": 14,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 15,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Lunkin Vitaly",
+          "result": "D"
+        }
+      ]
+    },
+    {
+      "rank": 16,
+      "no": null,
+      "name": "Lunkin Vitaly",
+      "score": 2.0,
+      "buch": 119.0,
+      "med": 103.5,
+      "wins": 0,
+      "played": 15,
+      "results": [
+        {
+          "round": 1,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Константин Никонов",
+          "result": "D"
+        },
+        {
+          "round": 2,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Nikonova Natalya",
+          "result": "D"
+        },
+        {
+          "round": 3,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Михаил Кожин",
+          "result": "B"
+        },
+        {
+          "round": 4,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Олег Федоркин",
+          "result": "W"
+        },
+        {
+          "round": 5,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Павел Сальников",
+          "result": "B"
+        },
+        {
+          "round": 6,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Krasnonosov Dmitry",
+          "result": "W"
+        },
+        {
+          "round": 7,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Skuridin Alexey",
+          "result": "B"
+        },
+        {
+          "round": 8,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Александр Радзевелюк",
+          "result": "W"
+        },
+        {
+          "round": 9,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Ses Pavel",
+          "result": "B"
+        },
+        {
+          "round": 10,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Mikhailov Alexander",
+          "result": "W"
+        },
+        {
+          "round": 11,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Владислав Русин",
+          "result": "B"
+        },
+        {
+          "round": 12,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Smirnov Sergey",
+          "result": "W"
+        },
+        {
+          "round": 13,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Sinyov Igor",
+          "result": "B"
+        },
+        {
+          "round": 14,
+          "color": "white",
+          "opponent_no": null,
+          "opponent": "Filippov Sergey",
+          "result": "D"
+        },
+        {
+          "round": 15,
+          "color": "black",
+          "opponent_no": null,
+          "opponent": "Maltsev Oleg",
+          "result": "D"
+        }
+      ]
+    }
+  ]
+}

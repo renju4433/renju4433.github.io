@@ -1,0 +1,175 @@
+{
+  "tournament": {
+    "id": "rif_844",
+    "slug": "rif_844",
+    "name": "Open Tournament - Window to Europe",
+    "year": 2002,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2002-04-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Bushkovsky Witali",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Arefyev Andrey",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Bobkov Evgeniy",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Bushkowski Ludwik",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Виктор Балабай",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Arevkov Maxim",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Artemyev Sergey",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Нонна Сальникова",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Ирина Метревели",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Khramov Andrey",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Zubashchenko Ivan",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Lunkin Vitaly",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

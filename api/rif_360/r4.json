@@ -1,0 +1,303 @@
+{
+  "tournament": {
+    "id": "rif_360",
+    "slug": "rif_360",
+    "name": "Czech Open",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2007-07-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Oblikas Mikk",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Vondráčková Eva",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Godlewski Filip",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kodasma Rasmus",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Joala Kazimir",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Małowiejski Piotr",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Kotinová Hana",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kelk Rainer",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Nowak Paweł",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Němec Tomáš",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Laube Pavel",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Rybka Aleš",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Rippel Jan",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Klooster Karin",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Tarasiński Paweł",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Zajk Michał",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Константин Никонов",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 10,
+      "black": {
+        "no": null,
+        "name": "Nikonova Natalya",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Nowakowski Maciej",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 11,
+      "black": {
+        "no": null,
+        "name": "Neuman Petr",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Lents Johann",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 12,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Fitzermann Adrian",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 13,
+      "black": {
+        "no": null,
+        "name": "Ilu Timo",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Nykl Ondřej",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 14,
+      "black": {
+        "no": null,
+        "name": "Koláček Michal",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Väljataga Paul",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 15,
+      "black": {
+        "no": null,
+        "name": "Timmermann Alvar",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Kolouchová Monika",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 16,
+      "black": {
+        "no": null,
+        "name": "Hõbemägi Martin",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Mirme Madli",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

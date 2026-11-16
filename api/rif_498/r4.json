@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_498",
+    "slug": "rif_498",
+    "name": "Jonkoping Trial Triple (Yamaguchi rule)",
+    "year": 2008,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2008-06-08",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Karlsson Martin",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Asplund Bengt",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Sandstrom Richard",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridina Olga",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

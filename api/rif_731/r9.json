@@ -1,0 +1,171 @@
+{
+  "tournament": {
+    "id": "rif_731",
+    "slug": "rif_731",
+    "name": "Podyuga Sbory",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 9,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2010-06-25",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Pestereva Maria",
+        "score": 6
+      },
+      "white": {
+        "no": null,
+        "name": "Kryuchok Roman",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kurdina Olga",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Oborina Anastasja",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Litvinova Yulia",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Юлия Саврасова",
+        "score": 8
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Krayeva Tatyana",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Chernenko Lidiya",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Lebedeva Tatjana",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Merkulov Artyom",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Кира Лашко",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Litvinova Alina",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Sumarokova Aleksandra",
+        "score": 6
+      },
+      "white": {
+        "no": null,
+        "name": "Денис Федотов",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

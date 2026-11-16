@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_886",
+    "slug": "rif_886",
+    "name": "Meijinsen Qualification: Kansai-Hokuriku 2nd Round",
+    "year": 2000,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2000-06-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "阪本嵩山",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "早川嘉美",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "武原健次",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

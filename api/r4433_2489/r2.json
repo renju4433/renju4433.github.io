@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "r4433_2489",
+    "slug": "r4433_2489",
+    "name": "第6届俄罗斯青少年连珠锦标赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Ogorodov Sergey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Shevelyov Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

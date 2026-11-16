@@ -1,0 +1,191 @@
+{
+  "tournament": {
+    "id": "rif_163",
+    "slug": "rif_163",
+    "name": "IX Russian Championship, High League",
+    "year": 2001,
+    "group": null,
+    "rule": null
+  },
+  "round": 13,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    },
+    {
+      "round": 12,
+      "is_finished": true
+    },
+    {
+      "round": 13,
+      "is_finished": true
+    },
+    {
+      "round": 14,
+      "is_finished": true
+    },
+    {
+      "round": 15,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2001-02-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Владислав Русин",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Константин Никонов",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Макаров Павел",
+        "score": 6.0
+      },
+      "white": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 7.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Ses Pavel",
+        "score": 7.0
+      },
+      "white": {
+        "no": null,
+        "name": "Filippov Sergey",
+        "score": 5.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Александр Радзевелюк",
+        "score": 6.5
+      },
+      "white": {
+        "no": null,
+        "name": "Sinyov Igor",
+        "score": 8.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Оксана Сорокина",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Smirnov Sergey",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Максим Карасёв",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Сергей Волков",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Владимир Сушков",
+        "score": 9.5
+      },
+      "white": {
+        "no": null,
+        "name": "Zaitsev Vyacheslav",
+        "score": 5.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

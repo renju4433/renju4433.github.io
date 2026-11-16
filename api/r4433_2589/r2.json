@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "r4433_2589",
+    "slug": "r4433_2589",
+    "name": "2019下诺夫哥罗德新年赛",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-01-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Troitsky Vsevolod",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Orlov Maxim",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Orlov Maxim",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Troitsky Vsevolod",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Sadova Taisia",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Arzybov Vladislav",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Pirozhnikova Alisa",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gromov Danila",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

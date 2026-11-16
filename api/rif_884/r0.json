@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_884",
+    "slug": "rif_884",
+    "name": "Ural and Siberia championship",
+    "year": 1984,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1984-11-06",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Nadtochy Alexander",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kolesnikov Alexey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kurochkin Viktor",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kolesnikov Alexey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kolesnikov Alexey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Tashkinov Nikolay",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Markin Sergey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kalashnik Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

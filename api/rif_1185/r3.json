@@ -1,0 +1,107 @@
+{
+  "tournament": {
+    "id": "rif_1185",
+    "slug": "rif_1185",
+    "name": "7th 6-7 dan Tournament",
+    "year": 2008,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2008-09-27",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "嶽間沢秀明",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "小林高一",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "丹野好高",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "加藤康弘",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "丸山保司",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "久保出美",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "田村一誠",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "小野孝之",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

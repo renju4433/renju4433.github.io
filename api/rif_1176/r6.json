@@ -1,0 +1,143 @@
+{
+  "tournament": {
+    "id": "rif_1176",
+    "slug": "rif_1176",
+    "name": "II Russian Championship, First League",
+    "year": 1993,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1993-11-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Tarannikov Yuriy",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Bobkov Evgeniy",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Mishin Andrey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kabanov Dmitri",
+        "score": 1.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Peskov Stepan",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Константин Никонов",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Olyunin Sergey",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Rusakov Alexander",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Antonov Andrey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gorshenkov Artur",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

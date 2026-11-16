@@ -1,0 +1,91 @@
+{
+  "tournament": {
+    "id": "rif_399",
+    "slug": "rif_399",
+    "name": "Podyuga Championship High League",
+    "year": 2006,
+    "group": null,
+    "rule": null
+  },
+  "round": 12,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    },
+    {
+      "round": 12,
+      "is_finished": true
+    },
+    {
+      "round": 13,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2006-01-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Pestereva Maria",
+        "score": 4.0
+      },
+      "white": {
+        "no": null,
+        "name": "Serdyukov Egor",
+        "score": 6
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Юлия Саврасова",
+        "score": 9
+      },
+      "white": {
+        "no": null,
+        "name": "Sumarokov Evgeny",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

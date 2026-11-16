@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_1028",
+    "slug": "rif_1028",
+    "name": "Estonian Cup 2004 1/4 finals",
+    "year": 2004,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2004-05-10",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Oll Aivo",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Ilu Timo",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Lents Johann",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Purk Andry",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Taimla Tunnet",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Meritee Ando",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Lillemets Rauni",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

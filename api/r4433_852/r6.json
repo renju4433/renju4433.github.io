@@ -1,0 +1,79 @@
+{
+  "tournament": {
+    "id": "r4433_852",
+    "slug": "r4433_852",
+    "name": "2021年上海五子棋青少年网络公开赛",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-03-28",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "郑桢(11)",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "顾敏馨(6)",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "陆逸菲(43)",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "戴晨曦(13)",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

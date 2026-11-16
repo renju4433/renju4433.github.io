@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_2132",
+    "slug": "rif_2132",
+    "name": "Tournament of Ten",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 75,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-05-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Константин Никонов",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Виктор Балабай",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Дмитрий Епифанов",
+        "score": 3.0
+      },
+      "white": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Иван Данилин",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Денис Федотов",
+        "score": 5.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

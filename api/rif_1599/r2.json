@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_1599",
+    "slug": "rif_1599",
+    "name": "54 Suiseisen Tournament final round",
+    "year": 2014,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2014-10-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "神谷俊介",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "岩野文雄",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "中村颯汰",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "丸田浩貴",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

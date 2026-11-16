@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_2935",
+    "slug": "rif_2935",
+    "name": "Moscow Open (with AI Meijin-2000)",
+    "year": 2000,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2000-06-10",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Krasnonosov Dmitry",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Meijin-2000 AI",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

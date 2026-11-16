@@ -1,0 +1,83 @@
+{
+  "tournament": {
+    "id": "rif_3484",
+    "slug": "rif_3484",
+    "name": "Kyushu Renju Championship 2025",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-11-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "河野高久",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "川合仁",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "倉掛又一",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "佐藤龍也",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "久家彰夫",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "河本翔真",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

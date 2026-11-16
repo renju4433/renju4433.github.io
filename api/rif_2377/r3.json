@@ -1,0 +1,151 @@
+{
+  "tournament": {
+    "id": "rif_2377",
+    "slug": "rif_2377",
+    "name": "38 Kanto Shineisen Tournament",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-04-11",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "志村広樹",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "笠原礼子",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "柴田悟",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "志村広樹",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "末永大貴",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "丸山貴志",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "藤田麻衣子",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "長副紘樹",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "川合仁",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "松田将馬",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "田中祥太郎",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "藤川正樹",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "吉本悠太",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "西澤碧生",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

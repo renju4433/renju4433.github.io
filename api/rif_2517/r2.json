@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "rif_2517",
+    "slug": "rif_2517",
+    "name": "Heilongjiang Renju Championship 2022",
+    "year": 2022,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2022-07-16",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "肖伊康",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "李硕",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "刘昶彤",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "范家豪",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "袁雪鹏",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "李鑫",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "张佳莹",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "王启超",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "佟鑫雨",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "庞天奇",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

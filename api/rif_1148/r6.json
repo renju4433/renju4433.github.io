@@ -1,0 +1,183 @@
+{
+  "tournament": {
+    "id": "rif_1148",
+    "slug": "rif_1148",
+    "name": "XIII Moscow championship",
+    "year": 1994,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    },
+    {
+      "round": 12,
+      "is_finished": true
+    },
+    {
+      "round": 13,
+      "is_finished": true
+    },
+    {
+      "round": 14,
+      "is_finished": true
+    },
+    {
+      "round": 15,
+      "is_finished": true
+    },
+    {
+      "round": 16,
+      "is_finished": true
+    },
+    {
+      "round": 17,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1994-04-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Muraki Minira",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Nosovsky Alexander",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Bogatyryov Andrey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Mikhailov Alexander",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Макаров Павел",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Krasnonosov Dmitry",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Константин Никонов",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Lunkin Vitaly",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Олег Федоркин",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Milevsky Alexander",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Smirnov Sergey",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Golosov Viktor",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

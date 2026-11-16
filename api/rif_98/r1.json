@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_98",
+    "slug": "rif_98",
+    "name": "The 37th Meijin-sen Match",
+    "year": 1999,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1999-10-31",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "中村茂",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "河村典彦",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

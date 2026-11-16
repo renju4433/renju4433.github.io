@@ -1,0 +1,167 @@
+{
+  "tournament": {
+    "id": "rif_1121",
+    "slug": "rif_1121",
+    "name": "37th Kyoto Classified - Special class",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2005-11-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "久富隆洋",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "阪本嵩山",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "井綿章久",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "松尾敏子",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "宮川淳三",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "山口釉水",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "松尾嘉浩",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "土居学",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "安達康弘",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "畑雅幸",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "三好丈夫",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "高嶋純也",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

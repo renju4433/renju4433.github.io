@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_2410",
+    "slug": "rif_2410",
+    "name": "59th Meijinsen Qualification East-Japan area 2nd round",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-06-26",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "丸田浩貴",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "井上史也",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "小野孝之",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "長副紘樹",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "玉田陽一",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "末永大貴",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

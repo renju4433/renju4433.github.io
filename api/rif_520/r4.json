@@ -1,0 +1,123 @@
+{
+  "tournament": {
+    "id": "rif_520",
+    "slug": "rif_520",
+    "name": "Mind Sports Olympiad of Central Europe",
+    "year": 2008,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2008-10-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Brenčík Štefan",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Eged Igor",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Nykl Ondřej",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Demján Attila",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Němec Tomáš",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Vondráčková Eva",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Laube Pavel",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Strádal Jan",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Nipoti Vladimir",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Krček Břetislav",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

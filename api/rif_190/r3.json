@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_190",
+    "slug": "rif_190",
+    "name": "World Championship 1999, WT",
+    "year": 1999,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1999-07-30",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "林静",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridina Olga",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

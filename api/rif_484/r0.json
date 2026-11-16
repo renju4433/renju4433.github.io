@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "rif_484",
+    "slug": "rif_484",
+    "name": "46th Meijinsen Qualification East-Japan area 1st round",
+    "year": 2008,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2008-06-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "有田信義",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "中山智晴",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "三森政男",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "佐藤清富",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

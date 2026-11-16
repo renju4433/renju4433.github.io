@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_3467",
+    "slug": "rif_3467",
+    "name": "6th Korea Omok Master Final-Match",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-11-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "차승현",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "김규현",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "강상민",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "박대원",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "김도형",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "윤홍현",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

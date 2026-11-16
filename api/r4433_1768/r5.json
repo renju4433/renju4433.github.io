@@ -1,0 +1,187 @@
+{
+  "tournament": {
+    "id": "r4433_1768",
+    "slug": "r4433_1768",
+    "name": "日本第38期关东连珠锦标赛",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-08-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Fujita Maiko",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Shimura Hiroki",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Li Haoyang",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kato Yasuhiro",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Okada Akihiro",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kasahara Reiko",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Maruta Hiroki",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Kawaai Hitoshi",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Ono Takayuki",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Kamiya Shunsuke",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Kobayashi Nanako",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Nishizawa Aoi",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Yokoyama Shota",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Okabe Hiroshi",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Ishitani Shin-ichi",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Suenaga Daiki",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Nagasoe Hiroki",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Inoue Fumiya",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

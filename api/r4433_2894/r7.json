@@ -1,0 +1,163 @@
+{
+  "tournament": {
+    "id": "r4433_2894",
+    "slug": "r4433_2894",
+    "name": "2021年雷宾斯克圣诞赛",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-01-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Burtsev Nikolai",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Valinkin Andrei",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Novichkova Viktoriia",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Mityagin Anton",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kazanin Artyom",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Mityagin Maxim",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Zateev Oleg",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Nikitin Alexandr",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Leontiev Anton",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Kazanina Daria",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Savvateev Mikhail",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Smirnov Evgeny",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Radzevelyuk Alexander",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Burtsev Peter",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

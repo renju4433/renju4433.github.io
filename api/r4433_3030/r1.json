@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "r4433_3030",
+    "slug": "r4433_3030",
+    "name": "第4届卡雷帕公开赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Gurckis Gatis",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Veidemanis Arnis",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Soosyrv Ants",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Rotbergs Aigars",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Meritee Ando",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

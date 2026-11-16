@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_3207",
+    "slug": "rif_3207",
+    "name": "STORK Open",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-05-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Eriksson Bjorn",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Irene",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

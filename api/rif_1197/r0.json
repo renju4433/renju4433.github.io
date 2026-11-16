@@ -1,0 +1,55 @@
+{
+  "tournament": {
+    "id": "rif_1197",
+    "slug": "rif_1197",
+    "name": "Estonian Cup 2009, Final, game 2 and 3",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-09-19",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Mirme Madli",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Mirme Madli",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_3478",
+    "slug": "rif_3478",
+    "name": "Youth Tournament",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-11-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Գաբոյան Հակոբ",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Սարգսյան Ալեն",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Իսախանյան Դավիթ",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Հովհաննիսյան դանիել",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Ալմասյան Դավիթ",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Եդիգարյան Հրաչյա",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Մինասյան Գագիկ",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Կիրակոսյան Գոռ",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

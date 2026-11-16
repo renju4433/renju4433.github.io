@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "r4433_1595",
+    "slug": "r4433_1595",
+    "name": "2020防疫生活杯台湾五子棋公开赛",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-12-19",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Chiang Teng-Hui",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kuo Sheng-Pin",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Lin Ching-Chieh",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Liao Li-Chia",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Hsieh Jung-Kuo",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kuo Chia-Fu",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Hung Hui-Hsin",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Lo Tzu-Yang",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

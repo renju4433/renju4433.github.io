@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "r4433_2125",
+    "slug": "r4433_2125",
+    "name": "第43期青云战",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-01-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kato Hoko",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Yamasaki Masanori",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Takahashi Kodai",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Ito Kenryo",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Ito Fumi",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ito Tsunehisa",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Kamikubo Mineo",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Kugizaki Michihiko",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Kawada Miki",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Kato Daisuke",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

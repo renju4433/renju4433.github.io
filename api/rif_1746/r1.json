@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_1746",
+    "slug": "rif_1746",
+    "name": "11 Kansai Championship Final match",
+    "year": 2016,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2016-04-03",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "大角友希",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

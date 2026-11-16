@@ -1,0 +1,59 @@
+{
+  "tournament": {
+    "id": "r4433_3029",
+    "slug": "r4433_3029",
+    "name": "第5届卡雷帕公开赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Veidemanis Arnis",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Soosyrv Ants",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Reims Aldis",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Meritee Ando",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

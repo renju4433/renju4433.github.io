@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "rif_3246",
+    "slug": "rif_3246",
+    "name": "7th Korea southern region tournament",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-09-07",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "이호준",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "장은민",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "김해찬",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "강상민",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "송민혁",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "박도영",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "박대원",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "김현섭",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "이근백",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "한병선",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

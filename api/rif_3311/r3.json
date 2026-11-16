@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_3311",
+    "slug": "rif_3311",
+    "name": "62nd Meijinsen match R3-4",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-11-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "神谷俊介",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

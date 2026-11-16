@@ -1,0 +1,151 @@
+{
+  "tournament": {
+    "id": "rif_3149",
+    "slug": "rif_3149",
+    "name": "3rd Ya-In club tournament",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-03-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "유준우",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "오종민",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "이성현",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "김현섭",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "이호준",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "엄지명",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "김규현",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "장은민",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "류한주",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Park Seung-jun",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "김도형",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "강상민",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "이근백",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "박대원",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

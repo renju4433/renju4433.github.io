@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_1355",
+    "slug": "rif_1355",
+    "name": "38 Tokai Championship 2nd round",
+    "year": 2012,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2012-11-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "斎藤秀一",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "真野芳久",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "丸山保司",
+        "score": 1.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

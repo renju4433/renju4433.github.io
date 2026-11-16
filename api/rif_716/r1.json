@@ -1,0 +1,115 @@
+{
+  "tournament": {
+    "id": "rif_716",
+    "slug": "rif_716",
+    "name": "Tallinn Open 2010",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2010-12-26",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Olumets Erko",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Staub Rain",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Сушков",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Lillemaa Argo",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Oll Aivo",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Mesila Villem",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

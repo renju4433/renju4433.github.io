@@ -1,0 +1,171 @@
+{
+  "tournament": {
+    "id": "r4433_2530",
+    "slug": "r4433_2530",
+    "name": "第1届列宁格勒-莫斯科对抗赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 10,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kolomeitsev Alexander",
+        "score": 7
+      },
+      "white": {
+        "no": null,
+        "name": "Smirnov Sergey",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Ozhinsky Alexander",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Sokolsky Andrey",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Salnikov Pavel",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Ermakov Vladimir",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Kulikov Kirill",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Perepljotchikov Sergey",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Ivanov Alexander",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Biryukov Mikhail",
+        "score": 9
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Terekhov Dmitry",
+        "score": 6.0
+      },
+      "white": {
+        "no": null,
+        "name": "Nikonov Konstantin",
+        "score": 8
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Beloutov Gennady",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Gluhovsky Leonid",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

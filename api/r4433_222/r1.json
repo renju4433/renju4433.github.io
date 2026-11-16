@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "r4433_222",
+    "slug": "r4433_222",
+    "name": "涅夫卡-95比赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Ses Pavel",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Olyunin Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Volkov Sergey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Sushkov Vladimir",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

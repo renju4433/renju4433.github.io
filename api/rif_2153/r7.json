@@ -1,0 +1,159 @@
+{
+  "tournament": {
+    "id": "rif_2153",
+    "slug": "rif_2153",
+    "name": "Estonian QT to WC, 2nd stage",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-01-26",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Purk Tauri",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Ikla Markus",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Moor Karl-Mattias",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Aasav Jaak Andero",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Lõhmus Kristofer",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Kolk Kuno",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Lääne Rauno",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Piik Sander",
+        "score": 3.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Orlov Denis",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Kolk Mari",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Koni Kirke",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Rahumägi Brenet",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Lillemaa Argo",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Reimand Hanna-Kai",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

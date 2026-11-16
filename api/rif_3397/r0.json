@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_3397",
+    "slug": "rif_3397",
+    "name": "Chinese National Championship 2025, Men Final",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-05-10",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "江齐文",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "黄圣明",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "黄立勤",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "倪仲星",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "黄立勤",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "黄圣明",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "江齐文",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "倪仲星",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

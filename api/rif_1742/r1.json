@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_1742",
+    "slug": "rif_1742",
+    "name": "Kyushu Shinjinousen Tournament",
+    "year": 2016,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2016-03-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "佐藤卓也",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "田中寿樹",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

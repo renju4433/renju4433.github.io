@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "r4433_2175",
+    "slug": "r4433_2175",
+    "name": "第17期关西连珠锦标赛",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-10-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kito Shinichi",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Iio Yoshihiro",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Hayashi Shoichi",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Tanaka Shotaro",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Ide Daisuke",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Sakamoto Hirouji",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Tokonami Shota",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Toyo Koryu",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

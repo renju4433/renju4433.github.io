@@ -1,0 +1,131 @@
+{
+  "tournament": {
+    "id": "r4433_1811",
+    "slug": "r4433_1811",
+    "name": "第61期彗星战",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-09-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Tomobe Katsuhiro",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Shimura Hiroki",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Maruyama Takashi",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kato Shota",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Fujikawa Masaki",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Fujita Maiko",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Kawaai Hitoshi",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Shibano Ryunosuke",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Okada Akihiro",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Matsuda Shoma",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Tanaka Shotaro",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Yokoyama Shota",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

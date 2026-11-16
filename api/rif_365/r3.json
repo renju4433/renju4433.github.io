@@ -1,0 +1,111 @@
+{
+  "tournament": {
+    "id": "rif_365",
+    "slug": "rif_365",
+    "name": "Open Swedish Team Championship",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2007-11-24",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Blomstedt Torbjorn",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Rybka Aleš",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kolouchová Monika",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Lind Björn",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Sjostedt Hans",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nygards Daniel",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Hallkvist Joel",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Taimla Tunnet",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

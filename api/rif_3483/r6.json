@@ -1,0 +1,175 @@
+{
+  "tournament": {
+    "id": "rif_3483",
+    "slug": "rif_3483",
+    "name": "Nizhny Novgorod Open Cup 2025",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-11-08",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Данила Громов",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Solomatina Ekaterina",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kulkov Viktor",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Всеволод Троицкий",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Александр Романов",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Алла Махина",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Николай Коковин",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Нина Герасимовская",
+        "score": 3.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Golubev Kirill",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Кирилл Чичин",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Smetanin Petr",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Екатерина Селиверстова",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Kulkov Vladimir",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Litvak Mihail",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Gerasimovskaia Aleksandra",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Smetanin Andrei",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

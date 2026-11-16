@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_2263",
+    "slug": "rif_2263",
+    "name": "44 Seiunsen Tournament Nagoya area",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-01-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "伊藤忠",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "増田巧",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "岸善徳",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "内藤祐也",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

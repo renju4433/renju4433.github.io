@@ -1,0 +1,95 @@
+{
+  "tournament": {
+    "id": "rif_1246",
+    "slug": "rif_1246",
+    "name": "The 3rd Jingxi Renju Friendship Tournament",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2010-07-31",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "田汉法",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "赵京京",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "曾杨锋",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "王硕",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "马世卫",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "吴晓宁",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "rif_2248",
+    "slug": "rif_2248",
+    "name": "10th Tohoku Championship",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-09-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "廣野雅和",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "出町浩一郎",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "宮本俊寿",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

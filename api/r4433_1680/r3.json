@@ -1,0 +1,51 @@
+{
+  "tournament": {
+    "id": "r4433_1680",
+    "slug": "r4433_1680",
+    "name": "第四届中日交流暨首届中日五子棋友好对抗赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "奈良秀树",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "于京平",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

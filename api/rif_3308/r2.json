@@ -1,0 +1,83 @@
+{
+  "tournament": {
+    "id": "rif_3308",
+    "slug": "rif_3308",
+    "name": "Kyushu Championship 2024",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-11-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "河野高久",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "川合仁",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "鈴木裕太",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "山根友裕",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "久家彰夫",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

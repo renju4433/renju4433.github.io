@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_1426",
+    "slug": "rif_1426",
+    "name": "51 Meijinsen Qualification Kansai area 1st round",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-05-19",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "松井恒弘",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "畑雅幸",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "久保出美",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "小磯重正",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "今昭",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

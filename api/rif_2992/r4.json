@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_2992",
+    "slug": "rif_2992",
+    "name": "61 Meijinsen Qualification Hamamatsu area 1st round",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2023-05-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "加藤大介",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "みき",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "山本靖弘",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "上久保峰夫",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "深田蓮",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "丸山保司",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "高澤永吉",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

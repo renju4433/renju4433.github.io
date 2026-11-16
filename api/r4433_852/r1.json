@@ -1,0 +1,95 @@
+{
+  "tournament": {
+    "id": "r4433_852",
+    "slug": "r4433_852",
+    "name": "2021年上海五子棋青少年网络公开赛",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-03-28",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "李睿欣(28)",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "袁金灿(34)",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "邹江垚(3)",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "王琢瑜(4)",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "姜岳(49)",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "李丰(18)",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "tournament": {
+    "id": "rif_1766",
+    "slug": "rif_1766",
+    "name": "North regional tournament-1986",
+    "year": 1986,
+    "group": null,
+    "rule": null
+  },
+  "round": 10,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1986-09-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kolomeitsev Alexander",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 5.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Sinyov Igor",
+        "score": 5.0
+      },
+      "white": {
+        "no": null,
+        "name": "Kulikov Kirill",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Melman Mark",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Moiseyev Kirill",
+        "score": 4.0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Suslov Alexander",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Sokolov Alexander",
+        "score": 6.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Sychev Vladimir",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Yakovlev Gennady",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Ibatullin Robert",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Kitov Igor",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

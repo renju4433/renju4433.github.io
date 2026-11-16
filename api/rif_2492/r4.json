@@ -1,0 +1,211 @@
+{
+  "tournament": {
+    "id": "rif_2492",
+    "slug": "rif_2492",
+    "name": "Qualification tournament",
+    "year": 2022,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2022-04-30",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Maslova Daria",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kudrjavtsev Andrey",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Vereshagin Dmitrii",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Соколов Андрей",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Lapin Maxim",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Orlov Maxim",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Rozhkani Albert",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kulemin Anatoly",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Константин Казанцев",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Marushev Ilya",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Александр Романов",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Sokolnikov Alexey",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Novozhilova Alexandra",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kholopov Ilya",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Kulagin Artem",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Vitkov Maksim",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Pershivalov Ruslan",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Нина Герасимовская",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 10,
+      "black": {
+        "no": null,
+        "name": "Николай Коковин",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Smirnov Alexandr",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "tournament": {
+    "id": "rif_2627",
+    "slug": "rif_2627",
+    "name": "Chinese National Championship 2013, Men Group B",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-10-03",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "黄圣明",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "龚胜",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "江齐文",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "朱凯",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "朱建锋",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "贺启发",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "兰志仁",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "奚振扬",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "任继航",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "梅凡",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "徐建鑫",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "宋雨",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "廖欣煜",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "张纪国",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "宋振杰",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "陈凯迪",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

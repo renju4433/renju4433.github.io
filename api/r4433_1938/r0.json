@@ -1,0 +1,55 @@
+{
+  "tournament": {
+    "id": "r4433_1938",
+    "slug": "r4433_1938",
+    "name": "第10期全日本连珠名人战",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "西村敏雄",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "三森政男",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "中西英俊",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "三森政男",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

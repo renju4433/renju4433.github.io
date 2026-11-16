@@ -1,0 +1,71 @@
+{
+  "tournament": {
+    "id": "r4433_1987",
+    "slug": "r4433_1987",
+    "name": "第4届世界连珠锦标赛日本选拔赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Tatsutomi Hiroyuki",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nara Hideki",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Hasegawa Kazuto",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nara Hideki",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Hayakawa K.",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nara Hideki",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

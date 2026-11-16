@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_3214",
+    "slug": "rif_3214",
+    "name": "62nd Meijinsen Tournament Chugoku round",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-05-19",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "山根友裕",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "河本翔真",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

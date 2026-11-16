@@ -1,0 +1,179 @@
+{
+  "tournament": {
+    "id": "rif_655",
+    "slug": "rif_655",
+    "name": "Gambler liga (old RIF)",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2010-01-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Chekalin Kirill",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Bogachevskaja Rimma",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Trofimov Alexander",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Bogatyrev Aleksandr",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Suslov Sergey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Degtyar Felix",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Akinfejev Kirill",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Koshkina Ekaterina",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Sergejev Oleg",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gorokhov Nikita",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Chaplygin Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Kurochkin Viktor",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Matsjuk Oksana",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

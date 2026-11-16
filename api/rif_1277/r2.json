@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_1277",
+    "slug": "rif_1277",
+    "name": "Estonian Cup 2012, semifinals and finals",
+    "year": 2012,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2012-02-25",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Olumets Erko",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Hõbemägi Martin",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Narva Mai",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Narva Mai",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Olumets Erko",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

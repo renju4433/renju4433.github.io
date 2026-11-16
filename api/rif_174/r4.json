@@ -1,0 +1,67 @@
+{
+  "tournament": {
+    "id": "rif_174",
+    "slug": "rif_174",
+    "name": "Capital Cup Beijing Invitational Championship",
+    "year": 2006,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2006-09-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "殷立成",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "王泽涵",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "王硕",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "田丰",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

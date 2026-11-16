@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_302",
+    "slug": "rif_302",
+    "name": "Tournament of Ten (Qualification to WC)",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2007-05-02",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kadulin Alexander",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Михаил Кожин",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Golosov Viktor",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Владислав Русин",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Sumarokov Evgeny",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

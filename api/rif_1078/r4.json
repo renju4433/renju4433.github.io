@@ -1,0 +1,139 @@
+{
+  "tournament": {
+    "id": "rif_1078",
+    "slug": "rif_1078",
+    "name": "38th Touryumon-Sen Tournament",
+    "year": 2005,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2005-03-20",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "辻林太朗",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "杉山太郎",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "柿内圭介",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "牧達也",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "奥田新悟",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "武原健次",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "篠田聖",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "舛谷浩",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "高嶋純也",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "宮川創",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "大角友希",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "小澤哲史",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

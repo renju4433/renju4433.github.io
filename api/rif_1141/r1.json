@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_1141",
+    "slug": "rif_1141",
+    "name": "30th Seiun-sen Tournament - Final",
+    "year": 2006,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2006-03-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "小出守宏",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "埜口菊夫",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

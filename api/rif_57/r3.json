@@ -1,0 +1,135 @@
+{
+  "tournament": {
+    "id": "rif_57",
+    "slug": "rif_57",
+    "name": "European Championship 2006, QT",
+    "year": 2006,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2006-09-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Rachitskaya Viktoria",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kolouchová Monika",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Němec Tomáš",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Strádal Jan",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Prokopyev Ruslan",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kryuchok Roman",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Moiseyev Kirill",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Nowak Paweł",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Rejšek Jan",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Neuman Petr",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "tournament": {
+    "id": "r4433_3060",
+    "slug": "r4433_3060",
+    "name": "第5届乌克兰-摩尔多瓦公开赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kolesnikov Vladimir",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Tregubov Mikhail",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Tregubov Mikhail",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Ivanov Igor",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kolesnikov Vladimir",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Burlaka A.",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

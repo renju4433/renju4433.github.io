@@ -1,0 +1,203 @@
+{
+  "tournament": {
+    "id": "rif_2238",
+    "slug": "rif_2238",
+    "name": "5th Open Team Tournament",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 10,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-01-03",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Илона Качаева",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Katsev Ilya",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Bushkowski Ludwik",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Михаил Кожин",
+        "score": 8
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Михаил Кулешов",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Пётр Бурцев",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Kinelovskiy Nikita",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Макаров Павел",
+        "score": 8
+      },
+      "white": {
+        "no": null,
+        "name": "Екатерина Румянцева",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Александр Лисютин",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Дмитрий Епифанов",
+        "score": 6
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Gorbachev Daniil",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Денис Качаев",
+        "score": 6
+      },
+      "white": {
+        "no": null,
+        "name": "Chernyi Anton",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Galochkin Sergey",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

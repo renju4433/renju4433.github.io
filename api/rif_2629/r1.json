@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_2629",
+    "slug": "rif_2629",
+    "name": "Chinese National Championship 2013, Men Group Final",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-10-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "朱建锋",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "曹冬",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "李一",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "江齐文",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "龚胜",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "祁观",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "芦海",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "黄圣明",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

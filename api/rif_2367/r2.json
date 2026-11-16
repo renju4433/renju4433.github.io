@@ -1,0 +1,95 @@
+{
+  "tournament": {
+    "id": "rif_2367",
+    "slug": "rif_2367",
+    "name": "The 2nd University Renju Championship Round Robin",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-02-27",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "강상민",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kim In-Ho",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "박도영",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "김경배",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Han Hee-Ju",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "임정훈",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

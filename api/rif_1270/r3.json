@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_1270",
+    "slug": "rif_1270",
+    "name": "Estonian Cup 2012, 1/4 finals",
+    "year": 2012,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2012-01-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Olumets Erko",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kolk Kuno",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Mesila Villem",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Narva Mai",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Heidmets Mark",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

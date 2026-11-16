@@ -1,0 +1,51 @@
+{
+  "tournament": {
+    "id": "rif_2245",
+    "slug": "rif_2245",
+    "name": "2nd Korea Omok Master Ranking Match",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-01-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Lim Jin-uk",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Kim Yeong-jin",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

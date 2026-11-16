@@ -1,0 +1,111 @@
+{
+  "tournament": {
+    "id": "rif_3316",
+    "slug": "rif_3316",
+    "name": "The 33rd Russian Championship among Women",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 7,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-02-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Илона Качаева",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Ирина Метревели",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Мария Петрова",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Анна Фокичева",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Александра Шангина",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Нонна Сальникова",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Екатерина Румянцева",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Екатерина Порохина",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

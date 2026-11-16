@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_1857",
+    "slug": "rif_1857",
+    "name": "Larix-2017",
+    "year": 2017,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2017-01-28",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Tarannikov Yuriy",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Максим Карасёв",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Golosov Viktor",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Mikhailov Alexander",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Макаров Павел",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Константин Никонов",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

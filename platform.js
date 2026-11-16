@@ -9,12 +9,15 @@
     '#grp.rp-click{display:inline-block;padding:1px 7px;border-radius:6px;transition:background .15s}',
     '#grp.rp-click:hover{background:var(--mint,#e9f3ee);color:var(--green,#0d4736)}',
     '#grp.rp-click::after{content:" ▾";font-size:.85em;opacity:.7}',
-    '.rp-menu{position:fixed;z-index:9999;min-width:220px;max-width:min(92vw,420px);max-height:60vh;overflow-y:auto;background:var(--card,#fff);border:1px solid var(--line,#e6dfd0);border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.14);padding:6px}',
+    '.rp-menu{position:fixed;z-index:9999;min-width:240px;max-width:min(92vw,460px);max-height:65vh;display:flex;flex-direction:column;background:var(--card,#fff);border:1px solid var(--line,#e6dfd0);border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.14);padding:6px}',
+    '.rp-search{width:100%;box-sizing:border-box;margin-bottom:6px;padding:6px 10px;border:1px solid var(--line,#dfd8c8);border-radius:7px;background:var(--mint2,#f7faf8);color:var(--ink,#17201a);font:400 13px/1.3 var(--sans,system-ui,sans-serif)}',
+    '.rp-search:focus{outline:none;border-color:var(--green,#0d4736)}',
+    '.rp-list{overflow-y:auto;flex:1 1 auto}',
     '.rp-item{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left;border:0;background:transparent;color:var(--ink,#17201a);font:400 13.5px/1.45 var(--sans,system-ui,sans-serif);padding:7px 10px;border-radius:7px;cursor:pointer}',
     '.rp-item:hover{background:var(--mint2,#f4f8f6);color:var(--green,#0d4736)}',
     '.rp-item.on{background:var(--mint,#e9f3ee);color:var(--green,#0d4736);font-weight:600}',
     '.rp-item-sub{font-size:11.5px;color:var(--ink3,#6c766f);white-space:nowrap}',
-    '@media (prefers-color-scheme:dark){.rp-menu{background:#171c1a;border-color:#2a322e;box-shadow:0 10px 28px rgba(0,0,0,.45)}.rp-item{color:#e8ece7}.rp-item:hover{background:#1e2823;color:#93d3b6}.rp-item.on{background:#1b3a2e;color:#93d3b6}#grp.rp-click:hover{background:#1d2a25;color:#93d3b6}}'
+    '@media (prefers-color-scheme:dark){.rp-menu{background:#171c1a;border-color:#2a322e;box-shadow:0 10px 28px rgba(0,0,0,.45)}.rp-search{background:#121715;color:#e8ece7;border-color:#2a322e}.rp-item{color:#e8ece7}.rp-item:hover{background:#1e2823;color:#93d3b6}.rp-item.on{background:#1b3a2e;color:#93d3b6}#grp.rp-click:hover{background:#1d2a25;color:#93d3b6}}'
   ].join('\n');
 
   function injectStyle() {
@@ -78,24 +81,50 @@
     var rect = anchor.getBoundingClientRect();
     var menu = document.createElement('div');
     menu.className = 'rp-menu';
-    menu.innerHTML = items.map(function (it, idx) {
-      return '<button type="button" class="rp-item' + (it.active ? ' on' : '') + '" data-i="' + idx + '">' +
-        '<span>' + esc(it.label) + '</span>' +
-        (it.sub ? '<span class="rp-item-sub">' + esc(it.sub) + '</span>' : '') +
-      '</button>';
-    }).join('');
+    var useSearch = items.length > 20;
+    menu.innerHTML =
+      (useSearch ? '<input type="text" class="rp-search" placeholder="搜索赛事名称或日期… (共 ' + items.length + ' 场)">' : '') +
+      '<div class="rp-list"></div>';
     document.body.appendChild(menu);
+
+    var listEl = menu.querySelector('.rp-list');
+    function renderItems(q) {
+      var kw = (q || '').trim().toLowerCase();
+      var filtered = [];
+      for (var i = 0; i < items.length; i++) {
+        if (!kw || items[i].label.toLowerCase().indexOf(kw) !== -1) {
+          filtered.push({ item: items[i], idx: i });
+          if (filtered.length >= 150) break;
+        }
+      }
+      listEl.innerHTML = filtered.map(function (entry) {
+        var it = entry.item;
+        return '<button type="button" class="rp-item' + (it.active ? ' on' : '') + '" data-i="' + entry.idx + '">' +
+          '<span>' + esc(it.label) + '</span>' +
+          (it.sub ? '<span class="rp-item-sub">' + esc(it.sub) + '</span>' : '') +
+        '</button>';
+      }).join('') || '<div style="padding:10px;color:var(--ink3,#6c766f);font-size:13px">无匹配赛事</div>';
+
+      Array.prototype.forEach.call(listEl.querySelectorAll('.rp-item'), function (btn) {
+        btn.addEventListener('click', function () {
+          var idx = parseInt(btn.getAttribute('data-i'), 10);
+          closeMenu();
+          onPick(items[idx]);
+        });
+      });
+    }
+
+    renderItems('');
     var top = Math.min(window.innerHeight - menu.offsetHeight - 12, rect.bottom + 6);
     var left = Math.max(12, Math.min(window.innerWidth - menu.offsetWidth - 12, rect.left));
     menu.style.top = Math.max(12, top) + 'px';
     menu.style.left = left + 'px';
-    Array.prototype.forEach.call(menu.querySelectorAll('.rp-item'), function (btn) {
-      btn.addEventListener('click', function () {
-        var idx = parseInt(btn.getAttribute('data-i'), 10);
-        closeMenu();
-        onPick(items[idx]);
-      });
-    });
+
+    if (useSearch) {
+      var inp = menu.querySelector('.rp-search');
+      inp.focus();
+      inp.addEventListener('input', function () { renderItems(inp.value); });
+    }
     openMenu = menu;
   }
 

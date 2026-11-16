@@ -1,0 +1,163 @@
+{
+  "tournament": {
+    "id": "rif_2387",
+    "slug": "rif_2387",
+    "name": "3rd Korea Omok Master Tournament",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-07-03",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "류한주",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Yang Seong-Mo",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "김창범",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Park Hyeong Mahn",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "이호준",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "강상민",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "김윤태",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "황도훈",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Kwon Byung Soo",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kang Jun Mo",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "박한주",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Park Seung-jun",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "박도영",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "장원철",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "한병선",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Son Cheong Hoi",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

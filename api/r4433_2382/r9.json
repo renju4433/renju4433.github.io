@@ -1,0 +1,167 @@
+{
+  "tournament": {
+    "id": "r4433_2382",
+    "slug": "r4433_2382",
+    "name": "第12届欧洲青少年五子棋锦标赛",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 9,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-07-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Ikla Markus",
+        "score": 7
+      },
+      "white": {
+        "no": null,
+        "name": "Tonisson Trent Asso",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Gorbachev Daniil",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Raag Ardi",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Lääne Kristjan",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Startsev Masksim",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Agarkov Dmitrii",
+        "score": 5
+      },
+      "white": {
+        "no": null,
+        "name": "Mikryukov Sergey",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Puzanov Georgi",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Noskov Pavel",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Lääne Kristjan",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Pukk Martin",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Kilkan Alp Ari",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Lääne Rauno",
+        "score": 7
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

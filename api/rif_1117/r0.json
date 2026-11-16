@@ -1,0 +1,135 @@
+{
+  "tournament": {
+    "id": "rif_1117",
+    "slug": "rif_1117",
+    "name": "Vladimir-open",
+    "year": 1987,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1987-08-28",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kiverin Dmitry",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Maslyaev Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Sokolsky Andrey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kiverin Dmitry",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Sokolsky Andrey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Maslyaev Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Sokolsky Andrey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Krupikov Andrey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Kiverin Dmitry",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ibatullin Robert",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Ibatullin Robert",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kalyakin Dmitrii",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Ibatullin Robert",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Tsuladze Andrey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

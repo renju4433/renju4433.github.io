@@ -1,0 +1,131 @@
+{
+  "tournament": {
+    "id": "rif_600",
+    "slug": "rif_600",
+    "name": "Nizhny Novgorod open tournament. 2009.",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-03-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Tarasevich Stepan",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Михаил Кожин",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Максим Карасёв",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Makarov Sergey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gorokhov Nikita",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Макаров Павел",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gorokhov Dmitry",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Syomin Nikita",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Polevschikov Andrey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

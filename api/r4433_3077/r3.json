@@ -1,0 +1,95 @@
+{
+  "tournament": {
+    "id": "r4433_3077",
+    "slug": "r4433_3077",
+    "name": "2018年瑞典连珠锦标赛",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-04-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Maltell Tommy",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Maltell Tommy",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Florentzson Adam",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Florentzson Adam",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_1703",
+    "slug": "rif_1703",
+    "name": "16 Kanto Renju Emperor Tournament 2nd round",
+    "year": 2015,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2015-12-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "中村茂",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "中山智晴",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "佐藤清富",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "小野孝之",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "小山純",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

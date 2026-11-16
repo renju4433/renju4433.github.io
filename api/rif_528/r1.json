@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_528",
+    "slug": "rif_528",
+    "name": "46 Meijinsen Match R1-R2",
+    "year": 2008,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2008-10-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_937",
+    "slug": "rif_937",
+    "name": "49 Meijinsen Qualification Tokai area 2nd round",
+    "year": 2011,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2011-05-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "真野芳久",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "三好丈夫",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "丸山保司",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

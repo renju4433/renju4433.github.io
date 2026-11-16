@@ -1,0 +1,51 @@
+{
+  "tournament": {
+    "id": "rif_2221",
+    "slug": "rif_2221",
+    "name": "The 57th Meijin-sen Match",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-10-26",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "神谷俊介",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "中村茂",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

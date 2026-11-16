@@ -1,0 +1,151 @@
+{
+  "tournament": {
+    "id": "rif_933",
+    "slug": "rif_933",
+    "name": "28th Kanto Shineisen Tournament",
+    "year": 2011,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2011-04-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "加藤浩昭",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "加藤康弘",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "福井暢宏",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "友部勝弘",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "岩野文雄",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "神谷俊介",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "松岡照雄",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "鈴木りん",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "今昭",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "新井和美",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "中山智晴",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "小山純",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "小澤哲史",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "丸田浩貴",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

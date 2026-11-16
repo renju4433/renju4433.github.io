@@ -1,0 +1,111 @@
+{
+  "tournament": {
+    "id": "rif_3235",
+    "slug": "rif_3235",
+    "name": "Youth Championship of Arkhangelsk region Group BF",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-07-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Михаил Сидоров",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Егор Фокичев",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Анна Фокичева",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Юлия Вострякова",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Вячеслав Куваев",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Максим Старцев",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Мария Петрова",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Александр Пинский",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

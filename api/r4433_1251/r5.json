@@ -1,0 +1,75 @@
+{
+  "tournament": {
+    "id": "r4433_1251",
+    "slug": "r4433_1251",
+    "name": "济南市第十二届全民健身运动会线上五子棋赛",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2010-01-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "郭俊逸",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "张守畅",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "邓祺",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "逄嘉祥",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

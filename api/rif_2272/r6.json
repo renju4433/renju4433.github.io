@@ -1,0 +1,91 @@
+{
+  "tournament": {
+    "id": "rif_2272",
+    "slug": "rif_2272",
+    "name": "Cracow Open 2010",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2010-11-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Muzika Martin",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Kosztyła Andrzej",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Majczyk Marcin",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Bieniek Piotr",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Harmasz Adam",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Małowiejski Piotr",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

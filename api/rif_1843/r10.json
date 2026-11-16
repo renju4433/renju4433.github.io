@@ -1,0 +1,191 @@
+{
+  "tournament": {
+    "id": "rif_1843",
+    "slug": "rif_1843",
+    "name": "III USSR Championship, First League",
+    "year": 1990,
+    "group": null,
+    "rule": null
+  },
+  "round": 10,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1990-11-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kutulutsky Georgy",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Antonov Andrey",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Alexandrov Victor",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Poghosyan Albert",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Mikhailov Nikolay",
+        "score": 5.0
+      },
+      "white": {
+        "no": null,
+        "name": "Gluhovsky Leonid",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Peskov Stepan",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Krasnonosov Dmitry",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Smirnov Sergey",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Veidemanis Arnis",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Teterovskis Nils",
+        "score": 3.0
+      },
+      "white": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 4.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Sotnikov Mikhail",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Eibatov Nizami",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 5.0
+      },
+      "white": {
+        "no": null,
+        "name": "Alexandrov Gennady",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "tournament": {
+    "id": "rif_2630",
+    "slug": "rif_2630",
+    "name": "Chinese National Championship 2013, Women Group Final",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-10-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "汪清清",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "罗佳敏",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "刘恂",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "成艳珍",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "吴志琴",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "董晓丽",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "王新慧",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "于亚君",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

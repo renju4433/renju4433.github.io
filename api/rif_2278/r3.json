@@ -1,0 +1,127 @@
+{
+  "tournament": {
+    "id": "rif_2278",
+    "slug": "rif_2278",
+    "name": "Chinese National Network Mind Sports Games 2016",
+    "year": 2017,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2017-04-22",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "祁观",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "杨彦希",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "刘洋",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "江齐文",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "梅凡",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "聂淼",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "吴志琴",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "董晓丽",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "马闻慧",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "奚振扬",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

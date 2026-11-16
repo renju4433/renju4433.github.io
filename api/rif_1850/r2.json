@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_1850",
+    "slug": "rif_1850",
+    "name": "41 Seiunsen Tournament final match",
+    "year": 2017,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2017-03-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "岸善徳",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "上久保峰夫",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

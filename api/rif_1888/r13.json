@@ -1,0 +1,151 @@
+{
+  "tournament": {
+    "id": "rif_1888",
+    "slug": "rif_1888",
+    "name": "Youth Russian Championship, group C",
+    "year": 2017,
+    "group": null,
+    "rule": null
+  },
+  "round": 13,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    },
+    {
+      "round": 12,
+      "is_finished": true
+    },
+    {
+      "round": 13,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2017-03-25",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Dik Kirill",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Dyachkov Nikita",
+        "score": 9
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Максим Метревели",
+        "score": 9
+      },
+      "white": {
+        "no": null,
+        "name": "Bykov Dmitrii",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Данила Громов",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Stoyanov Kirill",
+        "score": 7
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Kozhevin Dmitry",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Вячеслав Куваев",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Fedoseyev Arseniy",
+        "score": 9.5
+      },
+      "white": {
+        "no": null,
+        "name": "Иван Данилин",
+        "score": 10
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

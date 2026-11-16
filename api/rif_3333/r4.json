@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_3333",
+    "slug": "rif_3333",
+    "name": "“I Want to Go to Zhiyun” National Tournament 2024, Final",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-12-07",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "侯军",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "吴彬彬",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "刘华军",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "刘晋峰",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "朱天逸",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "夏建晋",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

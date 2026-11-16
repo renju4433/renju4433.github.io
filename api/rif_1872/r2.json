@@ -1,0 +1,83 @@
+{
+  "tournament": {
+    "id": "rif_1872",
+    "slug": "rif_1872",
+    "name": "57 Suiseisen Tournament 1st round",
+    "year": 2017,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2017-10-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "丸田浩貴",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "小山晃弘",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "出町浩一郎",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "高木朋之",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "西澤碧生",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "森田豊",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

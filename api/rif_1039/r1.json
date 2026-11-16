@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_1039",
+    "slug": "rif_1039",
+    "name": "Swedish Cup - Semi final",
+    "year": 2004,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2004-08-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Gardström Petter",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gaulitz Joachim",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

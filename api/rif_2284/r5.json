@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_2284",
+    "slug": "rif_2284",
+    "name": "58 Meijinsen Qualification Kansai area 1st round",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-06-21",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "舘雅也",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "畑雅幸",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "牧野光則",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "林昭一",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "阪本嵩山",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

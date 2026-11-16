@@ -1,0 +1,51 @@
+{
+  "tournament": {
+    "id": "rif_1658",
+    "slug": "rif_1658",
+    "name": "Estonian Cup 2015 to 17th place",
+    "year": 2015,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2015-05-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Varind Taavi",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Pirn Rainer",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

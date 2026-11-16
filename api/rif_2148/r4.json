@@ -1,0 +1,155 @@
+{
+  "tournament": {
+    "id": "rif_2148",
+    "slug": "rif_2148",
+    "name": "14th All Japan Championship",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-03-30",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "中村茂",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "神谷俊介",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "中山智晴",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "井上史也",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "丸田浩貴",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "千木良誠",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "藤田麻衣子",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "草島真人",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "宮本俊寿",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "小山純",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "小野孝之",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

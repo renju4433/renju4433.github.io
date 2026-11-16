@@ -1,0 +1,79 @@
+{
+  "tournament": {
+    "id": "rif_1735",
+    "slug": "rif_1735",
+    "name": "Estonian Cup 2016 1/16 and 1/8",
+    "year": 2016,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2016-02-26",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Heidmets Mark",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Voznjuk Pavel",
+        "score": 5.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Tõnisson Trent Asso",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Piik Sander",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

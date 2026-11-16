@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "rif_2538",
+    "slug": "rif_2538",
+    "name": "40th Meijinsen Qualification Tokai area 1st-Round",
+    "year": 2002,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2002-05-19",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "蒲野裕",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "山本福惠",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "丸山保司",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "山本福惠",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "三好丈夫",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "奥野友介",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "高澤永吉",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "山本靖弘",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "宮津五一",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

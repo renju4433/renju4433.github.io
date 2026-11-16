@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "rif_552",
+    "slug": "rif_552",
+    "name": "Estonian Cup, 1/8 finals",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-02-11",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Nõmm Liina",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Krjukov Gerli",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Sulane Sander",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Vunk Tiit",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Kullamaa Mart",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Mirme Madli",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Kolk Peeter",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Tänav Tõnis",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

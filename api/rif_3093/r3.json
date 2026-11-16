@@ -1,0 +1,163 @@
+{
+  "tournament": {
+    "id": "rif_3093",
+    "slug": "rif_3093",
+    "name": "Kotlas 2023 Group D",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2023-11-25",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Teremov Aleksandr",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kanashev Daniil",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Zorin Egor",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Serebryannikov Artem",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Константин Краев",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Степанов Иван",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Никита Страшненков",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Teremov Artem",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Дмитрий Мартынов",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Всеволод Зубов",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Каландаров Глеб",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Vostryakov Denis",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Санковский Арсений",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Ярослав Рогозинский",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

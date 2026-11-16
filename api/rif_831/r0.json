@@ -1,0 +1,55 @@
+{
+  "tournament": {
+    "id": "rif_831",
+    "slug": "rif_831",
+    "name": "Wettercupen",
+    "year": 1995,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1995-09-16",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Palmgren Jan",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Meritee Ando",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Palmgren Jan",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

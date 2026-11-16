@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_3057",
+    "slug": "rif_3057",
+    "name": "37 Aomori Championship",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2023-06-25",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "古跡健将",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "川合仁",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "丹野好高",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "大科清市",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

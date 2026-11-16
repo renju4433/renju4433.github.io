@@ -1,0 +1,167 @@
+{
+  "tournament": {
+    "id": "rif_130",
+    "slug": "rif_130",
+    "name": "European Championship 1995",
+    "year": 1995,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1995-12-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Holgersson Goran",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Johannesson Rickard",
+        "score": 1.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Ermakov Oleg",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Pavinich Andrey",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Peskov Stepan",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Klimashin Alexander",
+        "score": 3.0
+      },
+      "white": {
+        "no": null,
+        "name": "Павел Сальников",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Alexandrov Victor",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Михаил Кожин",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Degtyar Felix",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Wallgren Björn",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

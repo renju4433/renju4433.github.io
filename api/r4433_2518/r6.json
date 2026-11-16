@@ -1,0 +1,535 @@
+{
+  "tournament": {
+    "id": "r4433_2518",
+    "slug": "r4433_2518",
+    "name": "第一届苏联五子棋锦标赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Sinyov Igor",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Salnikov Pavel",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Talsky Vladimir",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Ilyin Dmitry",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Pavinich Andrey",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Krasnonosov Dmitry",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Poghosyan Albert",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Mikhailov Nikolay",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Alexandrov Gennady",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Reims Aldis",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Sakhapov Albert",
+        "score": 4.0
+      },
+      "white": {
+        "no": null,
+        "name": "Voskanian Edward",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Zabrodin Alexander",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Doroshkevich Igor",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Suslov Alexandr",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Alexandrov Victor",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Shavarin Michael",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Mikhailov Alexander",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 10,
+      "black": {
+        "no": null,
+        "name": "Nazarov Vladimir",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Zabrodin Evgeny",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 11,
+      "black": {
+        "no": null,
+        "name": "Dvoeglazov Vladimir",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Filinov Vladimir",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 12,
+      "black": {
+        "no": null,
+        "name": "Bashirov Rustam",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Andersons Andris",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 13,
+      "black": {
+        "no": null,
+        "name": "Tregubov Mikhail",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Bethers Arilds",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 14,
+      "black": {
+        "no": null,
+        "name": "Filippov Sergey",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Milevsky Alexandr",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 15,
+      "black": {
+        "no": null,
+        "name": "Eibatov Nizami",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Teterovskis Nils",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 16,
+      "black": {
+        "no": null,
+        "name": "Zakharian Michael",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Kolesnikov Alexey",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 17,
+      "black": {
+        "no": null,
+        "name": "Veidemanis Arnis",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Kulikov Kirill",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 18,
+      "black": {
+        "no": null,
+        "name": "Kireev Grigory",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Doronin Roman",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 19,
+      "black": {
+        "no": null,
+        "name": "Sobolev Mikhail",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Denisov A.",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 20,
+      "black": {
+        "no": null,
+        "name": "Ivanov Igor",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Stepanyan Armen",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 21,
+      "black": {
+        "no": null,
+        "name": "Terteryan Alexander",
+        "score": 1.0
+      },
+      "white": {
+        "no": null,
+        "name": "Gevorkyan Hovhannes",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 22,
+      "black": {
+        "no": null,
+        "name": "Nokhrin Oleg",
+        "score": 2.0
+      },
+      "white": {
+        "no": null,
+        "name": "Bakhmetyev Аndrey",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 23,
+      "black": {
+        "no": null,
+        "name": "Mikhailov Andrey",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Degtyar Felix",
+        "score": 1.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 24,
+      "black": {
+        "no": null,
+        "name": "Erofeev S",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Podurov Valery",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 25,
+      "black": {
+        "no": null,
+        "name": "Zanchenko Sergey",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Grigoryan Nerses",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 26,
+      "black": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 2.0
+      },
+      "white": {
+        "no": null,
+        "name": "Troshitsev A",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 27,
+      "black": {
+        "no": null,
+        "name": "Biryukov Mikhail",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Kozhin Mikhail",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 28,
+      "black": {
+        "no": null,
+        "name": "Dzainukov Eldar",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Gulyayev Igor",
+        "score": 3.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 29,
+      "black": {
+        "no": null,
+        "name": "Piddubny Konstantin",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kornilov Sergey",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 30,
+      "black": {
+        "no": null,
+        "name": "Nikonov Konstantin",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Bobkov Evgeniy",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

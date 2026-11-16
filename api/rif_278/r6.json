@@ -1,0 +1,207 @@
+{
+  "tournament": {
+    "id": "rif_278",
+    "slug": "rif_278",
+    "name": "Helsinki Open",
+    "year": 2000,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2000-09-16",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Ostra Ain",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridina Olga",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Torstensson Tomas",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Milva Kadi",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Toivonen Lauri",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Madissoon Ülo",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Milva Helen",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Gluhovsky Leonid",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Tihkan Evelyn",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Laibinis Linas",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Tuvikene Maris",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Carlsson Martin",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Lents Johann",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Eriksson Bjorn",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Andersson Tord",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 10,
+      "black": {
+        "no": null,
+        "name": "Karlsson Irene",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Pellikka Marko",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

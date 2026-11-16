@@ -1,0 +1,79 @@
+{
+  "tournament": {
+    "id": "r4433_1565",
+    "slug": "r4433_1565",
+    "name": "第十二届中国台湾名人赛",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-10-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Lin Huang-Yu",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Huang Yen-Hua",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Ke Fang-Ying",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Chen Ko-Han",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Chen Ko-Han",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Ke Fang-Ying",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

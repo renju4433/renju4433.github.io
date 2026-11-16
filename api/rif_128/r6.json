@@ -1,0 +1,139 @@
+{
+  "tournament": {
+    "id": "rif_128",
+    "slug": "rif_128",
+    "name": "Swedish Championship High League",
+    "year": 1995,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1995-04-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Nielsen Johnny",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ogren Stefan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Johannesson Rickard",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Gardström Petter",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Asplund Bengt",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Andersson Tord",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Sundling Ingvar",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Palmgren Jan",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Wallgren Björn",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

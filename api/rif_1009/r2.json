@@ -1,0 +1,51 @@
+{
+  "tournament": {
+    "id": "rif_1009",
+    "slug": "rif_1009",
+    "name": "4th Kanto Renju Emperor Tournament - Final",
+    "year": 2004,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2004-02-29",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "山口釉水",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

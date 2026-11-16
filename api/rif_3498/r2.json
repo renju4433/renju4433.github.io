@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_3498",
+    "slug": "rif_3498",
+    "name": "2025 Bay Area (Shenzhen) Renju Elite Tournament",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-12-05",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "韋振強",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "成艳珍",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "凌世杰",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "江齐文",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "李小青",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "何舒军",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "蒙杰焕",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "曹冬",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

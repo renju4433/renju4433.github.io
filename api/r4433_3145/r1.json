@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "r4433_3145",
+    "slug": "r4433_3145",
+    "name": "2018年Wettercupen赛",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Maltell Tommy",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Sandstrom Richard",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Maltell Tommy",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Sandstrom Richard",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Maltell Tommy",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Sandstrom Richard",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

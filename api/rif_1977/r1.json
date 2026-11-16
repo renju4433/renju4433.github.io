@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_1977",
+    "slug": "rif_1977",
+    "name": "42 Seiunsen Tournament final match",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-03-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "内藤祐也",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "釘崎道比古",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

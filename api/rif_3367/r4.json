@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "rif_3367",
+    "slug": "rif_3367",
+    "name": "The 2025 GamZhan Cup Spring Open Tournament",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-03-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "黃意珊",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "張育銓",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "吳尚諭",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "蘇鈺程",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "吳承諦",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "陳威至",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "張棕皓",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "沈之皓",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "吳凡琳",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "陳君彥",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

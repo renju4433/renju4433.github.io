@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "id": "rif_1981",
+    "slug": "rif_1981",
+    "name": "Stefan's 7x7 birthday",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-03-31",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Kõlar Karl-Ustav",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Piik Sander",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Kolk Kuno",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Moor Karl-Mattias",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Raag Ardi",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ikla Markus",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Rahumägi Brenet",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Mesila Villem",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Topkin Georg-Romet",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

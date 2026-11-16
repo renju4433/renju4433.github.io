@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_758",
+    "slug": "rif_758",
+    "name": "48 Meijinsen Match R3,R4,R5",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2010-11-20",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "大角友希",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "長谷川一人",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

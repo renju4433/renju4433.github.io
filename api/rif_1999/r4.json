@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_1999",
+    "slug": "rif_1999",
+    "name": "56 Meijinsen Qualification Kansai area 1st round",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-05-20",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "河村典彦",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "阪本嵩山",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "舘雅也",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "畑雅幸",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "林昭一",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "小澤哲史",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "渡邊延夫",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "松井恒弘",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

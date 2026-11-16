@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_2270",
+    "slug": "rif_2270",
+    "name": "44 Seiunsen Tournament final match",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-03-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "増田巧",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "深田蓮",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

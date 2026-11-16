@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_2905",
+    "slug": "rif_2905",
+    "name": "60th Meijinsen Tournament Tokai area 1st round",
+    "year": 2022,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2022-05-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "真野芳久",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "大村周",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

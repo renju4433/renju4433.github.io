@@ -1,0 +1,147 @@
+{
+  "tournament": {
+    "id": "r4433_1746",
+    "slug": "r4433_1746",
+    "name": "第21期关东连珠帝王战",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-11-06",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Maruta Koji",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Shimura Hiroki",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Suenaga Daiki",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Tamada Yoichi",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Makino Mitsunori",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Ishitani Shin-ichi",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Fujita Maiko",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Maruyama Takashi",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Kishimoto Shogo",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kasahara Reiko",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Maruta Hiroki",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kawaai Hitoshi",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Ono Takayuki",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Inoue Fumiya",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

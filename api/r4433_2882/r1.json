@@ -1,0 +1,75 @@
+{
+  "tournament": {
+    "id": "r4433_2882",
+    "slug": "r4433_2882",
+    "name": "列宁格勒涅夫卡-89",
+    "year": null,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Gorshenkov Artur",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Yaroslavtsev Yaroslav",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Arefyev Andrey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gorshenkov Artur",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Salnikova Nonna",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Ibatullin Robert",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "tournament": {
+    "id": "rif_1847",
+    "slug": "rif_1847",
+    "name": "41 Seiunsen Tournament Nagoya area",
+    "year": 2017,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2017-01-09",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "加藤みこ",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kojima Yasutsugu",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "増田巧",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "岸善徳",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "加藤大介",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "立松光",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

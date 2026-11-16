@@ -1,0 +1,439 @@
+{
+  "tournament": {
+    "id": "r4433_1165",
+    "slug": "r4433_1165",
+    "name": "第二届安吉世界五子棋公开赛",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-09-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Wai Chan Keong",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Yang Yanxi",
+        "score": 4.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Qiu Yujin",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Lin Shu-Hsuan",
+        "score": 4.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Wang Qingqing",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Wang Yelin",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Lavrik-Karmazin Maksim",
+        "score": 4
+      },
+      "white": {
+        "no": null,
+        "name": "Li Yi",
+        "score": 4.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "He Shujun",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Wang Qichao",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Liu Xun",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Epifanov Dmitry",
+        "score": 3.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Kang Tingrui",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Han Tae-ho",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Ling Shijie",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Wu Baogang",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Zhao Duping",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Cheng Yanzhen",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 10,
+      "black": {
+        "no": null,
+        "name": "Lan Zhiren",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Liu Yang",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 11,
+      "black": {
+        "no": null,
+        "name": "Danilin Ivan",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Hao Tianyi",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 12,
+      "black": {
+        "no": null,
+        "name": "Fu Siqian",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Li Xiaoqing",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 13,
+      "black": {
+        "no": null,
+        "name": "Wu Kan",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Chou Huang Yu-Chien",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 14,
+      "black": {
+        "no": null,
+        "name": "Chen Xin",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Meng Jiehuan",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 15,
+      "black": {
+        "no": null,
+        "name": "Zhu Zhaoyun",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Zhong Yuyang",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 16,
+      "black": {
+        "no": null,
+        "name": "Liu Ming",
+        "score": 2.0
+      },
+      "white": {
+        "no": null,
+        "name": "Tao Junji",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 17,
+      "black": {
+        "no": null,
+        "name": "Zhang Wenbo",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Chernyi Anton",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 18,
+      "black": {
+        "no": null,
+        "name": "Dong Xiaoli",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Wu Zhiqin",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 19,
+      "black": {
+        "no": null,
+        "name": "Ho Kin Keong",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Hou Jun",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 20,
+      "black": {
+        "no": null,
+        "name": "Zhang Jiguo",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Wang Jing",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 21,
+      "black": {
+        "no": null,
+        "name": "Fu Liang",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Yao Yujie",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 22,
+      "black": {
+        "no": null,
+        "name": "Ma Shiwei",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Tian Hanfa",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 23,
+      "black": {
+        "no": null,
+        "name": "Cheng Xiaoshu",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Xu Siya",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 24,
+      "black": {
+        "no": null,
+        "name": "Zha Quanning",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Duan Chengyi",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

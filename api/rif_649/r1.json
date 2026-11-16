@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_649",
+    "slug": "rif_649",
+    "name": "49 Suiseisen Tournament Final round",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-10-25",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "田代雄一",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "玉田陽一",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "丹治寛樹",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "加藤康弘",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "下山拓真",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "丸田浩貴",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

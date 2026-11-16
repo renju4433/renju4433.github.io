@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_2890",
+    "slug": "rif_2890",
+    "name": "7 Nizhny Novgorod championship",
+    "year": 1991,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1991-10-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Gorshenkov Artur",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Gorshenkov Artur",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Shavarin Mikhail",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Владимир Филинов",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gorshenkov Artur",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

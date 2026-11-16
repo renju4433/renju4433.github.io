@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_3064",
+    "slug": "rif_3064",
+    "name": "61st Meijinsen match R1-2",
+    "year": 2023,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2023-10-14",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "神谷俊介",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

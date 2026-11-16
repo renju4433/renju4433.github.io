@@ -1,0 +1,67 @@
+{
+  "tournament": {
+    "id": "rif_1630",
+    "slug": "rif_1630",
+    "name": "Estonian Cup 2014, semifinals ja final",
+    "year": 2015,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2015-03-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Oll Aivo",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Hõbemägi Martin",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Mesila Villem",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Lõhmus Kristofer",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

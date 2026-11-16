@@ -1,0 +1,143 @@
+{
+  "tournament": {
+    "id": "r4433_1167",
+    "slug": "r4433_1167",
+    "name": "安吉县首届智力运动会五子棋比赛",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-09-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "陈曾子然",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "郑博元",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "胡强",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "夏楷迪",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "程钰达",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "计浩杰",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "张孝正",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "龚王昊",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "薛佳航",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "赵志毅",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "王子烨",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "陈郑轩",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

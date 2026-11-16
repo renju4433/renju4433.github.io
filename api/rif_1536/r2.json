@@ -1,0 +1,99 @@
+{
+  "tournament": {
+    "id": "rif_1536",
+    "slug": "rif_1536",
+    "name": "52 Meijinsen Qualification Tokai area 1st round",
+    "year": 2014,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2014-04-20",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "福井暢宏",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "丸山保司",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "井上克巳",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "山本靖弘",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "高澤永吉",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "鈴木淳一郎",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "真野芳久",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

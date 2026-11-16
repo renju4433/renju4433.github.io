@@ -1,0 +1,75 @@
+{
+  "tournament": {
+    "id": "r4433_1302",
+    "slug": "r4433_1302",
+    "name": "2021年湖北省大学生五子棋（线上）锦标赛",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-12-12",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "肖剑宜",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "余睿杰",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "彭璐璐",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "周欣怡",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "项英桓",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "杭越",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

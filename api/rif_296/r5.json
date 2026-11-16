@@ -1,0 +1,159 @@
+{
+  "tournament": {
+    "id": "rif_296",
+    "slug": "rif_296",
+    "name": "25th St. Petersburg Championship, First League",
+    "year": 2007,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2007-01-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Zubashchenko Ivan",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Lapshin Mikhail",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Arefyev Andrey",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Kuleshova Tatyana",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Виктор Балабай",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Kamyshentsev Vasily",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Gerasimov Ilya",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Михаил Кулешов",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Strokov Konstantin",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Kurilova Svetlana",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Bushkowski Ludwik",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Serdyuk Andrey",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Vodolazsky Konstantin",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Ivashkin Anton",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

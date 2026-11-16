@@ -1,0 +1,55 @@
+{
+  "tournament": {
+    "id": "rif_805",
+    "slug": "rif_805",
+    "name": "Swedish Cup 1999 Semi final",
+    "year": 1999,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1999-11-11",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Gaulitz Joachim",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Gaulitz Joachim",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

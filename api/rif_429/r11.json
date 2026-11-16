@@ -1,0 +1,191 @@
+{
+  "tournament": {
+    "id": "rif_429",
+    "slug": "rif_429",
+    "name": "I Russian Championship, High League",
+    "year": 1993,
+    "group": null,
+    "rule": null
+  },
+  "round": 11,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    },
+    {
+      "round": 8,
+      "is_finished": true
+    },
+    {
+      "round": 9,
+      "is_finished": true
+    },
+    {
+      "round": 10,
+      "is_finished": true
+    },
+    {
+      "round": 11,
+      "is_finished": true
+    },
+    {
+      "round": 12,
+      "is_finished": true
+    },
+    {
+      "round": 13,
+      "is_finished": true
+    },
+    {
+      "round": 14,
+      "is_finished": true
+    },
+    {
+      "round": 15,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1993-02-02",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Константин Никонов",
+        "score": 6
+      },
+      "white": {
+        "no": null,
+        "name": "Mikhailov Nikolay",
+        "score": 6.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Михаил Кожин",
+        "score": 5.5
+      },
+      "white": {
+        "no": null,
+        "name": "Alexandrov Victor",
+        "score": 6.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Tarannikov Yuriy",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Bobkov Evgeniy",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Sinyov Igor",
+        "score": 5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Ilyin Dmitry",
+        "score": 6.5
+      },
+      "white": {
+        "no": null,
+        "name": "Mishin Andrey",
+        "score": 6.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Krasnonosov Dmitry",
+        "score": 3.0
+      },
+      "white": {
+        "no": null,
+        "name": "Skuridin Alexey",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Mikhailov Alexander",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Dvoeglazov Vladimir",
+        "score": 2.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

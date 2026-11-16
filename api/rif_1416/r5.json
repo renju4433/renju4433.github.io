@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_1416",
+    "slug": "rif_1416",
+    "name": "13 Kanto Renju Emperor Tournament 2nd round",
+    "year": 2013,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2013-01-13",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "久富隆洋",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "磯部泰山",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "福井暢宏",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "中村茂",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

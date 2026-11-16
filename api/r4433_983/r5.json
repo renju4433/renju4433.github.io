@@ -1,0 +1,135 @@
+{
+  "tournament": {
+    "id": "r4433_983",
+    "slug": "r4433_983",
+    "name": "杭州市第三届智力运动会五子棋项目竞赛",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 5,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-07-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "张丹丹",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "王伟华",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "张前",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "蒋立中",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "唐全红",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "陈右哲",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "张雪琴",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "王子墨",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "江美珍",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "钱芬芬",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "秦子韩",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "张敏",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

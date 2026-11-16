@@ -1,0 +1,207 @@
+{
+  "tournament": {
+    "id": "rif_214",
+    "slug": "rif_214",
+    "name": "World Championship 1997, QT",
+    "year": 1997,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "1997-07-29",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "相楽俊",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Sinyov Igor",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Voskanyan Eduard",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Peskov Stepan",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Andersson Tord",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Doroshkevich Igor",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Karatajev Igor",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "鍾先驥",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Khramov Andrey",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Poghosyan Albert",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "奈良秀樹",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Eibatov Nizami",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Gurckis Gatis",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Balanova Jelena",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    },
+    {
+      "table": 9,
+      "black": {
+        "no": null,
+        "name": "Ponomarenko Nikolay",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "栢原昭彦",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 10,
+      "black": {
+        "no": null,
+        "name": "Degtyar Felix",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Veidemanis Arnis",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

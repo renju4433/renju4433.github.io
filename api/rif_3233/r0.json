@@ -1,0 +1,123 @@
+{
+  "tournament": {
+    "id": "rif_3233",
+    "slug": "rif_3233",
+    "name": "2024 “Tianyuan Cup” Renju Tournament",
+    "year": 2024,
+    "group": null,
+    "rule": null
+  },
+  "round": 0,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2024-07-14",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "王雨泽",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "解方程",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "王雨泽",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "赵天瑜",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "代毅辰",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "王雨泽",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "王雨泽",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "代毅辰",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "赵天瑜",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "王雨泽",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

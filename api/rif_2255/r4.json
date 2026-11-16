@@ -1,0 +1,43 @@
+{
+  "tournament": {
+    "id": "rif_2255",
+    "slug": "rif_2255",
+    "name": "11th Taiwan Meijinsen Match R3-4",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-01-18",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "林仕斌",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "林書玄",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

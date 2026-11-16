@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_2173",
+    "slug": "rif_2173",
+    "name": "57 Meijinsen Qualification East Japan area 2nd round",
+    "year": 2019,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2019-06-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "小野孝之",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "丸田光治",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "丸田浩貴",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "井上史也",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "小山純",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "草島真人",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

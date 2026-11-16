@@ -1,0 +1,123 @@
+{
+  "tournament": {
+    "id": "rif_1773",
+    "slug": "rif_1773",
+    "name": "33 Kanto Championship",
+    "year": 2016,
+    "group": null,
+    "rule": null
+  },
+  "round": 4,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2016-07-30",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "加藤康弘",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "張炎均",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "中村茂",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "丸田浩貴",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "藤川正樹",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "小山純",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "中村颯汰",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "岡部寛",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "中山智晴",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

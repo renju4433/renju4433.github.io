@@ -1,0 +1,163 @@
+{
+  "tournament": {
+    "id": "rif_846",
+    "slug": "rif_846",
+    "name": "Wettercupen",
+    "year": 2002,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2002-09-28",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Olyunin Sergey",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Nyberg Bengt",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Carlsson Martin",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Oblikas Mikk",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Jonsson Peter",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Carlsson Peter",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Holgersson Goran",
+        "score": 1.5
+      },
+      "white": {
+        "no": null,
+        "name": "Paulander Jan",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Gaulitz Joachim",
+        "score": 0.5
+      },
+      "white": {
+        "no": null,
+        "name": "Sulane Sander",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Karlsson Stefan",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Karlsson Martin",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Kolk Kaia",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Karlsson Irene",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Tihkan Evelyn",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

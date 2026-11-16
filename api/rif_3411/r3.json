@@ -1,0 +1,67 @@
+{
+  "tournament": {
+    "id": "rif_3411",
+    "slug": "rif_3411",
+    "name": "63 Meijinsen Qualification Tokai area 2nd round",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-06-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "山本靖弘",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "石谷信一",
+        "score": 0.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "真野芳久",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "高澤永吉",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

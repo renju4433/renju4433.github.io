@@ -1,0 +1,95 @@
+{
+  "tournament": {
+    "id": "rif_123",
+    "slug": "rif_123",
+    "name": "2006 Omok Bisang Match",
+    "year": 2006,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 0,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2006-02-25",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Park Eol",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "김규현",
+        "score": 6.0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "박정호",
+        "score": 4.0
+      },
+      "white": {
+        "no": null,
+        "name": "최윤석",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Lee Seung-dae",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "김창훈",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Lee Kyoung-Won",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "김병준",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

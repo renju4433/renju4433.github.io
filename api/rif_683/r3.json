@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_683",
+    "slug": "rif_683",
+    "name": "34 Seiunsen Tournament final match",
+    "year": 2010,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2010-03-07",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "埜口菊夫",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "釘崎道比古",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

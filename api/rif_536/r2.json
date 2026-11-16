@@ -1,0 +1,63 @@
+{
+  "tournament": {
+    "id": "rif_536",
+    "slug": "rif_536",
+    "name": "4 Kansai Championship 3rd round",
+    "year": 2009,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2009-02-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "大角友希",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "飯尾義弘",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "高嶋純也",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "田村一誠",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

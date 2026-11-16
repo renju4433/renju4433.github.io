@@ -1,0 +1,107 @@
+{
+  "tournament": {
+    "id": "r4433_1380",
+    "slug": "r4433_1380",
+    "name": "2020年“缘五杯”高校五子棋网络赛",
+    "year": 2020,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2020-12-01",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "李毅龙",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "王哲",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "李敏烨",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "彭金坤",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "何显",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "高心如",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "赵炳喃",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "毛玮铭",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

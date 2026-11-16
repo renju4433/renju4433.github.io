@@ -1,0 +1,47 @@
+{
+  "tournament": {
+    "id": "rif_409",
+    "slug": "rif_409",
+    "name": "32nd Seiunsen Tournament final match",
+    "year": 2008,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2008-03-16",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "高津一志",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "釘崎道比古",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "tournament": {
+    "id": "rif_922",
+    "slug": "rif_922",
+    "name": "Estonian Open",
+    "year": 2001,
+    "group": null,
+    "rule": null
+  },
+  "round": 3,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2001-12-15",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Ilu Timo",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Ses Pavel",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Soosõrv Ants",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Taimla Tunnet",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Eggert Ester",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Lents Johann",
+        "score": 1.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Tarbe Tauri",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Pellikka Marko",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Purk Andry",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Semyonov Vladimir",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Milva Helen",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Alexandrov Victor",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Sulane Sander",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "Tuvikene Maris",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 8,
+      "black": {
+        "no": null,
+        "name": "Pellikka Marika",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Holm Kristo",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}

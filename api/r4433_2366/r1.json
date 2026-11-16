@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "id": "r4433_2366",
+    "slug": "r4433_2366",
+    "name": "第二届韩国南部地区赛",
+    "year": 2018,
+    "group": null,
+    "rule": null
+  },
+  "round": 1,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2018-12-23",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Choi Seok-won",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kim Hong Soon",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Han a-reum-chan",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Kim Seong-hyeon",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Park Jong hyun",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Park Woong-bae",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Hwang Do-hoon",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Jang Won-cheol",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "D",
+      "prediction_correct": null
+    }
+  ]
+}

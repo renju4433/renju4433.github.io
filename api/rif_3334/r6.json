@@ -1,0 +1,159 @@
+{
+  "tournament": {
+    "id": "rif_3334",
+    "slug": "rif_3334",
+    "name": "The championship of Arkhangelsk region",
+    "year": 2025,
+    "group": null,
+    "rule": null
+  },
+  "round": 6,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    },
+    {
+      "round": 6,
+      "is_finished": true
+    },
+    {
+      "round": 7,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2025-01-02",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "Константин Казанцев",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Егор Павловский",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "Константин Золотарев",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Соколов Андрей",
+        "score": 2
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "Максим Афанасьев",
+        "score": 2
+      },
+      "white": {
+        "no": null,
+        "name": "Иван Иванов",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "Летовальцев Матвей",
+        "score": 3
+      },
+      "white": {
+        "no": null,
+        "name": "Егор Фокичев",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "Михаил Сидоров",
+        "score": 2.5
+      },
+      "white": {
+        "no": null,
+        "name": "Павел Носков",
+        "score": 2.5
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 6,
+      "black": {
+        "no": null,
+        "name": "Максим Старцев",
+        "score": 4.5
+      },
+      "white": {
+        "no": null,
+        "name": "Максим Метревели",
+        "score": 4
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 7,
+      "black": {
+        "no": null,
+        "name": "Вячеслав Куваев",
+        "score": 3.5
+      },
+      "white": {
+        "no": null,
+        "name": "Степан Потапов",
+        "score": 3
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

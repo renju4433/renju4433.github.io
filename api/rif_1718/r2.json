@@ -1,0 +1,115 @@
+{
+  "tournament": {
+    "id": "rif_1718",
+    "slug": "rif_1718",
+    "name": "40 Seiunsen Tournament Hamamatsu area",
+    "year": 2016,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2016-01-17",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "山崎正徳",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "加藤みこ",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "齋藤魁",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "上久保峰夫",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "井上克巳",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "立松光",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 4,
+      "black": {
+        "no": null,
+        "name": "藤田雄大",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "釘崎道比古",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    },
+    {
+      "table": 5,
+      "black": {
+        "no": null,
+        "name": "加藤大介",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "Nakajima Kazuki",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "B",
+      "prediction_correct": null
+    }
+  ]
+}

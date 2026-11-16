@@ -1,0 +1,87 @@
+{
+  "tournament": {
+    "id": "rif_2445",
+    "slug": "rif_2445",
+    "name": "61 Suiseisen Tournament final round",
+    "year": 2021,
+    "group": null,
+    "rule": null
+  },
+  "round": 2,
+  "is_finished": true,
+  "rounds": [
+    {
+      "round": 1,
+      "is_finished": true
+    },
+    {
+      "round": 2,
+      "is_finished": true
+    },
+    {
+      "round": 3,
+      "is_finished": true
+    },
+    {
+      "round": 4,
+      "is_finished": true
+    },
+    {
+      "round": 5,
+      "is_finished": true
+    }
+  ],
+  "model": null,
+  "predicted_at": null,
+  "updated_at": "2021-10-24",
+  "games": [
+    {
+      "table": 1,
+      "black": {
+        "no": null,
+        "name": "松田将馬",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "友部勝弘",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 2,
+      "black": {
+        "no": null,
+        "name": "加藤翔太",
+        "score": 0
+      },
+      "white": {
+        "no": null,
+        "name": "藤川正樹",
+        "score": 0
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    },
+    {
+      "table": 3,
+      "black": {
+        "no": null,
+        "name": "藤田麻衣子",
+        "score": 1
+      },
+      "white": {
+        "no": null,
+        "name": "横山翔汰",
+        "score": 1
+      },
+      "prediction": null,
+      "result": "W",
+      "prediction_correct": null
+    }
+  ]
+}
