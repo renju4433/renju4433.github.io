@@ -587,8 +587,7 @@ def predict_games_list(games_rows, ctx, rule_name='塔拉山口-10', model=None,
         top_prob = max(pb, pd, pw)
         fav = 'B' if pb == top_prob else ('W' if pw == top_prob else 'D')
         res = g['result']
-        eff_res = get_effective_result(res)
-        is_correct = (fav == eff_res) if eff_res else None
+        is_correct = (fav == res) if res in ('B', 'W', 'D') else None
 
         out.append({
             'table': g['table_no'],
@@ -627,11 +626,9 @@ def compute_metrics_for_games(games_rows):
         if g.get('black_name') == '轮空' or g.get('white_name') == '轮空':
             continue
         res = g.get('result')
-        if not res or g.get('p_black') is None:
+        if res not in ('B', 'W', 'D') or g.get('p_black') is None:
             continue
-        eff_res = get_effective_result(res)
-        if not eff_res:
-            continue
+        eff_res = res
         pb = g['p_black'] / 100.0
         pd = g['p_draw'] / 100.0
         pw = g['p_white'] / 100.0
@@ -689,7 +686,7 @@ def evaluate_tournament_model(conn, tid, write=True, print_report=True):
             rounds_stats.append(stat)
             pooled_rows.extend([
                 r for r in rows_dict
-                if get_effective_result(r['result']) is not None and r['p_black'] is not None
+                if r['result'] in ('B', 'W', 'D') and r['p_black'] is not None
             ])
 
     if not rounds_stats:

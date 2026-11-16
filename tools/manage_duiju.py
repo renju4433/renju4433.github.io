@@ -785,13 +785,11 @@ def write_round(tour, rmeta, rows, rounds_summary, points, is_finished=False):
             'black': g['p_black'], 'draw': g['p_draw'], 'white': g['p_white'],
         }
         is_correct = None
-        if not is_bye and pred is not None and g['result']:
-            eff = get_effective_result(g['result'])
-            if eff:
-                pb, pd, pw = pred['black'], pred['draw'], pred['white']
-                top = max(pb, pd, pw)
-                fav = 'B' if pb == top else ('W' if pw == top else 'D')
-                is_correct = (fav == eff)
+        if not is_bye and pred is not None and g['result'] in ('B', 'W', 'D'):
+            pb, pd, pw = pred['black'], pred['draw'], pred['white']
+            top = max(pb, pd, pw)
+            fav = 'B' if pb == top else ('W' if pw == top else 'D')
+            is_correct = (fav == g['result'])
 
         payload['games'].append({
             'table': g['table_no'],
