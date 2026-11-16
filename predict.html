@@ -95,7 +95,7 @@ pre{margin:8px 0 0;padding:11px 13px;border-radius:8px;background:#161d1a;color:
             <option value="25" selected>塔拉山口-10 (Taraguchi-10)</option>
             <option value="24">索索夫-8 (Soosyrv-8)</option>
             <option value="5">山口 (Yamaguchi)</option>
-            <option value="1">五手两打 (RIF)</option>
+            <option value="1">五手两打 / 指定开局两打 (RIF)</option>
           </select>
         </div>
         <div>
@@ -152,7 +152,7 @@ pre{margin:8px 0 0;padding:11px 13px;border-radius:8px;background:#161d1a;color:
         <pre>curl -X POST https://api.github.com/repos/renju4433/renju4433.github.io/dispatches \
   -H "Authorization: Bearer &lt;GITHUB_TOKEN&gt;" \
   -H "Accept: application/vnd.github+json" \
-  -d '{"event_type":"predict","client_payload":{"rule":"塔拉山口-10","base_time":60,"increment":30,"games":[{"black":"赵云","white":"万俊宏"}]}}'</pre>
+  -d '{"event_type":"predict","client_payload":{"rule":"塔拉山口-10","base_time":3600,"increment":30,"games":[{"black":"赵云","white":"万俊宏"}]}}'</pre>
       </div>
     </div>
   </div>
@@ -205,7 +205,7 @@ pre{margin:8px 0 0;padding:11px 13px;border-radius:8px;background:#161d1a;color:
     var rule = parseInt(document.getElementById('rule').value, 10);
     var bt = parseFloat(document.getElementById('bt').value || '60');
     var inc = parseFloat(document.getElementById('inc').value || '30');
-    var feat = [rule, rb, rw, rb - rw, bt, inc];
+    var feat = [rule, rb, rw, rb - rw, bt * 60, inc];
 
     var scores = [0, 0, 0];
     var trees = modelData.trees || [];
@@ -247,6 +247,9 @@ pre{margin:8px 0 0;padding:11px 13px;border-radius:8px;background:#161d1a;color:
 
   document.getElementById('b-name').addEventListener('input', updateHints);
   document.getElementById('w-name').addEventListener('input', updateHints);
+  document.getElementById('rule').addEventListener('change', predictMatch);
+  document.getElementById('bt').addEventListener('input', predictMatch);
+  document.getElementById('inc').addEventListener('input', predictMatch);
   document.getElementById('btn-run').addEventListener('click', predictMatch);
 })();
 </script>

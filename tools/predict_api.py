@@ -889,7 +889,7 @@ def predict_custom_payload(payload, out_path, db_path=None):
     ctx = compute_context_from_csv(tid='__custom__', upto_round=999, csv_path=db_path or DB_PATH)
     rule_name = payload.get('rule') or '塔拉山口-10'
     rule_id = RULE_MAP.get(rule_name, 25)
-    base_time = float(payload.get('base_time', 60))
+    base_time = float(payload.get('base_time', 3600))
     increment = float(payload.get('increment', 30))
 
     items = payload.get('games') or []
