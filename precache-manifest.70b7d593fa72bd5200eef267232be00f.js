@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e466e5a99c762986e87c2d88e7cb1890",
+    "revision": "a16c0e316662f663e6b734a7bc92a287",
     "url": "/build/rapfi-multi-simd128-relaxed.js"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/build/rapfi-multi-simd128-relaxed.wasm"
   },
   {
-    "revision": "99290d754640ca6f742751f4ca5ac13f",
+    "revision": "bc76c70f60d3f9b311cbd7c95ec5d200",
     "url": "/build/rapfi-multi-simd128.js"
   },
   {
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/build/rapfi-multi-simd128.wasm"
   },
   {
-    "revision": "daad54a4fdbc74de4841dc64ff49d887",
+    "revision": "68adc9bf588513126130d453c35dd965",
     "url": "/build/rapfi-single-simd128.js"
   },
   {
@@ -24,7 +24,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/build/rapfi-single-simd128.wasm"
   },
   {
-    "revision": "39d10384556789b68c9af2777466370a",
+    "revision": "c3cbeb11afd2c8e147b9250caebc51a2",
     "url": "/build/rapfi.data"
   },
   {
