@@ -53,7 +53,6 @@ weight_file = "mix9svqfreestyle_bsmix.bin.lz4"
 weight_file = "mix9svqstandard_bs15.bin.lz4"
 [[model.evaluator.weights]]
 weight_file_black = "mix9svqrenju_bs15_black.bin.lz4"
-[[model.evaluator.weights]]
 weight_file_white = "mix9svqrenju_bs15_white.bin.lz4"
 
 
