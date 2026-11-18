@@ -1,38 +1,65 @@
-/**
- * Welcome to your Workbox-powered service worker!
- *
- * You'll need to register this file in your web app and you should
- * disable HTTP caching for this file too.
- * See https://goo.gl/nhQhGp
- *
- * The rest of the code is auto-generated. Please don't update this file
- * directly; instead, make changes to your Workbox build configuration
- * and re-run your build process.
- * See https://goo.gl/2aRDsh
- */
-
-importScripts("/workbox-v4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.f8e15f336f14aeee67ad2934547cb6b1.js", "/workbox-v4.3.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/workbox-v4.3.1"});
+workbox.core.setCacheNameDetails({ prefix: 'gomoku-calculator' })
+workbox.core.skipWaiting()
+workbox.core.clientsClaim()
 
-importScripts(
-  "/precache-manifest.c94339e364856ddf3224923f7c99af06.js"
-);
+self.__precacheManifest = [].concat(self.__precacheManifest || [])
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
+workbox.precaching.cleanupOutdatedCaches()
 
-workbox.core.setCacheNameDetails({prefix: "gomoku-calculator"});
+const buildStrategy = new workbox.strategies.CacheFirst({
+  cacheName: 'rapfi-engine-cache',
+  plugins: [
+    new workbox.expiration.Plugin({
+      maxEntries: 10,
+      maxAgeSeconds: 30 * 24 * 60 * 60,
+    }),
+    new workbox.cacheableResponse.Plugin({
+      statuses: [0, 200],
+    }),
+  ],
+})
 
-workbox.core.skipWaiting();
+function addCoiHeaders(response) {
+  if (!response || response.status === 0) return response
+  const headers = new Headers(response.headers)
+  headers.set('Cross-Origin-Embedder-Policy', 'require-corp')
+  headers.set('Cross-Origin-Opener-Policy', 'same-origin')
+  headers.set('Cross-Origin-Resource-Policy', 'cross-origin')
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  })
+}
 
-/**
- * The workboxSW.precacheAndRoute() method efficiently caches and responds to
- * requests for URLs in the manifest.
- * See https://goo.gl/S9QRab
- */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+self.addEventListener('fetch', (event) => {
+  const req = event.request
+  if (req.method !== 'GET') return
+  const url = new URL(req.url)
+  if (url.origin !== self.location.origin) return
 
-workbox.precaching.cleanupOutdatedCaches();
+  const cacheKey = workbox.precaching.getCacheKeyForURL(req.url)
+  if (cacheKey) {
+    event.respondWith(
+      caches.match(cacheKey).then((cached) => {
+        const p = cached ? Promise.resolve(cached) : fetch(req)
+        return p.then(addCoiHeaders)
+      })
+    )
+    return
+  }
 
-workbox.routing.registerRoute(/^(?!.*\.html$).*$/, new workbox.strategies.CacheFirst({ "cacheName":"all-resources-cache", plugins: [new workbox.expiration.Plugin({ maxEntries: 500, maxAgeSeconds: 1296000, purgeOnQuotaError: true }), new workbox.cacheableResponse.Plugin({ statuses: [ 0, 200 ] })] }), 'GET');
-workbox.routing.registerRoute(/\.html$/, new workbox.strategies.StaleWhileRevalidate({ "cacheName":"html-cache", plugins: [new workbox.cacheableResponse.Plugin({ statuses: [ 0, 200 ] })] }), 'GET');
+  if (/\/build\/.*\.(data|wasm|js)$/.test(url.pathname)) {
+    event.respondWith(buildStrategy.handle({ event, request: req }).then(addCoiHeaders))
+    return
+  }
 
-workbox.googleAnalytics.initialize({});
+  event.respondWith(
+    fetch(req)
+      .then(addCoiHeaders)
+      .catch(() => caches.match(req).then(addCoiHeaders))
+  )
+})
+
