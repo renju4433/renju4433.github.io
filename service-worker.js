@@ -9,7 +9,7 @@ workbox.precaching.precache(self.__precacheManifest)
 workbox.precaching.cleanupOutdatedCaches()
 
 const buildStrategy = new workbox.strategies.CacheFirst({
-  cacheName: 'rapfi-engine-cache',
+  cacheName: 'rapfi-engine-cache-v2',
   plugins: [
     new workbox.expiration.Plugin({
       maxEntries: 10,
@@ -23,6 +23,7 @@ const buildStrategy = new workbox.strategies.CacheFirst({
 
 function addCoiHeaders(response) {
   if (!response || response.status === 0) return response
+  if (response.status === 204 || response.status === 205 || response.status === 304) return response
   const headers = new Headers(response.headers)
   headers.set('Cross-Origin-Embedder-Policy', 'require-corp')
   headers.set('Cross-Origin-Opener-Policy', 'same-origin')
@@ -59,7 +60,10 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(req)
       .then(addCoiHeaders)
-      .catch(() => caches.match(req).then(addCoiHeaders))
+      .catch(async () => {
+        const cached = await caches.match(req)
+        return cached ? addCoiHeaders(cached) : Response.error()
+      })
   )
 })
 
