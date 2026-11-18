@@ -8,8 +8,10 @@ self.__precacheManifest = [].concat(self.__precacheManifest || [])
 workbox.precaching.precache(self.__precacheManifest)
 workbox.precaching.cleanupOutdatedCaches()
 
+const ENGINE_CACHE_NAME = 'rapfi-engine-cache-v3'
+
 const buildStrategy = new workbox.strategies.CacheFirst({
-  cacheName: 'rapfi-engine-cache-v2',
+  cacheName: ENGINE_CACHE_NAME,
   plugins: [
     new workbox.expiration.Plugin({
       maxEntries: 10,
@@ -19,6 +21,18 @@ const buildStrategy = new workbox.strategies.CacheFirst({
       statuses: [0, 200],
     }),
   ],
+})
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys
+          .filter((k) => k.startsWith('rapfi-engine-cache-') && k !== ENGINE_CACHE_NAME)
+          .map((k) => caches.delete(k))
+      )
+    )
+  )
 })
 
 function addCoiHeaders(response) {
