@@ -1,11 +1,11 @@
-importScripts("/precache-manifest.f8e15f336f14aeee67ad2934547cb6b1.js", "/workbox-v4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.dfbebe53d73240d9ca0924eaec9e1083.js", "/workbox-v4.3.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/workbox-v4.3.1"});
 workbox.core.setCacheNameDetails({ prefix: 'gomoku-calculator' })
 workbox.core.skipWaiting()
 workbox.core.clientsClaim()
 
 self.__precacheManifest = [].concat(self.__precacheManifest || [])
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
+workbox.precaching.precache(self.__precacheManifest)
 workbox.precaching.cleanupOutdatedCaches()
 
 const buildStrategy = new workbox.strategies.CacheFirst({
