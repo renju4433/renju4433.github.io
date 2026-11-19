@@ -8,7 +8,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || [])
 workbox.precaching.precache(self.__precacheManifest)
 workbox.precaching.cleanupOutdatedCaches()
 
-const ENGINE_CACHE_NAME = 'rapfi-engine-cache-v3'
+const ENGINE_CACHE_NAME = 'rapfi-engine-cache-v4'
 
 const buildStrategy = new workbox.strategies.CacheFirst({
   cacheName: ENGINE_CACHE_NAME,
