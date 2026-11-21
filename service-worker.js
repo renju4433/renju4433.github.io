@@ -1,4 +1,4 @@
-importScripts("/precache-manifest.ce5a8e26afe534accc05be3436a661ba.js", "/workbox-v4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.f59b09a68c1fb1d2a206c2632c9b8df8.js", "/workbox-v4.3.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/workbox-v4.3.1"});
 workbox.core.setCacheNameDetails({ prefix: 'gomoku-calculator' })
 workbox.core.skipWaiting()
@@ -9,7 +9,7 @@ workbox.precaching.precache(self.__precacheManifest)
 workbox.precaching.cleanupOutdatedCaches()
 
 const ENGINE_CACHE_NAME = 'rapfi-engine-cache-v4'
-const BOOK_CACHE_NAME = 'renjunet-book-cache-v1'
+const BOOK_CACHE_NAME = 'renjunet-book-cache-v2'
 
 const buildStrategy = new workbox.strategies.CacheFirst({
   cacheName: ENGINE_CACHE_NAME,
@@ -81,7 +81,7 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
-  if (/\/renjunet\/.*\.(bin|json)$/.test(url.pathname)) {
+  if (/\/renjunet\/.*\.(bin|json|gz)$/.test(url.pathname)) {
     event.respondWith(bookStrategy.handle({ event, request: req }).then(addCoiHeaders))
     return
   }
