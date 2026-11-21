@@ -32,7 +32,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/icon.png"
   },
   {
-    "revision": "55c4f9c2653be2d2144dd53d30f39635",
+    "revision": "a6b62a0d8d7c79a509cf0abc430f342c",
     "url": "/index.html"
   },
   {
@@ -44,20 +44,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/js/about.f7687c72.js.map"
   },
   {
-    "revision": "db2f1f52a4fa33a48849",
-    "url": "/js/app.ff39ad2e.js"
+    "revision": "aa9aa30b8b34765c7ef2",
+    "url": "/js/app.cdbaf7f2.js"
   },
   {
-    "revision": "db2f1f52a4fa33a48849",
-    "url": "/js/app.ff39ad2e.js.map"
+    "revision": "aa9aa30b8b34765c7ef2",
+    "url": "/js/app.cdbaf7f2.js.map"
   },
   {
-    "revision": "c8a6ae09679e4f3520aa",
-    "url": "/js/chunk-vendors.545f0d36.js"
+    "revision": "06901ec5561604ff5cdf",
+    "url": "/js/chunk-vendors.1e87901c.js"
   },
   {
-    "revision": "c8a6ae09679e4f3520aa",
-    "url": "/js/chunk-vendors.545f0d36.js.map"
+    "revision": "06901ec5561604ff5cdf",
+    "url": "/js/chunk-vendors.1e87901c.js.map"
   },
   {
     "revision": "20901eaac9ab2488615537dd29530c86",
@@ -86,5 +86,13 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "047408bf50354e9bf98d06a17260349a",
     "url": "/manifest.json"
+  },
+  {
+    "revision": "066a03dc009c8e8398a7711f797055ed",
+    "url": "/renjunet/renjunet_games.bin"
+  },
+  {
+    "revision": "a93be7ee4692b148eea1be71aa8f18f4",
+    "url": "/renjunet/renjunet_meta.json"
   }
 ]);
