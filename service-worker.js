@@ -1,4 +1,4 @@
-importScripts("/precache-manifest.c4608e054be0bd504fccd82f4ab41a11.js", "/workbox-v4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.75140906dd3b25331231a6983eaa046a.js", "/workbox-v4.3.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/workbox-v4.3.1"});
 workbox.core.setCacheNameDetails({ prefix: 'gomoku-calculator' })
 workbox.core.skipWaiting()
@@ -9,14 +9,20 @@ workbox.precaching.precache(self.__precacheManifest)
 workbox.precaching.cleanupOutdatedCaches()
 
 const ENGINE_CACHE_NAME = 'rapfi-engine-cache-v4'
+const BOOK_CACHE_NAME = 'renjunet-book-cache-v1'
 
 const buildStrategy = new workbox.strategies.CacheFirst({
   cacheName: ENGINE_CACHE_NAME,
   plugins: [
-    new workbox.expiration.Plugin({
-      maxEntries: 10,
-      maxAgeSeconds: 30 * 24 * 60 * 60,
+    new workbox.cacheableResponse.Plugin({
+      statuses: [0, 200],
     }),
+  ],
+})
+
+const bookStrategy = new workbox.strategies.CacheFirst({
+  cacheName: BOOK_CACHE_NAME,
+  plugins: [
     new workbox.cacheableResponse.Plugin({
       statuses: [0, 200],
     }),
@@ -28,7 +34,11 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((keys) =>
       Promise.all(
         keys
-          .filter((k) => k.startsWith('rapfi-engine-cache-') && k !== ENGINE_CACHE_NAME)
+          .filter(
+            (k) =>
+              (k.startsWith('rapfi-engine-cache-') && k !== ENGINE_CACHE_NAME) ||
+              (k.startsWith('renjunet-book-cache-') && k !== BOOK_CACHE_NAME)
+          )
           .map((k) => caches.delete(k))
       )
     )
@@ -68,6 +78,11 @@ self.addEventListener('fetch', (event) => {
 
   if (/\/build\/.*\.(data|wasm|js)$/.test(url.pathname)) {
     event.respondWith(buildStrategy.handle({ event, request: req }).then(addCoiHeaders))
+    return
+  }
+
+  if (/\/renjunet\/.*\.(bin|json)$/.test(url.pathname)) {
+    event.respondWith(bookStrategy.handle({ event, request: req }).then(addCoiHeaders))
     return
   }
 
