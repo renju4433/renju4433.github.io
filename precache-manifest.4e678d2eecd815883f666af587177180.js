@@ -32,7 +32,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/icon.png"
   },
   {
-    "revision": "55894fd14b1b54d4915275b87661d373",
+    "revision": "93d471947e789f5bf3b32ea315714ead",
     "url": "/index.html"
   },
   {
@@ -44,12 +44,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/js/about.f7687c72.js.map"
   },
   {
-    "revision": "0a1fe2cb0dd99adb044d",
-    "url": "/js/app.c9ee3b51.js"
+    "revision": "763a46f81b40d2b57ba7",
+    "url": "/js/app.f78b0e79.js"
   },
   {
-    "revision": "0a1fe2cb0dd99adb044d",
-    "url": "/js/app.c9ee3b51.js.map"
+    "revision": "763a46f81b40d2b57ba7",
+    "url": "/js/app.f78b0e79.js.map"
   },
   {
     "revision": "06901ec5561604ff5cdf",
