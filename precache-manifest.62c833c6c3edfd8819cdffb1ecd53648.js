@@ -32,7 +32,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/icon.png"
   },
   {
-    "revision": "1d35d12e8467c3c1901f00cb83be01e1",
+    "revision": "ba16dc257f894e5e1aa375cf128680ea",
     "url": "/index.html"
   },
   {
@@ -44,20 +44,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/js/about.f7687c72.js.map"
   },
   {
-    "revision": "eb5f253b898bf2cefa2d",
-    "url": "/js/app.260e9424.js"
+    "revision": "f82862598e474a811296",
+    "url": "/js/app.b15e9a41.js"
   },
   {
-    "revision": "eb5f253b898bf2cefa2d",
-    "url": "/js/app.260e9424.js.map"
+    "revision": "f82862598e474a811296",
+    "url": "/js/app.b15e9a41.js.map"
   },
   {
-    "revision": "090ada994359697f82c5",
-    "url": "/js/chunk-vendors.5859563f.js"
+    "revision": "6b8dda1a1bee684296df",
+    "url": "/js/chunk-vendors.4c726b77.js"
   },
   {
-    "revision": "090ada994359697f82c5",
-    "url": "/js/chunk-vendors.5859563f.js.map"
+    "revision": "6b8dda1a1bee684296df",
+    "url": "/js/chunk-vendors.4c726b77.js.map"
   },
   {
     "revision": "20901eaac9ab2488615537dd29530c86",
@@ -88,11 +88,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/manifest.json"
   },
   {
-    "revision": "9f18a753ce353f5113320d7501c8c9cd",
+    "revision": "86a25cb28561db70df8118d073015d32",
     "url": "/renjunet/renjunet_games.bin.gz"
   },
   {
-    "revision": "06c31e42eb15ea0e96a01a0e5e583a78",
+    "revision": "79c66baa331ca875bd074d6c33b55876",
     "url": "/renjunet/renjunet_meta.json.gz"
   }
 ]);
