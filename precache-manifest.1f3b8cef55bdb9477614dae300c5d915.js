@@ -32,7 +32,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/icon.png"
   },
   {
-    "revision": "2b17f6a8b5613ff3fec12b2e1672084e",
+    "revision": "a6f27c7455350c2f22469afc03485e3a",
     "url": "/index.html"
   },
   {
@@ -44,12 +44,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/js/about.f7687c72.js.map"
   },
   {
-    "revision": "6bd51059ddf23de9f750",
-    "url": "/js/app.f565ce12.js"
+    "revision": "08e35803d027c9dc972a",
+    "url": "/js/app.a822d963.js"
   },
   {
-    "revision": "6bd51059ddf23de9f750",
-    "url": "/js/app.f565ce12.js.map"
+    "revision": "08e35803d027c9dc972a",
+    "url": "/js/app.a822d963.js.map"
   },
   {
     "revision": "6b8dda1a1bee684296df",
@@ -88,11 +88,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/manifest.json"
   },
   {
-    "revision": "86a25cb28561db70df8118d073015d32",
+    "revision": "e995f694d630403c4040d587af8db5b7",
     "url": "/renjunet/renjunet_games.bin.gz"
   },
   {
-    "revision": "79c66baa331ca875bd074d6c33b55876",
+    "revision": "5240f8b32dec30f790b252d913efed69",
     "url": "/renjunet/renjunet_meta.json.gz"
   }
 ]);

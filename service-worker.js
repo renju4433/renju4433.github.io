@@ -1,4 +1,4 @@
-importScripts("/precache-manifest.965c55d293a6745cd11bdae9a9a54f38.js", "/workbox-v4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.1f3b8cef55bdb9477614dae300c5d915.js", "/workbox-v4.3.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/workbox-v4.3.1"});
 workbox.core.setCacheNameDetails({ prefix: 'gomoku-calculator' })
 workbox.core.skipWaiting()
@@ -9,7 +9,7 @@ workbox.precaching.precache(self.__precacheManifest)
 workbox.precaching.cleanupOutdatedCaches()
 
 const ENGINE_CACHE_NAME = 'rapfi-engine-cache-v4'
-const BOOK_CACHE_NAME = 'renjunet-book-cache-v3'
+const BOOK_CACHE_NAME = 'renjunet-book-cache-v4'
 
 const buildStrategy = new workbox.strategies.CacheFirst({
   cacheName: ENGINE_CACHE_NAME,
